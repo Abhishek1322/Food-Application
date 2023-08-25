@@ -1,35 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 /* Login page Start */
-*{
+* {
     /* font-family: 'Crimson Text', serif; */
     font-family: 'Open Sans', sans-serif;
 }
-.Login{
+
+.Login {
     width: 100%;
     background-image: url(../images/loginbg.png);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
-.logleft{
+
+.logleft {
     position: relative;
 }
+
 .logo {
     margin: 20px 30px 0 30px;
 }
+
 .ChefMain {
     position: relative;
     z-index: 3;
     width: 100%;
     height: calc(100vh - 127px);
 }
+
 .Chef {
     position: absolute;
     bottom: -16px;
     right: -42px;
     width: 100%;
 }
+
 .logleft:after {
     content: '';
     width: 50%;
@@ -42,16 +49,20 @@
     top: 0;
     right: 0;
 }
+
 .foodBox {
     position: relative;
 }
+
 .foodBox .logFood:first-child {
     position: absolute;
     bottom: 24px;
     z-index: 6;
     height: 150px;
     width: 150px;
+    filter: drop-shadow(10px 4px 33px #2E3333);
 }
+
 .foodBox .logFood:nth-child(2) {
     position: absolute;
     bottom: 24px;
@@ -59,7 +70,10 @@
     z-index: 5;
     height: 150px;
     width: 150px;
+    filter: drop-shadow(10px 4px 33px #2E3333);
+
 }
+
 .foodBox .logFood:nth-child(3) {
     position: absolute;
     bottom: 24px;
@@ -67,11 +81,14 @@
     z-index: 4;
     height: 150px;
     width: 150px;
+    filter: drop-shadow(10px 4px 33px #2E3333);
+
 }
+
 .foodBox .logFood:last-child {
     position: absolute;
     bottom: 24px;
-    left: 350px;
+    left: 365px;
     z-index: 3;
     height: 150px;
     width: 150px;
@@ -85,4 +102,257 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+/* Start Toggle Switch */
+.toggle {
+    --width: 120px;
+    --height: 50px;
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: var(--height);
+    cursor: pointer;
+}
+
+.toggle input {
+    display: none;
+}
+
+.toggle .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--height);
+    background-color: #e65c00;
+    transition: all 0.4s ease-in-out;
+}
+
+.toggle .slider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--height));
+    height: calc(var(--height));
+    border-radius: calc(var(--height) / 2);
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease-in-out;
+}
+
+.toggle input:checked+.slider {
+    background-color: #e65c00;
+}
+
+.toggle input:checked+.slider::before {
+    transform: translateX(calc(var(--width) - var(--height)));
+}
+
+.toggle .labels {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-family: sans-serif;
+    transition: all 0.4s ease-in-out;
+}
+
+.toggle .labels::after {
+    content: attr(data-off);
+    position: absolute;
+    right: 15px;
+    color: #fff;
+    top: 9px;
+    opacity: 1;
+    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); */
+    transition: all 0.4s ease-in-out;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.toggle .labels::before {
+    content: attr(data-on);
+    position: absolute;
+    left: 15px;
+    color: #ffffff;
+    top: 7px;
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.toggle input:checked~.labels::after {
+    opacity: 0;
+}
+
+.toggle input:checked~.labels::before {
+    opacity: 1;
+}
+
+/* End Toggle Switch */
+/* Start Input Box */
+.input-container {
+    position: relative;
+}
+
+.border-input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+}
+.border-input::placeholder {
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+}
+.border-label {
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background-color: #fff;
+    padding: 0 5px;
+    pointer-events: none;
+    transition: 0.2s ease-out;
+    color: #979999;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.border-input:focus+.border-label,
+.border-input:valid+.border-label {
+    top: -8px;
+    left: 20px;
+    font-size: 12px;
+    background-color: white;
+}
+
+.border-input:focus {
+    border: 1px solid rgba(230, 92, 0, 0.20);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+}
+/* End Input Box */
+/* Start  Custom checkbox */
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+}
+
+.checkbox-input {
+    display: none;
+}
+
+.checkbox-label {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.checkbox-label::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #333;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 1px;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.checkbox-input:checked+.checkbox-label::before {
+    border-color: #3cb371;
+    /* Change to your desired checked color */
+}
+
+.checkbox-label::after {
+    content: "\2713";
+    /* Checkmark character */
+    font-size: 14px;
+    color: #3cb371;
+    /* Change to your desired checked color */
+    position: absolute;
+    left: 4px;
+    top: -2px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.checkbox-input:checked+.checkbox-label::after {
+    opacity: 1;
+}
+
+/*End custom checkbox  */
+/* Login start */
+.flexBox {
+    display: flex;
+    align-items: center;
+}
+
+.logForm {
+    width: 60%;
+    margin: 5rem auto;
+}
+
+.smallSubheading {
+    color: #979999;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    padding-right: 30px;
+    margin: 0;
+}
+
+.mainHeading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.subHeading {
+    color: #979999;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+}
+.coloredSmallSubheading {
+    color: #E65C00;
+    text-align: right;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+}
+.smallBtn {
+    border-radius: 8px;
+    background: #E65C00;
+    padding: 18px 45px;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    border: none;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
 }
