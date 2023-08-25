@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+/* Login page Start */
+*{
+    /* font-family: 'Crimson Text', serif; */
+    font-family: 'Open Sans', sans-serif;
+}
+.Login{
+    width: 100%;
+    background-image: url(../images/loginbg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.logleft{
+    position: relative;
+}
+.logo {
+    margin: 20px 30px 0 30px;
+}
+.ChefMain {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: calc(100vh - 127px);
+}
+.Chef {
+    position: absolute;
+    bottom: -16px;
+    right: -42px;
+    width: 100%;
+}
+.logleft:after {
+    content: '';
+    width: 50%;
+    height: 100vh;
+    background-color: #2E3333;
+    background-image: url(../images/logLeft.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.foodBox {
+    position: relative;
+}
+.foodBox .logFood:first-child {
+    position: absolute;
+    bottom: 24px;
+    z-index: 6;
+    height: 150px;
+    width: 150px;
+}
+.foodBox .logFood:nth-child(2) {
+    position: absolute;
+    bottom: 24px;
+    left: 120px;
+    z-index: 5;
+    height: 150px;
+    width: 150px;
+}
+.foodBox .logFood:nth-child(3) {
+    position: absolute;
+    bottom: 24px;
+    left: 240px;
+    z-index: 4;
+    height: 150px;
+    width: 150px;
+}
+.foodBox .logFood:last-child {
+    position: absolute;
+    bottom: 24px;
+    left: 350px;
+    z-index: 3;
+    height: 150px;
+    width: 150px;
+    background: #e55a19;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
