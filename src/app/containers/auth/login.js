@@ -6,7 +6,7 @@ const Login = (props) => {
 
     return (
         <>
-            <div className="Login">
+            <div className="Login mainPage">
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-lg-6">

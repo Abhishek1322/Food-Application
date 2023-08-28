@@ -16,7 +16,6 @@ const Router = () => {
                 <Route element={<Layouts.AuthLayout />}>
                     <Route element={<PrivateCheck auth={true} />}>
                         <Route path="/login" element={<Containers.Login />} />
-                        <Route path="/signup" element={<Containers.Signup />} />
                         <Route path="/chooseroles" element={<Containers.ChooseRoles />} />
                         <Route path="/verification" element={<Containers.Verification />} />
                         <Route path="/createAccount" element={<Containers.CreateAccount />} />

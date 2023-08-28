@@ -11,7 +11,7 @@ const Verification = () => {
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
-                            <div className="logleft">
+                            <div className="logleft verifyIcon">
                                 <figure>
                                     <img src={Images.Logo} alt="logo" className="img-fluid logo" />
                                 </figure>
@@ -27,7 +27,7 @@ const Verification = () => {
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div className="logRight verifyIcon mt-5">
+                            <div className="logRight mt-5">
                                 <div className="toggleButtonMain">
                                     <div className="buttonBox">
                                         <button type="submit" role="button" className="backBtn"><i class="las la-angle-left"></i> Back</button>

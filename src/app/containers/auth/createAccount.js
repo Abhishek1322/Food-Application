@@ -11,7 +11,7 @@ const CreateAccount = (props) => {
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
-                            <div className="logleft">
+                            <div className="logleft createAccount">
                                 <figure>
                                     <img src={Images.Logo} alt="logo" className="img-fluid logo" />
                                 </figure>
@@ -41,17 +41,6 @@ const CreateAccount = (props) => {
                                 <div className="logForm">
                                     <h6 className="mainHeading mb-3">Create Account</h6>
                                     <p className="subHeading">Welcome to ServeItLocal</p>
-                                    {/* <div className='topInputfields mt-5'>
-                                        <div className='input-container'>
-                                            <input type='text' className='border-input' placeholder='Bangura' />
-                                            <label className="border-label">First Name</label>
-                                        </div>
-                                        <div className='input-container'>
-                                            <input type='text' className='border-input' />
-                                            <label className="border-label">Last Name</label>
-                                        </div>
-                                    </div> */}
-
                                     <div className='topInputfields mt-5'>
                                         <div className='container p-0'>
                                             <div className='row'>
@@ -67,27 +56,23 @@ const CreateAccount = (props) => {
                                                         <label className="border-label">Last Name</label>
                                                     </div>
                                                 </div>
+                                                <div className='col-lg-12'>
+                                                    <div className="input-container mt-5">
+                                                        <input type="text" className="border-input" />
+                                                        <label className="border-label">Email</label>
+                                                    </div>
+                                                </div>
+                                                <div className='col-lg-12'>
+                                                    <div className="input-container mt-5">
+                                                        <input type="password" className="border-input" />
+                                                        <label className="border-label">Password</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="input-container mt-5">
-                                        <input type="text" className="border-input" />
-                                        <label className="border-label">Email</label>
-                                    </div>
-                                    <div className="input-container mt-5">
-                                        <input type="password" className="border-input" />
-                                        <label className="border-label">Password</label>
-                                    </div>
-                                    {/* <div className="flexBox justify-content-between mt-5">
-                                            <div className="custom-checkbox">
-                                                <input type="checkbox" id="checkbox" className="checkbox-input"/>
-                                                    <label for="checkbox" className="checkbox-label smallSubheading">Keep me Logged in</label>
-                                            </div>
-                                            <Link className="coloredSmallSubheading m-0">Forgot Password?</Link>
-                                        </div> */}
                                     <div className="buttonBox mt-5">
-                                        <button type="submit" role="button" className="smallBtn"> Login</button>
+                                        <button type="submit" role="button" className="smallBtn">Sign Up</button>
                                     </div>
                                 </div>
                             </div>

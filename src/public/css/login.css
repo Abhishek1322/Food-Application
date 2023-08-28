@@ -402,6 +402,28 @@
 }
 
 /* Choose Role End */
+/* Start Create Account */
+.logleft:before {
+    content: '';
+    position: absolute;
+    top: 130px;
+    right: -71px;
+    z-index: 3;
+    width: 140px;
+    height: 140px;
+    background-color: #FFF;
+    border-radius: 50%;
+    
+    box-shadow: 2px 4px 22px 0px rgb(0 0 0 / 42%);
+}
+
+.createAccount:before {
+    background-image: url(../images/Roleuser.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* End Create Account */
 
 /* Start Enter Otp */
 .enterOtp {
@@ -412,6 +434,8 @@
     border: 1px solid #E9E9E9;
     background: #FFF;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    color: #2E3333;
+    font-size: 18px;
 }
 
 .enterOtp:focus-visible {
@@ -426,4 +450,14 @@
     background: transparent;
     padding: 7px 15px;
     border-radius: 20px
+}
+
+.verifyIcon:before {
+    background-image: url(../images/verifyIxcon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mainPage .logleft::before {
+    opacity: 0;
 }

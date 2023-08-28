@@ -1,18 +1,2 @@
 
 
-.userRightimg::before {
-    content: '';
-    position: absolute;
-    background: url('../images/loginuser.png');
-    width: 145px;
-    height: 171px;
-    top: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    left: -110px;
-}
-
-.topInputfields {
-    display: flex;
-    justify-content: space-between;
-}
