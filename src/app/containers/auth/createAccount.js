@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
 import * as Images from "../../../utilities/images";
+import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
 
-const Login = (props) => {
+const CreateAccount = (props) => {
 
     return (
         <>
-            <div className="Login">
+          <div className="Login">
                 <div className="container-fluid">
-                    <div className="row align-items-center">
+                    <div className="row">
                         <div className="col-lg-6">
                             <div className="logleft">
                                 <figure>
@@ -24,20 +25,22 @@ const Login = (props) => {
                                 </figure>
                             </div>
                         </div>
-                        <div className="col-lg-6">
-                            <div className="logRight mt-5">
-                                <div className="container">
-                                    <div className="flexBox justify-content-end">
+                        <div className="flexBox justify-content-end rightToggle">
                                         <h3 className="smallSubheading">Don’t have an account?</h3>
-                                        <div class="form-group">
+                                         <div class="form-group">
                                             <label class="toggle">
                                                 <input type="checkbox" />
-                                                <span class="slider"></span>
+                                                <span class="slider">
+                                                <i class="fa-solid fa-angles-left"></i>
+                                                </span>
                                                 <span class="labels" data-on="Login" data-off=" Sign Up"></span>
                                             </label>
                                         </div>
                                     </div>
-                                    <div className="logForm">
+                        <div className="col-lg-6">
+                            <div className="logRight mt-5">
+                                <div className="container">
+                                 <div className="logForm">
                                         <h6 className="mainHeading mb-3">Login</h6>
                                         <p className="subHeading">Enter your login details below</p>
                                         <div class="input-container mt-5">
@@ -70,4 +73,4 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default CreateAccount
