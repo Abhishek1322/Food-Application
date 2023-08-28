@@ -1,18 +1,21 @@
 
-
-.userRightimg::before {
+/* 
+.logleft::before {
     content: '';
     position: absolute;
-    background: url('../images/loginuser.png');
+    background-image: url('../images/Roleuser.svg');
+    background-color: aliceblue;
+    padding: 33px 34px;
     width: 145px;
     height: 171px;
-    top: 0;
+    top: 66px;
     background-size: cover;
     background-repeat: no-repeat;
-    left: -110px;
+    right: -70px;
+    z-index: 4;
 }
 
 .topInputfields {
     display: flex;
     justify-content: space-between;
-}
+}  */
