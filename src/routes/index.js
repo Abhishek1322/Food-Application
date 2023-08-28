@@ -19,7 +19,7 @@ const Router = () => {
                         <Route path="/chooseroles" element={<Containers.ChooseRoles />} />
                         <Route path="/verification" element={<Containers.Verification />} />
                         <Route path="/createAccount" element={<Containers.CreateAccount />} />
-                        <Route path="/forgotpsw" element={<Containers.forgotpsw />} />
+                        <Route path="/forgotpassword" element={<Containers.forgotPassword />} />
                     </Route>
  
                     {/* <Route element={<PrivateCheck auth={true} />}> 
