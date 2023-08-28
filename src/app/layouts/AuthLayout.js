@@ -19,9 +19,9 @@ const AuthLayout = () => {
         :
         <>
           <main className='main' id='main'>
-            <div className='container'>
+            {/* <div className='container'> */}
               <Outlet />
-            </div>
+            {/* </div> */}
           </main>
         </>
       }

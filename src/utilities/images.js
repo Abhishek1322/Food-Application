@@ -3,7 +3,8 @@ import Chef from "../public/images/Chef.png";
 import logFoodone from "../public/images/logFoodone.png";
 import logFoodtwo from "../public/images/logFoodtwo.png";
 import logFoodthree from "../public/images/logFoodthree.png";
-// import logFoodfour from "../public/images/logFoodfour.png";
+import RoleChef from "../public/images/Rolechef.svg";
+import RoleUser from "../public/images/Roleuser.svg";
 
 
 
@@ -15,7 +16,8 @@ export {
     logFoodone,
     logFoodtwo,
     logFoodthree,
-    // logFoodfour,
+    RoleChef,
+    RoleUser,
   
   
 }

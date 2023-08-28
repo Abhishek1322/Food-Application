@@ -14,17 +14,16 @@ const Router = () => {
                 </Route>
 
                 <Route element={<Layouts.AuthLayout />}>
-                    <Route element={<PrivateCheck auth={false} />}>
+                    <Route element={<PrivateCheck auth={true} />}>
                         <Route path="/login" element={<Containers.Login />} />
                         <Route path="/signup" element={<Containers.Signup />} />
-                        <Route path="/chooserolesfor=signup" element={<Containers.ChooseRoles />} />
-                        <Route path="/chooserolesfor=signin" element={<Containers.ChooseRoles />} />
+                        <Route path="/chooseroles" element={<Containers.ChooseRoles />} />
                         <Route path="/verification" element={<Containers.Verification />} />
                     </Route>
  
-                    <Route element={<PrivateCheck auth={true} />}> 
+                    {/* <Route element={<PrivateCheck auth={true} />}> 
                         <Route path="/dashboard" element={<Containers.AccountDashboard />} />
-                    </Route>
+                    </Route> */}
                 </Route>
             </Routes>
         </>

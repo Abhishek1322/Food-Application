@@ -18,3 +18,8 @@
         left: 185px;
     }
 }
+@media (max-width:575px){
+    .logForm {
+        width: 100%;
+    }
+}
