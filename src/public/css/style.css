@@ -1,8 +1,6 @@
 
-.logRight {
-    position: relative;
-}
-.logRight::before {
+
+.userRightimg::before {
     content: '';
     position: absolute;
     background: url('../images/loginuser.png');
@@ -12,4 +10,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     left: -110px;
+}
+
+.topInputfields {
+    display: flex;
+    justify-content: space-between;
 }
