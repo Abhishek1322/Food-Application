@@ -5,6 +5,7 @@ import logFoodtwo from "../public/images/logFoodtwo.png";
 import logFoodthree from "../public/images/logFoodthree.png";
 import RoleChef from "../public/images/Rolechef.svg";
 import RoleUser from "../public/images/Roleuser.svg";
+import ChooseRoleIcon from "../public/images/ChooseRoleIcon.svg";
 
 
 
@@ -18,6 +19,7 @@ export {
     logFoodthree,
     RoleChef,
     RoleUser,
+    ChooseRoleIcon,
   
   
 }

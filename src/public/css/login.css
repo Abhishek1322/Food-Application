@@ -143,6 +143,9 @@
     background-color: #fff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease-in-out;
+    background-image: url(../images/toggleIcon.png);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .toggle input:checked+.slider {
@@ -150,6 +153,7 @@
 }
 
 .toggle input:checked+.slider::before {
+    /* transform: rotate(180deg); */
     transform: translateX(calc(var(--width) - var(--height)));
 }
 
@@ -206,7 +210,7 @@
 
 .border-input {
     width: 100%;
-    padding: 10px;
+    padding: 15px 10px;
     outline: none;
     border-radius: 8px;
     border: 1px solid #E9E9E9;
@@ -217,12 +221,14 @@
     font-size: 14px;
     font-weight: 400;
 }
+
 .border-input::placeholder {
     color: #2E3333;
     font-family: Open Sans;
     font-size: 14px;
     font-weight: 400;
 }
+
 .border-label {
     position: absolute;
     top: -8px;
@@ -249,6 +255,7 @@
     border: 1px solid rgba(230, 92, 0, 0.20);
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
 }
+
 /* End Input Box */
 /* Start  Custom checkbox */
 .custom-checkbox {
@@ -273,7 +280,7 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 2px solid #333;
+    border: 1px solid #333;
     background-color: #fff;
     position: absolute;
     left: 0;
@@ -283,19 +290,16 @@
 }
 
 .checkbox-input:checked+.checkbox-label::before {
-    border-color: #3cb371;
-    /* Change to your desired checked color */
+    border-color: #E65C00;
 }
 
 .checkbox-label::after {
     content: "\2713";
-    /* Checkmark character */
-    font-size: 14px;
-    color: #3cb371;
-    /* Change to your desired checked color */
+    font-size: 22px;
+    color: #E65C00;
     position: absolute;
-    left: 4px;
-    top: -2px;
+    left: 2px;
+    top: -5px;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -313,12 +317,17 @@
 
 .logForm {
     width: 60%;
-    margin: 5rem auto;
+    margin: 0 auto;
+}
+
+.toggleButtonMain {
+    position: absolute;
+    right: 36px;
+    top: 20px;
 }
 
 .smallSubheading {
     color: #979999;
-    font-family: Open Sans;
     font-size: 14px;
     font-weight: 400;
     padding-right: 30px;
@@ -334,18 +343,19 @@
 
 .subHeading {
     color: #979999;
-    font-family: Open Sans;
     font-size: 16px;
     font-weight: 400;
     margin: 0;
 }
+
 .coloredSmallSubheading {
-    color: #E65C00;
+    color: #E65C00 !important;
     text-align: right;
-    font-family: Open Sans;
     font-size: 14px;
     font-weight: 400;
+    text-decoration: none;
 }
+
 .smallBtn {
     border-radius: 8px;
     background: #E65C00;
@@ -365,4 +375,7 @@
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
     padding: 20px;
     text-align: center;
+}
+.ChooseRoleIcon {
+    filter: drop-shadow(0px 10px 15px  #e65c0064);
 }
