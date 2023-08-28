@@ -24,29 +24,23 @@ const ChooseRoles = () => {
                         </div>
                     </div>
                     <div className='chooseroleBox'>
-                        <div className='row justify-content-center'>
-                            <div className='col-lg-2'>
-                                <div className='roleBox'>
-                                    <figure>
-                                        <img src={Images.RoleUser} alt='RoleChef' className='img-fluid RoleChef' />
-                                    </figure>
-                                    <h5>Continue As a User</h5>
-                                    <figure>
-                                        <img src={Images.ChooseRoleIcon} alt='ChooseRoleIcon' className='img-fluid ChooseRoleIcon' />
-                                    </figure>
-                                </div>
-                            </div>
-                            <div className='col-lg-2'>
-                                <div className='roleBox'>
-                                    <figure>
-                                        <img src={Images.RoleChef} alt='RoleChef' className='img-fluid RoleChef' />
-                                    </figure>
-                                    <h5>Continue As a Chef</h5>
-                                    <figure>
-                                        <img src={Images.ChooseRoleIcon } alt='ChooseRoleIcon' className='img-fluid ChooseRoleIcon' />
-                                    </figure>
-                                </div>
-                            </div>
+                        <div className='roleBox active' >
+                            <figure>
+                                <img src={Images.RoleUser} alt='RoleChef' className='img-fluid RoleChef' />
+                            </figure>
+                            <h5 className='roleHeading'>Continue As a User</h5>
+                            <figure>
+                                <img src={Images.ChooseRoleIcon} alt='ChooseRoleIcon' className='img-fluid ChooseRoleIcon mt-2' />
+                            </figure>
+                        </div>
+                        <div className='roleBox'>
+                            <figure>
+                                <img src={Images.RoleChef} alt='RoleChef' className='img-fluid RoleChef' />
+                            </figure>
+                            <h5 className='roleHeading'>Continue As a Chef</h5>
+                            <figure>
+                                <img src={Images.ChooseRoleIcon} alt='ChooseRoleIcon' className='img-fluid ChooseRoleIcon mt-2' />
+                            </figure>
                         </div>
                     </div>
                 </div>

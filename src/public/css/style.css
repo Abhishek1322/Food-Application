@@ -1,18 +1,15 @@
 
-/* 
-.logleft::before {
+
+/* .userRightimg::before {
     content: '';
     position: absolute;
-    background-image: url('../images/Roleuser.svg');
-    background-color: aliceblue;
-    padding: 33px 34px;
+    background: url('../images/loginuser.png');
     width: 145px;
     height: 171px;
-    top: 66px;
+    top: 0;
     background-size: cover;
     background-repeat: no-repeat;
-    right: -70px;
-    z-index: 4;
+    left: -110px;
 }
 
 .topInputfields {
