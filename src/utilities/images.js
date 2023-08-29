@@ -6,6 +6,9 @@ import logFoodthree from "../public/images/logFoodthree.png";
 import RoleChef from "../public/images/Rolechef.svg";
 import RoleUser from "../public/images/Roleuser.svg";
 import ChooseRoleIcon from "../public/images/ChooseRoleIcon.svg";
+import Home from "../public/images/home.png";
+import myorder from "../public/images/myorder.png"
+import setting from "../public/images/setting.png"
 
 
 
@@ -20,6 +23,10 @@ export {
     RoleChef,
     RoleUser,
     ChooseRoleIcon,
+    Home,
+    myorder,
+    setting,
+
   
   
 }
