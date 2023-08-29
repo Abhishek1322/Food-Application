@@ -20,6 +20,8 @@ const Router = () => {
                         <Route path="/verification" element={<Containers.Verification />} />
                         <Route path="/createAccount" element={<Containers.CreateAccount />} />
                         <Route path="/forgotpassword" element={<Containers.forgotPassword />} />
+                        <Route path="recoverpassword" element={<Containers.Recoverpassword />} />
+                        <Route path="enterOtp" element={<Containers.EnterOtp />} />
                     </Route>
  
                     {/* <Route element={<PrivateCheck auth={true} />}> 

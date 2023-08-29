@@ -5,6 +5,8 @@ import AccountDashboard from "./dashboard"
 import Verification from "./auth/verification"
 import CreateAccount from "./auth/createAccount"
 import forgotPassword from "./auth/ForgotPassword"
+import Recoverpassword from "./auth/Recoverpassword"
+import EnterOtp from "./auth/EnterOtp"
 export {
     Login,
     Home,
@@ -13,4 +15,6 @@ export {
     Verification,
     CreateAccount,
     forgotPassword,
+    Recoverpassword,
+    EnterOtp,
 }
