@@ -7,7 +7,7 @@ const SettingMain = (props) => {
             <div className='main_div'>
             <div className='sideBar'>
                  <div className='sidelogo'>
-
+                      
                  </div>
 
             </div>
