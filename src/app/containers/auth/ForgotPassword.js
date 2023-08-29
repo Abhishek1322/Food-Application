@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const forgotPassword = (props) => {
     return (
         <>
-            <div className="Login mainPage">
+            <div className="Login">
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
-                            <div className="logleft">
+                            <div className="logleft forgotIcon">
                                 <figure>
                                     <img src={Images.Logo} alt="logo" className="img-fluid logo" />
                                 </figure>
@@ -40,7 +40,7 @@ const forgotPassword = (props) => {
                                         <label className="border-label">Password</label>
                                     </div>
                                     <div className="buttonBox mt-5">
-                                        <button type="submit" role="button" className="smallBtn"> Continue</button>
+                                        <button type="submit" role="button" className="smallBtn">Continue</button>
                                     </div>
                                 </div>
                             </div>
