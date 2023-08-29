@@ -7,6 +7,9 @@ import CreateAccount from "./auth/createAccount"
 import forgotPassword from "./auth/ForgotPassword"
 import Recoverpassword from "./auth/Recoverpassword"
 import EnterOtp from "./auth/EnterOtp"
+import SettingMain from "./Settings/index"
+
+
 export {
     Login,
     Home,
@@ -17,4 +20,5 @@ export {
     forgotPassword,
     Recoverpassword,
     EnterOtp,
+    SettingMain,
 }

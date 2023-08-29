@@ -24,9 +24,9 @@ const Router = () => {
                         <Route path="enterOtp" element={<Containers.EnterOtp />} />
                     </Route>
  
-                    {/* <Route element={<PrivateCheck auth={true} />}> 
-                        <Route path="/dashboard" element={<Containers.AccountDashboard />} />
-                    </Route> */}
+                    <Route element={<PrivateCheck auth={true} />}> 
+                        <Route path="/setting" element={<Containers.SettingMain />} />
+                    </Route>
                 </Route>
             </Routes>
         </>
