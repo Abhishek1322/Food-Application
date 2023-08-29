@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Crimson Text', serif;
+    font-family: 'Open Sans', sans-serif;
+}
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* overflow-x: hidden; */
+}
+ul
+{
+    padding: 0;
+    margin: 0;
+}
+ul li
+{
+    list-style: none;
+}
+a
+{
+    text-decoration: none;
+}
+a:-webkit-any-link:focus-visible
+{
+    outline: 0;
+}
+textarea
+{
+    resize: none;
+}
+textarea:focus-visible {
+    outline: 0;
+}
+/* Start Custom Checkbox */
+.checkBoxTxt {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #575757;
+    font-size: 13px;
+    line-height: 25px;
+    letter-spacing: 1px;
+} 
+.checkBox {
+    appearance: none;
+    display: none;
+}
+.checkBoxTxt span
+{
+    display: inline-block;
+    text-align: start;
+}
+.checkBoxTxt:before {
+    content:'';
+    -webkit-appearance: none;
+    /* background-color: transparent; */
+    border: 2px solid #D3D3D3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 12px;
+    border-radius: 7px;
+}
+.checkBox:checked + .checkBoxTxt:before
+{
+    background: #388E1E;
+    border: 2px solid #388E1E;
+}
+.checkBox:checked + .checkBoxTxt:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -60%) rotate(45deg);
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    }
+/* End Custom Checkbox */
+/* Start CustomRadio Button */
+.customRadio:checked,
+.customRadio:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.customRadio:checked + label,
+.customRadio:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.customRadio:checked + label:before,
+.customRadio:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    background: transparent;
+}
+.customRadio:checked + label:after,
+.customRadio:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.customRadio:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.customRadio:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+/* End CustomRadio Button */
+/* Scrollbar-Css */
+.scrollbar
+{
+    background-image: linear-gradient(to right, #1C3276 ,#4C69C3, #1C3276);
+    width: 6px;
+    height: 10%;
+}
+.scrollbar-track
+{
+    background-color:#D9D9D9
+}
+.scrollbar-thumb {
+    background-image: linear-gradient(to right, #1C3276 ,#4C69C3, #1C3276);
+    border-radius:16px;
+    border:0px solid #D9D9D9;
+}
+::-webkit-scrollbar
+{
+    background-image: linear-gradient(to right, #1C3276 ,#4C69C3, #1C3276);
+    width: 6px;
+    height: 10%;
+}
+::-webkit-scrollbar-track {
+    background-color:#D9D9D9
+}
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to right, #1C3276 ,#4C69C3, #1C3276);
+    border-radius:16px;
+    border: 0px solid #D9D9D9;
+}
+::-moz-scrollbar
+{
+    background-image: linear-gradient(to right, #1C3276 ,#4C69C3, #1C3276);
+    width: 6px;
+    height: 10%;
+}
+::-moz-scrollbar-track {
+    background-image: linear-gradient(to right, #1C3276 ,#4C69C3, #1C3276);
+}
+::-moz-scrollbar-thumb {
+    background-color:#babac0;
+    border-radius:16px;
+    border: 0px solid #fff;
+}
+/* End Scrollbar Css */
+button:focus, button:focus-visible, .form-select:focus, .form-select:focus-visible, .form-control:focus, .form-control:focus-visible
+{
+    box-shadow: none;
+    outline: none;
+}
+button:focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+}
+input:focus-visible {
+    outline: 0px;
+}
+button {
+    background: transparent;
+    outline: 0;
+    border: 0;
+}
+.customFormControl {
+    width: 100%;
+    border: 1px solid #6e6e6e!important;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.customFormControl::placeholder
+{
+    color: #5E5F5E;
+    font-weight: 400;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+/*---- End Common Css ----*/
+.mainBox {
+    display: flex;
+}

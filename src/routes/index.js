@@ -11,10 +11,11 @@ const Router = () => {
             <Routes>
                 <Route element={<Layouts.MainLayout />}>
                     <Route path="/" element={<Containers.Login />} />
+                    <Route path="/setting" element={<Containers.SettingMain />} />
                 </Route>
 
                 <Route element={<Layouts.AuthLayout />}>
-                    <Route element={<PrivateCheck auth={true} />}>
+                    <Route element={<PrivateCheck auth={false} />}>
                         <Route path="/login" element={<Containers.Login />} />
                         <Route path="/chooseroles" element={<Containers.ChooseRoles />} />
                         <Route path="/verification" element={<Containers.Verification />} />
@@ -25,7 +26,7 @@ const Router = () => {
                     </Route>
  
                     <Route element={<PrivateCheck auth={true} />}> 
-                        <Route path="/setting" element={<Containers.SettingMain />} />
+                        {/* <Route path="/setting" element={<Containers.SettingMain />} /> */}
                     </Route>
                 </Route>
             </Routes>

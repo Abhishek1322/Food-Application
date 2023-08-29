@@ -41,18 +41,20 @@ const CreateAccount = (props) => {
                                 <div className="logForm">
                                     <h6 className="mainHeading mb-3">Create Account</h6>
                                     <p className="subHeading">Welcome to ServeItLocal</p>
-                                    <div className='topInputfields mt-5'>
+                                    <div className='topInputfields'>
                                         <div className='container p-0'>
                                             <div className='row'>
                                                 <div className='col-lg-6'>
-                                                    <div className='input-container'>
+                                                    <div className='input-container mt-5'>
                                                         <input type='text' className='border-input' placeholder='Bangura' />
                                                         <label className="border-label">First Name</label>
                                                     </div>
                                                 </div>
                                                 <div className='col-lg-6'>
-                                                    <input type='text' className='border-input' />
-                                                    <label className="border-label">Last Name</label>
+                                                    <div className='input-container mt-5'>
+                                                        <input type='text' className='border-input' />
+                                                        <label className="border-label">Last Name</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
