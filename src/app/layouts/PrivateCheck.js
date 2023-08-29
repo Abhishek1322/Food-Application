@@ -21,7 +21,8 @@ const PrivateCheck = ({ auth }) => {
     
     return (
         <>
-            {
+        <Outlet/>
+            {/* {
                 (authToken && auth) ? <Outlet /> :
                     (authToken && !auth && !step) ? <Navigate to="/registration" /> :
                         (!authToken && !auth) ? <Outlet /> :
@@ -32,7 +33,7 @@ const PrivateCheck = ({ auth }) => {
                                     <Navigate to="/" />
             }
             {step && pathName == "/registration" ? navigate("/dashboard") :
-                userstep && pathName == "/registration" ? navigate("/dashboard") : "" }
+                userstep && pathName == "/registration" ? navigate("/dashboard") : "" } */}
         </>
 
     )

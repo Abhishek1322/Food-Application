@@ -32,6 +32,16 @@
     .foodBox .logFood:last-child {
         left: 185px;
     }
+    .logleft::before{
+        opacity: 0;
+        display: none;
+    }
+    .logleft {
+        position: static;
+    }
+    .foodBox {
+        display: none;
+    }
 }
 @media (max-width:575px){
     .logForm {

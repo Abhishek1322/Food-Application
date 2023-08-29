@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useAuthSelector } from '../../redux/selector/auth';
-import AuthFooter from '../components/common/authFooter';
-import AuthNav from '../components/common/authNav';
+import React from 'react';
+import { Outlet, useLocation} from 'react-router-dom';
 
 const AuthLayout = () => {
   const location = useLocation();
@@ -12,7 +9,7 @@ const AuthLayout = () => {
   return (
     <>
       {/* <AuthNav /> */}
-      {authRoutes.includes(pathName) ?
+          {authRoutes.includes(pathName) ?
         <>
           <Outlet />
         </>
@@ -24,7 +21,7 @@ const AuthLayout = () => {
             {/* </div> */}
           </main>
         </>
-      }
+      }                   
       {/* <AuthFooter /> */}
     </>
   );
