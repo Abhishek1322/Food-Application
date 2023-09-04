@@ -8,6 +8,18 @@ import forgotPassword from "./auth/ForgotPassword"
 import Recoverpassword from "./auth/Recoverpassword"
 import EnterOtp from "./auth/EnterOtp"
 import SettingMain from "./Settings/index"
+import ChangePassword from "./Settings/ChangePassword"
+import DeleteAccount from "./Settings/DeleteAccount"
+import loading from "./Settings/Loading"
+import loadingpage from "./Settings/LoadingPage"
+import AccountDeleted from "./Settings/AccountDeleted"
+import TermAndCondition from "./Settings/TermAndCondition"
+import contactus from "./Settings/ContactUs"
+import PrivacyPolicy from "./Settings/PrivacyPolicy"
+
+
+
+
 
 
 export {
@@ -21,4 +33,12 @@ export {
     Recoverpassword,
     EnterOtp,
     SettingMain,
+    ChangePassword,
+    DeleteAccount,
+    loading,
+    loadingpage,
+    AccountDeleted,
+    TermAndCondition,
+    contactus,
+    PrivacyPolicy,
 }

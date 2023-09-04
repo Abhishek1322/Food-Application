@@ -1,0 +1,56 @@
+import React from 'react'
+import * as Images from "../../../utilities/images";
+const PrivacyPolicy = () => {
+  return (
+    <>
+    <div className='main-div'>
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div className='col-md-12'>
+                            <div className='termAndCond'>
+                                <img src={Images.backArrowpassword} alt="logo" className="img-fluid mt-2 me-4" />
+                                <div className='termcondContent'>
+                                    <p className="termheading">Privacy Policy</p>
+                                    <div className='termcondDummy'>
+                                        <p className='innerDummyHeading mt-4 mb-2 '>What is Lorem Ipsum?</p>
+                                        <p className='dummyText'>
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It
+                                            was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                            <p className='dummyText'>it is a long established fact that a reader
+                                            will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                                            a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable
+                                            English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search
+                                            for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes
+                                            by accident, sometimes on purpose (injected humour and the like).
+</p>
+                                    </div>
+                                    <p className='condHeading'>Change Password</p>
+                                    <p className='dummyText'>It is a long established fact that a reader will be distracted by the readable content of a page when
+                                        looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+                                        as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages
+                                        and web page editors now use Lorem Ipsum </p>
+                                    <div className='d-flex '>
+                                        <img src={Images.ChooseRoleIcon} alt='termcond' className='img-fluid termcond mt-2' />
+                                        <p className='dummyText'> Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                    </div>
+                                    <div className='d-flex '>
+                                        <img src={Images.ChooseRoleIcon} alt='termcond' className='img-fluid termcond mt-2' />
+                                        <p className='dummyText'>  When an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                    </div>
+                                    <div className='d-flex '>
+                                        <img src={Images.ChooseRoleIcon} alt='termcond' className='img-fluid termcond mt-2' />
+                                        <p className='dummyText'> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                                    </div>
+                                    <p className='dummyText'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </>
+  )
+}
+
+export default PrivacyPolicy

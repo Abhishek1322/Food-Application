@@ -1,5 +1,3 @@
-
-
 /* .userRightimg::before {
     content: '';
     position: absolute;
@@ -33,10 +31,11 @@
     right: 8px;
     top: 8px;
   } */
-  .input-container {
+.input-container {
     position: relative;
 }
-  .password-button {
+
+.password-button {
     position: absolute;
     top: 19px;
     right: 16px;
@@ -51,26 +50,284 @@
 
 
 /* Settings Page css Start */
-ul{
+ul {
     padding: 0;
     margin: 0;
 }
-li{
+
+li {
     list-style: none;
 }
+
 .sideBar {
     border: 1px solid rgba(230, 92, 0, 0.07);
     background: #FFF;
     box-shadow: 0px 16px 20px 0px rgba(230, 92, 0, 0.08);
     width: 99px;
     height: 100vh;
-    background: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
+
 .sidebarlogo {
     padding: 30px 12px 0 12px;
 }
+
 li {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.sidebarItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    color: #979999;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #E65C00;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 400;
+    background-color: rgba(230, 92, 0, 0.07);
+    border-radius: 20px;
+    padding: 22px 17px;
+}
+
+/* Header Section Css Start */
+.main {
+    width: calc(100% - 100px);
+}
+
+.headersection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+}
+
+.headerLinks {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(230, 92, 0, 0.08);
+    background: #FFF;
+    box-shadow: 0px 9px 19px 0px rgba(230, 92, 0, 0.03);
+    margin-right: 10px;
+    position: relative;
+}
+
+.headerLinks:after {
+    position: absolute;
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #E65C00;
+    border-radius: 50px;
+    top: 16px;
+    right: 22px;
+}
+
+.settingtxt {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.cart {
+    position: relative;
+}
+
+.basketImg {
+    position: absolute;
+    left: 20px;
+    top: 18px;
+}
+
+.cartItems {
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    background: #2E3333;
+    width: 20px;
+    height: 20px;
+    color: #FFF;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    text-align: center;
+    padding: 1px 3px 0 4px;
+}
+
+.settingBoxtxt {
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.leftbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 64px 40px;
+    margin: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(233, 233, 233, 0.50);
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+}
+
+.settingIcon {
+    background: #fa6d263d;
+    padding: 12px 12px;
+    border-radius: 9px;
+}
+
+.sidebarItems:hover {
+    color: #979999;
+}
+
+
+/* Settings Page css Start */
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.sidebarlogo {
+    padding: 30px 12px 0 12px;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Changepasword */
+
+.changepasswordleft {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0;
+    padding-left: 17px;
+}
+
+.changepassword {
+    height: 85vh;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.cancelBtn {
+    border-radius: 8px;
+    border: 1px solid #E65C00;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    color: #E65C00;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    padding: 18px 45px;
+    margin-right: 17px;
+}
+
+.changepassText {
+    color: #979999;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* loading  Page */
+.loadingpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accountDeleted {
+    color: #2E3333;
+    text-align: center;
+    font-family: Crimson Text;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.accountdeletetxt {
+    color: #979999;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* contactus */
+.contactUs {
+    color: #2E3333;
+    text-align: center;
+    font-family: Crimson Text;
+    font-size: 28px;
+    font-weight: 600;
+
+}
+/* term cond */
+.termheading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 40px;
+    font-weight: 600;
+}
+.termAndCond {
+    display: flex;
+    align-items: flex-start;
+    margin: 40px 30px;
+}
+.innerDummyHeading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 700;
+}
+.dummyText {
+    color: #979999;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+}
+.condHeading {
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+}
+.termcond {
+    width: 100%;
+    max-width: 14px;
+    height: 14px;
+    margin-right: 15px;
 }
