@@ -11,9 +11,9 @@ const ChangePassword = () => {
         <>
             <div className="Login">
                 <div className="container-fluid">
-                    <div className='passwordHeading d-flex align-items-center mt-4 ms-3'>
+                    <div className='passwordHeading d-flex align-items-center mt-4 ms-3 ' >
                         <img src={Images.backArrowpassword} alt="logo" className="img-fluid " />
-                            <p className='changepasswordleft text-align-center'>Change Password</p>
+                            <p className='settingMainHeading text-align-center'>Change Password</p>
                      </div>
                     <div className='changepassword'>
                     <div className="logRight mt-5">
@@ -21,7 +21,7 @@ const ChangePassword = () => {
                             <div className='changepasswordImg d-flex justify-content-center'>
                             <img src={Images.ChangepasswordImg} alt="logo" className="img-fluid " />
                             </div>
-                                    <h6 className="changepassHeading mb-3 d-flex  justify-content-center mt-3">Create your new password.</h6>
+                                    <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">Create your new password.</h6>
                                     <div className="input-container mt-5">
                                         <input
                                             className="border-input"

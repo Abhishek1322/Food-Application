@@ -6,29 +6,28 @@ import logFoodthree from "../public/images/logFoodthree.png";
 import RoleChef from "../public/images/Rolechef.svg";
 import RoleUser from "../public/images/Roleuser.svg";
 import ChooseRoleIcon from "../public/images/ChooseRoleIcon.svg";
-import Home from "../public/images/home.png";
-import myorder from "../public/images/myorder.png"
-import setting from "../public/images/setting.png"
-import sidebarchef from "../public/images/sidebarchef.png"
-import userProfile from "../public/images/userProfile.png"
+import Home from "../public/images/home.svg";
+import myorder from "../public/images/myorder.svg"
+import setting from "../public/images/setting.svg"
+import sidebarchef from "../public/images/sidebarchef.svg"
+import userProfile from "../public/images/userProfile.svg"
 import chat from "../public/images/chat.svg"
 import bellImage from "../public/images/bell.svg"
 import cardImage from "../public/images/cart.png"
 import basketImg from "../public/images/basket.svg"
-import password from "../public/images/password.png"
-import deleteImage from "../public/images/delete.png"
-import privacypolicy from "../public/images/privacypolicy.png"
+import password from "../public/images/password.svg"
+import deleteImage from "../public/images/delete.svg"
+import privacypolicy from "../public/images/privacypolicy.svg"
 import termconditions from "../public/images/termconditions.svg"
 import logout from "../public/images/logout.png"
-import contactus from "../public/images/contactus.png"
-import nextIcon from "../public/images/nextIcon.png"
+import nextIcon from "../public/images/nextIcon.svg"
 import backArrowpassword from "../public/images/backArrowpassword.png"
 import ChangepasswordImg from "../public/images/ChangepasswordImg.png"
 import DeleteAccount from "../public/images/DeleteAccount.png"
 import loadingsettingpage1 from "../public/images/loadingsettingpage1.png"
 import loadingsettingpage2 from "../public/images/loadingsettingpage2.png"
 import accountDeleted from "../public/images/accountDeleted.png"
-import contactUs from "../public/images/contactUs.png"
+import contactUs from "../public/images/contactus.svg"
 
 
 
@@ -58,7 +57,6 @@ export {
     privacypolicy,
     termconditions,
     logout,
-    contactus,
     nextIcon,
     backArrowpassword,
     ChangepasswordImg,

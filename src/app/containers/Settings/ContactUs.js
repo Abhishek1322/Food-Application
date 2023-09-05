@@ -8,15 +8,15 @@ const ContactUs = () => {
                 <div className="container-fluid">
                     <div className='passwordHeading d-flex align-items-center mt-4 ms-3'>
                         <img src={Images.backArrowpassword} alt="logo" className="img-fluid " />
-                        <p className='changepasswordleft text-align-center'>Contact Us</p>
+                        <p className='settingMainHeading text-align-center'>Contact Us</p>
                     </div>
                     <div className='changepassword'>
                         <div className="logRight mt-5">
                             <div className="changepasswordForm">
                                 <div className='changepasswordImg d-flex justify-content-center'>
-                                    <img src={Images.contactUs} alt="logo" className="img-fluid " />
+                                    <img src={Images.contactUs} alt="logo" className="img-fluid  contactusImg" />
                                 </div>
-                                <h6 className="contactUs mb-3 d-flex  justify-content-center mt-3">We will answer your questions
+                                <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">We will answer your questions
                                     & problems</h6>
 
                                  <div className='topInputfields'>
@@ -37,7 +37,6 @@ const ContactUs = () => {
                                             </div>
                                         </div>
                                     </div>
-
                                     <div className='col-lg-12' >
                                         <div className="input-container mt-5">
                                             <input type="text" className="border-input"  placeholder='bangura@serveitlocal.com'/>

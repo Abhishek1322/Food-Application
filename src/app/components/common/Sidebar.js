@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Images from "../../../utilities/images";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const Sidebar = () => {
     return (
         <>
@@ -10,29 +10,29 @@ const Sidebar = () => {
             </div>
             <div className='sidelist'>
                 <ul>
-                    <li className='sidebarlinks'>
-                        <Link to ="/home" className='sidebarItems'>
+                    <li className='sidebarNavLinks'>
+                        <NavLink to ="/home" className='sidebarItems'>
                         <img src={Images.Home} alt="logo" className="img-fluid home" />
                         Home
-                        </Link>
+                        </NavLink>
                     </li>
-                    <li className='sidebarlinks'>
-                        <Link to="/chef" className='sidebarItems'>
+                    <li className='sidebarNavLinks'>
+                        <NavLink to="/chef" className='sidebarItems'>
                         <img src={Images.sidebarchef} alt="logo" className="img-fluid home" />
                         Chefs
-                        </Link>
+                        </NavLink>
                     </li>
-                    <li className='sidebarlinks'>
-                        <Link to="/myorder" className='sidebarItems'>
+                    <li className='sidebarNavLinks'>
+                        <NavLink to="/myorder" className='sidebarItems'>
                         <img src={Images.myorder} alt="logo" className="img-fluid home" />
                         My Orders
-                        </Link>
+                        </NavLink>
                     </li>
-                    <li className='sidebarlinks '>
-                        <Link to="/settings" className='settings'>
+                    <li className='sidebarNavLinks active '>
+                        <NavLink to="/settings" className=' sidebarItems settings '>
                         <img src={Images.setting} alt="logo" className="img-fluid home" />
                         Settings
-                        </Link>
+                        </NavLink>
                     </li>
                     
                  </ul>

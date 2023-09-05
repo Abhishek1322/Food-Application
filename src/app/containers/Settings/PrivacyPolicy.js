@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
                             <div className='termAndCond'>
                                 <img src={Images.backArrowpassword} alt="logo" className="img-fluid mt-2 me-4" />
                                 <div className='termcondContent'>
-                                    <p className="termheading">Privacy Policy</p>
+                                    <p className="settingMainHeading">Privacy Policy</p>
                                     <div className='termcondDummy'>
                                         <p className='innerDummyHeading mt-4 mb-2 '>What is Lorem Ipsum?</p>
                                         <p className='dummyText'>

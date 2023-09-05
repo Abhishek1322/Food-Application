@@ -11,7 +11,7 @@ const TermAndCondition = () => {
                             <div className='termAndCond'>
                                 <img src={Images.backArrowpassword} alt="logo" className="img-fluid mt-2 me-4" />
                                 <div className='termcondContent'>
-                                    <p className="termheading">Terms & Conditions</p>
+                                    <p className="settingMainHeading">Terms & Conditions</p>
                                     <div className='termcondDummy'>
                                         <p className='innerDummyHeading mt-4 mb-2 '>What is Lorem Ipsum?</p>
                                         <p className='dummyText'>
