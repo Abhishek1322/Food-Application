@@ -17,13 +17,12 @@ const MultiStepProgressBar = ({ page, onPageNumberClick }) => {
 
   return (
     <ProgressBar percent={stepPercentage}>
-    
     <Step>
       {({ accomplished, index }) => (
        
         <div
           className={`indexedStep ${stepPercentage < 25 ? "inprogess"  : stepPercentage >= 25 ? "completed" : ""}`}
-          // onClick={() => onPageNumberClick("pageone")}
+          //onClick={() => onPageNumberClick("pageone")}
           >
         </div>
       )}
@@ -32,7 +31,7 @@ const MultiStepProgressBar = ({ page, onPageNumberClick }) => {
       {({ accomplished, index }) => (
         <div
           className={`indexedStep ${stepPercentage == 50 ? "inprogess" : stepPercentage >= 75 ? " completed"  : ""}`}
-          // onClick={() => onPageNumberClick("pagethree")}
+          //onClick={() => onPageNumberClick("pagethree")}
         >
         </div>
       )}
@@ -41,7 +40,7 @@ const MultiStepProgressBar = ({ page, onPageNumberClick }) => {
       {({ accomplished, index }) => (
         <div
           className={`indexedStep ${ stepPercentage == 100 ? "inprogess"  : ""}`}
-          // onClick={() => onPageNumberClick("pagefive")}
+          //onClick={() => onPageNumberClick("pagefive")}
         >
         </div>
       )}

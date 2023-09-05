@@ -28,6 +28,7 @@ import loadingsettingpage1 from "../public/images/loadingsettingpage1.png"
 import loadingsettingpage2 from "../public/images/loadingsettingpage2.png"
 import accountDeleted from "../public/images/accountDeleted.png"
 import contactUs from "../public/images/contactus.svg"
+import chefType from "../public/images/chefType.svg"
 
 
 
@@ -65,6 +66,7 @@ export {
     loadingsettingpage2,
     accountDeleted,
     contactUs,
+    chefType,
 
 
   
