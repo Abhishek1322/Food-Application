@@ -29,6 +29,9 @@ ul {
 li {
     list-style: none;
 }
+.main_Setting {
+    padding: 40px 31px 11px 31px;
+}
 .settingMainHeading {
     color: #2E3333;
     font-family: Crimson Text;
@@ -49,6 +52,11 @@ li {
     justify-content: space-between;
     align-items: center;
 }
+.userprofile {
+    width: 50px;
+    height: 50px;
+    border-radius: 24px;
+}
 
 .sidebarlogo {
     padding: 30px 12px 0 12px;
@@ -59,33 +67,64 @@ li {
     flex-direction: column;
     align-items: center;
 }
+.sidebarProfile {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 400;
+}
 
-.sidebarItems {
+.sidebarLinks {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
+    text-align: center;
+    padding: 15px 11px;
+    margin-bottom: 35px;
+}
+.sidebarItems {
     color: #979999;
     text-align: center;
-    
+    font-family: Open Sans;
     font-size: 12px;
     font-weight: 400;
-}
-
-.settings {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    color: #E65C00;
-    text-align: center;
-    
-    font-size: 12px;
-    font-weight: 400;
-    background-color: rgba(230, 92, 0, 0.07);
-    border-radius: 20px;
-    padding: 22px 17px;
 }
-
+.sidebarItems:hover {
+    color: #979999;
+}
+.sidebarItems {
+    color: #979999;
+}
+.sidebarLinks.active .sidebarItems{
+    color: #E65C00;
+}
+.sidebarLinks.active path {
+    fill: #E65C00;
+}
+.sidebarLinks.active {
+    background:rgba(230, 92, 0, 0.07);
+    border-radius: 20px;
+}
+.imgShow {
+    display: block;
+    margin-bottom: 7px;
+}
+.imgHide{
+    display: none;
+    margin-bottom: 7px;
+}
+.sidebarLinks.active .imgShow {
+    display: none;
+}
+.sidebarLinks.active .imgHide {
+    display: block;
+}
 /* Header Section Css Start */
 .main {
     width: calc(100% - 100px);
@@ -99,7 +138,7 @@ li {
 }
 .chatIconImage {
     border-radius: 20px;
-    border: 1px solid #e65c0078;
+    border: 1px solid #E65C0014;
     margin-right: 14px;
     margin-top: 17px;
     padding: 19px 22px;
@@ -207,7 +246,7 @@ li {
     align-items: center;
     justify-content: space-between;
     padding: 64px 40px;
-    margin-bottom:25px;
+    margin-bottom: 32px;
     border-radius: 20px;
     border: 1px solid rgba(233, 233, 233, 0.50);
     background: #FFF;
@@ -220,9 +259,9 @@ li {
     border-radius: 9px;
 }
 
-.sidebarItems:hover {
+/* .sidebarItems:hover {
     color: #979999;
-}
+} */
 
 
 /* Settings Page css Start */

@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 const MainNav = () => {
     return (
         <>
-            <div className="navMain">
+           <div className="main_Setting">
+           <div className="navMain">
                 <div className="container-fluid">
-                    <div className="row">
+                    <div className="row align-items-center">
                         <div className="col-lg-6 col-sm-12">
                             <p className="settingtxt">Setting</p>
                         </div>
@@ -32,6 +33,7 @@ const MainNav = () => {
                     </div>
                 </div>
             </div>
+           </div>
 
         </>
     )

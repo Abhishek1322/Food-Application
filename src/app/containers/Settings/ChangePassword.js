@@ -18,7 +18,7 @@ const ChangePassword = () => {
                     <div className='changepassword'>
                     <div className="logRight mt-5">
                               <div className="changepasswordForm">
-                            <div className='changepasswordImg d-flex justify-content-center'>
+                            <div className='settingsheader d-flex justify-content-center'>
                             <img src={Images.ChangepasswordImg} alt="logo" className="img-fluid " />
                             </div>
                                     <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">Create your new password.</h6>

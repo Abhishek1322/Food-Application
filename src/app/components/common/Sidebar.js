@@ -1,48 +1,54 @@
 import React from 'react'
 import * as Images from "../../../utilities/images";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const Sidebar = () => {
     return (
         <>
-           <div className='sideBar'>
-            <div className='sidebarlogo '>
-            <img src={Images.Logo} alt="logo" className="img-fluid" />
-            </div>
-            <div className='sidelist'>
-                <ul>
-                    <li className='sidebarNavLinks'>
-                        <NavLink to ="/home" className='sidebarItems'>
-                        <img src={Images.Home} alt="logo" className="img-fluid home" />
-                        Home
-                        </NavLink>
-                    </li>
-                    <li className='sidebarNavLinks'>
-                        <NavLink to="/chef" className='sidebarItems'>
-                        <img src={Images.sidebarchef} alt="logo" className="img-fluid home" />
-                        Chefs
-                        </NavLink>
-                    </li>
-                    <li className='sidebarNavLinks'>
-                        <NavLink to="/myorder" className='sidebarItems'>
-                        <img src={Images.myorder} alt="logo" className="img-fluid home" />
-                        My Orders
-                        </NavLink>
-                    </li>
-                    <li className='sidebarNavLinks active '>
-                        <NavLink to="/settings" className=' sidebarItems settings '>
-                        <img src={Images.setting} alt="logo" className="img-fluid home" />
-                        Settings
-                        </NavLink>
-                    </li>
-                    
-                 </ul>
+            <div className='sideBar'>
+                <div className='sidebarlogo '>
+                    <img src={Images.Logo} alt="logo" className="img-fluid" />
+                </div>
+                <div className='sidelist'>
+                    <ul>
+                        <li className='sidebarLinks  '>
+                            <Link to="/home" className='sidebarItems'>
+                                <img src={Images.homeOrange} className='imgHide' />
+                                <img src={Images.Home} className='imgShow' />
+                                <span className='d-block'>Home</span>
 
+                            </Link>
+                        </li>
+                        <li className='sidebarLinks'>
+                            <Link to="/chef" className='sidebarItems'>
+                                <img src={Images.sidebarchefOrange} className='imgHide' />
+                                <img src={Images.sidebarchef} className='imgShow' />
+                                <span className='d-block'>Chefs</span>
+                            </Link>
+                        </li>
+                        <li className='sidebarLinks'>
+                            <Link to="/myorder" className='sidebarItems'>
+                                <img src={Images.myorderorange} className='imgHide' />
+                                <img src={Images.myorder} className='imgShow' />
+                                <span className='d-block'>My Orders</span>
+                            </Link>
+                        </li>
+
+                        <li className='sidebarLinks active'>
+                            <Link to="/settings" className=' sidebarItems'>
+                                <img src={Images.setting} className='imgHide' />
+                                <img src={Images.settingGray} className='imgShow' />
+                                <span className='d-block'>Settings</span>
+                            </Link>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div className='sidebarProfile '>
+                    <img src={Images.userProfile} alt="logo" className="userprofile" />
+                    Profile
+                </div>
             </div>
-            <div className='sidebarItems '>
-            <img src={Images.userProfile} alt="logo" className="img-fluid" />
-            Profile
-            </div>
-         </div>
         </>
     )
 }

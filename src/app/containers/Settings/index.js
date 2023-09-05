@@ -3,7 +3,8 @@ import * as Images from "../../../utilities/images";
 const SettingMain = (props) => {
     return (
         <>
-            <div className='settingMain'>
+          <div className='main_Setting'>
+          <div className='settingMain'>
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-lg-6 '>
@@ -78,6 +79,7 @@ const SettingMain = (props) => {
                     </div>
                 </div>
             </div>
+          </div>
         </>
     )
 }
