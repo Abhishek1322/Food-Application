@@ -6,7 +6,7 @@ const ContactUs = () => {
         <>
             <div className="Login">
                 <div className="container-fluid">
-                    <div className='passwordHeading d-flex align-items-center mt-4 ms-3'>
+                    <div className='settingsheader d-flex align-items-center mt-4 ms-3'>
                         <img src={Images.backArrowpassword} alt="logo" className="img-fluid " />
                         <p className='settingMainHeading text-align-center'>Contact Us</p>
                     </div>

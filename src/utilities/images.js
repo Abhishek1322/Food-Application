@@ -8,6 +8,8 @@ import RoleUser from "../public/images/Roleuser.svg";
 import ChooseRoleIcon from "../public/images/ChooseRoleIcon.svg";
 import Home from "../public/images/home.svg";
 import myorder from "../public/images/myorder.svg"
+import myorderorange from "../public/images/myorderorange.svg"
+
 import setting from "../public/images/setting.svg"
 import sidebarchef from "../public/images/sidebarchef.svg"
 import userProfile from "../public/images/userProfile.svg"
@@ -29,6 +31,9 @@ import loadingsettingpage2 from "../public/images/loadingsettingpage2.png"
 import accountDeleted from "../public/images/accountDeleted.png"
 import contactUs from "../public/images/contactus.svg"
 import chefType from "../public/images/chefType.svg"
+import settingGray from "../public/images/settingGray.svg"
+import homeOrange from "../public/images/homeOrange.svg"
+import sidebarchefOrange from "../public/images/sidebarchefOrange.svg"
 
 
 
@@ -67,6 +72,10 @@ export {
     accountDeleted,
     contactUs,
     chefType,
+    myorderorange,
+    settingGray,
+    homeOrange,
+    sidebarchefOrange,
 
 
   

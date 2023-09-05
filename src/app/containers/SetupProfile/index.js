@@ -70,11 +70,13 @@ const SetupProfile = () => {
                                                                     <div className="input-container mt-5">
                                                                         <label className="border-label">Chef Type</label>
                                                                         <ul className="border-input cheftypeBox">
-                                                                            <li className={`chefType ${activeTab === 'restaurant' ? 'active' : path == '/restaurant' ? 'active' : ''}`} onClick={() => setActiveTab('restaurant')}>Restaurant
-                                                                                <img src={Images.chefType} alt="" className=''/>
+                                                                            <li className={`chefType ${activeTab === 'restaurant' ? 'active' : path == '/restaurant' ? 'active' : ''}`} onClick={() => setActiveTab('restaurant')}>
+                                                                                Restaurant
+                                                                                <img src={Images.chefType} alt="" className='' />
                                                                             </li>
-                                                                            <li className={`chefType ${activeTab === 'home' ? 'active' : path == '/home' ? 'active' : ''}`} onClick={() => setActiveTab('home')}>Home
-                                                                            <img src={Images.chefType} alt="" className=''/>
+                                                                            <li className={`chefType ${activeTab === 'home' ? 'active' : path == '/home' ? 'active' : ''}`} onClick={() => setActiveTab('home')}>
+                                                                                Home
+                                                                                <img src={Images.chefType} alt="" className='' />
                                                                             </li>
                                                                         </ul>
                                                                     </div>
