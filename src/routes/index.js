@@ -21,16 +21,17 @@ const Router = () => {
                         <Route path="/verification" element={<Containers.Verification />} />
                         <Route path="/createAccount" element={<Containers.CreateAccount />} />
                         <Route path="/forgotpassword" element={<Containers.forgotPassword />} />
-                        <Route path="recoverpassword" element={<Containers.Recoverpassword />} />
-                        <Route path="enterOtp" element={<Containers.EnterOtp />} />
-                        <Route path="ChangePassword" element={<Containers.ChangePassword />} />
-                        <Route path="deleteAccount" element={<Containers.DeleteAccount />} />
-                        <Route path="loading" element={<Containers.loading />} />
-                        <Route path="loadingPage" element={<Containers.loadingpage />} />
-                        <Route path="accountDeleted" element={<Containers.AccountDeleted />} />
-                        <Route path="termAndCondition" element={<Containers.TermAndCondition />} />
-                        <Route path="contactUs" element={<Containers.contactus />} />
-                        <Route path="PrivacyPolicy" element={<Containers.PrivacyPolicy />} />
+                        <Route path="/recoverpassword" element={<Containers.Recoverpassword />} />
+                        <Route path="/enterOtp" element={<Containers.EnterOtp />} />
+                        <Route path="/ChangePassword" element={<Containers.ChangePassword />} />
+                        <Route path="/deleteAccount" element={<Containers.DeleteAccount />} />
+                        <Route path="/loading" element={<Containers.loading />} />
+                        <Route path="/loadingPage" element={<Containers.loadingpage />} />
+                        <Route path="/accountDeleted" element={<Containers.AccountDeleted />} />
+                        <Route path="/termAndCondition" element={<Containers.TermAndCondition />} />
+                        <Route path="/contactUs" element={<Containers.contactus />} />
+                        <Route path="/PrivacyPolicy" element={<Containers.PrivacyPolicy />} />
+                        <Route path="/setup-profile" element={<Containers.SetupProfile />} />
                     </Route>
  
                     <Route element={<PrivateCheck auth={true} />}> 

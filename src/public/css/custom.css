@@ -227,3 +227,12 @@ input:-webkit-autofill:active{
 .mainBox {
     display: flex;
 }
+
+/* Start setup profile page */
+.outerBoxmain{
+    background-image: url(../images/loginbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}

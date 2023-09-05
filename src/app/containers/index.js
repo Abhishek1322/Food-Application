@@ -16,6 +16,7 @@ import AccountDeleted from "./Settings/AccountDeleted"
 import TermAndCondition from "./Settings/TermAndCondition"
 import contactus from "./Settings/ContactUs"
 import PrivacyPolicy from "./Settings/PrivacyPolicy"
+import SetupProfile from "./SetupProfile"
 
 
 
@@ -41,4 +42,5 @@ export {
     TermAndCondition,
     contactus,
     PrivacyPolicy,
+    SetupProfile,
 }
