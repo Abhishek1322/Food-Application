@@ -1,4 +1,4 @@
-body{
+body {
     font-family: Crimson Text;
 }
 
@@ -29,9 +29,11 @@ ul {
 li {
     list-style: none;
 }
+
 .main_Setting {
     padding: 40px 31px 11px 31px;
 }
+
 .settingMainHeading {
     color: #2E3333;
     font-family: Crimson Text;
@@ -52,6 +54,7 @@ li {
     justify-content: space-between;
     align-items: center;
 }
+
 .userprofile {
     width: 50px;
     height: 50px;
@@ -80,6 +83,7 @@ li {
     padding: 15px 11px;
     margin-bottom: 35px;
 }
+
 .sidebarItems {
     color: #979999;
     text-align: center;
@@ -90,36 +94,46 @@ li {
     display: flex;
     flex-direction: column;
 }
+
 .sidebarItems:hover {
     color: #979999;
 }
+
 .sidebarItems {
     color: #979999;
 }
-.sidebarLinks.active .sidebarItems{
+
+.sidebarLinks.active .sidebarItems {
     color: #E65C00;
 }
+
 .sidebarLinks.active path {
     fill: #E65C00;
 }
+
 .sidebarLinks.active {
-    background:rgba(230, 92, 0, 0.07);
+    background: rgba(230, 92, 0, 0.07);
     border-radius: 20px;
 }
+
 .imgShow {
     display: block;
     margin-bottom: 7px;
 }
-.imgHide{
+
+.imgHide {
     display: none;
     margin-bottom: 7px;
 }
+
 .sidebarLinks.active .imgShow {
     display: none;
 }
+
 .sidebarLinks.active .imgHide {
     display: block;
 }
+
 /* Header Section Css Start */
 .main {
     width: calc(100% - 100px);
@@ -131,6 +145,7 @@ li {
     align-items: center;
     margin: 31px 30px;
 }
+
 .chatIconImage {
     border-radius: 20px;
     border: 1px solid #E65C0014;
@@ -148,6 +163,7 @@ li {
     margin-right: 10px;
     position: relative;
 }
+
 .headermenu:after {
     content: '';
     width: 8px;
@@ -158,7 +174,8 @@ li {
     top: 36px;
     left: 43px;
 }
-.headermenu{
+
+.headermenu {
     position: relative;
 }
 
@@ -172,9 +189,11 @@ li {
     top: 35px;
     left: 40px;
 }
-.headeritem{
+
+.headeritem {
     position: relative;
 }
+
 .headerLinks:after {
     position: absolute;
     content: '';
@@ -202,9 +221,11 @@ li {
     border-radius: 20px;
     text-align: center;
 }
+
 .navMain .flexBox {
     justify-content: end;
 }
+
 .basketImg {
     position: absolute;
     left: 22px;
@@ -231,7 +252,7 @@ li {
 
 .settingBoxtxt {
     color: #2E3333;
-    
+
     font-size: 18px;
     font-weight: 600;
 }
@@ -272,6 +293,9 @@ li {
 .sidebarlogo {
     padding: 30px 12px 0 12px;
 }
+body{
+    font-family: Open Sans;
+}
 
 
 /* Changepasword */
@@ -306,7 +330,7 @@ li {
 .changepassText {
     color: #979999;
     text-align: center;
-    
+
     font-size: 14px;
     font-weight: 400;
 }
@@ -341,12 +365,13 @@ li {
     font-size: 28px;
     font-weight: 600;
 }
-.contactusImg{
+
+.contactusImg {
     background: #fa6d2626;
     padding: 33px;
     border-radius: 50px;
 }
-   
+
 /* term cond */
 .termheading {
     color: #2E3333;
@@ -354,32 +379,232 @@ li {
     font-size: 40px;
     font-weight: 600;
 }
+
 .termAndCond {
     display: flex;
     align-items: flex-start;
     margin: 40px 30px;
 }
+
 .innerDummyHeading {
     color: #2E3333;
     font-family: Crimson Text;
     font-size: 24px;
     font-weight: 700;
 }
+
 .dummyText {
     color: #979999;
-    
+
     font-size: 16px;
     font-weight: 400;
 }
+
 .condHeading {
     color: #2E3333;
-    
+
     font-size: 18px;
     font-weight: 600;
 }
+
 .termcond {
     width: 100%;
     max-width: 14px;
     height: 14px;
     margin-right: 15px;
+}
+
+
+/* Cart Css */
+.settingModal {
+    width: 362px;
+    height: 700px;
+    border-radius: 20px;
+    background: rgb(219, 204, 207);
+}
+.ModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ModalLogo {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+.Modal_ {
+    padding: 23px 24px;
+    border-bottom: 1px solid #F3F3F3;
+}
+.ModalCancel {
+    background: #99979738;
+    padding: 9px;
+    border-radius: 7px;
+}
+.foodtext {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+.modalContent {
+    margin: 30px 24px;
+}
+.foodItem {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+}
+.foodPrice {
+    color: #35B539;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+.cartcancel {
+    margin-left: 55px;
+    margin-top: 40px;
+}
+.insideModal {
+    margin: 0px 33px 0 10px;
+}
+.addItems {
+    border-radius: 10px;
+    background: #EEEFEF;
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 14px 109px 14px 102px;
+    width: 100%;
+}
+.modalDetail {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.usercartDetail {
+    display: flex;
+}
+.totaltxt {
+    color: #A4A4A4;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0;
+}
+.price {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+.orderNow {
+    border-radius: 8px;
+    background: #2E3333;
+    display: flex;
+    justify-content: space-between;
+}
+.orderbutton {
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    background: #E65C00;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    padding: 18px 50px;
+    margin: 5px 6px;
+}
+.totalPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px 79px;
+}
+
+/* chat css */
+.searchtext {
+    color: #ABADAD;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    padding: 18px;
+}
+.searchbar {
+    fill: #FFF;
+    filter: drop-shadow(0px 9px 19px rgba(230, 92, 0, 0.03));
+    border: 1px solid rgba(230, 92, 0, 0.08);
+    border-radius: 12px;
+}
+.searchbarImg {
+    background: #E65C00;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin: 7px;
+}
+.chefName {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+.cheftext {
+    color: #979999;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+.chatTime {
+    color: rgba(151, 153, 153, 0.50);
+    font-size: 12px;
+    font-weight: 400;
+}
+.chatModal {
+    border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
+    padding-bottom: 16px;
+    margin-top: 22px;
+}
+.innermodal {
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+/* notification css */
+.modalclearAll {
+    color: #E65C00;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+.notificationText {
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+.notificationModal {
+    margin: 19px 20px;
+}
+.notificationTime {
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+/* Modal css */
+#chatBox .modal-content {
+    width: 100%;
+    height: 100vh;
+    right: 20px;
+    top: 23px;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
 }

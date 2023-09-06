@@ -32,6 +32,9 @@ const Router = () => {
                         <Route path="/contactUs" element={<Containers.contactus />} />
                         <Route path="/PrivacyPolicy" element={<Containers.PrivacyPolicy />} />
                         <Route path="/setup-profile" element={<Containers.SetupProfile />} />
+                        <Route path="/cart" element={<Containers.cart/>} />
+                        <Route path="/chat" element={<Containers.chat/>} />
+                        <Route path="/notification" element={<Containers.Notification/>} />
                     </Route>
  
                     <Route element={<PrivateCheck auth={true} />}> 

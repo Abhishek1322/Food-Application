@@ -17,6 +17,12 @@ import TermAndCondition from "./Settings/TermAndCondition"
 import contactus from "./Settings/ContactUs"
 import PrivacyPolicy from "./Settings/PrivacyPolicy"
 import SetupProfile from "./SetupProfile"
+import cart from "../components/Cart"
+import chat from "../components/Chat"
+import Notification from "../components/Notification"
+
+
+
 
 
 
@@ -43,4 +49,7 @@ export {
     contactus,
     PrivacyPolicy,
     SetupProfile,
+    cart,
+    chat,
+    Notification,
 }

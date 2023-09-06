@@ -9,7 +9,6 @@ import ChooseRoleIcon from "../public/images/ChooseRoleIcon.svg";
 import Home from "../public/images/home.svg";
 import myorder from "../public/images/myorder.svg"
 import myorderorange from "../public/images/myorderorange.svg"
-
 import setting from "../public/images/setting.svg"
 import sidebarchef from "../public/images/sidebarchef.svg"
 import userProfile from "../public/images/userProfile.svg"
@@ -34,6 +33,13 @@ import chefType from "../public/images/chefType.svg"
 import settingGray from "../public/images/settingGray.svg"
 import homeOrange from "../public/images/homeOrange.svg"
 import sidebarchefOrange from "../public/images/sidebarchefOrange.svg"
+import cartcancel from "../public/images/cartcancel.svg"
+import cartDelete from "../public/images/cartDelete.png"
+import searchbar from "../public/images/searchbar.svg"
+import chatsDots from "../public/images/chatsDots.svg"
+
+
+
 
 
 
@@ -76,6 +82,10 @@ export {
     settingGray,
     homeOrange,
     sidebarchefOrange,
+    cartcancel,
+    cartDelete,
+    searchbar,
+    chatsDots,
 
 
   

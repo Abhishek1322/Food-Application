@@ -16,15 +16,17 @@ const CustomModal = (props) => {
     <Modal
       show={show}
       onHide={handleClose}
-      backdrop={props.backdrop}
       keyboard={false}
-      centered
       size={props.size}
       id={props.ids}
       dialogClassName={props.isRightSideModal ? "modal-dialog-slideout" : ""}
       className={props.isRightSideModal ? 'pe-0' : ''}
       animation={true}
+      backdrop={props.backdrop ?? false}
     >
+      {props.style &&
+        <div className="modal-backdrop" style={props.style} />
+      }
       {(props.header || props.showCloseBtn) ?
         <Modal.Header closeButton>
           {props.header} 
