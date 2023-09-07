@@ -70,7 +70,6 @@ li {
     flex-direction: column;
     margin-bottom: 50px;
     text-align: center;
-    font-family: Open Sans;
     font-size: 12px;
     font-weight: 400;
 }
@@ -87,7 +86,6 @@ li {
 .sidebarItems {
     color: #979999;
     text-align: center;
-    font-family: Open Sans;
     font-size: 12px;
     font-weight: 400;
     align-items: center;
@@ -415,7 +413,7 @@ body{
 }
 
 
-/* Cart Css */
+/* Cart modal Css */
 .settingModal {
     width: 362px;
     height: 700px;
@@ -448,21 +446,21 @@ body{
     font-size: 12px;
     font-weight: 400;
     margin: 0;
-}
-.modalContent {
-    margin: 30px 24px;
+    padding-bottom: 5px;
 }
 .foodItem {
     color: #2E3333;
     font-size: 14px;
     font-weight: 700;
     margin: 0;
+    padding-bottom: 5px;
 }
 .foodPrice {
     color: #35B539;
     font-size: 14px;
     font-weight: 600;
     margin: 0;
+    padding-bottom: 10px;
 }
 .cartcancel {
     margin-left: 55px;
@@ -479,18 +477,19 @@ body{
     font-weight: 600;
     padding: 14px 109px 14px 102px;
     width: 100%;
+    margin-bottom: 10px;
 }
 .modalDetail {
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-    padding: 15px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 .usercartDetail {
     display: flex;
+    padding: 15px;
 }
 .totaltxt {
     color: #A4A4A4;
@@ -508,7 +507,6 @@ body{
     border-radius: 8px;
     background: #2E3333;
     display: flex;
-    justify-content: space-between;
 }
 .orderbutton {
     color: #FFF;
@@ -517,35 +515,51 @@ body{
     border-radius: 10px;
     background: #E65C00;
     box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
-    padding: 18px 50px;
-    margin: 5px 6px;
+    display: flex;
+    width: 156px;
+    height: 49px;
+    padding: 18px 29px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    margin: 6px 5px 6px 5px;
 }
+
 .totalPrice {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 12px 79px;
+    margin: 12px 54px 13px 56px;
 }
+/* cart Modal  Css end */
 
-/* chat css */
+/*  chat modal css */
 .searchtext {
     color: #ABADAD;
     font-size: 14px;
     font-weight: 400;
     margin: 0;
-    padding: 18px;
-}
-.searchbar {
+    padding: 18px 114px 18px 21px;
+    position: relative;
+    width: 100%;
     fill: #FFF;
     filter: drop-shadow(0px 9px 19px rgba(230, 92, 0, 0.03));
     border: 1px solid rgba(230, 92, 0, 0.08);
     border-radius: 12px;
 }
+.modalContent {
+    padding: 1rem;
+}
 .searchbarImg {
     background: #E65C00;
-    border-radius: 10px;
-    padding: 10px 10px;
+    border-radius: 12px;
+    padding: 13px 10px 13px 13px;
     margin: 7px;
+    position: absolute;
+    right: 17px;
+    top: 17px;
+    box-shadow: 1px 3px 5px 0px #E65C00;
 }
 .chefName {
     color: #2E3333;
@@ -563,48 +577,179 @@ body{
     color: rgba(151, 153, 153, 0.50);
     font-size: 12px;
     font-weight: 400;
+    margin: 0;
 }
 .chatModal {
     border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
     padding-bottom: 16px;
-    margin-top: 22px;
+    margin-top: 16px;
+    cursor: pointer;
 }
 .innermodal {
     margin-left: 10px;
-    margin-right: 15px;
+    margin-right: 50px;
+    position: relative;
 }
+#chatBox .modal-header {
+    border-bottom: 1px solid #F3F3F3;
+}
+.modalChatmsg {
+    position: absolute;
+    top: 3px;
+    background-color: #E65C00;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 0px 3px 0px 5px;
+}
+.quantity {
+    padding: 3px;
+    border-radius: 8px;
+    background: rgba(230, 92, 0, 0.10);
+    display: flex;
+    justify-content: space-around;
+}
+.outeraddItem {
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
+    padding-top: 20px;
+    margin-top: 150px;
+}
+/* chat modal css end */
 
-/* notification css */
+/* notification modal  css */
 .modalclearAll {
     color: #E65C00;
     font-size: 14px;
     font-weight: 600;
     margin: 0;
+    cursor: pointer;
 }
 .notificationText {
     color: #2E3333;
-    font-family: Open Sans;
     font-size: 12px;
     font-weight: 600;
     margin: 0;
 }
 .notificationModal {
-    margin: 19px 20px;
+    margin: 0px 22px 20px 26px;
+    position: relative;
 }
 .notificationTime {
     color: #ABADAD;
     font-size: 12px;
     font-weight: 400;
+    margin: 0;
+    margin-top: 10px;
 }
 
+.reademessage:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-size: cover;
+    background-color: #E65C00;
+    border-radius: 50px;
+    left: -23px;
+    top: 4px;
+}
+.unreadmessage:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-size: cover;
+    background-color: #D9D9D9;
+    border-radius: 50px;
+    left: -23px;
+    top: 4px;
+}
+.Quantiycheck {
+    background: #E65C00;
+    width: 29px;
+    height: 29px;
+    border-radius: 10px;
+    text-align: center;
+}
+.number {
+    margin: 0 10px;
+}
+/* notification modal css end */
 
 /* Modal css */
+.modal_Heading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
 #chatBox .modal-content {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     right: 20px;
     top: 23px;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
+    min-height: 700px;
 }
+#Notification .modal-content {
+    width: 100%;
+    height: 100%;
+    right: 20px;
+    top: 23px;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+}
+#CartModal .modal-content {
+    width: 100%;
+    height: 100%;
+    right: 20px;
+    top: 23px;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+}
+.btn-close {
+    background-image: url('../images/modalCancel.svg') !important;
+    background-size: 50% !important;
+    background-repeat: no-repeat !important;
+    background-color:#EEEFEF;
+    border-radius: 10px;
+} 
+.btn-close:hover{
+    background-color: #EEEFEF !important;
+    opacity: 1.0 !important;
+}
+
+.modalscroll {
+    height: 600px;
+    overflow-y: auto;
+    margin-top: 19px;
+}
+.modalscroll::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 12px;
+  }
+  
+  /* Track */
+  .modalscroll::-webkit-scrollbar-track {
+    background: #EEEFEF;
+    border-radius: 12px;
+  }
+   
+  /* Handle */
+  .modalscroll::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: #BCBDBD;
+
+  }
+

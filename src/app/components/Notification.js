@@ -3,14 +3,8 @@ import * as Images from "../../utilities/images"
 const Notification = () => {
     return (
         <>
-            <div className='settingModal'>
-                <div className='Modal_'>
-                    <div className='ModalHeader'>
-                        <p className='ModalLogo'>Notifications</p>
-                        <img src={Images.cartcancel} className=' img-fluid ModalCancel' alt='cartCancel' />
-                    </div>
+         
 
-                </div>
                 <div className='modalContent'>
                     <p className='modalclearAll text-end'>Clear All.</p>
 
@@ -21,7 +15,7 @@ const Notification = () => {
 
                 </div>
 
-            </div>
+   
 
 
         </>

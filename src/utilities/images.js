@@ -33,10 +33,14 @@ import chefType from "../public/images/chefType.svg"
 import settingGray from "../public/images/settingGray.svg"
 import homeOrange from "../public/images/homeOrange.svg"
 import sidebarchefOrange from "../public/images/sidebarchefOrange.svg"
-import cartcancel from "../public/images/cartcancel.svg"
-import cartDelete from "../public/images/cartDelete.png"
+import cartDelete from "../public/images/cartDelete.svg"
 import searchbar from "../public/images/searchbar.svg"
 import chatsDots from "../public/images/chatsDots.svg"
+import minusModal from "../public/images/minusModal.svg"
+import plusModal from "../public/images/plusModal.svg"
+import modalCancel from "../public/images/modalCancel.svg"
+
+
 
 
 
@@ -82,10 +86,13 @@ export {
     settingGray,
     homeOrange,
     sidebarchefOrange,
-    cartcancel,
     cartDelete,
     searchbar,
     chatsDots,
+    minusModal,
+    plusModal,
+    modalCancel,
+
 
 
   

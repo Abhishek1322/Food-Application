@@ -75,7 +75,7 @@ const Resources = () => {
                 show={modalDetail.show}
                 backdrop="static"
                 showCloseBtn={false}
-                isRightSideModal={false}
+                isRightSideModal={true}
                 mediumWidth={false}
                 className={modalDetail.flag === "chatBox" ? "commonWidth customContent" : ""}
                 ids={modalDetail.flag === "chatBox" ? "chatBox" : modalDetail.flag === "Notification" ? "Notification" : modalDetail.flag === "CartModal" ? "CartModal" : "CartModal"}
@@ -103,27 +103,29 @@ const Resources = () => {
                         <div className="common_">
                             {modalDetail.flag === "chatBox" ?
                                 <>
-                                    <h2 className="addLabels_heading">
-                                    Chat
+                                    <h2 className="modal_Heading">
+                                        Chat
                                     </h2>
+                                    <span></span>
                                 </>
-                            
-                            :
-                            modalDetail.flag === "Notification" ?
-                                <>
-                                    <h2 className="addLabels_heading">
-                                    Notification
-                                    </h2>
-                                </>
-                                
-                            :
-                            modalDetail.flag === "CartModal" ?
-                                <>
-                                    <h2 className="addLabels_heading">
-                                    Cart
-                                    </h2>
-                                </>
-                                : ''
+
+                                :
+                                modalDetail.flag === "Notification" ?
+                                    <>
+                                        <h2 className="modal_Heading">
+                                            Notification
+                                        </h2>
+
+                                    </>
+
+                                    :
+                                    modalDetail.flag === "CartModal" ?
+                                        <>
+                                            <h2 className="modal_Heading">
+                                                Cart
+                                            </h2>
+                                        </>
+                                        : ''
                             }
                         </div>
                     </div>
