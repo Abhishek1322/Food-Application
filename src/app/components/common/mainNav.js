@@ -56,7 +56,7 @@ const Resources = () => {
                                         </figure>
                                     </div>
                                     <div className="menuBox cart">
-                                        <img src={Images.bellImage} alt="logo" className="img-fluid basketImg"
+                                        <img src={Images.basketImg} alt="logo" className="img-fluid basketImg"
                                             onClick={() => {
                                                 setModalDetail({ show: true, flag: "CartModal" });
                                                 setKey(Math.random());
@@ -99,14 +99,15 @@ const Resources = () => {
                                 ""
                 }
                 header={
-                    <div className='modalHeader_'>
-                        <div className="common_">
+                        <div className="">
                             {modalDetail.flag === "chatBox" ?
                                 <>
                                     <h2 className="modal_Heading">
                                         Chat
                                     </h2>
-                                    <span></span>
+                                    <p onClick={handleOnCloseModal}>
+                                        <img src={Images.modalCancel} className='close_modal'/>
+                                    </p>
                                 </>
 
                                 :
@@ -128,7 +129,7 @@ const Resources = () => {
                                         : ''
                             }
                         </div>
-                    </div>
+                    
                 }
 
                 onCloseModal={() => handleOnCloseModal()}

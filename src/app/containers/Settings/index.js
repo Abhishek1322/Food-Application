@@ -34,7 +34,7 @@ const SettingMain = (props) => {
                         <div className='col-lg-6 '>
                             <div className='leftbox'>
                                 <div className='settingBox d-flex align-items-center'>
-                                    <img src={Images.contactUs} alt="logo" className="img-fluid settingIcon" />
+                                    <img src={Images.settingcontactus} alt="logo" className="img-fluid settingIcon" />
                                     <p className='settingBoxtxt ms-3 mb-0'>Contact Us</p>
                                 </div>
                                 <div className='iconImg'>
@@ -46,7 +46,7 @@ const SettingMain = (props) => {
                         <div className='col-lg-6'>
                             <div className='leftbox'>
                                 <div className='settingBox d-flex align-items-center'>
-                                    <img src={Images.deleteImage} alt="logo" className="img-fluid settingIcon " />
+                                    <img src={Images.DeleteSetting} alt="logo" className="img-fluid settingIcon " />
                                     <p className='settingBoxtxt ms-3 mb-0'>Delete Account</p>
                                 </div>
                                 <div className='iconImg'>

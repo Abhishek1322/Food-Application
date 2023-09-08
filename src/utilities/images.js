@@ -17,14 +17,12 @@ import bellImage from "../public/images/bell.svg"
 import cardImage from "../public/images/cart.png"
 import basketImg from "../public/images/basket.svg"
 import password from "../public/images/password.svg"
-import deleteImage from "../public/images/delete.svg"
 import privacypolicy from "../public/images/privacypolicy.svg"
 import termconditions from "../public/images/termconditions.svg"
 import logout from "../public/images/logout.png"
 import nextIcon from "../public/images/nextIcon.svg"
 import backArrowpassword from "../public/images/backArrowpassword.png"
 import ChangepasswordImg from "../public/images/ChangepasswordImg.png"
-import DeleteAccount from "../public/images/DeleteAccount.png"
 import loadingsettingpage1 from "../public/images/loadingsettingpage1.png"
 import loadingsettingpage2 from "../public/images/loadingsettingpage2.png"
 import accountDeleted from "../public/images/accountDeleted.png"
@@ -39,6 +37,13 @@ import chatsDots from "../public/images/chatsDots.svg"
 import minusModal from "../public/images/minusModal.svg"
 import plusModal from "../public/images/plusModal.svg"
 import modalCancel from "../public/images/modalCancel.svg"
+import termImg from "../public/images/termImg.svg"
+import deleteImg from "../public/images/deleteImg.svg"
+import settingcontactus from "../public/images/settingcontactus.svg"
+import DeleteSetting from "../public/images/DeleteSetting.svg"
+
+
+
 
 
 
@@ -69,14 +74,12 @@ export {
     cardImage,
     basketImg,
     password,
-    deleteImage,
     privacypolicy,
     termconditions,
     logout,
     nextIcon,
     backArrowpassword,
     ChangepasswordImg,
-    DeleteAccount,
     loadingsettingpage1,
     loadingsettingpage2,
     accountDeleted,
@@ -92,6 +95,10 @@ export {
     minusModal,
     plusModal,
     modalCancel,
+    termImg,
+    deleteImg,
+    settingcontactus,
+    DeleteSetting,
 
 
 
