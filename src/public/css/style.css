@@ -718,7 +718,7 @@ body{
     border-radius: 20px;
     background: #FFF;
     min-height: 700px;
-    margin: 34px -30px;
+
 }
 #Notification .modal-content {
     width: 100%;
@@ -740,14 +740,18 @@ body{
     overflow-y: auto;
     margin-top: 19px;
 }
-#chatBox  , #Notification ,#CartModal{
-    max-width: 500px;
+#chatBox, #Notification, #CartModal {
+    max-width: 406px;
     margin: 0;
     margin-left: auto;
-    right: -130px;
     width: 100%;
+    top: 30px;
+    right: 0;
 }
 .btn-close{
     display: none;
+}
+.modal_cancel{
+    margin: 0;
 }
 

@@ -6,12 +6,12 @@ const Chat = () => {
 
 
       <div className='modalContent'>
-        <div className='searchbar d-flex justify-content-between'>
+        <div className='searchbar flexBox'>
           <p className='searchtext'>Search Chef near you...</p>
           <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
 
         </div>
-        <div className='chatModal d-flex  justify-content-between '>
+        <div className='chatModal flexBox '>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Sarah Bergstrom</p>
@@ -23,7 +23,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal d-flex'>
+        <div className='chatModal flexBox'>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Hilda Herzog </p>
@@ -35,7 +35,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal d-flex'>
+        <div className='chatModal flexBox'>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Tom Stoltenberg</p>
@@ -47,7 +47,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal d-flex'>
+        <div className='chatModal flexBox'>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Sheryl Lowez</p>
@@ -59,14 +59,14 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal d-flex'>
+        <div className='chatModal flexBox'>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Olive Kuvalis</p>
             <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
             <p className='chatTime'>Just Now</p>
           </div>
-          <div className=''>
+          <div className='cancel'>
             <img src={Images.cartDelete} className='' alt='cartcancel' />
           </div>
 

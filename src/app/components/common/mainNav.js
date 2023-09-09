@@ -98,39 +98,45 @@ const Resources = () => {
 
                                 ""
                 }
-                header={
-                        <div className="">
-                            {modalDetail.flag === "chatBox" ?
-                                <>
-                                    <h2 className="modal_Heading">
-                                        Chat
-                                    </h2>
-                                    <p onClick={handleOnCloseModal}>
-                                        <img src={Images.modalCancel} className='close_modal'/>
-                                    </p>
-                                </>
+                header=
 
-                                :
-                                modalDetail.flag === "Notification" ?
-                                    <>
-                                        <h2 className="modal_Heading">
-                                            Notification
-                                        </h2>
+                {modalDetail.flag === "chatBox" ?
+                    <>
+                        <h2 className="modal_Heading">
+                            Chat
+                        </h2>
+                        <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <img src={Images.modalCancel} className='ModalCancel' />
+                        </p>
+                    </>
 
-                                    </>
+                    :
+                    modalDetail.flag === "Notification" ?
+                        <>
+                            <h2 className="modal_Heading">
+                                Notification
+                            </h2>
+                            <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <img src={Images.modalCancel} className='ModalCancel' />
+                        </p>
 
-                                    :
-                                    modalDetail.flag === "CartModal" ?
-                                        <>
-                                            <h2 className="modal_Heading">
-                                                Cart
-                                            </h2>
-                                        </>
-                                        : ''
-                            }
-                        </div>
-                    
+                        </>
+
+                        :
+                        modalDetail.flag === "CartModal" ?
+                            <>
+                                <h2 className="modal_Heading">
+                                    Cart
+                                </h2>
+                                <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <img src={Images.modalCancel} className='ModalCancel' />
+                        </p>
+                            </>
+                            : ''
                 }
+
+
+
 
                 onCloseModal={() => handleOnCloseModal()}
             />
