@@ -20,7 +20,9 @@ import SetupProfile from "./SetupProfile"
 import cart from "../components/Cart"
 import chat from "../components/Chat"
 import Notification from "../components/Notification"
-
+import NewBooking from "../containers/Chef/Booking/NewBooking"
+import menu from "../containers/Chef/menu/Menu"
+import home from "../containers/Chef/Home/Home"
 
 
 
@@ -52,4 +54,7 @@ export {
     cart,
     chat,
     Notification,
+    NewBooking,
+    menu,
+    home,
 }

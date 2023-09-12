@@ -12,6 +12,9 @@ const Router = () => {
                 <Route element={<Layouts.MainLayout />}>
                     <Route path="/" element={<Containers.Login />} />
                     <Route path="/setting" element={<Containers.SettingMain />} />
+                    <Route path="/newBooking" element={<Containers.NewBooking/>} />
+                        <Route path="/menu" element={<Containers.menu/>} />
+                        <Route path="/home" element={<Containers.home/>} />
                 </Route>
 
                 <Route element={<Layouts.AuthLayout />}>
@@ -35,6 +38,9 @@ const Router = () => {
                         <Route path="/cart" element={<Containers.cart/>} />
                         <Route path="/chat" element={<Containers.chat/>} />
                         <Route path="/notification" element={<Containers.Notification/>} />
+                      
+                    
+                    
                     </Route>
  
                     <Route element={<PrivateCheck auth={true} />}> 

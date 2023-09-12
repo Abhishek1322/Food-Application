@@ -55,6 +55,19 @@ li {
     align-items: center;
 }
 
+.sidebarLinks.hover .imgHide {
+    display: block;
+}
+
+.sidebarLinks:hover .sidebarItems {
+    color: #E65C00;
+}
+
+.sidebarLinks:hover {
+    background: rgba(230, 92, 0, 0.07);
+    border-radius: 20px;
+}
+
 .userprofile {
     width: 50px;
     height: 50px;
@@ -135,7 +148,7 @@ li {
 /* Header Section Css Start */
 .main {
     width: calc(100% - 100px);
-} 
+}
 
 .headersection {
     display: flex;
@@ -211,6 +224,7 @@ li {
     font-weight: 600;
     margin: 0;
 }
+
 .cart {
     position: relative;
     background: #E65C00;
@@ -220,9 +234,11 @@ li {
     text-align: center;
     cursor: pointer;
 }
+
 .iconImg {
     cursor: pointer;
 }
+
 .navMain .flexBox {
     justify-content: end;
 }
@@ -294,17 +310,23 @@ li {
 .sidebarlogo {
     padding: 30px 12px 0 12px;
 }
-body{
+
+body {
     font-family: Open Sans;
 }
 
 
 /* Changepasword */
+.innerHeaderArrow {
+    cursor: pointer;
+}
+
 .commonInnerHeader {
     position: absolute;
     top: 15px;
     left: 20px;
 }
+
 .changepassHeading {
     color: #2E3333;
     font-family: Crimson Text;
@@ -313,10 +335,12 @@ body{
     margin: 0;
     padding-left: 17px;
 }
+
 .changePaasword_ {
     display: inline-block;
     width: 100%;
 }
+
 .changepassword {
     height: 100vh;
     width: 100%;
@@ -327,10 +351,12 @@ body{
     justify-content: center;
     flex-direction: column;
 }
+
 .changepasswordForm {
     display: inline-block;
     width: 100%;
 }
+
 .cancelBtn {
     border-radius: 8px;
     border: 1px solid #E65C00;
@@ -401,10 +427,13 @@ body{
     flex-direction: column;
     margin: 132px 98px 0 98px;
 }
+
 .termcond {
     background: #E65C00;
     border-radius: 50px;
     padding: 4px 5px;
+    color: #fff;
+    font-size: 10px;
 }
 
 .innerDummyHeading {
@@ -416,23 +445,16 @@ body{
 
 .dummyText {
     color: #979999;
-
     font-size: 16px;
     font-weight: 400;
+    padding-bottom: 7px;
 }
 
 .condHeading {
     color: #2E3333;
-
+margin-top: 30px;
     font-size: 18px;
     font-weight: 600;
-}
-
-.termcond {
-    width: 100%;
-    max-width: 14px;
-    height: 14px;
-    margin-right: 15px;
 }
 
 
@@ -443,11 +465,13 @@ body{
     border-radius: 20px;
     background: rgb(219, 204, 207);
 }
+
 .ModalHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .ModalLogo {
     color: #2E3333;
     font-family: Crimson Text;
@@ -455,15 +479,19 @@ body{
     font-weight: 600;
     margin: 0;
 }
+
 .Modal_ {
     padding: 23px 24px;
     border-bottom: 1px solid #F3F3F3;
 }
+
 .ModalCancel {
     background: #99979738;
     padding: 9px;
     border-radius: 7px;
+    cursor: pointer;
 }
+
 .foodtext {
     color: #E65C00;
     font-size: 12px;
@@ -471,6 +499,7 @@ body{
     margin: 0;
     padding-bottom: 5px;
 }
+
 .foodItem {
     color: #2E3333;
     font-size: 14px;
@@ -478,6 +507,7 @@ body{
     margin: 0;
     padding-bottom: 5px;
 }
+
 .foodPrice {
     color: #35B539;
     font-size: 14px;
@@ -485,13 +515,24 @@ body{
     margin: 0;
     padding-bottom: 10px;
 }
+
 .cartcancel {
     margin-left: 55px;
-    margin-top: 40px;
+    margin-top: 91px;
 }
+.sidebarLinks:hover .imgHide{
+    display: block !important;
+    transition: all 0.5s ease-in-out;
+}
+.sidebarLinks:hover .imgShow{
+    display: none !important;
+    transition: all 0.5s ease-in-out;
+}
+
 .insideModal {
     margin: 0px 33px 0 10px;
 }
+
 .addItems {
     border-radius: 10px;
     background: #EEEFEF;
@@ -502,6 +543,7 @@ body{
     width: 100%;
     margin-bottom: 10px;
 }
+
 .modalDetail {
     border-radius: 15px;
     background: #FFF;
@@ -510,27 +552,32 @@ body{
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
 .usercartDetail {
     display: flex;
     padding: 15px;
 }
+
 .totaltxt {
     color: #A4A4A4;
     font-size: 10px;
     font-weight: 400;
     margin: 0;
 }
+
 .price {
     color: #FFF;
     font-size: 16px;
     font-weight: 700;
     margin: 0;
 }
+
 .orderNow {
     border-radius: 8px;
     background: #2E3333;
     display: flex;
 }
+
 .orderbutton {
     color: #FFF;
     font-size: 18px;
@@ -555,6 +602,7 @@ body{
     align-items: center;
     margin: 12px 54px 13px 56px;
 }
+
 /* cart Modal  Css end */
 
 /*  chat modal css */
@@ -571,9 +619,11 @@ body{
     border: 1px solid rgba(230, 92, 0, 0.08);
     border-radius: 12px;
 }
+
 .modalContent {
     padding: 1rem;
 }
+
 .searchbarImg {
     background: #E65C00;
     border-radius: 12px;
@@ -584,38 +634,45 @@ body{
     top: 17px;
     box-shadow: 1px 3px 5px 0px #E65C00;
 }
+
 .chefName {
     color: #2E3333;
     font-size: 14px;
     font-weight: 600;
     margin: 0;
 }
+
 .cheftext {
     color: #979999;
     font-size: 12px;
     font-weight: 400;
     margin: 0;
 }
+
 .chatTime {
     color: rgba(151, 153, 153, 0.50);
     font-size: 12px;
     font-weight: 400;
     margin: 0;
 }
+
 .chatModal {
     border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
     padding-bottom: 16px;
     margin-top: 16px;
     cursor: pointer;
 }
+
 .innermodal {
     margin-left: 10px;
     margin-right: 50px;
     position: relative;
 }
+
 #chatBox .modal-header {
     border-bottom: 1px solid #F3F3F3;
 }
+
 .modalChatmsg {
     position: absolute;
     top: 3px;
@@ -629,6 +686,7 @@ body{
     font-weight: 600;
     padding: 0px 3px 0px 5px;
 }
+
 .quantity {
     padding: 3px;
     border-radius: 8px;
@@ -636,11 +694,13 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
 .outeraddItem {
     border-top: 1px dashed rgba(192, 194, 194, 0.50);
     padding-top: 20px;
     margin-top: 150px;
 }
+
 /* chat modal css end */
 
 /* notification modal  css */
@@ -651,16 +711,19 @@ body{
     margin: 0;
     cursor: pointer;
 }
+
 .notificationText {
     color: #2E3333;
     font-size: 12px;
     font-weight: 600;
     margin: 0;
 }
+
 .notificationModal {
     margin: 0px 22px 20px 26px;
     position: relative;
 }
+
 .notificationTime {
     color: #ABADAD;
     font-size: 12px;
@@ -680,6 +743,7 @@ body{
     left: -23px;
     top: 4px;
 }
+
 .unreadmessage:before {
     content: '';
     position: absolute;
@@ -691,6 +755,7 @@ body{
     left: -23px;
     top: 4px;
 }
+
 .Quantiycheck {
     background: #E65C00;
     width: 29px;
@@ -698,9 +763,11 @@ body{
     border-radius: 10px;
     text-align: center;
 }
+
 .number {
     margin: 0 10px;
 }
+
 /* notification modal css end */
 
 /* Modal css */
@@ -711,6 +778,7 @@ body{
     font-weight: 600;
     margin: 0;
 }
+
 #chatBox .modal-content {
     width: 100%;
     height: 100%;
@@ -720,6 +788,7 @@ body{
     min-height: 700px;
 
 }
+
 #Notification .modal-content {
     width: 100%;
     height: 100%;
@@ -728,6 +797,7 @@ body{
     background: #FFF;
     min-height: 700px;
 }
+
 #CartModal .modal-content {
     width: 100%;
     height: 100%;
@@ -735,12 +805,37 @@ body{
     border-radius: 20px;
     background: #FFF;
     min-height: 700px;
-} .modalscroll {
+}
+
+.modalscroll {
     height: 600px;
     overflow-y: auto;
     margin-top: 19px;
 }
-#chatBox, #Notification, #CartModal {
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #BCBDBD;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #BCBDBD;
+}
+
+#chatBox,
+#Notification,
+#CartModal {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -748,10 +843,36 @@ body{
     top: 30px;
     right: 0;
 }
-.btn-close{
+
+.btn-close {
     display: none;
 }
-.modal_cancel{
+
+.modal_cancel {
     margin: 0;
 }
 
+
+/* Home Page Css Start */
+.innerHomeHeading{
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+
+}
+.innerHomeText{
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+.commonHomeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Home Page Css End */

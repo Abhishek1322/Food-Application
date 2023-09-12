@@ -41,6 +41,8 @@ import termImg from "../public/images/termImg.svg"
 import deleteImg from "../public/images/deleteImg.svg"
 import settingcontactus from "../public/images/settingcontactus.svg"
 import DeleteSetting from "../public/images/DeleteSetting.svg"
+import homeArow from "../public/images/homeArow.svg"
+
 
 
 
@@ -99,6 +101,8 @@ export {
     deleteImg,
     settingcontactus,
     DeleteSetting,
+    homeArow,
+    
 
 
 

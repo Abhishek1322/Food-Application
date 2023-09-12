@@ -9,7 +9,7 @@ const AccountDeleted = () => {
                     <div className='changepassword loadingpage'>
                         <div className="changepasswordForm">
                             <div className='changepasswordImg d-flex justify-content-center'>
-                                <img src={Images.accountDeleted} alt="logo" className="img-fluid " />
+                                <img src={Images.accountDeleted} alt="logo" className="img-fluid innerHeaderArrow " />
                             </div>
                             <h6 className="accountDeleted mb-3 d-flex  justify-content-center mt-3">Account Deleted</h6>
                             <p className="accountdeletetxt mb-3 d-flex  justify-content-center mt-3">Your account has been deleted

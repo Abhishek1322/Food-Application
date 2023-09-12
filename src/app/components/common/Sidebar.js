@@ -11,7 +11,7 @@ const Sidebar = () => {
                 <div className='sidelist'>
                     <ul>
                         <li className='sidebarLinks  '>
-                            <Link to="/home" className='sidebarItems'>
+                            <Link to="#" className='sidebarItems'>
                                 <img src={Images.homeOrange} className='imgHide' />
                                 <img src={Images.Home} className='imgShow' />
                                 <span className='d-block'>Home</span>
@@ -19,14 +19,14 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li className='sidebarLinks'>
-                            <Link to="/chef" className='sidebarItems'>
+                            <Link to="#" className='sidebarItems'>
                                 <img src={Images.sidebarchefOrange} className='imgHide' />
                                 <img src={Images.sidebarchef} className='imgShow' />
                                 <span className='d-block'>Chefs</span>
                             </Link>
                         </li>
                         <li className='sidebarLinks'>
-                            <Link to="/myorder" className='sidebarItems'>
+                            <Link to="#" className='sidebarItems'>
                                 <img src={Images.myorderorange} className='imgHide' />
                                 <img src={Images.myorder} className='imgShow' />
                                 <span className='d-block'>My Orders</span>
@@ -34,7 +34,7 @@ const Sidebar = () => {
                         </li>
 
                         <li className='sidebarLinks active'>
-                            <Link to="/settings" className=' sidebarItems'>
+                            <Link to="#" className=' sidebarItems'>
                                 <img src={Images.setting} className='imgHide' />
                                 <img src={Images.settingGray} className='imgShow' />
                                 <span className='d-block'>Settings</span>

@@ -4,10 +4,10 @@ import * as Images from "../../../utilities/images";
 const ContactUs = () => {
     return (
         <>
-            <div className="Login">
+            <div className="contactUs">
                 <div className="container-fluid">
                     <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
-                        <img src={Images.backArrowpassword} alt="logo" className="img-fluid " />
+                        <img src={Images.backArrowpassword} alt="logo" className="img-fluid innerHeaderArrow " />
                         <p className='settingMainHeading text-align-center '>Contact Us</p>
                     </div>
                     <div className='changepassword'>

@@ -11,8 +11,8 @@ const ChangePassword = () => {
         <>
             <div className="changePaasword_">
                 <div className="container-fluid">
-                    <div className='settingHeading d-flex align-items-center mt-4 ms-3 ' >
-                        <img src={Images.backArrowpassword} alt="logo" className="img-fluid " />
+                    <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3 ' >
+                        <img src={Images.backArrowpassword} alt="logo" className="img-fluid  innerHeaderArrow" />
                         <p className='settingMainHeading text-align-center'>Change Password</p>
                     </div>
                     <div className='changepassword'>
