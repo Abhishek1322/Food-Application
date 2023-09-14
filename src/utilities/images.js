@@ -43,6 +43,9 @@ import settingcontactus from "../public/images/settingcontactus.svg"
 import DeleteSetting from "../public/images/DeleteSetting.svg"
 import homeArow from "../public/images/homeArow.svg"
 import chefTypeActive from "../public/images/chefTypeActive.svg"
+import homeProfile from "../public/images/HomeProfile.svg"
+import johnChat from "../public/images/johnChat.svg"
+import foodItems from "../public/images/foodItems.svg"
 
 
 
@@ -104,4 +107,7 @@ export {
     DeleteSetting,
     homeArow,
     chefTypeActive,
+    homeProfile,
+    johnChat,
+    foodItems,
 }

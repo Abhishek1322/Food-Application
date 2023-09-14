@@ -862,5 +862,393 @@ margin-top: 30px;
 .mainHome {
     padding: 10px 31px 10px 31px;
 }
-
+.headerinnerheading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.headerinnertxt {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-right: 20px;
+}
+.seeAll {
+    position: relative;
+}
+.seeArrow {
+    position: absolute;
+    top: 2px;
+    right: 0;
+}
+.homeprofile {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    margin-right: 10px;
+}
+.userProfile {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+}
+.userInfo {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+.profileDetail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    margin-top: 17px;
+}
+.homeProfileBox {
+    max-width: 238px;
+    height: 210px;
+    padding: 20px 16px 27px 20px;
+    width: 100%;
+    background-color: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+}
+.profileInfo {
+    display: flex;
+}
+.userInfoTxt{
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 11px;
+}
+.more {
+    color: #2E3333;
+}
+.orderDetailBox {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    max-width: 224px;
+    height: 253px;
+    width: 100%;
+}
+ .orderId {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+}
+.orderDetails {
+    border-radius: 15px 15px 0px 0px;
+    background: #2E3333;
+    width: 224px;
+    height: 40px;
+    padding: 9px 15px;
+}
+.orderFrom {
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+.Items {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.orderPrice {
+    color: #35B539;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.orderItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.orderRequest {
+    padding: 15px 19px 20px 15px;
+}
+.showOrder {
+    border-radius: 10px;
+    background: rgb(53 181 57 / 20%);
+    padding: 8px 12px;
+}
+.orderTime {
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 600;
+}
+.cancelOrder {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid #E65C00;
+    background: #FFF;
+    padding: 12px 21px;
+}
+.acceptOrder {
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    background: #E65C00;
+    padding: 12px 23px;
+}
 /* Home Page Css End */
+/* -------------------  Booking Details Page css start-----------------------------------------  */
+
+.chefJohnImg {
+    width: 105px;
+    height: 105px;
+    border-radius: 105px;
+    margin-right: 20px;
+}
+.chefJohn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding: 24px 30px;
+}
+.johnExplorer {
+    color: #2E3333;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.chefjohnDetail {
+    display: flex;
+}
+.chatImage {
+    color: #fff;
+    background-color: #E65C00;
+    border-radius: 50%;
+    width: 16px;
+    height: 14px;
+}
+.chatImg {
+    background-color: #FFA856;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    margin-right: 11px;
+}
+.chat {
+    margin-bottom: 0px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+}
+.chatwithjohn {
+    background: #E65C00;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    padding: 10px;
+}
+.chatDates {
+    color: #E65C00;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.johnChatTime {
+    display: flex;
+    align-items: center;
+}
+.johnchatdetail {
+    border-radius: 4px;
+    background: #FADECC;
+    padding: 6px 8px;
+}
+.venuInfo {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.venuDetail {
+    display: flex;
+    align-items: center;
+}
+.venuHere{
+    margin-right: 152px ;
+}
+.venushedule {
+    color: #979999;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.venuThere {
+    margin-right: 293px;
+}
+.venuHere:last-child {
+    margin-right: 0;
+}
+.venuDetail {
+    display: flex;
+    align-items: center;
+    margin-top: 36px;
+    padding-bottom: 37px;
+    border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
+}
+.descriptiontxt {
+    color: #979999;
+    font-size: 16px;
+    font-weight: 400;
+}
+.descriptionheading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0;
+    padding-bottom: 11px;
+}
+.descriptionInfo {
+    margin-top: 28px;
+}
+/* -------------------  Booking Details Page css End-----------------------------------------  */
+
+/* -------------------  Order Details Page css start-----------------------------------------  */
+.recentOrder {
+    color: #979999;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.orderId_ {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.orderIdDetail{
+    position: relative;
+}
+.recentOrder:before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background-color: #ABADAD;
+    position: absolute;
+    border-radius: 50px;
+    bottom: 8px;
+    left: 0;
+}
+.recentOrder {
+    color: #979999;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-left: 12px;
+}
+.ordertimeaddress {
+    color: #979999;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.itemsQuantity {
+    color: #E65C00;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 23px;
+}
+.deliveryAddress {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 600;
+}
+.deliveryAddress {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 37px;
+}
+.deliveryinfo {
+    color: #2E3333;
+    text-align: right;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.orderAddress {
+    color: #979999;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+}
+.foodItemImg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+.foodcategory_ {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.innerfood {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.innePrice {
+    color: #35B539;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.foodCategory {
+    display: flex;
+}
+.fooodquantity_ {
+    color: #ABADAD;
+    font-size: 14px;
+    font-weight: 700;
+}
+.orderedFoodItems {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px 29px 15px;
+    margin-top: 43px;
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+}
+.paidAmmount {
+    border-radius: 25px;
+    background: #E65C00;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    flex-direction: column;
+    display: flex;
+    width: 206px;
+    height: 199px;
+    padding: 18px 38px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+/* -------------------  Order Details Page css End-----------------------------------------  */
