@@ -30,11 +30,20 @@ export const authSlice = createSlice({
         },
         onErrorStopLoad: (state) => {
             state.loading = false
-        }
+        },
+        stepThreeCompanyLogoUplaod: (state) => {
+            state.loading = true;
+          },
+          setStepThreeCompanyLogoUplaod: (state, action) => {
+            state.loading = false;
+            state.editProfile = action.payload;
+          },
     }),
 })
 
+
 // Action creators are generated for each case reducer function
-export const { userLogin, setUserLogin, userSignUp, setUserSignUp,logout, setLogout,onErrorStopLoad } = authSlice.actions
+export const { userLogin, setUserLogin, userSignUp, setUserSignUp,logout, setLogout,onErrorStopLoad ,stepThreeCompanyLogoUplaod,
+    setStepThreeCompanyLogoUplaod, } = authSlice.actions
 
 export default authSlice.reducer

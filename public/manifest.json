@@ -3,17 +3,17 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "getopps.ico",
+      "src": "getopps.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "getopps.ico",
+      "src": "getopps.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "getopps.ico",
+      "src": "getopps.png",
       "type": "image/png",
       "sizes": "512x512"
     }

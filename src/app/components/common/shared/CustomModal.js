@@ -40,7 +40,7 @@ const CustomModal = (props) => {
         :
         ""
       }  
-      <Modal.Body className={props.isRightSideModal ? "p-0" : ""}>
+      <Modal.Body className={props.isRightSideModal ? "" : ""}>
         {props.child}
       </Modal.Body>
 

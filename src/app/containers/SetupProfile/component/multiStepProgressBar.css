@@ -1,31 +1,21 @@
 .indexedStep {
     color: #E0ECEE;
-    width: 10px;
-    height: 10px;
+    width: 34px;
+    height: 34px;
     font-size: 12px;
-    background-color: #E0ECEE;
+    background-color: #fff;
     border-radius: 50%;
     border-style: solid;
     border-width: 1px;
-    border-color: #E0ECEE;
+    border-color:rgba(233, 233, 233, 0.50);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-/* .RSPBstep:first-child .indexedStep.accomplished
-{
-    background: #12DEA1;
-} */
-
-/* .indexedStep.accomplished {
-    color: #ffffff;
-    border: 5px solid #12DEA1;
-    background: #12DEA1;
-    border-radius: 50%;
-    height: 20px;
-    width: 20px;
-} */
+.indexedStep.inprogess {
+    border: 2px solid #E65C00;
+}
 .indexedStep.accomplished {
     color: #ffffff;
     border: 5px solid #12DEA1;
@@ -36,11 +26,11 @@
 }
 .indexedStep.completed {
     color: #ffffff;
-    border: 5px solid #12DEA1;
-    background: #12DEA1;
+    border: 5px solid #E65C00;
+    background: #E65C00;
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
+    height: 34px;
+    width: 34px;
 }
 .RSPBprogressBar {
     height: 2px;
@@ -55,14 +45,24 @@
     z-index: 0;
     margin: 15px auto;
 }
-
+.indexedStep.completed::after {
+    content: '';
+    position: absolute;
+    background-image: url(../../../../public/images/RightIcon.svg);
+    left: 7px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 .RSPBprogressBar .RSPBstep {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     z-index: 0;
-    /* position: absolute; */
-    /* transform: translateX(-50%); */
+    position: absolute;
+    transform: translateX(-50%);
     transition-property: all;
     transition-timing-function: ease;
 }
@@ -83,7 +83,7 @@
     top: 0;
     bottom: 0;
     border-radius: 10px;
-    background: #12DEA1;
+    background: #e55a19;
     z-index: -1;
 }
 
