@@ -23,6 +23,9 @@ import Notification from "../components/Notification"
 import NewBooking from "../containers/Chef/Booking/NewBooking"
 import menu from "../containers/Chef/menu/Menu"
 import home from "../containers/Chef/Home/Home"
+import bookingDetails from "../containers/Chef/Home/BookingDetails"
+import orderDetails from "../containers/Chef/Home/OrderDetails"
+
 
 
 
@@ -57,4 +60,6 @@ export {
     NewBooking,
     menu,
     home,
+    bookingDetails,
+    orderDetails,
 }

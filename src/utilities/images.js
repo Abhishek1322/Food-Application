@@ -47,6 +47,22 @@ import Experience from "../public/images/Experience.svg"
 import Location from "../public/images/Location.svg"
 import DeleteIcon from "../public/images/deleteIcon.svg"
 import Uploadicon from "../public/images/Uploadicon.svg"
+import homeProfile from "../public/images/HomeProfile.svg"
+import johnChat from "../public/images/johnChat.svg"
+import foodItems from "../public/images/foodItems.svg"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export {
@@ -99,4 +115,7 @@ export {
     Location,
     DeleteIcon,
     Uploadicon,
+    homeProfile,
+    johnChat,
+    foodItems,
 }

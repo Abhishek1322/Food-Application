@@ -15,6 +15,8 @@ const Router = () => {
                     <Route path="/newBooking" element={<Containers.NewBooking/>} />
                         <Route path="/menu" element={<Containers.menu/>} />
                         <Route path="/home" element={<Containers.home/>} />
+                        <Route path="/bookingDetails" element={<Containers.bookingDetails/>} />
+                        <Route path="/orderDetails" element={<Containers.orderDetails/>} />
                 </Route>
 
                 <Route element={<Layouts.AuthLayout />}>
