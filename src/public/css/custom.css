@@ -267,6 +267,7 @@ input:-webkit-autofill:active {
 .cheftypeBox {
     display: flex;
     align-items: center;
+    padding: 6px !important;
 }
 
 .chefType {
@@ -281,6 +282,16 @@ input:-webkit-autofill:active {
 }
 
 .chefType.active {
-    background: red;
+    background: #E65C00;
     border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+.chefType.active .InfoIconActive {
+    display: block !important;
+}
+.chefType.active .InfoIcon{
+    display: none;
 }

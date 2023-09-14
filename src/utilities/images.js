@@ -42,6 +42,7 @@ import deleteImg from "../public/images/deleteImg.svg"
 import settingcontactus from "../public/images/settingcontactus.svg"
 import DeleteSetting from "../public/images/DeleteSetting.svg"
 import homeArow from "../public/images/homeArow.svg"
+import chefTypeActive from "../public/images/chefTypeActive.svg"
 
 
 
@@ -102,10 +103,5 @@ export {
     settingcontactus,
     DeleteSetting,
     homeArow,
-    
-
-
-
-  
-  
+    chefTypeActive,
 }

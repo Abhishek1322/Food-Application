@@ -72,11 +72,13 @@ const SetupProfile = () => {
                                                                         <ul className="border-input cheftypeBox">
                                                                             <li className={`chefType ${activeTab === 'restaurant' ? 'active' : path == '/restaurant' ? 'active' : ''}`} onClick={() => setActiveTab('restaurant')}>
                                                                                 Restaurant
-                                                                                <img src={Images.chefType} alt="" className='' />
+                                                                                <img src={Images.chefType} alt="InfoIcon" className='InfoIcon' />
+                                                                                <img src={Images.chefTypeActive} alt="InfoIcon" className='InfoIconActive img-fluid d-none' />
                                                                             </li>
                                                                             <li className={`chefType ${activeTab === 'home' ? 'active' : path == '/home' ? 'active' : ''}`} onClick={() => setActiveTab('home')}>
                                                                                 Home
-                                                                                <img src={Images.chefType} alt="" className='' />
+                                                                                <img src={Images.chefType} alt="InfoIcon" className='InfoIcon' />
+                                                                                <img src={Images.chefTypeActive} alt="InfoIcon" className='InfoIconActive img-fluid d-none' />
                                                                             </li>
                                                                         </ul>
                                                                     </div>
