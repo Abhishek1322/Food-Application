@@ -854,25 +854,13 @@ margin-top: 30px;
 
 
 /* Home Page Css Start */
-.innerHomeHeading{
-    color: #2E3333;
-    font-family: Crimson Text;
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0;
-
-}
-.innerHomeText{
-    color: #E65C00;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 0;
-}
-.commonHomeHeader {
+.innerhomeheader {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
-
+.mainHome {
+    padding: 10px 31px 10px 31px;
+}
 
 /* Home Page Css End */
