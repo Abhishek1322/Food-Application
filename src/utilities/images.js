@@ -63,6 +63,8 @@ import foodItems from "../public/images/foodItems.svg"
 
 
 
+>>>>>>>>> Temporary merge branch 2
+
 
 export {
     Logo,
