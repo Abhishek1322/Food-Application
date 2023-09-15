@@ -279,12 +279,29 @@ input:-webkit-autofill:active {
     color: #2E3333;
     font-size: 14px;
     font-weight: 400;
-}
+    padding: 10px;
 
+}
+.PersonalDetails {
+    border-radius: 17px;
+    background: #2E3333;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 10px;
+}
+.progressCount {
+    color: #2E3333;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+.indexedStep.completed .progressCount{
+    display: none !important;
+}
 .chefType.active {
     background: #E65C00;
     border-radius: 10px;
-    padding: 10px;
     color: #fff;
     position: relative;
     z-index: 2;
@@ -294,4 +311,185 @@ input:-webkit-autofill:active {
 }
 .chefType.active .InfoIcon{
     display: none;
+}
+.InputIcon {
+    position: absolute;
+    top: 17px;
+    right: 14px;
+}
+.setUpHeading {
+    color: #2E3333;
+    text-align: center;
+    font-family: Crimson Text;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+}
+.Headingsmall {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 28px;
+    font-weight: 600;
+}
+.progressBox {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 5px 22px 0px rgba(0, 0, 0, 0.04);
+    margin-bottom: 2rem;
+    padding: 20px;
+}
+.addButton {
+    border-radius: 40px;
+    border: 1px solid #E65C00;
+    padding: 5px 13px;
+    color: #E65C00;
+}
+.smallBtn.disable {
+    background: #F7CEB3;
+}
+.react-tooltip {
+    position: absolute;
+    opacity: 1;
+    top: 40px  !important;
+    visibility: visible !important;
+}
+.styles-module_arrow__K0L3T {
+    width: 18px;
+    height: 18px;
+    top: -10px;
+    left: 340px !important;
+}
+.styles-module_dark__xNqje {
+    border-radius: 15px !important;
+    background: #FFF !important;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05) !important;
+    color: #ABADAD !important;
+    font-size: 14px !important;    
+    font-weight: 400 !important;
+}
+/* Start AddExpertise modal */
+#AddExpertise {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 20px;
+    right: 20px;
+    height: 96vh;
+}
+#AddExpertise .modal-content {
+    height: 100%;
+}
+.addMore {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#AddExpertise .InputIcon {
+    top: 11px;
+}
+.buttomBtn {
+    position: fixed;
+    bottom: 50px;
+    width: 19.4%;
+}
+/* End AddExpertise modal */
+
+.expertiseList {
+    border-radius: 4px;
+    background: #EEEFEF;
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px 13px 5px 0;
+}
+.subHeadingSmall {
+    color: #979999;
+    font-size: 14px;
+    font-weight: 400;
+} 
+
+.uploadImgebox {
+    display: inline-block;
+    width: 100%;
+    background: rgba(254, 250, 247, 1);
+    border: 1px dashed #F5BE99;
+    border-radius: 8px;
+    text-align: center;
+    padding: 50px;
+    margin-bottom: 20px;
+}
+.uploadImgeboxNew {
+    display: inline-block;
+    width: 100%;
+    background: transparent;
+    border: 1px dashed #F5BE99;
+    border-radius: 8px;
+    text-align: center;
+    padding: 50px;
+    margin-bottom: 20px;
+}
+.uploadbtnn {
+    background: rgba(230, 92, 0, 0.08);
+    border-radius: 33px;
+    color: rgba(230, 92, 0, 1);
+    font-size: 12px;
+    padding: 9px 40px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 15px 0;
+    cursor: pointer;
+}
+.Uploadicon {
+    display: block;
+    margin: 0 auto;
+}
+.uploadText {
+    color: #ABADAD;
+    font-size: 12px;
+    margin: 0;
+}
+.HeadingSmall {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+}
+.availability {
+    box-shadow:0px 4px 20px rgba(0, 0, 0, 0.04);
+}
+.weekBox {
+    text-align: center;
+}   
+.weekDays {
+    border-radius: 10px;
+    background: #FCEFE5;
+    display: inline-block;
+    padding: 20px 10px;
+    margin: 2rem 10px;
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 12px;
+    font-weight: 600;
+    width: 50px;
+    text-align: center;
+}
+.weekDays.active {
+    background: #E65C00;
+    color: #FFF;
+}
+.timeSlotBox{
+    padding: 20px 30px;
+}
+.HeadingsmallText {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 20px;
+    font-weight: 600;
+}
+.borderBottom {
+    color: rgba(233, 233, 233, 0.50);
+    opacity: 1;
 }
