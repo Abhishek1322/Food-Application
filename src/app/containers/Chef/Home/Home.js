@@ -4,7 +4,7 @@ import * as Images from "../../../../utilities/images";
 const Home = () => {
     return (
         <>
-            <div className='mainHome'>
+            <div className='mainchef_'>
                 <div className='homePage'>
                     <div className='container-fluid'>
                         <div className='row'>
@@ -83,7 +83,7 @@ const Home = () => {
                                     </div>
                                 </div>
                                 <div className='innerhomeheader'>
-                                    <p className='headerinnerheading'>New Booking Requests</p>
+                                    <p className='headerinnerheading'>Recent Orderss</p>
                                     <div className='seeAll'>
                                         <p className='headerinnertxt'>see All</p>
                                         <img src={Images.homeArow} alt="logo" className="seeArrow" />

@@ -50,6 +50,8 @@ import Uploadicon from "../public/images/Uploadicon.svg"
 import homeProfile from "../public/images/HomeProfile.svg"
 import johnChat from "../public/images/johnChat.svg"
 import foodItems from "../public/images/foodItems.svg"
+import menuItems from "../public/images/menuItems.png"
+import ItemsBgMenu from "../public/images/ItemsBgMenu.svg"
 
 
 
@@ -59,11 +61,6 @@ import foodItems from "../public/images/foodItems.svg"
 
 
 
-
-
-
-
->>>>>>>>> Temporary merge branch 2
 
 
 export {
@@ -119,4 +116,7 @@ export {
     homeProfile,
     johnChat,
     foodItems,
+    menuItems,
+    ItemsBgMenu,
+    
 }
