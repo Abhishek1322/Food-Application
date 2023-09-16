@@ -52,6 +52,11 @@ import johnChat from "../public/images/johnChat.svg"
 import foodItems from "../public/images/foodItems.svg"
 import menuItems from "../public/images/menuItems.png"
 import ItemsBgMenu from "../public/images/ItemsBgMenu.svg"
+import reportChatImg from "../public/images/reportChatImg.svg"
+import chatgalleryImg from "../public/images/chatgalleryImg.svg"
+import chatSendImg from "../public/images/chatSendImg.png"
+
+
 
 
 
@@ -118,5 +123,8 @@ export {
     foodItems,
     menuItems,
     ItemsBgMenu,
+    reportChatImg,
+    chatgalleryImg,
+    chatSendImg,
     
 }

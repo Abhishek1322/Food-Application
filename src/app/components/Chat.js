@@ -3,8 +3,6 @@ import * as Images from "../../utilities/images"
 const Chat = () => {
   return (
     <>
-
-
       <div className='modalContent'>
         <div className='searchbar flexBox'>
           <p className='searchtext'>Search Chef near you...</p>
@@ -71,7 +69,7 @@ const Chat = () => {
           </div>
 
         </div>
-      </div>
+      </div> 
 
 
 

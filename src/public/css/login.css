@@ -345,7 +345,7 @@
     color: #979999;
     font-size: 16px;
     font-weight: 400;
-    margin: 0;
+    margin-bottom: 0;
 }
 
 .coloredSmallSubheading {
@@ -465,3 +465,4 @@
 .mainPage .logleft::before {
     opacity: 0;
 }
+

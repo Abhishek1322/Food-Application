@@ -649,6 +649,7 @@ body {
     font-size: 12px;
     font-weight: 400;
     margin: 0;
+    padding-bottom: 7px;
 }
 
 .chatTime {
@@ -1418,6 +1419,7 @@ body {
     border-radius: 74px;
     z-index: 3;
 }
+
 .innerItems_ {
     display: flex;
     justify-content: center;
@@ -1477,6 +1479,7 @@ body {
     left: 19px;
     top: -8px;
 }
+
 .menu_Items {
     display: flex;
     justify-content: center;
@@ -1487,3 +1490,115 @@ body {
 
 
 /* ----------------=----------------Menu PAge Css End ---------------------------------------------------  */
+
+
+/* Report chat css start */
+.reportchat_ {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 470px;
+    height: 100%;
+}
+
+.main_reportchat .cancelOrder {
+    padding: 18px 45px;
+}
+
+.main_reportchat .acceptOrder {
+    padding: 18px 40px;
+}
+
+/* Report chat css end */
+
+/* ChatnextModal CSs Start  */
+.chatUser {
+    color: #979999;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.chatTime_ {
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.chefchat_detail {
+    display: flex;
+    align-items: center;
+}
+
+.chatinRight_ {
+    background: #E65C00;
+    padding: 14px 15px 16px 14px;
+    border-radius: 20px 20px 0 20px;
+    max-width: 266px;
+    width: 100%;
+}
+
+.right_chatBox {
+    padding-top: 27px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+.chatSearchere_ {
+    color: #ABADAD;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+}
+
+.chatnext {
+    padding-top: 200px;
+}
+
+.sendImg {
+    border-radius: 10px;
+    background: #E65C00;
+    box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.30);
+    padding: 10px;
+    margin-left: 15px;
+}
+
+.gallerImg {
+    padding-left: 28px;
+}
+
+.chatSearchHere_ {
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.chatheadtext {
+    color: #2E3333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.chatinner_ {
+    color: #979999;
+    font-size: 12px;
+    font-weight: 600;
+}
+.reportchatAnother_ .cancelOrder {
+    padding: 18px 45px;
+}
+
+.reportchatAnother_ .acceptOrder {
+    padding: 18px 40px;
+}
+.reportchat__ {
+    padding-bottom: 412px;
+}
+
+
+
+/* ChatnextModal CSs End  */
