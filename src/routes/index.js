@@ -17,6 +17,7 @@ const Router = () => {
                         <Route path="/home" element={<Containers.home/>} />
                         <Route path="/bookingDetails" element={<Containers.bookingDetails/>} />
                         <Route path="/orderDetails" element={<Containers.orderDetails/>} />
+                        <Route path="/anotherorderDetail" element={<Containers.AnotherOrderdetail/>} />
                 </Route>
 
                 <Route element={<Layouts.AuthLayout />}>

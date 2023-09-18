@@ -50,8 +50,11 @@ import Uploadicon from "../public/images/Uploadicon.svg"
 import homeProfile from "../public/images/HomeProfile.svg"
 import johnChat from "../public/images/johnChat.svg"
 import foodItems from "../public/images/foodItems.svg"
-
-
+import menuItems from "../public/images/menuItems.png"
+import ItemsBgMenu from "../public/images/ItemsBgMenu.svg"
+import reportChatImg from "../public/images/reportChatImg.svg"
+import chatgalleryImg from "../public/images/chatgalleryImg.svg"
+import chatSendImg from "../public/images/chatSendImg.png"
 
 export {
     Logo,
@@ -106,4 +109,10 @@ export {
     homeProfile,
     johnChat,
     foodItems,
+    menuItems,
+    ItemsBgMenu,
+    reportChatImg,
+    chatgalleryImg,
+    chatSendImg,
+    
 }

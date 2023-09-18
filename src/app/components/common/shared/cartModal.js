@@ -2,9 +2,9 @@ import React from 'react'
 import * as Images from "../../../../utilities/images"
 const CartModal = () => {
   return (
-  <>
-              
-               <div className='modalContent'>
+    <>
+
+<div className='modalContent'>
                <div className='modalDetail '>
                         <div className='usercartDetail'>
                         <img src={Images.userProfile} className='userprofile' alt='cartImg'/>
@@ -66,10 +66,9 @@ const CartModal = () => {
                         
                     </div>
                </div>
-              
-          
 
-  </>
+
+    </>
   )
 }
 

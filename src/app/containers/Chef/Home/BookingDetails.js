@@ -4,7 +4,7 @@ import * as Images from "../../../../utilities/images";
 const BookingDetails = () => {
     return (
         <>
-            <div className='mainHome'>
+            <div className='mainchef_'>
                 <div className='BookingDetails'>
                     <div className='container-fluid'>
                         <div className='row'>

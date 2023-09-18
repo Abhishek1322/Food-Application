@@ -25,6 +25,8 @@ import menu from "../containers/Chef/menu/Menu"
 import home from "../containers/Chef/Home/Home"
 import bookingDetails from "../containers/Chef/Home/BookingDetails"
 import orderDetails from "../containers/Chef/Home/OrderDetails"
+import AnotherOrderdetail from "../containers/Chef/Home/AnotherOrderdetail"
+
 
 
 
@@ -62,4 +64,5 @@ export {
     home,
     bookingDetails,
     orderDetails,
+    AnotherOrderdetail,
 }
