@@ -256,12 +256,20 @@ input:-webkit-autofill:active {
 }
 
 /* Start setup profile page */
+.logoMain {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
 .outerBoxmain {
     background-image: url(../images/loginbg.png);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .cheftypeBox {
@@ -282,6 +290,7 @@ input:-webkit-autofill:active {
     padding: 10px;
 
 }
+
 .PersonalDetails {
     border-radius: 17px;
     background: #2E3333;
@@ -290,15 +299,18 @@ input:-webkit-autofill:active {
     font-weight: 600;
     padding: 6px 10px;
 }
+
 .progressCount {
     color: #2E3333;
     text-align: center;
     font-size: 14px;
     font-weight: 600;
 }
-.indexedStep.completed .progressCount{
+
+.indexedStep.completed .progressCount {
     display: none !important;
 }
+
 .chefType.active {
     background: #E65C00;
     border-radius: 10px;
@@ -306,17 +318,21 @@ input:-webkit-autofill:active {
     position: relative;
     z-index: 2;
 }
+
 .chefType.active .InfoIconActive {
     display: block !important;
 }
-.chefType.active .InfoIcon{
+
+.chefType.active .InfoIcon {
     display: none;
 }
+
 .InputIcon {
     position: absolute;
     top: 17px;
     right: 14px;
 }
+
 .setUpHeading {
     color: #2E3333;
     text-align: center;
@@ -325,12 +341,14 @@ input:-webkit-autofill:active {
     font-style: normal;
     font-weight: 600;
 }
+
 .Headingsmall {
     color: #2E3333;
     font-family: Crimson Text;
     font-size: 28px;
     font-weight: 600;
 }
+
 .progressBox {
     border-radius: 15px;
     background: #FFF;
@@ -338,35 +356,41 @@ input:-webkit-autofill:active {
     margin-bottom: 2rem;
     padding: 20px;
 }
+
 .addButton {
     border-radius: 40px;
     border: 1px solid #E65C00;
     padding: 5px 13px;
     color: #E65C00;
 }
+
 .smallBtn.disable {
     background: #F7CEB3;
 }
+
 .react-tooltip {
     position: absolute;
     opacity: 1;
-    top: 40px  !important;
+    top: 40px !important;
     visibility: visible !important;
 }
+
 .styles-module_arrow__K0L3T {
     width: 18px;
     height: 18px;
     top: -10px;
     left: 340px !important;
 }
+
 .styles-module_dark__xNqje {
     border-radius: 15px !important;
     background: #FFF !important;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05) !important;
     color: #ABADAD !important;
-    font-size: 14px !important;    
+    font-size: 14px !important;
     font-weight: 400 !important;
 }
+
 /* Start AddExpertise modal */
 #AddExpertise {
     max-width: 406px;
@@ -377,23 +401,29 @@ input:-webkit-autofill:active {
     right: 20px;
     height: 96vh;
 }
+
 #AddExpertise .modal-content {
     height: 100%;
 }
+
 .addMore {
     color: #E65C00;
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
 }
+
 #AddExpertise .InputIcon {
     top: 11px;
+    cursor: pointer;
 }
+
 .buttomBtn {
     position: fixed;
     bottom: 50px;
     width: 19.4%;
 }
+
 /* End AddExpertise modal */
 
 .expertiseList {
@@ -406,11 +436,12 @@ input:-webkit-autofill:active {
     padding: 8px 15px;
     margin: 5px 13px 5px 0;
 }
+
 .subHeadingSmall {
     color: #979999;
     font-size: 14px;
     font-weight: 400;
-} 
+}
 
 .uploadImgebox {
     display: inline-block;
@@ -422,6 +453,7 @@ input:-webkit-autofill:active {
     padding: 50px;
     margin-bottom: 20px;
 }
+
 .uploadImgeboxNew {
     display: inline-block;
     width: 100%;
@@ -432,6 +464,7 @@ input:-webkit-autofill:active {
     padding: 50px;
     margin-bottom: 20px;
 }
+
 .uploadbtnn {
     background: rgba(230, 92, 0, 0.08);
     border-radius: 33px;
@@ -443,26 +476,32 @@ input:-webkit-autofill:active {
     margin: 15px 0;
     cursor: pointer;
 }
+
 .Uploadicon {
     display: block;
     margin: 0 auto;
 }
+
 .uploadText {
     color: #ABADAD;
     font-size: 12px;
     margin: 0;
 }
+
 .HeadingSmall {
     color: #2E3333;
     font-size: 14px;
     font-weight: 400;
 }
+
 .availability {
-    box-shadow:0px 4px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
 }
+
 .weekBox {
     text-align: center;
-}   
+}
+
 .weekDays {
     border-radius: 10px;
     background: #FCEFE5;
@@ -476,20 +515,133 @@ input:-webkit-autofill:active {
     width: 50px;
     text-align: center;
 }
+
 .weekDays.active {
     background: #E65C00;
     color: #FFF;
 }
-.timeSlotBox{
+
+.timeSlotBox {
     padding: 20px 30px;
 }
+
 .HeadingsmallText {
     color: #2E3333;
     font-family: Crimson Text;
     font-size: 20px;
     font-weight: 600;
 }
+
 .borderBottom {
     color: rgba(233, 233, 233, 0.50);
     opacity: 1;
+}
+
+.react-datepicker-wrapper {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 75%;
+}
+
+.react-datepicker-ignore-onclickoutside,
+.react-datepicker__input-container input {
+    background: rgba(234, 235, 235, 0.50);
+    border: 1px solid #E9E9E9;
+    border-radius: 8px;
+    padding: 8px 20px 8px 30px;
+    color: #979999;
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+}
+
+.ClockIcon {
+    position: absolute;
+    top: 19px;
+    left: 68px;
+}
+
+.deleteBox {
+    position: relative;
+}
+
+.DeleteIcon {
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+}
+
+/* End setup profile page */
+
+/* Start User Home  */
+.mainBoxOuter {
+    padding: 10px 31px;
+}
+
+.headingSub {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.outerBox {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.chefDetails {
+    background-image: url(../images/ChefCap.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 90px;
+    width: 90px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.UserICon {
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.smallHeading {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.expBtn {
+    border-radius: 4px;
+    background: #E65C00;
+    color: #FFF;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+.ratingBox {
+    background: hsl(122deg 55% 46% / 10%);
+    padding: 0px 6px;
+    border-radius: 4px;
+}
+.coloredText {
+    color: #35B539;
+    font-size: 12px;
+    font-weight: 400;
+}
+.startIcon {
+    font-size: 12px;
+    color: rgba(255, 193, 7, 1);
+    margin-right: 3px;
 }

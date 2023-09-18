@@ -295,7 +295,13 @@ li {
 /* .sidebarItems:hover {
     color: #979999;
 } */
-
+.nextIcon {
+    background: #eeefef;
+    padding: 10px;
+    border-radius: 22px;
+    width: 44px;
+    height: 44px;
+}
 
 /* Settings Page css Start */
 ul {

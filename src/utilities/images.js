@@ -55,6 +55,9 @@ import ItemsBgMenu from "../public/images/ItemsBgMenu.svg"
 import reportChatImg from "../public/images/reportChatImg.svg"
 import chatgalleryImg from "../public/images/chatgalleryImg.svg"
 import chatSendImg from "../public/images/chatSendImg.png"
+import ClockIcon from "../public/images/ClockIcon.svg"
+import ChefCap from "../public/images/ChefCap.svg"
+import UserICon from "../public/images/UserICon.svg"
 
 export {
     Logo,
@@ -114,5 +117,8 @@ export {
     reportChatImg,
     chatgalleryImg,
     chatSendImg,
+    ClockIcon,
+    ChefCap,
+    UserICon,
     
 }

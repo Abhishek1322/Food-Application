@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Images from "../../../../utilities/images";
 
-const Home = () => {
+const HomeRequsest = () => {
     return (
         <>
             <div className='mainchef_'>
@@ -244,4 +244,4 @@ const Home = () => {
 }
 
 
-export default Home
+export default HomeRequsest

@@ -9,7 +9,9 @@ import CustomModal from '../../components/common/shared/CustomModal';
 import AddExpertise from '../../components/common/shared/AddExpertise';
 import { useDispatch } from 'react-redux';
 import { stepThreeCompanyLogoUplaod } from '../../../redux/slices/auth';
+import "react-datepicker/dist/react-datepicker.css";
 import { useDropzone } from 'react-dropzone';
+import DatePicker from "react-datepicker";
 
 
 
@@ -26,6 +28,7 @@ const SetupProfile = () => {
     const [photo, setPhotoUpload] = useState("");
     const dispatch = useDispatch();
     const [photoInfo, setPhotoInfo] = useState();
+    const [startDate, setStartDate] = useState(new Date());
 
 
 
@@ -123,7 +126,7 @@ const SetupProfile = () => {
                     <div className='row'>
                         <div className='col-lg-12'>
                             <figure>
-                                <img src={Images.Logo} alt="logo" className="img-fluid logo" />
+                                <img src={Images.Logo} alt="logo" className="img-fluid logoMain" />
                             </figure>
                             <div className='row justify-content-center'>
                                 <div className='col-lg-5'>
@@ -244,7 +247,7 @@ const SetupProfile = () => {
                                                         <>
                                                             <h6 class="Headingsmall">Set Availability</h6>
                                                             <p className='subHeadingSmall mb-4'>Add your available time slots.</p>
-                                                            <div className='availability mt-3'>
+                                                            <div className='availability mt-3 mb-5'>
                                                                 <ul className='weekBox'>
                                                                     <li className={`weekDays ${activeTab === 'Mon' ? 'active' : path == '/mon' ? 'active' : ''}`} onClick={() => setActiveTab('Mon')}>Mon</li>
                                                                     <li className={`weekDays ${activeTab === 'Tue' ? 'active' : path == '/Tue' ? 'active' : ''}`} onClick={() => setActiveTab('Tue')}>Tue</li>
@@ -254,25 +257,44 @@ const SetupProfile = () => {
                                                                     <li className={`weekDays ${activeTab === 'Sat' ? 'active' : path == '/Sat' ? 'active' : ''}`} onClick={() => setActiveTab('Sat')}>Sat</li>
                                                                     <li className={`weekDays ${activeTab === 'Sun' ? 'active' : path == '/Sun' ? 'active' : ''}`} onClick={() => setActiveTab('Sun')}>Sun</li>
                                                                 </ul>
-                                                                <div className='timeSlotBox'>
+                                                                <div className='timeSlotBox pb-5'>
                                                                     <h6 class="HeadingsmallText">Time Slots</h6>
                                                                     <hr className='borderBottom'></hr>
                                                                     <div className='row'>
-                                                                        <div className='col-lg-6'>
+                                                                        <div className='col-lg-5'>
                                                                             <div className="input-container mt-2">
                                                                                 <p className="border-input">From</p>
+                                                                                <div className='dateBox'>
+                                                                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                                                    <img src={Images.ClockIcon} alt="ClockIcon" className='ClockIcon' />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div className='col-lg-6'>
+                                                                        <div className='col-lg-5'>
                                                                             <div className="input-container mt-2">
-                                                                                <p className="border-input">From</p>
+                                                                                <p className="border-input">To</p>
+                                                                                <div className='dateBox'>
+                                                                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                                                    <img src={Images.ClockIcon} alt="ClockIcon" className='ClockIcon' />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='col-lg-2 text-center'>
+                                                                            <div className='deleteBox'>
+                                                                                <img src={Images.DeleteIcon} alt="ClockIcon" className='DeleteIcon' />
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div className='flexBox mt-2'>
+                                                                        <button type='button' className='addButton'><i class="las la-plus"></i>Add Time Slot </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <button onClick={(e) => handleBack(e, "pagetwoback")} className="submit_btn" type="submit"><span className="addMore me-3"><i class="las la-angle-left"></i> Back</span></button>
-                                                            <button className="submit_btn mt-5" type="submit"><span className="submit_text">Continue</span></button>
+                                                            <div className='flexBox justify-content-center'>
+                                                                <button onClick={(e) => handleBack(e, "pagetwoback")} className="submit_btn" type="submit"><span className="addMore me-3"><i class="las la-angle-left"></i> Back</span></button>
+                                                                <button className="submit_btn" type="submit"><span className="smallBtn">Continue</span></button>
+                                                            </div>
+
                                                         </>,
                                                 }[page]
                                             }

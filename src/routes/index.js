@@ -12,12 +12,16 @@ const Router = () => {
                 <Route element={<Layouts.MainLayout />}>
                     <Route path="/" element={<Containers.Login />} />
                     <Route path="/setting" element={<Containers.SettingMain />} />
-                    <Route path="/newBooking" element={<Containers.NewBooking/>} />
-                        <Route path="/menu" element={<Containers.menu/>} />
-                        <Route path="/home" element={<Containers.home/>} />
-                        <Route path="/bookingDetails" element={<Containers.bookingDetails/>} />
-                        <Route path="/orderDetails" element={<Containers.orderDetails/>} />
-                        <Route path="/anotherorderDetail" element={<Containers.AnotherOrderdetail/>} />
+                    <Route path="/newBooking" element={<Containers.NewBooking />} />
+                    <Route path="/menu" element={<Containers.Menu />} />
+                    <Route path="/home" element={<Containers.HomeRequsest />} />
+                    <Route path="/bookingDetails" element={<Containers.BookingDetails />} />
+                    <Route path="/orderDetails" element={<Containers.OrderDetails />} />
+                    <Route path="/anotherorderDetail" element={<Containers.AnotherOrderdetail />} />
+
+                    {/* Start User Side*/}
+                    <Route path="/homeUser" element={<Containers.HomeUser />} />
+
                 </Route>
 
                 <Route element={<Layouts.AuthLayout />}>
@@ -26,27 +30,24 @@ const Router = () => {
                         <Route path="/chooseroles" element={<Containers.ChooseRoles />} />
                         <Route path="/verification" element={<Containers.Verification />} />
                         <Route path="/createAccount" element={<Containers.CreateAccount />} />
-                        <Route path="/forgotpassword" element={<Containers.forgotPassword />} />
+                        <Route path="/forgotpassword" element={<Containers.ForgotPassword />} />
                         <Route path="/recoverpassword" element={<Containers.Recoverpassword />} />
                         <Route path="/enterOtp" element={<Containers.EnterOtp />} />
                         <Route path="/ChangePassword" element={<Containers.ChangePassword />} />
                         <Route path="/deleteAccount" element={<Containers.DeleteAccount />} />
-                        <Route path="/loading" element={<Containers.loading />} />
-                        <Route path="/loadingPage" element={<Containers.loadingpage />} />
+                        <Route path="/loading" element={<Containers.Loading />} />
+                        <Route path="/loadingPage" element={<Containers.Loadingpage />} />
                         <Route path="/accountDeleted" element={<Containers.AccountDeleted />} />
                         <Route path="/termAndCondition" element={<Containers.TermAndCondition />} />
-                        <Route path="/contactUs" element={<Containers.contactus />} />
+                        <Route path="/contactUs" element={<Containers.Contactus />} />
                         <Route path="/PrivacyPolicy" element={<Containers.PrivacyPolicy />} />
                         <Route path="/setup-profile" element={<Containers.SetupProfile />} />
-                        <Route path="/cart" element={<Containers.cart/>} />
-                        <Route path="/chat" element={<Containers.chat/>} />
-                        <Route path="/notification" element={<Containers.Notification/>} />
-                      
-                    
-                    
+                        <Route path="/cart" element={<Containers.Cart />} />
+                        <Route path="/chat" element={<Containers.Chat />} />
+                        <Route path="/notification" element={<Containers.Notification />} />
                     </Route>
- 
-                    <Route element={<PrivateCheck auth={true} />}> 
+
+                    <Route element={<PrivateCheck auth={true} />}>
                         {/* <Route path="/setting" element={<Containers.SettingMain />} /> */}
                     </Route>
                 </Route>

@@ -14,7 +14,7 @@ const SettingMain = (props) => {
                                     <p className='settingBoxtxt ms-3 mb-0'>Change Password</p>
                                 </div>
                                 <div className='iconImg'>
-                                    <img src={Images.nextIcon} alt="logo" className="img-fluid " />
+                                    <img src={Images.nextIcon} alt="logo" className="img-fluid nextIcon" />
                                 </div>
 
                             </div>
@@ -26,7 +26,7 @@ const SettingMain = (props) => {
                                     <p className='settingBoxtxt ms-3 mb-0'>Term & Condition</p>
                                 </div>
                                 <div className='iconImg'>
-                                    <img src={Images.nextIcon} alt="logo" className="img-fluid " />
+                                    <img src={Images.nextIcon} alt="logo" className="img-fluid nextIcon" />
                                 </div>
 
                             </div>
@@ -38,7 +38,7 @@ const SettingMain = (props) => {
                                     <p className='settingBoxtxt ms-3 mb-0'>Contact Us</p>
                                 </div>
                                 <div className='iconImg'>
-                                    <img src={Images.nextIcon} alt="logo" className="img-fluid " />
+                                    <img src={Images.nextIcon} alt="logo" className="img-fluid nextIcon" />
                                 </div>
 
                             </div>
@@ -50,7 +50,7 @@ const SettingMain = (props) => {
                                     <p className='settingBoxtxt ms-3 mb-0'>Delete Account</p>
                                 </div>
                                 <div className='iconImg'>
-                                    <img src={Images.nextIcon} alt="logo" className="img-fluid " />
+                                    <img src={Images.nextIcon} alt="logo" className="img-fluid nextIcon" />
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ const SettingMain = (props) => {
                                     <p className='settingBoxtxt ms-3 mb-0'>Privacy Policy</p>
                                 </div>
                                 <div className='iconImg'>
-                                    <img src={Images.nextIcon} alt="logo" className="img-fluid " />
+                                    <img src={Images.nextIcon} alt="logo" className="img-fluid nextIcon" />
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ const SettingMain = (props) => {
                                     <p className='settingBoxtxt ms-3 mb-0'>Logout</p>
                                 </div>
                                 <div className='iconImg'>
-                                    <img src={Images.nextIcon} alt="logo" className="img-fluid " />
+                                    <img src={Images.nextIcon} alt="logo" className="img-fluid nextIcon" />
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@ const AnotherOrderdetail = () => {
     return (
         <>
 
-            <div className='mainchef_'>
+            <div className='mainchef_ '>
                 <div className='orderDeatils'>
                     <div className='container-fluid'>
                         <div className='row align-items-center'>
