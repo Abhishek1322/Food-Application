@@ -53,18 +53,6 @@ import foodItems from "../public/images/foodItems.svg"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 export {
     Logo,
     Chef,
