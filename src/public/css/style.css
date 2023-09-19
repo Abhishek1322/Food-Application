@@ -632,8 +632,8 @@ body {
     padding: 13px 10px 13px 13px;
     margin: 7px;
     position: absolute;
-    right: 17px;
-    top: 17px;
+    right: 33px;
+    top: 32px;
     box-shadow: 1px 3px 5px 0px #E65C00;
 }
 
@@ -723,7 +723,7 @@ body {
 }
 
 .notificationModal {
-    margin: 0px 22px 20px 26px;
+    margin: 0 14px 20px 24px;
     position: relative;
 }
 

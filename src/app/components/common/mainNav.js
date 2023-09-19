@@ -117,8 +117,8 @@ const Resources = () => {
                                 Notification
                             </h2>
                             <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p>
+                                <img src={Images.modalCancel} className='ModalCancel' />
+                            </p>
 
                         </>
 
@@ -129,8 +129,8 @@ const Resources = () => {
                                     Cart
                                 </h2>
                                 <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p>
+                                    <img src={Images.modalCancel} className='ModalCancel' />
+                                </p>
                             </>
                             : ''
                 }
