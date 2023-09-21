@@ -1,0 +1,233 @@
+/* myProfile  */
+
+p {
+    margin: 0;
+}
+
+.profilesection {
+    margin-top: 60px;
+    margin-left: 32px;
+    margin-right: 32px;
+
+}
+
+/* leftsection css  */
+.profileleft {
+    width: 100%;
+}
+
+.chefprofileimg {
+   width: 100%;
+    height: auto;
+}
+
+/* right section  */
+
+.reviewsection {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* chefdata  */
+.chefdata {
+    padding-bottom: 48px;
+    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    margin-top: 38px;
+
+}
+
+.profileright {
+    padding: 10px 80px;
+}
+
+.editsection {
+    display: flex;
+    justify-content: end;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.editheading {
+    color: #E65C00;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Crimson Text;
+}
+
+.nameprofile {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nameheading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.emailheading {
+    margin-top: 25px;
+}
+
+.experprofile {
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.chefname {
+    width: 100%;
+    max-width: 285px;
+    position: relative;
+}
+
+.infoimg {
+    display: inline;
+}
+
+.restroinfo {
+    display: flex;
+    gap: 10px;
+}
+
+.information {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 315px;
+    position: absolute;
+    display: none;
+    padding: 10px;
+    margin: 25px auto;
+    left: 76px;
+}
+
+.infoimg {
+    max-width: 100%;
+    height: auto;
+}
+
+.infoimg:hover+.information {
+    display: block;
+}
+
+.adressection {
+    margin-top: 40px;
+    display: flex;
+    gap: 14px;
+}
+
+.adresssub {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 7px;
+    width: 100%;
+    max-width: 507px;
+}
+
+/* chef expertise  */
+.expertise {
+    padding: 50px 0;
+}
+
+.myexpertise {
+    padding-bottom: 17px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.expertisevalue {
+    display: inline-flex;
+    padding: 5px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: #EEEFEF;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.expertheading {
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px 8px;
+}
+
+.myavailability {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.dayavailability {
+    border-radius: 10px;
+    background: #FCEFE5;
+    padding: 15px 15px;
+    text-align: center;
+}
+
+.cheftime {
+    margin-top: 20px;
+    max-width: 350px;
+}
+
+.dayavailability p {
+    font-family: Crimson Text;
+}
+
+/* editProfile */
+.editsection{
+    margin-top: 60px;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+.editleft{
+    position: relative;
+}
+.editprofileimg{
+    position: absolute;
+    right: 25px;
+    top: 0;
+    margin: 25px auto;
+}
+.border-box{
+    width: 100%;
+    padding: 11px 25px;
+    border-radius: 8px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.restroform{
+    border-radius: 8px;
+background: #E65C00;
+padding: 6px 15px;
+display: flex;
+gap: 20px;
+}
+.restroform  p{
+    text-transform: capitalize;
+} 
+.restroform{
+    color: #2E3333;
+font-size: 14px;
+font-weight: 400;
+}

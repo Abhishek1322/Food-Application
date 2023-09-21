@@ -12,6 +12,8 @@ import store from './redux';
 import { persistor } from './redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import './public/css/style.css';
+import './public/css/customNew.css';
+
 function App() {
 
   return (
@@ -28,12 +30,12 @@ function App() {
       // position="top-right"
       // autoClose={5000}
       // hideProgressBar={false}
-      // newestOnTop={true}
+      // newestOnTop={true}  
       // closeOnClick
       // rtl={false}
       // pauseOnFocusLoss
       // draggable
-      // pauseOnHover
+      // pauseOnHover  
       />
       {/* </React.StrictMode> */}
       

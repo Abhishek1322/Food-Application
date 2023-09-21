@@ -58,6 +58,12 @@ import chatSendImg from "../public/images/chatSendImg.png"
 import ClockIcon from "../public/images/ClockIcon.svg"
 import ChefCap from "../public/images/ChefCap.svg"
 import UserICon from "../public/images/UserICon.svg"
+import chefProfile from "../public/images/chefProfile.png"
+import star from "../public/images/star.svg"
+import edit from "../public/images/Edit.svg"
+import bio from "../public/images/Bio.svg"
+import editProfile from "../public/images/editProfile.svg"
+import lightinfo from "../public/images/lightinfo.svg"
 
 export {
     Logo,
@@ -72,7 +78,7 @@ export {
     myorder,
     setting,
     sidebarchef,
-    userProfile,
+    userProfile,  
     chat,
     bellImage,
     cardImage,
@@ -120,5 +126,11 @@ export {
     ClockIcon,
     ChefCap,
     UserICon,
+    chefProfile,
+    star,
+    edit,
+    bio,
+    editProfile,
+    lightinfo
     
 }

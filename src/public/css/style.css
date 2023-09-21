@@ -22,14 +22,14 @@ body {
 
 /* Settings Page css Start */
 ul {
-    padding: 0;
+    padding: 0;  
     margin: 0;
 }
 
 li {
     list-style: none;
 }
-
+  
 .main_Setting {
     padding: 10px 31px 10px 31px;
 }
@@ -1608,3 +1608,5 @@ body {
 
 
 /* ChatnextModal CSs End  */
+
+

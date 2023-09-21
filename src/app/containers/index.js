@@ -27,17 +27,15 @@ import BookingDetails from "../containers/Chef/Home/BookingDetails"
 import OrderDetails from "../containers/Chef/Home/OrderDetails"
 import AnotherOrderdetail from "../containers/Chef/Home/AnotherOrderdetail"
 import HomeUser from "../containers/User/Home"
-
-
-
-
-
+import myprofile from "../containers/Chef/myProfile"
+import editProfile from "../containers/Chef/myProfile/editProfile"
 
 
 
 
 
 export {
+    
     Login,
     Home,
     ChooseRoles,
@@ -67,4 +65,6 @@ export {
     OrderDetails,
     AnotherOrderdetail,
     HomeUser,
+    editProfile,
+    myprofile
 }

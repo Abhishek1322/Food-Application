@@ -22,10 +22,14 @@ const Router = () => {
                     {/* Start User Side*/}
                     <Route path="/homeUser" element={<Containers.HomeUser />} />
 
+                    {/* Start ChefSide My profile*/}
+                    
+                    <Route path="/myprofile" element={<Containers.myprofile />} />
+                    <Route path="/editProfile" element={<Containers.editProfile />} />
                 </Route>
-
+  
                 <Route element={<Layouts.AuthLayout />}>
-                    <Route element={<PrivateCheck auth={false} />}>
+                    <Route element={<PrivateCheck auth={false} />}>  
                         <Route path="/login" element={<Containers.Login />} />
                         <Route path="/chooseroles" element={<Containers.ChooseRoles />} />
                         <Route path="/verification" element={<Containers.Verification />} />
