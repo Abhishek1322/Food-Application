@@ -1,8 +1,6 @@
 
 const BaseUrl = {
-    API_URL: 'https://api.getopps.itechnolabs.tech:4000/',
-    SOCKET_URL: 'https://api.getopps.itechnolabs.tech:4000'
-    
+    API_URL: 'https://dev-api.serveitlocal.itechnolabs.tech/',    
 }
 
 export default BaseUrl;

@@ -55,16 +55,16 @@ const SetupProfile = () => {
         let params = {
             photo: imageFile,
         }
-        dispatch(stepThreeCompanyLogoUplaod({
-            ...params, cb(res) {
-                if (res.status) {
-                    setPhotoUpload(res?.data?.payload?.url);
-                    setPhotoInfo(res?.data?.payload)
-                }
-                else {
-                }
-            }
-        }))
+        // dispatch(stepThreeCompanyLogoUplaod({
+        //     ...params, cb(res) {
+        //         if (res.status) {
+        //             setPhotoUpload(res?.data?.payload?.url);
+        //             setPhotoInfo(res?.data?.payload)
+        //         }
+        //         else {
+        //         }
+        //     }
+        // }))
 
     }, [])
 

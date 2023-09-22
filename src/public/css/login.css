@@ -399,6 +399,7 @@
 
 .ChooseRoleIcon {
     filter: drop-shadow(0px 10px 15px #e65c0064);
+    cursor: pointer;
 }
 
 /* Choose Role End */
