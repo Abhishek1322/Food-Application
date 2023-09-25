@@ -12,7 +12,6 @@ const HomeUser = () => {
                     <h6 className='headingSub'>Chefs Near You</h6>
                     <div className='row'>
                         {slides && slides.map((val, i) => {
-                            
                             return (
                                 <div className='col-lg-2'>
                                     <div className='outerBox text-center'>
