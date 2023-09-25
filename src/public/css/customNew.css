@@ -17,7 +17,7 @@ p {
 }
 
 .chefprofileimg {
-   width: 100%;
+    width: 100%;
     height: auto;
 }
 
@@ -189,21 +189,24 @@ p {
 }
 
 /* editProfile */
-.editsection{
+.editsection {
     margin-top: 60px;
     margin-left: 32px;
     margin-right: 32px;
 }
-.editleft{
+
+.editleft {
     position: relative;
 }
-.editprofileimg{
+
+.editprofileimg {
     position: absolute;
     right: 25px;
     top: 0;
     margin: 25px auto;
 }
-.border-box{
+
+.border-box {
     width: 100%;
     padding: 11px 25px;
     border-radius: 8px;
@@ -216,18 +219,165 @@ p {
     gap: 15px;
     align-items: center;
 }
-.restroform{
+
+.restroform {
     border-radius: 8px;
-background: #E65C00;
-padding: 6px 15px;
-display: flex;
-gap: 20px;
+    background: #E65C00;
+    padding: 6px 15px;
+    display: flex;
+    gap: 20px;
 }
-.restroform  p{
+
+.restroform p {
     text-transform: capitalize;
-} 
-.restroform{
+}
+
+.restroform {
     color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* User Side ChefDetails*/
+.chefdetailsection {
+    padding: 10px 31px;
+}
+
+.sarahchef {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding: 24px 30px;
+}
+
+.sarahinfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.saraheading {
+    padding-left: 20px;
+    width: 100%;
+}
+
+.sarahrestro {
+    display: flex;
+    gap: 30px;
+    position: relative;
+}
+
+.sarahinformation {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 300px;
+    position: absolute;
+    display: none;
+    padding: 10px;
+    margin: 25px auto;
+    right: 90px;
+}
+
+.infoimg:hover+.sarahinformation {
+    display: block;
+}
+
+.restroinfo .johnchatdetail {
+    padding: 4px 15px;
+}
+.sarahbtn{
+    display: flex;
+}
+
+.sarahavailablebtn {
+    border-radius: 12px;
+    background: #979999;
+    border: none;
+    padding: 13px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.availableheading {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+ padding-left: 15px;
+ padding-right: 31px;
+}
+.availableimg {
+    border-radius: 12px;
+    background: hsl(0deg 0% 100% / 30%);
+    width: 45px;
+    padding: 9px;
+}
+.sarahcallbtn{
+    background: #2E3333;
+    border: none;
+    padding: 13px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+.sarahmessagebtn{
+    background-color: #E65C00;
+    border: none;
+    padding: 13px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.sarahtime{
+    color: #35B539;
+font-size: 42px;
+font-weight: 700;
+line-height: normal;
+}
+.chefrating{
+    border-radius: 4px;
+    background: hsl(122 55% 95% / 1);
+    display: flex;
+    padding: 6px;
+    max-width: 155px;
+    justify-content: space-around;
+    
+}
+.ratingheading{
+    color: #35B539;
 font-size: 14px;
 font-weight: 400;
+}
+
+.sarahdata .startIcon{
+    font-size: 22px;
+}
+.sarahdata{
+    margin-top: 40px;
+    padding-bottom: 27px;
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+}
+.sarahbioexpert{
+    margin-top: 40px;
+    padding-bottom: 27px;
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    display: flex;
+    flex-wrap: nowrap;  
+ 
+
+}
+.sarahbio {
+    width: 100%;
+    max-width: 600px;
+}
+.sarahbio .dummyText{
+    width: 100%;
+    max-width: 548px;
 }

@@ -64,6 +64,12 @@ import edit from "../public/images/Edit.svg"
 import bio from "../public/images/Bio.svg"
 import editProfile from "../public/images/editProfile.svg"
 import lightinfo from "../public/images/lightinfo.svg"
+import lightcap from "../public/images/lightcap.svg"
+import sarahcap from "../public/images/sarahcap.svg"
+import TimeSquare from "../public/images/TimeSquare.svg"
+import CallImg from "../public/images/callimg.svg"
+import ChefChat from "../public/images/ChefChat.svg"
+
 
 export {
     Logo,
@@ -131,6 +137,11 @@ export {
     edit,
     bio,
     editProfile,
-    lightinfo
+    lightinfo,
+    lightcap,
+    sarahcap,
+    TimeSquare,
+    CallImg,
+     ChefChat
     
 }

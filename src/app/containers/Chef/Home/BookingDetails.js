@@ -5,7 +5,7 @@ const BookingDetails = () => {
     return (
         <>
             <div className='mainchef_'>
-                <div className='BookingDetails'>
+                <div className='BookingDetails'> 
                     <div className='container-fluid'>
                         <div className='row'>
                             <div className='col-lg-12'>
