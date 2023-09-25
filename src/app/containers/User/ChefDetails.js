@@ -81,6 +81,7 @@ const ChefDetails = () => {
                     </div>
                 </div>
                 <div className='sarahbioexpert'>
+
                     <div className='sarahbio'>
                         <p className='innerDummyHeading '>Bio</p>
                         <p className='dummyText'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using to using 'Content here, content here', making it look like English.</p>
