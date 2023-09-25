@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images";
 import { Link } from 'react-router-dom';
+import CustomModal from '../../../components/common/shared/CustomModal';
+import AddExpertiseModal from '../../../components/common/shared/addExpertiseModal';
 
-const myprofile = () => {
+const MyProfile = () => {
+
+
+    const [key, setKey] = useState(Math.random());
+    const [modalDetail, setModalDetail] = useState({
+        show: false,
+        title: "",
+        flag: "",
+    });
+
+    //closeModal
+    const handleOnCloseModal = () => {
+        setModalDetail({
+            show: false,
+            title: "",
+            flag: "",
+        });
+        setKey(Math.random());
+    };
+
+    const handleUserProfile = (flag) => {
+
+        setModalDetail({
+            show: true,
+            flag: flag,
+            type: flag,
+        });
+        setKey(Math.random());
+    };
     return (
         <>
             <section className='profilesection'>
@@ -53,7 +83,7 @@ const myprofile = () => {
                                                 <p className='nameheading'>Restaurant</p>
                                                 <img src={Images.chefType} alt='cheftypeimage' className='infoimg' />
                                                 <div className='information'>
-                                                <p className='chatSearchere_ '>The chef will prepare exquisite dishes at
+                                                    <p className='chatSearchere_ '>The chef will prepare exquisite dishes at
                                                         the restaurant and deliver them to the
                                                         customer's location.</p>
                                                 </div>
@@ -96,7 +126,9 @@ const myprofile = () => {
                                 <div className='expertise'>
                                     <div className='myexpertise'>
                                         <p className='nameheading'>My Expertise</p>
-                                        <p className='modalclearAll'>+ Add</p>
+                                        <button className='modalclearAll' onClick={() => {
+                                            handleUserProfile("addExpertiseModal")
+                                        }}>+ Add</button>
                                     </div>
                                     <div className='chefexpertise'>
                                         <div className='expertisevalue'>
@@ -137,45 +169,45 @@ const myprofile = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='availability'>
+                                <div className='availabilitydetails'>
                                     <div className='myexpertise'>
                                         <p className='nameheading'>My Availability</p>
-                                        <p className='modalclearAll'>+ Add</p>
+                                        <button className='modalclearAll' >+ Add</button>
                                     </div>
                                     <ul className='myavailability'>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Mon</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Mon</p>
                                             </Link>
                                         </li>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Tue</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Tue</p>
                                             </Link>
                                         </li>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Wed</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Wed</p>
                                             </Link>
                                         </li>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Thu</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Thu</p>
                                             </Link>
                                         </li>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Fri</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Fri</p>
                                             </Link>
                                         </li>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Sat</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Sat</p>
                                             </Link>
                                         </li>
                                         <li className='dayavailability'>
-                                        <Link to="#">
-                                            <p className='notificationText '>Sun</p>
+                                            <Link to="#">
+                                                <p className='notificationText '>Sun</p>
                                             </Link>
                                         </li>
                                     </ul>
@@ -193,14 +225,48 @@ const myprofile = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </section>
+            <CustomModal
+                key={key}
+                show={modalDetail.show}
+                backdrop="static"
+                showCloseBtn={false}
+                isRightSideModal={true}
+                mediumWidth={false}
+                className={modalDetail.flag === "addExpertiseModal" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "addExpertiseModal" ? "foodexpert" : ""}
+                child={
+                    modalDetail.flag === "addExpertiseModal" ? (
+                        <AddExpertiseModal
+                            close={() => handleOnCloseModal()}
+                        />
+                    ) :
+                        ""
+                }
+                header=
 
+                {modalDetail.flag === "addExpertiseModal" ?
+                    <>
+                        <h2 className="modal_Heading">
+                            Add Expetise
+                        </h2>
+                        <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <img src={Images.modalCancel} className='ModalCancel' />
+                        </p>
+                    </>
+
+                    :
+                    ''
+                }
+
+                onCloseModal={() => handleOnCloseModal()}
+            />
 
         </>
     )
 }
 
-export default myprofile
+export default MyProfile
 

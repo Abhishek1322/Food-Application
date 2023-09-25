@@ -134,10 +134,6 @@ const Resources = () => {
                             </>
                             : ''
                 }
-
-
-
-
                 onCloseModal={() => handleOnCloseModal()}
             />
         </>
