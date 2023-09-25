@@ -5,7 +5,7 @@ const AnotherOrderdetail = () => {
     return (
         <>
 
-            <div className='mainchef_'>
+            <div className='mainchef_ '>
                 <div className='orderDeatils'>
                     <div className='container-fluid'>
                         <div className='row align-items-center'>
@@ -51,7 +51,7 @@ const AnotherOrderdetail = () => {
                                 <div className='row align-items-center'>
                                     <div className='col-lg-9'>
                                         <div className='orderedFoodItems'>
-                                            <div className='foodCategory'>
+                                            <div className='foodCategory flexBox'>
                                                 <img src={Images.foodItems} alt="logo" className="foodItemImg" />
                                                 <div className='categoryinfo'>
                                                     <p className='foodcategory_'>Food Category</p>
@@ -62,7 +62,7 @@ const AnotherOrderdetail = () => {
                                             <p className='fooodquantity_'>2X</p>
                                         </div>
                                         <div className='orderedFoodItems'>
-                                            <div className='foodCategory'>
+                                            <div className='foodCategory flexBox'>
                                                 <img src={Images.foodItems} alt="logo" className="foodItemImg" />
                                                 <div className='categoryinfo'>
                                                     <p className='foodcategory_'>Food Category</p>

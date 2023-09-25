@@ -295,7 +295,13 @@ li {
 /* .sidebarItems:hover {
     color: #979999;
 } */
-
+.nextIcon {
+    background: #eeefef;
+    padding: 10px;
+    border-radius: 22px;
+    width: 44px;
+    height: 44px;
+}
 
 /* Settings Page css Start */
 ul {
@@ -939,7 +945,7 @@ body {
     font-size: 12px;
     font-weight: 400;
     margin-bottom: 0;
-    margin-top: 11px;
+    padding-top: 11px;
 }
 
 .more {
@@ -995,6 +1001,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px 0;
 }
 
 .orderRequest {
@@ -1011,6 +1018,8 @@ body {
     color: #ABADAD;
     font-size: 12px;
     font-weight: 600;
+    margin-bottom: 0;
+    padding-bottom: 17px;
 }
 
 .cancelOrder {
@@ -1116,7 +1125,7 @@ body {
 .johnchatdetail {
     border-radius: 4px;
     background: #FADECC;
-    padding: 6px 8px;
+    padding: 6px 12px;
 }
 
 .venuInfo {
@@ -1287,13 +1296,8 @@ body {
     color: #35B539;
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 0;
+    padding-right: 166px;
 }
-
-.foodCategory {
-    display: flex;
-}
-
 .fooodquantity_ {
     color: #ABADAD;
     font-size: 14px;
