@@ -1,10 +1,12 @@
 import React from "react";
 import * as Images from "../../../utilities/images";
 import { Link, useLocation } from "react-router-dom";
-const Sidebar = () => {
+
+const Chef_Sidebar = () => {
+
+  
   const location = useLocation();
 
-  console.log("location--", location.pathname);
 
   return (
     <>
@@ -31,7 +33,7 @@ const Sidebar = () => {
               <Link to="#" className="sidebarItems">
                 <img src={Images.sidebarchefOrange} className="imgHide" />
                 <img src={Images.sidebarchef} className="imgShow" />
-                <span className="d-block">Chefs</span>
+                <span className="d-block">Menu</span>
               </Link>
             </li>
             <li
@@ -44,7 +46,7 @@ const Sidebar = () => {
               <Link to="#" className="sidebarItems">
                 <img src={Images.myorderorange} className="imgHide" />
                 <img src={Images.myorder} className="imgShow" />
-                <span className="d-block">My Orders</span>
+                <span className="d-block">Bookings</span>
               </Link>
             </li>
 
@@ -74,4 +76,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Chef_Sidebar;

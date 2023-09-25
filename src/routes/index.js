@@ -7,7 +7,7 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route element={<Layouts.MainLayout />}>
+        <Route element={<Layouts.UserLayout />}>
           <Route path="/" element={<Containers.Login />} />
           <Route path="/setting" element={<Containers.SettingMain />} />
           <Route path="/new-booking" element={<Containers.NewBooking />} />
@@ -24,6 +24,12 @@ const Router = () => {
           />
 
           {/* Start User Side*/}
+          {/* <Route path="/home-user" element={<Containers.HomeUser />} /> */}
+        </Route>
+
+
+
+        <Route element={<Layouts.Chef_Layout />}>
           <Route path="/home-user" element={<Containers.HomeUser />} />
         </Route>
 

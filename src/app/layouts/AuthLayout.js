@@ -1,27 +1,25 @@
-import React from 'react';
-import { Outlet, useLocation} from 'react-router-dom';
+import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 const AuthLayout = () => {
   const location = useLocation();
   const pathName = location.pathname;
-  const authRoutes = ['/resources', '/companyfrontProfile'];
+  const authRoutes = ["/resources", "/companyfrontProfile"];
 
   return (
     <>
       {/* <AuthNav /> */}
-          {authRoutes.includes(pathName) ?
+      {authRoutes.includes(pathName) ? (
         <>
           <Outlet />
         </>
-        :
+      ) : (
         <>
-          <main className='main' id='main'>
-            {/* <div className='container'> */}
-              <Outlet />
-            {/* </div> */}
+          <main className="main" id="main">
+            <Outlet />
           </main>
         </>
-      }                   
+      )}
       {/* <AuthFooter /> */}
     </>
   );
