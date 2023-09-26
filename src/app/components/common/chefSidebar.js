@@ -31,8 +31,8 @@ const Chef_Sidebar = () => {
             </li>
             <li className="sidebarLinks">
               <Link to="#" className="sidebarItems">
-                <img src={Images.sidebarchefOrange} className="imgHide" />
-                <img src={Images.sidebarchef} className="imgShow" />
+                <img src={Images.chefmenuOrange} className="imgHide" />
+                <img src={Images.chefsideMenu} className="imgShow" />
                 <span className="d-block">Menu</span>
               </Link>
             </li>
@@ -67,7 +67,7 @@ const Chef_Sidebar = () => {
         </div>
         <div className="sidebarProfile ">
           <Link to="#">
-            <img src={Images.userProfile} alt="logo" className="userprofile" />
+            <img src={Images.chefProfile} alt="logo" className="userprofile" />
           </Link>
           Profile
         </div>

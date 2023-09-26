@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Images from "../../../utilities/images";
-import CustomModal from "./shared/CustomModal";
+import CustomModal from "../../components/common/shared/CustomModal";
 import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
 import CartModal from "./shared/cartModal";
 
-const Chef_Navbar = () => {
+const Resources = () => {
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -31,7 +31,7 @@ const Chef_Navbar = () => {
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-6 col-sm-12">
-                <p className="settingtxt">Hello, <span className="chefHeading">Sarah!</span></p>
+                <p className="settingtxt">Setting</p>
               </div>
               <div className="col-lg-6 col-sm-12 text-end">
                 <div className="flexBox">
@@ -73,7 +73,7 @@ const Chef_Navbar = () => {
                         setKey(Math.random());
                       }}
                     />
-                    <span className="cartItems">5</span>
+                    <span className="cartItems">0</span>
                   </div>
                 </div>
               </div>
@@ -143,4 +143,4 @@ const Chef_Navbar = () => {
   );
 };
 
-export default Chef_Navbar  ;
+export default Resources;

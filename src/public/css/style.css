@@ -1605,3 +1605,14 @@ body {
 
 
 /* ChatnextModal CSs End  */
+
+
+/* chef Header Css Start  */
+.chefHeading {
+    color: #E65C00;
+    font-family: Crimson Text;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+/* chef Header Css End  */

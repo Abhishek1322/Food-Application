@@ -58,6 +58,9 @@ import chatSendImg from "../public/images/chatSendImg.svg"
 import ClockIcon from "../public/images/ClockIcon.svg"
 import ChefCap from "../public/images/ChefCap.svg"
 import UserICon from "../public/images/UserICon.svg"
+import chefsideMenu from "../public/images/chefsideMenu.svg"
+import chefmenuOrange from "../public/images/chefmenuOrange.svg"
+import chefProfile from "../public/images/chefProfile.svg"
 
 export {
     Logo,
@@ -120,5 +123,8 @@ export {
     ClockIcon,
     ChefCap,
     UserICon,
+    chefsideMenu,
+    chefmenuOrange,
+    chefProfile,
     
 }

@@ -10,6 +10,15 @@ const Router = () => {
         <Route element={<Layouts.UserLayout />}>
           <Route path="/" element={<Containers.Login />} />
           <Route path="/setting" element={<Containers.SettingMain />} />
+
+          {/* Start User Side*/}
+          {/* <Route path="/home-user" element={<Containers.HomeUser />} /> */}
+        </Route>
+
+
+
+        <Route element={<Layouts.Chef_Layout />}>
+          <Route path="/home-user" element={<Containers.HomeUser />} />
           <Route path="/new-booking" element={<Containers.NewBooking />} />
           <Route path="/menu" element={<Containers.Menu />} />
           <Route path="/home" element={<Containers.HomeRequsest />} />
@@ -22,15 +31,6 @@ const Router = () => {
             path="/anotherorder-detail"
             element={<Containers.AnotherOrderdetail />}
           />
-
-          {/* Start User Side*/}
-          {/* <Route path="/home-user" element={<Containers.HomeUser />} /> */}
-        </Route>
-
-
-
-        <Route element={<Layouts.Chef_Layout />}>
-          <Route path="/home-user" element={<Containers.HomeUser />} />
         </Route>
 
         <Route element={<Layouts.AuthLayout />}>
