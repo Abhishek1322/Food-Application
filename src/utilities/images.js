@@ -69,6 +69,7 @@ import sarahcap from "../public/images/sarahcap.svg"
 import TimeSquare from "../public/images/TimeSquare.svg"
 import CallImg from "../public/images/callimg.svg"
 import ChefChat from "../public/images/ChefChat.svg"
+import SaladImg from "../public/images/saladimg.png"
 
 
 export {
@@ -142,6 +143,7 @@ export {
     sarahcap,
     TimeSquare,
     CallImg,
-     ChefChat
+     ChefChat,
+     SaladImg
     
 }

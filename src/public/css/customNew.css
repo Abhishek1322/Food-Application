@@ -278,6 +278,7 @@ p {
     padding: 10px;
     margin: 25px auto;
     right: 90px;
+    top: 10px;
 }
 
 .infoimg:hover+.sarahinformation {
@@ -368,16 +369,187 @@ font-weight: 400;
     margin-top: 40px;
     padding-bottom: 27px;
     border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
-    display: flex;
-    flex-wrap: nowrap;  
- 
-
-}
-.sarahbio {
-    width: 100%;
-    max-width: 600px;
+   
 }
 .sarahbio .dummyText{
     width: 100%;
-    max-width: 548px;
+    max-width:500px;
 }
+.sarahsmenu{
+    margin-top: 30px;
+}
+.sarahbasket{
+    padding: 6px 8px;
+    background-color: #E65C00;
+    width: 35px;
+    text-align: center;
+    border-radius: 12px;
+    
+}
+.sarahmenuprice{
+    display: flex;
+    justify-content: space-around;
+}
+.sarahsmenu .itemsPrice_ {
+    padding:0px 25px;
+}
+
+.buttonBoxmodal{
+    display: flex;
+    justify-content: end;
+}
+
+@media (max-width:1366px) {
+    .sarahinformation {
+        right: -110px;
+    }
+}
+@media (max-width:768px) {
+
+    .buttonBoxmodal{
+        display: block;
+        justify-content: center;
+    } 
+}
+.sarahsmenu .listItems_{
+    margin-top: 35px;
+    max-width: 100%;
+}
+/*modal start*/
+#availablebtnModal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#availablebtnModal  .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+
+}
+.daytimes{
+    display: flex;
+ max-width: 310px;
+padding: 5px 8px;
+align-items: center;
+gap: 6px;
+border-radius: 4px;
+background: #EAEBEB;
+margin-top: 5px;
+}
+.daytimesheading{
+    color: #2E3333;
+font-size: 12px;
+font-weight: 400;
+
+}
+#availablebtnModal .modalContent{
+    padding: 0;
+}
+#CartModalFood {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#CartModalFood .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+}
+.foodmodal {
+    text-align: center;
+}
+.foodmodalheading{
+    color: #2E3333;
+font-size: 26px;
+font-weight: 600;
+}
+.foodmodal .restroinfo{
+    justify-content: center;
+    margin-top: 10px;
+}
+.deliverytimesheet{
+    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    margin-top: 20px;
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    padding: 20px 0;
+ 
+}
+.modalfooddelivery {
+    display: flex;
+    justify-content: space-between;
+}
+.modalfooddelivery .chefName{
+    font-size: 12px;
+}
+.modalfooddelivery .chatSearchere_{
+    font-size: 12px;
+}
+.modalfooddelivery .ratingheading{
+    font-size: 12px;
+}
+.modalfooddelivery .startIcon{
+    font-size: 16px;
+}
+
+.foodamountmodal{
+    color: #35B539;
+font-size: 20px;
+font-weight: 600;
+padding-top: 15px;
+}
+.foodmodalbtn{
+    border-radius: 8px;
+background: #E65C00;
+box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+padding: 18px 45px;
+color: #FFF;
+font-size: 18px;
+font-weight: 600;
+width: 100%;
+}
+.addfoodbtn{
+    width: 100%;
+    margin-top: 20px;
+}
+#CartModalFood .modal-header ,#CartModalFood .modal_Heading{
+    border: none;
+}
+#CartModalFood .modal_Heading{
+    display: none;
+}
+#CartModalFood .modal_cancel{
+    margin-left: auto;
+}
+ 
+ .cartfoodsectionorder .orderNow{
+    align-items: center;
+ }
+ .orderamount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+ }
+ .quantitymodal{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+ }
+ .orderamount .foodamountmodal{
+    padding: 0;
+ }
