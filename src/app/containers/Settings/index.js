@@ -14,19 +14,6 @@ const SettingMain = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userId = localStorage.getItem("userId");
-
-  const deleteAccountHandle = () => {
-    let params = {
-      id: userId,
-    };
-    dispatch(
-      deleteAccount({
-        ...params,
-        cb(res) {},
-      })
-    );
-  };
 
   // logout handler
   const handleLogout = (_id) => {
@@ -50,6 +37,11 @@ const SettingMain = (props) => {
       }
     });
   };
+
+  // stop loader on refresh page
+  useEffect(()=>{
+     dispatch(onErrorStopLoad())
+  },[dispatch])
 
   return (
     <>
@@ -128,12 +120,13 @@ const SettingMain = (props) => {
                     <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
                   </div>
                   <div className="iconImg">
+                  <Link to="/delete-account">
                     <img
-                      onClick={deleteAccountHandle}
                       src={Images.nextIcon}
                       alt="logo"
                       className="img-fluid nextIcon"
                     />
+                    </Link>
                   </div>
                 </div>
               </div>

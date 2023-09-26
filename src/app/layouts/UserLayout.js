@@ -10,7 +10,6 @@ const UserLayout = () => {
 
   return (
     <>
-      {/* <AuthNav /> */}
       {authRoutes.includes(pathName) ? (
         <>
           <main className="main">
@@ -26,11 +25,8 @@ const UserLayout = () => {
               <Outlet />
             </main>
           </div>
-
-          {/* <MainFooter/> */}
         </>
       )}
-      {/* <AuthFooter /> */}
     </>
   );
 };
