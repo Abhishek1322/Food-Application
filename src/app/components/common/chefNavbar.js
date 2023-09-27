@@ -65,7 +65,7 @@ const Chef_Navbar = () => {
                   </div>
                   <div className="menuBox cart">
                     <img
-                      src={Images.basketImg}
+                      src={Images.chefnavImage}
                       alt="logo"
                       className="img-fluid basketImg"
                       onClick={() => {

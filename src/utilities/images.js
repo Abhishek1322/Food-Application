@@ -61,6 +61,11 @@ import UserICon from "../public/images/UserICon.svg"
 import chefsideMenu from "../public/images/chefsideMenu.svg"
 import chefmenuOrange from "../public/images/chefmenuOrange.svg"
 import chefProfile from "../public/images/chefProfile.svg"
+import chefnavImage from "../public/images/chefnavImage.png"
+import chefCalender from "../public/images/chefCalender.png"
+import chefLocationImg from "../public/images/chefLocationImg.png"
+import orderDelivery from "../public/images/orderDelivery.svg"
+
 
 export {
     Logo,
@@ -126,5 +131,8 @@ export {
     chefsideMenu,
     chefmenuOrange,
     chefProfile,
-    
+    chefnavImage,
+    chefCalender,
+    chefLocationImg,
+    orderDelivery,
 }

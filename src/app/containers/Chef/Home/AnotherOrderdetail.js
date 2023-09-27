@@ -21,7 +21,9 @@ const AnotherOrderdetail = () => {
                                             <div className='chefinfo'>
                                                 <p className='johnExplorer'>John Smith</p>
                                                 <div className='johnChatTime'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                 <div className='chefInfo'>
+                                                 <img src={Images.chefLocationImg} alt="logo" className="chefLocation_" />
+                                                 </div>
                                                     <div className='johnchatdetail'>
                                                         <p className='chatDates'>Jul 20, 2023</p>
                                                     </div>
@@ -49,7 +51,7 @@ const AnotherOrderdetail = () => {
                                 </div>
                                 <p className='orderId_'>Ordered Items</p>
                                 <div className='row align-items-center'>
-                                    <div className='col-lg-9'>
+                                    <div className='col-lg-10'>
                                         <div className='orderedFoodItems'>
                                             <div className='foodCategory flexBox'>
                                                 <img src={Images.foodItems} alt="logo" className="foodItemImg" />
@@ -73,7 +75,7 @@ const AnotherOrderdetail = () => {
                                             <p className='fooodquantity_'>2X</p>
                                         </div>
                                     </div>
-                                    <div className='col-lg-3'>
+                                    <div className='col-lg-2'>
                                         <div className='paidAmmount totalAmmount'>
                                             <p className='totalPaid'>Total paid</p>
                                             <p className='foodBill'> £66.00</p>
