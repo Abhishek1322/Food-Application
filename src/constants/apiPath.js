@@ -10,6 +10,7 @@ const ApiPath = {
     LOGOUT_USER: "/users/logOut",
     RESEND_OTP: "/users/resend",
     DELETE_ACCOUNT: "/users/",
+    CHEF_SETUP_PROFILE: "/users/update-chef-detail",
   },
 };
 

@@ -14,7 +14,6 @@ const SettingMain = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   // logout handler
   const handleLogout = (_id) => {
     swal({
@@ -39,9 +38,9 @@ const SettingMain = (props) => {
   };
 
   // stop loader on refresh page
-  useEffect(()=>{
-     dispatch(onErrorStopLoad())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
@@ -79,14 +78,17 @@ const SettingMain = (props) => {
                       alt="logo"
                       className="img-fluid settingIcon"
                     />
+
                     <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
                   </div>
                   <div className="iconImg">
-                    <img
-                      src={Images.nextIcon}
-                      alt="logo"
-                      className="img-fluid nextIcon"
-                    />
+                    <Link to="/delete-account">
+                      <img
+                        src={Images.nextIcon}
+                        alt="logo"
+                        className="img-fluid nextIcon"
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -98,7 +100,9 @@ const SettingMain = (props) => {
                       alt="logo"
                       className="img-fluid settingIcon"
                     />
-                    <p className="settingBoxtxt ms-3 mb-0">Terms & Conditions</p>
+                    <p className="settingBoxtxt ms-3 mb-0">
+                      Terms & Conditions
+                    </p>
                   </div>
                   <div className="iconImg">
                     <img
@@ -120,13 +124,11 @@ const SettingMain = (props) => {
                     <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
                   </div>
                   <div className="iconImg">
-                  <Link to="/delete-account">
                     <img
                       src={Images.nextIcon}
                       alt="logo"
                       className="img-fluid nextIcon"
                     />
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -169,14 +171,15 @@ const SettingMain = (props) => {
                   </div>
                 </div>
               </div> */}
-            <div className="settingBox d-flex align-items-center justify-content-center">
-                    <img
-                      src={Images.logout}
-                      alt="logo"
-                      className="img-fluid settingIcon "
-                    />
-                    <p className="settingBoxtxt ms-3 mb-0">Logout</p>
-                  </div>
+              <div className="settingBox d-flex align-items-center justify-content-center">
+                <img
+                  onClick={() => handleLogout()}
+                  src={Images.logout}
+                  alt="logo"
+                  className="img-fluid settingIcon "
+                />
+                <p className="settingBoxtxt ms-3 mb-0">Logout</p>
+              </div>
             </div>
           </div>
         </div>

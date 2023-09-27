@@ -64,19 +64,6 @@ const ChangePassword = () => {
 
   return (
     <>
-     <div className="changepsw_loader">
-    
-       <div className="loaderImage_" >
-         <img
-                src={Images.loadingsettingpage1}
-                alt="logo"
-                className="img-fluid changepswloader_"
-                id="line"
-              />
-               <h6  data-text="Please wait, It takes some time." className="changepassText mb-0 d-flex  justify-content-center mt-3 method-3"></h6>
-       </div>
-      </div>
-  
       <div className="changePaasword_">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3 ">
