@@ -641,7 +641,9 @@ body {
 /* .modalContent {
     padding: 1rem;
 } */
-
+.modal-content{
+    height: 95vh;
+}
 .searchbarImg {
     background: #E65C00;
     border-radius: 12px;
@@ -801,30 +803,24 @@ body {
 
 #chatBox .modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
-    background: #FFF;
-    min-height: 700px;
+    background: #FFF
 
 }
 
 #Notification .modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
-    min-height: 700px;
 }
 
 #CartModal .modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
-    min-height: 700px;
 }
 
 .modalscroll {
