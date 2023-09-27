@@ -13,6 +13,7 @@ import store from "./redux";
 import { persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./public/css/style.css";
+
 function App() {
   return (
     <>
