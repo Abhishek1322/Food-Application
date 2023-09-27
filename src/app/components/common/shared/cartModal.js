@@ -1,6 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
+import CustomModal from './CustomModal';
+import CartModalCheckout from './CartModalCheckout';
+
+
+
 const CartModal = () => {
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  const handleUserProfile = (flag) => {
+
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
   return (
     <>
       <div className='modalContent'>
@@ -144,6 +175,7 @@ const CartModal = () => {
 
 
         {/* <div className='modalDetail '>
+        <div className='modalDetail '>
           <div className='usercartDetail'>
             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
@@ -198,11 +230,46 @@ const CartModal = () => {
             <p className='totaltxt'>Total</p>
             <p className='price'>£44.00</p>
           </div>
-          <button className='orderbutton'>CheckOut</button>
+          <button className='orderbutton' onClick={() => {
+            handleUserProfile("cartcheckout")
+          }}>CheckOut</button>
 
         </div> */}
+        {/* </div> */}
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={modalDetail.flag === "cartcheckout" ? "commonWidth customContent" : ""}
+        ids={modalDetail.flag === "cartcheckout" ? "cartcheckoutModal" : ""}
+        child={
+          modalDetail.flag === "cartcheckout" ? (
+            <CartModalCheckout
+              close={() => handleOnCloseModal()}
+            />
+          ) :
+            ""
+        }
+        header=
 
+        {modalDetail.flag === "cartcheckout" ?
+          <>
+            {<h2 className="modal_Heading">
+              Cart
+            </h2>}
+            <p onClick={handleOnCloseModal} className='modal_cancel'>
+              <img src={Images.modalCancel} className='ModalCancel' />
+            </p>
+          </>
+          :
+          ''
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
 
     </>
   )

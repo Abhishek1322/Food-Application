@@ -24,7 +24,7 @@ const CartFoodModalOrder = () => {
                         </div>
                         <div className='foodrating'>
                             <p className='chefName'>Rating</p>
-                            <div className='chefrating mt-1'>
+                            <div className='chefrating mt-1'> 
                                 <i class="las la-star startIcon"></i>
                                 <p className='ratingheading'>4.5 (845 Reviews)</p>
                             </div>
