@@ -9,7 +9,7 @@ const Chat = () => {
           <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
 
         </div>
-        <div className='chatModal flexBox '>
+        <div className='chatModal  '>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Sarah Bergstrom</p>
@@ -21,7 +21,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal flexBox'>
+        <div className='chatModal '>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Hilda Herzog </p>
@@ -33,7 +33,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal flexBox'>
+        <div className='chatModal '>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Tom Stoltenberg</p>
@@ -45,7 +45,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal flexBox'>
+        <div className='chatModal '>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Sheryl Lowez</p>
@@ -57,7 +57,7 @@ const Chat = () => {
           </div>
 
         </div>
-        <div className='chatModal flexBox'>
+        <div className='chatModal '>
           <img src={Images.userProfile} className='userprofile' alt='cartImg' />
           <div className='innermodal'>
             <p className='chefName'>Olive Kuvalis</p>
