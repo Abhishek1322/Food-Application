@@ -162,7 +162,7 @@ const CartFoodModal = () => {
 
                 { modalDetail.flag === "CartFoodOrder" ?
                         <>
-                            {/* <h2 className="modal_Heading">
+                            {/* <h2 className="modal_Heading"> 
                                 Cart
                             </h2> */}
                             <p onClick={handleOnCloseModal} className='modal_cancel'>

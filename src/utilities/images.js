@@ -76,6 +76,7 @@ import chefnavImage from "../public/images/chefnavImage.png"
 import chefCalender from "../public/images/chefCalender.png"
 import chefLocationImg from "../public/images/chefLocationImg.png"
 import orderDelivery from "../public/images/orderDelivery.svg"
+import EditImg from "../public/images/editimg.svg"
 
 
 export {
@@ -157,4 +158,5 @@ export {
     chefCalender,
     chefLocationImg,
     orderDelivery,
+    EditImg,
 }

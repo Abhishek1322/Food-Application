@@ -80,7 +80,7 @@ const Resources = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
       <CustomModal
         key={key}
         show={modalDetail.show}
