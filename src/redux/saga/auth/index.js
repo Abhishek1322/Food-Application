@@ -235,12 +235,14 @@ function* userLogin(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      console.log("respectdsacdsc", resp);
       localStorage.setItem(
         "authToken",
         resp.data && resp.data.data.token ? resp.data.data.token : ""
       );
-
+      localStorage.setItem(
+        "userId",
+        resp.data.data.id ? resp.data.data.id : ""
+      );
       yield put(setUserLogin(resp.data.payload));
       yield call(action.payload.cb, (action.res = resp));
       toast.success(resp.data.message);
@@ -248,7 +250,6 @@ function* userLogin(action) {
       throw resp;
     }
   } catch (e) {
-    console.log("logerorrddddo", e);
     yield put(setUserLogin({}));
     yield put(onErrorStopLoad());
     toast.error(e.response.data.message);

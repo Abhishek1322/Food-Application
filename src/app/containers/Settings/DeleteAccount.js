@@ -20,7 +20,7 @@ const DeleteAccount = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            navigate("/");
+            navigate("/account-deleted");
           }
         },
       })
