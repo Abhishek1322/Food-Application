@@ -1,16 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as Images from "../../../utilities/images";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import OTPInput from "react-otp-input";
-import { resetPasswordOtp,resendResetPasswordOtp } from "../../../redux/slices/auth";
+import {
+  resetPasswordOtp,
+  resendResetPasswordOtp,
+  onErrorStopLoad
+} from "../../../redux/slices/auth";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import Loading from "../Settings/Loading";
 
 const EnterOtp = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
+  const authData = useAuthSelector();
+
   const [otp, setOtp] = useState("");
 
   // show only one toast at one time
@@ -59,9 +67,14 @@ const EnterOtp = (props) => {
     );
   };
 
+  // stop loader on page refresh
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
+      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">

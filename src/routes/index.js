@@ -15,10 +15,8 @@ const Router = () => {
           {/* <Route path="/home-user" element={<Containers.HomeUser />} /> */}
           <Route path="/ChefDetails" element={<Containers.ChefDetails />} />
           <Route path="/myprofile" element={<Containers.myprofile />} />
-                    <Route path="/editProfile" element={<Containers.editProfile />} />
+          <Route path="/editProfile" element={<Containers.editProfile />} />
         </Route>
-
-
 
         <Route element={<Layouts.Chef_Layout />}>
           <Route path="/home-user" element={<Containers.HomeUser />} />
@@ -38,10 +36,10 @@ const Router = () => {
 
         <Route element={<Layouts.AuthLayout />}>
           <Route element={<PrivateCheck auth={false} />}>
-            <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
+          <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
             <Route path="/verification" element={<Containers.Verification />} />
             <Route
-              path="/create-account"
+              path="/create-account/:role"
               element={<Containers.CreateAccount />}
             />
             <Route

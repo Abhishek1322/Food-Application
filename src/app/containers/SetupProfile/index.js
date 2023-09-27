@@ -11,13 +11,16 @@ import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDropzone } from "react-dropzone";
 import DatePicker from "react-datepicker";
-import { chefSetupProfile } from "../../../redux/slices/auth";
+import { chefSetupProfile, onErrorStopLoad } from "../../../redux/slices/auth";
+import Loading from "../Settings/Loading";
+import { useAuthSelector } from "../../../redux/selector/auth";
 
 const SetupProfile = () => {
   const [activeTab, setActiveTab] = useState("restaurant");
   const location = useLocation();
   const path = location.pathname;
   const dispatch = useDispatch();
+  const authData = useAuthSelector();
   const [page, setPage] = useState("pageone");
   const [pageNumber, setPageNumber] = useState(2);
   const [key, setKey] = useState(Math.random());
@@ -27,6 +30,7 @@ const SetupProfile = () => {
     experience: "",
     address: "",
     bio: "",
+    rateperhour: "",
   });
 
   const [modalDetail, setModalDetail] = useState({
@@ -87,7 +91,7 @@ const SetupProfile = () => {
         address: formData.address,
         bio: formData.bio,
         expertise: updateExperticeValues,
-        
+        ratePerHour: formData.rateperhour,
       };
 
       dispatch(
@@ -118,12 +122,12 @@ const SetupProfile = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    document.title = "Sign-Up";
-  }, []);
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
+      {authData.loading && <Loading />}
       <section className="outerBoxmain">
         <div className="container-fluid">
           <div className="row">
@@ -274,6 +278,27 @@ const SetupProfile = () => {
                                     <label className="border-label">Bio</label>
                                   </div>
                                 </div>
+
+                                <div className="col-lg-12">
+                                  <div className="input-container mt-5">
+                                    <input
+                                      onChange={(e) => handleChange(e)}
+                                      type="text"
+                                      name="rateperhour"
+                                      className="border-input"
+                                      placeholder="Rate per hour"
+                                    />
+                                    <label className="border-label">
+                                      Rate Per Hour
+                                    </label>
+                                    <img
+                                      src={Images.Location}
+                                      alt="InfoIcon"
+                                      className="InputIcon"
+                                    />
+                                  </div>
+                                </div>
+
                                 <div className="flexBox justify-content-between mt-5">
                                   <h6 className="Headingsmall m-0">
                                     Add Expertise

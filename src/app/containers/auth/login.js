@@ -5,13 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { userLogin, onErrorStopLoad } from "../../../redux/slices/auth";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import Loading from "../Settings/Loading";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
-  const [isToggleOn, setIsToggleOn] = useState(false);
+  const authData = useAuthSelector();
 
+  const [isToggleOn, setIsToggleOn] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -78,8 +81,14 @@ const Login = () => {
     }, 400);
   };
 
+  // stop loader on page refresh
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
   return (
     <>
+      {authData.loading && <Loading />}
       <div className="Login mainPage">
         <div className="container-fluid">
           <div className="row align-items-center">

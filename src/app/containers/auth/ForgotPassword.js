@@ -3,11 +3,14 @@ import * as Images from "../../../utilities/images";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { forgotPassword } from "../../../redux/slices/auth";
+import { forgotPassword,onErrorStopLoad } from "../../../redux/slices/auth";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import Loading from "../Settings/Loading";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const authData = useAuthSelector();
   const toastId = useRef(null);
   const [email, setEmail] = useState("");
 
@@ -39,8 +42,16 @@ const ForgotPassword = () => {
     );
   };
 
+    // stop loader on page refresh
+    useEffect(() => {
+      dispatch(onErrorStopLoad());
+    }, [dispatch]);
+  
+
+
   return (
     <>
+     {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
