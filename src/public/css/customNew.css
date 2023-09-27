@@ -231,7 +231,7 @@ p {
 .restroform p {
     text-transform: capitalize;
 }
- 
+
 .restroform {
     color: #2E3333;
     font-size: 14px;
@@ -288,7 +288,8 @@ p {
 .restroinfo .johnchatdetail {
     padding: 4px 15px;
 }
-.sarahbtn{
+
+.sarahbtn {
     display: flex;
 }
 
@@ -308,16 +309,18 @@ p {
     font-size: 18px;
     font-weight: 600;
     line-height: normal;
- padding-left: 15px;
- padding-right: 31px;
+    padding-left: 15px;
+    padding-right: 31px;
 }
+
 .availableimg {
     border-radius: 12px;
     background: hsl(0deg 0% 100% / 30%);
     width: 45px;
     padding: 9px;
 }
-.sarahcallbtn{
+
+.sarahcallbtn {
     background: #2E3333;
     border: none;
     padding: 13px 10px;
@@ -326,7 +329,8 @@ p {
     align-items: center;
     border-radius: 12px;
 }
-.sarahmessagebtn{
+
+.sarahmessagebtn {
     background-color: #E65C00;
     border: none;
     padding: 13px 10px;
@@ -336,65 +340,74 @@ p {
     border-radius: 12px;
 }
 
-.sarahtime{
+.sarahtime {
     color: #35B539;
-font-size: 42px;
-font-weight: 700;
-line-height: normal;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: normal;
 }
-.chefrating{
+
+.chefrating {
     border-radius: 4px;
     background: hsl(122 55% 95% / 1);
     display: flex;
     padding: 6px;
     max-width: 155px;
     justify-content: space-around;
-    
-}
-.ratingheading{
-    color: #35B539;
-font-size: 14px;
-font-weight: 400;
+
 }
 
-.sarahdata .startIcon{
+.ratingheading {
+    color: #35B539;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.sarahdata .startIcon {
     font-size: 22px;
 }
-.sarahdata{
+
+.sarahdata {
     margin-top: 40px;
     padding-bottom: 27px;
     border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
 }
-.sarahbioexpert{
+
+.sarahbioexpert {
     margin-top: 40px;
     padding-bottom: 27px;
     border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
-   
+
 }
-.sarahbio .dummyText{
+
+.sarahbio .dummyText {
     width: 100%;
-    max-width:500px;
+    max-width: 500px;
 }
-.sarahsmenu{
+
+.sarahsmenu {
     margin-top: 30px;
 }
-.sarahbasket{
+
+.sarahbasket {
     padding: 6px 8px;
     background-color: #E65C00;
     width: 35px;
     text-align: center;
     border-radius: 12px;
-    
+
 }
-.sarahmenuprice{
+
+.sarahmenuprice {
     display: flex;
     justify-content: space-around;
 }
+
 .sarahsmenu .itemsPrice_ {
-    padding:0px 25px;
+    padding: 0px 25px;
 }
 
-.buttonBoxmodal{
+.buttonBoxmodal {
     display: flex;
     justify-content: end;
 }
@@ -404,17 +417,20 @@ font-weight: 400;
         right: -110px;
     }
 }
+
 @media (max-width:768px) {
 
-    .buttonBoxmodal{
+    .buttonBoxmodal {
         display: block;
         justify-content: center;
-    } 
+    }
 }
-.sarahsmenu .listItems_{
+
+.sarahsmenu .listItems_ {
     margin-top: 35px;
     max-width: 100%;
 }
+
 /*modal start*/
 #availablebtnModal {
     max-width: 406px;
@@ -424,7 +440,8 @@ font-weight: 400;
     top: 25px;
     right: 0px;
 }
-#availablebtnModal  .modal-content {
+
+#availablebtnModal .modal-content {
     width: 100%;
     height: 100%;
     max-width: 362px;
@@ -434,25 +451,29 @@ font-weight: 400;
     padding: 0;
 
 }
-.daytimes{
+
+.daytimes {
     display: flex;
- max-width: 310px;
-padding: 5px 8px;
-align-items: center;
-gap: 6px;
-border-radius: 4px;
-background: #EAEBEB;
-margin-top: 5px;
+    max-width: 310px;
+    padding: 5px 8px;
+    align-items: center;
+    gap: 6px;
+    border-radius: 4px;
+    background: #EAEBEB;
+    margin-top: 5px;
 }
-.daytimesheading{
+
+.daytimesheading {
     color: #2E3333;
-font-size: 12px;
-font-weight: 400;
+    font-size: 12px;
+    font-weight: 400;
 
 }
-#availablebtnModal .modalContent{
+
+#availablebtnModal .modalContent {
     padding: 0;
 }
+
 #CartModalFood {
     max-width: 406px;
     margin: 0;
@@ -461,6 +482,7 @@ font-weight: 400;
     top: 25px;
     right: 0px;
 }
+
 #CartModalFood .modal-content {
     width: 100%;
     height: 100%;
@@ -470,100 +492,124 @@ font-weight: 400;
     min-height: 700px;
     padding: 0;
 }
+
 .foodmodal {
     text-align: center;
 }
-.foodmodalheading{
+
+.foodmodalheading {
     color: #2E3333;
-font-size: 26px;
-font-weight: 600;
+    font-size: 26px;
+    font-weight: 600;
 }
-.foodmodal .restroinfo{
+
+.foodmodal .restroinfo {
     justify-content: center;
     margin-top: 10px;
 }
-.deliverytimesheet{
+
+.deliverytimesheet {
     border-top: 2px dashed rgba(192, 194, 194, 0.50);
     margin-top: 20px;
     border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
     padding: 20px 0;
- 
+
 }
+
 .modalfooddelivery {
     display: flex;
     justify-content: space-between;
 }
-.cartfoodsection .chefName , .cartfoodsectionorder .chefName{
+
+.cartfoodsection .chefName,
+.cartfoodsectionorder .chefName {
     font-size: 12px;
 }
-.cartfoodsection  .chatSearchere_ ,.cartfoodsectionorder .chatSearchere_{
+
+.cartfoodsection .chatSearchere_,
+.cartfoodsectionorder .chatSearchere_ {
     font-size: 12px;
     width: 100%;
     max-width: 314px;
 }
-.cartfoodsection .ratingheading , .cartfoodsectionorder .ratingheading{
+
+.cartfoodsection .ratingheading,
+.cartfoodsectionorder .ratingheading {
     font-size: 12px;
 }
-.cartfoodsection .startIcon , .cartfoodsectionorder  .startIcon {
+
+.cartfoodsection .startIcon,
+.cartfoodsectionorder .startIcon {
     font-size: 16px;
 }
 
-.foodamountmodal{
+.foodamountmodal {
     color: #35B539;
-font-size: 20px;
-font-weight: 600;
-padding-top: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 15px;
 }
-.foodmodalbtn{
+
+.foodmodalbtn {
     border-radius: 8px;
-background: #E65C00;
-box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
-padding: 18px 45px;
-color: #FFF;
-font-size: 18px;
-font-weight: 600;
-width: 100%;
+    background: #E65C00;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    padding: 18px 45px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
 }
-.addfoodbtn{
+
+.addfoodbtn {
     width: 100%;
     margin-top: 20px;
 }
-#CartModalFood .modal-header ,#CartModalFood .modal_Heading {
+
+#CartModalFood .modal-header,
+#CartModalFood .modal_Heading {
     border: none;
 }
-#CartModalFood .modal_Heading{
+
+#CartModalFood .modal_Heading {
     display: none;
 }
-#CartModalFood .modal_cancel{
+
+#CartModalFood .modal_cancel {
     margin-left: auto;
 }
- 
- .cartfoodsectionorder .orderNow{
+
+.cartfoodsectionorder .orderNow {
     align-items: center;
- }
- .orderamount{
+}
+
+.orderamount {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
- }
- .quantitymodal{
+}
+
+.quantitymodal {
     display: flex;
     align-items: center;
     gap: 10px;
- }
- .orderamount .foodamountmodal{
+}
+
+.orderamount .foodamountmodal {
     padding: 0;
- }
- #CartFoodOrderModal {
+}
+
+#CartFoodOrderModal {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
     width: 100%;
     top: 25px;
     right: 0px;
- }
- #CartFoodOrderModal .modal-content {
+}
+
+#CartFoodOrderModal .modal-content {
     width: 100%;
     height: 100%;
     max-width: 362px;
@@ -572,12 +618,210 @@ width: 100%;
     min-height: 700px;
     padding: 0;
 }
-#CartFoodOrderModal .modal-header ,#CartFoodOrderModal .modal_Heading{
+
+#CartFoodOrderModal .modal-header,
+#CartFoodOrderModal .modal_Heading {
     border: none;
 }
-#CartFoodOrderModal .modal_Heading{
+
+#CartFoodOrderModal .modal_Heading {
     display: none;
 }
-#CartFoodOrderModal .modal_cancel{
+
+#CartFoodOrderModal .modal_cancel {
     margin-left: auto;
+}
+
+#cartcheckoutModal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+
+}
+
+#cartcheckoutModal .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+}
+
+.checkoutdelivery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 27px;
+}
+
+.checkouthome {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding-top: 10px;
+    padding-bottom: 16px;
+    padding-left: 6px;
+    padding-right: 6px;
+    width: 100%;
+    max-width: 160px;
+    position: relative;
+}
+
+.homedropdown {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.dropdownicon {
+    color: #979999;
+    ;
+}
+
+.checkouthomeoffice {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartcheckoutsection .outeraddItem {
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
+    padding-top: 20px;
+    margin-top: 30px;
+
+}
+
+/* checkbox */
+.round {
+    position: absolute;
+    width: 100%;
+    max-width: 22px;
+    bottom: 0;
+    right: 0;
+    margin: 8px auto;
+}
+
+.checkbx:checked {
+    background-color: #E65C00;
+    border: 2px solid #E65C00;
+}
+
+.checkbx:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    width: 4px;
+    height: 10px;
+    border: solid #FFF;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg) translate(-50%, -50%);
+}
+
+.checkbx {
+    position: relative;
+    border: 2px solid #D9D9D9;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: text-top;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    -webkit-appearance: none;
+
+}
+
+.dropdown-toggle:empty::after {
+    display: none
+}
+
+.dropdown-menu {
+    min-width: 103px;
+    background-color: #FFF;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    border: none;
+    padding: 10px 5px 10px 5px;
+
+}
+
+.editdrop {
+    color: #ABADAD;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 33px;
+    margin-left: 10px;
+}
+
+.dropdown-item {
+    padding-left: 5px;
+}
+
+#editaddress {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#editaddress .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+}
+
+.editadressheading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tabsection .nav {
+    border-radius: 10px;
+    background: #EEEFEF;
+    max-width: 311px;
+    justify-content: center;
+}
+
+.tabsection .nav-tabs {
+    border: none;
+}
+
+.tabsection .nav-link {
+    color: #2E3333;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 30px;
+    border-radius: 7px;
+    border-right: 1px solid #DBDBDB;
+    border-radius: 0;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color: transparent !important;
+}
+.nav-link.active {
+    background: #E65C00 !important;
+    color: #FFF !important;
+    border-radius: 7px;
+}
+.nav-item:last-child .nav-link {
+    border-right: 0;
+}
+.nav-item {
+    padding: 5px 3px;
+}
+.nav-link{
+    border-right: 1px solid red; 
+
 }

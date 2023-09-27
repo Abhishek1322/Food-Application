@@ -253,6 +253,6 @@ const ChefDetails = () => {
             />
         </>
     )
-}
+} 
 
 export default ChefDetails
