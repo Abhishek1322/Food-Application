@@ -247,6 +247,18 @@ li {
     left: 20px;
     top: 15px;
 }
+.modalDelete_ {
+    position: relative;
+}
+.cartDelete_ {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background: #99979738;
+    padding: 9px;
+    border-radius: 7px;
+    cursor: pointer;
+}
 
 .cartItems {
     position: absolute;

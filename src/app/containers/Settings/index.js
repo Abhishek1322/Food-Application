@@ -75,11 +75,11 @@ const SettingMain = (props) => {
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
-                      src={Images.termconditions}
+                      src={Images.DeleteSetting}
                       alt="logo"
                       className="img-fluid settingIcon"
                     />
-                    <p className="settingBoxtxt ms-3 mb-0">Term & Condition</p>
+                    <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
                   </div>
                   <div className="iconImg">
                     <img
@@ -94,11 +94,11 @@ const SettingMain = (props) => {
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
-                      src={Images.settingcontactus}
+                      src={Images.termconditions}
                       alt="logo"
                       className="img-fluid settingIcon"
                     />
-                    <p className="settingBoxtxt ms-3 mb-0">Contact Us</p>
+                    <p className="settingBoxtxt ms-3 mb-0">Terms & Conditions</p>
                   </div>
                   <div className="iconImg">
                     <img
@@ -113,11 +113,11 @@ const SettingMain = (props) => {
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
-                      src={Images.DeleteSetting}
+                      src={Images.privacypolicy}
                       alt="logo"
                       className="img-fluid settingIcon"
                     />
-                    <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
+                    <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
                   </div>
                   <div className="iconImg">
                   <Link to="/delete-account">
@@ -134,11 +134,11 @@ const SettingMain = (props) => {
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
-                      src={Images.privacypolicy}
+                      src={Images.settingcontactus}
                       alt="logo"
                       className="img-fluid settingIcon "
                     />
-                    <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
+                    <p className="settingBoxtxt ms-3 mb-0">Contact Us</p>
                   </div>
                   <div className="iconImg">
                     <img
@@ -149,7 +149,7 @@ const SettingMain = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6">
+              {/* <div className="col-lg-6">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
@@ -168,7 +168,15 @@ const SettingMain = (props) => {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
+            <div className="settingBox d-flex align-items-center justify-content-center">
+                    <img
+                      src={Images.logout}
+                      alt="logo"
+                      className="img-fluid settingIcon "
+                    />
+                    <p className="settingBoxtxt ms-3 mb-0">Logout</p>
+                  </div>
             </div>
           </div>
         </div>

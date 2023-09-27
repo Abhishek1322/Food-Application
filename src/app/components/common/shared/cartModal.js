@@ -4,7 +4,7 @@ const CartModal = () => {
   return (
     <>
       <div className='modalContent'>
-        <div className='orderDelivery_'>
+        {/* <div className='orderDelivery_'>
             <img src={Images.orderDelivery} className='orderDeliveryimg_' alt='modalImg_'/>
             <p className='Headingsmall m-0'>Verify Order Delivery</p>
             <p className='subtext_ m-0'>Enter the OTP that we sent on  customer’s email.</p>
@@ -14,35 +14,8 @@ const CartModal = () => {
               <button className='cancelOrder_'>Cancel</button>
               <button className='submitOrder_'>Submit</button>
             </div>
-       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {/* <div className='modalDetail '>
+       </div> */}
+<div className='modalDetail '>
           <div className='usercartDetail'>
             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
@@ -85,8 +58,8 @@ const CartModal = () => {
               </div>
             </div>
           </div>
-          <div className='cartcancel'>
-            <img src={Images.cartDelete} className='ModalCancel' alt='cartcancel' />
+          <div className='modalDelete_'>
+            <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
           </div>
         </div>
         <div className='outeraddItem'>
@@ -99,7 +72,7 @@ const CartModal = () => {
           </div>
           <button className='orderbutton'>CheckOut</button>
 
-        </div> */}
+        </div> 
       </div>
 
 
