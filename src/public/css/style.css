@@ -13,7 +13,7 @@ body {
     color: #E65C00;
     text-align: right;
     font-family: "Open Sans";
-    font-size: 10px;
+    font-size: 10px; 
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
@@ -22,14 +22,14 @@ body {
 
 /* Settings Page css Start */
 ul {
-    padding: 0;
+    padding: 0;  
     margin: 0;
 }
 
 li {
     list-style: none;
 }
-
+  
 .main_Setting {
     padding: 10px 31px 10px 31px;
 }
@@ -1633,81 +1633,3 @@ body {
 
 
 /* ChatnextModal CSs End  */
-
-/* OrderDelivery Css Start */
-.orderDelivery_ {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.subtext_{
-    color: #979999;
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    padding: 0 10px
-}
-.orderDeliveryimg_ {
-    padding-bottom: 38px;
-}
-.cancelOrder_ {
-    border-radius: 8px;
-    border: 1px solid #E65C00;
-    background: #FFF;
-    color: #E65C00;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 18px 40px;
-}
-.orderItems_ {
-    display: flex;
-    justify-content: space-between;
-}
-.submitOrder_ {
-    border-radius: 8px;
-    background: #E65C00;
-    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 18px 40px;
-}
-.resendText_ {
-    color: #979999;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-}
-.innersendtxt_ {
-    color: #E65C00;
-}
-
-/* OrderDelivery Css End */
-
-
-/* chef Header Css Start  */
-.chefHeading {
-    color: #E65C00;
-    font-family: Crimson Text;
-    font-size: 40px;
-    font-weight: 600;
-}
-
-/* chef Header Css End  */
-
-
-/* ---------------------------------------New Booking page(Module)  Css start ----------------------------- */
-.Maincontentbox .innertext_.active {
-    color: #E65C00 !important;
-    font-family: Crimson Text;
-    font-size: 16px;
-    font-weight: 700;
-    border-bottom: 2px solid #E65C00;
-    background-color: transparent;
-    border-radius: 0px;
-}
-.innerNewText {
-    color: #ABADAD;
-    padding-left: 30px;
-}
-/* ---------------------------------------New Booking  Page (Module) Css End ----------------------------- */

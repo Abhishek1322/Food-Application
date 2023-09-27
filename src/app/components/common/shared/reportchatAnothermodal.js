@@ -17,9 +17,6 @@ const reportchatAnothermodal = () => {
               <button className='acceptOrder'>Yes, Report</button>
             </div>
           </div>
-
-
-
         </div>
       </div>
  </>

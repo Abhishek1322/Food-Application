@@ -1,0 +1,583 @@
+/* myProfile  */
+
+p {
+    margin: 0;
+}
+
+.profilesection {
+    margin-top: 60px;
+    margin-left: 32px;
+    margin-right: 32px;
+
+}
+
+/* leftsection css  */
+.profileleft {
+    width: 100%;
+}
+
+.chefprofileimg {
+    width: 100%;
+    height: auto;
+}
+
+/* right section  */
+
+.reviewsection {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* chefdata  */
+.chefdata {
+    padding-bottom: 48px;
+    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    margin-top: 38px;
+
+}
+
+.profileright {
+    padding: 10px 80px;
+}
+
+.editsection {
+    display: flex;
+    justify-content: end;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.editheading {
+    color: #E65C00;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Crimson Text;
+}
+
+.nameprofile {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nameheading {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.emailheading {
+    margin-top: 25px;
+}
+
+.experprofile {
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.chefname {
+    width: 100%;
+    max-width: 285px;
+    position: relative;
+}
+
+.infoimg {
+    display: inline;
+}
+
+.restroinfo {
+    display: flex;
+    gap: 10px;
+}
+
+.information {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 315px;
+    position: absolute;
+    display: none;
+    padding: 10px;
+    margin: 25px auto;
+    left: 76px;
+}
+
+.infoimg {
+    max-width: 100%;
+    height: auto;
+}
+
+.infoimg:hover+.information {
+    display: block;
+}
+
+.adressection {
+    margin-top: 40px;
+    display: flex;
+    gap: 14px;
+}
+
+.adresssub {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 7px;
+    width: 100%;
+    max-width: 507px;
+}
+
+/* chef expertise  */
+.expertise {
+    padding: 50px 0;
+}
+
+.myexpertise {
+    padding-bottom: 17px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.expertisevalue {
+    display: inline-flex;
+    padding: 5px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: #EEEFEF;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.expertheading {
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px 8px;
+}
+
+.myavailability {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.dayavailability {
+    border-radius: 10px;
+    background: #FCEFE5;
+    padding: 15px 15px;
+    text-align: center;
+}
+
+.cheftime {
+    margin-top: 20px;
+    max-width: 350px;
+}
+
+.dayavailability p {
+    font-family: Crimson Text;
+}
+
+/* editProfile */
+.editsection {
+    margin-top: 60px;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.editleft {
+    position: relative;
+}
+
+.editprofileimg {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    margin: 25px auto;
+}
+
+.border-box {
+    width: 100%;
+    padding: 11px 25px;
+    border-radius: 8px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.restroform {
+    border-radius: 8px;
+    background: #E65C00;
+    padding: 6px 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.restroform p {
+    text-transform: capitalize;
+}
+ 
+.restroform {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* User Side ChefDetails*/
+.chefdetailsection {
+    padding: 10px 31px;
+}
+
+.sarahchef {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding: 24px 30px;
+}
+
+.sarahinfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.saraheading {
+    padding-left: 20px;
+    width: 100%;
+}
+
+.sarahrestro {
+    display: flex;
+    gap: 30px;
+    position: relative;
+}
+
+.sarahinformation {
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 300px;
+    position: absolute;
+    display: none;
+    padding: 10px;
+    margin: 25px auto;
+    right: 90px;
+    top: 10px;
+}
+
+.infoimg:hover+.sarahinformation {
+    display: block;
+}
+
+.restroinfo .johnchatdetail {
+    padding: 4px 15px;
+}
+.sarahbtn{
+    display: flex;
+}
+
+.sarahavailablebtn {
+    border-radius: 12px;
+    background: #979999;
+    border: none;
+    padding: 13px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.availableheading {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+ padding-left: 15px;
+ padding-right: 31px;
+}
+.availableimg {
+    border-radius: 12px;
+    background: hsl(0deg 0% 100% / 30%);
+    width: 45px;
+    padding: 9px;
+}
+.sarahcallbtn{
+    background: #2E3333;
+    border: none;
+    padding: 13px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+.sarahmessagebtn{
+    background-color: #E65C00;
+    border: none;
+    padding: 13px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.sarahtime{
+    color: #35B539;
+font-size: 42px;
+font-weight: 700;
+line-height: normal;
+}
+.chefrating{
+    border-radius: 4px;
+    background: hsl(122 55% 95% / 1);
+    display: flex;
+    padding: 6px;
+    max-width: 155px;
+    justify-content: space-around;
+    
+}
+.ratingheading{
+    color: #35B539;
+font-size: 14px;
+font-weight: 400;
+}
+
+.sarahdata .startIcon{
+    font-size: 22px;
+}
+.sarahdata{
+    margin-top: 40px;
+    padding-bottom: 27px;
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+}
+.sarahbioexpert{
+    margin-top: 40px;
+    padding-bottom: 27px;
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+   
+}
+.sarahbio .dummyText{
+    width: 100%;
+    max-width:500px;
+}
+.sarahsmenu{
+    margin-top: 30px;
+}
+.sarahbasket{
+    padding: 6px 8px;
+    background-color: #E65C00;
+    width: 35px;
+    text-align: center;
+    border-radius: 12px;
+    
+}
+.sarahmenuprice{
+    display: flex;
+    justify-content: space-around;
+}
+.sarahsmenu .itemsPrice_ {
+    padding:0px 25px;
+}
+
+.buttonBoxmodal{
+    display: flex;
+    justify-content: end;
+}
+
+@media (max-width:1366px) {
+    .sarahinformation {
+        right: -110px;
+    }
+}
+@media (max-width:768px) {
+
+    .buttonBoxmodal{
+        display: block;
+        justify-content: center;
+    } 
+}
+.sarahsmenu .listItems_{
+    margin-top: 35px;
+    max-width: 100%;
+}
+/*modal start*/
+#availablebtnModal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#availablebtnModal  .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+
+}
+.daytimes{
+    display: flex;
+ max-width: 310px;
+padding: 5px 8px;
+align-items: center;
+gap: 6px;
+border-radius: 4px;
+background: #EAEBEB;
+margin-top: 5px;
+}
+.daytimesheading{
+    color: #2E3333;
+font-size: 12px;
+font-weight: 400;
+
+}
+#availablebtnModal .modalContent{
+    padding: 0;
+}
+#CartModalFood {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#CartModalFood .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+}
+.foodmodal {
+    text-align: center;
+}
+.foodmodalheading{
+    color: #2E3333;
+font-size: 26px;
+font-weight: 600;
+}
+.foodmodal .restroinfo{
+    justify-content: center;
+    margin-top: 10px;
+}
+.deliverytimesheet{
+    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    margin-top: 20px;
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    padding: 20px 0;
+ 
+}
+.modalfooddelivery {
+    display: flex;
+    justify-content: space-between;
+}
+.cartfoodsection .chefName , .cartfoodsectionorder .chefName{
+    font-size: 12px;
+}
+.cartfoodsection  .chatSearchere_ ,.cartfoodsectionorder .chatSearchere_{
+    font-size: 12px;
+    width: 100%;
+    max-width: 314px;
+}
+.cartfoodsection .ratingheading , .cartfoodsectionorder .ratingheading{
+    font-size: 12px;
+}
+.cartfoodsection .startIcon , .cartfoodsectionorder  .startIcon {
+    font-size: 16px;
+}
+
+.foodamountmodal{
+    color: #35B539;
+font-size: 20px;
+font-weight: 600;
+padding-top: 15px;
+}
+.foodmodalbtn{
+    border-radius: 8px;
+background: #E65C00;
+box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+padding: 18px 45px;
+color: #FFF;
+font-size: 18px;
+font-weight: 600;
+width: 100%;
+}
+.addfoodbtn{
+    width: 100%;
+    margin-top: 20px;
+}
+#CartModalFood .modal-header ,#CartModalFood .modal_Heading {
+    border: none;
+}
+#CartModalFood .modal_Heading{
+    display: none;
+}
+#CartModalFood .modal_cancel{
+    margin-left: auto;
+}
+ 
+ .cartfoodsectionorder .orderNow{
+    align-items: center;
+ }
+ .orderamount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+ }
+ .quantitymodal{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+ }
+ .orderamount .foodamountmodal{
+    padding: 0;
+ }
+ #CartFoodOrderModal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+ }
+ #CartFoodOrderModal .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 700px;
+    padding: 0;
+}
+#CartFoodOrderModal .modal-header ,#CartFoodOrderModal .modal_Heading{
+    border: none;
+}
+#CartFoodOrderModal .modal_Heading{
+    display: none;
+}
+#CartFoodOrderModal .modal_cancel{
+    margin-left: auto;
+}

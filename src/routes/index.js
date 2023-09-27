@@ -13,6 +13,9 @@ const Router = () => {
 
           {/* Start User Side*/}
           {/* <Route path="/home-user" element={<Containers.HomeUser />} /> */}
+          <Route path="/ChefDetails" element={<Containers.ChefDetails />} />
+          <Route path="/myprofile" element={<Containers.myprofile />} />
+                    <Route path="/editProfile" element={<Containers.editProfile />} />
         </Route>
 
 

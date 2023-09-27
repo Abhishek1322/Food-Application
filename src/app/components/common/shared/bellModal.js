@@ -84,7 +84,6 @@ const BellModal = () => {
                     <div className='mt-3  me-3'>
                         <img src={Images.chatsDots} className='' alt='cartcancel' />
                     </div>
-
                 </div>
               </div>
             </div>

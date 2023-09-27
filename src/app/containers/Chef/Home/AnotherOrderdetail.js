@@ -13,7 +13,7 @@ const AnotherOrderdetail = () => {
                                 <div className='orderIdDetail'>
                                     <p className='orderId_'>Order #12548</p>
                                     <p className='recentOrder deliver'>Delivered</p>
-                                </div>
+                                </div> 
                                 <div className='chefJohn'>
                                     <div className='chatWithChef'>
                                         <div className='chefjohnDetail'>
