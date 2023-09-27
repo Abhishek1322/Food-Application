@@ -3,7 +3,7 @@ import * as Images from "../../../utilities/images";
 const Loading = () => {
     return (
         <>
-            <div className="Login">
+            <div className="loaderPage_">
                 <div className="container-fluid">
 
                     <div className='changepassword loadingpage'>

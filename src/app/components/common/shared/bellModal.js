@@ -12,7 +12,7 @@ const BellModal = () => {
                   
                 </div>
               <div className='modalscroll'>
-              <div className='chatModal  '>
+              <div className='chatModal'>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Sarah Bergstrom</p>

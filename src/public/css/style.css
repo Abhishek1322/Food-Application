@@ -473,6 +473,59 @@ body {
     font-weight: 600;
 }
 
+/* My Orders Css Start */
+.ordermodalBox{
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+.myorders_{
+    border-radius: 15px 15px 0px 0px;
+    background: #2E3333;
+    height: 40px;
+    padding: 9px 15px;
+}
+.timeOrder_{
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.Maincontentbox .innertext_.active {
+    color: #E65C00;
+    background-color: transparent;
+    font-family: Crimson Text;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 2px solid #E65C00;
+    border-radius: initial;
+
+}
+.innertext_ {
+    color: #ABADAD;
+    font-family: Crimson Text;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 2px solid #E65C00;
+    border-radius: initial;
+    border-width: 12px;
+}
+.innertext_:hover {
+    color: #ABADAD;
+}
+.Maincontentbox {
+    padding-top: 20px;
+}
+#CartModal .modal-body{
+overflow: auto;
+}
+.scrollBar_{
+    height: 600px;
+    overflow-y: auto;
+    margin-top: 19px;
+}
+
 
 /* Cart modal Css */
 .settingModal {
@@ -644,14 +697,17 @@ body {
 .modal-content{
     height: 95vh;
 }
+.searchbar {
+    position: relative;
+}
 .searchbarImg {
     background: #E65C00;
     border-radius: 12px;
     padding: 13px 10px 13px 13px;
     margin: 7px;
     position: absolute;
-    right: 18px;
-    top: 14px;
+    right: 0;
+    top: -2px;
     box-shadow: 1px 3px 5px 0px #E65C00;
 }
 
@@ -824,7 +880,7 @@ body {
 }
 
 .modalscroll {
-    height: 600px;
+    height: 745px;
     overflow-y: auto;
     margin-top: 19px;
 }
@@ -1633,3 +1689,59 @@ body {
 
 
 /* ChatnextModal CSs End  */
+
+/* loader css start  */
+.changepsw_loader {
+    height: 100vh;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loaderImage_ {
+    text-align: center;
+}
+#line {
+    border-radius: 50%;
+    border: 3px solid transparent;
+    animation: line 2s linear infinite forwards;
+}
+  
+@keyframes line {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+
+  .method-3 {
+    font-size: 16px;
+    position: relative;
+    color: #d4d4d4;
+    display: inline-block;
+    width: 500px !important;
+  
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+      color: #979999;
+      clip: rect(0, 0, 100px, 0);
+      animation: fill-3 2s infinite;
+    }
+  }
+  
+  @keyframes fill-3 {
+    50%   { clip: rect(0, 350px, 100px, 0); }
+    100%  { clip: rect(0, 0, 100px, 0);     }
+  }
+  
+
+/* loader css End  */
