@@ -1,0 +1,72 @@
+import React from 'react'
+import * as Images from "../../../../utilities/images";
+import { Link } from 'react-router-dom';
+
+const CartFoodModalOrder = () => {
+  return (
+   <>
+      <div className='cartfoodsectionorder'>
+                <div className='foodmodal'>
+                    <img src={Images.SaladImg} alt='saladimage' className='img-fluid' />
+                    <p className='foodmodalheading'>Chicken Salad</p>
+                    <div className='restroinfo'>
+                        <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
+                        <div className='johnchatdetail'>
+                            <Link to="#"><p className='chatDates'>Category</p></Link>
+                        </div>
+                    </div>
+                </div>
+                <div className='deliverytimesheet'>
+                    <div className='modalfooddelivery'>
+                        <div className='foodeliverytime'>
+                            <p className='chefName'>Delivery Time</p>
+                            <p className='chatSearchere_  mt-1'>45 mins</p>
+                        </div>
+                        <div className='foodrating'>
+                            <p className='chefName'>Rating</p>
+                            <div className='chefrating mt-1'>
+                                <i class="las la-star startIcon"></i>
+                                <p className='ratingheading'>4.5 (845 Reviews)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='deliverfrom mt-2'>
+                        <p className='chefName'>Deliver From</p>
+                        <p className='chatSearchere_  mt-1'>46 Abingdon Road, Brandeston, United Kingdom
+                            IP13 4PB</p>
+                    </div>
+                    <div className='deliverfrom mt-2'>
+                        <p className='chefName'>Description</p>
+                        <p className='chatSearchere_  mt-1 '>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content.</p>
+                    </div>
+                </div>
+                <div className='orderamount'>
+                    <p className='foodamountmodal'>
+                        £22.00
+                    </p>
+                    <div className='quantitymodal'>
+                    <p className='notificationText '>Quantity:</p>
+                    <div className='quantity'>
+                        <div className='Quantiycheck'>
+                            <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
+                        </div>
+                        <span className='number' >02</span>
+                        <div className='Quantiycheck'>
+                            <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div className='orderNow'>
+                        <div className='totalPrice'>
+                            <p className='price'>£44.00</p>
+                        </div>
+                        <button className='orderbutton'>Order Now</button>
+
+                    </div>
+                </div>
+   </>                               
+  )
+}
+
+export default CartFoodModalOrder
