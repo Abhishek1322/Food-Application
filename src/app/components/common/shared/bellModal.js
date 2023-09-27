@@ -12,7 +12,7 @@ const BellModal = () => {
                   
                 </div>
               <div className='modalscroll'>
-              <div className='chatModal flexBox '>
+              <div className='chatModal  '>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Sarah Bergstrom</p>
@@ -25,7 +25,7 @@ const BellModal = () => {
                     </div>
 
                 </div>
-                <div className='chatModal flexBox'>
+                <div className='chatModal '>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Hilda Herzog </p>
@@ -37,7 +37,7 @@ const BellModal = () => {
                     </div>
 
                 </div>
-                <div className='chatModal flexBox '>
+                <div className='chatModal '>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Tom Stoltenberg</p>
@@ -50,7 +50,7 @@ const BellModal = () => {
                     </div>
 
                 </div>
-                <div className='chatModal flexBox '>
+                <div className='chatModal'>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Sheryl Lowez</p>
@@ -62,7 +62,7 @@ const BellModal = () => {
                     </div>
 
                 </div>
-                <div className='chatModal flexBox'>
+                <div className='chatModal '>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Olive Kuvalis</p>
@@ -74,7 +74,7 @@ const BellModal = () => {
                     </div>
 
                 </div>
-                <div className='chatModal flexBox'>
+                <div className='chatModal '>
                     <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                     <div className='innermodal'>
                         <p className='chefName'>Hilda Herzog </p>
@@ -84,7 +84,6 @@ const BellModal = () => {
                     <div className='mt-3  me-3'>
                         <img src={Images.chatsDots} className='' alt='cartcancel' />
                     </div>
-
                 </div>
               </div>
             </div>

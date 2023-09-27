@@ -13,7 +13,7 @@ body {
     color: #E65C00;
     text-align: right;
     font-family: "Open Sans";
-    font-size: 10px;
+    font-size: 10px; 
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
@@ -22,14 +22,14 @@ body {
 
 /* Settings Page css Start */
 ul {
-    padding: 0;
+    padding: 0;  
     margin: 0;
 }
 
 li {
     list-style: none;
 }
-
+  
 .main_Setting {
     padding: 10px 31px 10px 31px;
 }
@@ -224,7 +224,6 @@ li {
     font-weight: 600;
     margin: 0;
 }
-
 .cart {
     position: relative;
     background: #E65C00;
@@ -247,6 +246,18 @@ li {
     position: absolute;
     left: 20px;
     top: 15px;
+}
+.modalDelete_ {
+    position: relative;
+}
+.cartDelete_ {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background: #99979738;
+    padding: 9px;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 .cartItems {
@@ -627,9 +638,9 @@ body {
     border-radius: 12px;
 }
 
-.modalContent {
+/* .modalContent {
     padding: 1rem;
-}
+} */
 
 .searchbarImg {
     background: #E65C00;
@@ -637,8 +648,8 @@ body {
     padding: 13px 10px 13px 13px;
     margin: 7px;
     position: absolute;
-    right: 33px;
-    top: 32px;
+    right: 18px;
+    top: 14px;
     box-shadow: 1px 3px 5px 0px #E65C00;
 }
 
@@ -669,6 +680,7 @@ body {
     padding-bottom: 16px;
     margin-top: 16px;
     cursor: pointer;
+    display: flex;
 }
 
 .innermodal {
@@ -925,6 +937,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .homeProfileBox {
@@ -934,6 +947,7 @@ body {
     width: 100%;
     background-color: #FFF;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
 }
 
 .profileInfo {
@@ -1043,7 +1057,25 @@ body {
 
 /* Home Page Css End */
 /* -------------------  Booking Details Page css start-----------------------------------------  */
-
+.chefInfo {
+    width: 31px;
+    height: 31px;
+    border-radius: 20px;
+    background: #E65C00;
+    position: relative;
+    text-align: center;
+    margin-right: 13px;
+}
+.chefInfo_{
+    position: absolute;
+    left: 8px;
+    top: 7px;
+}
+.chefLocation_ {
+    position: absolute;
+    left: 9px;
+    top: 7px;
+}
 .chefJohnImg {
     width: 105px;
     height: 105px;
@@ -1308,8 +1340,8 @@ body {
 .orderedFoodItems {
     display: flex;
     justify-content: space-between;
-    padding: 15px 15px 29px 15px;
-    margin-top: 43px;
+    padding: 15px 15px 15px 15px;
+    margin-top: 15px;
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
@@ -1605,14 +1637,3 @@ body {
 
 
 /* ChatnextModal CSs End  */
-
-
-/* chef Header Css Start  */
-.chefHeading {
-    color: #E65C00;
-    font-family: Crimson Text;
-    font-size: 40px;
-    font-weight: 600;
-}
-
-/* chef Header Css End  */

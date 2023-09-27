@@ -22,7 +22,9 @@ const OrderDetails = () => {
                                             <div className='chefinfo'>
                                                 <p className='johnExplorer'>John Smith</p>
                                                 <div className='johnChatTime'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <div className='chefInfo'>
+                                                        <img src={Images.chefCalender} alt="logo" className="chefInfo_" />
+                                                    </div>
                                                     <div className='johnchatdetail'>
                                                         <p className='chatDates'>Order From</p>
                                                     </div>
@@ -75,7 +77,7 @@ const OrderDetails = () => {
                                             </div>
 
                                         </div>
-                                        <div className='quantityDetail flexBox'>
+                                        <div className='quantityDetail '>
                                             {/* <p className='innePrice m-0'>£22.00</p> */}
                                             <p className='fooodquantity_ m-0'>2X</p>
                                         </div>
@@ -90,7 +92,7 @@ const OrderDetails = () => {
                                             </div>
 
                                         </div>
-                                        <div className='quantityDetail flexBox'>
+                                        <div className='quantityDetail '>
                                             {/* <p className='innePrice m-0'>£22.00</p> */}
                                             <p className='fooodquantity_ m-0'>2X</p>
                                         </div>
