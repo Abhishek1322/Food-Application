@@ -1,49 +1,119 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    userInfo: {},
-    userSignUp: {},
-    isLoggedIn: false,
-    loading: false
-}
+  userInfo: {},
+  isLoggedIn: false,
+  loading: false,
+};
 
 export const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: ({
-        userLogin: (state) => {
-            state.loading = true
-        },
-        setUserLogin: (state, action) => {
-            state.loading = false
-            state.isLoggedIn = true
-            state.userInfo = action.payload
-        },
-        logout: (state) => {
-            state.loading = true
-        },
-        setLogout: (state, action) => {
-            state.loading = false
-            state.userInfo = {}
-            state.userSignUp = {}
-            state.isLoggedIn = false
-        },
-        onErrorStopLoad: (state) => {
-            state.loading = false
-        },
-        stepThreeCompanyLogoUplaod: (state) => {
-            state.loading = true;
-          },
-          setStepThreeCompanyLogoUplaod: (state, action) => {
-            state.loading = false;
-            state.editProfile = action.payload;
-          },
-    }),
-})
+  name: "auth",
+  initialState,
+  reducers: {
+    deleteAccount: (state) => {
+      state.loading = true;
+    },
+    setDeleteAccount: (state, action) => {
+      state.loading = false;
+    },
+    resendResetPasswordOtp: (state) => {
+      state.loading = true;
+    },
+    setResendResetPasswordOtp: (state, action) => {
+      state.loading = false;
+    },
+    resendVerifyOtp: (state) => {
+      state.loading = true;
+    },
+    setResendVerifyOtp: (state, action) => {
+      state.loading = false;
+    },
 
+    userLogout: (state) => {
+      state.loading = true;
+    },
+    setUserLogout: (state, action) => {
+      state.loading = false;
+    },
+
+    createNewPassword: (state) => {
+      state.loading = true;
+    },
+    setCreateNewPassword: (state, action) => {
+      state.loading = false;
+    },
+
+    resetPassword: (state) => {
+      state.loading = true;
+    },
+    setResetPassword: (state, action) => {
+      state.loading = false;
+    },
+    resetPasswordOtp: (state) => {
+      state.loading = true;
+    },
+    setResetPasswordOtp: (state, action) => {
+      state.loading = false;
+    },
+    forgotPassword: (state) => {
+      state.loading = true;
+    },
+    setForgotPassword: (state, action) => {
+      state.loading = false;
+    },
+    verifyOtp: (state) => {
+      state.loading = true;
+    },
+    setVerifyOtp: (state, action) => {
+      state.loading = false;
+    },
+    userSignUp: (state) => {
+      state.loading = true;
+    },
+    setUserSignup: (state, action) => {
+      state.loading = false;
+      state.isLoggedIn = true;
+      state.userInfo = action.payload;
+    },
+    userLogin: (state) => {
+      state.loading = true;
+    },
+    setUserLogin: (state, action) => {
+      state.loading = false;
+      state.isLoggedIn = true;
+      state.userInfo = action.payload;
+    },
+    onErrorStopLoad: (state) => {
+      state.loading = false;
+    },
+  },
+});
 
 // Action creators are generated for each case reducer function
-export const { userLogin, setUserLogin, userSignUp, setUserSignUp,logout, setLogout,onErrorStopLoad ,stepThreeCompanyLogoUplaod,
-    setStepThreeCompanyLogoUplaod, } = authSlice.actions
+export const {
+  userSignUp,
+  setUserSignup,
+  onErrorStopLoad,
+  userLogin,
+  setUserLogin,
+  verifyOtp,
+  setVerifyOtp,
+  forgotPassword,
+  setForgotPassword,
+  resetPasswordOtp,
+  setResetPasswordOtp,
+  resetPassword,
+  setResetPassword,
+  createNewPassword,
+  setCreateNewPassword,
+  userLogout,
+  setUserLogout,
+  resendVerifyOtp,
+  setResendVerifyOtp,
+  resendResetPasswordOtp,
+  setResendResetPasswordOtp,
+  deleteAccount,
+  setDeleteAccount,
+} = authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;

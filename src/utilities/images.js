@@ -19,9 +19,9 @@ import basketImg from "../public/images/basket.svg"
 import password from "../public/images/password.svg"
 import privacypolicy from "../public/images/privacypolicy.svg"
 import termconditions from "../public/images/termconditions.svg"
-import logout from "../public/images/logout.png"
+import logout from "../public/images/logout.svg"
 import nextIcon from "../public/images/nextIcon.svg"
-import backArrowpassword from "../public/images/backArrowpassword.png"
+import backArrowpassword from "../public/images/backArrowpassword.svg"
 import ChangepasswordImg from "../public/images/ChangepasswordImg.png"
 import loadingsettingpage1 from "../public/images/loadingsettingpage1.png"
 import loadingsettingpage2 from "../public/images/loadingsettingpage2.png"
@@ -54,7 +54,7 @@ import menuItems from "../public/images/menuItems.png"
 import ItemsBgMenu from "../public/images/ItemsBgMenu.svg"
 import reportChatImg from "../public/images/reportChatImg.svg"
 import chatgalleryImg from "../public/images/chatgalleryImg.svg"
-import chatSendImg from "../public/images/chatSendImg.png"
+import chatSendImg from "../public/images/chatSendImg.svg"
 import ClockIcon from "../public/images/ClockIcon.svg"
 import ChefCap from "../public/images/ChefCap.svg"
 import UserICon from "../public/images/UserICon.svg"
@@ -70,6 +70,12 @@ import TimeSquare from "../public/images/TimeSquare.svg"
 import CallImg from "../public/images/callimg.svg"
 import ChefChat from "../public/images/ChefChat.svg"
 import SaladImg from "../public/images/saladimg.png"
+import chefsideMenu from "../public/images/chefsideMenu.svg"
+import chefmenuOrange from "../public/images/chefmenuOrange.svg"
+import chefnavImage from "../public/images/chefnavImage.png"
+import chefCalender from "../public/images/chefCalender.png"
+import chefLocationImg from "../public/images/chefLocationImg.png"
+import orderDelivery from "../public/images/orderDelivery.svg"
 
 
 export {
@@ -133,7 +139,6 @@ export {
     ClockIcon,
     ChefCap,
     UserICon,
-    chefProfile,
     star,
     edit,
     bio,
@@ -144,6 +149,12 @@ export {
     TimeSquare,
     CallImg,
      ChefChat,
-     SaladImg
-    
+     SaladImg,
+     chefsideMenu,
+    chefmenuOrange,
+    chefProfile,
+    chefnavImage,
+    chefCalender,
+    chefLocationImg,
+    orderDelivery,
 }

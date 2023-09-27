@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Images from "../../../utilities/images";
-import CustomModal from "../../components/common/shared/CustomModal";
+import CustomModal from "./shared/CustomModal";
 import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
 import CartModal from "./shared/cartModal";
 
-const Resources = () => {
+const User_Navbar = () => {
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -143,4 +143,4 @@ const Resources = () => {
   );
 };
 
-export default Resources;
+export default User_Navbar;

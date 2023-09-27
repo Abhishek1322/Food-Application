@@ -13,6 +13,8 @@ const OrderDetails = () => {
                                     <p className='orderId_'>Order #12548</p>
                                     <p className='recentOrder'>Recent Order</p>
                                 </div>
+                            </div>
+                            <div className='col-lg-12'>
                                 <div className='chefJohn'>
                                     <div className='chatWithChef'>
                                         <div className='chefjohnDetail'>
@@ -20,9 +22,11 @@ const OrderDetails = () => {
                                             <div className='chefinfo'>
                                                 <p className='johnExplorer'>John Smith</p>
                                                 <div className='johnChatTime'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <div className='chefInfo'>
+                                                        <img src={Images.chefCalender} alt="logo" className="chefInfo_" />
+                                                    </div>
                                                     <div className='johnchatdetail'>
-                                                        <p className='chatDates'>Jul 20, 2023</p>
+                                                        <p className='chatDates'>Order From</p>
                                                     </div>
                                                 </div>
                                                 <p className='itemsQuantity'>2 Items</p>
@@ -53,51 +57,63 @@ const OrderDetails = () => {
 
                                     </div>
                                 </div>
+
+                            </div>
+                            <div className='col-lg-12'>
                                 <p className='orderId_'>Ordered Items</p>
+                            </div>
+                        </div>
+                        <div className='Container-fluid'>
+                            <div className='row align-items-center'>
+                                <div className='col-lg-10'>
 
-                                <div className='row align-items-center'>
-                                    <div className='col-lg-9'>
-
-                                        <div className='orderedFoodItems'>
-                                            <div className='foodCategory'>
-                                                <img src={Images.foodItems} alt="logo" className="foodItemImg" />
-                                                <div className='categoryinfo'>
-                                                    <p className='foodcategory_'>Food Category</p>
-                                                    <p className='innerfood'>Chicken Salad</p>
-                                                    <p className='innePrice'>£22.00</p>
-                                                </div>
-
+                                    <div className='orderedFoodItems'>
+                                        <div className='foodCategory flexBox m-0'>
+                                            <img src={Images.foodItems} alt="logo" className="foodItemImg" />
+                                            <div className='categoryinfo'>
+                                                <p className='foodcategory_ m-0' >Food Category</p>
+                                                <p className='innerfood m-0'>Chicken Salad</p>
+                                                <p className='innePrice m-0'>£22.00</p>
                                             </div>
-                                            <p className='fooodquantity_'>2X</p>
-                                        </div>
-                                        <div className='orderedFoodItems'>
-                                            <div className='foodCategory'>
-                                                <img src={Images.foodItems} alt="logo" className="foodItemImg" />
-                                                <div className='categoryinfo'>
-                                                    <p className='foodcategory_'>Food Category</p>
-                                                    <p className='innerfood'>Chicken Salad</p>
-                                                    <p className='innePrice'>£22.00</p>
-                                                </div>
 
-                                            </div>
-                                            <p className='fooodquantity_'>2X</p>
                                         </div>
-
+                                        <div className='quantityDetail '>
+                                            {/* <p className='innePrice m-0'>£22.00</p> */}
+                                            <p className='fooodquantity_ m-0'>2X</p>
+                                        </div>
                                     </div>
-                                    <div className='col-lg-3'>
+                                    <div className='orderedFoodItems'>
+                                        <div className='foodCategory flexBox'>
+                                            <img src={Images.foodItems} alt="logo" className="foodItemImg" />
+                                            <div className='categoryinfo'>
+                                                <p className='foodcategory_ m-0'>Food Category</p>
+                                                <p className='innerfood m-0'>Chicken Salad</p>
+                                                <p className='innePrice m-0'>£22.00</p>
+                                            </div>
+
+                                        </div>
+                                        <div className='quantityDetail '>
+                                            {/* <p className='innePrice m-0'>£22.00</p> */}
+                                            <p className='fooodquantity_ m-0'>2X</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className='col-lg-2'>
                                     <div className='paidAmmount'>
-                                        <p  className='totalPaid'>Total paid</p>
+                                        <p className='totalPaid'>Total paid</p>
                                         <p className='foodBill'> £66.00</p>
                                     </div>
                                 </div>
 
-                                </div>
-                              
-
-
                             </div>
                         </div>
+
+
+
+
                     </div>
+
 
                 </div>
 

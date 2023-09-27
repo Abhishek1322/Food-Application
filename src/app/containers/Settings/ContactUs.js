@@ -45,7 +45,7 @@ const ContactUs = () => {
                                 </div>
                                 <div className='col-lg-12'>
                                     <div className="input-container mt-5">
-                                        <input type="password" className="border-input" />
+                                        <textarea type="" className="border-input" />
                                         <label className="border-label">Your Message</label>
                                     </div>
                                 </div>

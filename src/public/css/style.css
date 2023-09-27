@@ -224,7 +224,6 @@ li {
     font-weight: 600;
     margin: 0;
 }
-
 .cart {
     position: relative;
     background: #E65C00;
@@ -247,6 +246,18 @@ li {
     position: absolute;
     left: 20px;
     top: 15px;
+}
+.modalDelete_ {
+    position: relative;
+}
+.cartDelete_ {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background: #99979738;
+    padding: 9px;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 .cartItems {
@@ -437,11 +448,11 @@ body {
 .termcond {
     background: #E65C00;
     border-radius: 50px;
-    padding: 4px 5px;
+    padding: 4px 5px 4px 6px;
     color: #fff;
-    font-size: 10px;
+    font-size: 7px;
+    margin-bottom: 8px;
 }
-
 .innerDummyHeading {
     color: #2E3333;
     font-family: Crimson Text;
@@ -453,12 +464,11 @@ body {
     color: #979999;
     font-size: 16px;
     font-weight: 400;
-    padding-bottom: 7px;
+    padding-bottom: 10px;
 }
 
 .condHeading {
     color: #2E3333;
-    margin-top: 30px;
     font-size: 18px;
     font-weight: 600;
 }
@@ -638,8 +648,8 @@ body {
     padding: 13px 10px 13px 13px;
     margin: 7px;
     position: absolute;
-    right: 17px;
-    top: 17px;
+    right: 18px;
+    top: 14px;
     box-shadow: 1px 3px 5px 0px #E65C00;
 }
 
@@ -729,7 +739,7 @@ body {
 }
 
 .notificationModal {
-    margin: 0px 22px 20px 26px;
+    margin: 0 14px 20px 24px;
     position: relative;
 }
 
@@ -926,6 +936,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .homeProfileBox {
@@ -935,6 +946,7 @@ body {
     width: 100%;
     background-color: #FFF;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
 }
 
 .profileInfo {
@@ -946,7 +958,7 @@ body {
     font-size: 12px;
     font-weight: 400;
     margin-bottom: 0;
-    margin-top: 11px;
+    padding-top: 11px;
 }
 
 .more {
@@ -1002,6 +1014,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px 0;
 }
 
 .orderRequest {
@@ -1018,6 +1031,8 @@ body {
     color: #ABADAD;
     font-size: 12px;
     font-weight: 600;
+    margin-bottom: 0;
+    padding-bottom: 17px;
 }
 
 .cancelOrder {
@@ -1041,7 +1056,25 @@ body {
 
 /* Home Page Css End */
 /* -------------------  Booking Details Page css start-----------------------------------------  */
-
+.chefInfo {
+    width: 31px;
+    height: 31px;
+    border-radius: 20px;
+    background: #E65C00;
+    position: relative;
+    text-align: center;
+    margin-right: 13px;
+}
+.chefInfo_{
+    position: absolute;
+    left: 8px;
+    top: 7px;
+}
+.chefLocation_ {
+    position: absolute;
+    left: 9px;
+    top: 7px;
+}
 .chefJohnImg {
     width: 105px;
     height: 105px;
@@ -1123,7 +1156,7 @@ body {
 .johnchatdetail {
     border-radius: 4px;
     background: #FADECC;
-    padding: 6px 8px;
+    padding: 6px 12px;
 }
 
 .venuInfo {
@@ -1294,13 +1327,8 @@ body {
     color: #35B539;
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 0;
+    padding-right: 166px;
 }
-
-.foodCategory {
-    display: flex;
-}
-
 .fooodquantity_ {
     color: #ABADAD;
     font-size: 14px;
@@ -1311,8 +1339,8 @@ body {
 .orderedFoodItems {
     display: flex;
     justify-content: space-between;
-    padding: 15px 15px 29px 15px;
-    margin-top: 43px;
+    padding: 15px 15px 15px 15px;
+    margin-top: 15px;
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
@@ -1608,5 +1636,3 @@ body {
 
 
 /* ChatnextModal CSs End  */
-
-
