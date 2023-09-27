@@ -23,10 +23,13 @@ function* deleteAccount(action) {
   try {
     const resp = yield call(
       ApiClient.delete,
-      (action.url = `${ApiPath.AuthApiPath.DELETE_ACCOUNT}:${action.payload.id}`),
+      (action.url = `${ApiPath.AuthApiPath.DELETE_ACCOUNT}${action.payload.id}`),
       (action.payload = action.payload)
     );
     if (resp.status) {
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("persist:root");
       yield put(setDeleteAccount(resp.data.payload));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
@@ -153,7 +156,6 @@ function* forgotPassword(action) {
     );
     if (resp.status) {
       yield put(setForgotPassword(resp.data.payload));
-      console.log("restttt", resp);
       // localStorage.setItem(
       //   "userEmail",
       //   resp.data.data.email ? resp.data.data.email : ""
@@ -166,7 +168,7 @@ function* forgotPassword(action) {
   } catch (e) {
     yield put(onErrorStopLoad());
     toast.dismiss();
-    toast.error(e.response.data.data[0]);
+    toast.error(e.response.data.message);
   }
 }
 

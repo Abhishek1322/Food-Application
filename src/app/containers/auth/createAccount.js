@@ -62,9 +62,13 @@ const CreateAccount = () => {
     ) {
       toastId.current = showToast("Please enter valid email address");
       return;
-    } else if (!formData.password) {
+    }
+    else if (!formData.phone && role === "chef") {
+      showToast("Please enter phone number");
+      return;
+    }
+    else if (!formData.password) {
       showToast("Please enter password");
-
       return;
     } else if (
       !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d.!@#$%^&*()_+]{8,}$/.test(
@@ -83,7 +87,7 @@ const CreateAccount = () => {
       email: formData.email.trim(),
       role: role,
       dialCode: "+91",
-      phoneNo: 0,
+      phoneNo: formData.phone ? formData.phone : 0,
     };
     dispatch(
       userSignUp({
@@ -204,17 +208,37 @@ const CreateAccount = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-12">
-                      <div className="input-container mt-5">
-                        <input
-                          onChange={(e) => handleChange(e)}
-                          type="text"
-                          name="email"
-                          className="border-input"
-                        />
-                        <label className="border-label">Email</label>
+
+                    <div className="row">
+                      <div
+                        className={role === "chef" ? "col-lg-6" : "col-lg-12"}
+                      >
+                        <div className="input-container mt-5">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            type="text"
+                            name="email"
+                            className="border-input"
+                          />
+                          <label className="border-label">Email</label>
+                        </div>
                       </div>
+
+                      {role === "chef" && (
+                        <div className="col-lg-6">
+                          <div className="input-container mt-5">
+                            <input
+                              onChange={(e) => handleChange(e)}
+                              type="number"
+                              name="phone"
+                              className="border-input"
+                            />
+                            <label className="border-label">Phone</label>
+                          </div>
+                        </div>
+                      )}
                     </div>
+
                     <div className="col-lg-12">
                       <div className="input-container mt-5">
                         <input
