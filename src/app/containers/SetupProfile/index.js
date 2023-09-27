@@ -87,6 +87,7 @@ const SetupProfile = () => {
         address: formData.address,
         bio: formData.bio,
         expertise: updateExperticeValues,
+        
       };
 
       dispatch(
