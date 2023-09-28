@@ -7,6 +7,8 @@ const isAuthenticated = () => {
   return authToken !== null;
 };
 
+
+
 const PrivateChefRoute = ({ element: Element, ...rest }) => {
   return (
     <Route
