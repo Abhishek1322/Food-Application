@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../utilities/images";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { userSignUp, onErrorStopLoad } from "../../../redux/slices/auth";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import Loading from "../Settings/Loading";
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [isToggleOn, setIsToggleOn] = useState(false);
-  const role = new URLSearchParams(location.search).get("role");
+  const { role } = useParams();
   const toastId = useRef(null);
+  const authData = useAuthSelector();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -62,12 +66,10 @@ const CreateAccount = () => {
     ) {
       toastId.current = showToast("Please enter valid email address");
       return;
-    }
-    else if (!formData.phone && role === "chef") {
+    } else if (!formData.phone && role === "chef") {
       showToast("Please enter phone number");
       return;
-    }
-    else if (!formData.password) {
+    } else if (!formData.password) {
       showToast("Please enter password");
       return;
     } else if (
@@ -111,8 +113,14 @@ const CreateAccount = () => {
     }, 400);
   };
 
+  // stop loader on page refresh
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
   return (
     <>
+      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">

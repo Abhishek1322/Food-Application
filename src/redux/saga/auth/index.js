@@ -13,11 +13,33 @@ import {
   setResendVerifyOtp,
   setResendResetPasswordOtp,
   setDeleteAccount,
+  setChefSetupProfile,
 } from "../../slices/auth";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* chefSetupProfile(action) {
+  try {
+    const resp = yield call(
+      ApiClient.put,
+      (action.url = ApiPath.AuthApiPath.CHEF_SETUP_PROFILE),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setChefSetupProfile(resp.data.payload));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* deleteAccount(action) {
   try {
@@ -290,6 +312,7 @@ function* authSaga() {
     takeLatest("auth/resendVerifyOtp", resendVerifyOtp),
     takeLatest("auth/resendResetPasswordOtp", resendResetPasswordOtp),
     takeLatest("auth/deleteAccount", deleteAccount),
+    takeLatest("auth/chefSetupProfile", chefSetupProfile),
   ]);
 }
 

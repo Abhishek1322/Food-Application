@@ -10,6 +10,13 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    chefSetupProfile: (state) => {
+      state.loading = true;
+    },
+    setChefSetupProfile: (state, action) => {
+      state.loading = false;
+    },
+
     deleteAccount: (state) => {
       state.loading = true;
     },
@@ -114,6 +121,8 @@ export const {
   setResendResetPasswordOtp,
   deleteAccount,
   setDeleteAccount,
+  chefSetupProfile,
+  setChefSetupProfile,
 } = authSlice.actions;
 
 export default authSlice.reducer;

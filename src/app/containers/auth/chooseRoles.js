@@ -8,16 +8,13 @@ const ChooseRoles = () => {
   const [role, setRole] = useState("");
   const [isToggleOn, setIsToggleOn] = useState(false);
 
-
-  console.log("role", role);
-
   // getting roles
   const handleGetRole = (flag) => {
     setRole(flag);
     if (flag === "user") {
-      navigate("/create-account?role=user");
+      navigate("/create-account/user");
     } else if (flag === "chef") {
-      navigate("/create-account?role=chef");
+      navigate("/create-account/chef");
     }
   };
 

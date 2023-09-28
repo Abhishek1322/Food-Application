@@ -10,11 +10,15 @@ import {
   onErrorStopLoad,
   resendVerifyOtp,
 } from "../../../redux/slices/auth";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import Loading from "../Settings/Loading";
 
 const Verification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
+  const authData = useAuthSelector();
+
   const [otp, setOtp] = useState("");
   const userEmail = localStorage.getItem("userEmail");
 
@@ -70,6 +74,7 @@ const Verification = () => {
 
   return (
     <>
+     {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -113,7 +118,7 @@ const Verification = () => {
               <div className="logRight mt-5">
                 <div className="toggleButtonMain">
                   <div className="buttonBox">
-                    <Link to="/create-account">
+                    <Link to="/create-account/:user">
                       <button type="submit" role="button" className="backBtn">
                         <i class="las la-angle-left"></i> Back
                       </button>

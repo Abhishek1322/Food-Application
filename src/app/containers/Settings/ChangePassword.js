@@ -5,11 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { createNewPassword, onErrorStopLoad } from "../../../redux/slices/auth";
+import Loading from "./Loading";
+import { useAuthSelector } from "../../../redux/selector/auth";
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
+  const authData = useAuthSelector();
 
   const [showPassword, setShowPassword] = useState("false");
   const [oldPassword, setOldPassword] = useState("");
@@ -64,19 +67,7 @@ const ChangePassword = () => {
 
   return (
     <>
-     <div className="changepsw_loader">
-    
-       <div className="loaderImage_" >
-         <img
-                src={Images.loadingsettingpage1}
-                alt="logo"
-                className="img-fluid changepswloader_"
-                id="line"
-              />
-               <h6  data-text="Please wait, It takes some time." className="changepassText mb-0 d-flex  justify-content-center mt-3 method-3"></h6>
-       </div>
-      </div>
-  
+    {authData.loading && <Loading />}
       <div className="changePaasword_">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3 ">

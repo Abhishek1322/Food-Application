@@ -4,11 +4,14 @@ import swal from "sweetalert";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { onErrorStopLoad, deleteAccount } from "../../../redux/slices/auth";
+import Loading from "./Loading";
+import { useAuthSelector } from "../../../redux/selector/auth";
 
 const DeleteAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
+  const authData = useAuthSelector();
 
   // delete account
   const deleteAccountHandle = () => {
@@ -34,6 +37,7 @@ const DeleteAccount = () => {
 
   return (
     <>
+      {authData.loading && <Loading />}
       <div className="deleteAccount_">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3">
