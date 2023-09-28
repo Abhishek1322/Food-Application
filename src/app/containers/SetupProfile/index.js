@@ -47,7 +47,8 @@ const SetupProfile = () => {
   const [endTime, setEndTime] = useState("00:00");
   const [showTimeSlot, setShowTimeSlot] = useState(false);
   const [availability, setAvailability] = useState([]);
-
+  const [documentUrl, setDocumentUrl] = useState("");
+  console.log("documentUrl", documentUrl);
   const [formData, setFormData] = useState({
     experience: "",
     bio: "",
@@ -72,6 +73,26 @@ const SetupProfile = () => {
       setPdfFiles("");
     }
   };
+  console.log("pdfFilespdfFiles", pdfFiles);
+
+  // getting document URL
+  useEffect(() => {
+    if (pdfFiles) {
+      let params = {
+        file: pdfFiles,
+      };
+      dispatch(
+        chefProfileDocument({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setDocumentUrl(res.data.data.fileUrl);
+            }
+          },
+        })
+      );
+    }
+  }, [pdfFiles]);
 
   //onDrop
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
@@ -158,10 +179,10 @@ const SetupProfile = () => {
     } else if (flag == 2) {
       let params = {
         step: "2",
-        file: pdfFiles,
+        verificationDocument: documentUrl,
       };
       dispatch(
-        chefProfileDocument({
+        chefSetupProfile({
           ...params,
           cb(res) {
             if (res.status === 200) {
@@ -290,26 +311,6 @@ const SetupProfile = () => {
     }
     setShowTimeSlot(true);
   };
-
-  // useEffect(() => {
-  //   if (activeWeekDay && startTime && endTime) {
-  //     const newTimeSlot = { from: startTime, to: endTime };
-  //     const newAvailability = [...availability];
-  //     const existingDayIndex = newAvailability.findIndex(
-  //       (entry) => entry.day === activeWeekDay
-  //     );
-  //     if (existingDayIndex !== -1) {
-  //       newAvailability[existingDayIndex].timeSlots.push(newTimeSlot);
-  //     } else {
-  //       newAvailability.push({
-  //         day: activeWeekDay,
-  //         timeSlots: newTimeSlot,
-  //       });
-  //     }
-  //     setAvailability(newAvailability);
-  //   } else {
-  //   }
-  // }, [activeWeekDay, startTime, endTime]);
 
   const addTimeSlot = () => {
     if (activeWeekDay && startTime && endTime) {

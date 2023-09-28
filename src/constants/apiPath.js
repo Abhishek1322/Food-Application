@@ -11,7 +11,7 @@ const ApiPath = {
     RESEND_OTP: "/users/resend",
     DELETE_ACCOUNT: "/users/",
     CHEF_SETUP_PROFILE: "/users/add-chef-detail",
-    CHEF_SETUP_PROFILE_DOCUMENT: "/users/upload-verification-document",
+    CHEF_SETUP_PROFILE_DOCUMENT: "/users/upload-file",
   },
 };
 

@@ -24,7 +24,7 @@ import { toast } from "react-toastify";
 function* chefProfileDocument(action) {
   try {
     const resp = yield call(
-      ApiClient.putFormData,
+      ApiClient.postFormData,
       (action.url = ApiPath.AuthApiPath.CHEF_SETUP_PROFILE_DOCUMENT),
       (action.payload = action.payload)
     );

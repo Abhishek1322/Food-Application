@@ -4,6 +4,7 @@ const initialState = {
   userInfo: {},
   isLoggedIn: false,
   loading: false,
+  chefDocumentUrl: [],
 };
 
 export const authSlice = createSlice({
@@ -15,6 +16,7 @@ export const authSlice = createSlice({
     },
     setChefProfileDocument: (state, action) => {
       state.loading = false;
+      action.chefDocumentUrl = action.payload;
     },
     chefSetupProfile: (state) => {
       state.loading = true;
