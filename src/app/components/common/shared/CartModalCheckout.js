@@ -110,7 +110,7 @@ const CartModalCheckout = () => {
                         </div>
                         <div className='checkouthome'>
                             <div className='homedropdown mt-2'>
-                                <p className='notificationText'>Home</p>
+                                <p className='notificationText'>Office</p>
                                 <div class="dropdown dropend">
                                     <i class="fas fa-ellipsis-v dropdownicon dropdown-toggle" data-bs-toggle="dropdown">
                                     </i>
@@ -126,6 +126,7 @@ const CartModalCheckout = () => {
                             </div>
                         </div>
                     </div>
+                    <div className='modalfooterbtn'>
                     <div className='outeraddItem'>
                         <button className='addItems'>+ Add More Items</button>
                     </div>
@@ -138,6 +139,7 @@ const CartModalCheckout = () => {
                             handleUserProfile("editmodal")
                         }}>Pay Now</button>
 
+                    </div>
                     </div>
                 </div>
             </div>
