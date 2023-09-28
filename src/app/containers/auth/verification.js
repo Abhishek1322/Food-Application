@@ -44,7 +44,11 @@ const Verification = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            navigate("/home");
+            if (res.data.data.role === "chef") {
+              navigate("/setup-profile");
+            } else {
+              navigate("/home-user");
+            }
           }
         },
       })
@@ -74,7 +78,7 @@ const Verification = () => {
 
   return (
     <>
-     {authData.loading && <Loading />}
+      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">

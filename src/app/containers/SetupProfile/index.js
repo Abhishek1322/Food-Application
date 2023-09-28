@@ -3,15 +3,27 @@ import { toast } from "react-toastify";
 import * as Images from "../../../utilities/images";
 import MultiStepProgressBar from "./component/multiStepProgressBar";
 import "react-phone-input-2/lib/style.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import CustomModal from "../../components/common/shared/CustomModal";
 import AddExpertise from "../../components/common/shared/AddExpertise";
 import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDropzone } from "react-dropzone";
+import moment from "moment";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 import DatePicker from "react-datepicker";
-import { chefSetupProfile, onErrorStopLoad } from "../../../redux/slices/auth";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
+import {
+  chefSetupProfile,
+  onErrorStopLoad,
+  chefProfileDocument,
+} from "../../../redux/slices/auth";
 import Loading from "../Settings/Loading";
 import { useAuthSelector } from "../../../redux/selector/auth";
 
@@ -20,15 +32,24 @@ const SetupProfile = () => {
   const location = useLocation();
   const path = location.pathname;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authData = useAuthSelector();
   const [page, setPage] = useState("pageone");
   const [pageNumber, setPageNumber] = useState(2);
   const [key, setKey] = useState(Math.random());
-  const [startDate, setStartDate] = useState(new Date());
   const [experticeValue, setExperticeValue] = useState([]);
+  const [pdfFiles, setPdfFiles] = useState("");
+  const [address, setAddress] = useState("");
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [activeWeekDay, setActiveWeekDay] = useState("");
+  const [startTime, setStartTime] = useState("00:00");
+  const [endTime, setEndTime] = useState("00:00");
+  const [showTimeSlot, setShowTimeSlot] = useState(false);
+  const [availability, setAvailability] = useState([]);
+
   const [formData, setFormData] = useState({
     experience: "",
-    address: "",
     bio: "",
     rateperhour: "",
   });
@@ -45,22 +66,36 @@ const SetupProfile = () => {
     setFormData({ ...formData, [name]: value.trim() });
   };
 
-  //onDrop
-  const onDrop = useCallback((acceptedFiles) => {
-    const imageFile = acceptedFiles[0];
-    if (!imageFile.name.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
-      toast.error("Please select a valid image.");
-      return false;
+  // remove document
+  const handleRemoveDocument = (name) => {
+    if (pdfFiles.name === name) {
+      setPdfFiles("");
     }
+  };
+
+  //onDrop
+  const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
+    if (
+      rejectedFiles.length > 0 &&
+      rejectedFiles[0]?.file?.type !== "application.pdf"
+    ) {
+      toast.error("Please upload PDF files only");
+      return;
+    }
+
+    if (acceptedFiles[0].size > "5242880") {
+      toast.error("Please upload file within 5 Mb");
+      return;
+    }
+    setPdfFiles(acceptedFiles[0]);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
-      "image/jpeg": [],
-      "image/jpg": [],
-      "image/png": [],
+      "application/pdf": [".pdf"],
     },
+    multiple: false,
   });
   //closeModal
   const handleOnCloseModal = () => {
@@ -81,6 +116,19 @@ const SetupProfile = () => {
   const handleSubmit = (e, flag) => {
     e.preventDefault();
     if (flag == 1) {
+      if (!formData.experience) {
+        toast.error("Please add your experience");
+        return;
+      } else if (!address) {
+        toast.error("Please add your address");
+        return;
+      } else if (!formData.bio) {
+        toast.error("Please add your bio");
+        return;
+      } else if (!formData.rateperhour) {
+        toast.error("Please add your rate per hour");
+        return;
+      }
       const updateExperticeValues = experticeValue.filter((value) => {
         return value != "";
       });
@@ -88,12 +136,12 @@ const SetupProfile = () => {
         step: "1",
         type: activeTab,
         experience: formData.experience,
-        address: formData.address,
+        address: address,
         bio: formData.bio,
         expertise: updateExperticeValues,
         ratePerHour: formData.rateperhour,
+        coordinates: [latitude, longitude],
       };
-
       dispatch(
         chefSetupProfile({
           ...params,
@@ -105,12 +153,43 @@ const SetupProfile = () => {
           },
         })
       );
+      setPageNumber(2);
+      nextPage("pagetwo");
     } else if (flag == 2) {
-      setPageNumber(3);
-      nextPage("pagethree");
+      let params = {
+        step: "2",
+        file: pdfFiles,
+      };
+      dispatch(
+        chefProfileDocument({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setPageNumber(3);
+              nextPage("pagethree");
+            }
+          },
+        })
+      );
+    } else if (flag == 3) {
+      let params = {
+        step: "3",
+        availability: availability,
+      };
+      dispatch(
+        chefSetupProfile({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              navigate("/home");
+            }
+          },
+        })
+      );
     }
   };
 
+  // go one step back
   const handleBack = (e, flag) => {
     e.preventDefault();
     if (flag == "pageoneback") {
@@ -121,9 +200,136 @@ const SetupProfile = () => {
     }
   };
 
+  // stop loader onm page refresh
   useEffect(() => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
+
+  // handle change address
+  const autoCompleteHandleChange = (address) => {
+    setAddress(address);
+    geocodeByAddress(address)
+      .then((results) => {
+        setLatitude(results[0].geometry.location.lat());
+        setLongitude(results[0].geometry.location.lng());
+      })
+      .catch((error) => {});
+  };
+
+  // select address
+  const autoCompleteHandleSelect = (address) => {
+    setAddress(address);
+    geocodeByAddress(address)
+      .then((results) => {
+        setLatitude(results[0].geometry.location.lat());
+        setLongitude(results[0].geometry.location.lng());
+      })
+      .catch((error) => {});
+  };
+
+  // week days
+  const week = [
+    {
+      day: "mon",
+      id: 1,
+    },
+    {
+      day: "tue",
+      id: 2,
+    },
+    {
+      day: "wed",
+      id: 3,
+    },
+    {
+      day: "thu",
+      id: 4,
+    },
+    {
+      day: "fri",
+      id: 5,
+    },
+    {
+      day: "sat",
+      id: 6,
+    },
+    {
+      day: "sun",
+      id: 7,
+    },
+  ];
+
+  const handleWeekDay = (e, day) => {
+    setActiveWeekDay(day);
+    const getPreviousFromTime = availability?.find((item, index) => {
+      return item?.day === day;
+    });
+    setStartTime(getPreviousFromTime?.timeSlots?.from);
+    const getPreviousToTime = availability?.find((item, index) => {
+      return item?.day === day;
+    });
+    setEndTime(getPreviousToTime?.timeSlots?.to);
+    // addTimeSlot();
+  };
+
+  // close time slot
+  const handleCloseTimeSlot = () => {
+    setShowTimeSlot(false);
+    setActiveWeekDay("");
+    const deleteAvailability = availability.filter((item, index) => {
+      return item.day !== activeWeekDay;
+    });
+    setAvailability(deleteAvailability);
+  };
+
+  // show time slot
+  const handleShowSlot = () => {
+    if (!activeWeekDay) {
+      toast.error("Please select slot day first");
+      return;
+    }
+    setShowTimeSlot(true);
+  };
+
+  // useEffect(() => {
+  //   if (activeWeekDay && startTime && endTime) {
+  //     const newTimeSlot = { from: startTime, to: endTime };
+  //     const newAvailability = [...availability];
+  //     const existingDayIndex = newAvailability.findIndex(
+  //       (entry) => entry.day === activeWeekDay
+  //     );
+  //     if (existingDayIndex !== -1) {
+  //       newAvailability[existingDayIndex].timeSlots.push(newTimeSlot);
+  //     } else {
+  //       newAvailability.push({
+  //         day: activeWeekDay,
+  //         timeSlots: newTimeSlot,
+  //       });
+  //     }
+  //     setAvailability(newAvailability);
+  //   } else {
+  //   }
+  // }, [activeWeekDay, startTime, endTime]);
+
+  const addTimeSlot = () => {
+    if (activeWeekDay && startTime && endTime) {
+      const newTimeSlot = { from: startTime, to: endTime };
+      const newAvailability = [...availability];
+      const existingDayIndex = newAvailability.findIndex(
+        (entry) => entry.day === activeWeekDay
+      );
+      if (existingDayIndex !== -1) {
+        newAvailability[existingDayIndex].timeSlots.push(newTimeSlot);
+      } else {
+        newAvailability.push({
+          day: activeWeekDay,
+          timeSlots: newTimeSlot,
+        });
+      }
+      setAvailability(newAvailability);
+    } else {
+    }
+  };
 
   return (
     <>
@@ -250,21 +456,79 @@ const SetupProfile = () => {
                                 </div>
                                 <div className="col-lg-12">
                                   <div className="input-container mt-5">
-                                    <input
-                                      onChange={(e) => handleChange(e)}
-                                      type="text"
-                                      name="address"
-                                      className="border-input"
-                                      placeholder="Add address"
-                                    />
-                                    <label className="border-label">
-                                      Address
-                                    </label>
-                                    <img
-                                      src={Images.Location}
-                                      alt="InfoIcon"
-                                      className="InputIcon"
-                                    />
+                                    <PlacesAutocomplete
+                                      className=""
+                                      autoComplete="off"
+                                      value={address}
+                                      onChange={autoCompleteHandleChange}
+                                      onSelect={autoCompleteHandleSelect}
+                                      searchOptions={{
+                                        componentRestrictions: {
+                                          country: ["Ind"],
+                                        },
+                                      }}
+                                    >
+                                      {({
+                                        getInputProps,
+                                        suggestions,
+                                        getSuggestionItemProps,
+                                        loading,
+                                      }) => (
+                                        <div>
+                                          <input
+                                            {...getInputProps({
+                                              placeholder: "Street Address",
+                                              className:
+                                                "location-search-input customform-control border-input",
+                                            })}
+                                          />
+                                          <div className="autocomplete-dropdown-container">
+                                            {loading && <div>Loading...</div>}
+                                            {suggestions.map(
+                                              (suggestion, index) => {
+                                                const className =
+                                                  suggestion.active
+                                                    ? "suggestion-item--active"
+                                                    : "suggestion-item";
+                                                // inline style for demonstration purpose
+                                                const style = suggestion.active
+                                                  ? {
+                                                      backgroundColor:
+                                                        "#41b6e6",
+                                                      cursor: "pointer",
+                                                    }
+                                                  : {
+                                                      backgroundColor:
+                                                        "#ffffff",
+                                                      cursor: "pointer",
+                                                    };
+                                                return (
+                                                  <div
+                                                    {...getSuggestionItemProps(
+                                                      suggestion,
+                                                      {
+                                                        className,
+                                                        style,
+                                                      }
+                                                    )}
+                                                    key={index}
+                                                  >
+                                                    <span>
+                                                      {suggestion.description}
+                                                    </span>
+                                                  </div>
+                                                );
+                                              }
+                                            )}
+                                          </div>
+                                          <img
+                                            src={Images.Location}
+                                            alt="InfoIcon"
+                                            className="InputIcon"
+                                          />
+                                        </div>
+                                      )}
+                                    </PlacesAutocomplete>
                                   </div>
                                 </div>
                                 <div className="col-lg-12">
@@ -360,28 +624,43 @@ const SetupProfile = () => {
                               </p>
                               <div className="form-group col-md-12 mb-3">
                                 <div className="uploadImgebox">
-                                  <div
-                                    {...getRootProps({ className: "dropzone" })}
-                                  >
-                                    <input
-                                      type="file"
-                                      accept="image/png, image/jpeg"
-                                      {...getInputProps()}
-                                    />
-                                    <img
-                                      src={Images.Uploadicon}
-                                      alt="Uploadicon"
-                                      className="Uploadicon"
-                                    />
-                                    <p className="uploadbtnn">Choose File</p>
+                                  {pdfFiles ? (
+                                    <div>
+                                      <p>{pdfFiles.name}</p>
+                                      <p
+                                        onClick={() =>
+                                          handleRemoveDocument(pdfFiles.name)
+                                        }
+                                      >
+                                        x
+                                      </p>
+                                    </div>
+                                  ) : (
+                                    <div
+                                      {...getRootProps({
+                                        className: "dropzone",
+                                      })}
+                                    >
+                                      <input
+                                        type="file"
+                                        accept="image/png, image/jpeg"
+                                        {...getInputProps()}
+                                      />
+                                      <img
+                                        src={Images.Uploadicon}
+                                        alt="Uploadicon"
+                                        className="Uploadicon"
+                                      />
+                                      <p className="uploadbtnn">Choose File</p>
 
-                                    <p className="HeadingSmall">
-                                      Drag and drop or Upload File Here
-                                    </p>
-                                    <p className="uploadText mt-2">
-                                      5 mb max file size
-                                    </p>
-                                  </div>
+                                      <p className="HeadingSmall">
+                                        Drag and drop or Upload File Here
+                                      </p>
+                                      <p className="uploadText mt-2">
+                                        5 mb max file size
+                                      </p>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="flexBox justify-content-center mt-3">
@@ -399,7 +678,7 @@ const SetupProfile = () => {
                                   className="submit_btn"
                                   type="submit"
                                 >
-                                  <span className="smallBtn disable">Next</span>
+                                  <span className="smallBtn">Next</span>
                                 </button>
                               </div>
                             </>
@@ -412,159 +691,108 @@ const SetupProfile = () => {
                               </p>
                               <div className="availability mt-3 mb-5">
                                 <ul className="weekBox">
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Mon"
-                                        ? "active"
-                                        : path == "/mon"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Mon")}
-                                  >
-                                    Mon
-                                  </li>
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Tue"
-                                        ? "active"
-                                        : path == "/Tue"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Tue")}
-                                  >
-                                    Tue
-                                  </li>
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Wed"
-                                        ? "active"
-                                        : path == "/Wed"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Wed")}
-                                  >
-                                    Wed
-                                  </li>
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Thu"
-                                        ? "active"
-                                        : path == "/Thu"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Thu")}
-                                  >
-                                    Thu
-                                  </li>
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Fri"
-                                        ? "active"
-                                        : path == "/Fri"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Fri")}
-                                  >
-                                    Fri
-                                  </li>
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Sat"
-                                        ? "active"
-                                        : path == "/Sat"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Sat")}
-                                  >
-                                    Sat
-                                  </li>
-                                  <li
-                                    className={`weekDays ${
-                                      activeTab === "Sun"
-                                        ? "active"
-                                        : path == "/Sun"
-                                        ? "active"
-                                        : ""
-                                    }`}
-                                    onClick={() => setActiveTab("Sun")}
-                                  >
-                                    Sun
-                                  </li>
+                                  {week.map((day, index) => (
+                                    <>
+                                      <li
+                                        onClick={(e) =>
+                                          handleWeekDay(e, day.day)
+                                        }
+                                        className={
+                                          activeWeekDay === day.day
+                                            ? "weekDays active text-capitalize"
+                                            : "weekDays text-capitalize"
+                                        }
+                                      >
+                                        {day.day}
+                                      </li>
+                                    </>
+                                  ))}
                                 </ul>
                                 <div className="timeSlotBox pb-5">
                                   <h6 class="HeadingsmallText">Time Slots</h6>
                                   <hr className="borderBottom"></hr>
-                                  <div className="row">
-                                    <div className="col-lg-5">
-                                      <div className="input-container mt-2">
-                                        <p className="border-input">From</p>
-                                        <div className="dateBox">
-                                          <DatePicker
-                                            selected={startDate}
-                                            onChange={(date) =>
-                                              setStartDate(date)
-                                            }
-                                          />
-                                          <img
-                                            src={Images.ClockIcon}
-                                            alt="ClockIcon"
-                                            className="ClockIcon"
-                                          />
+
+                                  {showTimeSlot && (
+                                    <>
+                                      <div className="row">
+                                        <div className="col-lg-5">
+                                          <div className="input-container mt-2">
+                                            <p className="border-input">From</p>
+                                            <div className="dateBox">
+                                              <TimePicker
+                                                onChange={setStartTime}
+                                                value={startTime}
+                                                amPmAriaLabel="AM"
+                                              />
+                                              <img
+                                                src={Images.ClockIcon}
+                                                alt="ClockIcon"
+                                                className="ClockIcon"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-5">
+                                          <div className="input-container mt-2">
+                                            <p className="border-input">To</p>
+                                            <div className="dateBox">
+                                              <TimePicker
+                                                onChange={setEndTime}
+                                                value={endTime}
+                                                amPmAriaLabel="PM"
+                                              />
+                                              <img
+                                                src={Images.ClockIcon}
+                                                alt="ClockIcon"
+                                                className="ClockIcon"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-2 text-center">
+                                          <div className="deleteBox">
+                                            <img
+                                              onClick={() =>
+                                                handleCloseTimeSlot()
+                                              }
+                                              src={Images.DeleteIcon}
+                                              alt="ClockIcon"
+                                              className="DeleteIcon"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
+                                      <button onClick={addTimeSlot}>
+                                        Add this slot
+                                      </button>
+                                    </>
+                                  )}
+                                  {!showTimeSlot && (
+                                    <div className="flexBox mt-2">
+                                      <button
+                                        onClick={() => handleShowSlot()}
+                                        type="button"
+                                        className="addButton"
+                                      >
+                                        <i class="las la-plus"></i>Add Time Slot{" "}
+                                      </button>
                                     </div>
-                                    <div className="col-lg-5">
-                                      <div className="input-container mt-2">
-                                        <p className="border-input">To</p>
-                                        <div className="dateBox">
-                                          <DatePicker
-                                            selected={startDate}
-                                            onChange={(date) =>
-                                              setStartDate(date)
-                                            }
-                                          />
-                                          <img
-                                            src={Images.ClockIcon}
-                                            alt="ClockIcon"
-                                            className="ClockIcon"
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="col-lg-2 text-center">
-                                      <div className="deleteBox">
-                                        <img
-                                          src={Images.DeleteIcon}
-                                          alt="ClockIcon"
-                                          className="DeleteIcon"
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="flexBox mt-2">
-                                    <button type="button" className="addButton">
-                                      <i class="las la-plus"></i>Add Time Slot{" "}
-                                    </button>
-                                  </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="flexBox justify-content-center">
                                 <button
                                   onClick={(e) => handleBack(e, "pagetwoback")}
                                   className="submit_btn"
-                                  type="submit"
                                 >
                                   <span className="addMore me-3">
                                     <i class="las la-angle-left"></i> Back
                                   </span>
                                 </button>
-                                <button className="submit_btn" type="submit">
+                                <button
+                                  onClick={(e) => handleSubmit(e, "3")}
+                                  className="submit_btn"
+                                >
                                   <span className="smallBtn">Continue</span>
                                 </button>
                               </div>

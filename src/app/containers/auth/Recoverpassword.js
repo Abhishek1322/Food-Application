@@ -52,17 +52,21 @@ const Recoverpassword = (props) => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            navigate("/");
+            if (res.data.data.role === "chef") {
+              navigate("/setup-profile");
+            } else {
+              navigate("/home-user");
+            }
           }
         },
       })
     );
   };
 
-    // stop loader on page refresh
-    useEffect(() => {
-      dispatch(onErrorStopLoad());
-    }, [dispatch]);
+  // stop loader on page refresh
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>

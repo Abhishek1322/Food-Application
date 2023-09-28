@@ -10,16 +10,13 @@ const Router = () => {
         <Route element={<Layouts.UserLayout />}>
           <Route path="/" element={<Containers.Login />} />
           <Route path="/setting" element={<Containers.SettingMain />} />
-
-          {/* Start User Side*/}
-          {/* <Route path="/home-user" element={<Containers.HomeUser />} /> */}
+          <Route path="/home-user" element={<Containers.HomeUser />} />
           <Route path="/ChefDetails" element={<Containers.ChefDetails />} />
           <Route path="/myprofile" element={<Containers.myprofile />} />
           <Route path="/editProfile" element={<Containers.editProfile />} />
         </Route>
 
         <Route element={<Layouts.Chef_Layout />}>
-          <Route path="/home-user" element={<Containers.HomeUser />} />
           <Route path="/new-booking" element={<Containers.NewBooking />} />
           <Route path="/menu" element={<Containers.Menu />} />
           <Route path="/home" element={<Containers.HomeRequsest />} />
@@ -36,7 +33,7 @@ const Router = () => {
 
         <Route element={<Layouts.AuthLayout />}>
           <Route element={<PrivateCheck auth={false} />}>
-          <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
+            <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
             <Route path="/verification" element={<Containers.Verification />} />
             <Route
               path="/create-account/:role"
