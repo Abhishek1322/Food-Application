@@ -7,8 +7,7 @@ const NewBooking = () => {
     <>
       <div className='mainchef_'>
         <div className='Newbooking_'>
-          {/* <section class="content-header">
-            <h1 class="header_heading mb-2"> Info Pages</h1>
+          <section class="content-header">
             <div class="row">
               <div class="Maincontentbox">
                 <div class="infopages">
@@ -152,7 +151,7 @@ const NewBooking = () => {
                 </div>
               </div>
             </div>
-          </section> */}
+          </section>
 
         </div>
       </div>

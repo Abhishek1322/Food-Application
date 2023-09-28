@@ -810,11 +810,11 @@ p {
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
     border-color: transparent !important;
 }
-.nav-link.active {
+/* .nav-link.active {
     background: #E65C00 !important;
     color: #FFF !important;
     border-radius: 7px;
-}
+} */
 .nav-item:last-child .nav-link {
     border-right: 0;
 }

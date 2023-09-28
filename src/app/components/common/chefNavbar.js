@@ -4,7 +4,7 @@ import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
-import CartModal from "./shared/cartModal";
+import  Myorder from "./shared/myorderModal";
 
 const Chef_Navbar = () => {
   const [key, setKey] = useState(Math.random());
@@ -69,7 +69,7 @@ const Chef_Navbar = () => {
                       alt="logo"
                       className="img-fluid basketImg"
                       onClick={() => {
-                        setModalDetail({ show: true, flag: "CartModal" });
+                        setModalDetail({ show: true, flag: "Myorder" });
                         setKey(Math.random());
                       }}
                     />
@@ -96,9 +96,9 @@ const Chef_Navbar = () => {
             ? "chatBox"
             : modalDetail.flag === "Notification"
             ? "Notification"
-            : modalDetail.flag === "CartModal"
-            ? "CartModal"
-            : "CartModal"
+            : modalDetail.flag === "Myorder"
+            ? "Myorder"
+            :  ""
         }
         child={
           modalDetail.flag === "chatBox" ? (
@@ -106,7 +106,7 @@ const Chef_Navbar = () => {
           ) : modalDetail.flag === "Notification" ? (
             <Notification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "CartModal" ? (
-            <CartModal close={() => handleOnCloseModal()} />
+            <Myorder close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
