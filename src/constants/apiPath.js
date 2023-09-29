@@ -12,6 +12,7 @@ const ApiPath = {
     DELETE_ACCOUNT: "/users/",
     CHEF_SETUP_PROFILE: "/users/add-chef-detail",
     CHEF_SETUP_PROFILE_DOCUMENT: "/users/upload-file",
+    CHEF_PROFILE_DETAILS:"/users"
   },
 };
 

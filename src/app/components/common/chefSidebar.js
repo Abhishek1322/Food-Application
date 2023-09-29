@@ -62,8 +62,10 @@ const Chef_Sidebar = () => {
             </li>
           </ul>
         </div>
-        <div className="sidebarProfile ">
-          <img src={Images.chefProfile} alt="logo" className="userprofile" />
+        <div className="sidebarProfile">
+          <Link to="/chef-profile">
+            <img src={Images.chefProfile} alt="logo" className="userprofile" />
+          </Link>
           Profile
         </div>
       </div>

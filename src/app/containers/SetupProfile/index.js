@@ -10,12 +10,10 @@ import AddExpertise from "../../components/common/shared/AddExpertise";
 import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDropzone } from "react-dropzone";
-import moment from "moment";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import DatePicker from "react-datepicker";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";

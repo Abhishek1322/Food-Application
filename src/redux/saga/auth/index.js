@@ -36,7 +36,6 @@ function* chefProfileDocument(action) {
       throw resp;
     }
   } catch (e) {
-    console.log("erororror", e);
     yield put(onErrorStopLoad());
     toast.dismiss();
     toast.error(e.response.data.message);
@@ -287,6 +286,10 @@ function* userLogin(action) {
       localStorage.setItem(
         "userId",
         resp.data.data.id ? resp.data.data.id : ""
+      );
+      localStorage.setItem(
+        "id",
+        resp.data.data.id ? resp.data.data.userId : ""
       );
       yield put(setUserLogin(resp.data.payload));
       yield call(action.payload.cb, (action.res = resp));
