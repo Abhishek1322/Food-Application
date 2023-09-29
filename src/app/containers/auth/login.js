@@ -60,8 +60,11 @@ const Login = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            navigate("/home");
-          } else {
+            if (res.data.data.role === "chef") {
+              navigate("/setup-profile");
+            } else {
+              navigate("/home-user");
+            }
           }
         },
       })
