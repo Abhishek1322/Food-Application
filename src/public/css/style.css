@@ -835,9 +835,10 @@ overflow: auto;
 .Quantiycheck {
     background: #E65C00;
     width: 29px;
-    height: 29px;
+    height: 28px;
     border-radius: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
 .number {

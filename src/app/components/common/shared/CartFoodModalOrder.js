@@ -57,12 +57,13 @@ const CartFoodModalOrder = () => {
                     </div>
                     </div>
                     </div>
+                    <div className='modalfooterbtn'>
                     <div className='orderNow'>
                         <div className='totalPrice'>
                             <p className='price'>£44.00</p>
                         </div>
                         <button className='orderbutton'>Order Now</button>
-
+                    </div>
                     </div>
                 </div>
    </>                               

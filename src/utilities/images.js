@@ -77,10 +77,11 @@ import chefCalender from "../public/images/chefCalender.png"
 import chefLocationImg from "../public/images/chefLocationImg.png"
 import orderDelivery from "../public/images/orderDelivery.svg"
 import EditImg from "../public/images/editimg.svg"
+import Target from "../public/images/target.svg"
+import ZipCode from "../public/images/zipcode.svg"
+import Calendar from "../public/images/calendar.svg"
 import modalHeader from "../public/images/modalHeader.svg"
 import reportchatIcon from "../public/images/reportchatIcon.svg"
-
-
 
 
 export {
@@ -163,6 +164,9 @@ export {
     chefLocationImg,
     orderDelivery,
     EditImg,
+    Target,
+    ZipCode,
+    Calendar,
     modalHeader,
     reportchatIcon,
 }

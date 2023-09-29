@@ -71,12 +71,14 @@ const CartFoodModal = () => {
                 <p className='foodamountmodal'>
                     £22.00
                 </p>
+                <div className='modalfooterbtn'>
                 <div className='addfoodbtn'>
                     <button className='foodmodalbtn' onClick={() => {
                         handleUserProfile("CartFoodOrder")
                     }}>
                         Add to Cart
                     </button>
+                </div>
                 </div>
             </div>
 
