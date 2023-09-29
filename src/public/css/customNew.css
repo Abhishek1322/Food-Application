@@ -827,7 +827,8 @@ p {
     color: #FFF !important;
     border-radius: 7px;
 } */
-.nav-item:last-child .nav-link {
+.nav-item:last-child .nav-link 
+.tabsection .nav-item:last-child .nav-link {
     border-right: 0;
 }
 .tabsection  .nav-item {

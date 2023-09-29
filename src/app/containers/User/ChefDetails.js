@@ -216,6 +216,7 @@ const ChefDetails = () => {
                     modalDetail.flag === "availabilityModal" ? (
                         <AvailableModal
                             close={() => handleOnCloseModal()}
+                            
                         />
                     ) :
                         modalDetail.flag === "CartFood" ? (

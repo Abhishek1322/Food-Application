@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal'
 import ChatnextModal from './chatnextModal'
+import ReportchatDropModal from './reportchatDropModal'
+
 const BellModal = () => {
     const [key, setKey] = useState(Math.random());
     const [modalDetail, setModalDetail] = useState({
@@ -123,15 +125,18 @@ const BellModal = () => {
                 showCloseBtn={false}
                 isRightSideModal={true}
                 mediumWidth={false}
-                className={modalDetail.flag === "chatBell" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "chatBell" ? "chatbellSection" : ""}
+                className={modalDetail.flag === "chatBell " ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "reportchatD" ? "chatbellSection" : modalDetail.flag === "chatBell" ? "chatbellSection" : ""}
                 child={
                     modalDetail.flag === "chatBell" ? (
                         <ChatnextModal
                             close={() => handleOnCloseModal()}
                         />
-                    ) :
-                        ""
+                    ) : modalDetail.flag === "reportchatD" ? (
+                        <ReportchatDropModal close={() => handleOnCloseModal()} />
+                    )
+                        :
+                        ''
                 }
                 header=
 
@@ -159,27 +164,33 @@ const BellModal = () => {
                         {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
                         </p> */}
-                      <div className='Dotsheader_'>
-                      <div class="dropdown ">
-                            <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                               <img src={Images.modalHeader} className=' img-fluid chatreportIcon_'/>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_'/>
-                                <p className='reportchattxt_'>Report Chat</p>
-                            </ul>
+                        <div className='Dotsheader_'>
+                            <div class="dropdown ">
+                                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                                </button>
+                                <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
+                                    <div className=' chatnext_ flexBox' onClick={() => {
+                                        handleUserProfile("reportchatD")
+                                    }}>
+                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                        <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
+                                    </div>
+                                </ul>
+                            </div>
                         </div>
-                      </div>
                     </>
                     :
-                    modalDetail.flag === "chatBell" ?
+                    modalDetail.flag === "reportchatD" ?
                         <>
-                            {/* <h2 className="modal_Heading">
-                                Cart
-                            </h2> */}
-                            {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-                                <img src={Images.modalCancel} className='ModalCancel' />
-                            </p> */}
+                            <div className='Common_header'>
+                                <img
+                                    src={Images.backArrowpassword}
+                                    alt="logo"
+                                    className="img-fluid  arrowCommon_"
+                                />
+                                <p className='headerTxt_ m-0 ps-2'>Report Chat</p>
+                            </div>
                         </>
                         :
                         ''

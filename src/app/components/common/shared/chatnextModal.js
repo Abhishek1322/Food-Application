@@ -8,7 +8,7 @@ const ChatnextModal = () => {
         <div className='modalDetail '>
           <div className='chatnext'>
             <div className='left_chatBox'>
-              <p className='cheftext'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
+              <p className='chat_Text'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
               <div className='chefchat_detail'>
               <img src={Images.homeProfile} alt="logo" className="chatnextImg" />
               <p className='chatUser m-0 ps-1 pe-2'>John Smith</p>
@@ -18,7 +18,7 @@ const ChatnextModal = () => {
             </div>
             <div className='right_chatBox'>
            <div className='chatinRight_'>
-           <p className='cheftext'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
+           <p className='chat_Text'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
            </div>
               <div className='chefchat_detail'>
               <p className='chatTime_ m-0 pe-2 '>2:36 pm</p>

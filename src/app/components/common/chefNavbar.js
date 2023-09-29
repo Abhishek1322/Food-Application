@@ -97,7 +97,7 @@ const Chef_Navbar = () => {
             : modalDetail.flag === "Notification"
             ? "Notification"
             : modalDetail.flag === "Myorder"
-            ? "Myorder"
+            ? "myOrder"
             :  ""
         }
         child={
@@ -105,7 +105,7 @@ const Chef_Navbar = () => {
             <BellModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Notification" ? (
             <Notification close={() => handleOnCloseModal()} />
-          ) : modalDetail.flag === "CartModal" ? (
+          ) : modalDetail.flag === "Myorder" ? (
             <Myorder close={() => handleOnCloseModal()} />
           ) : (
             ""
@@ -126,9 +126,9 @@ const Chef_Navbar = () => {
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
             </>
-          ) : modalDetail.flag === "CartModal" ? (
+          ) : modalDetail.flag === "Myorder" ? (
             <>
-              <h2 className="modal_Heading">Cart</h2>
+              <h2 className="modal_Heading">My Order</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
