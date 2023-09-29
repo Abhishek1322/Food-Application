@@ -20,7 +20,7 @@ const Chef_Sidebar = () => {
                   : "sidebarLinks"
               }
             >
-              <Link to="/home-user" className="sidebarItems">
+              <Link to="/home" className="sidebarItems">
                 <img src={Images.homeOrange} className="imgHide" />
                 <img src={Images.Home} className="imgShow" />
                 <span className="d-block">Home</span>

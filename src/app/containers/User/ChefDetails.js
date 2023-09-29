@@ -75,11 +75,11 @@ const ChefDetails = () => {
                                     </div>
                                     <p className='availableheading'>Availability</p>
                                 </button>
-                                <button className='sarahcallbtn'>
+                                {/* <button className='sarahcallbtn'>
                                     <div className='availableimg'>  <img src={Images.CallImg} alt='timesquareimage' className='img-fluid' />
                                     </div>
                                     <p className='availableheading'>Call</p>
-                                </button>
+                                </button> */}
                                 <button className='sarahmessagebtn'>
                                     <div className='availableimg'>  <img src={Images.ChefChat} alt='timesquareimage' className='img-fluid' />
                                     </div>

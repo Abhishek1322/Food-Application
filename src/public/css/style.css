@@ -280,7 +280,6 @@ li {
 
 .settingBoxtxt {
     color: #2E3333;
-
     font-size: 18px;
     font-weight: 600;
 }
@@ -617,8 +616,6 @@ overflow: auto;
 
 .modalDetail {
     border-radius: 15px;
-    background: #FFF;
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -719,7 +716,7 @@ overflow: auto;
 }
 
 .cheftext {
-    color: #979999;
+    color: #fff;
     font-size: 12px;
     font-weight: 400;
     margin: 0;
@@ -990,7 +987,7 @@ overflow: auto;
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .homeProfileBox {
@@ -1601,6 +1598,68 @@ overflow: auto;
 /* Report chat css end */
 
 /* ChatnextModal CSs Start  */
+.modalHeader_ {
+    color: #979999;
+    font-size: 16px;
+    width: 3px;
+    height: 3px;
+}
+.chatnextImg {
+    width: 20px;
+    height: 20px;
+}
+.arrowCommon_ {
+    width: 30px;
+    height: 30px;
+}
+.headerImg_ {
+    width: 46px;
+    height: 46px;
+    margin: 0 10px 0 7px;
+}
+.Common_header {
+    display: flex;
+    align-items: center;
+}
+.headerInner_:before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #35B539;
+    border-radius: 50px;
+    top: 5px;
+    left: -11px;
+}
+.headerTxt_ {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 600;
+}
+.headerInner_ {
+    color: #979999;
+    font-size: 12px;
+    font-weight: 600;
+    position: relative;
+    margin-left: 11px;
+}
+#chatbellSection {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 30px;
+    right: 6px;
+}
+.modal-content {
+    width: 100%;
+    max-width: 362px;
+    border-radius: 20px;
+    background: #FFF;
+    padding: 0;
+    position: relative;
+}
 .chatUser {
     color: #979999;
     font-size: 12px;
@@ -1616,6 +1675,7 @@ overflow: auto;
 .chefchat_detail {
     display: flex;
     align-items: center;
+    padding-top: 5px;
 }
 
 .chatinRight_ {
@@ -1632,6 +1692,8 @@ overflow: auto;
     flex-direction: column;
     justify-content: end;
     align-items: end;
+    border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
+    padding-bottom: 57px;
 }
 
 .chatSearchere_ {
@@ -1642,7 +1704,7 @@ overflow: auto;
 }
 
 .chatnext {
-    padding-top: 200px;
+    padding-top: 380px;
 }
 
 .sendImg {
@@ -1650,21 +1712,26 @@ overflow: auto;
     background: #E65C00;
     box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.30);
     padding: 10px;
-    margin-left: 15px;
+    margin-left: 33px;
+    position: absolute;
+    right: 15px;
+    top: 7px;
 }
 
 .gallerImg {
     padding-left: 28px;
 }
-
 .chatSearchHere_ {
-    padding: 7px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 80px;
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
+    fill: #FFF;
+    filter: drop-shadow(0px 9px 19px rgba(230, 92, 0, 0.03));
+    border: 1px solid rgba(230, 92, 0, 0.08);
+    border-radius: 20px;
+    position: relative;
+    padding: 18px 21px;
+    margin-top: 20px;
 }
-
 .chatheadtext {
     color: #2E3333;
     font-size: 16px;
@@ -1692,6 +1759,10 @@ overflow: auto;
 /* ChatnextModal CSs End  */
 
 /* loader css start  */
+.Dotsheader_ .modalheaderDot_ {
+    background: transparent;
+    border: none;
+}
 .changepsw_loader {
     height: 100vh;
     background-color: #ffffff;
@@ -1746,3 +1817,5 @@ overflow: auto;
   
 
 /* loader css End  */
+
+

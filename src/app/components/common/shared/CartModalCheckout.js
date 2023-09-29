@@ -105,7 +105,7 @@ const CartModalCheckout = () => {
                             </div>
                             <p className='cheftext mt-2'>New York, 10003, 2nd Street dorm</p>
                             <div class="round">
-                                <input id="" name="" type="checkbox" value="" class="checkbx" />
+                                <input id="" name="" type="checkbox" value="" class="checkbx"/>
                             </div>
                         </div>
                         <div className='checkouthome'>

@@ -663,6 +663,9 @@ p {
     justify-content: space-between;
     margin-top: 27px;
 }
+.cartcheckoutsection .cheftext{
+    color: #979999;
+}
 
 .checkouthome {
     border-radius: 15px;
@@ -818,7 +821,13 @@ p {
     color: #FFF !important;
     border-radius: 7px;
 }
-.tabsection .nav-item:last-child .nav-link {
+/* .tabsection .nav-item:last-child .nav-link {
+.nav-link.active {
+    background: #E65C00 !important;
+    color: #FFF !important;
+    border-radius: 7px;
+} */
+.nav-item:last-child .nav-link {
     border-right: 0;
 }
 .tabsection  .nav-item {
@@ -883,7 +892,6 @@ p {
 #paydonemodal .modal-header,
 #paydonemodal .modal_Heading {
     border: none;
-
 }
 .paymentdonesection {
   text-align: center;
@@ -901,4 +909,172 @@ margin: auto;
     background-size: 29px 8px !important;
     appearance: none !important;
 }
+.main_Setting .availableheading{
+    padding: 0;
+}
+.main_Setting .sarahmessagebtn {
+    padding: 18px 36px;
+    background-color: #E65C00;
+    border: none;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+.main_Setting .booknowimg{
+margin-right: 10px;
+}
+#ordermodalplace .modal-header,
+#ordermodalplace .modal_Heading {
+    border: none;
+}
 
+#ordermodalplace .modal_Heading {
+    display: none;
+}
+
+#ordermodalplace .modal_cancel {
+    margin-left: auto;
+}
+#ordermodalplace{
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#ordermodalplace .accountdeletetxt {
+    max-width: 245px;
+}
+.orderprogress{
+    width: 25%;
+    background-color: #E65C00;
+}
+.orderbar {
+    margin-top: 21px;
+    background-color: hsl(24 100% 94% / 1);
+    border-radius: 50px;
+    height: 10px;
+}
+.progressheading{
+    color: #979999;
+text-align: right;
+font-size: 12px;
+font-weight: 600;
+}
+.orderplacesection .itemsQuantity{
+       margin-top: 30px;
+}
+#yourordermodalplace .modal-header,
+#yourordermodalplace .modal_Heading {
+    border: none;
+}
+
+#yourordermodalplace .modal_Heading {
+    display: none;
+}
+
+#yourordermodalplace .modal_cancel {
+    margin-left: auto;
+}
+#yourordermodalplace{
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#yourordermodalplace .settingBoxtxt {
+    border-radius: 8px;
+background: #EEEFEF;
+padding: 18px 30px;
+}
+#yourordermodalplace .foodmodalbtn{
+    width: auto;
+    padding: 18px 30px;
+}
+ .yourordersection .addfoodbtn {
+    justify-content: space-around;
+    display: flex;
+}
+.yourordersection .accountDeleted {
+    max-width: 249px;
+    margin: auto;
+}
+#ordermodalcancel{
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+#ordermodalcancel .modal-header,
+#ordermodalcancel .modal_Heading {
+    border: none;
+}
+.ordercancelsection .accountdeletetxt{
+    max-width: 250px;
+} 
+#bookchefmodal{
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+.booknowsection .modalfooterbtn{
+    right: 15px;
+}
+.bookslots .daytimes{
+    display: inline-flex;
+    margin-right: 6px;
+width: 128px;
+padding: 5px 8px;
+align-items: center;
+gap: 6px;
+}
+.bookslots .daytimesheading{
+    font-size: 10px;
+}
+.daytimes.active{
+    background-color:rgba(230, 92, 0, 0.10);
+
+}
+.daytimes.active  .daytimesheading{
+    color: #E65C00;
+}
+.darktime{
+    display: none;
+}
+.daytimes.active .darktime{
+   display: block;
+}
+.daytimes.active .lighttime{
+    display: none;
+ }
+ #chefbookmodal{
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+ }
+ .chefbookmodalsection .chatheadtext {
+    font-family: Crimson Text                                                                                                                             ;
+ }
+.restrodetail{
+    border-radius: 4px;
+    background: #FADECC;
+    padding: 6px 8px;
+    color: #E65C00;
+text-align: center; 
+font-size: 9px;
+font-weight: 600;
+line-height: normal;
+margin-left: 6px;
+}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal';
-import OrderPlaceModal from './OrderPlaceModal';
+import YourOrderModal from './YourOrderModal';
 
-const PaymentDoneModal = () => {
+const OrderPlaceModal = () => {
     const [key, setKey] = useState(Math.random());
     const [modalDetail, setModalDetail] = useState({
         show: false,
@@ -32,18 +32,25 @@ const PaymentDoneModal = () => {
     };
     return (
         <>
-            <div className='paymentdonesection'>
-                <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
-                <p className='accountDeleted mt-3'> Payment Done</p>
-                <p className='accountdeletetxt mt-2 '>Your payment has been successfully done
-                    for order no. #12458</p>
-                <div className='modalfooterbtn'>
-                    <div className='addfoodbtn'>
-                        <button className='foodmodalbtn' onClick={() => {
-                                            handleUserProfile("orderplace")
+            <div className='orderplacesection'>
+                <div className='paymentdonesection'>
+                    <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
+                    <p className='accountDeleted mt-3'> Order Placed</p>
+                    <p className='accountdeletetxt mt-2 '>Your order has been
+                        successfully placed.</p>
+                    <div className='modalfooterbtn'>
+                        <div className='addfoodbtn'>
+                            <button className='foodmodalbtn' onClick={() => {
+                                            handleUserProfile("yourorderplace")
                                         }}>
-                            Order Placed
-                        </button>
+                            Okay
+                            </button>
+                        </div>
+                        <div class="progress orderbar">
+                            <div class="progress-bar orderprogress" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p className='progressheading'>59 Sec</p>
+                        <button className='itemsQuantity'>Cancel Order</button>
                     </div>
                 </div>
             </div>
@@ -54,11 +61,11 @@ const PaymentDoneModal = () => {
                 showCloseBtn={false}
                 isRightSideModal={true}
                 mediumWidth={false}
-                className={modalDetail.flag === "orderplace" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "orderplace" ? "ordermodalplace" : ""}
+                className={modalDetail.flag === "yourorderplace" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "yourorderplace" ? "yourordermodalplace" : ""}
                 child={
-                    modalDetail.flag === "orderplace" ? (
-                        <OrderPlaceModal
+                    modalDetail.flag === "yourorderplace" ? (
+                        <YourOrderModal
                             close={() => handleOnCloseModal()}
                         />
                     ) :
@@ -66,7 +73,7 @@ const PaymentDoneModal = () => {
                 }
                 header=
 
-                {modalDetail.flag === "orderplace" ?
+                {modalDetail.flag === "yourorderplace" ?
                     <>
                         {/* <div className='editadressheading'>
                             <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
@@ -90,4 +97,4 @@ const PaymentDoneModal = () => {
     )
 }
 
-export default PaymentDoneModal
+export default OrderPlaceModal

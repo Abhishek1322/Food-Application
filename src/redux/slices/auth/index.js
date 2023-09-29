@@ -4,12 +4,20 @@ const initialState = {
   userInfo: {},
   isLoggedIn: false,
   loading: false,
+  chefDocumentUrl: [],
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    chefProfileDocument: (state) => {
+      state.loading = true;
+    },
+    setChefProfileDocument: (state, action) => {
+      state.loading = false;
+      action.chefDocumentUrl = action.payload;
+    },
     chefSetupProfile: (state) => {
       state.loading = true;
     },
@@ -123,6 +131,8 @@ export const {
   setDeleteAccount,
   chefSetupProfile,
   setChefSetupProfile,
+  chefProfileDocument,
+  setChefProfileDocument,
 } = authSlice.actions;
 
 export default authSlice.reducer;
