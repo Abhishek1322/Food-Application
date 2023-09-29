@@ -1,8 +1,39 @@
 import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
-
+import CustomModal from './CustomModal'
+import MyRecentOrderModal from './myRecentOrderModal';
 
 const Myorder = () => {
+
+    const slides = Array(12).join().split(',').map(function (a) { return this.i++ }, { i: 1 });
+
+    const [key, setKey] = useState(Math.random());
+    const [modalDetail, setModalDetail] = useState({
+        show: false,
+        title: "",
+        flag: "",
+    });
+
+    //closeModal
+    const handleOnCloseModal = () => {
+        setModalDetail({
+            show: false,
+            title: "",
+            flag: "",
+        });
+        setKey(Math.random());
+    };
+
+    const handleUserProfile = (flag) => {
+
+        setModalDetail({
+            show: true,
+            flag: flag,
+            type: flag,
+        });
+        setKey(Math.random());
+    };
+
     return (
         <>
             <div className='modalContent'>
@@ -52,7 +83,9 @@ const Myorder = () => {
                                                             </div>
                                                             <div className='orderItems'>
                                                                 <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder'>ACCEPT</button>
+                                                                <button className='acceptOrder' onClick={() => {
+                                                handleUserProfile("myRecentOrder")
+                                            }}>ACCEPT</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -132,6 +165,58 @@ const Myorder = () => {
                     </div>
                 </div>
             </div>
+            <CustomModal
+                key={key}
+                show={modalDetail.show}
+                backdrop="static"
+                showCloseBtn={false}
+                isRightSideModal={true}
+                mediumWidth={false}
+                className={modalDetail.flag === "myRecentOrder" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "myRecentOrder" ? "recentOrder": ""}
+                child={
+                    modalDetail.flag === "myRecentOrder" ? (
+                        <MyRecentOrderModal
+                            close={() => handleOnCloseModal()}
+                            
+                        />
+                    ) :
+                            ""
+                }
+                header=
+
+                {modalDetail.flag === "myRecentOrder" ?
+                    <>
+                     <div className='Common_header'>
+                     <img
+                                src={Images.backArrowpassword}
+                                alt="logo"
+                                className="img-fluid  arrowCommon_"
+                            />
+                            <div className='headerProfile ps-2'>
+                            <p className='modal_Heading'>Order #12548</p>
+                            <p className='innerhead_ ps-3'>Recent Order</p>
+                            </div>
+                     </div>
+                        <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <img src={Images.modalCancel} className='ModalCancel' />
+                        </p>
+                    </>
+                    :
+                    modalDetail.flag === "CartFood" ?
+                        <>
+                            {/* <h2 className="modal_Heading">
+                                Cart
+                            </h2> */}
+                            <p onClick={handleOnCloseModal} className='modal_cancel'>
+                                <img src={Images.modalCancel} className='ModalCancel' />
+                            </p>
+                        </>
+                        :
+                        ''
+                }
+                onCloseModal={() => handleOnCloseModal()}
+            />
 
         </>
     )

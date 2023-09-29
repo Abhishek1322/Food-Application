@@ -456,7 +456,7 @@ const SetupProfile = () => {
                                   </div>
                                 </div>
                                 <div className="col-lg-12">
-                                  <div className="input-container mt-5">
+                                  <div className="input-container locationData mt-5">
                                     <PlacesAutocomplete
                                       className=""
                                       autoComplete="off"

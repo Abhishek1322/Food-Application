@@ -717,11 +717,18 @@ overflow: auto;
 }
 
 .cheftext {
-    color: #fff;
     font-size: 12px;
     font-weight: 400;
     margin: 0;
     padding-bottom: 7px;
+    color: #979999;
+}
+.chat_Text{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 7px; 
 }
 
 .chatTime {
@@ -906,7 +913,7 @@ overflow: auto;
 
 #chatBox,
 #Notification,
-#CartModal {
+#CartModal,#myOrder ,#reportChatD ,#myorderReport ,#recentOrder {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1599,6 +1606,17 @@ overflow: auto;
 /* Report chat css end */
 
 /* ChatnextModal CSs Start  */
+.chatmenu_ {
+    background-color: #FFF;
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.20));
+    width: 147px;
+    height: 46px;
+    transform: translate(-22px, 39px) !important;
+}
+.chatnext_ {
+    align-items: center;
+    justify-content: center;
+}
 .modalHeader_ {
     color: #979999;
     font-size: 16px;
@@ -1755,9 +1773,63 @@ overflow: auto;
     padding-bottom: 412px;
 }
 
-
-
 /* ChatnextModal CSs End  */
+
+
+/* Report chat (Dropdown) css start */
+.reportText_ {
+    color: #2E3333;
+    font-size: 16px;
+    font-weight: 600;
+}
+.Reportborder-input {
+    width: 100%;
+    padding: 15px 25px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    fill: #FFF;
+    stroke-width: 1px;
+    stroke: #E9E9E9;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
+    max-width: 311px;
+    height: 140px;
+}
+.cancelOrder_ {
+    color: #E65C00;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid #E65C00;
+    background: #FFF;
+    display: flex;
+    width: 150px;
+    padding: 18px 45px;
+    justify-content: center;
+    align-items: center;
+}
+.submitOrder_ {
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    background: #E65C00;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    display: flex;
+    width: 150px;
+    padding: 18px 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+/* Report chat (Dropdown) css end */
+
 
 /* loader css start  */
 .Dotsheader_ .modalheaderDot_ {
@@ -1819,4 +1891,33 @@ overflow: auto;
 
 /* loader css End  */
 
+/*  myRecentorder Css Start */
+.innerhead_:before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #ABADAD;
+    border-radius: 50px;
+    top: 5px;
+    left: 5px;
+}
+.innerhead_ {
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 600;
+    position: relative;
+}
+/* .locationData .autocomplete-dropdown-container{
+    background-color:  rebeccapurple;
+    border-radius: 10px;
+    padding:10px;
+} */
+.location-search-input.customform-control.border-input{
+    background-color:  rebeccapurple !important;
+}
+.location-search-input.customform-control.border-input.focus-visible{
+    background-color:  none !important;
+}
+/*  myRecentorder Css End */
 

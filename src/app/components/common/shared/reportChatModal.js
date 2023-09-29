@@ -2,7 +2,7 @@ import React from 'react'
 import * as Images from "../../../../utilities/images"
 
 
-const reportChatModal = () => {
+const ReportChatModal = () => {
   return (
 <>
 <div className='modalContent'>
@@ -27,4 +27,4 @@ const reportChatModal = () => {
   )
 }
 
-export default reportChatModal
+export default ReportChatModal
