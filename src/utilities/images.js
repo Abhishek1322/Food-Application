@@ -84,6 +84,8 @@ import modalHeader from "../public/images/modalHeader.svg"
 import reportchatIcon from "../public/images/reportchatIcon.svg"
 import orderMsgImg from "../public/images/orderMsgImg.svg"
 import categoryImg from "../public/images/categoryImg.svg"
+import menuDishImg from "../public/images/menuDishImg.svg"
+
 
 
 
@@ -175,4 +177,5 @@ export {
     reportchatIcon,
     orderMsgImg,
     categoryImg,
+    menuDishImg,
 }

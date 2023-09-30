@@ -2014,3 +2014,58 @@ overflow: auto;
 }
 /* Order Delivered modal css End */
 
+/* ------------- MEnu  ModaL-- Edit  PAge Css Start   */
+.menuReport_button {
+    width: 100%;
+    padding: 15px 25px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    fill: #FFF;
+    stroke-width: 1px;
+    stroke: #E9E9E9;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
+    flex-shrink: 0;
+    position: relative;
+    max-width: 310px;
+    height: 56px;
+    flex-shrink: 0;
+}
+.menuEditbuttom {
+    width: 100%;
+    padding: 15px 25px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    fill: #FFF;
+    stroke-width: 1px;
+    stroke: #E9E9E9;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
+    flex-shrink: 0;
+    position: relative;
+    max-width: 310px;
+    flex-shrink: 0;
+    max-width: 136px;
+    height: 56px;
+}
+.cateofyImg_ {
+    position: absolute;
+    right: 30px;
+    top: 16px;
+}
+
+/* ------------- MEnu  ModaL-- Edit  PAge Css End   */
+
+
