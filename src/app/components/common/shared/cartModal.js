@@ -160,11 +160,7 @@ const CartModal = () => {
             </section>
           </div>
         </div>
-
-
-
-
-      </div>
+        </div>
       <CustomModal
         key={key}
         show={modalDetail.show}
