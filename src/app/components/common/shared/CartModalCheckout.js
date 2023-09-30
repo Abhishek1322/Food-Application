@@ -95,8 +95,7 @@ const CartModalCheckout = () => {
                             <div className='homedropdown mt-2'>
                                 <p className='notificationText'>Home</p>
                                 <div class="dropdown dropend">
-                                    <i class="fas fa-ellipsis-v dropdownicon dropdown-toggle" data-bs-toggle="dropdown">
-                                    </i>
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
@@ -112,8 +111,7 @@ const CartModalCheckout = () => {
                             <div className='homedropdown mt-2'>
                                 <p className='notificationText'>Office</p>
                                 <div class="dropdown dropend">
-                                    <i class="fas fa-ellipsis-v dropdownicon dropdown-toggle" data-bs-toggle="dropdown">
-                                    </i>
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>

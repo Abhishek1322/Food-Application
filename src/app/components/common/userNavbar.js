@@ -6,6 +6,7 @@ import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
 import CartModal from "./shared/cartModal";
 import BookNowModal from "./shared/BookNowModal";
+import UserBellModal from "./shared/UserBellModal";
 
 const User_Navbar = () => {
   const [key, setKey] = useState(Math.random());
@@ -27,13 +28,12 @@ const User_Navbar = () => {
   const handleUserProfile = (flag) => {
 
     setModalDetail({
-        show: true,
-        flag: flag,
-        type: flag,
+      show: true,
+      flag: flag,
+      type: flag,
     });
     setKey(Math.random());
-};
-
+  };
   return (
     <>
       <div className="main_Setting">
@@ -52,8 +52,7 @@ const User_Navbar = () => {
                         alt="logo"
                         className="img-fluid chatIconImage"
                         onClick={() => {
-                          setModalDetail({ show: true, flag: "chatBox" });
-                          setKey(Math.random());
+                          handleUserProfile("chatmessage")
                         }}
                       />
                     </figure>
@@ -106,11 +105,11 @@ const User_Navbar = () => {
         isRightSideModal={true}
         mediumWidth={false}
         className={
-          modalDetail.flag === "chatBox" ? "commonWidth customContent" : ""
+          modalDetail.flag === "chatmessage" ? "commonWidth customContent" : ""
         }
         ids={
-          modalDetail.flag === "chatBox"
-            ? "chatBox"
+          modalDetail.flag === "chatmessage"
+            ? "chatmessagemodal"
             : modalDetail.flag === "Notification"
               ? "Notification"
               : modalDetail.flag === "CartModal"
@@ -120,8 +119,8 @@ const User_Navbar = () => {
                   : ""
         }
         child={
-          modalDetail.flag === "chatBox" ? (
-            <BellModal close={() => handleOnCloseModal()} />
+          modalDetail.flag === "chatmessage" ? (
+            <UserBellModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Notification" ? (
             <Notification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "CartModal" ? (
@@ -133,7 +132,7 @@ const User_Navbar = () => {
           )
         }
         header={
-          modalDetail.flag === "chatBox" ? (
+          modalDetail.flag === "chatmessage" ? (
             <>
               <h2 className="modal_Heading">Chat</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
@@ -156,12 +155,12 @@ const User_Navbar = () => {
             </>
           ) : modalDetail.flag === "bookchef" ? (
             <>
-                <div className='edithead'>
-                  <h2 className="modal_Heading">
+              <div className='edithead'>
+                <h2 className="modal_Heading">
                   Hire Chef
-                  </h2>
-                  <p className='chatUser'>Enter your venue details below.</p>
-                </div>
+                </h2>
+                <p className='chatUser'>Enter your venue details below.</p>
+              </div>
               <p onClick={handleOnCloseModal} className='modal_cancel'>
                 <img src={Images.modalCancel} className='ModalCancel' />
               </p>

@@ -84,6 +84,12 @@ import modalHeader from "../public/images/modalHeader.svg"
 import reportchatIcon from "../public/images/reportchatIcon.svg"
 import OrderPlace from "../public/images/orderplace.png"
 import ColorClock from "../public/images/orangeclock.svg"
+import UserProfileRate from "../public/images/userprofilerate.svg"
+import UserRating from "../public/images/userating.svg"
+import RatingStar from "../public/images/ratingstar.svg"
+import LightStar from "../public/images/lightstar.svg"
+import LargeStar from "../public/images/largestar.svg"
+import DeleteModal from "../public/images/Deletmodal.png"
 
 
 
@@ -175,4 +181,10 @@ export {
     reportchatIcon,
     OrderPlace,
     ColorClock,
+    UserProfileRate,
+    UserRating,
+    RatingStar,
+    LightStar,
+    LargeStar,
+    DeleteModal,
 }
