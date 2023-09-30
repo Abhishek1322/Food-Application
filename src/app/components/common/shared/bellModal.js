@@ -181,18 +181,6 @@ const BellModal = () => {
                         </div>
                     </>
                     :
-                    modalDetail.flag === "reportchatD" ?
-                        <>
-                            <div className='Common_header'>
-                                <img
-                                    src={Images.backArrowpassword}
-                                    alt="logo"
-                                    className="img-fluid  arrowCommon_"
-                                />
-                                <p className='headerTxt_ m-0 ps-2'>Report Chat</p>
-                            </div>
-                        </>
-                        :
                         ''
                 }
                 onCloseModal={() => handleOnCloseModal()}

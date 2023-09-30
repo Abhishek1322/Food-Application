@@ -82,6 +82,10 @@ import ZipCode from "../public/images/zipcode.svg"
 import Calendar from "../public/images/calendar.svg"
 import modalHeader from "../public/images/modalHeader.svg"
 import reportchatIcon from "../public/images/reportchatIcon.svg"
+import orderMsgImg from "../public/images/orderMsgImg.svg"
+import categoryImg from "../public/images/categoryImg.svg"
+
+
 
 
 export {
@@ -169,4 +173,6 @@ export {
     Calendar,
     modalHeader,
     reportchatIcon,
+    orderMsgImg,
+    categoryImg,
 }

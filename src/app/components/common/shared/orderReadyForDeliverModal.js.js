@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal'
-import ChatWithChefModal from './chatWithChefModal'
+import OrderDeliveredModal from './orderDeliveredModal'
 
-
-const MyRecentOrderModal = () => {
+const OrderReadyForDelivery = () => {
     const [key, setKey] = useState(Math.random());
     const [modalDetail, setModalDetail] = useState({
         show: false,
         title: "",
         flag: "",
     });
-
+  
     //closeModal
     const handleOnCloseModal = () => {
         setModalDetail({
@@ -21,9 +20,9 @@ const MyRecentOrderModal = () => {
         });
         setKey(Math.random());
     };
-
+  
     const handleUserProfile = (flag) => {
-
+  
         setModalDetail({
             show: true,
             flag: flag,
@@ -31,10 +30,9 @@ const MyRecentOrderModal = () => {
         });
         setKey(Math.random());
     };
-
-    return (
-        <>
-            <div className='myrecentOrders_'>
+  return (
+   <>
+    <div className='myrecentOrders_'>
                 <div className='modalscroll'>
                     <div className='orderProfile'>
                         <div class="profileInfo">
@@ -46,9 +44,7 @@ const MyRecentOrderModal = () => {
                                 </div>
                             </div>
                             <div className='chat_'>
-                                <img src={Images.orderMsgImg} className='orderchat' onClick={() => {
-                                    handleUserProfile("chatAboutOrder")
-                                }} />
+                                <img src={Images.orderMsgImg} className='orderchat'  />
                             </div>
                         </div>
                         <p className='notificationText pt-3'>Delivery Address</p>
@@ -81,13 +77,12 @@ const MyRecentOrderModal = () => {
                         <p className='chat_Text m-0 pb-0'>Total paid</p>
                         <p className='chat m-0'>£44.00</p>
                     </div>
-                    <div className='orderItems_ flexBox justify-content-between '>
-                        <button className='cancelOrder_' >Cancel</button>
-                        <button className='submitOrder_'>Yes, Report</button>
-                    </div>
+                   <button className='readyForDelivery' onClick={() => {
+                        handleUserProfile("OrderDelivered")
+                    }}>Order Ready for Delivery</button>
                 </div>
             </div>
-
+            
             <CustomModal
                 key={key}
                 show={modalDetail.show}
@@ -95,63 +90,40 @@ const MyRecentOrderModal = () => {
                 showCloseBtn={false}
                 isRightSideModal={true}
                 mediumWidth={false}
-                className={modalDetail.flag === "chatAboutOrder" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "chatAboutOrder" ? "orderchat" : ""}
+                className={modalDetail.flag === "OrderDelivered" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "OrderDelivered" ? "orderDeliverperfectly":''}
                 child={
-                    modalDetail.flag === "chatAboutOrder" ? (
-                        <ChatWithChefModal
+                    modalDetail.flag === "OrderDelivered" ? (
+                        <OrderDeliveredModal
                             close={() => handleOnCloseModal()}
-
+                            
                         />
                     ) :
-                        ""
+                            ""
                 }
                 header=
 
-                {modalDetail.flag === "chatAboutOrder" ?
+                {modalDetail.flag === "OrderDelivered" ?
                     <>
                         <div className='Common_header'>
-                            <img
+                     <img
                                 src={Images.backArrowpassword}
                                 alt="logo"
                                 className="img-fluid  arrowCommon_"
                             />
-                            <img
-                                src={Images.userProfile}
-                                alt="logo"
-                                className="img-fluid  headerImg_"
-                            />
-                            <div className='headerProfile'>
-                                <p className='headerTxt_'>John Smith</p>
-                                <p className='headerInner_'>Online</p>
+                            <div className='headerProfile ps-2'>
+                            <p className='modal_Heading'>Order #12548</p>
+                            <p className='innerhead_ ps-3'>Ready for Delivery</p>
                             </div>
-
-
-
-                        </div>
-                        <div className='Dotsheader_'>
-                            <div class="dropdown ">
-                                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
-                                </button>
-                                <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
-                                    <div className=' chatnext_ flexBox' onClick={() => {
-                                        handleUserProfile("reportchatD")
-                                    }}>
-                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
-                                        <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
-                                    </div>
-                                </ul>
-                            </div>
-                        </div>
+                     </div>
                     </>
                     :
-                    ''
+                        ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />
-        </>
-    )
+   </>
+  )
 }
 
-export default MyRecentOrderModal
+export default OrderReadyForDelivery

@@ -198,9 +198,9 @@ const Myorder = () => {
                             <p className='innerhead_ ps-3'>Recent Order</p>
                             </div>
                      </div>
-                        <p onClick={handleOnCloseModal} className='modal_cancel'>
+                        {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
-                        </p>
+                        </p> */}
                     </>
                     :
                     modalDetail.flag === "CartFood" ?

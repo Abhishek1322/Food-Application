@@ -16,7 +16,7 @@ const ReportChatModal = () => {
             <p className='subHeading m-0'>Are you sure, you want to delete this chat?</p>
            
           </div>
-          <div className='orderItems'>
+          <div className='orderItems '>
               <button className='cancelOrder'>CANCEL</button>
               <button className='acceptOrder'>Yes, Delete</button>
             </div>

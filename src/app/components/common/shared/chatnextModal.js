@@ -8,7 +8,7 @@ const ChatnextModal = () => {
         <div className='modalDetail '>
           <div className='chatnext'>
             <div className='left_chatBox'>
-              <p className='chat_Text'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
+              <p className='innerchat_'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
               <div className='chefchat_detail'>
               <img src={Images.homeProfile} alt="logo" className="chatnextImg" />
               <p className='chatUser m-0 ps-1 pe-2'>John Smith</p>
@@ -24,16 +24,17 @@ const ChatnextModal = () => {
               <p className='chatTime_ m-0 pe-2 '>2:36 pm</p>
               <p className='chatUser m-0 pe-1'>You</p>
               <img src={Images.homeProfile} alt="logo" className="chatnextImg" />
-            
-            
-
               </div>
              
 
             </div>
             <div className='chatSearchHere_'>
                 <input className='chatSearchere_' type='text' placeholder='Type Something...' />
-               <img src={Images.chatgalleryImg} alt="logo" className="gallerImg" data-tooltip title="Click to go [crazy]"/>
+               <img src={Images.chatgalleryImg} alt="logo" className="gallerImg infoimg "/>
+             
+                                            <div className='sarahinformation'>
+                                                <p className='chatSearchere_ '>Your only able to send photos from gallery</p>
+                                            </div>
                 <img src={Images.chatSendImg} alt="logo" className="sendImg" />
 
               </div> 

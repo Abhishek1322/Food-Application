@@ -43,7 +43,7 @@ const ReportchatDropModal = () => {
           <label className="border-label">Give a reason</label>
         </div>
 
-        <div className='orderItems_ flexBox justify-content-between'>
+        <div className='orderItems_ flexBox justify-content-between modalfooterbtn'>
               <button className='cancelOrder_' >Cancel</button>
               <button className='submitOrder_'  onClick={() => {
                         handleUserProfile("myReportOrder")
