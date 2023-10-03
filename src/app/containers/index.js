@@ -28,7 +28,7 @@ import OrderDetails from "../containers/Chef/Home/OrderDetails"
 import AnotherOrderdetail from "../containers/Chef/Home/AnotherOrderdetail"
 import HomeUser from "../containers/User/Home"
 import myprofile from "../containers/Chef/myProfile"
-import editProfile from "../containers/Chef/myProfile/editProfile"
+import EditProfile from "../containers/Chef/myProfile/editProfile"
 import ChefDetails from "../containers/User/ChefDetails"
 
 
@@ -66,7 +66,7 @@ export {
     OrderDetails,
     AnotherOrderdetail,
     HomeUser,
-    editProfile,
+    EditProfile,
     myprofile,
     ChefDetails
 }

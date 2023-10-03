@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
-import BellModal from "./shared/bellModal";
-import Notification from "./shared/notification";
 import CartModal from "./shared/cartModal";
 import BookNowModal from "./shared/BookNowModal";
 import UserBellModal from "./shared/UserBellModal";
+import UserNotification from "./shared/UserNotification";
 
 const User_Navbar = () => {
   const [key, setKey] = useState(Math.random());
@@ -61,7 +60,7 @@ const User_Navbar = () => {
                     <figure
                       className="menuBox"
                       onClick={() => {
-                        setModalDetail({ show: true, flag: "Notification" });
+                        setModalDetail({ show: true, flag: "userNotification" });
                         setKey(Math.random());
                       }}
                     >
@@ -110,8 +109,8 @@ const User_Navbar = () => {
         ids={
           modalDetail.flag === "chatmessage"
             ? "chatmessagemodal"
-            : modalDetail.flag === "Notification"
-              ? "Notification"
+            : modalDetail.flag === "userNotification"
+              ? "userNotificationModal"
               : modalDetail.flag === "CartModal"
                 ? "CartModal"
                 : modalDetail.flag === "bookchef"
@@ -121,8 +120,8 @@ const User_Navbar = () => {
         child={
           modalDetail.flag === "chatmessage" ? (
             <UserBellModal close={() => handleOnCloseModal()} />
-          ) : modalDetail.flag === "Notification" ? (
-            <Notification close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "userNotification" ? (
+            <UserNotification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "CartModal" ? (
             <CartModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "bookchef" ? (
@@ -139,7 +138,7 @@ const User_Navbar = () => {
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
             </>
-          ) : modalDetail.flag === "Notification" ? (
+          ) : modalDetail.flag === "userNotification" ? (
             <>
               <h2 className="modal_Heading">Notification</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">

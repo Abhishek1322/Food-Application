@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userInfo: {},
   isLoggedIn: false,
   loading: false,
-  chefDocumentUrl: [],
+  chefDocumentUrlssss: {},
+  userInfo: [],
 };
 
 export const authSlice = createSlice({
@@ -16,7 +16,7 @@ export const authSlice = createSlice({
     },
     setChefProfileDocument: (state, action) => {
       state.loading = false;
-      action.chefDocumentUrl = action.payload;
+      state.chefDocumentUrl = action.payload;
     },
     chefSetupProfile: (state) => {
       state.loading = true;

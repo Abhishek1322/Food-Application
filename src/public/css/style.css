@@ -13,7 +13,7 @@ body {
     color: #E65C00;
     text-align: right;
     font-family: "Open Sans";
-    font-size: 10px; 
+    font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
@@ -22,14 +22,14 @@ body {
 
 /* Settings Page css Start */
 ul {
-    padding: 0;  
+    padding: 0;
     margin: 0;
 }
 
 li {
     list-style: none;
 }
-  
+
 .main_Setting {
     padding: 10px 31px 10px 31px;
 }
@@ -224,6 +224,7 @@ li {
     font-weight: 600;
     margin: 0;
 }
+
 .cart {
     position: relative;
     background: #E65C00;
@@ -247,9 +248,11 @@ li {
     left: 20px;
     top: 15px;
 }
+
 .modalDelete_ {
     position: relative;
 }
+
 .cartDelete_ {
     position: absolute;
     right: 15px;
@@ -452,6 +455,7 @@ body {
     font-size: 7px;
     margin-bottom: 8px;
 }
+
 .innerDummyHeading {
     color: #2E3333;
     font-family: Crimson Text;
@@ -473,24 +477,27 @@ body {
 }
 
 /* My Orders Css Start */
-.ordermodalBox{
+.ordermodalBox {
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
     width: 100%;
 }
-.myorders_{
+
+.myorders_ {
     border-radius: 15px 15px 0px 0px;
     background: #2E3333;
     height: 40px;
     padding: 9px 15px;
 }
-.timeOrder_{
+
+.timeOrder_ {
     color: #ABADAD;
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 0;
 }
+
 .Maincontentbox .innertext_.active {
     color: #E65C00;
     background-color: transparent;
@@ -501,6 +508,7 @@ body {
     border-radius: initial;
 
 }
+
 .innertext_ {
     color: #ABADAD;
     font-family: Crimson Text;
@@ -510,16 +518,20 @@ body {
     border-radius: initial;
     border-width: 12px;
 }
+
 .innertext_:hover {
     color: #ABADAD;
 }
+
 .Maincontentbox {
     padding-top: 20px;
 }
-#CartModal .modal-body{
-overflow: auto;
+
+#CartModal .modal-body {
+    overflow: auto;
 }
-.scrollBar_{
+
+.scrollBar_ {
     height: 600px;
     overflow-y: auto;
     margin-top: 19px;
@@ -691,12 +703,14 @@ overflow: auto;
 /* .modalContent {
     padding: 1rem;
 } */
-.modal-content{
+.modal-content {
     height: 95vh;
 }
+
 .searchbar {
     position: relative;
 }
+
 .searchbarImg {
     background: #E65C00;
     border-radius: 12px;
@@ -722,12 +736,13 @@ overflow: auto;
     padding-bottom: 7px;
     color: #979999;
 }
-.chat_Text{
+
+.chat_Text {
     color: #fff;
     font-size: 12px;
     font-weight: 400;
     margin: 0;
-    padding-bottom: 7px; 
+    padding-bottom: 7px;
 }
 
 .chatTime {
@@ -760,7 +775,7 @@ overflow: auto;
     top: 3px;
     background-color: #E65C00;
     right: 0;
-    width: 15px; 
+    width: 15px;
     height: 15px;
     border-radius: 50px;
     color: #FFF;
@@ -867,7 +882,6 @@ overflow: auto;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF
-
 }
 
 #Notification .modal-content {
@@ -912,8 +926,19 @@ overflow: auto;
 
 #chatBox,
 #Notification,
-#CartModal,#myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
-, #paidAmount , #editMenu ,#foodexpert{
+#CartModal,
+#myOrder,
+#reportChatD,
+#myorderReport,
+#recentOrder,
+#orderchat,
+#readyWithOrder,
+#orderDeliverperfectly,
+#paidAmount,
+#editMenu,
+#foodexpert,
+#myAvailability
+,#ratingAndReview {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1068,9 +1093,10 @@ overflow: auto;
     font-weight: 700;
     margin-bottom: 0;
 }
-.orderprofile_{
+
+.orderprofile_ {
     display: flex;
-    
+
 }
 
 .orderItems {
@@ -1128,16 +1154,19 @@ overflow: auto;
     text-align: center;
     margin-right: 13px;
 }
-.chefInfo_{
+
+.chefInfo_ {
     position: absolute;
     left: 8px;
     top: 7px;
 }
+
 .chefLocation_ {
     position: absolute;
     left: 9px;
     top: 7px;
 }
+
 .chefJohnImg {
     width: 105px;
     height: 105px;
@@ -1392,6 +1421,7 @@ overflow: auto;
     font-weight: 700;
     padding-right: 166px;
 }
+
 .fooodquantity_ {
     color: #ABADAD;
     font-size: 14px;
@@ -1598,6 +1628,7 @@ overflow: auto;
     min-height: 470px;
     height: 100%;
 }
+
 .menuItems_ {
     fill: #FFF;
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.20));
@@ -1624,33 +1655,40 @@ overflow: auto;
     height: 46px;
     transform: translate(-22px, 39px) !important;
 }
+
 .chatnext_ {
     align-items: center;
     justify-content: center;
 }
+
 .modalHeader_ {
     color: #979999;
     font-size: 16px;
     width: 3px;
     height: 3px;
 }
+
 .chatnextImg {
     width: 20px;
     height: 20px;
 }
+
 .arrowCommon_ {
     width: 30px;
     height: 30px;
 }
+
 .headerImg_ {
     width: 46px;
     height: 46px;
     margin: 0 10px 0 7px;
 }
+
 .Common_header {
     display: flex;
     align-items: center;
 }
+
 .headerInner_:before {
     content: '';
     position: absolute;
@@ -1661,12 +1699,14 @@ overflow: auto;
     top: 5px;
     left: -11px;
 }
+
 .headerTxt_ {
     color: #2E3333;
     font-family: Crimson Text;
     font-size: 24px;
     font-weight: 600;
 }
+
 .headerInner_ {
     color: #979999;
     font-size: 12px;
@@ -1674,6 +1714,7 @@ overflow: auto;
     position: relative;
     margin-left: 11px;
 }
+
 #chatbellSection {
     max-width: 406px;
     margin: 0;
@@ -1682,6 +1723,7 @@ overflow: auto;
     top: 30px;
     right: 6px;
 }
+
 .modal-content {
     width: 100%;
     max-width: 362px;
@@ -1690,6 +1732,7 @@ overflow: auto;
     padding: 0;
     position: relative;
 }
+
 .chatUser {
     color: #979999;
     font-size: 12px;
@@ -1715,6 +1758,7 @@ overflow: auto;
     max-width: 266px;
     width: 100%;
 }
+
 .left_chatBox .innerchat_ {
     background-color: rgb(234 235 235 / 50%);
     opacity: 0.5;
@@ -1761,6 +1805,7 @@ overflow: auto;
 .gallerImg {
     padding-left: 28px;
 }
+
 .chatSearchHere_ {
     display: flex;
     border-top: 1px dashed rgba(192, 194, 194, 0.50);
@@ -1772,6 +1817,7 @@ overflow: auto;
     padding: 18px 21px;
     margin-top: 20px;
 }
+
 .chatheadtext {
     color: #2E3333;
     font-size: 16px;
@@ -1783,6 +1829,7 @@ overflow: auto;
     font-size: 12px;
     font-weight: 600;
 }
+
 .reportchatAnother_ .cancelOrder {
     padding: 18px 45px;
 }
@@ -1790,6 +1837,7 @@ overflow: auto;
 .reportchatAnother_ .acceptOrder {
     padding: 18px 40px;
 }
+
 .reportchat__ {
     padding-bottom: 412px;
 }
@@ -1803,6 +1851,7 @@ overflow: auto;
     font-size: 16px;
     font-weight: 600;
 }
+
 .Reportborder-input {
     width: 100%;
     padding: 15px 25px;
@@ -1822,6 +1871,7 @@ overflow: auto;
     max-width: 311px;
     height: 140px;
 }
+
 .cancelOrder_ {
     color: #E65C00;
     font-size: 18px;
@@ -1835,6 +1885,7 @@ overflow: auto;
     justify-content: center;
     align-items: center;
 }
+
 .submitOrder_ {
     color: #FFF;
     font-size: 18px;
@@ -1849,6 +1900,7 @@ overflow: auto;
     align-items: center;
     gap: 10px;
 }
+
 /* Report chat (Dropdown) css end */
 
 
@@ -1857,6 +1909,7 @@ overflow: auto;
     background: transparent;
     border: none;
 }
+
 .changepsw_loader {
     height: 100vh;
     background-color: #ffffff;
@@ -1869,46 +1922,54 @@ overflow: auto;
     align-items: center;
     justify-content: center;
 }
+
 .loaderImage_ {
     text-align: center;
 }
+
 #line {
     border-radius: 50%;
     border: 3px solid transparent;
     animation: line 2s linear infinite forwards;
 }
-  
+
 @keyframes line {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(-360deg);
+        transform: rotate(-360deg);
     }
-  }
+}
 
 
-  .method-3 {
+.method-3 {
     font-size: 16px;
     position: relative;
     color: #d4d4d4;
     display: inline-block;
     width: 500px !important;
-  
+
     &:before {
-      content: attr(data-text);
-      position: absolute;
-      color: #979999;
-      clip: rect(0, 0, 100px, 0);
-      animation: fill-3 2s infinite;
+        content: attr(data-text);
+        position: absolute;
+        color: #979999;
+        clip: rect(0, 0, 100px, 0);
+        animation: fill-3 2s infinite;
     }
-  }
-  
-  @keyframes fill-3 {
-    50%   { clip: rect(0, 350px, 100px, 0); }
-    100%  { clip: rect(0, 0, 100px, 0);     }
-  }
-  
+}
+
+@keyframes fill-3 {
+    50% {
+        clip: rect(0, 350px, 100px, 0);
+    }
+
+    100% {
+        clip: rect(0, 0, 100px, 0);
+    }
+}
+
 
 /* loader css End  */
 
@@ -1920,19 +1981,22 @@ overflow: auto;
     height: 36px;
     padding: 3px 9px 0px 9px;
 }
+
 .profileInfo {
     display: flex;
     justify-content: space-between;
 }
+
 .orderfrom_ {
     color: #ABADAD;
 }
+
 .myrecentOrders_ .modalscroll {
     height: 560px;
 }
 
 
-.orderProfile{
+.orderProfile {
     border-radius: 15px;
     background: #fff;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
@@ -1940,6 +2004,7 @@ overflow: auto;
     display: flex;
     flex-direction: column;
 }
+
 .innerhead_:before {
     content: '';
     position: absolute;
@@ -1950,29 +2015,34 @@ overflow: auto;
     top: 5px;
     left: 5px;
 }
+
 .innerhead_ {
     color: #ABADAD;
     font-size: 12px;
     font-weight: 600;
     position: relative;
 }
+
 .totalOrderAmount_ {
     border-radius: 15px;
     background: #E65C00;
     padding: 15px;
     margin-bottom: 30px;
 }
+
 /* .locationData .autocomplete-dropdown-container{
     background-color:  rebeccapurple;
     border-radius: 10px;
     padding:10px;
 } */
-.location-search-input.customform-control.border-input{
-    background-color:  rebeccapurple !important;
+.location-search-input.customform-control.border-input {
+    background-color: rebeccapurple !important;
 }
-.location-search-input.customform-control.border-input.focus-visible{
-    background-color:  none !important;
+
+.location-search-input.customform-control.border-input.focus-visible {
+    background-color: none !important;
 }
+
 /*  myRecentorder Css End */
 
 /* chat With Chef CSS stArt */
@@ -1997,20 +2067,25 @@ overflow: auto;
     font-size: 18px;
     font-weight: 600;
 }
+
 #readyWithOrder .innerhead_:before {
     background-color: #E65C00;
 }
+
 #orderDeliverperfectly .innerhead_:before {
     background-color: #FFC107;
 }
+
 /* OrderReady For Delivery Css End */
 /* Order Delivered modal css start */
 #paidAmount .innerhead_:before {
     background-color: #35B539;
 }
+
 #paidAmount .totalOrderAmount_ {
     background-color: #2E3333;
 }
+
 /* Order Delivered modal css End */
 
 /* ------------- MEnu  ModaL-- Edit  PAge Css Start   */
@@ -2036,6 +2111,7 @@ overflow: auto;
     height: 56px;
     flex-shrink: 0;
 }
+
 .menuEditbuttom {
     width: 100%;
     padding: 15px 25px;
@@ -2059,6 +2135,7 @@ overflow: auto;
     max-width: 136px;
     height: 56px;
 }
+
 .cateofyImg_ {
     position: absolute;
     right: 30px;
@@ -2067,31 +2144,122 @@ overflow: auto;
 
 /* ------------- MEnu  ModaL-- Edit  PAge Css End   */
 
-/*----------------------------Edit Profile Page Css start---------------- */
+/*----------------------------Edit Profile Page Modal 1  Css start---------------- */
 
 .editext_ {
     color: #E65C00;
     font-size: 12px;
     font-weight: 600;
 }
+
 .editPage_ {
     display: flex;
     justify-content: end;
 }
+
 .addmore {
     color: #E65C00;
     padding-right: 6px;
 }
-.editDelete_{
+
+.editDelete_ {
     position: absolute;
     right: 12px;
-    background: rgb(255 0 0 / 20%);
+    background: rgb(255 0 0 / 6%);
     padding: 8px;
-    border-radius: 9px;position: absolute;
+    border-radius: 9px;
 }
 
+/*----------------------------Edit Profile Page Modal 2  Css start---------------- */
 
+.myAvailability_ {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.availabilityDays {
+    border-radius: 10px;
+    background: #FCEFE5;
+    padding: 15px 7px;
+    text-align: center;
+    width: 38px;
+    height: 46px;
+}
+
+.availabilityDays.active {
+    border-radius: 10px;
+    background: #E65C00;
+    box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.30);
+}
+
+.innerBoxText {
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.availableTime {
+    background-color: rgba(234, 235, 235, 0.50);
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
+    border: 1px solid #E9E9E9;
+    padding: 7px 5px 8px 12px;
+    border-radius: 9px;
+}
+
+.availabilityBox_ {
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
+    border: 1px solid #E9E9E9;
+    padding: 7px 11px 11px 12px;
+    border-radius: 9px;
+}
+
+.deleteAvailable {
+    right: 12px;
+    background: rgb(255 0 0 / 6%);
+    padding: 8px;
+    border-radius: 9px;
+}
+.slotButton {
+    border: 1px solid #E65C00;
+    border-radius: 30px;
+    padding: 8px 18px 10px 17px;
+    margin-bottom: 0;
+    color: #E65C00;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Rating And revies CSS START */
+.ratinghere_ {
+    color: #2E3333;
+    font-size: 42px;
+    font-weight: 600;
+}
+.ratingFrom {
+    color: #ABADAD;
+    font-size: 18px;
+    font-weight: 400;
+}
+.overallTxt {
+    color: #2E3333;
+    font-size: 18px;
+    font-weight: 400;
+}
+.rateAll {
+    border-radius: 4px;
+    background: #2E3333;
+    padding: 6px 18px 5px 18px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+}
+.starRating {
+    border-radius: 4px;
+    border: 1px solid #E0E1E1;
+    background: #FFF;
+    padding: 5px 12px 6px 13px;
+}
+/* Rating And revies CSS END */
 
 /*----------------------------Edit Profile Page Css end---------------- */
-
-

@@ -12,17 +12,22 @@ const Router = () => {
           <Route path="/setting" element={<Containers.SettingMain />} />
           <Route path="/home-user" element={<Containers.HomeUser />} />
           <Route path="/ChefDetails" element={<Containers.ChefDetails />} />
-          <Route path="/myprofile" element={<Containers.myprofile />} />
-          <Route path="/editProfile" element={<Containers.editProfile />} />
         </Route>
 
         <Route element={<Layouts.Chef_Layout />}>
+          <Route
+            path="/chef-profile"
+            element={<Containers.myprofile />}
+          />
+          <Route
+            path="/edit-chef-profile"
+            element={<Containers.EditProfile />}
+          />
           <Route path="/new-booking" element={<Containers.NewBooking />} />
           <Route path="/menu" element={<Containers.Menu />} />
           <Route path="/home" element={<Containers.HomeRequsest />} />
           <Route  path="/booking-details" element={<Containers.BookingDetails />}/>
           <Route path="/my-profile" element={<Containers.myprofile />} />
-          <Route path="/edit-Profile" element={<Containers.editProfile />} />
           <Route path="/booking-details" element={<Containers.BookingDetails />}/>
           <Route path="/order-details" element={<Containers.OrderDetails />} />
           <Route path="/anotherorder-detail" element={<Containers.AnotherOrderdetail />}/>

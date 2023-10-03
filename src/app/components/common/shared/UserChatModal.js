@@ -2,7 +2,7 @@ import React from 'react'
 import * as Images from "../../../../utilities/images";
 
 
-const ChefChatModal = () => {
+const UserChatModal = () => {
     return (
         <>
             <div className='chefchatsection'>
@@ -44,4 +44,4 @@ const ChefChatModal = () => {
     )
 }
 
-export default ChefChatModal
+export default UserChatModal

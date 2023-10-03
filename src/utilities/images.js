@@ -94,6 +94,9 @@ import LightStar from "../public/images/lightstar.svg"
 import LargeStar from "../public/images/largestar.svg"
 import DeleteModal from "../public/images/Deletmodal.png"
 import editprofileDelete from "../public/images/editprofileDelete.svg"
+import ChatModal from "../public/images/chatmodal.svg"
+import availabilityClock from "../public/images/availabilityClock.svg"
+import ratingAndReview from "../public/images/ratingReviewsImg.svg"
 
 
 
@@ -196,4 +199,8 @@ export {
     LargeStar,
     DeleteModal,
     editprofileDelete,
+    ChatModal,
+    availabilityClock,
+    ratingAndReview,
+    
 }

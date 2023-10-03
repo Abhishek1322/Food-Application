@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import Router from "./routes";
 import "./public/css/custom.css";
 import "./public/css/customNew.css";
-import "./public/css/login.css"; 
+import "./public/css/login.css";
 import "./public/css/responsive.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

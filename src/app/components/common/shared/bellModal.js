@@ -38,7 +38,6 @@ const BellModal = () => {
                     <input type='text' placeholder='Search Chef near you...' className='searchtext'
                     />
                     <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
-
                 </div>
                 <div className='modalscroll'>
                     <div className='chatModal' onClick={() => {
@@ -181,7 +180,7 @@ const BellModal = () => {
                         </div>
                     </>
                     :
-                        ''
+                    ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />
