@@ -913,7 +913,7 @@ overflow: auto;
 #chatBox,
 #Notification,
 #CartModal,#myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
-, #paidAmount , #editMenu{
+, #paidAmount , #editMenu ,#foodexpert{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1985,7 +1985,7 @@ overflow: auto;
 /* OrderReady For Delivery Css Start */
 .readyForDelivery {
     display: flex;
-    width: 322px;
+    width: 100%;
     padding: 18px 45px;
     justify-content: center;
     align-items: center;
@@ -2066,5 +2066,32 @@ overflow: auto;
 }
 
 /* ------------- MEnu  ModaL-- Edit  PAge Css End   */
+
+/*----------------------------Edit Profile Page Css start---------------- */
+
+.editext_ {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 600;
+}
+.editPage_ {
+    display: flex;
+    justify-content: end;
+}
+.addmore {
+    color: #E65C00;
+    padding-right: 6px;
+}
+.editDelete_{
+    position: absolute;
+    right: 12px;
+    background: rgb(255 0 0 / 20%);
+    padding: 8px;
+    border-radius: 9px;position: absolute;
+}
+
+
+
+/*----------------------------Edit Profile Page Css end---------------- */
 
 

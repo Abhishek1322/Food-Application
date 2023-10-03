@@ -93,6 +93,8 @@ import RatingStar from "../public/images/ratingstar.svg"
 import LightStar from "../public/images/lightstar.svg"
 import LargeStar from "../public/images/largestar.svg"
 import DeleteModal from "../public/images/Deletmodal.png"
+import editprofileDelete from "../public/images/editprofileDelete.svg"
+
 
 
 
@@ -193,4 +195,5 @@ export {
     LightStar,
     LargeStar,
     DeleteModal,
+    editprofileDelete,
 }
