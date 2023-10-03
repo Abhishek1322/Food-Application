@@ -55,7 +55,7 @@ const UserBellModal = () => {
                             </div>
                             <div className='mt-3 me-3'>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li onClick={() => {
                                             handleUserProfile("deletechat")
@@ -74,7 +74,7 @@ const UserBellModal = () => {
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></a></li>
                                     </ul>
@@ -92,7 +92,7 @@ const UserBellModal = () => {
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></a></li>
                                     </ul>
@@ -109,7 +109,7 @@ const UserBellModal = () => {
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></a></li>
                                     </ul>
@@ -126,7 +126,7 @@ const UserBellModal = () => {
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></a></li>
                                     </ul>
@@ -143,7 +143,7 @@ const UserBellModal = () => {
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></a></li>
                                     </ul>
@@ -245,12 +245,12 @@ const UserBellModal = () => {
 
                         />
                     ) :
-                    modalDetail.flag === "chefchat" ? (
-                        <ChefChatModal
-                            close={() => handleOnCloseModal()}
-                        />
-                    ) :
-                        ""
+                        modalDetail.flag === "chefchat" ? (
+                            <ChefChatModal
+                                close={() => handleOnCloseModal()}
+                            />
+                        ) :
+                            ""
                 }
                 header=
 
@@ -260,45 +260,52 @@ const UserBellModal = () => {
                     </>
                     :
                     modalDetail.flag === "chefchat" ?
-                    <>
-                        <div className='Common_header'>
-                            <img
-                                src={Images.backArrowpassword}
-                                alt="logo"
-                                className="img-fluid  arrowCommon_"
-                            />
-                            <img
-                                src={Images.UserICon}
-                                alt="logo"
-                                className="img-fluid  headerImg_"
-                            />
-                            <div className='headerProfile'>
-                                <p className='headerTxt_'>John Smith</p>
-                                <p className='headerInner_'>Online</p>
+                        <>
+                            <div className='Common_header'>
+                                <img
+                                    src={Images.backArrowpassword}
+                                    alt="logo"
+                                    className="img-fluid  arrowCommon_"
+                                />
+                                <img
+                                    src={Images.UserICon}
+                                    alt="logo"
+                                    className="img-fluid  headerImg_"
+                                />
+                                <div className='headerProfile'>
+                                    <p className='headerTxt_'>John Smith</p>
+                                    <p className='headerInner_'>Online</p>
+                                </div>
+
+
+
                             </div>
+                            <div className='Dotsheader_'>
+                                <div class="dropdown ">
+                                    <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                                    </button>
+                                    <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
+                                        <li className=' chatnext_ flexBox' onClick={() => {
+                                            handleUserProfile("reportchatD")
+                                        }}>
+                                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                            <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
+                                        </li>
+                                        <li className=' chatnext_ flexBox' onClick={() => {
+                                            handleUserProfile("reportchatD")
+                                        }}>
+                                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                            <p className='reportchattxt_ m-0 ps-2'>Clear Chat</p>
+                                        </li>
 
-
-
-                        </div>
-                        <div className='Dotsheader_'>
-                            <div class="dropdown ">
-                                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
-                                </button>
-                                <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
-                                    <div className=' chatnext_ flexBox' onClick={() => {
-                                        handleUserProfile("reportchatD")
-                                    }}>
-                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
-                                        <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
-                                    </div>
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </>
-                    :
+                        </>
+                        :
 
-                    ''
+                        ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />
