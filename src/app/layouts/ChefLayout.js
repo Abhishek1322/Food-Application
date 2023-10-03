@@ -10,7 +10,6 @@ const Chef_Layout = () => {
 
   return (
     <>
-      {/* <AuthNav /> */}
       {authRoutes.includes(pathName) ? (
         <>
           <main className="main">
@@ -26,11 +25,8 @@ const Chef_Layout = () => {
               <Outlet />
             </main>
           </div>
-
-          {/* <MainFooter/> */}
         </>
       )}
-      {/* <AuthFooter /> */}
     </>
   );
 };

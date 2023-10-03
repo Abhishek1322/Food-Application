@@ -4,21 +4,27 @@ import * as Layouts from "../app/layouts";
 import UserRoute from "../app/layouts/UserRoute";
 import ChefRoute from "../app/layouts/ChefRoute";
 import PublicRoute from "../app/layouts/PublicRoute";
+import { useAuthSelector } from "../redux/selector/auth";
 
 const Router = () => {
+  const authData = useAuthSelector();
+
   return (
     <>
       <Routes>
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
-          <Route
-            path="/setting"
-            element={
-              <UserRoute role="user">
-                <Containers.SettingMain />
-              </UserRoute>
-            }
-          />
+          {authData?.userInfo?.role === "user" && (
+            <Route
+              path="/setting"
+              element={
+                <UserRoute role="user">
+                  {" "}
+                  <Containers.SettingMain />
+                </UserRoute>
+              }
+            />
+          )}
           <Route
             path="/home-user"
             element={
@@ -36,16 +42,20 @@ const Router = () => {
             }
           />
         </Route>
+
         {/* CHEF_ROUTES */}
         <Route element={<Layouts.Chef_Layout />}>
-          <Route
-            path="/setting"
-            element={
-              <UserRoute role="chef">
-                <Containers.SettingMain />
-              </UserRoute>
-            }
-          />
+          {authData?.userInfo?.role === "chef" && (
+            <Route
+              path="/setting"
+              element={
+                <ChefRoute role="chef">
+                  {" "}
+                  <Containers.SettingMain />
+                </ChefRoute>
+              }
+            />
+          )}
           <Route
             path="/chef-profile"
             element={
@@ -175,9 +185,9 @@ const Router = () => {
           <Route
             path="/delete-account"
             element={
-              <ChefRoute>
-                <Containers.DeleteAccount />
-              </ChefRoute>
+              // <ChefRoute>
+              <Containers.DeleteAccount />
+              // </ChefRoute>
             }
           />
           <Route path="/loading" element={<Containers.Loading />} />
@@ -198,7 +208,7 @@ const Router = () => {
           <Route
             path="/setup-profile"
             element={
-              <ChefRoute>
+              <ChefRoute role="chef">
                 <Containers.SetupProfile />
               </ChefRoute>
             }

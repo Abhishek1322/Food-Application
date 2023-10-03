@@ -17,6 +17,11 @@ const MyProfile = () => {
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
+  const [slotTime, setSlotTimes] = useState({
+    from: "",
+    to: "",
+  });
+
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -87,6 +92,18 @@ const MyProfile = () => {
       id: 7,
     },
   ];
+  const handleSlotTime = (weekDay) => {
+    setActiveWeekDay(weekDay);
+    const updateSlotTimes = chefProfileData?.chefInfo?.availability?.find(
+      (day, index) => {
+        return day?.day === weekDay;
+      }
+    );
+    setSlotTimes({
+      from: updateSlotTimes?.timeSlots?.from,
+      to: updateSlotTimes?.timeSlots?.to,
+    });
+  };
 
   return (
     <>
@@ -246,7 +263,10 @@ const MyProfile = () => {
                   <ul className="myavailability">
                     {week.map((day, index) => (
                       <>
-                        <li className="dayavailability">
+                        <li
+                          onClick={() => handleSlotTime(day.day)}
+                          className="dayavailability"
+                        >
                           <p
                             className={
                               activeWeekDay === day.day
@@ -261,15 +281,13 @@ const MyProfile = () => {
                     ))}
                   </ul>
                   <div className="cheftime">
-                    <div className="expertisevalue">
-                      <p className="expertheading">09:00 am - 12:30 pm</p>
-                    </div>
-                    <div className="expertisevalue">
-                      <p className="expertheading">02:00 pm - 04:00 pm</p>
-                    </div>
-                    <div className="expertisevalue">
-                      <p className="expertheading">06:30 pm - 10:20 pm</p>
-                    </div>
+                    {slotTime.from && slotTime.to && (
+                      <div className="expertisevalue">
+                        <p className="expertheading">
+                          {slotTime.from} - {slotTime.to}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

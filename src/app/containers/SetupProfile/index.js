@@ -46,7 +46,6 @@ const SetupProfile = () => {
   const [showTimeSlot, setShowTimeSlot] = useState(false);
   const [availability, setAvailability] = useState([]);
   const [documentUrl, setDocumentUrl] = useState("");
-  console.log("documentUrl", documentUrl);
   const [formData, setFormData] = useState({
     experience: "",
     bio: "",
@@ -71,7 +70,6 @@ const SetupProfile = () => {
       setPdfFiles("");
     }
   };
-  console.log("pdfFilespdfFiles", pdfFiles);
 
   // getting document URL
   useEffect(() => {

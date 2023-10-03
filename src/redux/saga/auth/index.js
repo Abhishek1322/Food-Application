@@ -264,7 +264,6 @@ function* userSignUp(action) {
       throw resp;
     }
   } catch (e) {
-    console.log("erororrororro", e);
     yield put(onErrorStopLoad());
     toast.dismiss();
     toast.error(e.response.data.message);

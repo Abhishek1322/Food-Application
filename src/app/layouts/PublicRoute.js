@@ -4,13 +4,12 @@ import { useAuthSelector } from "../../redux/selector/auth";
 
 const PublicRoute = ({ children }) => {
   const authData = useAuthSelector();
-  console.log("authDataauthData", authData?.userInfo?.role);
   const isAuthenticated = Boolean(localStorage.getItem("authToken"));
 
   if (!isAuthenticated) {
     return children;
   } else if (isAuthenticated && authData?.userInfo?.role === "chef") {
-    return <Navigate to="/home" />;
+    return <Navigate to="/setup-profile" />;
   } else if (isAuthenticated && authData?.userInfo?.role === "user") {
     return <Navigate to="/home-user" />;
   }
