@@ -29,7 +29,7 @@ function* chefProfileDocument(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setChefProfileDocument(resp.data.payload));
+      yield put(setChefProfileDocument(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -50,7 +50,7 @@ function* chefSetupProfile(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setChefSetupProfile(resp.data.payload));
+      yield put(setChefSetupProfile(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -74,7 +74,7 @@ function* deleteAccount(action) {
       localStorage.removeItem("userEmail");
       localStorage.removeItem("authToken");
       localStorage.removeItem("persist:root");
-      yield put(setDeleteAccount(resp.data.payload));
+      yield put(setDeleteAccount(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -95,7 +95,7 @@ function* resendResetPasswordOtp(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setResendResetPasswordOtp(resp.data.payload));
+      yield put(setResendResetPasswordOtp(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -116,7 +116,7 @@ function* resendVerifyOtp(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setResendVerifyOtp(resp.data.payload));
+      yield put(setResendVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -136,7 +136,7 @@ function* createNewPassword(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setCreateNewPassword(resp.data.payload));
+      yield put(setCreateNewPassword(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -157,7 +157,7 @@ function* resetPassword(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setResetPassword(resp.data.payload));
+      yield put(setResetPassword(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -178,7 +178,7 @@ function* resetPasswordOtp(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setResetPasswordOtp(resp.data.payload));
+      yield put(setResetPasswordOtp(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -199,7 +199,7 @@ function* forgotPassword(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setForgotPassword(resp.data.payload));
+      yield put(setForgotPassword(resp.data.data));
       // localStorage.setItem(
       //   "userEmail",
       //   resp.data.data.email ? resp.data.data.email : ""
@@ -224,7 +224,7 @@ function* verifyOtp(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
-      yield put(setVerifyOtp(resp.data.payload));
+      yield put(setVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -257,7 +257,7 @@ function* userSignUp(action) {
         "authToken",
         resp.data && resp.data.data.token ? resp.data.data.token : ""
       );
-      yield put(setUserSignup(resp.data.payload));
+      yield put(setUserSignup(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
     } else {
@@ -291,7 +291,7 @@ function* userLogin(action) {
         "id",
         resp.data.data.id ? resp.data.data.userId : ""
       );
-      yield put(setUserLogin(resp.data.payload));
+      yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
       toast.success(resp.data.message);
     } else {

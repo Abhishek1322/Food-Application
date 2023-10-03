@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   loading: false,
-  chefDocumentUrlssss: {},
+  chefDocumentUrl: {},
   userInfo: [],
 };
 
@@ -69,6 +69,7 @@ export const authSlice = createSlice({
     },
     setResetPasswordOtp: (state, action) => {
       state.loading = false;
+      state.userInfo = action.payload;
     },
     forgotPassword: (state) => {
       state.loading = true;
@@ -81,6 +82,7 @@ export const authSlice = createSlice({
     },
     setVerifyOtp: (state, action) => {
       state.loading = false;
+      state.userInfo = action.payload;
     },
     userSignUp: (state) => {
       state.loading = true;
