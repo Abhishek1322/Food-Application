@@ -31,6 +31,8 @@ const Router = () => {
           <Route path="/booking-details" element={<Containers.BookingDetails />}/>
           <Route path="/order-details" element={<Containers.OrderDetails />} />
           <Route path="/anotherorder-detail" element={<Containers.AnotherOrderdetail />}/>
+          <Route path="/user-chef-home" element={<Containers.UserChefHome />} />
+
         </Route>
 
         <Route element={<Layouts.AuthLayout />}>

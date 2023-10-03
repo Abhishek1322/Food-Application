@@ -81,6 +81,7 @@ const CartModalCheckout = () => {
                             <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
                         </div>
                     </div>
+                    <div className='cartdelivery'>
                     <div className='checkoutdelivery'>
                         <div className='checkoutaddress'>
                             <p className='venuInfo'>Delivery Address</p>
@@ -89,7 +90,6 @@ const CartModalCheckout = () => {
                             <p className='headerinnertxt m-0'>+ Add New Address</p>
                         </div>
                     </div>
-
                     <div className='checkouthomeoffice mt-3'>
                         <div className='checkouthome'>
                             <div className='homedropdown mt-2'>
@@ -124,10 +124,10 @@ const CartModalCheckout = () => {
                             </div>
                         </div>
                     </div>
+                    </div>
                     <div className='modalfooterbtn'>
                     <div className='outeraddItem'>
                         <button className='addItems'>+ Add More Items</button>
-                    </div>
                     <div className='orderNow'>
                         <div className='totalPrice'>
                             <p className='totaltxt'>Total</p>
@@ -136,7 +136,7 @@ const CartModalCheckout = () => {
                         <button className='orderbutton' onClick={() => {
                             handleUserProfile("editmodal")
                         }}>Pay Now</button>
-
+                    </div>
                     </div>
                     </div>
                 </div>

@@ -1,11 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images";
 import { Link } from 'react-router-dom';
+import CustomModal from './CustomModal';
+import CartModal from './cartModal';
 
 const CartFoodModalOrder = () => {
-  return (
-   <>
-      <div className='cartfoodsectionorder'>
+    const [key, setKey] = useState(Math.random());
+    const [modalDetail, setModalDetail] = useState({
+        show: false,
+        title: "",
+        flag: "",
+    });
+
+    //closeModal
+    const handleOnCloseModal = () => {
+        setModalDetail({
+            show: false,
+            title: "",
+            flag: "",
+        });
+        setKey(Math.random());
+    };
+
+    const handleUserProfile = (flag) => {
+
+        setModalDetail({
+            show: true,
+            flag: flag,
+            type: flag,
+        });
+        setKey(Math.random());
+    };
+    return (
+        <>
+            <div className='cartfoodsectionorder'>
                 <div className='foodmodal'>
                     <img src={Images.SaladImg} alt='saladimage' className='img-fluid' />
                     <p className='foodmodalheading'>Chicken Salad</p>
@@ -24,7 +52,7 @@ const CartFoodModalOrder = () => {
                         </div>
                         <div className='foodrating'>
                             <p className='chefName'>Rating</p>
-                            <div className='chefrating mt-1'> 
+                            <div className='chefrating mt-1'>
                                 <i class="las la-star startIcon"></i>
                                 <p className='ratingheading'>4.5 (845 Reviews)</p>
                             </div>
@@ -45,29 +73,60 @@ const CartFoodModalOrder = () => {
                         £22.00
                     </p>
                     <div className='quantitymodal'>
-                    <p className='notificationText '>Quantity:</p>
-                    <div className='quantity'>
-                        <div className='Quantiycheck'>
-                            <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
+                        <p className='notificationText '>Quantity:</p>
+                        <div className='quantity'>
+                            <div className='Quantiycheck'>
+                                <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
+                            </div>
+                            <span className='number' >02</span>
+                            <div className='Quantiycheck'>
+                                <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
+                            </div>
                         </div>
-                        <span className='number' >02</span>
-                        <div className='Quantiycheck'>
-                            <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
-                        </div>
                     </div>
-                    </div>
-                    </div>
-                    <div className='modalfooterbtn'>
+                </div>
+                <div className='modalfooterbtn'>
                     <div className='orderNow'>
                         <div className='totalPrice'>
                             <p className='price'>£44.00</p>
                         </div>
-                        <button className='orderbutton'>Order Now</button>
-                    </div>
+                        <button className='orderbutton' onClick={() => {
+                            handleUserProfile("CartModal")
+                        }}>Order Now</button>
                     </div>
                 </div>
-   </>                               
-  )
+            </div>
+            <CustomModal
+                key={key}
+                show={modalDetail.show}
+                backdrop="static"
+                showCloseBtn={false}
+                isRightSideModal={true}
+                mediumWidth={false}
+                className={modalDetail.flag === "CartModal" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "CartModal" ? "CartModal" : ""}
+                child={
+                    modalDetail.flag === "CartModal" ? (
+                        <CartModal close={() => handleOnCloseModal()} />
+                    ) :
+                        ""
+                }
+                header=
+
+                {modalDetail.flag === "CartModal" ?
+                    <>
+                        <h2 className="modal_Heading">Cart</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+                    </>
+                    :
+                    ''
+                }
+                onCloseModal={() => handleOnCloseModal()}
+            />
+        </>
+    )
 }
 
 export default CartFoodModalOrder
