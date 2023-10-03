@@ -168,12 +168,6 @@ const EditProfile = () => {
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="input-container mt-5">
-                        {/* <input
-                          type="text"
-                          value={address}
-                          className="border-input"
-                          placeholder="bangura@serveitlocal.com"
-                        /> */}
                         <PlacesAutocomplete
                           className=""
                           autoComplete="off"
