@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import CustomModal from '../../components/common/shared/CustomModal';
 import AvailableModal from '../../components/common/shared/availableModal';
 import CartFoodModal from '../../components/common/shared/CartFoodModal';
-
+import ChefRating from '../../components/common/shared/ChefRating';
+import ChefCartModal from '../../components/common/shared/ChefCartModal';
 
 const ChefDetails = () => {
     const slides = Array(12).join().split(',').map(function (a) { return this.i++ }, { i: 1 });
@@ -51,7 +52,9 @@ const ChefDetails = () => {
                                         <p className='johnExplorer'>Sarah Bergstrom</p>
                                         <div className='sarahrestro'>
                                             <div className='restroinfo'>
-                                                <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
+                                                <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' onClick={() => {
+                                                    handleUserProfile("chefcart")
+                                                }} /></Link>
                                                 <div className='johnchatdetail'>
                                                     <Link to="#"><p className='chatDates'>Restaurant</p></Link>
                                                 </div>
@@ -75,11 +78,11 @@ const ChefDetails = () => {
                                     </div>
                                     <p className='availableheading'>Availability</p>
                                 </button>
-                                <button className='sarahcallbtn'>
+                                {/* <button className='sarahcallbtn'>
                                     <div className='availableimg'>  <img src={Images.CallImg} alt='timesquareimage' className='img-fluid' />
                                     </div>
                                     <p className='availableheading'>Call</p>
-                                </button>
+                                </button> */}
                                 <button className='sarahmessagebtn'>
                                     <div className='availableimg'>  <img src={Images.ChefChat} alt='timesquareimage' className='img-fluid' />
                                     </div>
@@ -102,7 +105,9 @@ const ChefDetails = () => {
                             </div>
                             <div className='col-lg-3 col-md-6 col-sm-12'>
                                 <p className='chefName'>Rating</p>
-                                <div className='chefrating mt-2'>
+                                <div className='chefrating mt-2' onClick={() => {
+                                    handleUserProfile("ratingchef")
+                                }}>
                                     <i class="las la-star startIcon"></i>
                                     <p className='ratingheading'>4.5 (845 Reviews)</p>
                                 </div>
@@ -175,30 +180,30 @@ const ChefDetails = () => {
                     <div className='container-fluid'>
                         <p className='innerDummyHeading ' > Sarah’s Menu</p>
                         <div className='row'>
-                        {slides && slides.map((val, i) => {
-                            return (
-                                <div className='col-lg-2 col-md-4 col-sm-6'>
-                                <div className='listItems_'>
-                                    <div className='menu_Items'>
-                                        <div className='innerItems_'>
-                                            <img src={Images.ItemsBgMenu} alt="logo" className="bgmenuImg_" />
-                                            <img src={Images.SaladImg} alt="logo" className="menuItem_" />
+                            {slides && slides.map((val, i) => {
+                                return (
+                                    <div className='col-lg-2 col-md-4 col-sm-6'>
+                                        <div className='listItems_'>
+                                            <div className='menu_Items'>
+                                                <div className='innerItems_'>
+                                                    <img src={Images.ItemsBgMenu} alt="logo" className="bgmenuImg_" />
+                                                    <img src={Images.SaladImg} alt="logo" className="menuItem_" />
+                                                </div>
+                                            </div>
+                                            <p className='itemIs_'>Chicken Salad</p>
+                                            <p className='category_'>Food Category</p>
+                                            <div className='sarahmenuprice'>
+                                                <button className='itemsPrice_ '>£22.00</button>
+                                                <div className='sarahbasket'>
+                                                    <Link to="#" onClick={() => {
+                                                        handleUserProfile("CartFood")
+                                                    }}><img src={Images.basketImg} alt='basketimage' className='img-fluid' /></Link>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <p className='itemIs_'>Chicken Salad</p>
-                                    <p className='category_'>Food Category</p>
-                                    <div className='sarahmenuprice'>
-                                        <button className='itemsPrice_ '>£22.00</button>
-                                        <div className='sarahbasket'>
-                                            <Link to="#" onClick={() => {
-                                                handleUserProfile("CartFood")
-                                            }}><img src={Images.basketImg} alt='basketimage' className='img-fluid' /></Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            )
-                        })}
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
@@ -211,11 +216,12 @@ const ChefDetails = () => {
                 isRightSideModal={true}
                 mediumWidth={false}
                 className={modalDetail.flag === "availabilityModal" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "availabilityModal" ? "availablebtnModal" : modalDetail.flag === "CartFood" ? "CartModalFood" : ""}
+                ids={modalDetail.flag === "availabilityModal" ? "availablebtnModal" : modalDetail.flag === "CartFood" ? "CartModalFood" : modalDetail.flag === "ratingchef" ? "ratingchefmodal" : modalDetail.flag === "chefcart" ? "chefcartmodal" : ""}
                 child={
                     modalDetail.flag === "availabilityModal" ? (
                         <AvailableModal
                             close={() => handleOnCloseModal()}
+
                         />
                     ) :
                         modalDetail.flag === "CartFood" ? (
@@ -223,7 +229,17 @@ const ChefDetails = () => {
                                 close={() => handleOnCloseModal()}
                             />
                         ) :
-                            ""
+                            modalDetail.flag === "ratingchef" ? (
+                                <ChefRating
+                                    close={() => handleOnCloseModal()}
+                                />
+                            ) :
+                            modalDetail.flag === "chefcart" ? (
+                                <ChefCartModal
+                                    close={() => handleOnCloseModal()}
+                                />
+                            ) :
+                                ""
                 }
                 header=
 
@@ -247,12 +263,32 @@ const ChefDetails = () => {
                             </p>
                         </>
                         :
-                        ''
+                        modalDetail.flag === "ratingchef" ?
+                            <>
+                                <h2 className="modal_Heading">
+                                    Rating & Reviews
+                                </h2>
+                                <p onClick={handleOnCloseModal} className='modal_cancel'>
+                                    <img src={Images.modalCancel} className='ModalCancel' />
+                                </p>
+                            </>
+                            :
+                            modalDetail.flag === "chefcart" ?
+                            <>
+                                <h2 className="modal_Heading">
+                                    Cart
+                                </h2>
+                                <p onClick={handleOnCloseModal} className='modal_cancel'>
+                                    <img src={Images.modalCancel} className='ModalCancel' />
+                                </p>
+                            </>
+                            :
+                            ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />
         </>
     )
-} 
+}
 
 export default ChefDetails

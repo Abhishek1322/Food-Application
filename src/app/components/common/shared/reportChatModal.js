@@ -2,7 +2,7 @@ import React from 'react'
 import * as Images from "../../../../utilities/images"
 
 
-const reportChatModal = () => {
+const ReportChatModal = () => {
   return (
 <>
 <div className='modalContent'>
@@ -16,7 +16,7 @@ const reportChatModal = () => {
             <p className='subHeading m-0'>Are you sure, you want to delete this chat?</p>
            
           </div>
-          <div className='orderItems'>
+          <div className='orderItems '>
               <button className='cancelOrder'>CANCEL</button>
               <button className='acceptOrder'>Yes, Delete</button>
             </div>
@@ -27,4 +27,4 @@ const reportChatModal = () => {
   )
 }
 
-export default reportChatModal
+export default ReportChatModal

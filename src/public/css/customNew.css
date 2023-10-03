@@ -354,6 +354,7 @@ p {
     padding: 6px;
     max-width: 155px;
     justify-content: space-around;
+    cursor: pointer;
 
 }
 
@@ -441,15 +442,13 @@ p {
     right: 0px;
 }
 
-#availablebtnModal .modal-content {
+.modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
-    min-height: 700px;
     padding: 0;
-
+    position: relative;
 }
 
 .daytimes {
@@ -483,13 +482,16 @@ p {
     right: 0px;
 }
 
-#CartModalFood .modal-content {
+/* #CartModalFood .modal-content {
     width: 100%;
     height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
     min-height: 700px;
+    padding: 0;
+} */
+#CartModalFood .modal-body {
     padding: 0;
 }
 
@@ -512,7 +514,7 @@ p {
     border-top: 2px dashed rgba(192, 194, 194, 0.50);
     margin-top: 20px;
     border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
-    padding: 20px 0;
+    padding: 20px 20px;
 
 }
 
@@ -547,7 +549,7 @@ p {
     color: #35B539;
     font-size: 20px;
     font-weight: 600;
-    padding-top: 15px;
+    padding: 15px 20px
 }
 
 .foodmodalbtn {
@@ -561,9 +563,8 @@ p {
     width: 100%;
 }
 
-.addfoodbtn {
-    width: 100%;
-    margin-top: 20px;
+#CartModalFood .modalfooterbtn {
+    left: 15px;
 }
 
 #CartModalFood .modal-header,
@@ -587,7 +588,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+    padding: 20px 20px;
 }
 
 .quantitymodal {
@@ -609,15 +610,24 @@ p {
     right: 0px;
 }
 
-#CartFoodOrderModal .modal-content {
+#CartFoodOrderModal .modal-body {
+    padding: 0;
+}
+
+#CartFoodOrderModal .modalfooterbtn {
+    left: 15px;
+}
+
+
+
+/* #CartFoodOrderModal .modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
     min-height: 700px;
     padding: 0;
-}
+} */
 
 #CartFoodOrderModal .modal-header,
 #CartFoodOrderModal .modal_Heading {
@@ -642,20 +652,23 @@ p {
 
 }
 
-#cartcheckoutModal .modal-content {
+/* #cartcheckoutModal .modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
     min-height: 700px;
     padding: 0;
-}
+} */
 
 .checkoutdelivery {
     display: flex;
     justify-content: space-between;
     margin-top: 27px;
+}
+
+.cartcheckoutsection .cheftext {
+    color: #979999;
 }
 
 .checkouthome {
@@ -679,7 +692,7 @@ p {
 
 .dropdownicon {
     color: #979999;
-    ;
+    cursor: pointer;
 }
 
 .checkouthomeoffice {
@@ -715,7 +728,7 @@ p {
     right: 50%;
     top: 50%;
     width: 4px;
-    height: 10px;
+    height: 8px;
     border: solid #FFF;
     border-width: 0 2px 2px 0;
     margin: -1px -1px 0 -1px;
@@ -770,15 +783,14 @@ p {
     right: 0px;
 }
 
-#editaddress .modal-content {
+/* #editaddress .modal-content {
     width: 100%;
-    height: 100%;
     max-width: 362px;
     border-radius: 20px;
     background: #FFF;
     min-height: 700px;
     padding: 0;
-}
+} */
 
 .editadressheading {
     display: flex;
@@ -803,25 +815,597 @@ p {
     font-size: 12px;
     font-weight: 600;
     padding: 10px 30px;
-    border-radius: 7px;
-    border-right: 1px solid #DBDBDB;
     border-radius: 0;
 }
-.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+
+.tabsection .nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
     border-color: transparent !important;
 }
-/* .nav-link.active {
+
+.tabsection .nav-link.active {
+    background: #E65C00 !important;
+    color: #FFF !important;
+    border-radius: 7px;
+}
+
+/* .tabsection .nav-item:last-child .nav-link {
+.nav-link.active {
     background: #E65C00 !important;
     color: #FFF !important;
     border-radius: 7px;
 } */
-.nav-item:last-child .nav-link {
+
+.tabsection .nav-item:last-child .nav-link {
     border-right: 0;
 }
-.nav-item {
+
+.tabsection .nav-item {
     padding: 5px 3px;
 }
-.nav-link{
-    border-right: 1px solid red; 
 
+.tabsection .nav-link {
+    border-right: 1px solid #DBDBDB;
+
+}
+
+.modallower {
+    position: fixed;
+    bottom: 40px;
+}
+
+.tabslocation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modalfooterbtn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 330px;
+    margin: 15px auto;
+}
+
+#paynowmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.paynowinputs {
+    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    margin-top: 41px;
+    padding-bottom: 41px;
+}
+
+#paynowmodal .modal-body {
+    padding: 0;
+}
+
+#paynowmodal .input-container {
+    padding: 0 1rem;
+}
+
+#paynowmodal .InputIcon {
+    position: absolute;
+    top: 17px;
+    right: 25px;
+}
+
+#paynowmodal .modalfooterbtn {
+    left: 15px;
+}
+
+#paydonemodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#paydonemodal .modal-header,
+#paydonemodal .modal_Heading {
+    border: none;
+}
+
+.paymentdonesection {
+    text-align: center;
+    padding-top: 200px;
+}
+
+.paymentdonesection .accountdeletetxt {
+    max-width: 281px;
+    margin: auto;
+}
+
+.cateSelectbox {
+    background-image: url(../images/downArrow.svg) !important;
+    background-position: right !important;
+    background-repeat: no-repeat !important;
+    background-size: 29px 8px !important;
+    appearance: none !important;
+}
+
+.main_Setting .availableheading {
+    padding: 0;
+}
+
+.main_Setting .sarahmessagebtn {
+    padding: 18px 36px;
+    background-color: #E65C00;
+    border: none;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.main_Setting .booknowimg {
+    margin-right: 10px;
+}
+
+#ordermodalplace .modal-header,
+#ordermodalplace .modal_Heading {
+    border: none;
+}
+
+#ordermodalplace .modal_Heading {
+    display: none;
+}
+
+#ordermodalplace .modal_cancel {
+    margin-left: auto;
+}
+
+#ordermodalplace {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#ordermodalplace .accountdeletetxt {
+    max-width: 245px;
+}
+
+.orderprogress {
+    width: 25%;
+    background-color: #E65C00;
+}
+
+.orderbar {
+    margin-top: 21px;
+    background-color: hsl(24 100% 94% / 1);
+    border-radius: 50px;
+    height: 10px;
+}
+
+.progressheading {
+    color: #979999;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.orderplacesection .itemsQuantity {
+    margin-top: 30px;
+}
+
+#yourordermodalplace .modal-header,
+#yourordermodalplace .modal_Heading {
+    border: none;
+}
+
+#yourordermodalplace .modal_Heading {
+    display: none;
+}
+
+#yourordermodalplace .modal_cancel {
+    margin-left: auto;
+}
+
+#yourordermodalplace {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#yourordermodalplace .settingBoxtxt {
+    border-radius: 8px;
+    background: #EEEFEF;
+    padding: 18px 30px;
+}
+
+#yourordermodalplace .foodmodalbtn {
+    width: auto;
+    padding: 18px 30px;
+}
+
+.yourordersection .addfoodbtn {
+    justify-content: space-around;
+    display: flex;
+}
+
+.yourordersection .accountDeleted {
+    max-width: 249px;
+    margin: auto;
+}
+
+#ordermodalcancel {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#ordermodalcancel .modal-header,
+#ordermodalcancel .modal_Heading {
+    border: none;
+}
+
+.ordercancelsection .accountdeletetxt {
+    max-width: 250px;
+}
+
+#bookchefmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.booknowsection .modalfooterbtn {
+    right: 15px;
+}
+
+.bookslots .daytimes {
+    display: inline-flex;
+    margin-right: 6px;
+    width: 128px;
+    padding: 5px 8px;
+    align-items: center;
+    gap: 6px;
+}
+
+.bookslots .daytimesheading {
+    font-size: 10px;
+}
+
+.daytimes.active {
+    background-color: rgba(230, 92, 0, 0.10);
+
+}
+
+.daytimes.active .daytimesheading {
+    color: #E65C00;
+}
+
+.darktime {
+    display: none;
+}
+
+.daytimes.active .darktime {
+    display: block;
+}
+
+.daytimes.active .lighttime {
+    display: none;
+}
+
+#chefbookmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.chefbookmodalsection .chatheadtext {
+    font-family: Crimson Text;
+}
+
+.restrodetail {
+    border-radius: 4px;
+    background: #FADECC;
+    padding: 6px 8px;
+    color: #E65C00;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 6px;
+}
+
+.bookchefprice {
+    color: #35B539;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#chefbookmodal .modal-body {
+    padding: 0;
+}
+
+.chefbookslots {
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.chefbookmodalsection .modalfooterbtn {
+    left: 15px;
+}
+
+.bookmodalbtn .foodamountmodal {
+    margin: 10px 5px;
+    padding: 0;
+}
+
+#chefbookpaymodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#chefpaydonemodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#chefpaydonemodal .modal-header,
+#chefpaydonemodal .modal_Heading {
+    border: none;
+}
+
+#bookdonemodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#bookdonemodal .modal-header,
+#bookdonemodal .modal_Heading {
+    border: none;
+}
+
+.chefbookdone .paymentdonesection .accountdeletetxt {
+    max-width: 200px;
+}
+
+#ratingchefmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.chefreviews {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chefrateimg {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    border-bottom: 1px solid #F2F2F2;
+    padding: 20px 0;
+    margin-right: 15px;
+}
+
+.ratingstar {
+    color: #35B539;
+}
+
+.reviewrating {
+    width: 100%;
+}
+
+.ratingimgmodal {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
+
+.userreviews {
+    width: 100%;
+}
+
+.chefratingsection .modalscroll {
+    height: 704px;
+}
+
+#giveratemodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.giveratesection .cancelOrder,
+.giveratesection .acceptOrder {
+    padding: 18px 45px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#chefcartmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#chatmessagemodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.userbellsection .modalscroll {
+    height: 706px;
+}
+
+.userbellsection .editdrop {
+    color: #2E3333;
+}
+
+.userbellsection .dropdown-menu {
+    min-width: 130px
+}
+
+#userchatdelete {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#userchatdelete .modal-header,
+#userchatdelete .modal_Heading {
+    border: none;
+}
+
+.deletesection .accountdeletetxt {
+    max-width: 270px;
+}
+
+.deletesection .cancelOrder,
+.deletesection .acceptOrder {
+    padding: 18px 45px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#chefchatmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+.chefchatsection .left_chatBox .chat_Text {
+    color: #979999;
+}
+
+.chefchatsection .leftchat {
+    width: 100%;
+    max-width: 266px;
+    background-color: hsl(180 2% 94% / 1);
+    padding: 11px 13px 16px 16px;
+    border-radius: 20px 20px 20px 0;
+}
+
+.chefchatsection .chatnext {
+    margin-left: 22px;
+    margin-right: 22px;
+    padding-top: 410px;
+}
+
+.chefchatsection .right_chatBox {
+    border: none;
+}
+
+.chefchatsection .chatSearchHere_ {
+    margin: 15px;
+    position: relative;
+}
+
+.chatfooterbtn {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
+    right: 0;
+}
+
+.modaltooltip {
+    display: inline-block;
+}
+
+.modaltooltip .tooltiptext {
+    visibility: hidden;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    bottom: 99%;
+    left: 45%;
+    margin-left: -60px;
+    color: #2E3333;
+    font-family: Open Sans;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: #ECECEC;
+    max-width: 170px;
+    width: 100%;
+    padding: 5px 5px;
+}
+
+.modaltooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: 55px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #ECECEC transparent transparent transparent;
+}
+
+.modaltooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.chatdrop{
+    background-color: #FFF;
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.20));
+    width: 147px;
+    transform: translate(-22px, 39px) !important;
 }

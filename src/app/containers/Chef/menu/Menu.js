@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images";
+// import CustomModal from './CustomModal'
+import CustomModal from '../../../components/common/shared/CustomModal';
+import EditMenuModal from '../../../components/common/shared/editMenuModal';
 
 const Menu = () => {
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  const handleUserProfile = (flag) => {
+
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
   return (
     <>
       <div className='mainchef_'>
@@ -35,7 +64,28 @@ const Menu = () => {
                         <img src={Images.ItemsBgMenu} alt="logo" className="bgmenuImg_" />
                         <img src={Images.menuItems} alt="logo" className="menuItem_" />
                       </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
+
+                      <div className='Dotsheader_'>
+                        <div class="dropdown ">
+                          <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v menuIcon_"></i>
+                          </button>
+                          <ul class="dropdown-menu menuItems_" aria-labelledby="dropdownMenuButton1 ">
+                            <div className=' menuChat'>
+                              <div className='flexBox pb-2 ' onClick={() => {
+                                handleUserProfile("editMenuModal")
+                              }}>
+                                <img src={Images.cartDelete} className=' img-fluid reporticon_' />
+                                <p className='ps-2' >Edit</p>
+                              </div>
+                              <div className='flexBox'>
+                                <img src={Images.EditImg} className=' img-fluid reporticon_' />
+                                <p className='reportchattxt_ m-0 ps-2'>Delete Chat</p>
+                              </div>
+                            </div>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                     <p className='itemIs_'>Chicken Salad</p>
                     <p className='category_'>Food Category</p>
@@ -102,7 +152,7 @@ const Menu = () => {
                     <button className='itemsPrice_'>£22.00</button>
                   </div>
                 </div>
-                </div>
+              </div>
               <div className='col-lg-12'>
                 <div className='profileDetail'>
                   <div className='listItems_'>
@@ -193,7 +243,7 @@ const Menu = () => {
 
               </div>
               <div className='col-lg-12'>
-              <div className='profileDetail'>
+                <div className='profileDetail'>
                   <div className='listItems_'>
                     <div className='menu_Items'>
                       <div className='innerItems_'>
@@ -285,6 +335,45 @@ const Menu = () => {
           </div>
         </div>
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={modalDetail.flag === "editMenuModal" ? "commonWidth customContent" : ""}
+        ids={modalDetail.flag === "editMenuModal" ? "editMenu" : ''}
+        child={
+          modalDetail.flag === "editMenuModal" ? (
+            <EditMenuModal
+              close={() => handleOnCloseModal()}
+
+            />
+          ) :
+            ""
+        }
+        header=
+
+        {modalDetail.flag === "editMenuModal" ?
+          <>
+            <div className='editadressheading'>
+              <div className='edithead'>
+                <p className="modal_Heading">
+                Add Menu Item
+                </p>
+                <p className='chatUser'>Add your menu items below.</p>
+              </div>
+            </div>
+            <p onClick={handleOnCloseModal} className='modal_cancel'>
+              <img src={Images.modalCancel} className='ModalCancel' />
+            </p>
+          </>
+          :
+          ''
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   )
 }
