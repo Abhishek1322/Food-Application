@@ -4,7 +4,7 @@ const Notification = () => {
   return (
     <>
                <div className='modalContent'>
-                    <p className='modalclearAll text-end'>Clear All</p>
+                    <p className='modalclearAll text-end'>Clear All fgjfgjfgjfgjfg</p>
           
            
              <div className='modalscroll'>

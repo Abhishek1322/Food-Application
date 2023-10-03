@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal';
-import OrderPlaceModal from './OrderPlaceModal';
+import ChefBookingDone from './ChefBookingDone';
 
-const PaymentDoneModal = () => {
+const ChefPaymentDone = () => {
     const [key, setKey] = useState(Math.random());
     const [modalDetail, setModalDetail] = useState({
         show: false,
@@ -30,17 +30,17 @@ const PaymentDoneModal = () => {
         });
         setKey(Math.random());
     };
-    return (
-        <>
-            <div className='paymentdonesection'>
+  return (
+  <>
+    <div className='paymentdonesection'>
                 <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
                 <p className='accountDeleted mt-3'> Payment Done</p>
                 <p className='accountdeletetxt mt-2 '>Your payment has been successfully done
                     for order no. #12458</p>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
-                        <button className='foodmodalbtn' onClick={() => {
-                                            handleUserProfile("orderplace")
+                        <button className='foodmodalbtn'onClick={() => {
+                                            handleUserProfile("bookingdone")
                                         }}>
                             Order Placed
                         </button>
@@ -54,11 +54,11 @@ const PaymentDoneModal = () => {
                 showCloseBtn={false}
                 isRightSideModal={true}
                 mediumWidth={false}
-                className={modalDetail.flag === "orderplace" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "orderplace" ? "ordermodalplace" : ""}
+                className={modalDetail.flag === "bookingdone" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "bookingdone" ? "bookdonemodal" : ""}
                 child={
-                    modalDetail.flag === "orderplace" ? (
-                        <OrderPlaceModal
+                    modalDetail.flag === "bookingdone" ? (
+                        <ChefBookingDone
                             close={() => handleOnCloseModal()}
                         />
                     ) :
@@ -66,7 +66,7 @@ const PaymentDoneModal = () => {
                 }
                 header=
 
-                {modalDetail.flag === "orderplace" ?
+                {modalDetail.flag === "bookingdone" ?
                     <>
                         {/* <div className='editadressheading'>
                             <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
@@ -86,8 +86,8 @@ const PaymentDoneModal = () => {
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />
-        </>
-    )
+  </>
+  )
 }
 
-export default PaymentDoneModal
+export default ChefPaymentDone

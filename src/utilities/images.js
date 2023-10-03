@@ -85,7 +85,14 @@ import reportchatIcon from "../public/images/reportchatIcon.svg"
 import orderMsgImg from "../public/images/orderMsgImg.svg"
 import categoryImg from "../public/images/categoryImg.svg"
 import menuDishImg from "../public/images/menuDishImg.svg"
-
+import OrderPlace from "../public/images/orderplace.png"
+import ColorClock from "../public/images/orangeclock.svg"
+import UserProfileRate from "../public/images/userprofilerate.svg"
+import UserRating from "../public/images/userating.svg"
+import RatingStar from "../public/images/ratingstar.svg"
+import LightStar from "../public/images/lightstar.svg"
+import LargeStar from "../public/images/largestar.svg"
+import DeleteModal from "../public/images/Deletmodal.png"
 
 
 
@@ -178,4 +185,12 @@ export {
     orderMsgImg,
     categoryImg,
     menuDishImg,
+    OrderPlace,
+    ColorClock,
+    UserProfileRate,
+    UserRating,
+    RatingStar,
+    LightStar,
+    LargeStar,
+    DeleteModal,
 }

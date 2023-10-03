@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal';
-import OrderPlaceModal from './OrderPlaceModal';
+import OrderCancelModal from './OrderCancelModal';
 
-const PaymentDoneModal = () => {
+const YourOrderModal = () => {
     const [key, setKey] = useState(Math.random());
     const [modalDetail, setModalDetail] = useState({
         show: false,
@@ -32,20 +32,23 @@ const PaymentDoneModal = () => {
     };
     return (
         <>
-            <div className='paymentdonesection'>
-                <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
-                <p className='accountDeleted mt-3'> Payment Done</p>
-                <p className='accountdeletetxt mt-2 '>Your payment has been successfully done
-                    for order no. #12458</p>
-                <div className='modalfooterbtn'>
-                    <div className='addfoodbtn'>
-                        <button className='foodmodalbtn' onClick={() => {
-                                            handleUserProfile("orderplace")
-                                        }}>
-                            Order Placed
-                        </button>
+            <div className='yourordersection'>
+                    <div className='paymentdonesection'>
+                        <img src={Images.OrderPlace} alt='accountdeletedimg' className='img-fluid' />
+                        <p className='accountDeleted mt-3'> Are You Sure You Want to Cancel Your Order.</p>
+                        <p className='accountdeletetxt mt-2 '>Cancellation charges apply.</p>
+                        <div className='modalfooterbtn'>
+                            <div className='addfoodbtn'>
+                                <button className='settingBoxtxt'>
+                                    No, don’t                            </button>
+                                <button className='foodmodalbtn' onClick={() => {
+                                    handleUserProfile("ordercancel")
+                                }}>
+                                    Yes, Cancel
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}
@@ -54,11 +57,11 @@ const PaymentDoneModal = () => {
                 showCloseBtn={false}
                 isRightSideModal={true}
                 mediumWidth={false}
-                className={modalDetail.flag === "orderplace" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "orderplace" ? "ordermodalplace" : ""}
+                className={modalDetail.flag === "ordercancel" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "ordercancel" ? "ordermodalcancel" : ""}
                 child={
-                    modalDetail.flag === "orderplace" ? (
-                        <OrderPlaceModal
+                    modalDetail.flag === "ordercancel" ? (
+                        <OrderCancelModal
                             close={() => handleOnCloseModal()}
                         />
                     ) :
@@ -66,7 +69,7 @@ const PaymentDoneModal = () => {
                 }
                 header=
 
-                {modalDetail.flag === "orderplace" ?
+                {modalDetail.flag === "ordercancel" ?
                     <>
                         {/* <div className='editadressheading'>
                             <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
@@ -90,4 +93,4 @@ const PaymentDoneModal = () => {
     )
 }
 
-export default PaymentDoneModal
+export default YourOrderModal
