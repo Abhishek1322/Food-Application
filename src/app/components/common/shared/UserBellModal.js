@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images";
 import CustomModal from './CustomModal';
 import UserDeleteChat from './UserDeleteChat';
-import ChefChatModal from './ChefChatModal';
+import UserChatModal from './UserChatModal';
+import UserReportChat from './UserReportChat';
+import UserClearChat from './UserClearChat';
 
 
 
@@ -153,82 +155,6 @@ const UserBellModal = () => {
                     </div>
                 </div>
             </div>
-            {/* <CustomModal
-                key={key}
-                show={modalDetail.show}
-                backdrop="static"
-                showCloseBtn={false}
-                isRightSideModal={true}
-                mediumWidth={false}
-                className={modalDetail.flag === "chatBell " ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "reportchatD" ? "chatbellSection" : modalDetail.flag === "chatBell" ? "chatbellSection" : ""}
-                child={
-                    modalDetail.flag === "chatBell" ? (
-                        <ChatnextModal
-                            close={() => handleOnCloseModal()}
-                        />
-                    ) : modalDetail.flag === "reportchatD" ? (
-                        <ReportchatDropModal close={() => handleOnCloseModal()} />
-                    )
-                        :
-                        ''
-                }
-                header=
-
-                {modalDetail.flag === "chatBell" ?
-                    <>
-                        <div className='Common_header'>
-                            <img
-                                src={Images.backArrowpassword}
-                                alt="logo"
-                                className="img-fluid  arrowCommon_"
-                            />
-                            <img
-                                src={Images.userProfile}
-                                alt="logo"
-                                className="img-fluid  headerImg_"
-                            />
-                            <div className='headerProfile'>
-                                <p className='headerTxt_'>John Smith</p>
-                                <p className='headerInner_'>Online</p>
-                            </div>
-
-
-
-                        </div>
-                        <div className='Dotsheader_'>
-                            <div class="dropdown ">
-                                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
-                                </button>
-                                <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
-                                    <div className=' chatnext_ flexBox' onClick={() => {
-                                        handleUserProfile("reportchatD")
-                                    }}>
-                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
-                                        <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
-                                    </div>
-                                </ul>
-                            </div>
-                        </div>
-                    </>
-                    :
-                    modalDetail.flag === "reportchatD" ?
-                        <>
-                            <div className='Common_header'>
-                                <img
-                                    src={Images.backArrowpassword}
-                                    alt="logo"
-                                    className="img-fluid  arrowCommon_"
-                                />
-                                <p className='headerTxt_ m-0 ps-2'>Report Chat</p>
-                            </div>
-                        </>
-                        :
-                        ''
-                }
-                onCloseModal={() => handleOnCloseModal()}
-            /> */}
             <CustomModal
                 key={key}
                 show={modalDetail.show}
@@ -237,7 +163,7 @@ const UserBellModal = () => {
                 isRightSideModal={true}
                 mediumWidth={false}
                 className={modalDetail.flag === "deletechat" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "deletechat" ? "userchatdelete" : modalDetail.flag === "chefchat" ? "chefchatmodal" : modalDetail.flag === "ratingchef" ? "ratingchefmodal" : modalDetail.flag === "chefcart" ? "chefcartmodal" : ""}
+                ids={modalDetail.flag === "deletechat" ? "userchatdelete" : modalDetail.flag === "chefchat" ? "userchatmodal" : modalDetail.flag === "ratingchef" ? "ratingusermodal" : modalDetail.flag === "chefcart" ? "Usercartmodal" : modalDetail.flag === "reportchat" ? "userreportchat" : modalDetail.flag === "clearchat" ? "userclearchat" : ""}
                 child={
                     modalDetail.flag === "deletechat" ? (
                         <UserDeleteChat
@@ -246,12 +172,19 @@ const UserBellModal = () => {
                         />
                     ) :
                         modalDetail.flag === "chefchat" ? (
-                            <ChefChatModal
+                            <UserChatModal
                                 close={() => handleOnCloseModal()}
                             />
-                        ) :
-                            ""
-                }
+                        ) : modalDetail.flag === "reportchat" ? (
+                            <UserReportChat close={() => handleOnCloseModal()} />
+                        )
+                            :
+                            modalDetail.flag === "clearchat" ? (
+                            <UserClearChat close={() => handleOnCloseModal()} />
+                        )
+                            :
+                            ''
+                            }
                 header=
 
                 {modalDetail.flag === "deletechat" ?
@@ -286,16 +219,16 @@ const UserBellModal = () => {
                                         <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
                                     </button>
                                     <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
-                                        <li className=' chatnext_ flexBox' onClick={() => {
-                                            handleUserProfile("reportchatD")
+                                        <li className=' chatdroplabel flexBox' onClick={() => {
+                                            handleUserProfile("reportchat")
                                         }}>
                                             <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
                                             <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
                                         </li>
-                                        <li className=' chatnext_ flexBox' onClick={() => {
-                                            handleUserProfile("reportchatD")
+                                        <li className=' chatdroplabel flexBox' onClick={() => {
+                                            handleUserProfile("clearchat")
                                         }}>
-                                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                            <img src={Images.ChatModal} className=' img-fluid reporticon_' />
                                             <p className='reportchattxt_ m-0 ps-2'>Clear Chat</p>
                                         </li>
 
@@ -304,8 +237,26 @@ const UserBellModal = () => {
                             </div>
                         </>
                         :
+                        modalDetail.flag === "reportchat" ?
+                            <>
+                                <div className='Common_header'>
+                                    <img
+                                        src={Images.backArrowpassword}
+                                        alt="logo"
+                                        className="img-fluid  arrowCommon_"
+                                    />
+                                    <p className='headerTxt_ m-0 ps-2'>Report Chat</p>
+                                </div>
+                            </>
+                            :
 
-                        ''
+                            modalDetail.flag === "clearchat" ?
+                            <>
+                               <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                            </>
+                            :
+
+                            ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />

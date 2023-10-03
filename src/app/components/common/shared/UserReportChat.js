@@ -1,0 +1,26 @@
+import React from 'react'
+
+const UserReportChat = () => {
+  return (
+    <>
+        <div className='reportchatsection'>
+        <div className='reportchatdrop_'>
+                    <p className='reportText_'>Are you sure, you want to report
+                        Sarah Bergstrom?</p>
+                    <div className="input-container mt-5">
+                        <textarea type="" className="Reportborder-input " />
+                        <label className="border-label">Give a reason</label>
+                    </div>
+
+                    <div className='orderItems_ flexBox justify-content-between modalfooterbtn'>
+                        <button className='cancelOrder_' >Cancel</button>
+                        <button className='submitOrder_'>Yes, Report</button>
+                    </div>
+
+                </div>
+        </div>
+    </>
+  )
+}
+
+export default UserReportChat

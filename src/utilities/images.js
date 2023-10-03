@@ -93,6 +93,7 @@ import RatingStar from "../public/images/ratingstar.svg"
 import LightStar from "../public/images/lightstar.svg"
 import LargeStar from "../public/images/largestar.svg"
 import DeleteModal from "../public/images/Deletmodal.png"
+import ChatModal from "../public/images/chatmodal.svg"
 
 
 
@@ -193,4 +194,5 @@ export {
     LightStar,
     LargeStar,
     DeleteModal,
+    ChatModal,
 }
