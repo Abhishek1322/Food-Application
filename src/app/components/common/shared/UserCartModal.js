@@ -59,7 +59,7 @@ const UserCartModal = () => {
                 <p className='totaltxt'>Total</p>
                 <p className='price'>£44.00</p>
               </div>
-              <button className='orderbutton'>CheckOut</button>
+              <button className='orderbutton'>Order Now</button>
             </div>
           </div>
         </div>

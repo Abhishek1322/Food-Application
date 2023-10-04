@@ -776,7 +776,8 @@ body {
 
 #chatBox,
 #Notification,
-#CartModal,
+#myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
+, #paidAmount , #editMenu,
 #myOrder,
 #reportChatD,
 #myorderReport,
@@ -1096,7 +1097,7 @@ body {
     display: flex;
     align-items: center;
 }
-
+ 
 .johnchatdetail {
     border-radius: 4px;
     background: #FADECC;

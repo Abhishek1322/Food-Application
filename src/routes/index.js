@@ -31,13 +31,25 @@ const Router = () => {
               <UserRoute role="user">
                 <Containers.HomeUser />
               </UserRoute>
-            }
+            } 
           />
           <Route
             path="/chef-details"
             element={
               <UserRoute role="user">
                 <Containers.ChefDetails />
+              </UserRoute>
+            }
+          />
+          <Route path="/user-chef-home" element={<UserRoute role="user">
+            <Containers.UserChefHome />
+          </UserRoute>
+          } />
+          <Route
+            path="/user-order-home"
+            element={
+              <UserRoute role="user">
+                <Containers.UserOrderHome />
               </UserRoute>
             }
           />
@@ -71,14 +83,13 @@ const Router = () => {
           <Route path="/new-booking" element={<Containers.NewBooking />} />
           <Route path="/menu" element={<Containers.Menu />} />
           <Route path="/home" element={<Containers.HomeRequsest />} />
-          <Route  path="/booking-details" element={<Containers.BookingDetails />}/>
+          <Route path="/booking-details" element={<Containers.BookingDetails />} />
           <Route path="/my-profile" element={<Containers.myprofile />} />
-          <Route path="/booking-details" element={<Containers.BookingDetails />}/>
+          <Route path="/booking-details" element={<Containers.BookingDetails />} />
           <Route path="/order-details" element={<Containers.OrderDetails />} />
-          <Route path="/anotherorder-detail" element={<Containers.AnotherOrderdetail />}/>
-          <Route path="/user-chef-home" element={<Containers.UserChefHome />} />
-          <Route 
-          path = "/edit-chef-profile"
+          <Route path="/anotherorder-detail" element={<Containers.AnotherOrderdetail />} />
+          <Route
+            path="/edit-chef-profile"
             element={
               <ChefRoute role="chef">
                 <Containers.EditProfile />

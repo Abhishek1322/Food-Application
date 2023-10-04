@@ -83,7 +83,7 @@ const User_Navbar = () => {
                     />
                     <span className="cartItems">0</span>
                   </div>
-                  <button className='sarahmessagebtn' onClick={() => {
+                  <button className='sarahmessagebtn d-none' onClick={() => {
                     handleUserProfile("bookchef")
                   }}>
                     <div className="booknowimg"><img src={Images.lightcap} alt='timesquareimage' className='img-fluid' /></div>

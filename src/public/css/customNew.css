@@ -298,11 +298,7 @@ p {
     background: #979999;
     border: none;
     margin-right: 10px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding-left: 9px;
-    padding-right: 31px;
+    padding: 10px 31px 10px 10px;
 }
 
 .availableheading {
@@ -311,34 +307,22 @@ p {
     font-size: 18px;
     font-weight: 600;
     line-height: normal;
+    margin-left: 10px;
 }
 
 .availableimg {
     border-radius: 12px;
     background: hsl(0deg 0% 100% / 30%);
     padding: 9px;
+    max-width: 100%;
+    height: auto;
 }
-
-.sarahcallbtn {
-    background: #2E3333;
-    border: none;
-    padding: 13px 10px;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    border-radius: 12px;
-}
-
 .sarahmessagebtn {
     background-color: #E65C00;
     border: none;
     margin-right: 10px;
-    display: flex;
-    align-items: center;
     border-radius: 12px;
-    gap: 15px;
-    padding-left: 9px;
-    padding-right: 31px;
+    padding: 10px 31px 10px 10px;
 }
 
 .sarahtime {
@@ -409,10 +393,10 @@ p {
     padding: 0px 25px;
 }
 
-.buttonBoxmodal {
+/* .buttonBoxmodal {
     display: flex;
     justify-content: end;
-}
+} */
 
 @media (max-width:1366px) {
     .sarahinformation {
@@ -422,10 +406,10 @@ p {
 
 @media (max-width:768px) {
 
-    .buttonBoxmodal {
+    /* .buttonBoxmodal {
         display: block;
         justify-content: center;
-    }
+    } */
 }
 
 .sarahsmenu .listItems_ {
@@ -1489,11 +1473,6 @@ p {
 #usercartmodal .modal-body {
     padding: 0;
 }
-
-.usercartcheck .modalDetail {
-    padding: 10px;
-}
-
 .usercartcheck .modalfooterbtn {
     max-width: none;
 }
@@ -1514,9 +1493,6 @@ p {
     padding: 0;
 }
 
-.usercartsection .modalDetail {
-    padding: 10px;
-}
 
 .cartcheckoutsection .outeraddItem {
     padding: 20px 10px 0px 10px;
@@ -1525,11 +1501,6 @@ p {
 #cartcheckoutModal .modal-body {
     padding: 0;
 }
-
-.cartcheckoutsection .modalDetail {
-    padding: 10px;
-}
-
 .cartcheckoutsection .modalfooterbtn {
     max-width: none;
 }
@@ -1635,6 +1606,9 @@ p {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    margin: 20px;
 }
 
 .usercartDetail {
@@ -1720,78 +1694,163 @@ p {
     background-color: #2E3333;
 }
 
-.slideselectbox {
-    background: #FFFFFF;
-    border: none;
-    display: inline-block;
-    width: 100%;
-    padding: 14px 25px 14px 10px;
-    appearance: none;
-    background-image: url(../images/downArrow.svg);
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: 29px 8px;
-    color: #ABADAD;
-    font-size: 14px;
-    font-weight: 400;
-}
-.slideselectbox:focus{
-    outline: none;
-}
 .cheffilter {
-    display: flex;
     margin-bottom: 20px;
     justify-content: end;
 }
 
 .cheffilter .chefName {
-    width: 100%;
+    /* width: 100%; */
+    text-align: end;
+}
+.mainBoxOuter .owl-carousel .owl-stage-outer {
+    margin: 0 50px;
 }
 
-.chefiltersub {
-    display: flex;
-    align-items: center;
-}
-.owl-carousel .owl-stage-outer {
-    margin: 0 40px;
-}   
-.owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+.mainBoxOuter .owl-carousel .owl-nav button.owl-prev,
+.owl-carousel button.owl-dot {
     background: none;
     color: inherit;
     border: none;
     padding: 0 !important;
     font: inherit;
     position: absolute;
-    top: -16px;
+    top: 0px;
     left: 0;
-    background-color:#FFF;
+    background-color: #FFF;
     width: 45px;
     color: #C0C2C2 !important;
-    margin:  0 auto;
+    margin: -16px auto;
     font-size: 42px;
     font-weight: 200;
 }
-.owl-carousel .owl-nav button.owl-next, .owl-carousel button.owl-dot {
+
+.mainBoxOuter .owl-carousel .owl-nav button.owl-next,
+.owl-carousel button.owl-dot {
     background: none;
     color: inherit;
     border: none;
     padding: 0 !important;
     font: inherit;
     position: absolute;
-    top: -16px;
+    top: 0px;
     right: 0;
-    background-color:#FFF !important;
+    background-color: #FFF !important;
     width: 30px;
     color: #C0C2C2 !important;
-    margin: auto;
+    margin: -16px auto;
     font-size: 42px;
     font-weight: 200;
 
 }
-.owl-theme .owl-nav [class*='owl-']:hover {
+
+.mainBoxOuter .owl-theme .owl-nav [class*='owl-']:hover {
     background: #fff !important;
     color: #FFF;
     text-decoration: none;
 }
 
+.cheffilter .btn-secondary {
+    background-color: #fff;
+    border: none;
+}
+
+.cheffilter .btn-secondary:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.cheffilter .dropdown-toggle::after {
+    content: '';
+    background: #FFFFFF;
+    border: none;
+    display: inline-block;
+    width: 100%;
+    padding: 0px 0px 8px 10px;
+    background-image: url(http://localhost:3000/static/media/downArrow.cb70ef2bae8e4a51e1a0.svg);
+    background-repeat: no-repeat;
+    color: #ABADAD;
+    font-size: 8px;
+    margin-left: 10px;
+}
+.filterheading{
+    border: none;
+    color: #ABADAD;
+    font-size: 14px;
+    font-weight: 400;
+}
 /*user-chef-home  css end*/
+/*user-order-home css start*/
+.userordersection{
+    padding: 10px 31px;
+}
+.ordermain{
+    border-radius: 15px;
+background: #FFF;
+box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+margin-bottom: 20px;
+}
+.orderprocess{
+    border-radius: 15px 15px 0px 0px;
+background: #E6E6E6;
+/* display: flex; */
+/* justify-content: space-between; */
+padding: 10px 20px;
+flex-wrap: nowrap;
+}
+.orderchefinfo{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px 20px 10px;
+    border-radius: 15px;
+background: #FFF;
+box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+padding-bottom: 20;
+flex-wrap: nowrap;
+}
+.orderchefname{
+    margin-left: 10px;
+}
+.userorderprice{
+    border-radius: 10px;
+    background: hsl(122 55% 90% / 1);
+padding: 8px 12px;
+}
+.orderstatus{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.orderprocess.active{
+    background-color: #E65C00;;
+}
+.orderprocess.active .fooodquantity_{
+    color: #fff;
+}
+.ordersubheader{
+    color: #ABADAD;
+    font-size: 12px;
+    font-weight: 600;
+    position: relative;
+    margin-left: 11px;
+}
+.ordersubheader:before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #E65C00;
+    border-radius: 50px;
+    top: 5px;
+    left: -11px;
+}
+#userorderdetail{
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+/*user-order-home css end*/

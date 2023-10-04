@@ -31,15 +31,14 @@ import myprofile from "../containers/Chef/myProfile"
 import EditProfile from "../containers/Chef/myProfile/editProfile"
 import ChefDetails from "../containers/User/ChefDetails"
 import UserChefHome from "./User/Chef/Home"
-
-
+import UserOrderHome from "./User/Order/OrderHome"
 
 
 
 export {
     
     Login,
-    Home,
+    Home, 
     ChooseRoles,
     AccountDashboard,
     Verification,
@@ -70,5 +69,6 @@ export {
     EditProfile,
     myprofile,
     ChefDetails,
-    UserChefHome
+    UserChefHome,
+    UserOrderHome,
 }

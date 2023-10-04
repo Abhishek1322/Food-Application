@@ -18,29 +18,37 @@ const UserChefHome = () => {
   return (
     <>
       <div className="mainBoxOuter">
-        <div className="cheffilter">
-          <div className="chefiltersub">
+         <div className="cheffilter flexBox">
             <p className="chefName">Filter By:</p>
-            <select className="slideselectbox" required="">
-              <option value="">4 <img src={Images.RatingStar} alt="starimg" className="img-fluid" /></option>
-              <option>Category1</option>
-              <option>Category2</option>
-            </select>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <span className="filterheading">4</span><img src={Images.RatingStar} alt="starimg" className="img-fluid ms-1 me-1"/><span className="filterheading">Above Rating</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#"><span className="filterheading">4</span><img src={Images.RatingStar} alt="starimg" className="img-fluid ms-1 me-1"/><span className="filterheading">Above Rating</span></a></li>
+                <li><a class="dropdown-item" href="#"><span className="filterheading">5</span><img src={Images.RatingStar} alt="starimg" className="img-fluid ms-1 me-1"/><span className="filterheading">Rating</span></a></li>
+                <li><a class="dropdown-item" href="#"><span className="filterheading">3</span><img src={Images.RatingStar} alt="starimg" className="img-fluid ms-1 me-1"/><span className="filterheading">Above Rating</span></a></li>
+                <li><a class="dropdown-item" href="#"><span className="filterheading">3</span><img src={Images.RatingStar} alt="starimg" className="img-fluid ms-1 me-1"/><span className="filterheading">Above Rating</span></a></li>
+                <li><a class="dropdown-item" href="#"><span className="filterheading">1</span><img src={Images.RatingStar} alt="starimg" className="img-fluid ms-1 me-1"/><span className="filterheading">Above Rating</span></a></li>
+              </ul>
           </div>
-        </div>
+        </div> 
         <div className="container-fluid">
           <OwlCarousel className='owl-theme'
             loop={true}
-            margin={15} nav
+            margin={10} 
+            nav
             dots={false}
+            // autoplay={true}
+            // autoplayTimeout={1000}
             autoWidth={true}
           >
-              <div className="chefslidermain active">
-                <p className="sliderheading">All</p>
-              </div>
-              <div className="chefslidermain">
-                <p className="sliderheading">Butcher Chef</p>
-              </div>
+            <div className="chefslidermain active">
+              <p className="sliderheading">All</p>
+            </div>
+            <div className="chefslidermain">
+              <p className="sliderheading">Butcher Chef</p>
+            </div>
             <div class='item'>
               <div className="chefslidermain">
                 <p className="sliderheading">Chef-Owner</p>
@@ -112,11 +120,7 @@ const UserChefHome = () => {
                 <p className="sliderheading">Meat Chef</p>
               </div>
             </div>
-
-
-
           </OwlCarousel>
-
           <div className="row">
             {slides &&
               slides.map((val, i) => {
