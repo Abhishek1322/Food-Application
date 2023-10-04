@@ -97,6 +97,8 @@ import editprofileDelete from "../public/images/editprofileDelete.svg"
 import ChatModal from "../public/images/chatmodal.svg"
 import availabilityClock from "../public/images/availabilityClock.svg"
 import ratingAndReview from "../public/images/ratingReviewsImg.svg"
+import ratePerHourImg from "../public/images/ratePerHourImg.svg"
+import editMenuImg from "../public/images/editMenuImg.png"
 
 
 
@@ -202,5 +204,7 @@ export {
     ChatModal,
     availabilityClock,
     ratingAndReview,
+    ratePerHourImg,
+    editMenuImg,
     
 }

@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { setChefProfileDetails, onErrorStopLoad } from "../../slices/web";
 
 function* getChefProfileDetails(action) {
-  console.log("actionnnnnn", action.payload.userid);
   try {
     const resp = yield call(
       ApiClient.get,

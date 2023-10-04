@@ -390,7 +390,6 @@ body {
 .changepassText {
     color: #979999;
     text-align: center;
-
     font-size: 14px;
     font-weight: 400;
 }
@@ -789,9 +788,9 @@ body {
 #editMenu,
 #foodexpert,
 #myAvailability
-,#ratingAndReview 
+,#ratingAndReview ,
 #myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
-, #paidAmount , #editMenu{
+, #paidAmount , #editMenu {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1837,7 +1836,6 @@ body {
 
 .profileInfo {
     display: flex;
-    justify-content: space-between;
 }
 
 .orderfrom_ {
@@ -1882,20 +1880,6 @@ body {
     padding: 15px;
     margin-bottom: 30px;
 }
-
-/* .locationData .autocomplete-dropdown-container{
-    background-color:  rebeccapurple;
-    border-radius: 10px;
-    padding:10px;
-} */
-.location-search-input.customform-control.border-input {
-    background-color: rebeccapurple !important;
-}
-
-.location-search-input.customform-control.border-input.focus-visible {
-    background-color: none !important;
-}
-
 /*  myRecentorder Css End */
 
 /* chat With Chef CSS stArt */
@@ -1988,6 +1972,10 @@ body {
     max-width: 136px;
     height: 56px;
 }
+.input-container .menuDescrition_ {
+    height: 119px !important;
+    width: 290px;
+}
 
 .cateofyImg_ {
     position: absolute;
@@ -2022,7 +2010,41 @@ body {
     padding: 8px;
     border-radius: 9px;
 }
-
+#ratingAndReview .modalscroll {
+    height: 610px;
+    overflow-y: auto;
+}
+.editFoodImg {
+    width: 290px;
+    height: 134px;
+    border-radius: 20px;
+}
+.editImgBox_ {
+    position: relative;
+}
+#editMenu .modalscroll {
+    height: 650px;
+    overflow-y: auto;
+    margin-top: 19px;
+}
+.cancelEditImg {
+    position: absolute;
+    top: 33px;
+    right: 34px;
+    background-color: red;
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    border: 5px solid #fff;
+    padding: 12px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 14px;
+    text-align: center;
+}
 /*----------------------------Edit Profile Page Modal 2  Css start---------------- */
 
 .myAvailability_ {
@@ -2038,6 +2060,11 @@ body {
     text-align: center;
     width: 38px;
     height: 46px;
+}
+#foodexpert .modalscroll {
+    height: 650px;
+    overflow-y: auto;
+    margin-top: 19px;
 }
 
 .availabilityDays.active {
@@ -2083,7 +2110,7 @@ body {
     font-weight: 600;
 }
 
-/* Rating And revies CSS START */
+/* Rating And reviews CSS START */
 .ratinghere_ {
     color: #2E3333;
     font-size: 42px;
@@ -2106,13 +2133,48 @@ body {
     color: #FFF;
     font-size: 14px;
     font-weight: 600;
+    width: 54px;
+    height: 30px;
 }
-.starRating {
+.StarRating_ {
     border-radius: 4px;
     border: 1px solid #E0E1E1;
-    background: #FFF;
-    padding: 5px 12px 6px 13px;
+    background-color: #fff;
+    color: #2E3333;
+    width: 54px;
+    height: 30px;
+    text-align: center;
+}
+.rating {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 600;
 }
 /* Rating And revies CSS END */
 
 /*----------------------------Edit Profile Page Css end---------------- */
+
+
+/* -------- SETUPPROFILE MODALS css start scrollbar --------- */
+#AddExpertise .modalscroll {
+    height: 636px;
+    margin-top: 6px;
+}
+/* -------- SETUPPROFILE MODALS css End scrollbar --------- */
+
+/*  ++++++++++++++++    */
+.locationData .suggestion-item--active {
+    background-color: #E9E9E9 !important;
+    border-radius: 6px;
+    padding: 6px 22px 6px;
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+}
+.locationData .suggestion-item {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #f8f7f7 !important;
+    padding: 6px 22px 6px;
+}

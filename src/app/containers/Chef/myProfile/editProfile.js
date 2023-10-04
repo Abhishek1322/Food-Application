@@ -28,7 +28,6 @@ const EditProfile = () => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
 
-  console.log("chefProfileData", chefProfileData);
 
   useEffect(() => {
     let params = {
@@ -72,6 +71,13 @@ const EditProfile = () => {
         setLongitude(results[0].geometry.location.lng());
       })
       .catch((error) => {});
+  };
+
+  const typeOfChef = [{ type: "restaurant" }, { type: "home" }];
+
+  // update chef type
+  const handleUpdateChefType = (e, type) => {
+    setChefType(type);
   };
 
   return (
@@ -137,16 +143,32 @@ const EditProfile = () => {
                     <div className="col-lg-6">
                       <div className="input-container mt-5">
                         <div className="border-box">
-                          <div className="restroform">
-                            <p className="totalPaid ">Restaurant</p>
-                            <img
-                              src={Images.lightinfo}
-                              alt="lightinfoimg"
-                              className="img-fluid"
-                            />
-                          </div>
-                          <p className="restrohome">Home</p>
-                          <img src={Images.chefType} />
+                          {typeOfChef.map((item, index) => (
+                            <div
+                              onClick={(e) =>
+                                handleUpdateChefType(e, item.type)
+                              }
+                              key={index}
+                              className={
+                                chefType === item.type
+                                  ? "chefType active text-capitalize"
+                                  : "chefType text-capitalize"
+                              }
+                            >
+                              {item.type}
+                              <img
+                                src={Images.chefType}
+                                alt="InfoIcon"
+                                className="InfoIcon"
+                                id="Restaurant"
+                              />
+                              <img
+                                src={Images.chefTypeActive}
+                                alt="InfoIcon"
+                                className="InfoIconActive img-fluid d-none"
+                              />
+                            </div>
+                          ))}
                         </div>
                         <div className="border-label">Chef Type</div>
                       </div>
