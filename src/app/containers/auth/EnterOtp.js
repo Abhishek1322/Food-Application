@@ -8,7 +8,7 @@ import OTPInput from "react-otp-input";
 import {
   resetPasswordOtp,
   resendResetPasswordOtp,
-  onErrorStopLoad
+  onErrorStopLoad,
 } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import Loading from "../Settings/Loading";
@@ -56,7 +56,7 @@ const EnterOtp = (props) => {
 
     let params = {
       type: "forgot",
-      email: "abhi@mailinator.com",
+      email: authData?.userEmail?.email,
     };
 
     dispatch(
