@@ -36,15 +36,48 @@ const UserOrderHome = () => {
             <div className='userordersection'>
                 <div className='container-fluid'>
                     <div className='row'>
-                         <div className='col-lg-12'>
-                            <div className='ordermain' onClick={() => {
-                                        handleUserProfile("orderdetail")
-                                    }}>
-                                <div className='orderprocess active'>
+                        <div className='col-lg-12'>
+                            <div className='orderprocess active mb-3' onClick={() => {
+                                handleUserProfile("orderdetail")
+                            }}>
+                                <article className='flexBox justify-content-between p-3'>
                                     <p className='fooodquantity_'>#12548</p>
                                     <p className='chatTime_'>In-Progress</p>
-                                </div>
+                                </article>
                                 <div className='orderchefinfo'>
+                                    <div className='row'>
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className='flexBox'>
+                                                <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
+                                                <div className='orderchefname'>
+                                                    <p className='chefName '>Sarah Bergstrom</p>
+                                                    <p className='orderFrom'>Order From</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className='orderstatus'>
+                                                <p className='Items'>4 Items</p>
+                                                <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                <div className='userorderprice'>
+                                                    <p className='orderPrice '>£22.00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-lg-12'>
+                            <div className='orderprocess  mb-3' onClick={() => {
+                                handleUserProfile("orderdetail")
+                            }}>
+                                <article className='flexBox justify-content-between p-3'>
+                                    <p className='fooodquantity_'>#12548</p>
+                                    <p className='chatTime_'>In-Progress</p>
+                                </article>
+                                <div className='orderchefinfo'>
+                                <div className='row'>
                                     <div className='col-lg-6 col-md-12'>
                                         <div className='flexBox'>
                                             <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
@@ -63,145 +96,6 @@ const UserOrderHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div className='col-lg-12'>
-                            <div className='ordermain'>
-                                <div className='orderprocess'>
-                                    <p className='fooodquantity_'>#12548</p>
-                                    <p className='chatTime_'>Delivered</p>
-                                </div>
-                                <div className='orderchefinfo'>
-                                    <div className='col-lg-6'>
-                                        <div className='flexBox'>
-                                            <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
-                                            <div className='orderchefname'>
-                                                <p className='chefName '>Sarah Bergstrom</p>
-                                                <p className='orderFrom'>Order From</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-6'>
-                                        <div className='orderstatus'>
-                                            <p className='Items'>4 Items</p>
-                                            <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                            <div className='userorderprice'>
-                                                <p className='orderPrice '>£22.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='col-lg-12'>
-                            <div className='ordermain'>
-                                <div className='orderprocess'>
-                                    <p className='fooodquantity_'>#12548</p>
-                                    <p className='chatTime_'>Delivered</p>
-                                </div>
-                                <div className='orderchefinfo'>
-                                    <div className='col-lg-6'>
-                                        <div className='flexBox'>
-                                            <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
-                                            <div className='orderchefname'>
-                                                <p className='chefName '>Sarah Bergstrom</p>
-                                                <p className='orderFrom'>Order From</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-6'>
-                                        <div className='orderstatus'>
-                                            <p className='Items'>4 Items</p>
-                                            <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                            <div className='userorderprice'>
-                                                <p className='orderPrice '>£22.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='col-lg-12'>
-                            <div className='ordermain'>
-                                <div className='orderprocess'>
-                                    <p className='fooodquantity_'>#12548</p>
-                                    <p className='chatTime_'>Delivered</p>
-                                </div>
-                                <div className='orderchefinfo'>
-                                    <div className='col-lg-6'>
-                                        <div className='flexBox'>
-                                            <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
-                                            <div className='orderchefname'>
-                                                <p className='chefName '>Sarah Bergstrom</p>
-                                                <p className='orderFrom'>Order From</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-6'>
-                                        <div className='orderstatus'>
-                                            <p className='Items'>4 Items</p>
-                                            <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                            <div className='userorderprice'>
-                                                <p className='orderPrice '>£22.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='col-lg-12'>
-                            <div className='ordermain'>
-                                <div className='orderprocess'>
-                                    <p className='fooodquantity_'>#12548</p>
-                                    <p className='chatTime_'>Delivered</p>
-                                </div>
-                                <div className='orderchefinfo'>
-                                    <div className='col-lg-6'>
-                                        <div className='flexBox'>
-                                            <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
-                                            <div className='orderchefname'>
-                                                <p className='chefName '>Sarah Bergstrom</p>
-                                                <p className='orderFrom'>Order From</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-6'>
-                                        <div className='orderstatus'>
-                                            <p className='Items'>4 Items</p>
-                                            <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                            <div className='userorderprice'>
-                                                <p className='orderPrice '>£22.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='col-lg-12'>
-                            <div className='ordermain'>
-                                <div className='orderprocess'>
-                                    <p className='fooodquantity_'>#12548</p>
-                                    <p className='chatTime_'>Delivered</p>
-                                </div>
-                                <div className='orderchefinfo'>
-                                    <div className='col-lg-6'>
-                                        <div className='flexBox'>
-                                            <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
-                                            <div className='orderchefname'>
-                                                <p className='chefName '>Sarah Bergstrom</p>
-                                                <p className='orderFrom'>Order From</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-6'>
-                                        <div className='orderstatus'>
-                                            <p className='Items'>4 Items</p>
-                                            <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                            <div className='userorderprice'>
-                                                <p className='orderPrice '>£22.00</p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +111,7 @@ const UserOrderHome = () => {
                 isRightSideModal={true}
                 mediumWidth={false}
                 className={modalDetail.flag === "orderdetail" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "orderdetail" ? "userorderdetail" :  ""}
+                ids={modalDetail.flag === "orderdetail" ? "userorderdetail" : ""}
                 child={
                     modalDetail.flag === "orderdetail" ? (
                         <UserOrderDetail
@@ -228,20 +122,20 @@ const UserOrderHome = () => {
                 }
                 header=
 
-                { modalDetail.flag === "orderdetail" ?
-                        <>
-                            <div className='Common_header'>
-                                <div className='headerProfile'>
-                                    <p className='headerTxt_'>Order #12548</p>
-                                    <p className='ordersubheader'>In-Progress</p>
-                                </div>
+                {modalDetail.flag === "orderdetail" ?
+                    <>
+                        <div className='Common_header'>
+                            <div className='headerProfile'>
+                                <p className='headerTxt_'>Order #12548</p>
+                                <p className='ordersubheader'>In-Progress</p>
                             </div>
-                            <p onClick={handleOnCloseModal} className='modal_cancel'>
-                                <img src={Images.modalCancel} className='ModalCancel' />
-                            </p>
-                        </>
-                        :
-                        ''
+                        </div>
+                        <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <img src={Images.modalCancel} className='ModalCancel' />
+                        </p>
+                    </>
+                    :
+                    ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />

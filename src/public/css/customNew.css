@@ -317,6 +317,7 @@ p {
     max-width: 100%;
     height: auto;
 }
+
 .sarahmessagebtn {
     background-color: #E65C00;
     border: none;
@@ -1473,6 +1474,7 @@ p {
 #usercartmodal .modal-body {
     padding: 0;
 }
+
 .usercartcheck .modalfooterbtn {
     max-width: none;
 }
@@ -1501,6 +1503,7 @@ p {
 #cartcheckoutModal .modal-body {
     padding: 0;
 }
+
 .cartcheckoutsection .modalfooterbtn {
     max-width: none;
 }
@@ -1703,6 +1706,7 @@ p {
     /* width: 100%; */
     text-align: end;
 }
+
 .mainBoxOuter .owl-carousel .owl-stage-outer {
     margin: 0 50px;
 }
@@ -1773,68 +1777,84 @@ p {
     font-size: 8px;
     margin-left: 10px;
 }
-.filterheading{
+
+.filterheading {
     border: none;
     color: #ABADAD;
     font-size: 14px;
     font-weight: 400;
 }
+
 /*user-chef-home  css end*/
 /*user-order-home css start*/
-.userordersection{
+.userordersection {
     padding: 10px 31px;
 }
-.ordermain{
+
+.ordermain {
     border-radius: 15px;
-background: #FFF;
-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-margin-bottom: 20px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
 }
-.orderprocess{
-    border-radius: 15px 15px 0px 0px;
-background: #E6E6E6;
-/* display: flex; */
-/* justify-content: space-between; */
-padding: 10px 20px;
-flex-wrap: nowrap;
+
+.orderprocess {
+    border-radius: 15px;
+    background: #E6E6E6;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* padding: 10px 20px; */
+    flex-wrap: nowrap;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
 }
-.orderchefinfo{
-    display: flex;
-    justify-content: space-between;
+.orderprocess .chatTime_ {
+    color: #fff;
+}
+.orderchefinfo {
+    /* display: flex; */
+    /* justify-content: space-between; */
     padding: 15px 20px 20px 10px;
-    border-radius: 15px;
-background: #FFF;
-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-padding-bottom: 20;
-flex-wrap: nowrap;
+    border-radius: 13px;
+    background: #FFF;
+    /* box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05); */
+    padding-bottom: 20;
+    flex-wrap: nowrap;
 }
-.orderchefname{
+
+.orderchefname {
     margin-left: 10px;
 }
-.userorderprice{
+
+.userorderprice {
     border-radius: 10px;
     background: hsl(122 55% 90% / 1);
-padding: 8px 12px;
+    padding: 8px 12px;
 }
-.orderstatus{
+
+.orderstatus {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
 }
-.orderprocess.active{
-    background-color: #E65C00;;
+
+.orderprocess.active {
+    background-color: #E65C00;
+    ;
 }
-.orderprocess.active .fooodquantity_{
+
+.orderprocess.active .fooodquantity_ {
     color: #fff;
 }
-.ordersubheader{
+
+.ordersubheader {
     color: #ABADAD;
     font-size: 12px;
     font-weight: 600;
     position: relative;
     margin-left: 11px;
 }
+
 .ordersubheader:before {
     content: '';
     position: absolute;
@@ -1845,7 +1865,8 @@ padding: 8px 12px;
     top: 5px;
     left: -11px;
 }
-#userorderdetail{
+
+#userorderdetail {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1853,4 +1874,14 @@ padding: 8px 12px;
     top: 25px;
     right: 0px;
 }
+
 /*user-order-home css end*/
+/* start sidebar */
+.userSidebar{
+    position: fixed;
+    top: 0;
+}
+.usermain{
+    width: calc(100% - 100px);
+    margin-left: 100px;
+}
