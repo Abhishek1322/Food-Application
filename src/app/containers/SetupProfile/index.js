@@ -51,7 +51,7 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-
+  console.log("experticeValue", experticeValue);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -68,6 +68,7 @@ const SetupProfile = () => {
   const handleRemoveDocument = (name) => {
     if (pdfFiles.name === name) {
       setPdfFiles("");
+      setDocumentUrl("");
     }
   };
 
@@ -173,6 +174,10 @@ const SetupProfile = () => {
       setPageNumber(2);
       nextPage("pagetwo");
     } else if (flag == 2) {
+      if (!documentUrl) {
+        toast.error("Please upload your document");
+        return;
+      }
       let params = {
         step: "2",
         verificationDocument: documentUrl,
@@ -230,7 +235,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   // select address
@@ -241,7 +246,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   // week days
@@ -374,12 +379,13 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${activeTab === "restaurant"
+                                        className={`chefType ${
+                                          activeTab === "restaurant"
                                             ? "active"
                                             : path == "/restaurant"
-                                              ? "active"
-                                              : ""
-                                          }`}
+                                            ? "active"
+                                            : ""
+                                        }`}
                                         onClick={() =>
                                           setActiveTab("restaurant")
                                         }
@@ -398,12 +404,13 @@ const SetupProfile = () => {
                                         />
                                       </li>
                                       <li
-                                        className={`chefType ${activeTab === "home"
+                                        className={`chefType ${
+                                          activeTab === "home"
                                             ? "active"
                                             : path == "/home"
-                                              ? "active"
-                                              : ""
-                                          }`}
+                                            ? "active"
+                                            : ""
+                                        }`}
                                         onClick={() => setActiveTab("home")}
                                       >
                                         Home
@@ -488,15 +495,15 @@ const SetupProfile = () => {
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
                                                   ? {
-                                                    backgroundColor:
-                                                      "#41b6e6",
-                                                    cursor: "pointer",
-                                                  }
+                                                      backgroundColor:
+                                                        "#41b6e6",
+                                                      cursor: "pointer",
+                                                    }
                                                   : {
-                                                    backgroundColor:
-                                                      "#ffffff",
-                                                    cursor: "pointer",
-                                                  };
+                                                      backgroundColor:
+                                                        "#ffffff",
+                                                      cursor: "pointer",
+                                                    };
                                                 return (
                                                   <div
                                                     {...getSuggestionItemProps(
@@ -578,24 +585,13 @@ const SetupProfile = () => {
                                 </div>
                                 <div className="expertiseAdded mt-3">
                                   <ul>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
-                                    <li className="expertiseList">
-                                    North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
+                                    {experticeValue
+                                      ?.filter((value) => value !== "")
+                                      ?.map((value, index) => (
+                                        <li className="expertiseList">
+                                          {value}
+                                        </li>
+                                      ))}
                                   </ul>
                                 </div>
                               </div>
@@ -817,6 +813,7 @@ const SetupProfile = () => {
             <AddExpertise
               setExperticeValue={setExperticeValue}
               close={() => handleOnCloseModal()}
+              experticeValue={experticeValue}
             />
           ) : (
             ""
