@@ -297,10 +297,12 @@ p {
     border-radius: 12px;
     background: #979999;
     border: none;
-    padding: 13px 10px;
     margin-right: 10px;
     display: flex;
     align-items: center;
+    gap: 15px;
+    padding-left: 9px;
+    padding-right: 31px;
 }
 
 .availableheading {
@@ -309,14 +311,11 @@ p {
     font-size: 18px;
     font-weight: 600;
     line-height: normal;
-    padding-left: 15px;
-    padding-right: 31px;
 }
 
 .availableimg {
     border-radius: 12px;
     background: hsl(0deg 0% 100% / 30%);
-    width: 45px;
     padding: 9px;
 }
 
@@ -333,11 +332,13 @@ p {
 .sarahmessagebtn {
     background-color: #E65C00;
     border: none;
-    padding: 13px 10px;
     margin-right: 10px;
     display: flex;
     align-items: center;
     border-radius: 12px;
+    gap: 15px;
+    padding-left: 9px;
+    padding-right: 31px;
 }
 
 .sarahtime {
@@ -432,7 +433,7 @@ p {
     max-width: 100%;
 }
 
-/*modal start*/
+/*modal Css start*/
 #availablebtnModal {
     max-width: 406px;
     margin: 0;
@@ -564,7 +565,7 @@ p {
 }
 
 #CartModalFood .modalfooterbtn {
-    left: 15px;
+    left: 12px;
 }
 
 #CartModalFood .modal-header,
@@ -615,7 +616,7 @@ p {
 }
 
 #CartFoodOrderModal .modalfooterbtn {
-    left: 15px;
+    left: 12px;
 }
 
 
@@ -863,8 +864,8 @@ p {
     position: absolute;
     bottom: 0;
     width: 100%;
-    max-width: 330px;
     margin: 15px auto;
+    max-width: 336px;
 }
 
 #paynowmodal {
@@ -898,7 +899,7 @@ p {
 }
 
 #paynowmodal .modalfooterbtn {
-    left: 15px;
+    left: 12px;
 }
 
 #paydonemodal {
@@ -1403,18 +1404,21 @@ p {
 .modaltooltip:hover .tooltiptext {
     visibility: visible;
 }
-.chatdrop{
+
+.chatdrop {
     background-color: #FFF;
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.20));
     width: 147px;
     transform: translate(-22px, 39px) !important;
 }
-.chatdroplabel{
+
+.chatdroplabel {
     align-items: center;
     margin: 10px;
     cursor: pointer;
 }
-#userreportchat{
+
+#userreportchat {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1422,11 +1426,13 @@ p {
     top: 25px;
     right: 0px;
 }
-.reportchatsection .reportText_{
+
+.reportchatsection .reportText_ {
     max-width: 270px;
     margin-top: 35px;
 }
-#userclearchat{
+
+#userclearchat {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1434,14 +1440,17 @@ p {
     top: 25px;
     right: 0px;
 }
+
 #userclearchat .modal-header,
 #userclearchat .modal_Heading {
     border: none;
 }
+
 .chefclearchatsection .accountdeletetxt {
     max-width: 250px;
 }
-#chatnextmodal{
+
+#chatnextmodal {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1449,15 +1458,340 @@ p {
     top: 25px;
     right: 0px;
 }
+
 .chatclearnextsection .chatfooterbtn {
     bottom: 26px;
     padding: 0px 15px;
 }
-#userNotificationModal{
+
+#userNotificationModal {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
     width: 100%;
     top: 25px;
-    right: 0px;   
+    right: 0px;
 }
+
+#CartModal .modal-body {
+    padding: 0;
+}
+
+#usercartmodal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+#usercartmodal .modal-body {
+    padding: 0;
+}
+
+.usercartcheck .modalDetail {
+    padding: 10px;
+}
+
+.usercartcheck .modalfooterbtn {
+    max-width: none;
+}
+
+.usercartcheck .outeraddItem {
+    padding: 20px 10px 0px 10px;
+}
+
+.usercartsection .outeraddItem {
+    padding: 20px 10px 0px 10px;
+}
+
+.usercartsection .modalfooterbtn {
+    max-width: none;
+}
+
+#usercartsection .modal-body {
+    padding: 0;
+}
+
+.usercartsection .modalDetail {
+    padding: 10px;
+}
+
+.cartcheckoutsection .outeraddItem {
+    padding: 20px 10px 0px 10px;
+}
+
+#cartcheckoutModal .modal-body {
+    padding: 0;
+}
+
+.cartcheckoutsection .modalDetail {
+    padding: 10px;
+}
+
+.cartcheckoutsection .modalfooterbtn {
+    max-width: none;
+}
+
+.cartdelivery {
+    padding: 10px 15px;
+}
+
+.editadressection .modalfooterbtn {
+    left: 13px;
+}
+
+/* Cart modal Css  start */
+.settingModal {
+    width: 362px;
+    height: 700px;
+    border-radius: 20px;
+    background: rgb(219, 204, 207);
+}
+
+.ModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ModalLogo {
+    color: #2E3333;
+    font-family: Crimson Text;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.Modal_ {
+    padding: 23px 24px;
+    border-bottom: 1px solid #F3F3F3;
+}
+
+.ModalCancel {
+    background: #99979738;
+    padding: 9px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.foodtext {
+    color: #E65C00;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.foodItem {
+    color: #2E3333;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.foodPrice {
+    color: #35B539;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.cartcancel {
+    margin-left: 55px;
+    margin-top: 91px;
+}
+
+.sidebarLinks:hover .imgHide {
+    display: block !important;
+    transition: all 0.5s ease-in-out;
+}
+
+.sidebarLinks:hover .imgShow {
+    display: none !important;
+    transition: all 0.5s ease-in-out;
+}
+
+.insideModal {
+    margin: 0px 33px 0 10px;
+}
+
+.addItems {
+    border-radius: 10px;
+    background: #EEEFEF;
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 14px 109px 14px 102px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modalDetail {
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.usercartDetail {
+    display: flex;
+    padding: 15px;
+}
+
+.totaltxt {
+    color: #A4A4A4;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.price {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.orderNow {
+    border-radius: 8px;
+    background: #2E3333;
+    display: flex;
+}
+
+.orderbutton {
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    background: #E65C00;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+    display: flex;
+    width: 156px;
+    height: 49px;
+    padding: 18px 29px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    margin: 8px 5px 8px 10px;
+}
+
+.totalPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px 54px 13px 56px;
+}
+
+#CartModal {
+    max-width: 406px;
+    margin: 0;
+    margin-left: auto;
+    width: 100%;
+    top: 25px;
+    right: 0px;
+}
+
+/* cart Modal  Css end */
+/*user-chef-home  css start*/
+.sliderheading {
+    color: #2E3333;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.chefslidermain {
+    border-radius: 8px;
+    background: #EEEFEF;
+    padding: 10px 15px;
+}
+
+.chefslidermain.active .sliderheading {
+    font-weight: 600;
+    color: #FFF;
+}
+
+.chefslidermain.active {
+    background-color: #2E3333;
+}
+
+.slideselectbox {
+    background: #FFFFFF;
+    border: none;
+    display: inline-block;
+    width: 100%;
+    padding: 14px 25px 14px 10px;
+    appearance: none;
+    background-image: url(../images/downArrow.svg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 29px 8px;
+    color: #ABADAD;
+    font-size: 14px;
+    font-weight: 400;
+}
+.slideselectbox:focus{
+    outline: none;
+}
+.cheffilter {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: end;
+}
+
+.cheffilter .chefName {
+    width: 100%;
+}
+
+.chefiltersub {
+    display: flex;
+    align-items: center;
+}
+.owl-carousel .owl-stage-outer {
+    margin: 0 40px;
+}   
+.owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    position: absolute;
+    top: -16px;
+    left: 0;
+    background-color:#FFF;
+    width: 45px;
+    color: #C0C2C2 !important;
+    margin:  0 auto;
+    font-size: 42px;
+    font-weight: 200;
+}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel button.owl-dot {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    position: absolute;
+    top: -16px;
+    right: 0;
+    background-color:#FFF !important;
+    width: 30px;
+    color: #C0C2C2 !important;
+    margin: auto;
+    font-size: 42px;
+    font-weight: 200;
+
+}
+.owl-theme .owl-nav [class*='owl-']:hover {
+    background: #fff !important;
+    color: #FFF;
+    text-decoration: none;
+}
+
+/*user-chef-home  css end*/

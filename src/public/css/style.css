@@ -536,155 +536,6 @@ body {
     overflow-y: auto;
     margin-top: 19px;
 }
-
-
-/* Cart modal Css */
-.settingModal {
-    width: 362px;
-    height: 700px;
-    border-radius: 20px;
-    background: rgb(219, 204, 207);
-}
-
-.ModalHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ModalLogo {
-    color: #2E3333;
-    font-family: Crimson Text;
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0;
-}
-
-.Modal_ {
-    padding: 23px 24px;
-    border-bottom: 1px solid #F3F3F3;
-}
-
-.ModalCancel {
-    background: #99979738;
-    padding: 9px;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-.foodtext {
-    color: #E65C00;
-    font-size: 12px;
-    font-weight: 400;
-    margin: 0;
-    padding-bottom: 5px;
-}
-
-.foodItem {
-    color: #2E3333;
-    font-size: 14px;
-    font-weight: 700;
-    margin: 0;
-    padding-bottom: 5px;
-}
-
-.foodPrice {
-    color: #35B539;
-    font-size: 14px;
-    font-weight: 600;
-    margin: 0;
-    padding-bottom: 10px;
-}
-
-.cartcancel {
-    margin-left: 55px;
-    margin-top: 91px;
-}
-
-.sidebarLinks:hover .imgHide {
-    display: block !important;
-    transition: all 0.5s ease-in-out;
-}
-
-.sidebarLinks:hover .imgShow {
-    display: none !important;
-    transition: all 0.5s ease-in-out;
-}
-
-.insideModal {
-    margin: 0px 33px 0 10px;
-}
-
-.addItems {
-    border-radius: 10px;
-    background: #EEEFEF;
-    color: #2E3333;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 14px 109px 14px 102px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.modalDetail {
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.usercartDetail {
-    display: flex;
-    padding: 15px;
-}
-
-.totaltxt {
-    color: #A4A4A4;
-    font-size: 10px;
-    font-weight: 400;
-    margin: 0;
-}
-
-.price {
-    color: #FFF;
-    font-size: 16px;
-    font-weight: 700;
-    margin: 0;
-}
-
-.orderNow {
-    border-radius: 8px;
-    background: #2E3333;
-    display: flex;
-}
-
-.orderbutton {
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 10px;
-    background: #E65C00;
-    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
-    display: flex;
-    width: 156px;
-    height: 49px;
-    padding: 18px 29px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    margin: 6px 5px 6px 5px;
-}
-
-.totalPrice {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 12px 54px 13px 56px;
-}
-
-/* cart Modal  Css end */
-
 /*  chat modal css */
 .searchtext {
     color: #ABADAD;
@@ -938,7 +789,9 @@ body {
 #editMenu,
 #foodexpert,
 #myAvailability
-,#ratingAndReview {
+,#ratingAndReview 
+#myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
+, #paidAmount , #editMenu{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
