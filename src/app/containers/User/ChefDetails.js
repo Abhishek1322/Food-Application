@@ -5,7 +5,7 @@ import CustomModal from '../../components/common/shared/CustomModal';
 import AvailableModal from '../../components/common/shared/availableModal';
 import CartFoodModal from '../../components/common/shared/CartFoodModal';
 import ChefRating from '../../components/common/shared/ChefRating';
-import ChefCartModal from '../../components/common/shared/ChefCartModal';
+import UserCartModal from '../../components/common/shared/UserCartModal';
 
 const ChefDetails = () => {
     const slides = Array(12).join().split(',').map(function (a) { return this.i++ }, { i: 1 });
@@ -52,9 +52,7 @@ const ChefDetails = () => {
                                         <p className='johnExplorer'>Sarah Bergstrom</p>
                                         <div className='sarahrestro'>
                                             <div className='restroinfo'>
-                                                <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' onClick={() => {
-                                                    handleUserProfile("chefcart")
-                                                }} /></Link>
+                                                <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
                                                 <div className='johnchatdetail'>
                                                     <Link to="#"><p className='chatDates'>Restaurant</p></Link>
                                                 </div>
@@ -69,25 +67,19 @@ const ChefDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='col-lg-7 col-md-12 buttonBoxmodal'>
-
-                                <button className='sarahavailablebtn' onClick={() => {
-                                    handleUserProfile("availabilityModal")
-                                }}>
-                                    <div className='availableimg'>  <img src={Images.TimeSquare} alt='timesquareimage' className='img-fluid' />
-                                    </div>
-                                    <p className='availableheading'>Availability</p>
-                                </button>
-                                {/* <button className='sarahcallbtn'>
-                                    <div className='availableimg'>  <img src={Images.CallImg} alt='timesquareimage' className='img-fluid' />
-                                    </div>
-                                    <p className='availableheading'>Call</p>
-                                </button> */}
-                                <button className='sarahmessagebtn'>
-                                    <div className='availableimg'>  <img src={Images.ChefChat} alt='timesquareimage' className='img-fluid' />
-                                    </div>
-                                    <p className='availableheading'>Chat</p>
-                                </button>
+                            <div className='col-lg-7 col-md-12'>
+                                <div className='flexBox justify-content-end'>
+                                    <button className='sarahavailablebtn' onClick={() => {
+                                        handleUserProfile("availabilityModal")
+                                    }}>
+                                        <img src={Images.TimeSquare} alt='timesquareimage' className='availableimg' />
+                                        <span className='availableheading'>Availability</span>
+                                    </button>
+                                    <button className='sarahmessagebtn'>
+                                        <img src={Images.ChefChat} alt='timesquareimage' className='availableimg' />
+                                        <span className='availableheading'>Chat</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -195,7 +187,7 @@ const ChefDetails = () => {
                                             <div className='sarahmenuprice'>
                                                 <button className='itemsPrice_ '>£22.00</button>
                                                 <div className='sarahbasket'>
-                                                    <Link to="#" onClick={() => {
+                                                    <Link to="#" className='chefcartlink' onClick={() => {
                                                         handleUserProfile("CartFood")
                                                     }}><img src={Images.basketImg} alt='basketimage' className='img-fluid' /></Link>
                                                 </div>
@@ -216,7 +208,7 @@ const ChefDetails = () => {
                 isRightSideModal={true}
                 mediumWidth={false}
                 className={modalDetail.flag === "availabilityModal" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "availabilityModal" ? "availablebtnModal" : modalDetail.flag === "CartFood" ? "CartModalFood" : modalDetail.flag === "ratingchef" ? "ratingchefmodal" : modalDetail.flag === "chefcart" ? "chefcartmodal" : ""}
+                ids={modalDetail.flag === "availabilityModal" ? "availablebtnModal" : modalDetail.flag === "CartFood" ? "CartModalFood" : modalDetail.flag === "ratingchef" ? "ratingusermodal" : modalDetail.flag === "chefcart" ? "usercartmodal" : ""}
                 child={
                     modalDetail.flag === "availabilityModal" ? (
                         <AvailableModal
@@ -231,11 +223,6 @@ const ChefDetails = () => {
                         ) :
                             modalDetail.flag === "ratingchef" ? (
                                 <ChefRating
-                                    close={() => handleOnCloseModal()}
-                                />
-                            ) :
-                            modalDetail.flag === "chefcart" ? (
-                                <ChefCartModal
                                     close={() => handleOnCloseModal()}
                                 />
                             ) :
@@ -267,16 +254,6 @@ const ChefDetails = () => {
                             <>
                                 <h2 className="modal_Heading">
                                     Rating & Reviews
-                                </h2>
-                                <p onClick={handleOnCloseModal} className='modal_cancel'>
-                                    <img src={Images.modalCancel} className='ModalCancel' />
-                                </p>
-                            </>
-                            :
-                            modalDetail.flag === "chefcart" ?
-                            <>
-                                <h2 className="modal_Heading">
-                                    Cart
                                 </h2>
                                 <p onClick={handleOnCloseModal} className='modal_cancel'>
                                     <img src={Images.modalCancel} className='ModalCancel' />

@@ -63,7 +63,8 @@ const AddExpertise = (props) => {
           </button>
         </div>
 
-        {expertice.map((value, index) => (
+       <div className="modalscroll">
+       {expertice.map((value, index) => (
           <>
             <div className="input-container  mt-3">
               <input
@@ -85,6 +86,7 @@ const AddExpertise = (props) => {
             </div>
           </>
         ))}
+       </div>
       </form>
       <div className="buttomBtn text-center">
         <button onClick={handleSubmitExpertice} className="smallBtn w-100">
