@@ -8,8 +8,10 @@ import {
   onErrorStopLoad,
   deleteAccount,
 } from "../../../redux/slices/auth";
+import { useAuthSelector } from "../../../redux/selector/auth";
 
 const SettingMain = (props) => {
+  const authData = useAuthSelector();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -151,26 +153,29 @@ const SettingMain = (props) => {
                   </div>
                 </div>
               </div>
-              {/* <div className="col-lg-6">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center">
-                    <img
-                      src={Images.logout}
-                      alt="logo"
-                      className="img-fluid settingIcon "
-                    />
-                    <p className="settingBoxtxt ms-3 mb-0">Logout</p>
-                  </div>
-                  <div className="iconImg">
-                    <img
-                      onClick={() => handleLogout()}
-                      src={Images.nextIcon}
-                      alt="logo"
-                      className="img-fluid nextIcon"
-                    />
+
+              {authData?.userInfo?.role === "user" && (
+                <div className="col-lg-6">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center">
+                      <img
+                        src={Images.logout}
+                        alt="logo"
+                        className="img-fluid settingIcon "
+                      />
+                      <p className="settingBoxtxt ms-3 mb-0">Manage Address</p>
+                    </div>
+                    <div className="iconImg">
+                      <img
+                        src={Images.nextIcon}
+                        alt="logo"
+                        className="img-fluid nextIcon"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div> */}
+              )}
+
               <div className="settingBox d-flex align-items-center justify-content-center">
                 <img
                   onClick={() => handleLogout()}

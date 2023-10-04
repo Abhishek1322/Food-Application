@@ -67,20 +67,19 @@ const ChefDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='col-lg-7 col-md-12 buttonBoxmodal'>
-
-                                <button className='sarahavailablebtn' onClick={() => {
-                                    handleUserProfile("availabilityModal")
-                                }}>
-                                    <div className='availableimg'>  <img src={Images.TimeSquare} alt='timesquareimage' className='img-fluid' />
-                                    </div>
-                                    <p className='availableheading'>Availability</p>
-                                </button>
-                                <button className='sarahmessagebtn'>
-                                    <div className='availableimg'>  <img src={Images.ChefChat} alt='timesquareimage' className='img-fluid' />
-                                    </div>
-                                    <p className='availableheading'>Chat</p>
-                                </button>
+                            <div className='col-lg-7 col-md-12'>
+                                <div className='flexBox justify-content-end'>
+                                    <button className='sarahavailablebtn' onClick={() => {
+                                        handleUserProfile("availabilityModal")
+                                    }}>
+                                        <img src={Images.TimeSquare} alt='timesquareimage' className='availableimg' />
+                                        <span className='availableheading'>Availability</span>
+                                    </button>
+                                    <button className='sarahmessagebtn'>
+                                        <img src={Images.ChefChat} alt='timesquareimage' className='availableimg' />
+                                        <span className='availableheading'>Chat</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

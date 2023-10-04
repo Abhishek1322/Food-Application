@@ -93,14 +93,20 @@ import RatingStar from "../public/images/ratingstar.svg"
 import LightStar from "../public/images/lightstar.svg"
 import LargeStar from "../public/images/largestar.svg"
 import DeleteModal from "../public/images/Deletmodal.png"
+import editprofileDelete from "../public/images/editprofileDelete.svg"
 import ChatModal from "../public/images/chatmodal.svg"
+import availabilityClock from "../public/images/availabilityClock.svg"
+import ratingAndReview from "../public/images/ratingReviewsImg.svg"
+import TimeBtn from "../public/images/timebtn.svg"
+import CallBtn from "../public/images/callbtn.svg"
+import OrderChef from "../public/images/orderchef.svg"
 
 
 
 
 export {
     Logo,
-    Chef,
+    Chef, 
     logFoodone,
     logFoodtwo,
     logFoodthree,
@@ -194,5 +200,11 @@ export {
     LightStar,
     LargeStar,
     DeleteModal,
+    editprofileDelete,
     ChatModal,
+    availabilityClock,
+    ratingAndReview,
+    TimeBtn,
+    CallBtn,
+    OrderChef,
 }

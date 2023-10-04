@@ -15,7 +15,7 @@ const Chef_Sidebar = () => {
           <ul>
             <li
               className={
-                location.pathname === "/home-user"
+                location.pathname === "/home"
                   ? "sidebarLinks active"
                   : "sidebarLinks"
               }
@@ -26,8 +26,14 @@ const Chef_Sidebar = () => {
                 <span className="d-block">Home</span>
               </Link>
             </li>
-            <li className="sidebarLinks">
-              <Link to="#" className="sidebarItems">
+            <li
+              className={
+                location.pathname === "/menu"
+                  ? "sidebarLinks active"
+                  : "sidebarLinks"
+              }
+            >
+              <Link to="/menu" className="sidebarItems">
                 <img src={Images.chefmenuOrange} className="imgHide" />
                 <img src={Images.chefsideMenu} className="imgShow" />
                 <span className="d-block">Menu</span>
@@ -35,12 +41,12 @@ const Chef_Sidebar = () => {
             </li>
             <li
               className={
-                location.pathname === "/my-orders"
+                location.pathname === "/new-booking"
                   ? "sidebarLinks active"
                   : "sidebarLinks"
               }
             >
-              <Link to="#" className="sidebarItems">
+              <Link to="/new-booking" className="sidebarItems">
                 <img src={Images.myorderorange} className="imgHide" />
                 <img src={Images.myorder} className="imgShow" />
                 <span className="d-block">Bookings</span>

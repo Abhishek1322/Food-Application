@@ -3,6 +3,8 @@ import * as Images from "../../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "../../../components/common/shared/CustomModal";
 import AddExpertiseModal from "../../../components/common/shared/addExpertiseModal";
+import MyavailabilityModal from "../../../components/common/shared/myavailabilityModal";
+import RatingReviewsModal from "../../../components/common/shared/ratingReviewsModal";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 import {
   getChefProfileDetails,
@@ -17,6 +19,11 @@ const MyProfile = () => {
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
+  const [slotTime, setSlotTimes] = useState({
+    from: "",
+    to: "",
+  });
+
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -41,6 +48,7 @@ const MyProfile = () => {
     });
     setKey(Math.random());
   };
+
 
   useEffect(() => {
     let params = {
@@ -87,6 +95,18 @@ const MyProfile = () => {
       id: 7,
     },
   ];
+  const handleSlotTime = (weekDay) => {
+    setActiveWeekDay(weekDay);
+    const updateSlotTimes = chefProfileData?.chefInfo?.availability?.find(
+      (day, index) => {
+        return day?.day === weekDay;
+      }
+    );
+    setSlotTimes({
+      from: updateSlotTimes?.timeSlots?.from,
+      to: updateSlotTimes?.timeSlots?.to,
+    });
+  };
 
   return (
     <>
@@ -114,7 +134,12 @@ const MyProfile = () => {
                       className="img-fluid"
                     />
                   </div>
-                  <div className="reviews">
+                  <div
+                    className="reviews"
+                    onClick={() => {
+                      handleUserProfile("ratingReviewsModal");
+                    }}
+                  >
                     <p className="cheftext p-0">My Ratings & Reviews</p>
                     <p className="chatheadtext">4.5 (845 Reviews)</p>
                   </div>
@@ -241,12 +266,22 @@ const MyProfile = () => {
                 <div className="availabilitydetails">
                   <div className="myexpertise">
                     <p className="nameheading">My Availability</p>
-                    <button className="modalclearAll">+ Add</button>
+                    <button
+                      className="modalclearAll"
+                      onClick={() => {
+                        handleUserProfile("addAvailabilityModal");
+                      }}
+                    >
+                      + Add
+                    </button>
                   </div>
                   <ul className="myavailability">
                     {week.map((day, index) => (
                       <>
-                        <li className="dayavailability">
+                        <li
+                          onClick={() => handleSlotTime(day.day)}
+                          className="dayavailability"
+                        >
                           <p
                             className={
                               activeWeekDay === day.day
@@ -261,15 +296,13 @@ const MyProfile = () => {
                     ))}
                   </ul>
                   <div className="cheftime">
-                    <div className="expertisevalue">
-                      <p className="expertheading">09:00 am - 12:30 pm</p>
-                    </div>
-                    <div className="expertisevalue">
-                      <p className="expertheading">02:00 pm - 04:00 pm</p>
-                    </div>
-                    <div className="expertisevalue">
-                      <p className="expertheading">06:30 pm - 10:20 pm</p>
-                    </div>
+                    {slotTime.from && slotTime.to && (
+                      <div className="expertisevalue">
+                        <p className="expertheading">
+                          {slotTime.from} - {slotTime.to}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -289,10 +322,22 @@ const MyProfile = () => {
             ? "commonWidth customContent"
             : ""
         }
-        ids={modalDetail.flag === "addExpertiseModal" ? "foodexpert" : ""}
+        ids={
+          modalDetail.flag === "addExpertiseModal"
+            ? "foodexpert"
+            : modalDetail.flag === "addAvailabilityModal"
+            ? "myAvailability"
+            : modalDetail.flag === "ratingReviewsModal"
+            ? "ratingAndReview"
+            : ""
+        }
         child={
           modalDetail.flag === "addExpertiseModal" ? (
             <AddExpertiseModal close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "addAvailabilityModal" ? (
+            <MyavailabilityModal close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "ratingReviewsModal" ? (
+            <RatingReviewsModal close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
@@ -301,6 +346,20 @@ const MyProfile = () => {
           modalDetail.flag === "addExpertiseModal" ? (
             <>
               <h2 className="modal_Heading">Add Expetise</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+            </>
+          ) : modalDetail.flag === "addAvailabilityModal" ? (
+            <>
+              <h2 className="modal_Heading">My Availability</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+            </>
+          ) : modalDetail.flag === "ratingReviewsModal" ? (
+            <>
+              <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
@@ -314,5 +373,4 @@ const MyProfile = () => {
     </>
   );
 };
-
 export default MyProfile;
