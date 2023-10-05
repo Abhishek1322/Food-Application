@@ -1,11 +1,10 @@
 import React from 'react'
 import * as Images from "../../../../utilities/images"
 
-const EditMenuModal = () => {
+const AddmenuItemModal = () => {
   return (
-
     <>
-     <div className='menuModal_'>
+      <div className='addmenuItemModal'>
         <div className="input-container mt-5">
           <textarea type="" className=" menuReport_button   " placeholder='Chicken Salad' />
           <img src={Images.categoryImg} className='cateofyImg_' />
@@ -23,7 +22,6 @@ const EditMenuModal = () => {
             <textarea type="" className=" menuEditbuttom " placeholder='22.00' />
             <img src={Images.euroImg} className='cateofyImg_' />
             <label className="border-label">Price</label>
-
           </div>
           <div className="input-container mt-5 pe-3 flexBox">
             <textarea type="" className=" menuEditbuttom " placeholder='45' />
@@ -31,27 +29,30 @@ const EditMenuModal = () => {
             <img src={Images.clockImg} className='cateofyImg_' />
             <label className="border-label">Delivery Time</label>
           </div>
-          <label className="border-label">Delivery Time</label>
         </div>
       </div>
       <div className="input-container mt-4">
-        <textarea type="" className=" menuReport_button  menuDescrition_  " placeholder='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' />
+        <textarea type="" className=" menuReport_button  menuDescrition_  " placeholder='Type here...' />
         <label className="border-label">Description</label>
 
       </div>
       <div className='editImgBox_'>
+        
         <p className='chefName mt-4 pb-3'>Upload Image </p>
-        <img src={Images.editMenuImg} className='editFoodImg' />
-        <span className='cancelEditImg'>
-          <i class="fas fa-times cancelEdit"></i>
-        </span>
-
+        <div class="uploadImgebox choosetoUpload">
+          <img src={Images.Uploadicon} alt="Uploadicon" class="Uploadicon uploadIconImg" />
+          <p class="uploadbtnn">Choose Image</p>
+          <p class="smallHeading_">Upload Image Here</p>
+          <p class="uploadText mt-1">5 mb max file size</p>
+        </div>
       </div>
-      <button className='foodmodalbtn  modalfooterbtn'>
-        Save Changes
+      <button className='foodmodalbtn  menuItemBtn modalfooterbtn'>
+        ADD
       </button>
+
+
     </>
   )
 }
 
-export default EditMenuModal
+export default AddmenuItemModal

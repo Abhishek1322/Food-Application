@@ -3,6 +3,8 @@ import * as Images from "../../../../utilities/images";
 // import CustomModal from './CustomModal'
 import CustomModal from '../../../components/common/shared/CustomModal';
 import EditMenuModal from '../../../components/common/shared/editMenuModal';
+import DeleteMenuModal from '../../../components/common/shared/DeleteMenuModal';
+import AddmenuItemModal from '../../../components/common/shared/addmenuItemModal';
 
 const Menu = () => {
   const [key, setKey] = useState(Math.random());
@@ -40,8 +42,10 @@ const Menu = () => {
               <div className='col-lg-12'>
                 <div className='innerhomeheader'>
                   <p className='headerinnerheading'>List of Your Menu Items</p>
-                  <div className='menuItems'>
-                    <i class="fas fa-plus plusmenuImg"></i>
+                  <div className='menuItems ' onClick={() => {
+                    handleUserProfile("addMenuItemModal")
+                  }}>
+                    <i class="fas fa-plus plusmenuImg" ></i>
                     <p className='innermenuItem'>Add Menu Item</p>
                   </div>
                 </div>
@@ -78,7 +82,9 @@ const Menu = () => {
                                 <img src={Images.cartDelete} className=' img-fluid reporticon_' />
                                 <p className='ps-2' >Edit</p>
                               </div>
-                              <div className='flexBox'>
+                              <div className='flexBox' onClick={() => {
+                                handleUserProfile("deleteMenuModal")
+                              }} >
                                 <img src={Images.EditImg} className=' img-fluid reporticon_' />
                                 <p className='reportchattxt_ m-0 ps-2'>Delete Chat</p>
                               </div>
@@ -343,15 +349,25 @@ const Menu = () => {
         isRightSideModal={true}
         mediumWidth={false}
         className={modalDetail.flag === "editMenuModal" ? "commonWidth customContent" : ""}
-        ids={modalDetail.flag === "editMenuModal" ? "editMenu" : ''}
+        ids={modalDetail.flag === "editMenuModal" ? "editMenu" : "deleteMenuModal" ? "deleteMenu" : "addMenuItemModal" ? "addMenuItem" : ''}
         child={
           modalDetail.flag === "editMenuModal" ? (
             <EditMenuModal
               close={() => handleOnCloseModal()}
 
             />
-          ) :
-            ""
+          ) : modalDetail.flag === "deleteMenuModal" ? (
+            <DeleteMenuModal
+              close={() => handleOnCloseModal()}
+
+            />
+          ) : modalDetail.flag === "addMenuItemModal" ? (
+            <AddmenuItemModal
+              close={() => handleOnCloseModal()}
+
+            />
+          ) : ''
+
         }
         header=
 
@@ -360,7 +376,7 @@ const Menu = () => {
             <div className='editadressheading'>
               <div className='edithead'>
                 <p className="modal_Heading">
-                Add Menu Item
+                  Add Menu Item
                 </p>
                 <p className='chatUser'>Add your menu items below.</p>
               </div>
@@ -370,10 +386,26 @@ const Menu = () => {
             </p>
           </>
           :
-          ''
+          modalDetail.flag === "addMenuItemModal" ?
+            <>
+              <div className='editadressheading'>
+                <div className='edithead'>
+                  <p className="modal_Heading">
+                    Add Menu Item
+                  </p>
+                  <p className='chatUser'>Add your menu items below.</p>
+                </div>
+              </div>
+              <p onClick={handleOnCloseModal} className='modal_cancel'>
+                <img src={Images.modalCancel} className='ModalCancel' />
+              </p>
+            </>
+            : ''
         }
         onCloseModal={() => handleOnCloseModal()}
       />
+
+
     </>
   )
 }
