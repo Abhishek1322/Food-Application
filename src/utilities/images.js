@@ -102,7 +102,14 @@ import editMenuImg from "../public/images/editMenuImg.png"
 import TimeBtn from "../public/images/timebtn.svg"
 import CallBtn from "../public/images/callbtn.svg"
 import OrderChef from "../public/images/orderchef.svg"
-
+import deleteMenuImg from "../public/images/deleteMenuImg.svg"
+import euroImg from "../public/images/euroImg.svg"
+import clockImg from "../public/images/clockImg.svg"
+import FoodIcon from "../public/images/foodicon.svg"
+import UserEditProfile from "../public/images/userEditProfile.png"
+import ManageOffice from "../public/images/ManageOffice.svg"
+import ManageHome from "../public/images/ManageHome.svg"
+import ManageLocation from "../public/images/ManageLocation.png"
 
 
 
@@ -211,4 +218,12 @@ export {
     TimeBtn,
     CallBtn,
     OrderChef,
+    deleteMenuImg,
+    euroImg,
+    clockImg,
+    FoodIcon,
+    UserEditProfile,
+    ManageOffice,
+    ManageHome,
+    ManageLocation,
 }

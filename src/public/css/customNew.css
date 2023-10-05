@@ -60,9 +60,8 @@ p {
 .nameprofile {
     display: flex;
     width: 100%;
-    max-width: 400px;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .nameheading {
@@ -317,6 +316,7 @@ p {
     max-width: 100%;
     height: auto;
 }
+
 .sarahmessagebtn {
     background-color: #E65C00;
     border: none;
@@ -1473,6 +1473,7 @@ p {
 #usercartmodal .modal-body {
     padding: 0;
 }
+
 .usercartcheck .modalfooterbtn {
     max-width: none;
 }
@@ -1501,6 +1502,7 @@ p {
 #cartcheckoutModal .modal-body {
     padding: 0;
 }
+
 .cartcheckoutsection .modalfooterbtn {
     max-width: none;
 }
@@ -1703,6 +1705,7 @@ p {
     /* width: 100%; */
     text-align: end;
 }
+
 .mainBoxOuter .owl-carousel .owl-stage-outer {
     margin: 0 50px;
 }
@@ -1773,79 +1776,75 @@ p {
     font-size: 8px;
     margin-left: 10px;
 }
-.filterheading{
+
+.filterheading {
     border: none;
     color: #ABADAD;
     font-size: 14px;
     font-weight: 400;
 }
+
 /*user-chef-home  css end*/
 /*user-order-home css start*/
-.userordersection{
+.userordersection {
     padding: 10px 31px;
 }
-.ordermain{
+
+.ordermain {
     border-radius: 15px;
-background: #FFF;
-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-margin-bottom: 20px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
 }
-.orderprocess{
-    border-radius: 15px 15px 0px 0px;
-background: #E6E6E6;
-/* display: flex; */
-/* justify-content: space-between; */
-padding: 10px 20px;
-flex-wrap: nowrap;
+
+.orderprocess {
+    border-radius: 15px;
+    background: #E6E6E6;
+    flex-wrap: nowrap;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
 }
-.orderchefinfo{
-    display: flex;
-    justify-content: space-between;
+.orderchefinfo {
     padding: 15px 20px 20px 10px;
-    border-radius: 15px;
-background: #FFF;
-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-padding-bottom: 20;
-flex-wrap: nowrap;
+    border-radius: 13px;
+    background: #FFF;
+    padding-bottom: 20;
+    flex-wrap: nowrap;
 }
-.orderchefname{
+
+.orderchefname {
     margin-left: 10px;
 }
-.userorderprice{
+
+.userorderprice {
     border-radius: 10px;
     background: hsl(122 55% 90% / 1);
-padding: 8px 12px;
+    padding: 8px 12px;
 }
-.orderstatus{
+
+.orderstatus {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
 }
-.orderprocess.active{
-    background-color: #E65C00;;
+
+.orderprocess.active {
+    background-color: #E65C00;
 }
-.orderprocess.active .fooodquantity_{
+
+.orderprocess.active .fooodquantity_ {
     color: #fff;
 }
-.ordersubheader{
-    color: #ABADAD;
-    font-size: 12px;
-    font-weight: 600;
-    position: relative;
-    margin-left: 11px;
+.orderprocess.active .chatTime_ {
+    color: #fff;
 }
-.ordersubheader:before {
-    content: '';
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background-color: #E65C00;
-    border-radius: 50px;
-    top: 5px;
-    left: -11px;
+.orderprocess .chatTime_ {
+    padding: 10px 20px;
 }
-#userorderdetail{
+.orderprocess .fooodquantity_ {
+    padding: 10px 20px;
+}
+#userorderdetail,#userorderdeliver {
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1853,4 +1852,89 @@ padding: 8px 12px;
     top: 25px;
     right: 0px;
 }
+#userorderdetail .headerInner_:before{
+  background-color:  #E65C00 !important;
+}
+#userorderdetail .modal-body {
+    padding: 0;
+}
+#userorderdetail .modalfooterbtn {
+    left: 12px;
+}
+.Userordersection .fooodquantity_{
+    padding: 15px;
+}
+.Userordersection .modalDetail{
+    justify-content: space-around;
+}
+.orderfooterbtn{
+    color: #FFF;
+font-size: 15px;
+font-weight: 600;
+}
+.orderfooterprice{
+    color: #FFF;
+font-size: 22px;
+font-weight: 700;
+text-transform: uppercase;
+}
+.Userordersection .foodmodalbtn{
+    padding: 18px 22px;
+}
+.Userordersection .modalfooddelivery{
+    align-items: center;
+}
+#userorderdeliver .modal-body {
+    padding: 0;
+}
+#userorderdeliver .modalfooterbtn {
+    left: 12px;
+}
+.orderdeliversection .foodmodalbtn{
+    background-color: #2E3333;
+}
 /*user-order-home css end*/
+/* start sidebar */
+.userSidebar{
+    position: fixed;
+    top: 0;
+}
+.usermain{
+    width: calc(100% - 100px);
+    margin-left: 100px;
+}
+/*User-profile-page start*/
+.userprofilesection .profileright{
+   padding: 0px 70px;
+   height: 100%;
+   display: flex;
+   align-items: center;
+}
+.profileinfosection {
+    width: 100%;
+}
+.managehome{
+    background-color: #FFF;
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+display: flex;
+align-items: center;
+padding: 12px 23px;
+gap: 20px;
+position: relative;
+border-radius: 12px;
+}
+.managedrop{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    margin: 10px auto;
+}
+.manageimg{
+    cursor: pointer;
+}
+.settingmanagesection .cancelOrder{
+    margin-top: 20px;
+    border: none;
+    text-align: right;
+    font-weight: 600;
+}

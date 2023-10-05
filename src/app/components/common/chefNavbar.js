@@ -31,7 +31,8 @@ const Chef_Navbar = () => {
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-6 col-sm-12">
-                <p className="settingtxt">Hello, <span className="chefHeading">Sarah!</span></p>
+                {/* <p className="settingtxt">Hello, <span className="chefHeading">Sarah!</span></p> */}
+                <p className="settingtxt">Settings</p>
               </div>
               <div className="col-lg-6 col-sm-12 text-end">
                 <div className="flexBox">

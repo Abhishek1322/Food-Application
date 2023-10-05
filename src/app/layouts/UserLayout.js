@@ -20,7 +20,7 @@ const UserLayout = () => {
         <>
           <div className="mainBox">
             <User_Sidebar />
-            <main className="main">
+            <main className="usermain">
               <User_Navbar />
               <Outlet />
             </main>

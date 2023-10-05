@@ -37,7 +37,7 @@ const CartModal = () => {
       <div className='usercartsection'>
       <div className='modalDetail '>
         <div className='usercartDetail'>
-          <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+          <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
           <div className='insideModal'>
             <p className='foodtext'>Food Category</p>
             <p className='foodItem'>Chicken Salad</p>
@@ -60,7 +60,7 @@ const CartModal = () => {
       </div>
       <div className='modalDetail '>
         <div className='usercartDetail'>
-          <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+          <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
           <div className='insideModal'>
             <p className='foodtext'>Food Category</p>
             <p className='foodItem'>Chicken Salad</p>
