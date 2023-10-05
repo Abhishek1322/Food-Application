@@ -91,28 +91,41 @@ const postDelete = (url, params = {}) => {
 };
 
 const axiosPutFormData = (url, params) => {
-    if (params.file) {
-      var formData = new FormData();
-      formData.append("file", params?.file);
-    } else if (params.file) {
-      let files = params?.file;
-      var formData = new FormData();
-      files.forEach((val, index) => {
-        formData.append("file", val);
-      });
-    } else {
-      var formData = new FormData();
-      formData.append("photo", params?.photo);
-    }
-    return axiosInstance
-      .put(url, formData)
-      .then((response) => {
-        return { status: response.status, data: response.data };
-      })
-      .catch((err) => {
-        throw err;
-      });
-  };
+  if (params.file) {
+    var formData = new FormData();
+    formData.append("file", params?.file);
+  }
+  return axiosInstance
+    .put(url, formData)
+    .then((response) => {
+      return { status: response.status, data: response.data };
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+const axiosPutFormDataProfile = (url, params) => {
+  console.log("paramsparamsparams",params);
+  var formData = new FormData();
+  formData.append("step", params?.step);
+  formData.append("firstName", params?.firstName);
+  formData.append("lastName", params?.lastName);
+  formData.append("profilePhoto", params?.profilePhoto);
+  formData.append("type", params?.type);
+  formData.append("experience", params?.experience);
+  formData.append("address", params?.address);
+  formData.append("coordinates", params?.coordinates);
+  formData.append("bio", params?.bio);
+  return axiosInstance
+    .put(url, formData)
+    .then((response) => {
+      return { status: response.status, data: response.data };
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 
 const axiosPostFormData = (url, params) => {
   if (params.file) {
@@ -145,5 +158,6 @@ export const ApiClient = {
   patch: axiosPatch,
   delete: postDelete,
   postFormData: axiosPostFormData,
-  putFormData:axiosPutFormData
+  putFormData: axiosPutFormData,
+  profileFormData: axiosPutFormDataProfile,
 };

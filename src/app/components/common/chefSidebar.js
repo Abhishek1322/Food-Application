@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
 import { Link, useLocation } from "react-router-dom";
+import { useWebSelector } from "../../../redux/selector/web";
 
 const Chef_Sidebar = () => {
   const location = useLocation();
+  const webData = useWebSelector();
+  const [chefProfile, setChefProfile] = useState("");
+
+  useEffect(() => {
+    if (webData) {
+      setChefProfile(webData?.chefProfileDetails?.data?.userInfo?.profilePhoto);
+    }
+  }, [webData]);
 
   return (
     <>
@@ -70,7 +79,11 @@ const Chef_Sidebar = () => {
         </div>
         <div className="sidebarProfile">
           <Link to="/chef-profile">
-            <img src={Images.chefProfile} alt="logo" className="userprofile" />
+            <img
+              src={chefProfile ? chefProfile : Images.chefProfile}
+              alt="logo"
+              className="userprofile"
+            />
           </Link>
           Profile
         </div>

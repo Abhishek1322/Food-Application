@@ -1,77 +1,224 @@
-import React from 'react'
-import * as Images from "../../../../utilities/images"
+import React, { useState, useEffect } from "react";
+import * as Images from "../../../../utilities/images";
+import TimePicker from "react-time-picker";
+import { updateChefProfile } from "../../../../redux/slices/web";
+import { useDispatch } from "react-redux";
 
-const MyavailabilityModal = () => {
-    return (
-        <>
-            <div className='ProfilePageModal'>
-                <div className='availabilityModal'>
-                    <ul class="myAvailability_">
-                        <li class="availabilityDays">
-                            <p class="notificationText text-capitalize">mon</p>
-                        </li>
-                        <li class="availabilityDays active">
-                            <p class="notificationText text-capitalize">tue</p>
-                        </li>
-                        <li class="availabilityDays">
-                            <p class="notificationText text-capitalize">wed</p>
-                        </li>
-                        <li class="availabilityDays">
-                            <p class="notificationText text-capitalize">thu</p>
-                        </li>
-                        <li class="availabilityDays">
-                            <p class="notificationText text-capitalize">fri</p>
-                        </li>
-                        <li class="availabilityDays">
-                            <p class="notificationText text-capitalize">sat</p>
-                        </li>
-                        <li class="availabilityDays">
-                            <p class="notificationText text-capitalize">sun</p>
-                        </li>
-                    </ul>
+const MyavailabilityModal = (props) => {
+  const { availabilityData, close, chefProfileDetails } = props;
+  const dispatch = useDispatch();
+  const [activeWeekDay, setActiveWeekDay] = useState("");
+  const [startTime, setStartTime] = useState("00:00");
+  const [endTime, setEndTime] = useState("00:00");
+  const [availability, setAvailability] = useState([]);
+  const [showTimeSlot, setShowTimeSlot] = useState(true);
 
+  // week days
+  const week = [
+    {
+      day: "mon",
+      id: 1,
+    },
+    {
+      day: "tue",
+      id: 2,
+    },
+    {
+      day: "wed",
+      id: 3,
+    },
+    {
+      day: "thu",
+      id: 4,
+    },
+    {
+      day: "fri",
+      id: 5,
+    },
+    {
+      day: "sat",
+      id: 6,
+    },
+    {
+      day: "sun",
+      id: 7,
+    },
+  ];
 
-                    {/* <div className='flexBox '>
-                        <div className='myavailability mt-4'>
-                            <div className='availabilityBox_ me-4'>
-                                <p className='innerBoxText'>From</p>
-                                <div className='availableTime flexBox '>
-                                    <img src={Images.availabilityClock} className='clockImg pe-1' />
-                                    <p className='venushedule'>08:30 AM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='myavailability mt-4 '>
-                            <div className='availabilityBox_ me-4'>
-                                <p className='innerBoxText'>From</p>
-                                <div className='availableTime flexBox '>
-                                    <img src={Images.availabilityClock} className='clockImg pe-1' />
-                                    <p className='venushedule'>08:30 AM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='deleteImg_'>
-                            <img src={Images.editprofileDelete} className='deleteAvailable' />
-                        </div>
-                    </div> */}
+  const handleWeekDay = (e, day) => {
+    setActiveWeekDay(day);
+    const getPreviousFromTime = availability?.find((item, index) => {
+      return item?.day === day;
+    });
+    setStartTime(getPreviousFromTime?.timeSlots?.from);
+    const getPreviousToTime = availability?.find((item, index) => {
+      return item?.day === day;
+    });
+    setEndTime(getPreviousToTime?.timeSlots?.to);
+    setShowTimeSlot(true);
+  };
 
-                    {/* My availability time Slot Modal HTML START */}
-                    <div className='timeSlotbutton flexBox justify-content-center mt-4'>
-                        <button className='slotButton'>
-                            <i class="fas fa-plus addmore"></i>
-                            Add Time Slot </button>
-                    </div>
+  // getting startTime slot
+  const handleStartTime = (value) => {
+    setStartTime(value);
+  };
 
-                    {/* My availability time Slot Modal HTML END */}
+  // getting EndTime slot
+  const handleEndTime = (value) => {
+    setEndTime(value);
+  };
 
+  // getting availability
+  useEffect(() => {
+    const dayIndex = availabilityData.findIndex(
+      (item) => item.day === activeWeekDay
+    );
+
+    if (dayIndex !== -1) {
+      const updatedAvailability = [...availabilityData];
+      updatedAvailability[dayIndex].timeSlots.from = startTime;
+      updatedAvailability[dayIndex].timeSlots.to = endTime;
+      setAvailability(updatedAvailability);
+    } else {
+      setAvailability([
+        ...availabilityData,
+        {
+          day: activeWeekDay,
+          timeSlots: {
+            from: startTime,
+            to: endTime,
+          },
+        },
+      ]);
+    }
+  }, [startTime, endTime, activeWeekDay]);
+
+  // save availability
+  const handleSaveAvailability = () => {
+    const updateValue = availability
+      .filter(
+        (value) =>
+          value.day !== "" &&
+          value.timeSlots.from &&
+          value.timeSlots.to !== undefined
+      )
+      .map((item, index) => {
+        const { _id, ...rest } = item;
+        return rest;
+      });
+
+    let params = {
+      step: "3",
+      availability: updateValue,
+    };
+    dispatch(
+      updateChefProfile({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            close();
+            chefProfileDetails();
+          }
+        },
+      })
+    );
+  };
+
+  // close time slot
+  const handleCloseTimeSlot = () => {
+    const deleteAvailability = availability.filter((item, index) => {
+      return item.day !== activeWeekDay;
+    });
+    setAvailability(deleteAvailability);
+    setShowTimeSlot(false);
+  };
+
+  return (
+    <>
+      <div className="ProfilePageModal">
+        <div className="availabilityModal">
+          <ul class="myAvailability_">
+            {week.map((day, index) => (
+              <>
+                <li
+                  onClick={(e) => handleWeekDay(e, day.day)}
+                  className={
+                    activeWeekDay === day.day
+                      ? "availabilityDays active text-capitalize"
+                      : "availabilityDays text-capitalize"
+                  }
+                >
+                  <p class="notificationText text-capitalize"> {day.day}</p>
+                </li>
+              </>
+            ))}
+          </ul>
+
+          {activeWeekDay && showTimeSlot && (
+            <div className="flexBox ">
+              <div className="myavailability mt-4">
+                <div className="availabilityBox_ me-4">
+                  <p className="innerBoxText">From</p>
+                  <div className="availableTime flexBox ">
+                    <img
+                      src={Images.availabilityClock}
+                      className="clockImg pe-1"
+                    />
+                    <TimePicker
+                      disableClock
+                      clearIcon=""
+                      onChange={handleStartTime}
+                      value={startTime}
+                    />
+                  </div>
                 </div>
-                <button className='foodmodalbtn  modalfooterbtn'>
-                    Done
-                </button>
-
+              </div>
+              <div className="myavailability mt-4 ">
+                <div className="availabilityBox_ me-4">
+                  <p className="innerBoxText">To</p>
+                  <div className="availableTime flexBox ">
+                    <img
+                      src={Images.availabilityClock}
+                      className="clockImg pe-1"
+                    />
+                    <TimePicker
+                      disableClock
+                      clearIcon=""
+                      onChange={handleEndTime}
+                      value={endTime}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="deleteImg_">
+                <img
+                  onClick={handleCloseTimeSlot}
+                  src={Images.editprofileDelete}
+                  className="deleteAvailable"
+                />
+              </div>
             </div>
-        </>
-    )
-}
+          )}
 
-export default MyavailabilityModal
+          {/* My availability time Slot Modal HTML START */}
+          {/* <div className="timeSlotbutton flexBox justify-content-center mt-4">
+            <button className="slotButton">
+              <i class="fas fa-plus addmore"></i>
+              Add Time Slot{" "}
+            </button>
+          </div> */}
+
+          {/* My availability time Slot Modal HTML END */}
+        </div>
+        <button
+          onClick={handleSaveAvailability}
+          className="foodmodalbtn  modalfooterbtn"
+        >
+          Done
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default MyavailabilityModal;

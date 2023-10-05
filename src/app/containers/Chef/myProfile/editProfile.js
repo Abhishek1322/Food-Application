@@ -1,33 +1,67 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import * as Images from "../../../../utilities/images";
-import { Link } from "react-router-dom";
-import CustomModal from "../../../components/common/shared/CustomModal";
-import AddExpertiseModal from "../../../components/common/shared/addExpertiseModal";
 import {
   getChefProfileDetails,
+  updateProfileImage,
   onErrorStopLoad,
 } from "../../../../redux/slices/web";
+import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
+import { toast } from "react-toastify";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
-  const [chefProfileData, setProfileData] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [chefType, setChefType] = useState("");
   const [experience, setExperience] = useState("");
-  const [expertice, setExpertice] = useState([]);
   const [address, setAddress] = useState("");
   const [bio, setBio] = useState("");
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
+  const [chefProfile, setChefProfile] = useState("");
+  const [profileUrl, setProfileUrl] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [ratePerHour, setRatePerHour] = useState("");
 
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFiles) => {
+      if (
+        rejectedFiles.length > 0 &&
+        rejectedFiles[0]?.file?.type !== "image/jpeg" &&
+        "image/jpg" &&
+        "image/png" &&
+        "image/svg"
+      ) {
+        toast.error("Please upload valid image");
+        return;
+      }
+      setChefProfile(acceptedFiles[0]);
+    },
+    [chefProfile]
+  );
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/jpeg": [],
+      "image/png": [],
+      "image/jpg": [],
+      "image/svg": [],
+    },
+    multiple: false,
+  });
+
+  // get all profile details
   useEffect(() => {
     let params = {
       userid: userId,
@@ -36,15 +70,18 @@ const EditProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          setProfileData(res?.data?.data);
           setFirstName(res?.data?.data?.userInfo.firstName);
+          setRatePerHour(res?.data?.data?.chefInfo?.ratePerHour);
           setLastName(res?.data?.data?.userInfo.lastName);
           setEmail(res?.data?.data?.email);
+          setPhoneNumber(res?.data?.data?.phoneNo);
           setChefType(res?.data?.data?.chefInfo.type);
-          setExpertice(res?.data?.data?.chefInfo.expertise);
           setAddress(res?.data?.data?.chefInfo.address);
           setExperience(res?.data?.data?.chefInfo?.experience);
           setBio(res?.data?.data?.chefInfo?.bio);
+          setLatitude(res?.data?.data?.chefInfo?.coordinates[0]);
+          setLongitude(res?.data?.data?.chefInfo?.coordinates[1]);
+          setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
         },
       })
     );
@@ -79,6 +116,59 @@ const EditProfile = () => {
     setChefType(type);
   };
 
+  // stop loader on page reload
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // updateChef profile
+  const handleUpdateProfile = () => {
+    let params = {
+      step: "1",
+      firstName: firstName,
+      lastName: lastName,
+      profilePhoto: profileUrl,
+      type: chefType,
+      experience: experience,
+      address: address,
+      coordinates: [latitude, longitude],
+      bio: bio,
+      ratePerHour: ratePerHour,
+      phoneNo: phoneNumber,
+      dialCode: "+91",
+    };
+
+    dispatch(
+      updateProfileImage({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            navigate("/chef-profile");
+          }
+        },
+      })
+    );
+  };
+
+  // getting profile image path
+  useEffect(() => {
+    if (chefProfile) {
+      let params = {
+        file: chefProfile,
+      };
+      dispatch(
+        chefProfileDocument({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setProfileUrl(res.data.data.fileUrl);
+            }
+          },
+        })
+      );
+    }
+  }, [chefProfile]);
+
   return (
     <>
       <section className="editsection">
@@ -87,15 +177,18 @@ const EditProfile = () => {
             <div className="col-lg-5 col-md-12">
               <div className="editleft">
                 <img
-                  src={Images.chefProfile}
+                  src={profileUrl ? profileUrl : Images.chefProfile}
                   alt="chefProfileimg"
                   className="chefprofileimg"
                 />
-                <img
-                  src={Images.editProfile}
-                  alt="editprofileimg"
-                  className="editprofileimg"
-                />
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <img
+                    src={Images.editProfile}
+                    alt="editprofileimg"
+                    className="editprofileimg"
+                  />
+                </div>
               </div>
             </div>
             <div className="col-lg-7 col-md-12">
@@ -108,7 +201,8 @@ const EditProfile = () => {
                           type="text"
                           value={firstName}
                           className="border-input"
-                          placeholder="Sarah "
+                          placeholder="enter your first name"
+                          onChange={(e) => setFirstName(e.target.value)}
                         />
                         <label className="border-label">First Name</label>
                       </div>
@@ -119,9 +213,47 @@ const EditProfile = () => {
                           type="text"
                           value={lastName}
                           className="border-input"
-                          placeholder="Bergstrom"
+                          placeholder="enter your last name"
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                         <label className="border-label">Last Name</label>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          className="border-input"
+                          placeholder="Rate per hour"
+                          value={ratePerHour}
+                          onChange={(e) => setRatePerHour(e.target.value)}
+                        />
+                        <label className="border-label">Rate Per Hour</label>
+                        <img
+                          src={Images.ratePerHourImg}
+                          alt="InfoIcon"
+                          className="InputIcon"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6">
+                      <div className="input-container mt-5">
+                        <input
+                          type="number"
+                          name="rateperhour"
+                          className="border-input"
+                          placeholder="enter your phone number"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                        />
+                        <label className="border-label">Phone</label>
+                        <img
+                          src={Images.ratePerHourImg}
+                          alt="InfoIcon"
+                          className="InputIcon"
+                        />
                       </div>
                     </div>
                   </div>
@@ -132,7 +264,8 @@ const EditProfile = () => {
                           type="text"
                           value={email}
                           className="border-input"
-                          placeholder="bangura@serveitlocal.com"
+                          placeholder="enter your email address"
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                         <label className="border-label">Email</label>
                       </div>
@@ -175,10 +308,11 @@ const EditProfile = () => {
                     <div className="col-lg-6">
                       <div className="input-container mt-5">
                         <input
-                          type="text"
+                          type="number"
                           value={experience}
                           className="border-input"
-                          placeholder="Bergstrom"
+                          placeholder="enter your experience"
+                          onChange={(e) => setExperience(e.target.value)}
                         />
                         <label className="border-label">
                           Experience (in years)
@@ -258,13 +392,18 @@ const EditProfile = () => {
                           value={bio}
                           className="border-input"
                           rows="3"
+                          onChange={(e) => setBio(e.target.value)}
                         />
                         <label className="border-label">Bio</label>
                       </div>
                     </div>
                   </div>
                   <div className="buttonBox mt-5">
-                    <button type="submit" role="button" className="smallBtn">
+                    <button
+                      onClick={handleUpdateProfile}
+                      role="button"
+                      className="smallBtn"
+                    >
                       {" "}
                       Update
                     </button>
