@@ -10,7 +10,7 @@ const MyavailabilityModal = (props) => {
   const [activeWeekDay, setActiveWeekDay] = useState("");
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
-  const [availability, setAvailability] = useState([]);
+  const [availability, setAvailability] = useState(availabilityData);
   const [showTimeSlot, setShowTimeSlot] = useState(true);
 
   // week days
@@ -68,29 +68,40 @@ const MyavailabilityModal = (props) => {
     setEndTime(value);
   };
 
+  
   // getting availability
   useEffect(() => {
-    const dayIndex = availabilityData.findIndex(
-      (item) => item.day === activeWeekDay
-    );
+    setAvailability((prevAvailability) => {
+      const dayIndex = prevAvailability.findIndex(
+        (item) => item.day === activeWeekDay
+      );
 
-    if (dayIndex !== -1) {
-      const updatedAvailability = [...availabilityData];
-      updatedAvailability[dayIndex].timeSlots.from = startTime;
-      updatedAvailability[dayIndex].timeSlots.to = endTime;
-      setAvailability(updatedAvailability);
-    } else {
-      setAvailability([
-        ...availabilityData,
-        {
-          day: activeWeekDay,
-          timeSlots: {
-            from: startTime,
-            to: endTime,
+      if (dayIndex !== -1) {
+        return prevAvailability.map((item, index) => {
+          if (index === dayIndex) {
+            return {
+              ...item,
+              timeSlots: {
+                from: startTime,
+                to: endTime,
+              },
+            };
+          }
+          return item;
+        });
+      } else {
+        return [
+          ...prevAvailability,
+          {
+            day: activeWeekDay,
+            timeSlots: {
+              from: startTime,
+              to: endTime,
+            },
           },
-        },
-      ]);
-    }
+        ];
+      }
+    });
   }, [startTime, endTime, activeWeekDay]);
 
   // save availability
