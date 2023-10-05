@@ -105,7 +105,11 @@ import OrderChef from "../public/images/orderchef.svg"
 import deleteMenuImg from "../public/images/deleteMenuImg.svg"
 import euroImg from "../public/images/euroImg.svg"
 import clockImg from "../public/images/clockImg.svg"
-
+import FoodIcon from "../public/images/foodicon.svg"
+import UserEditProfile from "../public/images/userEditProfile.png"
+import ManageOffice from "../public/images/ManageOffice.svg"
+import ManageHome from "../public/images/ManageHome.svg"
+import ManageLocation from "../public/images/ManageLocation.png"
 
 
 
@@ -217,4 +221,9 @@ export {
     deleteMenuImg,
     euroImg,
     clockImg,
+    FoodIcon,
+    UserEditProfile,
+    ManageOffice,
+    ManageHome,
+    ManageLocation,
 }

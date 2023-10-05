@@ -10,7 +10,7 @@ const User_Sidebar = () => {
 
   return (
     <>
-      <div className="sideBar">
+      <div className="sideBar userSidebar">
         <div className="sidebarlogo ">
           <img src={Images.Logo} alt="logo" className="img-fluid" />
         </div>

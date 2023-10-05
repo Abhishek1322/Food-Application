@@ -57,6 +57,22 @@ const Router = () => {
               </UserRoute>
             }
           />
+           <Route
+            path="/user-myprofile"
+            element={
+              <UserRoute role="user">
+                <Containers.UserMyProfile />
+              </UserRoute>
+            }
+          />
+           <Route
+            path="/user-editprofile"
+            element={
+              <UserRoute role="user">
+                <Containers.UserEditProfile />
+              </UserRoute>
+            }
+          />
         </Route>
 
         {/* CHEF_ROUTES */}
@@ -65,10 +81,10 @@ const Router = () => {
             <Route
               path="/setting"
               element={
-                <ChefRoute role="chef">
-                  {" "}
+                // <ChefRoute role="chef">
+              
                   <Containers.SettingMain />
-                </ChefRoute>
+                // </ChefRoute>
               }
             />
           )}
@@ -214,9 +230,9 @@ const Router = () => {
           <Route
             path="/change-password"
             element={
-              <PublicRoute>
+              // <PublicRoute>
                 <Containers.ChangePassword />
-              </PublicRoute>
+              // </PublicRoute>
             }
           />
           <Route
@@ -253,6 +269,14 @@ const Router = () => {
           <Route path="/cart" element={<Containers.Cart />} />
           <Route path="/chat" element={<Containers.Chat />} />
           <Route path="/notification" element={<Containers.Notification />} />
+          <Route
+            path="/user-manageaddress"
+            element={
+              <UserRoute role="user">
+                <Containers.UserManageAddress />
+              </UserRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
