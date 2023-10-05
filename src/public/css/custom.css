@@ -448,10 +448,11 @@ input:-webkit-autofill:active {
     width: 100%;
     background: rgba(254, 250, 247, 1);
     border: 1px dashed #F5BE99;
-    border-radius: 8px;
+    border-radius: 20px;
     text-align: center;
-    padding: 50px;
+    padding: 35px 50px 35px;
     margin-bottom: 20px;
+    height: 219px;
 }
 
 .uploadImgeboxNew {

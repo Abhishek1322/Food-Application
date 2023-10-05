@@ -39,6 +39,7 @@ const SettingMain = (props) => {
     });
   };
 
+  
   // stop loader on refresh page
   useEffect(() => {
     dispatch(onErrorStopLoad());

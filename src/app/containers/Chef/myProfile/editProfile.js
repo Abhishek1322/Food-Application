@@ -28,7 +28,6 @@ const EditProfile = () => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
 
-
   useEffect(() => {
     let params = {
       userid: userId,

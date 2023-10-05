@@ -32,6 +32,9 @@ import EditProfile from "../containers/Chef/myProfile/editProfile"
 import ChefDetails from "../containers/User/ChefDetails"
 import UserChefHome from "./User/Chef/Home"
 import UserOrderHome from "./User/Order/OrderHome"
+import UserMyProfile from "./User/Profile/MyProfile"
+import UserEditProfile from "./User/Profile/EditProfile"
+import UserManageAddress from "./User/Setting/ManageAddress"
 
 
 
@@ -71,4 +74,7 @@ export {
     ChefDetails,
     UserChefHome,
     UserOrderHome,
+    UserMyProfile,
+    UserEditProfile,
+    UserManageAddress,
 }

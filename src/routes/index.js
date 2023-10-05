@@ -31,7 +31,7 @@ const Router = () => {
               <UserRoute role="user">
                 <Containers.HomeUser />
               </UserRoute>
-            } 
+            }
           />
           <Route
             path="/chef-details"
@@ -41,15 +41,35 @@ const Router = () => {
               </UserRoute>
             }
           />
-          <Route path="/user-chef-home" element={<UserRoute role="user">
-            <Containers.UserChefHome />
-          </UserRoute>
-          } />
+          <Route
+            path="/user-chef-home"
+            element={
+              <UserRoute role="user">
+                <Containers.UserChefHome />
+              </UserRoute>
+            }
+          />
           <Route
             path="/user-order-home"
             element={
               <UserRoute role="user">
                 <Containers.UserOrderHome />
+              </UserRoute>
+            }
+          />
+           <Route
+            path="/user-myprofile"
+            element={
+              <UserRoute role="user">
+                <Containers.UserMyProfile />
+              </UserRoute>
+            }
+          />
+           <Route
+            path="/user-editprofile"
+            element={
+              <UserRoute role="user">
+                <Containers.UserEditProfile />
               </UserRoute>
             }
           />
@@ -61,10 +81,10 @@ const Router = () => {
             <Route
               path="/setting"
               element={
-                <ChefRoute role="chef">
-                  {" "}
+                // <ChefRoute role="chef">
+              
                   <Containers.SettingMain />
-                </ChefRoute>
+                // </ChefRoute>
               }
             />
           )}
@@ -83,11 +103,20 @@ const Router = () => {
           <Route path="/new-booking" element={<Containers.NewBooking />} />
           <Route path="/menu" element={<Containers.Menu />} />
           <Route path="/home" element={<Containers.HomeRequsest />} />
-          <Route path="/booking-details" element={<Containers.BookingDetails />} />
+          <Route
+            path="/booking-details"
+            element={<Containers.BookingDetails />}
+          />
           <Route path="/my-profile" element={<Containers.myprofile />} />
-          <Route path="/booking-details" element={<Containers.BookingDetails />} />
+          <Route
+            path="/booking-details"
+            element={<Containers.BookingDetails />}
+          />
           <Route path="/order-details" element={<Containers.OrderDetails />} />
-          <Route path="/anotherorder-detail" element={<Containers.AnotherOrderdetail />} />
+          <Route
+            path="/anotherorder-detail"
+            element={<Containers.AnotherOrderdetail />}
+          />
           <Route
             path="/edit-chef-profile"
             element={
@@ -201,9 +230,9 @@ const Router = () => {
           <Route
             path="/change-password"
             element={
-              <PublicRoute>
+              // <PublicRoute>
                 <Containers.ChangePassword />
-              </PublicRoute>
+              // </PublicRoute>
             }
           />
           <Route
@@ -240,6 +269,14 @@ const Router = () => {
           <Route path="/cart" element={<Containers.Cart />} />
           <Route path="/chat" element={<Containers.Chat />} />
           <Route path="/notification" element={<Containers.Notification />} />
+          <Route
+            path="/user-manageaddress"
+            element={
+              <UserRoute role="user">
+                <Containers.UserManageAddress />
+              </UserRoute>
+            }
+          />
         </Route>
       </Routes>
     </>

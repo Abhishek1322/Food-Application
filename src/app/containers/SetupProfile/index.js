@@ -51,7 +51,7 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-
+  console.log("experticeValue", experticeValue);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -68,6 +68,7 @@ const SetupProfile = () => {
   const handleRemoveDocument = (name) => {
     if (pdfFiles.name === name) {
       setPdfFiles("");
+      setDocumentUrl("");
     }
   };
 
@@ -173,6 +174,10 @@ const SetupProfile = () => {
       setPageNumber(2);
       nextPage("pagetwo");
     } else if (flag == 2) {
+      if (!documentUrl) {
+        toast.error("Please upload your document");
+        return;
+      }
       let params = {
         step: "2",
         verificationDocument: documentUrl,
@@ -553,7 +558,7 @@ const SetupProfile = () => {
                                       Rate Per Hour
                                     </label>
                                     <img
-                                      src={Images.Location}
+                                      src={Images.ratePerHourImg}
                                       alt="InfoIcon"
                                       className="InputIcon"
                                     />
@@ -578,28 +583,15 @@ const SetupProfile = () => {
                                     <i class="las la-plus"></i>Add
                                   </button>
                                 </div>
-                                <div className="expertiseAdded mt-3 d-none">
+                                <div className="expertiseAdded mt-3">
                                   <ul>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
-                                    <li className="expertiseList">
-                                      North Indian
-                                    </li>
-                                    <li className="expertiseList">Chicken</li>
-                                    <li className="expertiseList">Soups</li>
+                                    {experticeValue
+                                      ?.filter((value) => value !== "")
+                                      ?.map((value, index) => (
+                                        <li className="expertiseList">
+                                          {value}
+                                        </li>
+                                      ))}
                                   </ul>
                                 </div>
                               </div>
@@ -821,6 +813,7 @@ const SetupProfile = () => {
             <AddExpertise
               setExperticeValue={setExperticeValue}
               close={() => handleOnCloseModal()}
+              experticeValue={experticeValue}
             />
           ) : (
             ""

@@ -3,12 +3,14 @@ import * as Images from "../../../../utilities/images";
 import { toast } from "react-toastify";
 
 const AddExpertise = (props) => {
-  const { setExperticeValue, close } = props;
+  const { setExperticeValue, close, experticeValue } = props;
+
+  console.log("experticeValuedscsdc", experticeValue);
 
   const emailRef = useRef(null);
   const [expertice, setExpertice] = useState([""]);
   const [newInputIndex, setNewInputIndex] = useState(null);
-
+  console.log("experticeexpertice", expertice);
   // add new input
   const handleAddInput = (e) => {
     e.preventDefault();
@@ -54,6 +56,18 @@ const AddExpertise = (props) => {
     close();
   };
 
+  useEffect(() => {
+    if (experticeValue && experticeValue.length > 0) {
+      const updateExperticeValues = experticeValue.filter((value) => {
+        return value !== "";
+      });
+      setExpertice((prevExpertice) => [
+        ...prevExpertice.filter((value) => value !== ""),
+        ...updateExperticeValues,
+      ]);
+    }
+  }, [experticeValue]);
+
   return (
     <>
       <form onSubmit={(e) => handleAddInput(e)}>
@@ -63,28 +77,31 @@ const AddExpertise = (props) => {
           </button>
         </div>
 
-        {expertice.map((value, index) => (
-          <>
-            <div className="input-container  mt-3">
-              <input
-                ref={index === expertice.length - 1 ? emailRef : null}
-                onChange={(e) => handleChangeInput(index, e.target.value)}
-                type="text"
-                className="border-input"
-                placeholder="Experty"
-              />
-
-              {expertice && expertice.length > 1 && (
-                <img
-                  onClick={() => handleRemoveInput(index)}
-                  src={Images.DeleteIcon}
-                  alt="InfoIcon"
-                  className="InputIcon"
+        <div className="modalscroll">
+          {expertice.map((value, index) => (
+            <>
+              <div className="input-container  mt-3">
+                <input
+                  ref={index === expertice.length - 1 ? emailRef : null}
+                  onChange={(e) => handleChangeInput(index, e.target.value)}
+                  type="text"
+                  className="border-input"
+                  placeholder="Experty"
+                  value={value}
                 />
-              )}
-            </div>
-          </>
-        ))}
+
+                {expertice && expertice.length > 1 && (
+                  <img
+                    onClick={() => handleRemoveInput(index)}
+                    src={Images.DeleteIcon}
+                    alt="InfoIcon"
+                    className="InputIcon"
+                  />
+                )}
+              </div>
+            </>
+          ))}
+        </div>
       </form>
       <div className="buttomBtn text-center">
         <button onClick={handleSubmitExpertice} className="smallBtn w-100">

@@ -5,7 +5,6 @@ import CustomModal from "../../../components/common/shared/CustomModal";
 import AddExpertiseModal from "../../../components/common/shared/addExpertiseModal";
 import MyavailabilityModal from "../../../components/common/shared/myavailabilityModal";
 import RatingReviewsModal from "../../../components/common/shared/ratingReviewsModal";
-import { useAuthSelector } from "../../../../redux/selector/auth";
 import {
   getChefProfileDetails,
   onErrorStopLoad,
@@ -14,7 +13,6 @@ import { useDispatch } from "react-redux";
 
 const MyProfile = () => {
   const [key, setKey] = useState(Math.random());
-  const authData = useAuthSelector();
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
@@ -49,7 +47,7 @@ const MyProfile = () => {
     setKey(Math.random());
   };
 
-
+  // getting chef profile information
   useEffect(() => {
     let params = {
       userid: userId,
@@ -95,6 +93,8 @@ const MyProfile = () => {
       id: 7,
     },
   ];
+
+  // add slot times
   const handleSlotTime = (weekDay) => {
     setActiveWeekDay(weekDay);
     const updateSlotTimes = chefProfileData?.chefInfo?.availability?.find(
@@ -107,6 +107,11 @@ const MyProfile = () => {
       to: updateSlotTimes?.timeSlots?.to,
     });
   };
+
+  // stop loader on refresh page
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>

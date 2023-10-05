@@ -13,7 +13,7 @@ const ForgotPassword = () => {
   const authData = useAuthSelector();
   const toastId = useRef(null);
   const [email, setEmail] = useState("");
-
+  console.log("authDataauthData",authData);
   // show only one toast at one time
   const showToast = (msg) => {
     if (!toast.isActive(toastId.current)) {

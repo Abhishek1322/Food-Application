@@ -5,6 +5,7 @@ import UserOrderDetail from '../../../components/common/shared/UserOrderDetail';
 
 
 const UserOrderHome = () => {
+    const slides = Array(4).join().split(',').map(function (a) { return this.i++ }, { i: 1 });
     const [key, setKey] = useState(Math.random());
     const [modalDetail, setModalDetail] = useState({
         show: false,
@@ -40,7 +41,7 @@ const UserOrderHome = () => {
                             <div className='orderprocess active mb-3' onClick={() => {
                                 handleUserProfile("orderdetail")
                             }}>
-                                <article className='flexBox justify-content-between p-3'>
+                                <article className='flexBox justify-content-between'>
                                     <p className='fooodquantity_'>#12548</p>
                                     <p className='chatTime_'>In-Progress</p>
                                 </article>
@@ -68,38 +69,44 @@ const UserOrderHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='col-lg-12'>
-                            <div className='orderprocess  mb-3' onClick={() => {
-                                handleUserProfile("orderdetail")
-                            }}>
-                                <article className='flexBox justify-content-between p-3'>
-                                    <p className='fooodquantity_'>#12548</p>
-                                    <p className='chatTime_'>In-Progress</p>
-                                </article>
-                                <div className='orderchefinfo'>
-                                <div className='row'>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className='flexBox'>
-                                            <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
-                                            <div className='orderchefname'>
-                                                <p className='chefName '>Sarah Bergstrom</p>
-                                                <p className='orderFrom'>Order From</p>
+                    </div>
+                    <div className='row'>
+                        {slides && slides.map((val, i) => {
+                            return (
+                                <div className='col-lg-12'>
+                                    <div className='orderprocess  mb-3' onClick={() => {
+                                        handleUserProfile("orderdetail")
+                                    }}>
+                                        <article className='flexBox justify-content-between'>
+                                            <p className='fooodquantity_'>#12548</p>
+                                            <p className='chatTime_'>Delivered</p>
+                                        </article>
+                                        <div className='orderchefinfo'>
+                                            <div className='row'>
+                                                <div className='col-lg-6 col-md-12'>
+                                                    <div className='flexBox'>
+                                                        <img src={Images.OrderChef} alt='chefimg' className='img-fluid' />
+                                                        <div className='orderchefname'>
+                                                            <p className='chefName '>Sarah Bergstrom</p>
+                                                            <p className='orderFrom'>Order From</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col-lg-6 col-md-12'>
+                                                    <div className='orderstatus'>
+                                                        <p className='Items'>4 Items</p>
+                                                        <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                        <div className='userorderprice'>
+                                                            <p className='orderPrice '>£22.00</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className='orderstatus'>
-                                            <p className='Items'>4 Items</p>
-                                            <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                            <div className='userorderprice'>
-                                                <p className='orderPrice '>£22.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
@@ -127,7 +134,7 @@ const UserOrderHome = () => {
                         <div className='Common_header'>
                             <div className='headerProfile'>
                                 <p className='headerTxt_'>Order #12548</p>
-                                <p className='ordersubheader'>In-Progress</p>
+                                <p className='headerInner_'>In-Progress</p>
                             </div>
                         </div>
                         <p onClick={handleOnCloseModal} className='modal_cancel'>

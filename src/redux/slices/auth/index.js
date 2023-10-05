@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   chefDocumentUrl: {},
   userInfo: [],
+  userEmail: {},
 };
 
 export const authSlice = createSlice({
@@ -76,6 +77,7 @@ export const authSlice = createSlice({
     },
     setForgotPassword: (state, action) => {
       state.loading = false;
+      state.userEmail = action.payload;
     },
     verifyOtp: (state) => {
       state.loading = true;
