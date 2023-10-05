@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images";
 import { Link } from 'react-router-dom';
+import CustomModal from '../../../components/common/shared/CustomModal';
+import UserOrderEdit from '../../../components/common/shared/UserOrderEdit';
 
 const UserManageAddress = () => {
+    const [key, setKey] = useState(Math.random());
+    const [modalDetail, setModalDetail] = useState({
+        show: false,
+        title: "",
+        flag: "",
+    });
+
+    //closeModal
+    const handleOnCloseModal = () => {
+        setModalDetail({
+            show: false,
+            title: "",
+            flag: "",
+        });
+        setKey(Math.random());
+    };
+
+    const handleUserProfile = (flag) => {
+
+        setModalDetail({
+            show: true,
+            flag: flag,
+            type: flag,
+        });
+        setKey(Math.random());
+    };
     return (
         <>
             <div className='settingmanagesection'>
@@ -25,7 +53,7 @@ const UserManageAddress = () => {
                                         <div className='managetext'>
                                             <p className='notificationText'>Home</p>
                                             <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
-                                            <div class="dropdown dropleft managedrop">
+                                            <div class="dropdown  dropstart managedrop">
                                                 <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
@@ -39,8 +67,8 @@ const UserManageAddress = () => {
                                         <div className='managetext'>
                                             <p className='notificationText'>Office</p>
                                             <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
-                                            <div class="dropdown dropleft managedrop">
-                                            <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
+                                            <div class="dropdown  dropstart managedrop">
+                                                <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
                                                     <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
@@ -49,7 +77,9 @@ const UserManageAddress = () => {
                                         </div>
                                     </div>
                                     <Link to="#">
-                                     <p className='cancelOrder'>+ Add New Address</p>
+                                        <p className='cancelOrder' onClick={() => {
+                                            handleUserProfile("ordereditmodal")
+                                        }}>+ Add New Address</p>
                                     </Link>
                                     <div className="buttonBox mt-5 d-flex  justify-content-center">
                                         <button type="submit" role="button" className="smallBtn">SAVE</button>
@@ -61,6 +91,42 @@ const UserManageAddress = () => {
                     </div>
                 </div>
             </div>
+            <CustomModal
+                key={key}
+                show={modalDetail.show}
+                backdrop="static"
+                showCloseBtn={false}
+                isRightSideModal={true}
+                mediumWidth={false}
+                className={modalDetail.flag === "ordereditmodal" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "ordereditmodal" ? "ordereditaddress" : ""}
+                child={
+                    modalDetail.flag === "ordereditmodal" ? (
+                        <UserOrderEdit
+                            close={() => handleOnCloseModal()}
+                        />
+                    ) :
+                        ""
+                }
+                header=
+
+                {modalDetail.flag === "ordereditmodal" ?
+                    <>
+                        <div className='editadressheading'>
+                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                            <div className='edithead'>
+                                <h2 className="modal_Heading">
+                                Edit Address
+                                </h2>
+                                <p className='chatUser'>Edit Address below</p>
+                            </div>
+                        </div>
+                    </>
+                    :
+                    ''
+                }
+                onCloseModal={() => handleOnCloseModal()}
+            />
         </>
     )
 }

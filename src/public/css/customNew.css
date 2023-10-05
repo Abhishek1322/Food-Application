@@ -1844,7 +1844,7 @@ p {
 .orderprocess .fooodquantity_ {
     padding: 10px 20px;
 }
-#userorderdetail,#userorderdeliver {
+#userorderdetail,#userorderdeliver ,#ordereditaddress{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
