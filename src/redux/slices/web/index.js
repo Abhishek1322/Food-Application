@@ -5,7 +5,7 @@ const initialState = {
   chefProfileDetails: [],
 };
 
-export const authSlice = createSlice({
+export const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
@@ -17,7 +17,18 @@ export const authSlice = createSlice({
       state.loading = false;
       state.chefProfileDetails = action.payload;
     },
-
+    updateChefProfile: (state) => {
+      state.loading = true;
+    },
+    setUpdateChefProfile: (state, action) => {
+      state.loading = false;
+    },
+    updateProfileImage: (state) => {
+      state.loading = true;
+    },
+    setUpdateProfileImage: (state, action) => {
+      state.loading = false;
+    },
     onErrorStopLoad: (state) => {
       state.loading = false;
     },
@@ -25,7 +36,14 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getChefProfileDetails, setChefProfileDetails,onErrorStopLoad } =
-  authSlice.actions;
+export const {
+  getChefProfileDetails,
+  setChefProfileDetails,
+  updateChefProfile,
+  setUpdateChefProfile,
+  onErrorStopLoad,
+  updateProfileImage,
+  setUpdateProfileImage
+} = webSlice.actions;
 
-export default authSlice.reducer;
+export default webSlice.reducer;

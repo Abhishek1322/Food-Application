@@ -46,7 +46,7 @@ const UserManageAddress = () => {
                                     <div className='changepasswordImg d-flex justify-content-center'>
                                         <img src={Images.ManageLocation} alt="logo" className="img-fluid  contactusImg" />
                                     </div>
-                                    <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">Add New and Edit your
+                                    <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">Add New and Edit your 
                                         Saved Addresses</h6>
                                     <div className='managehome'>
                                         <img src={Images.ManageHome} alt='Homeimg' className='img-fluid' />

@@ -51,7 +51,7 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-  console.log("experticeValue", experticeValue);
+
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -171,8 +171,6 @@ const SetupProfile = () => {
           },
         })
       );
-      setPageNumber(2);
-      nextPage("pagetwo");
     } else if (flag == 2) {
       if (!documentUrl) {
         toast.error("Please upload your document");
@@ -196,7 +194,12 @@ const SetupProfile = () => {
     } else if (flag == 3) {
       let params = {
         step: "3",
-        availability: availability,
+        availability: availability.filter(
+          (value) =>
+            value.day !== "" &&
+            value.timeSlots.from &&
+            value.timeSlots.to !== undefined
+        ),
       };
       dispatch(
         chefSetupProfile({
@@ -291,7 +294,9 @@ const SetupProfile = () => {
       return item?.day === day;
     });
     setEndTime(getPreviousToTime?.timeSlots?.to);
-    // addTimeSlot();
+    if (availability && availability.length < 0) {
+      setShowTimeSlot(true);
+    }
   };
 
   // close time slot
@@ -313,24 +318,38 @@ const SetupProfile = () => {
     setShowTimeSlot(true);
   };
 
-  const addTimeSlot = () => {
-    if (activeWeekDay && startTime && endTime) {
-      const newTimeSlot = { from: startTime, to: endTime };
-      const newAvailability = [...availability];
-      const existingDayIndex = newAvailability.findIndex(
-        (entry) => entry.day === activeWeekDay
-      );
-      if (existingDayIndex !== -1) {
-        newAvailability[existingDayIndex].timeSlots.push(newTimeSlot);
-      } else {
-        newAvailability.push({
-          day: activeWeekDay,
-          timeSlots: newTimeSlot,
-        });
-      }
-      setAvailability(newAvailability);
+  // getting availability
+  useEffect(() => {
+    const dayIndex = availability.findIndex(
+      (item) => item.day === activeWeekDay
+    );
+    if (dayIndex !== -1) {
+      const updatedAvailability = [...availability];
+      updatedAvailability[dayIndex].timeSlots.from = startTime;
+      updatedAvailability[dayIndex].timeSlots.to = endTime;
+      setAvailability(updatedAvailability);
     } else {
+      setAvailability([
+        ...availability,
+        {
+          day: activeWeekDay,
+          timeSlots: {
+            from: startTime,
+            to: endTime,
+          },
+        },
+      ]);
     }
+  }, [startTime, endTime, activeWeekDay]);
+
+  // getting startTime slot
+  const handleStartTime = (value) => {
+    setStartTime(value);
+  };
+
+  // getting EndTime slot
+  const handleEndTime = (value) => {
+    setEndTime(value);
   };
 
   return (
@@ -441,7 +460,7 @@ const SetupProfile = () => {
                                   <div className="input-container mt-3">
                                     <input
                                       onChange={(e) => handleChange(e)}
-                                      type="text"
+                                      type="number"
                                       name="experience"
                                       className="border-input"
                                       placeholder="Add experience"
@@ -709,9 +728,8 @@ const SetupProfile = () => {
                                             <p className="border-input">From</p>
                                             <div className="dateBox">
                                               <TimePicker
-                                                onChange={setStartTime}
+                                                onChange={handleStartTime}
                                                 value={startTime}
-                                                amPmAriaLabel="AM"
                                               />
                                               <img
                                                 src={Images.ClockIcon}
@@ -726,9 +744,8 @@ const SetupProfile = () => {
                                             <p className="border-input">To</p>
                                             <div className="dateBox">
                                               <TimePicker
-                                                onChange={setEndTime}
+                                                onChange={handleEndTime}
                                                 value={endTime}
-                                                amPmAriaLabel="PM"
                                               />
                                               <img
                                                 src={Images.ClockIcon}
@@ -751,9 +768,9 @@ const SetupProfile = () => {
                                           </div>
                                         </div>
                                       </div>
-                                      <button onClick={addTimeSlot}>
+                                      {/* <button onClick={addTimeSlot}>
                                         Add this slot
-                                      </button>
+                                      </button> */}
                                     </>
                                   )}
                                   {!showTimeSlot && (

@@ -791,7 +791,7 @@ body {
 #myAvailability
 ,#ratingAndReview ,
 #myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
-, #paidAmount , #editMenu {
+, #paidAmount , #editMenu , #deleteMenu  ,#addMenuItem{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1379,6 +1379,14 @@ body {
 .menuItems {
     display: flex;
     align-items: center;
+}
+.inneredittxt {
+    color: #979999;
+    font-size: 10px;
+    font-weight: 600;
+    position: absolute;
+    right: 55px;
+    bottom: 21px;
 }
 
 .listItems_ {
@@ -2152,6 +2160,33 @@ body {
     font-weight: 600;
 }
 /* Rating And revies CSS END */
+
+/* Add Menu item Modal css Start */
+.Uploadicon {
+    width: 24px;
+    height: 25px;
+}
+.choosetoUpload .uploadbtnn {
+    padding: 4px 10px 6px 9px;
+    border-radius: 4px;
+    margin: 6px 0;
+}
+.smallHeading_ {
+    color: #2E3333;
+    font-size: 12px;
+    font-weight: 600;
+}
+.menuItemBtn {
+    border-radius: 8px;
+    background: #F7CEB3;
+    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+}
+.choosetoUpload {
+    height: 134px;
+    padding: 21px 50px 17px;
+}
+
+/* Add Menu item Modal css end */
 
 /*----------------------------Edit Profile Page Css end---------------- */
 

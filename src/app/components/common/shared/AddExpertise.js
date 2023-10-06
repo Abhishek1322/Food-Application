@@ -3,14 +3,12 @@ import * as Images from "../../../../utilities/images";
 import { toast } from "react-toastify";
 
 const AddExpertise = (props) => {
+  
   const { setExperticeValue, close, experticeValue } = props;
-
-  console.log("experticeValuedscsdc", experticeValue);
-
   const emailRef = useRef(null);
   const [expertice, setExpertice] = useState([""]);
   const [newInputIndex, setNewInputIndex] = useState(null);
-  console.log("experticeexpertice", expertice);
+
   // add new input
   const handleAddInput = (e) => {
     e.preventDefault();

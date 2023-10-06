@@ -17,6 +17,10 @@ const MyProfile = () => {
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
+  const [expertice, setExpertice] = useState([]);
+  const [availability, setAvailability] = useState([]);
+  const [profileUrl, setProfileUrl] = useState("");
+
   const [slotTime, setSlotTimes] = useState({
     from: "",
     to: "",
@@ -45,10 +49,17 @@ const MyProfile = () => {
       type: flag,
     });
     setKey(Math.random());
+    if (flag === "addAvailabilityModal") {
+      setActiveWeekDay("");
+    }
   };
 
   // getting chef profile information
   useEffect(() => {
+    chefProfileDetails();
+  }, []);
+
+  const chefProfileDetails = () => {
     let params = {
       userid: userId,
     };
@@ -56,11 +67,14 @@ const MyProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          setProfileData(res.data.data);
+          setProfileData(res?.data?.data);
+          setExpertice(res?.data?.data?.chefInfo?.expertise);
+          setAvailability(res?.data?.data?.chefInfo?.availability);
+          setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
         },
       })
     );
-  }, []);
+  };
 
   // week days
   const week = [
@@ -122,7 +136,7 @@ const MyProfile = () => {
               {/* left section  */}
               <div className="profileleft">
                 <img
-                  src={Images.chefProfile}
+                  src={profileUrl ? profileUrl : Images.chefProfile}
                   alt="chefProfileimg"
                   className="chefprofileimg"
                 />
@@ -204,7 +218,7 @@ const MyProfile = () => {
                     <div className="chefexp">
                       <p className="dummyText p-0">Experience</p>
                       <p className="nameheading">
-                        {chefProfileData?.chefInfo?.experience}Years
+                        {chefProfileData?.chefInfo?.experience} Years
                       </p>
                     </div>
                   </div>
@@ -253,15 +267,15 @@ const MyProfile = () => {
                     </button>
                   </div>
                   <div className="chefexpertise">
-                    {chefProfileData?.chefInfo?.expertise?.length > 0 ? (
+                    {expertice?.length > 0 ? (
                       <>
-                        {chefProfileData?.chefInfo?.expertise?.map(
-                          (item, index) => (
+                        {expertice
+                          ?.filter((value) => value !== "")
+                          ?.map((item, index) => (
                             <div key={index} className="expertisevalue">
                               <p className="expertheading">{item}</p>
                             </div>
-                          )
-                        )}
+                          ))}
                       </>
                     ) : (
                       <p className="expertheading">N/A</p>
@@ -301,12 +315,14 @@ const MyProfile = () => {
                     ))}
                   </ul>
                   <div className="cheftime">
-                    {slotTime.from && slotTime.to && (
+                    {slotTime.from && slotTime.to && activeWeekDay ? (
                       <div className="expertisevalue">
                         <p className="expertheading">
                           {slotTime.from} - {slotTime.to}
                         </p>
                       </div>
+                    ) : (
+                      activeWeekDay && "N/A"
                     )}
                   </div>
                 </div>
@@ -338,9 +354,18 @@ const MyProfile = () => {
         }
         child={
           modalDetail.flag === "addExpertiseModal" ? (
-            <AddExpertiseModal close={() => handleOnCloseModal()} />
+            <AddExpertiseModal
+              setExperticeValue={setExpertice}
+              experticeValue={expertice}
+              chefProfileDetails={chefProfileDetails}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "addAvailabilityModal" ? (
-            <MyavailabilityModal close={() => handleOnCloseModal()} />
+            <MyavailabilityModal
+              chefProfileDetails={chefProfileDetails}
+              availabilityData={availability}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "ratingReviewsModal" ? (
             <RatingReviewsModal close={() => handleOnCloseModal()} />
           ) : (
