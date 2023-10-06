@@ -34,9 +34,8 @@ const ChefBookModal = () => {
     return (
         <>
             <div className='chefbookmodalsection mt-3'>
-                <div className='container-fluid'>
-                    <p className='chatheadtext '>Hire Chef</p>
-                    <div className='row align-items-center mt-3'>
+                    <p className='chatheadtext m-3 '>Hire Chef</p>
+                    <div className='row align-items-center m-2'>
                         <div className='col-lg-9'>
                             <div className='sarahinfo'>
                                 <div className='sarahimg'>
@@ -55,7 +54,6 @@ const ChefBookModal = () => {
                             <p className='chatTime_'> <span className='bookchefprice'>£45</span>/hour</p>
                         </div>
                     </div>
-                </div>
                 <div className='chefbookslots'>
                     <p className='chefName mt-3'>Book Time Slot</p>
                     <div className='bookslots mt-2'>

@@ -5,7 +5,7 @@ const UserCartModal = () => {
   return (
     <>
       <div className='usercartcheck'>
-        <div className='modalDetail '>
+        <div className='modalDetail usermodaldetail'>
           <div className='usercartDetail'>
             <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
@@ -28,7 +28,7 @@ const UserCartModal = () => {
             <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
           </div>
         </div>
-        <div className='modalDetail '>
+        <div className='modalDetail usermodaldetail'>
           <div className='usercartDetail'>
             <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
             <div className='insideModal'>

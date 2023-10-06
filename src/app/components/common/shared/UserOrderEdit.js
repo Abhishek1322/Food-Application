@@ -25,7 +25,6 @@ const UserOrderEdit = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -39,8 +38,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-6'>
                                             <div className="input-container mt-4">
@@ -65,8 +62,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -80,8 +75,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -95,7 +88,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn'>
@@ -111,7 +103,6 @@ const UserOrderEdit = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -125,8 +116,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-6'>
                                             <div className="input-container mt-4">
@@ -151,8 +140,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -166,8 +153,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -181,7 +166,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn'>
@@ -197,7 +181,6 @@ const UserOrderEdit = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -211,8 +194,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-6'>
                                             <div className="input-container mt-4">
@@ -237,8 +218,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -252,8 +231,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -267,7 +244,6 @@ const UserOrderEdit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn'>

@@ -33,20 +33,16 @@ const UserClearChat = () => {
   };
   return (
     <>
-      <div className='chefclearchatsection'>
-        <div className='deletesection'>
-          <div className='paymentdonesection'>
-            <img src={Images.DeleteModal} alt='accountdeletedimg' className='img-fluid' />
-            <p className='accountDeleted mt-3'>Clear Chat</p>
-            <p className='accountdeletetxt mt-2 '>Are you sure, you want to clear all chat?</p>
-            <div className='modalfooterbtn'>
-              <div className='orderItems'>
-                <button className='cancelOrder'>Cancel</button>
-                <button className='acceptOrder' onClick={() => {
-                  handleUserProfile("clearchatnext")
-                }}>Yes, Clear</button>
-              </div>
-            </div>
+      <div className='chefclearchatsection deletesection paymentdonesection'>
+        <img src={Images.DeleteModal} alt='accountdeletedimg' className='img-fluid' />
+        <p className='accountDeleted mt-3'>Clear Chat</p>
+        <p className='accountdeletetxt mt-2 '>Are you sure, you want to clear all chat?</p>
+        <div className='modalfooterbtn'>
+          <div className='orderItems'>
+            <button className='cancelOrder'>Cancel</button>
+            <button className='acceptOrder' onClick={() => {
+              handleUserProfile("clearchatnext")
+            }}>Yes, Clear</button>
           </div>
         </div>
       </div>
@@ -72,42 +68,42 @@ const UserClearChat = () => {
         {modalDetail.flag === "clearchatnext" ?
           <>
             <div className='Common_header'>
-                                <img
-                                    src={Images.backArrowpassword}
-                                    alt="logo"
-                                    className="img-fluid  arrowCommon_"
-                                />
-                                <img
-                                    src={Images.UserICon}
-                                    alt="logo"
-                                    className="img-fluid  headerImg_"
-                                />
-                                <div className='headerProfile'>
-                                    <p className='headerTxt_'>John Smith</p>
-                                    <p className='headerInner_'>Online</p>
-                                </div>
+              <img
+                src={Images.backArrowpassword}
+                alt="logo"
+                className="img-fluid  arrowCommon_"
+              />
+              <img
+                src={Images.UserICon}
+                alt="logo"
+                className="img-fluid  headerImg_"
+              />
+              <div className='headerProfile'>
+                <p className='headerTxt_'>John Smith</p>
+                <p className='headerInner_'>Online</p>
+              </div>
 
 
 
-                            </div>
-                            <div className='Dotsheader_'>
-                                <div class="dropdown ">
-                                    <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
-                                    </button>
-                                    <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
-                                        <li className=' chatdroplabel flexBox'>
-                                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
-                                            <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
-                                        </li>
-                                        <li className=' chatdroplabel flexBox'>
-                                            <img src={Images.ChatModal} className=' img-fluid reporticon_' />
-                                            <p className='reportchattxt_ m-0 ps-2'>Clear Chat</p>
-                                        </li>
+            </div>
+            <div className='Dotsheader_'>
+              <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                </button>
+                <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
+                  <li className=' chatdroplabel flexBox'>
+                    <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                    <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
+                  </li>
+                  <li className=' chatdroplabel flexBox'>
+                    <img src={Images.ChatModal} className=' img-fluid reporticon_' />
+                    <p className='reportchattxt_ m-0 ps-2'>Clear Chat</p>
+                  </li>
 
-                                    </ul>
-                                </div>
-                            </div>
+                </ul>
+              </div>
+            </div>
           </>
           :
           ''

@@ -44,74 +44,74 @@ const UserChefHome = () => {
             autoWidth={true}
           >
             <div className="chefslidermain active manageimg">
-              <p className="sliderheading ">All</p>
+              <h6 className="sliderheading ">All</h6>
             </div>
             <div className="chefslidermain manageimg">
-              <p className="sliderheading">Butcher Chef</p>
+              <h6 className="sliderheading">Butcher Chef</h6>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Chef-Owner</p>
+                <h6 className="sliderheading">Chef-Owner</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Commis Chef</p>
+                <h6 className="sliderheading">Commis Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Executive Chef</p>
+                <h6 className="sliderheading">Executive Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Fish Chef</p>
+                <h6 className="sliderheading">Fish Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Fry Chef</p>
+                <h6 className="sliderheading">Fry Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Grill Chef</p>
+                <h6 className="sliderheading">Grill Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Head Chef</p>
+                <h6 className="sliderheading">Head Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Meat Chef</p>
+                <h6 className="sliderheading">Meat Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Fish Chef</p>
+                <h6 className="sliderheading">Fish Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Fry Chef</p>
+                <h6 className="sliderheading">Fry Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Grill Chef</p>
+                <h6 className="sliderheading">Grill Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Head Chef</p>
+                <h6 className="sliderheading">Head Chef</h6>
               </div>
             </div>
             <div class='item'>
               <div className="chefslidermain manageimg">
-                <p className="sliderheading">Meat Chef</p>
+                <h6 className="sliderheading">Meat Chef</h6>
               </div>
             </div>
           </OwlCarousel>

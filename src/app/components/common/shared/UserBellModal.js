@@ -36,8 +36,7 @@ const UserBellModal = () => {
     };
     return (
         <>
-            <div className='userbellsection'>
-                <div className='modalContent'>
+            <div className='userbellsection modalContent'>
                     <div className='searchbar '>
                         <input type='text' placeholder='Search Chef near you...' className='searchtext'
                         />
@@ -153,7 +152,6 @@ const UserBellModal = () => {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}

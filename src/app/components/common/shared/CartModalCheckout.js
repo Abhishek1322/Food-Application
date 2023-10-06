@@ -33,54 +33,53 @@ const CartModalCheckout = () => {
     return (
         <>
             <div className='cartcheckoutsection modalContent'>
-                    <div className='modalDetail '>
-                        <div className='usercartDetail'>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='insideModal'>
-                                <p className='foodtext'>Food Category</p>
-                                <p className='foodItem'>Chicken Salad</p>
-                                <p className='foodPrice'>£22.00</p>
-                                <div className='quantity'>
-                                    <div className='Quantiycheck'>
-                                        <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
-                                    </div>
-                                    <span className='number' >01</span>
-                                    <div className='Quantiycheck'>
-                                        <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
-                                    </div>
-
+                <div className='modalDetail usermodaldetail '>
+                    <div className='usercartDetail'>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='insideModal'>
+                            <p className='foodtext'>Food Category</p>
+                            <p className='foodItem'>Chicken Salad</p>
+                            <p className='foodPrice'>£22.00</p>
+                            <div className='quantity'>
+                                <div className='Quantiycheck'>
+                                    <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
                                 </div>
+                                <span className='number' >01</span>
+                                <div className='Quantiycheck'>
+                                    <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
+                                </div>
+
                             </div>
                         </div>
-                        <div className='modalDelete_'>
-                            <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
-                        </div>
-
                     </div>
-                    <div className='modalDetail '>
-                        <div className='usercartDetail'>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='insideModal'>
-                                <p className='foodtext'>Food Category</p>
-                                <p className='foodItem'>Chicken Salad</p>
-                                <p className='foodPrice'>£22.00</p>
-                                <div className='quantity'>
-                                    <div className='Quantiycheck'>
-                                        <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
-                                    </div>
-                                    <span className='number' >01</span>
-                                    <div className='Quantiycheck'>
-                                        <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
-                                    </div>
-
+                    <div className='modalDelete_'>
+                        <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
+                    </div>
+                </div>
+                <div className='modalDetail  usermodaldetail'>
+                    <div className='usercartDetail'>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='insideModal'>
+                            <p className='foodtext'>Food Category</p>
+                            <p className='foodItem'>Chicken Salad</p>
+                            <p className='foodPrice'>£22.00</p>
+                            <div className='quantity'>
+                                <div className='Quantiycheck'>
+                                    <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
                                 </div>
+                                <span className='number' >01</span>
+                                <div className='Quantiycheck'>
+                                    <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
+                                </div>
+
                             </div>
                         </div>
-                        <div className='modalDelete_'>
-                            <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
-                        </div>
                     </div>
-                    <div className='cartdelivery'>
+                    <div className='modalDelete_'>
+                        <img src={Images.cartDelete} className='cartDelete_' alt='cartcancel' />
+                    </div>
+                </div>
+                <div className='cartdelivery'>
                     <div className='checkoutdelivery'>
                         <div className='checkoutaddress'>
                             <p className='venuInfo'>Delivery Address</p>
@@ -94,7 +93,7 @@ const CartModalCheckout = () => {
                             <div className='homedropdown mt-2'>
                                 <p className='notificationText'>Home</p>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
@@ -103,14 +102,14 @@ const CartModalCheckout = () => {
                             </div>
                             <p className='cheftext mt-2'>New York, 10003, 2nd Street dorm</p>
                             <div class="round">
-                                <input id="" name="" type="checkbox" value="" class="checkbx"/>
+                                <input id="" name="" type="checkbox" value="" class="checkbx" />
                             </div>
                         </div>
                         <div className='checkouthome'>
                             <div className='homedropdown mt-2'>
                                 <p className='notificationText'>Office</p>
                                 <div class="dropdown dropend">
-                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown"/>
+                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
                                         <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
@@ -123,21 +122,21 @@ const CartModalCheckout = () => {
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <div className='modalfooterbtn'>
+                </div>
+                <div className='modalfooterbtn'>
                     <div className='outeraddItem'>
                         <button className='addItems'>+ Add More Items</button>
-                    <div className='orderNow'>
-                        <div className='totalPrice'>
-                            <p className='totaltxt'>Total</p>
-                            <p className='price'>£44.00</p>
+                        <div className='orderNow'>
+                            <div className='totalPrice'>
+                                <p className='totaltxt'>Total</p>
+                                <p className='price'>£44.00</p>
+                            </div>
+                            <button className='orderbutton' onClick={() => {
+                                handleUserProfile("editmodal")
+                            }}>Pay Now</button>
                         </div>
-                        <button className='orderbutton' onClick={() => {
-                            handleUserProfile("editmodal")
-                        }}>Pay Now</button>
                     </div>
-                    </div>
-                    </div>
+                </div>
             </div>
             <CustomModal
                 key={key}
@@ -164,7 +163,7 @@ const CartModalCheckout = () => {
                             <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
                             <div className='edithead'>
                                 <h2 className="modal_Heading">
-                                Edit Address
+                                    Edit Address
                                 </h2>
                                 <p className='chatUser'>Edit Address below</p>
                             </div>

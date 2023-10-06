@@ -32,8 +32,7 @@ const OrderPlaceModal = () => {
     };
     return (
         <>
-            <div className='orderplacesection'>
-                <div className='paymentdonesection'>
+            <div className='orderplacesection paymentdonesection'>
                     <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
                     <p className='accountDeleted mt-3'> Order Placed</p>
                     <p className='accountdeletetxt mt-2 '>Your order has been
@@ -52,7 +51,6 @@ const OrderPlaceModal = () => {
                         <p className='progressheading'>59 Sec</p>
                         <button className='itemsQuantity'>Cancel Order</button>
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}

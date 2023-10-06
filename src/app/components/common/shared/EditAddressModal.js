@@ -33,8 +33,7 @@ const EditAddressModal = () => {
     };
     return (
         <>
-            <div className='editadressection'>
-                <div className='tabsection'>
+            <div className='editadressection tabsection'>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
@@ -53,7 +52,6 @@ const EditAddressModal = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -67,8 +65,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-6'>
                                             <div className="input-container mt-4">
@@ -93,8 +89,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -108,8 +102,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -123,7 +115,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn'>
@@ -139,7 +130,6 @@ const EditAddressModal = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -153,8 +143,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-6'>
                                             <div className="input-container mt-4">
@@ -179,8 +167,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -194,8 +180,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -209,7 +193,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn'>
@@ -225,7 +208,6 @@ const EditAddressModal = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -239,8 +221,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-6'>
                                             <div className="input-container mt-4">
@@ -265,8 +245,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -280,8 +258,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='container-fluid'>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             <div className="input-container mt-4">
@@ -295,7 +271,6 @@ const EditAddressModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn' onClick={() => {
@@ -308,7 +283,6 @@ const EditAddressModal = () => {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}

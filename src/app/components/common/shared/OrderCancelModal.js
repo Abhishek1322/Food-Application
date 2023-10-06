@@ -4,8 +4,7 @@ import * as Images from "../../../../utilities/images"
 const OrderCancelModal = () => {
     return (
         <>
-            <div className='ordercancelsection'>
-                <div className='paymentdonesection'>
+            <div className='ordercancelsection paymentdonesection'>
                     <img src={Images.OrderPlace} alt='accountdeletedimg' className='img-fluid' />
                     <p className='accountDeleted mt-3'>Order Canceled</p>
                     <p className='accountdeletetxt mt-2 '>Your amount will be refund Within 1 hour.</p>
@@ -16,7 +15,6 @@ const OrderCancelModal = () => {
                             </button>
                         </div>
                     </div>
-                </div>
             </div>
         </>
     )
