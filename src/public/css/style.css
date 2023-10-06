@@ -791,7 +791,7 @@ body {
 #myAvailability
 ,#ratingAndReview ,
 #myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
-, #paidAmount , #editMenu , #deleteMenu  ,#addMenuItem{
+, #paidAmount , #editMenu , #deleteMenu  ,#addMenuItem ,#afteruploadfoodImg{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -2184,6 +2184,11 @@ body {
 .choosetoUpload {
     height: 134px;
     padding: 21px 50px 17px;
+}
+#deleteMenu .modalscroll {
+    height: 650px;
+    overflow-y: auto;
+    margin-top: 19px;
 }
 
 /* Add Menu item Modal css end */
