@@ -791,7 +791,7 @@ body {
 #myAvailability
 ,#ratingAndReview ,
 #myOrder ,#reportChatD ,#myorderReport ,#recentOrder ,#orderchat ,#readyWithOrder ,#orderDeliverperfectly 
-, #paidAmount , #editMenu , #deleteMenu  ,#addMenuItem ,#afteruploadfoodImg{
+, #paidAmount , #editMenu , #deleteMenu  ,#addMenuItem ,#afteruploadfoodImg ,#foodDetail ,#editFoodDetail ,#clickDeleteMenu{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1493,9 +1493,10 @@ body {
 .menuItems_ {
     fill: #FFF;
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.20));
-    width: 147px;
-    height: 90px;
     padding: 15px 17px;
+    width: 147px;
+    height: 100px;
+    transform: translate(26px, 40px) !important;
 }
 
 .main_reportchat .cancelOrder {
@@ -1937,7 +1938,7 @@ body {
 /* ------------- MEnu  ModaL-- Edit  PAge Css Start   */
 .menuReport_button {
     width: 100%;
-    padding: 15px 25px;
+    padding: 15px 30px 15px 25px;
     outline: none;
     border-radius: 8px;
     border: 1px solid #E9E9E9;
@@ -2186,12 +2187,64 @@ body {
     padding: 21px 50px 17px;
 }
 #deleteMenu .modalscroll {
-    height: 650px;
+    height: 670px;
     overflow-y: auto;
-    margin-top: 19px;
 }
 
+
 /* Add Menu item Modal css end */
+
+/* Food Detail Modal Css Start */
+#foodDetail .foodDetailHeader_ {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+#foodDetail .modal-header {
+    border-bottom: 0px;
+}
+.foodDetailImg {
+    width: 123px;
+    height: 123px;
+    border-radius: 123px;
+}
+.foodDetailicon{
+    color: #787878;
+    font-size: 15px;
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    cursor: pointer;
+}
+#foodDetail .modalheaderDot_ {
+    background-color: rgb(171 173 173 / 20%);
+    width: 31px;
+    height: 31px;
+    position: absolute;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+#foodDetail .foodmodal {
+    text-align: center;
+    margin-top: -65px;
+}
+.Dotsheader_ {
+    position: relative;
+}
+.menuBtnIcon {
+    right: -18px;
+    color: #787878;
+    font-size: 15px;
+    position: absolute;
+    cursor: pointer;
+}
+#foodDetail .menuItems_ {
+    transform: translate(2px, 40px) !important;
+}
+
+
+/* Food Detail Modal Css End */
 
 /*----------------------------Edit Profile Page Css end---------------- */
 

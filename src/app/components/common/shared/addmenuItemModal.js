@@ -1,33 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal'
 import AfterUploadImage from './afterUploadImage'
 
 const AddmenuItemModal = () => {
+
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+  const handleUserProfile = (flag) => {
+
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
+
   return (
     <>
       <div className='modalscroll'>
         <div className='addmenuItemModal'>
           <div className="input-container mt-5">
-            <textarea type="" className=" menuReport_button   " placeholder='Chicken Salad' />
+            <input type="" className=" menuReport_button   " placeholder='Chicken Salad' />
             <img src={Images.categoryImg} className='cateofyImg_' />
             <label className="border-label">Item Name</label>
 
           </div>
           <div className="input-container mt-4">
-            <textarea type="" className=" menuReport_button   " placeholder='Non-Veg' />
+            <input type="" className=" menuReport_button   " placeholder='Non-Veg' />
             <img src={Images.menuDishImg} className='cateofyImg_' />
             <label className="border-label">Category</label>
 
           </div>
           <div className='flexBox justify-content-between editMenuFields_ '>
             <div className="input-container mt-5">
-              <textarea type="" className=" menuEditbuttom " placeholder='22.00' />
+              <input type="" className=" menuEditbuttom " placeholder='22.00' />
               <img src={Images.euroImg} className='cateofyImg_' />
               <label className="border-label">Price</label>
             </div>
             <div className="input-container mt-5 pe-3 flexBox">
-              <textarea type="" className=" menuEditbuttom " placeholder='45' />
+              <input type="" className=" menuEditbuttom " placeholder='45' />
               <p className='inneredittxt'>MIN</p>
               <img src={Images.clockImg} className='cateofyImg_' />
               <label className="border-label">Delivery Time</label>
@@ -51,8 +78,8 @@ const AddmenuItemModal = () => {
         </div>
       </div>
       <button className='foodmodalbtn  menuItemBtn modalfooterbtn' onClick={() => {
-        handleUserProfile("afterImageUploadModal")
-      }}>
+        handleUserProfile("afterimgUploadModal")
+      }} >
         ADD
       </button>
       <CustomModal
@@ -62,10 +89,10 @@ const AddmenuItemModal = () => {
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}
-        className={modalDetail.flag === "afterImageUploadModal" ? "commonWidth customContent" : ""}
-        ids={modalDetail.flag === "afterImageUploadModal" ? "afteruploadfoodImg" : ""}
+        className={modalDetail.flag === "afterimgUploadModal" ? "commonWidth customContent" : ""}
+        ids={modalDetail.flag === "afterimgUploadModal" ? "readyWithOrder" : ""}
         child={
-          modalDetail.flag === "afterImageUploadModal" ? (
+          modalDetail.flag === "afterimgUploadModal" ? (
             <AfterUploadImage
               close={() => handleOnCloseModal()}
 
@@ -75,35 +102,25 @@ const AddmenuItemModal = () => {
         }
         header=
 
-        {modalDetail.flag === "afterImageUploadModal" ?
+        {modalDetail.flag === "afterimgUploadModal" ?
           <>
-            <div className='Common_header'>
-              <img
-                src={Images.backArrowpassword}
-                alt="logo"
-                className="img-fluid  arrowCommon_"
-              />
-              <div className='headerProfile ps-2'>
-                <p className='modal_Heading'>Order #12548</p>
-                <p className='innerhead_ ps-3'>In-Progress</p>
+            <div className='editadressheading'>
+              <div className='edithead'>
+                <p className="modal_Heading">
+                  Add Menu Item
+                </p>
+                <p className='chatUser'>Add your menu items below.</p>
               </div>
             </div>
+            <p onClick={handleOnCloseModal} className='modal_cancel'>
+              <img src={Images.modalCancel} className='ModalCancel' />
+            </p>
             {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
                         </p> */}
           </>
           :
-          modalDetail.flag === "CartFood" ?
-            <>
-              {/* <h2 className="modal_Heading">
-                                Cart
-                            </h2> */}
-              <p onClick={handleOnCloseModal} className='modal_cancel'>
-                <img src={Images.modalCancel} className='ModalCancel' />
-              </p>
-            </>
-            :
-            ''
+          ''
         }
         onCloseModal={() => handleOnCloseModal()}
       />
