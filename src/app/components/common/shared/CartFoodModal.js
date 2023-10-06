@@ -35,7 +35,7 @@ const CartFoodModal = () => {
         <>
             <div className='cartfoodsection'>
                 <div className='foodmodal'>
-                    <img src={Images.SaladImg} alt='saladimage' className='img-fluid' />
+                    <img src={Images.CartFood} alt='saladimage' className='img-fluid' />
                     <p className='foodmodalheading'>Chicken Salad</p>
                     <div className='restroinfo'>
                         <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>

@@ -43,80 +43,74 @@ const UserChefHome = () => {
             // autoplayTimeout={1000}
             autoWidth={true}
           >
-            <div className="chefslidermain active">
-              <p className="sliderheading">All</p>
+            <div className="chefslidermain active manageimg">
+              <p className="sliderheading ">All</p>
             </div>
-            <div className="chefslidermain">
+            <div className="chefslidermain manageimg">
               <p className="sliderheading">Butcher Chef</p>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Chef-Owner</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Commis Chef</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Executive Chef</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Fish Chef</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
-                <p className="sliderheading">Fish Chef</p>
-              </div>
-            </div>
-            <div class='item'>
-              <div className="chefslidermain">
-                <p className="sliderheading">Fish Chef</p>
-              </div>
-            </div>
-            <div class='item'>
-              <div className="chefslidermain">
-                <p className="sliderheading">Fish Chef</p>
-              </div>
-            </div>
-            <div class='item'>
-              <div className="chefslidermain">
-                <p className="sliderheading">Fish Chef</p>
-              </div>
-            </div>
-            <div class='item'>
-              <div className="chefslidermain">
-                <p className="sliderheading">Fish Chef</p>
-              </div>
-            </div>
-            <div class='item'>
-              <div className="chefslidermain">
-                <p className="sliderheading">Fish Chef</p>
-              </div>
-            </div>
-
-            <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Fry Chef</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Grill Chef</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Head Chef</p>
               </div>
             </div>
             <div class='item'>
-              <div className="chefslidermain">
+              <div className="chefslidermain manageimg">
+                <p className="sliderheading">Meat Chef</p>
+              </div>
+            </div>
+            <div class='item'>
+              <div className="chefslidermain manageimg">
+                <p className="sliderheading">Fish Chef</p>
+              </div>
+            </div>
+            <div class='item'>
+              <div className="chefslidermain manageimg">
+                <p className="sliderheading">Fry Chef</p>
+              </div>
+            </div>
+            <div class='item'>
+              <div className="chefslidermain manageimg">
+                <p className="sliderheading">Grill Chef</p>
+              </div>
+            </div>
+            <div class='item'>
+              <div className="chefslidermain manageimg">
+                <p className="sliderheading">Head Chef</p>
+              </div>
+            </div>
+            <div class='item'>
+              <div className="chefslidermain manageimg">
                 <p className="sliderheading">Meat Chef</p>
               </div>
             </div>

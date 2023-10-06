@@ -110,6 +110,7 @@ import UserEditProfile from "../public/images/userEditProfile.png"
 import ManageOffice from "../public/images/ManageOffice.svg"
 import ManageHome from "../public/images/ManageHome.svg"
 import ManageLocation from "../public/images/ManageLocation.png"
+import CartFood from "../public/images/cartfood.svg"
 
 
 
@@ -226,4 +227,5 @@ export {
     ManageOffice,
     ManageHome,
     ManageLocation,
+    CartFood,
 }
