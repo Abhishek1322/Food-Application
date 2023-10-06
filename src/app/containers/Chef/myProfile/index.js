@@ -299,12 +299,16 @@ const MyProfile = () => {
                       <>
                         <li
                           onClick={() => handleSlotTime(day.day)}
-                          className="dayavailability"
+                          className={
+                            activeWeekDay === day.day
+                              ? "dayavailability active"
+                              : "dayavailability"
+                          }
                         >
                           <p
                             className={
                               activeWeekDay === day.day
-                                ? "notificationText active text-capitalize bg-danger"
+                                ? "notificationText text-capitalize text-white"
                                 : "notificationText text-capitalize"
                             }
                           >
