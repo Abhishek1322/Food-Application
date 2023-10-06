@@ -32,8 +32,7 @@ const CartModalCheckout = () => {
     };
     return (
         <>
-            <div className='cartcheckoutsection'>
-                <div className='modalContent'>
+            <div className='cartcheckoutsection modalContent'>
                     <div className='modalDetail '>
                         <div className='usercartDetail'>
                             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
@@ -139,7 +138,6 @@ const CartModalCheckout = () => {
                     </div>
                     </div>
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}

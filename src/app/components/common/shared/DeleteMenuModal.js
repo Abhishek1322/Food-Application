@@ -4,8 +4,7 @@ import * as Images from "../../../../utilities/images";
 const DeleteMenuModal = () => {
   return (
     <>
-      <div className='DeleteMenuModal'>
-        <div className='paymentdonesection'>
+      <div className='DeleteMenuModal paymentdonesection'>
           <img src={Images.deleteMenuImg} alt='accountdeletedimg' className='img-fluid' />
           <p className='accountDeleted mt-3'>Delete Item</p>
           <p className='accountdeletetxt mt-2 '>Are you sure, you want to delete this menu item?
@@ -16,7 +15,6 @@ const DeleteMenuModal = () => {
                         <button className='submitOrder_'>Yes, Report</button>
                     </div>
           </div>
-        </div>
       </div>
 
     </>

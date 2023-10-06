@@ -4,9 +4,7 @@ import * as Images from "../../../../utilities/images"
 const ChefBookingDone = () => {
   return (
     <>
-    <div className='chefbookdone'>
-      <div className='orderplacesection'>
-        <div className='paymentdonesection'>
+    <div className='chefbookdone orderplacesection paymentdonesection'>
           <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
           <p className='accountDeleted mt-3'> Booking Done</p>
           <p className='accountdeletetxt mt-2 '>Your Booking has been
@@ -24,8 +22,6 @@ const ChefBookingDone = () => {
             <button className='itemsQuantity'>Cancel Booking</button>
           </div>
         </div>
-      </div>
-      </div>
     </>
   )
 }
