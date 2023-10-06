@@ -1056,7 +1056,7 @@ p {
 }
 
 .booknowsection .modalfooterbtn {
-    right: 15px;
+    right: 12px;
 }
 
 .bookslots .daytimes {
@@ -1514,7 +1514,15 @@ p {
 .editadressection .modalfooterbtn {
     left: 13px;
 }
-
+#chefbookpaymodal .modal-body{
+    padding: 0;
+}
+.paymodalsection .modalfooterbtn {
+    left: 12px;
+}
+.paymodalsection .container-fluid{
+    padding: 0;
+}
 /* Cart modal Css  start */
 .settingModal {
     width: 362px;
@@ -1844,7 +1852,7 @@ p {
 .orderprocess .fooodquantity_ {
     padding: 10px 20px;
 }
-#userorderdetail,#userorderdeliver {
+#userorderdetail,#userorderdeliver ,#ordereditaddress{
     max-width: 406px;
     margin: 0;
     margin-left: auto;
@@ -1937,4 +1945,23 @@ border-radius: 12px;
     border: none;
     text-align: right;
     font-weight: 600;
+}
+.settingmanagesection .settingMainText {
+    margin: 21px 55px 38px 55px;
+}
+
+.userEditprofileSection .postAd_upload_icon {
+    border: none !important;
+    width: 100% !important;
+    padding: 9px 10px !important;
+    border-radius: 38px !important;
+    margin: 5px 0 !important;
+    color: #E65C00 !important;
+    font-size: 14px !important;
+    appearance: none !important;
+    resize: none;
+}
+.userEditprofileSection .postAd_upload_icon::placeholder {
+    color: #E65C00 !important;
+    font-size: 14px !important;
 }

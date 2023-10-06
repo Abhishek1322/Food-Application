@@ -67,31 +67,32 @@ const Menu = () => {
                       <div className='innerItems_'>
                         <img src={Images.ItemsBgMenu} alt="logo" className="bgmenuImg_" />
                         <img src={Images.menuItems} alt="logo" className="menuItem_" />
-                      </div>
-
-                      <div className='Dotsheader_'>
+                        <div className='Dotsheader_'>
                         <div class="dropdown ">
                           <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v menuIcon_"></i>
+                            <i class="fas fa-ellipsis-v menuBtnIcon"></i>
                           </button>
                           <ul class="dropdown-menu menuItems_" aria-labelledby="dropdownMenuButton1 ">
                             <div className=' menuChat'>
-                              <div className='flexBox pb-2 ' onClick={() => {
+                              <div className='flexBox pb-3 ' onClick={() => {
                                 handleUserProfile("editMenuModal")
                               }}>
-                                <img src={Images.cartDelete} className=' img-fluid reporticon_' />
+                                <img src={Images.EditImg} className=' img-fluid reporticon_' />
                                 <p className='ps-2' >Edit</p>
                               </div>
                               <div className='flexBox' onClick={() => {
                                 handleUserProfile("deleteMenuModal")
                               }} >
-                                <img src={Images.EditImg} className=' img-fluid reporticon_' />
+                                <img src={Images.cartDelete} className=' img-fluid reporticon_' />
                                 <p className='reportchattxt_ m-0 ps-2'>Delete Chat</p>
                               </div>
                             </div>
                           </ul>
                         </div>
                       </div>
+                      </div>
+
+                    
                     </div>
                     <p className='itemIs_'>Chicken Salad</p>
                     <p className='category_'>Food Category</p>
@@ -376,9 +377,9 @@ const Menu = () => {
             <div className='editadressheading'>
               <div className='edithead'>
                 <p className="modal_Heading">
-                  Add Menu Item
+                Edit Item
                 </p>
-                <p className='chatUser'>Add your menu items below.</p>
+                <p className='chatUser'>Edit your menu items below.</p>
               </div>
             </div>
             <p onClick={handleOnCloseModal} className='modal_cancel'>

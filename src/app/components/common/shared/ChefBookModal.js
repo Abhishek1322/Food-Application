@@ -33,7 +33,7 @@ const ChefBookModal = () => {
     };
     return (
         <>
-            <div className='chefbookmodalsection'>
+            <div className='chefbookmodalsection mt-3'>
                 <div className='container-fluid'>
                     <p className='chatheadtext '>Hire Chef</p>
                     <div className='row align-items-center mt-3'>

@@ -5,33 +5,33 @@ const EditMenuModal = () => {
   return (
 
     <>
+     <div className='editMenuModal'>
      <div className='menuModal_'>
         <div className="input-container mt-5">
-          <textarea type="" className=" menuReport_button   " placeholder='Chicken Salad' />
+          <input type="" className=" menuReport_button   " placeholder='Chicken Salad' />
           <img src={Images.categoryImg} className='cateofyImg_' />
           <label className="border-label">Item Name</label>
 
         </div>
         <div className="input-container mt-4">
-          <textarea type="" className=" menuReport_button   " placeholder='Non-Veg' />
+          <input type="" className=" menuReport_button   " placeholder='Non-Veg' />
           <img src={Images.menuDishImg} className='cateofyImg_' />
           <label className="border-label">Category</label>
 
         </div>
         <div className='flexBox justify-content-between editMenuFields_ '>
           <div className="input-container mt-5">
-            <textarea type="" className=" menuEditbuttom " placeholder='22.00' />
+            <input type="" className=" menuEditbuttom " placeholder='22.00' />
             <img src={Images.euroImg} className='cateofyImg_' />
             <label className="border-label">Price</label>
 
           </div>
           <div className="input-container mt-5 pe-3 flexBox">
-            <textarea type="" className=" menuEditbuttom " placeholder='45' />
+            <input type="" className=" menuEditbuttom " placeholder='45' />
             <p className='inneredittxt'>MIN</p>
             <img src={Images.clockImg} className='cateofyImg_' />
             <label className="border-label">Delivery Time</label>
           </div>
-          <label className="border-label">Delivery Time</label>
         </div>
       </div>
       <div className="input-container mt-4">
@@ -50,6 +50,7 @@ const EditMenuModal = () => {
       <button className='foodmodalbtn  modalfooterbtn'>
         Save Changes
       </button>
+     </div>
     </>
   )
 }
