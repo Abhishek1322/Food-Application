@@ -3,10 +3,7 @@ import * as Images from "../../../utilities/images";
 import { Link, useLocation } from "react-router-dom";
 
 const User_Sidebar = () => {
-
-  
   const location = useLocation();
-
 
   return (
     <>
@@ -66,7 +63,7 @@ const User_Sidebar = () => {
           </ul>
         </div>
         <div className="sidebarProfile ">
-          <Link to="#">
+          <Link to="/user-myprofile">
             <img src={Images.userProfile} alt="logo" className="userprofile" />
           </Link>
           Profile

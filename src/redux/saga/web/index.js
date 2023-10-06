@@ -7,6 +7,7 @@ import {
   setUpdateChefProfile,
   onErrorStopLoad,
   setUpdateProfileImage,
+  setUserProfileDetails,
 } from "../../slices/web";
 
 function* updateProfileImage(action) {
@@ -68,10 +69,30 @@ function* getChefProfileDetails(action) {
   }
 }
 
+function* getUserProfileDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.AuthApiPath.CHEF_PROFILE_DETAILS}/${action.payload.userid}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setUserProfileDetails(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
+
 function* webSaga() {
   yield all([takeLatest("web/getChefProfileDetails", getChefProfileDetails)]);
   yield all([takeLatest("web/updateChefProfile", updateChefProfile)]);
   yield all([takeLatest("web/updateProfileImage", updateProfileImage)]);
+  yield all([takeLatest("web/getUserProfileDetails", getUserProfileDetails)]);
 }
 
 export default webSaga;
