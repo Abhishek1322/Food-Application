@@ -32,7 +32,8 @@ const FoodDetailModal = () => {
     };
     return (
         <>
-            <div className='cartfoodsection'>
+         <div className='foodDetailModal_'>
+         <div className='cartfoodsection'>
                 <div className='topFoodmenu'>
                     <div className='Dotsheader_'>
                         <div class="dropdown">
@@ -103,8 +104,9 @@ const FoodDetailModal = () => {
                     </div>
                 </div>
             </div>
+         </div>
 
-           <CustomModal
+        <CustomModal
         key={key}
         show={modalDetail.show}
         backdrop="static"
@@ -119,7 +121,13 @@ const FoodDetailModal = () => {
               close={() => handleOnCloseModal()}
 
             />
-          ) :""
+          ) :
+          modalDetail.flag === "clickDeletemenuModal" ? (
+            <ClickDeleteMenuModal
+              close={() => handleOnCloseModal()}
+
+            />
+          ):""
         }
         header={
           modalDetail.flag === "foodDetailModal" ?

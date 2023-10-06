@@ -57,7 +57,6 @@ const AfterUploadImage = () => {
             <img src={Images.clockImg} className='cateofyImg_' />
             <label className="border-label">Delivery Time</label>
           </div>
-          <label className="border-label">Delivery Time</label>
         </div>
       </div>
       <div className="input-container mt-4">

@@ -67,13 +67,22 @@ const AddmenuItemModal = () => {
 
         </div>
         <div className='editImgBox_'>
-
           <p className='chefName mt-4 pb-3'>Upload Image </p>
-          <div class="uploadImgebox choosetoUpload">
-            <img src={Images.Uploadicon} alt="Uploadicon" class="Uploadicon uploadIconImg" />
-            <p class="uploadbtnn">Choose Image</p>
-            <p class="smallHeading_">Upload Image Here</p>
-            <p class="uploadText mt-1">5 mb max file size</p>
+          <div className='uploadImgebox choosetoUpload'>
+            <div className="postAd_upload_icon">
+              <div className="inputfile-box active">
+                <input type="file" id="file" class="form-control inputfile d-none" name="images[]" data-id="1" multiple="" />
+                <label for="file"><span id="file-name" class="file-box d-none">No File
+                  Chosen</span>
+                  <div class="file-button text-end">
+                    <img src={Images.Uploadicon} alt="Uploadicon" class="Uploadicon uploadIconImg" />
+                    <p className="uploadbtnn">Choose Image</p>
+                    <p className="smallHeading_">Upload Image Here</p>
+                    <p className="uploadText mt-1">5 mb max file size</p>
+                  </div>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
