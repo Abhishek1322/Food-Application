@@ -8,6 +8,7 @@ const UserMyProfile = () => {
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
   const [profile, setProfile] = useState([]);
+  const [profilePhoto, setProfilePhoto] = useState([]);
 
   // getting user profile details
   useEffect(() => {
@@ -19,8 +20,10 @@ const UserMyProfile = () => {
       getUserProfileDetails({
         ...params,
         cb(res) {
+          console.log("ressss", res);
           if (res.status === 200) {
             setProfile(res.data.data);
+            setProfilePhoto(res.data.data.userInfo.profilePhoto);
           }
         },
       })
@@ -37,7 +40,7 @@ const UserMyProfile = () => {
                 {/* left section  */}
                 <div className="profileleft">
                   <img
-                    src={Images.UserEditProfile}
+                    src={profilePhoto}
                     alt="chefProfileimg"
                     className="chefprofileimg"
                   />
