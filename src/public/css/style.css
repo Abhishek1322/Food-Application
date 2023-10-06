@@ -1851,11 +1851,14 @@ body {
 
 .profileInfo {
     display: flex;
-    justify-content: space-between;
 }
 
 .orderfrom_ {
     color: #ABADAD;
+}
+.ordermenuProfile{
+    display: flex;
+    justify-content: space-between;
 }
 
 .myrecentOrders_ .modalscroll {
