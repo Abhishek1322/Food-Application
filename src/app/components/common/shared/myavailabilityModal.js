@@ -68,7 +68,6 @@ const MyavailabilityModal = (props) => {
     setEndTime(value);
   };
 
-  
   // getting availability
   useEffect(() => {
     setAvailability((prevAvailability) => {
@@ -159,7 +158,16 @@ const MyavailabilityModal = (props) => {
                       : "availabilityDays text-capitalize"
                   }
                 >
-                  <p class="notificationText text-capitalize"> {day.day}</p>
+                  <p
+                    className={
+                      activeWeekDay === day.day
+                        ? "notificationText text-capitalize text-white"
+                        : "notificationText text-capitalize"
+                    }
+                  >
+                    {" "}
+                    {day.day}
+                  </p>
                 </li>
               </>
             ))}
