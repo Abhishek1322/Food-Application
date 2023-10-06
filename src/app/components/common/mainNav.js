@@ -28,7 +28,7 @@ const Resources = () => {
     <>
       <div className="main_Setting">
         <div className="navMain">
-          <div className="container-fluid">
+          <div className="container-fluid p-0">
             <div className="row align-items-center">
               <div className="col-lg-6 col-sm-12">
                 <p className="settingtxt">Setting</p>

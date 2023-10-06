@@ -276,7 +276,7 @@ input:-webkit-autofill:active {
 .cheftypeBox {
   display: flex;
   align-items: center;
-  padding: 6px !important;
+  padding: 10px !important;
 }
 
 .chefType {

@@ -31,7 +31,7 @@ li {
 }
 
 .main_Setting {
-    padding: 10px 31px 10px 31px;
+    padding: 15px 31px 11px 31px;
 }
 
 .settingMainHeading {
@@ -217,7 +217,7 @@ li {
     right: 23px;
 }
 
-.settingtxt {
+.chefCommonHeader {
     color: #2E3333;
     font-family: Crimson Text;
     font-size: 40px;
@@ -815,9 +815,15 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
+.insideCommonHeader {
+    display: flex;
+}
 .mainchef_ {
     padding: 10px 31px 10px 31px;
+}
+.chefHeading {
+    color: #E65C00;
+    font-family: Crimson Text;
 }
 
 .headerinnerheading {
@@ -1648,9 +1654,8 @@ body {
     font-weight: 400;
     border: none;
 }
-
 .chatnext {
-    padding-top: 380px;
+    padding-top: 355px;
 }
 
 .sendImg {
@@ -1846,6 +1851,7 @@ body {
 
 .profileInfo {
     display: flex;
+    justify-content: space-between;
 }
 
 .orderfrom_ {
@@ -2202,6 +2208,8 @@ body {
 }
 #foodDetail .modal-header {
     border-bottom: 0px;
+    position: absolute;
+    right: 0;
 }
 .foodDetailImg {
     width: 123px;
@@ -2227,7 +2235,6 @@ body {
 }
 #foodDetail .foodmodal {
     text-align: center;
-    margin-top: -65px;
 }
 .Dotsheader_ {
     position: relative;
@@ -2272,3 +2279,21 @@ body {
     background-color: #f8f7f7 !important;
     padding: 6px 22px 6px;
 }
+
+
+
+
+
+/* common header booking details css Start */
+.chefRightHeader {
+    color: #E65C00;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 18px 38px;
+    border-radius: 8px;
+    border: 1px solid #E65C00;
+    background: #FFF;
+    display: inline-block;
+}
+
+/* common header booking details css End */
