@@ -6,7 +6,7 @@ const UserOrderDeliver = () => {
   return (
     <>
       <div className='orderdeliversection Userordersection'>
-        <div className='modalDetail '>
+        <div className='modalDetail usermodaldetail '>
           <div className='usercartDetail'>
             <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
@@ -17,7 +17,7 @@ const UserOrderDeliver = () => {
           </div>
           <p className='fooodquantity_'>2X</p>
         </div>
-        <div className='modalDetail '>
+        <div className='modalDetail usermodaldetail '>
           <div className='usercartDetail'>
             <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
