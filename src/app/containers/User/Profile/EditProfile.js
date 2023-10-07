@@ -108,8 +108,7 @@ const UserEditProfile = () => {
 
   return (
     <>
-      <div className="userEditprofileSection editsection">
-        <div className="container-fluid">
+      <div className="userEditprofileSection usereditsection ">
           <div className="row align-items-center">
             <div className="col-lg-5 col-md-12">
               <div className="editleft">
@@ -178,7 +177,6 @@ const UserEditProfile = () => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

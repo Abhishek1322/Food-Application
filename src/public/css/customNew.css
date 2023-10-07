@@ -804,7 +804,7 @@ p {
 }
 
 .tabsection .nav-tabs .nav-link:focus,
-.nav-tabs .nav-link:hover {
+.tabsection .nav-tabs .nav-link:hover {
     border-color: transparent !important;
 }
 
