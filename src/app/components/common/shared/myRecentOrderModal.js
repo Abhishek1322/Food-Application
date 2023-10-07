@@ -37,7 +37,7 @@ const MyRecentOrderModal = () => {
             <div className='myrecentOrders_'>
                 <div className='modalscroll'>
                     <div className='orderProfile'>
-                        <div class="profileInfo">
+                        <div class="ordermenuProfile">
                             <div className='orderprofile_ '>
                                 <img src={Images.userProfile} alt="logo" class="homeprofile" />
                                 <div class="detailInfo">

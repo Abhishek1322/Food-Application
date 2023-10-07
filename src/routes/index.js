@@ -11,6 +11,7 @@ const Router = () => {
 
   return (
     <>
+    
       <Routes>
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
@@ -57,7 +58,7 @@ const Router = () => {
               </UserRoute>
             }
           />
-           <Route
+          <Route
             path="/user-myprofile"
             element={
               <UserRoute role="user">
@@ -65,7 +66,7 @@ const Router = () => {
               </UserRoute>
             }
           />
-           <Route
+          <Route
             path="/user-editprofile"
             element={
               <UserRoute role="user">
@@ -82,8 +83,8 @@ const Router = () => {
               path="/setting"
               element={
                 // <ChefRoute role="chef">
-              
-                  <Containers.SettingMain />
+
+                <Containers.SettingMain />
                 // </ChefRoute>
               }
             />
@@ -178,70 +179,29 @@ const Router = () => {
 
         {/* PUBLIC_ROUTES */}
         <Route element={<Layouts.AuthLayout />}>
-          <Route
-            path="/"
-            element={
-              <PublicRoute>
-                <Containers.Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/choose-roles"
-            element={
-              <PublicRoute>
-                <Containers.ChooseRoles />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/verification"
-            element={
-              <PublicRoute>
-                <Containers.Verification />
-              </PublicRoute>
-            }
-          />
+          <Route path="/" element={<Containers.Login />} />
+          <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
+          <Route path="/verification" element={<Containers.Verification />} />
           <Route
             path="/create-account/:role"
-            element={
-              <PublicRoute>
-                <Containers.CreateAccount />
-              </PublicRoute>
-            }
+            element={<Containers.CreateAccount />}
           />
           <Route
             path="/forgot-password"
-            element={
-              <PublicRoute>
-                <Containers.ForgotPassword />
-              </PublicRoute>
-            }
+            element={<Containers.ForgotPassword />}
           />
           <Route
             path="/recover-password"
-            element={
-              <PublicRoute>
-                <Containers.Recoverpassword />
-              </PublicRoute>
-            }
+            element={<Containers.Recoverpassword />}
           />
           <Route path="/enter-otp" element={<Containers.EnterOtp />} />
           <Route
             path="/change-password"
-            element={
-              // <PublicRoute>
-                <Containers.ChangePassword />
-              // </PublicRoute>
-            }
+            element={<Containers.ChangePassword />}
           />
           <Route
             path="/delete-account"
-            element={
-              // <ChefRoute>
-              <Containers.DeleteAccount />
-              // </ChefRoute>
-            }
+            element={<Containers.DeleteAccount />}
           />
           <Route path="/loading" element={<Containers.Loading />} />
           <Route path="/loading-page" element={<Containers.Loadingpage />} />

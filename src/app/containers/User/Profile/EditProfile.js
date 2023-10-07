@@ -1,79 +1,187 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from "react";
 import * as Images from "../../../../utilities/images";
-
+import { useNavigate } from "react-router-dom";
+import { getUserProfileDetails } from "../../../../redux/slices/web";
+import { updateProfileImage } from "../../../../redux/slices/web";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { useDropzone } from "react-dropzone";
+import { chefProfileDocument } from "../../../../redux/slices/auth";
 
 const UserEditProfile = () => {
-    return (
-        <>
-            <div className='userEditprofileSection usereditsection'>
-                    <div className="row align-items-center">
-                        <div className="col-lg-5 col-md-12">
-                            <div className="editleft">
-                                <img
-                                    src={Images.UserEditProfile}
-                                    alt="chefProfileimg"
-                                    className="chefprofileimg"
-                                />
-                                <div className="editprofileimg">
-                                    <div className="postAd_upload_icon">
-                                        <div className="inputfile-box active">
-                                            <input type="file" id="file" className="form-control inputfile d-none" name="images[]" data-id="1" multiple="" />
-                                            <label for="file"><span id="file-name" className="file-box d-none">No File
-                                                Chosen</span>
-                                                <div className="file-button text-end">
-                                                    <img
-                                                        src={Images.editProfile}
-                                                        alt="editprofileimg"
-                                                        className="img-fluid"
-                                                    />
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-7 col-md-12">
-                            <div className="editright">
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col-lg-12">
-                                            <div className="input-container mt-5">
-                                                <input
-                                                    type="text"
-                                                    value="Bangura"
-                                                    className="border-input"
-                                                    placeholder="Sarah "
-                                                />
-                                                <label className="border-label">First Name</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className="col-lg-12">
-                                            <div className="input-container mt-5">
-                                                <input
-                                                    type="text"
-                                                    value="Serveitlocal"
-                                                    className="border-input"
-                                                    placeholder="Bergstrom"
-                                                />
-                                                <label className="border-label">Last Name</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="buttonBox mt-5">
-                                        <button type="submit" role="button" className="smallBtn">
-                                            Update
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </>
-    )
-}
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [profileUrl, setProfileUrl] = useState("");
+  const [userProfile, setUserProfile] = useState("");
 
-export default UserEditProfile
+  // getting user profile details
+  useEffect(() => {
+    let params = {
+      userid: userId,
+    };
+
+    dispatch(
+      getUserProfileDetails({
+        ...params,
+        cb(res) {
+          console.log(res);
+          if (res.status === 200) {
+            setFirstName(res.data.data.userInfo.firstName);
+            setLastName(res.data.data.userInfo.lastName);
+            setProfileUrl(res.data.data.userInfo.profilePhoto);
+          }
+        },
+      })
+    );
+  }, []);
+
+  // update User profile
+  const handleUpdateProfile = () => {
+    let params = {
+      step: "1",
+      firstName: firstName,
+      lastName: lastName,
+      profilePhoto: profileUrl,
+    };
+
+    dispatch(
+      updateProfileImage({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            navigate("/user-myprofile");
+          }
+        },
+      })
+    );
+  };
+
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFiles) => {
+      if (
+        rejectedFiles.length > 0 &&
+        rejectedFiles[0]?.file?.type !== "image/jpeg" &&
+        "image/jpg" &&
+        "image/png" &&
+        "image/svg"
+      ) {
+        toast.error("Please upload valid image");
+        return;
+      }
+      setUserProfile(acceptedFiles[0]);
+    },
+    [userProfile]
+  );
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/jpeg": [],
+      "image/png": [],
+      "image/jpg": [],
+      "image/svg": [],
+    },
+    multiple: false,
+  });
+
+  // getting profile image path
+  useEffect(() => {
+    if (userProfile) {
+      let params = {
+        file: userProfile,
+      };
+      dispatch(
+        chefProfileDocument({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setProfileUrl(res.data.data.fileUrl);
+            }
+          },
+        })
+      );
+    }
+  }, [userProfile]);
+
+  return (
+    <>
+      <div className="userEditprofileSection editsection">
+        <div className="container-fluid">
+          <div className="row align-items-center">
+            <div className="col-lg-5 col-md-12">
+              <div className="editleft">
+                <img
+                  src={profileUrl ? profileUrl : Images.UserEditProfile}
+                  alt="chefProfileimg"
+                  className="chefprofileimg"
+                />
+                <div className="editprofileimg">
+                  <div className="postAd_upload_icon">
+                    <div className="inputfile-box active">
+                      <div {...getRootProps()} className="file-button text-end">
+                        <input {...getInputProps()} />
+                        <img
+                          src={Images.editProfile}
+                          alt="editprofileimg"
+                          className="img-fluid"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-7 col-md-12">
+              <div className="editright">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          className="border-input"
+                          placeholder="Enter your first name"
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
+                        />
+                        <label className="border-label">First Name</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          value={lastName}
+                          className="border-input"
+                          placeholder="Enter your last name"
+                          onChange={(e) => setLastName(e.target.value)}
+                        />
+                        <label className="border-label">Last Name</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="buttonBox mt-5">
+                    <button
+                      onClick={handleUpdateProfile}
+                      role="button"
+                      className="smallBtn"
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default UserEditProfile;

@@ -7,7 +7,7 @@ const Chef_Sidebar = () => {
   const location = useLocation();
   const webData = useWebSelector();
   const [chefProfile, setChefProfile] = useState("");
-
+  
   useEffect(() => {
     if (webData) {
       setChefProfile(webData?.chefProfileDetails?.data?.userInfo?.profilePhoto);

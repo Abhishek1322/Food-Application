@@ -15,6 +15,9 @@ const ApiPath = {
     CHEF_PROFILE_DETAILS: "/users",
     UPDATE_CHEF_PROFILE: "/users",
   },
+  webApiPath: {
+    CHEF_LIST: "/users/chefs",
+  },
 };
 
 export default ApiPath;

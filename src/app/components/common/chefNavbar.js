@@ -4,7 +4,7 @@ import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
-import  Myorder from "./shared/myorderModal";
+import Myorder from "./shared/myorderModal";
 
 const Chef_Navbar = () => {
   const [key, setKey] = useState(Math.random());
@@ -28,14 +28,28 @@ const Chef_Navbar = () => {
     <>
       <div className="main_Setting">
         <div className="navMain">
-          <div className="container-fluid">
+          <div className="container-fluid p-0">
             <div className="row align-items-center">
               <div className="col-lg-6 col-sm-12">
-                {/* <p className="settingtxt">Hello, <span className="chefHeading">Sarah!</span></p> */}
-                <p className="settingtxt">Settings</p>
+                {/* ----Home Page Header html */}
+                 <h1 className="chefCommonHeader">Hello, <span className="chefHeading">Sarah!</span></h1>  
+                {/* ----setting Page Header  
+                {/* <h1 className="chefCommonHeader">Settings</h1> */}
+                {/* ----Booking Details Page Header html  &  For after booking Details Also */}
+                {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Booking Details</h1>
+                </div> */}
+
+                {/* Order Details Header  html */}
+                {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Order Details</h1>
+                </div>
+              </div> */}
               </div>
               <div className="col-lg-6 col-sm-12 text-end">
-                <div className="flexBox">
+                 <div className="flexBox">
                   <div className="headermenu">
                     <figure className="menuBox">
                       <img
@@ -77,11 +91,20 @@ const Chef_Navbar = () => {
                     <span className="cartItems">5</span>
                   </div>
                 </div>
+
+                {/* booking Common Header */}
+                {/* <div className='orderItems_ flexBox '>
+                  <button className='cancelOrder_ me-4' >Reject</button>
+                  <button className='submitOrder_'>Accept</button>
+                </div> */}
+
+                {/* order Details Header html & order Delivered */}
+              {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
+               </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <CustomModal
         key={key}
         show={modalDetail.show}
@@ -96,10 +119,10 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox"
             ? "chatBox"
             : modalDetail.flag === "Notification"
-            ? "Notification"
-            : modalDetail.flag === "Myorder"
-            ? "myOrder"
-            :  ""
+              ? "Notification"
+              : modalDetail.flag === "Myorder"
+                ? "myOrder"
+                : ""
         }
         child={
           modalDetail.flag === "chatBox" ? (
@@ -144,4 +167,4 @@ const Chef_Navbar = () => {
   );
 };
 
-export default Chef_Navbar  ;
+export default Chef_Navbar;

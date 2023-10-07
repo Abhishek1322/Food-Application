@@ -7,7 +7,29 @@ import {
   setUpdateChefProfile,
   onErrorStopLoad,
   setUpdateProfileImage,
+  setUserProfileDetails,
+  setChefLists,
 } from "../../slices/web";
+
+function* chefLists(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.webApiPath.CHEF_LIST}?page=${action.payload.page}&limit=${action.payload.limit}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setChefLists(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    console.log("erorrrrr", e);
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
 
 function* updateProfileImage(action) {
   try {
@@ -68,10 +90,31 @@ function* getChefProfileDetails(action) {
   }
 }
 
+function* getUserProfileDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.AuthApiPath.CHEF_PROFILE_DETAILS}/${action.payload.userid}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setUserProfileDetails(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
+
 function* webSaga() {
   yield all([takeLatest("web/getChefProfileDetails", getChefProfileDetails)]);
   yield all([takeLatest("web/updateChefProfile", updateChefProfile)]);
   yield all([takeLatest("web/updateProfileImage", updateProfileImage)]);
+  yield all([takeLatest("web/getUserProfileDetails", getUserProfileDetails)]);
+  yield all([takeLatest("web/chefLists", chefLists)]);
 }
 
 export default webSaga;

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
 import { Link, useLocation } from "react-router-dom";
+import { useWebSelector } from "../../../redux/selector/web";
 
 const User_Sidebar = () => {
-
-  
   const location = useLocation();
 
+  const webData = useWebSelector();
+  const [userProfile, setUserProfile] = useState("");
+
+  useEffect(() => {
+    if (webData) {
+      setUserProfile(webData?.userProfileDetails?.data?.userInfo?.profilePhoto);
+    }
+  }, [webData]);
 
   return (
     <>
@@ -29,8 +36,14 @@ const User_Sidebar = () => {
                 <span className="d-block">Home</span>
               </Link>
             </li>
-            <li className="sidebarLinks">
-              <Link to="#" className="sidebarItems">
+            <li
+              className={
+                location.pathname === "/user-chef-home"
+                  ? "sidebarLinks active"
+                  : "sidebarLinks"
+              }
+            >
+              <Link to="/user-chef-home" className="sidebarItems">
                 <img src={Images.sidebarchefOrange} className="imgHide" />
                 <img src={Images.sidebarchef} className="imgShow" />
                 <span className="d-block">Chefs</span>
@@ -66,8 +79,8 @@ const User_Sidebar = () => {
           </ul>
         </div>
         <div className="sidebarProfile ">
-          <Link to="#">
-            <img src={Images.userProfile} alt="logo" className="userprofile" />
+          <Link to="/user-myprofile">
+            <img src={userProfile} alt="logo" className="userprofile" />
           </Link>
           Profile
         </div>
