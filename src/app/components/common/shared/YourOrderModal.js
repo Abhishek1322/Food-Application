@@ -32,23 +32,21 @@ const YourOrderModal = () => {
     };
     return (
         <>
-            <div className='yourordersection'>
-                    <div className='paymentdonesection'>
-                        <img src={Images.OrderPlace} alt='accountdeletedimg' className='img-fluid' />
-                        <p className='accountDeleted mt-3'> Are You Sure You Want to Cancel Your Order.</p>
-                        <p className='accountdeletetxt mt-2 '>Cancellation charges apply.</p>
-                        <div className='modalfooterbtn'>
-                            <div className='addfoodbtn'>
-                                <button className='settingBoxtxt'>
-                                    No, don’t                            </button>
-                                <button className='foodmodalbtn' onClick={() => {
-                                    handleUserProfile("ordercancel")
-                                }}>
-                                    Yes, Cancel
-                                </button>
-                            </div>
-                        </div>
+            <div className='yourordersection paymentdonesection'>
+                <img src={Images.OrderPlace} alt='accountdeletedimg' className='img-fluid' />
+                <p className='accountDeleted mt-3'> Are You Sure You Want to Cancel Your Order.</p>
+                <p className='accountdeletetxt mt-2 '>Cancellation charges apply.</p>
+                <div className='modalfooterbtn'>
+                    <div className='addfoodbtn'>
+                        <button className='settingBoxtxt'>
+                            No, don’t                            </button>
+                        <button className='foodmodalbtn' onClick={() => {
+                            handleUserProfile("ordercancel")
+                        }}>
+                            Yes, Cancel
+                        </button>
                     </div>
+                </div>
             </div>
             <CustomModal
                 key={key}

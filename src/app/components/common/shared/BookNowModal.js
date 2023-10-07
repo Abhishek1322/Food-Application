@@ -33,7 +33,6 @@ const BookNowModal = () => {
     return (
         <>
             <div className='booknowsection'>
-                <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-lg-12'>
                             <div className="input-container mt-4">
@@ -141,7 +140,6 @@ const BookNowModal = () => {
                             book Now
                         </button>
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}

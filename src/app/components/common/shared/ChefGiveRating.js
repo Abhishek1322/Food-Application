@@ -12,13 +12,6 @@ const ChefGiveRating = () => {
         <>
             <div className='giveratesection'>
                 <p className='venuInfo mt-4'>Rating</p>
-                {/* <div className='ratingimgmodal mt-2'>
-                    <img src={Images.star} alt='userrating' className='img-fluid' />
-                    <img src={Images.star} alt='userrating' className='img-fluid' />
-                    <img src={Images.star} alt='userrating' className='img-fluid' />
-                    <img src={Images.star} alt='userrating' className='img-fluid' />
-                    <img src={Images.LargeStar} alt='userrating' className='img-fluid' />
-                </div> */}
                 <ReactStars
     count={5}
     onChange={ratingChanged}

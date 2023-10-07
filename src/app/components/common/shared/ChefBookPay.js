@@ -33,8 +33,7 @@ const ChefBookPay = () => {
   return (
    <>
 <div className='paymodalsection'>
-                <div className='container-fluid'>
-                    <div className='row'>
+                    <div className='row m-2'>
                         <div className='col-lg-12'>
                             <div className="input-container mt-4">
                                 <input
@@ -48,7 +47,7 @@ const ChefBookPay = () => {
                         </div>
                     </div>
                         <div className='paynowinputs'>
-                            <div className='row'>
+                            <div className='row m-2'>
                                 <div className='col-lg-12'>
                                     <div className="input-container mt-4">
                                         <input
@@ -62,7 +61,7 @@ const ChefBookPay = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='row'>
+                            <div className='row m-2'>
                                 <div className='col-lg-6'>
                                     <div className="input-container mt-4">
                                         <input
@@ -89,7 +88,6 @@ const ChefBookPay = () => {
                                 </div>
                             </div>
                         </div>
-                </div>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
                         <button className='foodmodalbtn' onClick={() => {

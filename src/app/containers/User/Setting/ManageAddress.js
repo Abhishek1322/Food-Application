@@ -34,10 +34,9 @@ const UserManageAddress = () => {
     return (
         <>
             <div className='settingmanagesection contactUs'>
-                <div className="container-fluid">
                     <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
                         <img src={Images.backArrowpassword} alt="logo" className="img-fluid innerHeaderArrow " />
-                        <p className='settingMainHeading text-align-center '>Manage Address</p>
+                        <h1 className='settingMainHeading text-align-center '>Manage Address</h1>
                     </div>
                     <div className='changepassword'>
                         <div className="logRight mt-5">
@@ -50,7 +49,7 @@ const UserManageAddress = () => {
                                 <div className='managehome'>
                                     <img src={Images.ManageHome} alt='Homeimg' className='img-fluid' />
                                     <div className='managetext'>
-                                        <p className='notificationText'>Home</p>
+                                        <h6 className='notificationText'>Home</h6>
                                         <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
                                         <div class="dropdown  dropstart managedrop">
                                             <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
@@ -64,7 +63,7 @@ const UserManageAddress = () => {
                                 <div className='managehome mt-3'>
                                     <img src={Images.ManageOffice} alt='Homeimg' className='img-fluid' />
                                     <div className='managetext'>
-                                        <p className='notificationText'>Office</p>
+                                        <h6 className='notificationText'>Office</h6>
                                         <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
                                         <div class="dropdown  dropstart managedrop">
                                             <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
@@ -76,9 +75,9 @@ const UserManageAddress = () => {
                                     </div>
                                 </div>
                                 <Link to="#">
-                                    <p className='cancelOrder' onClick={() => {
+                                    <h6 className='cancelOrder' onClick={() => {
                                         handleUserProfile("ordereditmodal")
-                                    }}>+ Add New Address</p>
+                                    }}>+ Add New Address</h6>
                                 </Link>
                                 <div className="buttonBox mt-5 d-flex  justify-content-center">
                                     <button type="submit" role="button" className="smallBtn">SAVE</button>
@@ -87,7 +86,6 @@ const UserManageAddress = () => {
                         </div>
 
                     </div>
-                </div>
             </div>
             <CustomModal
                 key={key}

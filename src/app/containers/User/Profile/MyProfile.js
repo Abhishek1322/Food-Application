@@ -7,8 +7,6 @@ const UserMyProfile = () => {
     return (
         <>
             <div className='userprofilesection profilesection'>
-
-                <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-5 col-md-12">
                             {/* left section  */}
@@ -28,34 +26,33 @@ const UserMyProfile = () => {
                                     alt="editimage"
                                     className="img-fluid"
                                 />
-                                <p className="editheading">Edit profile</p>
+                                <h6 className="editheading">Edit profile</h6>
                             </Link>
                             <div className="profileright">
                                 {/* chefdata  */}
                                 <div className='profileinfosection'>
                                     <div className="nameprofile">
                                         <div className="firstname">
-                                            <p className="dummyText p-0">First Name</p>
-                                            <p className="nameheading">
+                                            <h6 className="dummyText p-0">First Name</h6>
+                                            <h4 className="nameheading">
                                                 Bangura
-                                            </p>
+                                            </h4>
                                         </div>
                                         <div className="lastname">
-                                            <p className="dummyText p-0">Last Name</p>
-                                            <p className="nameheading">
+                                            <h6 className="dummyText p-0">Last Name</h6>
+                                            <h4 className="nameheading">
                                                 Serveitlocal
-                                            </p>
+                                            </h4>
                                         </div>
                                     </div>
                                     <div className="emailheading">
-                                        <p className="dummyText p-0">Email</p>
-                                        <p className="nameheading">bangura@serveitlocal.com</p>
+                                        <h6 className="dummyText p-0">Email</h6>
+                                        <h4 className="nameheading">bangura@serveitlocal.com</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </>
     )

@@ -48,7 +48,7 @@ const ChefDetails = () => {
                                     <img src={Images.UserICon} alt='sarahimage' className='img-fluid' />
                                 </div>
                                 <div className='saraheading'>
-                                    <p className='johnExplorer'>Sarah Bergstrom</p>
+                                    <h4 className='johnExplorer mb-1'>Sarah Bergstrom</h4>
                                     <div className='sarahrestro'>
                                         <div className='restroinfo'>
                                             <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
@@ -86,24 +86,24 @@ const ChefDetails = () => {
                 <div className='sarahdata'>
                     <div className='row'>
                         <div className='col-lg-3 col-md-6 col-sm-12 d-flex justify-content-start'>
-                            <p className='chatSearchere_'> <span className='sarahtime'>£45</span>/hour</p>
+                            <h6 className='chatSearchere_'> <span className='sarahtime'>£45</span>/hour</h6>
                         </div>
                         <div className='col-lg-3 col-md-6 col-sm-12'>
-                            <p className='chefName'>Experience</p>
-                            <p className='chatSearchere_ mt-2'>15 + Years Exp.</p>
+                            <h6 className='chefName'>Experience</h6>
+                            <h6 className='chatSearchere_ mt-2'>15 + Years Exp.</h6>
                         </div>
                         <div className='col-lg-3 col-md-6 col-sm-12'>
-                            <p className='chefName'>Rating</p>
+                            <h6 className='chefName'>Rating</h6>
                             <div className='chefrating mt-2' onClick={() => {
                                 handleUserProfile("ratingchef")
                             }}>
                                 <i class="las la-star startIcon"></i>
-                                <p className='ratingheading'>4.5 (845 Reviews)</p>
+                                <h6 className='ratingheading'>4.5 (845 Reviews)</h6>
                             </div>
 
                         </div>
                         <div className='col-lg-3 col-md-6 col-sm-12'>
-                            <p className='chefName'>Address</p>
+                            <h6 className='chefName'>Address</h6>
                             <p className='chatSearchere_ mt-2'>46 Abingdon Road, Brandeston, United Kingdom
                                 IP13 4PB</p>
                         </div>
@@ -113,49 +113,49 @@ const ChefDetails = () => {
                 <div className='sarahbioexpert'>
                     <div className='row'>
                         <div className='col-lg-6 col-md-12'>
-                            <p className='innerDummyHeading '>Bio</p>
+                            <h3 className='innerDummyHeading '>Bio</h3>
                             <p className='dummyText mt-2'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using to using 'Content here, content here', making it look like English.</p>
                         </div>
 
 
                         <div className='col-lg-6 col-md-12'>
-                            <p className='innerDummyHeading '>Expertise</p>
+                            <h3 className='innerDummyHeading '>Expertise</h3>
                             <div className='chefexpertise mt-2'>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>North Indian</p>
+                                    <h6 className='expertheading'>North Indian</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Chicken</p>
+                                    <h6 className='expertheading'>Chicken</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Soups</p>
+                                    <h6 className='expertheading'>Soups</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>North Indian</p>
+                                    <h6 className='expertheading'>North Indian</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Chicken</p>
+                                    <h6 className='expertheading'>Chicken</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Soups</p>
+                                    <h6 className='expertheading'>Soups</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>North Indian</p>
+                                    <h6 className='expertheading'>North Indian</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Chicken</p>
+                                    <h6 className='expertheading'>Chicken</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Soups</p>
+                                    <h6 className='expertheading'>Soups</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>North Indian</p>
+                                    <h6 className='expertheading'>North Indian</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Chicken</p>
+                                    <h6 className='expertheading'>Chicken</h6>
                                 </div>
                                 <div className='expertisevalue'>
-                                    <p className='expertheading'>Soups</p>
+                                    <h6 className='expertheading'>Soups</h6>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@ const ChefDetails = () => {
                 </div>
                 {/* chef menu section  */}
                 <div className='sarahsmenu'>
-                    <p className='innerDummyHeading ' > Sarah’s Menu</p>
+                    <h2 className='innerDummyHeading ' > Sarah’s Menu</h2>
                     <div className='row'>
                         {slides && slides.map((val, i) => {
                             return (
@@ -175,8 +175,8 @@ const ChefDetails = () => {
                                                 <img src={Images.SaladImg} alt="logo" className="menuItem_" />
                                             </div>
                                         </div>
-                                        <p className='itemIs_'>Chicken Salad</p>
-                                        <p className='category_'>Food Category</p>
+                                        <h6 className='itemIs_'>Chicken Salad</h6>
+                                        <h6 className='category_'>Food Category</h6>
                                         <div className='sarahmenuprice'>
                                             <button className='itemsPrice_ '>£22.00</button>
                                             <div className='sarahbasket'>
@@ -227,9 +227,9 @@ const ChefDetails = () => {
                         <h2 className="modal_Heading">
                             Availability
                         </h2>
-                        <p onClick={handleOnCloseModal} className='modal_cancel'>
+                        <div onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
-                        </p>
+                        </div>
                     </>
                     :
                     modalDetail.flag === "CartFood" ?
@@ -237,9 +237,9 @@ const ChefDetails = () => {
                             {/* <h2 className="modal_Heading">
                                 Cart
                             </h2> */}
-                            <p onClick={handleOnCloseModal} className='modal_cancel'>
+                            <div onClick={handleOnCloseModal} className='modal_cancel'>
                                 <img src={Images.modalCancel} className='ModalCancel' />
-                            </p>
+                            </div>
                         </>
                         :
                         modalDetail.flag === "ratingchef" ?
@@ -247,9 +247,9 @@ const ChefDetails = () => {
                                 <h2 className="modal_Heading">
                                     Rating & Reviews
                                 </h2>
-                                <p onClick={handleOnCloseModal} className='modal_cancel'>
+                                <div onClick={handleOnCloseModal} className='modal_cancel'>
                                     <img src={Images.modalCancel} className='ModalCancel' />
-                                </p>
+                                </div>
                             </>
                             :
                             ''

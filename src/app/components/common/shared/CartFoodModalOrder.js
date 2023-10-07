@@ -36,7 +36,7 @@ const CartFoodModalOrder = () => {
             <div className='cartfoodsectionorder'>
                 <div className='foodmodal'>
                     <img src={Images.CartFood} alt='saladimage' className='img-fluid' />
-                    <p className='foodmodalheading'>Chicken Salad</p>
+                    <h2 className='foodmodalheading'>Chicken Salad</h2>
                     <div className='restroinfo'>
                         <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
                         <div className='johnchatdetail'>
