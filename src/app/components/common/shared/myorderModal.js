@@ -53,13 +53,14 @@ const Myorder = () => {
                                                 <button class="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-profile">In-Progress</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
-                                                <button class="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-profile">Delivered</button>
+                                                <button class="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-delivered">Delivered</button>
                                             </li>
                                         </ul>
 
                                         <div class="tab-content" id="pills-tabContent">
                                             <div class="tab-pane fade active show" id="pills-home">
-                                                <div className='ordermodalBox'>
+                                             <div className='Myorders_'>
+                                             <div className='ordermodalBox'>
                                                     <div className='myorders_'>
                                                         <p className='orderId'>#12548</p>
                                                     </div>
@@ -84,8 +85,8 @@ const Myorder = () => {
                                                             <div className='orderItems'>
                                                                 <button className='cancelOrder'>CANCEL</button>
                                                                 <button className='acceptOrder' onClick={() => {
-                                                handleUserProfile("myRecentOrder")
-                                            }}>ACCEPT</button>
+                                                                    handleUserProfile("myRecentOrder")
+                                                                }}>ACCEPT</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -119,30 +120,143 @@ const Myorder = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+                                             </div>
                                             </div>
 
                                             <div class="tab-pane fade" id="pills-profile">
                                                 <div class="tabinnercontent">
                                                     <form method="POST" action="https://soulmate.itechnolabs.tech/page" autocomplete="off">
-                                                        <h1>Hii</h1>
+                                                    <div className='Myorders_'>
+                                             <div className='ordermodalBox'>
+                                                    <div className='myorders_'>
+                                                        <p className='orderId'>#12548</p>
+                                                    </div>
+                                                    <div className='userOrderInfo'>
+                                                        <div className='orderRequest'>
+                                                            <div className='profileInfo'>
+                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                <div className='detailInfo'>
+                                                                    <p className='userProfile'>Agatha Christie</p>
+                                                                    <p className='orderFrom'>Order From</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <div className='orderiem_'>
+                                                                    <p className='Items'>4 Items</p>
+                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                </div>
+                                                                <div className='showOrder'>
+                                                                    <p className='orderPrice'>£22.00</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <button className='cancelOrder'>CANCEL</button>
+                                                                <button className='acceptOrder' onClick={() => {
+                                                                    handleUserProfile("myRecentOrder")
+                                                                }}>ACCEPT</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='ordermodalBox'>
+                                                    <div className='myorders_'>
+                                                        <p className='orderId'>#12548</p>
+                                                    </div>
+                                                    <div className='userOrderInfo'>
+                                                        <div className='orderRequest'>
+                                                            <div className='profileInfo'>
+                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                <div className='detailInfo'>
+                                                                    <p className='userProfile'>Agatha Christie</p>
+                                                                    <p className='orderFrom'>Order From</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <div className='orderiem_'>
+                                                                    <p className='Items'>4 Items</p>
+                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                </div>
+                                                                <div className='showOrder'>
+                                                                    <p className='orderPrice'>£22.00</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <button className='cancelOrder'>CANCEL</button>
+                                                                <button className='acceptOrder'>ACCEPT</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="pills-contact">
+                                            <div class="tab-pane fade" id="pills-delivered">
                                                 <div class="tabinnercontent">
                                                     <form method="POST" action="https://soulmate.itechnolabs.tech/page" autocomplete="off">
-
-                                                        <p class="phead">Text Here</p>
-                                                        <div class="col-md-12 col-12">
-                                                            <div class="mb-1">
-                                                                <label class="form-label" for="description">description </label>
-
-
+                                                    <div className='Myorders_'>
+                                             <div className='ordermodalBox'>
+                                                    <div className='myorders_'>
+                                                        <p className='orderId'>#12548</p>
+                                                    </div>
+                                                    <div className='userOrderInfo'>
+                                                        <div className='orderRequest'>
+                                                            <div className='profileInfo'>
+                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                <div className='detailInfo'>
+                                                                    <p className='userProfile'>Agatha Christie</p>
+                                                                    <p className='orderFrom'>Order From</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <div className='orderiem_'>
+                                                                    <p className='Items'>4 Items</p>
+                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                </div>
+                                                                <div className='showOrder'>
+                                                                    <p className='orderPrice'>£22.00</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <button className='cancelOrder'>CANCEL</button>
+                                                                <button className='acceptOrder' onClick={() => {
+                                                                    handleUserProfile("myRecentOrder")
+                                                                }}>ACCEPT</button>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
-                                                            <button type="Submit" class="btn btn-primary me-1 waves-effect waves-float waves-light">Submit</button>
+                                                    </div>
+                                                </div>
+                                                <div className='ordermodalBox'>
+                                                    <div className='myorders_'>
+                                                        <p className='orderId'>#12548</p>
+                                                    </div>
+                                                    <div className='userOrderInfo'>
+                                                        <div className='orderRequest'>
+                                                            <div className='profileInfo'>
+                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                <div className='detailInfo'>
+                                                                    <p className='userProfile'>Agatha Christie</p>
+                                                                    <p className='orderFrom'>Order From</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <div className='orderiem_'>
+                                                                    <p className='Items'>4 Items</p>
+                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                </div>
+                                                                <div className='showOrder'>
+                                                                    <p className='orderPrice'>£22.00</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className='orderItems'>
+                                                                <button className='cancelOrder'>CANCEL</button>
+                                                                <button className='acceptOrder'>ACCEPT</button>
+                                                            </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                                        
                                                     </form>
                                                 </div>
                                             </div>
@@ -173,31 +287,31 @@ const Myorder = () => {
                 isRightSideModal={true}
                 mediumWidth={false}
                 className={modalDetail.flag === "myRecentOrder" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "myRecentOrder" ? "recentOrder": ""}
+                ids={modalDetail.flag === "myRecentOrder" ? "recentOrder" : ""}
                 child={
                     modalDetail.flag === "myRecentOrder" ? (
                         <MyRecentOrderModal
                             close={() => handleOnCloseModal()}
-                            
+
                         />
                     ) :
-                            ""
+                        ""
                 }
                 header=
 
                 {modalDetail.flag === "myRecentOrder" ?
                     <>
-                     <div className='Common_header'>
-                     <img
+                        <div className='Common_header'>
+                            <img
                                 src={Images.backArrowpassword}
                                 alt="logo"
                                 className="img-fluid  arrowCommon_"
                             />
                             <div className='headerProfile ps-2'>
-                            <p className='modal_Heading'>Order #12548</p>
-                            <p className='innerhead_ ps-3'>Recent Order</p>
+                                <p className='modal_Heading'>Order #12548</p>
+                                <p className='innerhead_ ps-3'>Recent Order</p>
                             </div>
-                     </div>
+                        </div>
                         {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
                         </p> */}

@@ -5,6 +5,7 @@ import CustomModal from "./shared/CustomModal";
 import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
 import Myorder from "./shared/myorderModal";
+import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
 
 const Chef_Navbar = () => {
   const [key, setKey] = useState(Math.random());
@@ -24,6 +25,16 @@ const Chef_Navbar = () => {
     setKey(Math.random());
   };
 
+  const handleUserProfile = (flag) => {
+
+    setModalDetail({
+        show: true,
+        flag: flag,
+        type: flag,
+    });
+    setKey(Math.random());
+}
+
   return (
     <>
       <div className="main_Setting">
@@ -32,7 +43,7 @@ const Chef_Navbar = () => {
             <div className="row align-items-center">
               <div className="col-lg-6 col-sm-12">
                 {/* ----Home Page Header html */}
-                 <h1 className="chefCommonHeader">Hello, <span className="chefHeading">Sarah!</span></h1>  
+                <h1 className="chefCommonHeader">Hello, <span className="chefHeading">Sarah!</span></h1>
                 {/* ----setting Page Header  
                 {/* <h1 className="chefCommonHeader">Settings</h1> */}
                 {/* ----Booking Details Page Header html  &  For after booking Details Also */}
@@ -49,7 +60,7 @@ const Chef_Navbar = () => {
               </div> */}
               </div>
               <div className="col-lg-6 col-sm-12 text-end">
-                 <div className="flexBox">
+                {/* <div className="flexBox">
                   <div className="headermenu">
                     <figure className="menuBox">
                       <img
@@ -90,7 +101,7 @@ const Chef_Navbar = () => {
                     />
                     <span className="cartItems">5</span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* booking Common Header */}
                 {/* <div className='orderItems_ flexBox '>
@@ -99,12 +110,16 @@ const Chef_Navbar = () => {
                 </div> */}
 
                 {/* order Details Header html & order Delivered */}
-              {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
-               </div>
+                {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
+                {/* Order Delivered Html */}
+                <button className="chefRightHeader m-0 text-end" onClick={() => {
+                  handleUserProfile("verifyOrderDetailModal")
+                }} >Order Delivered</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
       <CustomModal
         key={key}
         show={modalDetail.show}
@@ -122,7 +137,9 @@ const Chef_Navbar = () => {
               ? "Notification"
               : modalDetail.flag === "Myorder"
                 ? "myOrder"
-                : ""
+                : modalDetail.flag === "verifyOrderDetailModal"
+                  ? "verifyOrderDetail"
+                  : ""
         }
         child={
           modalDetail.flag === "chatBox" ? (
@@ -131,9 +148,13 @@ const Chef_Navbar = () => {
             <Notification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Myorder" ? (
             <Myorder close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
+          ) :
+            modalDetail.flag === "verifyOrderDetailModal" ? (
+              <VerifyorderDetailsModal close={() => handleOnCloseModal()} />
+            ) :
+              (
+                ""
+              )
         }
         header={
           modalDetail.flag === "chatBox" ? (
@@ -157,7 +178,18 @@ const Chef_Navbar = () => {
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
             </>
-          ) : (
+          ) :
+           modalDetail.flag === "verifyOrderDetailModal" ? (
+            <>
+             <div className="cancelCommonHeader">
+             <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+             </div>
+            </>
+          ):
+          
+          (
             ""
           )
         }

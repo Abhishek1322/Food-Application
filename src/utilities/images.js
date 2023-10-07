@@ -111,6 +111,8 @@ import ManageOffice from "../public/images/ManageOffice.svg"
 import ManageHome from "../public/images/ManageHome.svg"
 import ManageLocation from "../public/images/ManageLocation.png"
 import CartFood from "../public/images/cartfood.svg"
+import verifyDeliveredImg from "../public/images/verifyDeliveredImg.svg"
+
 
 
 
@@ -228,4 +230,5 @@ export {
     ManageHome,
     ManageLocation,
     CartFood,
+    verifyDeliveredImg,
 }

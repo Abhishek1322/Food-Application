@@ -238,7 +238,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // select address
@@ -249,7 +249,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // week days
@@ -398,13 +398,12 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${
-                                          activeTab === "restaurant"
-                                            ? "active"
-                                            : path == "/restaurant"
+                                        className={`chefType ${activeTab === "restaurant"
+                                          ? "active"
+                                          : path == "/restaurant"
                                             ? "active"
                                             : ""
-                                        }`}
+                                          }`}
                                         onClick={() =>
                                           setActiveTab("restaurant")
                                         }
@@ -423,13 +422,12 @@ const SetupProfile = () => {
                                         />
                                       </li>
                                       <li
-                                        className={`chefType ${
-                                          activeTab === "home"
-                                            ? "active"
-                                            : path == "/home"
+                                        className={`chefType ${activeTab === "home"
+                                          ? "active"
+                                          : path == "/home"
                                             ? "active"
                                             : ""
-                                        }`}
+                                          }`}
                                         onClick={() => setActiveTab("home")}
                                       >
                                         Home
@@ -514,15 +512,15 @@ const SetupProfile = () => {
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
                                                   ? {
-                                                      backgroundColor:
-                                                        "#41b6e6",
-                                                      cursor: "pointer",
-                                                    }
+                                                    backgroundColor:
+                                                      "#41b6e6",
+                                                    cursor: "pointer",
+                                                  }
                                                   : {
-                                                      backgroundColor:
-                                                        "#ffffff",
-                                                      cursor: "pointer",
-                                                    };
+                                                    backgroundColor:
+                                                      "#ffffff",
+                                                    cursor: "pointer",
+                                                  };
                                                 return (
                                                   <div
                                                     {...getSuggestionItemProps(
