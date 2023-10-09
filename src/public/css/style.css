@@ -31,9 +31,8 @@ li {
 }
 
 .main_Setting {
-    padding: 15px 31px 11px 31px;
+    padding: 40px 31px 0px 31px;
 }
-
 .settingMainHeading {
     color: #2E3333;
     font-family: Crimson Text;
@@ -2482,9 +2481,4 @@ body {
 }
 .availableTime .react-time-picker__wrapper {
     border: none;
-}
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
 }

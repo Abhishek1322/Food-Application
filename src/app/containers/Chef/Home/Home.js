@@ -6,7 +6,7 @@ const HomeRequsest = () => {
         <>
             <div className='mainchef_'>
                 <div className='homePage'>
-                    <div className='container-fluid'>
+                    <div className='container-fluid p-0'>
                         <div className='row'>
                             <div className='col-lg-12 col-sm-12'>
                                 <div className='innerhomeheader'>
@@ -25,7 +25,7 @@ const HomeRequsest = () => {
                                                 <p className='userInfo'>Jul 20, 2023</p>
                                             </div>
                                         </div>
-                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page whenlooking at its layout. distracted by the readable content of a page when looking at its layout. Thepoint of using
+                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
 
@@ -38,7 +38,7 @@ const HomeRequsest = () => {
                                                 <p className='userInfo'>Jul 20, 2023</p>
                                             </div>
                                         </div>
-                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page whenlooking at its layout. distracted by the readable content of a page when looking at its layout. Thepoint of using
+                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
 
@@ -51,7 +51,7 @@ const HomeRequsest = () => {
                                                 <p className='userInfo'>Jul 20, 2023</p>
                                             </div>
                                         </div>
-                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page whenlooking at its layout. distracted by the readable content of a page when looking at its layout. Thepoint of using
+                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
 
@@ -64,7 +64,7 @@ const HomeRequsest = () => {
                                                 <p className='userInfo'>Jul 20, 2023</p>
                                             </div>
                                         </div>
-                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page whenlooking at its layout. distracted by the readable content of a page when looking at its layout. Thepoint of using
+                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
 
@@ -77,7 +77,7 @@ const HomeRequsest = () => {
                                                 <p className='userInfo'>Jul 20, 2023</p>
                                             </div>
                                         </div>
-                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page whenlooking at its layout. distracted by the readable content of a page when looking at its layout. Thepoint of using
+                                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
                                     </div>
