@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import UserCartModal from "./shared/UserCartModal";
@@ -8,6 +8,8 @@ import UserBellModal from "./shared/UserBellModal";
 import UserNotification from "./shared/UserNotification";
 
 const User_Navbar = () => {
+  const location = useLocation();
+  console.log(location.pathname);
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -25,7 +27,6 @@ const User_Navbar = () => {
     setKey(Math.random());
   };
   const handleUserProfile = (flag) => {
-
     setModalDetail({
       show: true,
       flag: flag,
@@ -51,7 +52,7 @@ const User_Navbar = () => {
                         alt="logo"
                         className="img-fluid chatIconImage"
                         onClick={() => {
-                          handleUserProfile("chatmessage")
+                          handleUserProfile("chatmessage");
                         }}
                       />
                     </figure>
@@ -60,7 +61,10 @@ const User_Navbar = () => {
                     <figure
                       className="menuBox"
                       onClick={() => {
-                        setModalDetail({ show: true, flag: "userNotification" });
+                        setModalDetail({
+                          show: true,
+                          flag: "userNotification",
+                        });
                         setKey(Math.random());
                       }}
                     >
@@ -83,12 +87,21 @@ const User_Navbar = () => {
                     />
                     <span className="cartItems">0</span>
                   </div>
-                  <button className='sarahmessagebtn d-none' onClick={() => {
-                    handleUserProfile("bookchef")
-                  }}>
-                    <div className="booknowimg"><img src={Images.lightcap} alt='timesquareimage' className='img-fluid' /></div>
+                  <button
+                    className="sarahmessagebtn d-none"
+                    onClick={() => {
+                      handleUserProfile("bookchef");
+                    }}
+                  >
+                    <div className="booknowimg">
+                      <img
+                        src={Images.lightcap}
+                        alt="timesquareimage"
+                        className="img-fluid"
+                      />
+                    </div>
 
-                    <p className='availableheading'>Book Now</p>
+                    <p className="availableheading">Book Now</p>
                   </button>
                 </div>
               </div>
@@ -110,12 +123,12 @@ const User_Navbar = () => {
           modalDetail.flag === "chatmessage"
             ? "chatmessagemodal"
             : modalDetail.flag === "userNotification"
-              ? "userNotificationModal"
-              : modalDetail.flag === "Usercart"
-                ? "usercartmodal"
-                : modalDetail.flag === "bookchef"
-                  ? "bookchefmodal"
-                  : ""
+            ? "userNotificationModal"
+            : modalDetail.flag === "Usercart"
+            ? "usercartmodal"
+            : modalDetail.flag === "bookchef"
+            ? "bookchefmodal"
+            : ""
         }
         child={
           modalDetail.flag === "chatmessage" ? (
@@ -123,8 +136,7 @@ const User_Navbar = () => {
           ) : modalDetail.flag === "userNotification" ? (
             <UserNotification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Usercart" ? (
-            <UserCartModal
-              close={() => handleOnCloseModal()} />
+            <UserCartModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "bookchef" ? (
             <BookNowModal close={() => handleOnCloseModal()} />
           ) : (
@@ -155,14 +167,12 @@ const User_Navbar = () => {
             </>
           ) : modalDetail.flag === "bookchef" ? (
             <>
-              <div className='edithead'>
-                <h2 className="modal_Heading">
-                  Hire Chef
-                </h2>
-                <p className='chatUser'>Enter your venue details below.</p>
+              <div className="edithead">
+                <h2 className="modal_Heading">Hire Chef</h2>
+                <p className="chatUser">Enter your venue details below.</p>
               </div>
-              <p onClick={handleOnCloseModal} className='modal_cancel'>
-                <img src={Images.modalCancel} className='ModalCancel' />
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
               </p>
             </>
           ) : (

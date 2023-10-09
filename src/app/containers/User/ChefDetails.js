@@ -227,9 +227,9 @@ const ChefDetails = () => {
                         <h2 className="modal_Heading">
                             Availability
                         </h2>
-                        <div onClick={handleOnCloseModal} className='modal_cancel'>
+                        <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
-                        </div>
+                        </p>
                     </>
                     :
                     modalDetail.flag === "CartFood" ?
@@ -237,9 +237,9 @@ const ChefDetails = () => {
                             {/* <h2 className="modal_Heading">
                                 Cart
                             </h2> */}
-                            <div onClick={handleOnCloseModal} className='modal_cancel'>
+                            <p onClick={handleOnCloseModal} className='modal_cancel'>
                                 <img src={Images.modalCancel} className='ModalCancel' />
-                            </div>
+                            </p>
                         </>
                         :
                         modalDetail.flag === "ratingchef" ?
@@ -247,9 +247,9 @@ const ChefDetails = () => {
                                 <h2 className="modal_Heading">
                                     Rating & Reviews
                                 </h2>
-                                <div onClick={handleOnCloseModal} className='modal_cancel'>
+                                <p onClick={handleOnCloseModal} className='modal_cancel'>
                                     <img src={Images.modalCancel} className='ModalCancel' />
-                                </div>
+                                </p>
                             </>
                             :
                             ''

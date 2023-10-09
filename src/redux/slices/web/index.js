@@ -3,16 +3,24 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   chefProfileDetails: [],
+  userProfileDetails: [],
+  chefListData: [],
 };
 
 export const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
+    chefLists: (state) => {
+      state.loading = true;
+    },
+    setChefLists: (state, action) => {
+      state.loading = false;
+      state.chefListData = action.payload;
+    },
     getChefProfileDetails: (state) => {
       state.loading = true;
     },
-
     setChefProfileDetails: (state, action) => {
       state.loading = false;
       state.chefProfileDetails = action.payload;
@@ -29,6 +37,13 @@ export const webSlice = createSlice({
     setUpdateProfileImage: (state, action) => {
       state.loading = false;
     },
+    getUserProfileDetails: (state) => {
+      state.loading = true;
+    },
+    setUserProfileDetails: (state, action) => {
+      state.loading = false;
+      state.userProfileDetails = action.payload;
+    },
     onErrorStopLoad: (state) => {
       state.loading = false;
     },
@@ -43,7 +58,11 @@ export const {
   setUpdateChefProfile,
   onErrorStopLoad,
   updateProfileImage,
-  setUpdateProfileImage
+  setUpdateProfileImage,
+  getUserProfileDetails,
+  setUserProfileDetails,
+  chefLists,
+  setChefLists,
 } = webSlice.actions;
 
 export default webSlice.reducer;

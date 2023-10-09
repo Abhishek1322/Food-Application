@@ -102,9 +102,9 @@ const CartFoodModal = () => {
 
                 { modalDetail.flag === "CartFoodOrder" ?
                         <>
-                            <div onClick={handleOnCloseModal} className='modal_cancel'>
+                            <p onClick={handleOnCloseModal} className='modal_cancel'>
                                 <img src={Images.modalCancel} className='ModalCancel' />
-                            </div>
+                            </p>
                         </>
                         :
                         ''

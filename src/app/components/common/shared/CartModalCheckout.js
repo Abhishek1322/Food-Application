@@ -37,9 +37,9 @@ const CartModalCheckout = () => {
                     <div className='usercartDetail'>
                         <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                         <div className='insideModal'>
-                            <p className='foodtext'>Food Category</p>
-                            <p className='foodItem'>Chicken Salad</p>
-                            <p className='foodPrice'>£22.00</p>
+                            <h6 className='foodtext'>Food Category</h6>
+                            <h5 className='foodItem'>Chicken Salad</h5>
+                            <h6 className='foodPrice'>£22.00</h6>
                             <div className='quantity'>
                                 <div className='Quantiycheck'>
                                     <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
@@ -60,9 +60,9 @@ const CartModalCheckout = () => {
                     <div className='usercartDetail'>
                         <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                         <div className='insideModal'>
-                            <p className='foodtext'>Food Category</p>
-                            <p className='foodItem'>Chicken Salad</p>
-                            <p className='foodPrice'>£22.00</p>
+                            <h6 className='foodtext'>Food Category</h6>
+                            <h5 className='foodItem'>Chicken Salad</h5>
+                            <h6 className='foodPrice'>£22.00</h6>
                             <div className='quantity'>
                                 <div className='Quantiycheck'>
                                     <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
@@ -82,16 +82,16 @@ const CartModalCheckout = () => {
                 <div className='cartdelivery'>
                     <div className='checkoutdelivery'>
                         <div className='checkoutaddress'>
-                            <p className='venuInfo'>Delivery Address</p>
+                            <h6 className='venuInfo'>Delivery Address</h6>
                         </div>
                         <div className='checkoutnewaddress'>
-                            <p className='headerinnertxt m-0'>+ Add New Address</p>
+                            <h6 className='headerinnertxt m-0'>+ Add New Address</h6>
                         </div>
                     </div>
                     <div className='checkouthomeoffice mt-3'>
                         <div className='checkouthome'>
                             <div className='homedropdown mt-2'>
-                                <p className='notificationText'>Home</p>
+                                <h6 className='notificationText'>Home</h6>
                                 <div class="dropdown dropend">
                                     <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
@@ -107,7 +107,7 @@ const CartModalCheckout = () => {
                         </div>
                         <div className='checkouthome'>
                             <div className='homedropdown mt-2'>
-                                <p className='notificationText'>Office</p>
+                                <h6 className='notificationText'>Office</h6>
                                 <div class="dropdown dropend">
                                     <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
