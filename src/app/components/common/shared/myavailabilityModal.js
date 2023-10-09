@@ -176,7 +176,7 @@ const MyavailabilityModal = (props) => {
           {activeWeekDay && showTimeSlot && (
             <div className="flexBox ">
               <div className="myavailability mt-4">
-                <div className="availabilityBox_ me-4">
+                <div className="availabilityBox_ ">
                   <p className="innerBoxText">From</p>
                   <div className="availableTime flexBox ">
                     <img
@@ -188,14 +188,18 @@ const MyavailabilityModal = (props) => {
                       clearIcon=""
                       onChange={handleStartTime}
                       value={startTime}
+                      format="h:mm a"
+                      showLeadingZeros={false}
+                      amPmAriaLabel="Select AM/PM"
+                      className="custom-time-picker customPicker"
                     />
                   </div>
                 </div>
               </div>
               <div className="myavailability mt-4 ">
-                <div className="availabilityBox_ me-4">
+                <div className="availabilityBox_ me-4 ">
                   <p className="innerBoxText">To</p>
-                  <div className="availableTime flexBox ">
+                  <div className="availableTime flexBox">
                     <img
                       src={Images.availabilityClock}
                       className="clockImg pe-1"
@@ -205,11 +209,15 @@ const MyavailabilityModal = (props) => {
                       clearIcon=""
                       onChange={handleEndTime}
                       value={endTime}
+                      format="h:mm a"
+                      showLeadingZeros={false}
+                      amPmAriaLabel="Select AM/PM"
+                      className="custom-time-picker customPicker"
                     />
                   </div>
                 </div>
               </div>
-              <div className="deleteImg_">
+              <div className="deleteImg_ mt-3">
                 <img
                   onClick={handleCloseTimeSlot}
                   src={Images.editprofileDelete}
@@ -233,7 +241,7 @@ const MyavailabilityModal = (props) => {
           onClick={handleSaveAvailability}
           className="foodmodalbtn  modalfooterbtn"
         >
-          Done
+          Update
         </button>
       </div>
     </>

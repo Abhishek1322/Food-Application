@@ -171,27 +171,9 @@ const SetupProfile = () => {
           },
         })
       );
-    } else if (flag == 2) {
-      if (!documentUrl) {
-        toast.error("Please upload your document");
-        return;
-      }
-      let params = {
-        step: "2",
-        verificationDocument: documentUrl,
-      };
-      dispatch(
-        chefSetupProfile({
-          ...params,
-          cb(res) {
-            if (res.status === 200) {
-              setPageNumber(3);
-              nextPage("pagethree");
-            }
-          },
-        })
-      );
-    } else if (flag == 3) {
+    }
+
+    else if (flag == 2) {
       let params = {
         step: "3",
         availability: availability.filter(
@@ -207,6 +189,27 @@ const SetupProfile = () => {
           cb(res) {
             if (res.status === 200) {
               navigate("/home");
+            }
+          },
+        })
+      );
+    }
+    else if (flag == 3) {
+      if (!documentUrl) {
+        toast.error("Please upload your document");
+        return;
+      }
+      let params = {
+        step: "2",
+        verificationDocument: documentUrl,
+      };
+      dispatch(
+        chefSetupProfile({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setPageNumber(3);
+              nextPage("pagethree");
             }
           },
         })
@@ -623,6 +626,159 @@ const SetupProfile = () => {
                           ),
                           pagetwo: (
                             <>
+                              <h6 class="Headingsmall">Set Availability</h6>
+                              <p className="subHeadingSmall mb-4">
+                                Add your available time slots.
+                              </p>
+                              <div className="availability mt-3 mb-5">
+                                <ul className="weekBox">
+                                  {week.map((day, index) => (
+                                    <>
+                                      <li
+                                        onClick={(e) =>
+                                          handleWeekDay(e, day.day)
+                                        }
+                                        className={
+                                          activeWeekDay === day.day
+                                            ? "weekDays active text-capitalize"
+                                            : "weekDays text-capitalize"
+                                        }
+
+                                      >
+                                        {day.day}
+                                      </li>
+                                    </>
+                                  ))}
+                                </ul>
+                                <div className="timeSlotBox pb-5">
+                                  <h6 class="HeadingsmallText">Time Slots</h6>
+                                  <hr className="borderBottom"></hr>
+
+                                  {showTimeSlot && (
+                                    <>
+                                      <div className="row">
+                                        <div className="col-lg-5">
+                                          <div className="input-container mt-2">
+                                            {/* <p className="border-input">From</p> */}
+                                            {/* <div className="dateBox">
+                                            <TimePicker
+                                              onChange={handleStartTime}
+                                              value={startTime}
+                                              format="h:mm a"
+                                              showLeadingZeros={false}
+                                              amPmAriaLabel="Select AM/PM"
+                                              className="custom-time-picker customPicker"
+                                            />
+                                            <img
+                                              src={Images.ClockIcon}
+                                              alt="ClockIcon"
+                                              className="ClockIcon"
+                                            />
+                                          </div> */}
+                                            <div className="availableTime flexBox">
+                                              <p className="border-input">From</p>
+
+                                              <img
+                                                src={Images.availabilityClock}
+                                                className="clockImg pe-1"
+                                              />
+                                              <TimePicker
+                                                disableClock
+                                                clearIcon=""
+                                                onChange={handleStartTime}
+                                                value={startTime}
+                                                format="h:mm a"
+                                                showLeadingZeros={false}
+                                                amPmAriaLabel="Select AM/PM"
+                                                className="custom-time-picker customPicker"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-5">
+                                          <div className="input-container mt-2">
+                                            {/* <div className="dateBox">
+                                            <TimePicker
+                                              onChange={handleEndTime}
+                                              value={endTime}
+                                            />
+                                            <img
+                                              src={Images.ClockIcon}
+                                              alt="ClockIcon"
+                                              className="ClockIcon"
+                                            />
+                                          </div> */}
+                                            <div className="availableTime flexBox">
+                                              <p className="border-input">From</p>
+
+                                              <img
+                                                src={Images.availabilityClock}
+                                                className="clockImg pe-1"
+                                              />
+                                              <TimePicker
+                                                disableClock
+                                                clearIcon=""
+                                                onChange={handleEndTime}
+                                                value={endTime}
+                                                format="h:mm a"
+                                                showLeadingZeros={false}
+                                                amPmAriaLabel="Select AM/PM"
+                                                className="custom-time-picker customPicker"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-2 text-center">
+                                          <div className="deleteBox">
+                                            <img
+                                              onClick={() =>
+                                                handleCloseTimeSlot()
+                                              }
+                                              src={Images.DeleteIcon}
+                                              alt="ClockIcon"
+                                              className="DeleteIcon"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {/* <button onClick={addTimeSlot}>
+                                      Add this slot
+                                    </button> */}
+                                    </>
+                                  )}
+                                  {!showTimeSlot && (
+                                    <div className="flexBox mt-2">
+                                      <button
+                                        onClick={() => handleShowSlot()}
+                                        type="button"
+                                        className="addButton"
+                                      >
+                                        <i class="las la-plus"></i>Add Time Slot{" "}
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="flexBox justify-content-center">
+                                <button
+                                  onClick={(e) => handleBack(e, "pagetwoback")}
+                                  className="submit_btn"
+                                >
+                                  <span className="addMore me-3">
+                                    <i class="las la-angle-left"></i> Back
+                                  </span>
+                                </button>
+                                <button
+                                  onClick={(e) => handleSubmit(e, "2")}
+                                  className="submit_btn"
+                                >
+                                  <span className="smallBtn">Continue</span>
+                                </button>
+                              </div>
+                            </>
+                          ),
+                          pagethree: (
+                            <>
                               <h6 class="Headingsmall">Upload Documents</h6>
                               <p className="subHeadingSmall mb-4">
                                 Upload your passport or certificate for the
@@ -680,124 +836,11 @@ const SetupProfile = () => {
                                   </span>
                                 </button>
                                 <button
-                                  onClick={(e) => handleSubmit(e, "2")}
+                                  onClick={(e) => handleSubmit(e, "3")}
                                   className="submit_btn"
                                   type="submit"
                                 >
                                   <span className="smallBtn">Next</span>
-                                </button>
-                              </div>
-                            </>
-                          ),
-                          pagethree: (
-                            <>
-                              <h6 class="Headingsmall">Set Availability</h6>
-                              <p className="subHeadingSmall mb-4">
-                                Add your available time slots.
-                              </p>
-                              <div className="availability mt-3 mb-5">
-                                <ul className="weekBox">
-                                  {week.map((day, index) => (
-                                    <>
-                                      <li
-                                        onClick={(e) =>
-                                          handleWeekDay(e, day.day)
-                                        }
-                                        className={
-                                          activeWeekDay === day.day
-                                            ? "weekDays active text-capitalize"
-                                            : "weekDays text-capitalize"
-                                        }
-                                      >
-                                        {day.day}
-                                      </li>
-                                    </>
-                                  ))}
-                                </ul>
-                                <div className="timeSlotBox pb-5">
-                                  <h6 class="HeadingsmallText">Time Slots</h6>
-                                  <hr className="borderBottom"></hr>
-
-                                  {showTimeSlot && (
-                                    <>
-                                      <div className="row">
-                                        <div className="col-lg-5">
-                                          <div className="input-container mt-2">
-                                            <p className="border-input">From</p>
-                                            <div className="dateBox">
-                                              <TimePicker
-                                                onChange={handleStartTime}
-                                                value={startTime}
-                                              />
-                                              <img
-                                                src={Images.ClockIcon}
-                                                alt="ClockIcon"
-                                                className="ClockIcon"
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div className="col-lg-5">
-                                          <div className="input-container mt-2">
-                                            <p className="border-input">To</p>
-                                            <div className="dateBox">
-                                              <TimePicker
-                                                onChange={handleEndTime}
-                                                value={endTime}
-                                              />
-                                              <img
-                                                src={Images.ClockIcon}
-                                                alt="ClockIcon"
-                                                className="ClockIcon"
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div className="col-lg-2 text-center">
-                                          <div className="deleteBox">
-                                            <img
-                                              onClick={() =>
-                                                handleCloseTimeSlot()
-                                              }
-                                              src={Images.DeleteIcon}
-                                              alt="ClockIcon"
-                                              className="DeleteIcon"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      {/* <button onClick={addTimeSlot}>
-                                        Add this slot
-                                      </button> */}
-                                    </>
-                                  )}
-                                  {!showTimeSlot && (
-                                    <div className="flexBox mt-2">
-                                      <button
-                                        onClick={() => handleShowSlot()}
-                                        type="button"
-                                        className="addButton"
-                                      >
-                                        <i class="las la-plus"></i>Add Time Slot{" "}
-                                      </button>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="flexBox justify-content-center">
-                                <button
-                                  onClick={(e) => handleBack(e, "pagetwoback")}
-                                  className="submit_btn"
-                                >
-                                  <span className="addMore me-3">
-                                    <i class="las la-angle-left"></i> Back
-                                  </span>
-                                </button>
-                                <button
-                                  onClick={(e) => handleSubmit(e, "3")}
-                                  className="submit_btn"
-                                >
-                                  <span className="smallBtn">Continue</span>
                                 </button>
                               </div>
                             </>
