@@ -15,6 +15,7 @@ const Router = () => {
       <Routes>
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
+        
           {authData?.userInfo?.role === "user" && (
             <Route
               path="/setting"
