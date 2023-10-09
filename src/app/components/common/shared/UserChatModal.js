@@ -13,8 +13,8 @@ const UserChatModal = () => {
                             </div>
                             <div className='chefchat_detail'>
                                 <img src={Images.UserICon} alt="logo" className="chatnextImg" />
-                                <p className='chatUser m-0 ps-1 pe-2'>John Smith</p>
-                                <p className='chatTime_ m-0'>2:34 pm</p>
+                                <h6 className='chatUser m-0 ps-1 pe-2'>John Smith</h6>
+                                <h6 className='chatTime_ m-0'>2:34 pm</h6>
 
                             </div>
                         </div>
@@ -23,8 +23,8 @@ const UserChatModal = () => {
                                 <p className='chat_Text'>It is a long established fact that a reader will be distracted by the readable content of a page when looking layout.</p>
                             </div>
                             <div className='chefchat_detail'>
-                                <p className='chatTime_ m-0 pe-2 '>2:36 pm</p>
-                                <p className='chatUser m-0 pe-1'>You</p>
+                                <h6 className='chatTime_ m-0 pe-2 '>2:36 pm</h6>
+                                <h6 className='chatUser m-0 pe-1'>You</h6>
                                 <img src={Images.homeProfile} alt="logo" className="chatnextImg" />
                             </div>
                         </div>

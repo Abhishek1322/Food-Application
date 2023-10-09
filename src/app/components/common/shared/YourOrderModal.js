@@ -34,7 +34,7 @@ const YourOrderModal = () => {
         <>
             <div className='yourordersection paymentdonesection'>
                 <img src={Images.OrderPlace} alt='accountdeletedimg' className='img-fluid' />
-                <p className='accountDeleted mt-3'> Are You Sure You Want to Cancel Your Order.</p>
+                <h1 className='accountDeleted mt-3'> Are You Sure You Want to Cancel Your Order.</h1>
                 <p className='accountdeletetxt mt-2 '>Cancellation charges apply.</p>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>

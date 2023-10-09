@@ -9,9 +9,9 @@ const UserCartModal = () => {
           <div className='usercartDetail'>
             <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
-              <p className='foodtext'>Food Category</p>
-              <p className='foodItem'>Chicken Salad</p>
-              <p className='foodPrice'>£22.00</p>
+              <h6 className='foodtext'>Food Category</h6>
+              <h5 className='foodItem'>Chicken Salad</h5>
+              <h6 className='foodPrice'>£22.00</h6>
               <div className='quantity'>
                 <div className='Quantiycheck'>
                   <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
@@ -32,9 +32,9 @@ const UserCartModal = () => {
           <div className='usercartDetail'>
             <img src={Images.FoodIcon} className='userprofile' alt='cartImg' />
             <div className='insideModal'>
-              <p className='foodtext'>Food Category</p>
-              <p className='foodItem'>Chicken Salad</p>
-              <p className='foodPrice'>£22.00</p>
+              <h6 className='foodtext'>Food Category</h6>
+              <h5 className='foodItem'>Chicken Salad</h5>
+              <h6 className='foodPrice'>£22.00</h6>
               <div className='quantity'>
                 <div className='Quantiycheck'>
                   <img src={Images.minusModal} className='calQuantity' alt='minusModal' />
@@ -56,7 +56,7 @@ const UserCartModal = () => {
             <button className='addItems'>+ Add More Items</button>
             <div className='orderNow'>
               <div className='totalPrice'>
-                <p className='totaltxt'>Total</p>
+                <h6 className='totaltxt'>Total</h6>
                 <p className='price'>£44.00</p>
               </div>
               <button className='orderbutton'>Order Now</button>

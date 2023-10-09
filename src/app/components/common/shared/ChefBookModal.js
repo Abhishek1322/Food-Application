@@ -34,7 +34,7 @@ const ChefBookModal = () => {
     return (
         <>
             <div className='chefbookmodalsection mt-3'>
-                    <p className='chatheadtext m-3 '>Hire Chef</p>
+                    <h2 className='chatheadtext m-3 '>Hire Chef</h2>
                     <div className='row align-items-center m-2'>
                         <div className='col-lg-9'>
                             <div className='sarahinfo'>
@@ -42,7 +42,7 @@ const ChefBookModal = () => {
                                     <img src={Images.UserICon} alt='sarahimage' className='img-fluid' />
                                 </div>
                                 <div className='saraheading'>
-                                    <p className='chatheadtext'>Sarah Bergstrom</p>
+                                    <h4 className='chatheadtext'>Sarah Bergstrom</h4>
                                     <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
                                     <button className='restrodetail'>
                                         Restaurant
@@ -51,7 +51,7 @@ const ChefBookModal = () => {
                             </div>
                         </div>
                         <div className='col-lg-3'>
-                            <p className='chatTime_'> <span className='bookchefprice'>£45</span>/hour</p>
+                            <h6 className='chatTime_'> <span className='bookchefprice'>£45</span>/hour</h6>
                         </div>
                     </div>
                 <div className='chefbookslots'>
@@ -76,7 +76,7 @@ const ChefBookModal = () => {
 
                             <div className='orderNow'>
                                 <div className='totalPrice'>
-                                    <p className='totaltxt'>Total</p>
+                                    <h6 className='totaltxt'>Total</h6>
                                     <p className='price'>£90.00</p>
                                 </div>
                                 <button className='orderbutton' onClick={() => {
