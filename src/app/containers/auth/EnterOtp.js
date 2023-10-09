@@ -144,7 +144,7 @@ const EnterOtp = (props) => {
                       Don’t Received{" "}
                       <a
                         onClick={(e) => handleResendOtp(e)}
-                        className="resendLink"
+                        className="Link"
                         href="/auth/otp"
                       >
                         Resend
