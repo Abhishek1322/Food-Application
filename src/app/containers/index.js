@@ -35,6 +35,7 @@ import UserOrderHome from "./User/Order/OrderHome"
 import UserMyProfile from "./User/Profile/MyProfile"
 import UserEditProfile from "./User/Profile/EditProfile"
 import UserManageAddress from "./User/Setting/ManageAddress"
+import RequestPage from "./Settings/RequestPage"
 
 
 
@@ -77,4 +78,5 @@ export {
     UserMyProfile,
     UserEditProfile,
     UserManageAddress,
+    RequestPage,
 }

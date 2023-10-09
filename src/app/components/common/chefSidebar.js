@@ -80,7 +80,7 @@ const Chef_Sidebar = () => {
         <div className="sidebarProfile">
           <Link to="/chef-profile">
             <img
-              src={chefProfile ? chefProfile : Images.chefProfile}
+              src={chefProfile ? chefProfile : Images.dummyProfile}
               alt="logo"
               className="userprofile"
             />

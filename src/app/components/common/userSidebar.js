@@ -19,7 +19,7 @@ const User_Sidebar = () => {
     <>
       <div className="sideBar userSidebar">
         <div className="sidebarlogo ">
-          <img src={Images.Logo} alt="logo" className="img-fluid"/>
+          <img src={Images.Logo} alt="logo" className="img-fluid" />
         </div>
         <div className="sidelist">
           <ul>
@@ -51,12 +51,12 @@ const User_Sidebar = () => {
             </li>
             <li
               className={
-                location.pathname === "/my-orders"
+                location.pathname === "/user-order-home"
                   ? "sidebarLinks active"
                   : "sidebarLinks"
               }
             >
-              <Link to="#" className="sidebarItems">
+              <Link to="/user-order-home" className="sidebarItems">
                 <img src={Images.myorderorange} className="imgHide" />
                 <img src={Images.myorder} className="imgShow" />
                 <span className="d-block">My Orders</span>
@@ -80,7 +80,11 @@ const User_Sidebar = () => {
         </div>
         <div className="sidebarProfile ">
           <Link to="/user-myprofile">
-            <img src={userProfile} alt="logo" className="userprofile" />
+            <img
+              src={userProfile ? userProfile : Images.dummyProfile}
+              alt="logo"
+              className="userprofile"
+            />
           </Link>
           Profile
         </div>

@@ -177,7 +177,7 @@ const EditProfile = () => {
             <div className="col-lg-5 col-md-12">
               <div className="editleft">
                 <img
-                  src={profileUrl ? profileUrl : Images.chefProfile}
+                  src={profileUrl ? profileUrl : Images.dummyProfile}
                   alt="chefProfileimg"
                   className="chefprofileimg"
                 />

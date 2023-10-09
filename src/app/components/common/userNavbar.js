@@ -9,7 +9,7 @@ import UserNotification from "./shared/UserNotification";
 
 const User_Navbar = () => {
   const location = useLocation();
-  console.log(location.pathname);
+  const { pathname } = location;
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -39,73 +39,283 @@ const User_Navbar = () => {
       <div className="main_Setting">
         <div className="navMain">
           <div className="container-fluid p-0">
-            <div className="row align-items-center">
-              <div className="col-lg-6 col-sm-12">
-                <p className="settingtxt">Page Name</p>
-              </div>
-              <div className="col-lg-6 col-sm-12 text-end">
-                <div className="flexBox">
-                  <div className="headermenu">
-                    <figure className="menuBox">
-                      <img
-                        src={Images.chat}
-                        alt="logo"
-                        className="img-fluid chatIconImage"
+            {pathname === "/home-user" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <h1 className="chefCommonHeader">
+                    Hello, <span className="chefHeading">John!</span>
+                  </h1>
+                  <p>location</p>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            handleUserProfile("chatmessage");
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
                         onClick={() => {
-                          handleUserProfile("chatmessage");
+                          setModalDetail({
+                            show: true,
+                            flag: "userNotification",
+                          });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.basketImg}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Usercart" });
+                          setKey(Math.random());
                         }}
                       />
-                    </figure>
-                  </div>
-                  <div className="headeritem">
-                    <figure
-                      className="menuBox"
+                      <span className="cartItems">0</span>
+                    </div>
+                    <button
+                      className="sarahmessagebtn d-none"
                       onClick={() => {
-                        setModalDetail({
-                          show: true,
-                          flag: "userNotification",
-                        });
-                        setKey(Math.random());
+                        handleUserProfile("bookchef");
                       }}
                     >
-                      <img
-                        src={Images.bellImage}
-                        alt="logo"
-                        className="img-fluid chatIconImage"
-                      />
-                    </figure>
-                  </div>
-                  <div className="menuBox cart">
-                    <img
-                      src={Images.basketImg}
-                      alt="logo"
-                      className="img-fluid basketImg"
-                      onClick={() => {
-                        setModalDetail({ show: true, flag: "Usercart" });
-                        setKey(Math.random());
-                      }}
-                    />
-                    <span className="cartItems">0</span>
-                  </div>
-                  <button
-                    className="sarahmessagebtn "
-                    onClick={() => {
-                      handleUserProfile("bookchef");
-                    }}
-                  >
-                    <div className="booknowimg">
-                      <img
-                        src={Images.lightcap}
-                        alt="timesquareimage"
-                        className="img-fluid"
-                      />
-                    </div>
+                      <div className="booknowimg">
+                        <img
+                          src={Images.lightcap}
+                          alt="timesquareimage"
+                          className="img-fluid"
+                        />
+                      </div>
 
-                    <p className="availableheading">Book Now</p>
-                  </button>
+                      <p className="availableheading">Book Now</p>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : pathname === "/user-chef-home" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <h1 className="chefCommonHeader">Chefs</h1>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            handleUserProfile("chatmessage");
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({
+                            show: true,
+                            flag: "userNotification",
+                          });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.basketImg}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Usercart" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">0</span>
+                    </div>
+                    <button
+                      className="sarahmessagebtn d-none"
+                      onClick={() => {
+                        handleUserProfile("bookchef");
+                      }}
+                    >
+                      <div className="booknowimg">
+                        <img
+                          src={Images.lightcap}
+                          alt="timesquareimage"
+                          className="img-fluid"
+                        />
+                      </div>
+
+                      <p className="availableheading">Book Now</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : pathname === "/user-order-home" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <h1 className="chefCommonHeader">My Orders</h1>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            handleUserProfile("chatmessage");
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({
+                            show: true,
+                            flag: "userNotification",
+                          });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.basketImg}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Usercart" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">0</span>
+                    </div>
+                    <button
+                      className="sarahmessagebtn d-none"
+                      onClick={() => {
+                        handleUserProfile("bookchef");
+                      }}
+                    >
+                      <div className="booknowimg">
+                        <img
+                          src={Images.lightcap}
+                          alt="timesquareimage"
+                          className="img-fluid"
+                        />
+                      </div>
+
+                      <p className="availableheading">Book Now</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              pathname ==="/setting" ?
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <h1 className="chefCommonHeader">Settings</h1>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            handleUserProfile("chatmessage");
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({
+                            show: true,
+                            flag: "userNotification",
+                          });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.basketImg}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Usercart" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">0</span>
+                    </div>
+                    <button
+                      className="sarahmessagebtn d-none"
+                      onClick={() => {
+                        handleUserProfile("bookchef");
+                      }}
+                    >
+                      <div className="booknowimg">
+                        <img
+                          src={Images.lightcap}
+                          alt="timesquareimage"
+                          className="img-fluid"
+                        />
+                      </div>
+
+                      <p className="availableheading">Book Now</p>
+                    </button>
+                  </div>
+                </div>
+              </div> :""
+            )}
           </div>
         </div>
       </div>

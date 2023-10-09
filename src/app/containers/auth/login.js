@@ -175,8 +175,8 @@ const Login = () => {
                       />
                       <label className="border-label">Password</label>
                     </div>
-                    <div className="flexBox justify-content-between mt-5">
-                      <div className="custom-checkbox">
+                    <div className="flexBox justify-content-end mt-5">
+                      {/* <div className="custom-checkbox">
                         <input
                           type="checkbox"
                           id="checkbox"
@@ -188,7 +188,7 @@ const Login = () => {
                         >
                           Keep me Logged in
                         </label>
-                      </div>
+                      </div> */}
                       <Link
                         to="/forgot-password"
                         className="coloredSmallSubheading m-0"

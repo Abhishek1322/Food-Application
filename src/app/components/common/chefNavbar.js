@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
 import Myorder from "./shared/myorderModal";
 import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
+import { useLocation } from "react-router-dom";
 
 const Chef_Navbar = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  console.log("pathnamepathname", pathname);
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -26,97 +29,323 @@ const Chef_Navbar = () => {
   };
 
   const handleUserProfile = (flag) => {
-
     setModalDetail({
-        show: true,
-        flag: flag,
-        type: flag,
+      show: true,
+      flag: flag,
+      type: flag,
     });
     setKey(Math.random());
-}
+  };
 
   return (
     <>
       <div className="main_Setting">
         <div className="navMain">
           <div className="container-fluid p-0">
-            <div className="row align-items-center">
-              <div className="col-lg-6 col-sm-12">
-                {/* ----Home Page Header html */}
-                <h1 className="chefCommonHeader">Hello, <span className="chefHeading">Sarah!</span></h1>
-                {/* ----setting Page Header  
+            {pathname === "/home" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  {/* ----Home Page Header html */}
+                  <h1 className="chefCommonHeader">
+                    Hello, <span className="chefHeading">Sarah!</span>
+                  </h1>
+                  {/* ----setting Page Header  
                 {/* <h1 className="chefCommonHeader">Settings</h1> */}
-                {/* ----Booking Details Page Header html  &  For after booking Details Also */}
-                {/* <div className="insideCommonHeader">
+                  {/* ----Booking Details Page Header html  &  For after booking Details Also */}
+                  {/* <div className="insideCommonHeader">
                   <img src={Images.backArrowpassword} className="innerHeaderArrow" />
                   <h1 className="chefCommonHeader ps-2">Booking Details</h1>
                 </div> */}
 
-                {/* Order Details Header  html */}
-                {/* <div className="insideCommonHeader">
+                  {/* Order Details Header  html */}
+                  {/* <div className="insideCommonHeader">
                   <img src={Images.backArrowpassword} className="innerHeaderArrow" />
                   <h1 className="chefCommonHeader ps-2">Order Details</h1>
                 </div>
               </div> */}
-              </div>
-              <div className="col-lg-6 col-sm-12 text-end">
-                {/* <div className="flexBox">
-                  <div className="headermenu">
-                    <figure className="menuBox">
-                      <img
-                        src={Images.chat}
-                        alt="logo"
-                        className="img-fluid chatIconImage"
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            setModalDetail({ show: true, flag: "chatBox" });
+                            setKey(Math.random());
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
                         onClick={() => {
-                          setModalDetail({ show: true, flag: "chatBox" });
+                          setModalDetail({ show: true, flag: "Notification" });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.chefnavImage}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Myorder" });
                           setKey(Math.random());
                         }}
                       />
-                    </figure>
+                      <span className="cartItems">5</span>
+                    </div>
                   </div>
-                  <div className="headeritem">
-                    <figure
-                      className="menuBox"
-                      onClick={() => {
-                        setModalDetail({ show: true, flag: "Notification" });
-                        setKey(Math.random());
-                      }}
-                    >
-                      <img
-                        src={Images.bellImage}
-                        alt="logo"
-                        className="img-fluid chatIconImage"
-                      />
-                    </figure>
-                  </div>
-                  <div className="menuBox cart">
-                    <img
-                      src={Images.chefnavImage}
-                      alt="logo"
-                      className="img-fluid basketImg"
-                      onClick={() => {
-                        setModalDetail({ show: true, flag: "Myorder" });
-                        setKey(Math.random());
-                      }}
-                    />
-                    <span className="cartItems">5</span>
-                  </div>
-                </div> */}
 
-                {/* booking Common Header */}
-                {/* <div className='orderItems_ flexBox '>
+                  {/* booking Common Header */}
+                  {/* <div className='orderItems_ flexBox '>
                   <button className='cancelOrder_ me-4' >Reject</button>
                   <button className='submitOrder_'>Accept</button>
                 </div> */}
 
-                {/* order Details Header html & order Delivered */}
-                {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
-                {/* Order Delivered Html */}
-                <button className="chefRightHeader m-0 text-end" onClick={() => {
-                  handleUserProfile("verifyOrderDetailModal")
-                }} >Order Delivered</button>
+                  {/* order Details Header html & order Delivered */}
+                  {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
+                  {/* Order Delivered Html */}
+                  {/* <button
+                  className="chefRightHeader m-0 text-end"
+                  onClick={() => {
+                    handleUserProfile("verifyOrderDetailModal");
+                  }}
+                >
+                  Order Delivered
+                </button> */}
+                </div>
               </div>
-            </div>
+            ) : pathname === "/menu" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  {/* ----Home Page Header html */}
+                  <h1 className="chefCommonHeader">Menu</h1>
+                  {/* ----setting Page Header  
+                {/* <h1 className="chefCommonHeader">Settings</h1> */}
+                  {/* ----Booking Details Page Header html  &  For after booking Details Also */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Booking Details</h1>
+                </div> */}
+
+                  {/* Order Details Header  html */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Order Details</h1>
+                </div>
+              </div> */}
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            setModalDetail({ show: true, flag: "chatBox" });
+                            setKey(Math.random());
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Notification" });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.chefnavImage}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Myorder" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">5</span>
+                    </div>
+                  </div>
+
+                  {/* booking Common Header */}
+                  {/* <div className='orderItems_ flexBox '>
+                  <button className='cancelOrder_ me-4' >Reject</button>
+                  <button className='submitOrder_'>Accept</button>
+                </div> */}
+
+                  {/* order Details Header html & order Delivered */}
+                  {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
+                  {/* Order Delivered Html */}
+                  {/* <button
+                  className="chefRightHeader m-0 text-end"
+                  onClick={() => {
+                    handleUserProfile("verifyOrderDetailModal");
+                  }}
+                >
+                  Order Delivered
+                </button> */}
+                </div>
+              </div>
+            ) : pathname === "/new-booking" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  {/* ----Home Page Header html */}
+                  <h1 className="chefCommonHeader">My Bookings</h1>
+                  {/* ----setting Page Header  
+                {/* <h1 className="chefCommonHeader">Settings</h1> */}
+                  {/* ----Booking Details Page Header html  &  For after booking Details Also */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Booking Details</h1>
+                </div> */}
+
+                  {/* Order Details Header  html */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Order Details</h1>
+                </div>
+              </div> */}
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            setModalDetail({ show: true, flag: "chatBox" });
+                            setKey(Math.random());
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Notification" });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.chefnavImage}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Myorder" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">5</span>
+                    </div>
+                  </div>
+
+                  {/* booking Common Header */}
+                  {/* <div className='orderItems_ flexBox '>
+                  <button className='cancelOrder_ me-4' >Reject</button>
+                  <button className='submitOrder_'>Accept</button>
+                </div> */}
+
+                  {/* order Details Header html & order Delivered */}
+                  {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
+                  {/* Order Delivered Html */}
+                  {/* <button
+                  className="chefRightHeader m-0 text-end"
+                  onClick={() => {
+                    handleUserProfile("verifyOrderDetailModal");
+                  }}
+                >
+                  Order Delivered
+                </button> */}
+                </div>
+              </div>
+            ) : pathname === "/setting" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <h1 className="chefCommonHeader">Setting</h1>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            setModalDetail({ show: true, flag: "chatBox" });
+                            setKey(Math.random());
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Notification" });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.chefnavImage}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Myorder" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">5</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -134,12 +363,12 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox"
             ? "chatBox"
             : modalDetail.flag === "Notification"
-              ? "Notification"
-              : modalDetail.flag === "Myorder"
-                ? "myOrder"
-                : modalDetail.flag === "verifyOrderDetailModal"
-                  ? "verifyOrderDetail"
-                  : ""
+            ? "Notification"
+            : modalDetail.flag === "Myorder"
+            ? "myOrder"
+            : modalDetail.flag === "verifyOrderDetailModal"
+            ? "verifyOrderDetail"
+            : ""
         }
         child={
           modalDetail.flag === "chatBox" ? (
@@ -148,13 +377,11 @@ const Chef_Navbar = () => {
             <Notification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Myorder" ? (
             <Myorder close={() => handleOnCloseModal()} />
-          ) :
-            modalDetail.flag === "verifyOrderDetailModal" ? (
-              <VerifyorderDetailsModal close={() => handleOnCloseModal()} />
-            ) :
-              (
-                ""
-              )
+          ) : modalDetail.flag === "verifyOrderDetailModal" ? (
+            <VerifyorderDetailsModal close={() => handleOnCloseModal()} />
+          ) : (
+            ""
+          )
         }
         header={
           modalDetail.flag === "chatBox" ? (
@@ -178,18 +405,15 @@ const Chef_Navbar = () => {
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
             </>
-          ) :
-           modalDetail.flag === "verifyOrderDetailModal" ? (
+          ) : modalDetail.flag === "verifyOrderDetailModal" ? (
             <>
-             <div className="cancelCommonHeader">
-             <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
-              </p>
-             </div>
+              <div className="cancelCommonHeader">
+                <p onClick={handleOnCloseModal} className="modal_cancel">
+                  <img src={Images.modalCancel} className="ModalCancel" />
+                </p>
+              </div>
             </>
-          ):
-          
-          (
+          ) : (
             ""
           )
         }
