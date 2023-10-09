@@ -34,7 +34,7 @@ const OrderPlaceModal = () => {
         <>
             <div className='orderplacesection paymentdonesection'>
                     <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
-                    <p className='accountDeleted mt-3'> Order Placed</p>
+                    <h1 className='accountDeleted mt-3'> Order Placed</h1>
                     <p className='accountdeletetxt mt-2 '>Your order has been
                         successfully placed.</p>
                     <div className='modalfooterbtn'>

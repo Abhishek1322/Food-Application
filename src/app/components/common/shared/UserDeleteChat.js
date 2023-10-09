@@ -7,7 +7,7 @@ const UserDeleteChat = () => {
     <>
       <div className='deletesection paymentdonesection'>
           <img src={Images.DeleteModal} alt='accountdeletedimg' className='img-fluid' />
-          <p className='accountDeleted mt-3'>Delete Chat</p>
+          <h1 className='accountDeleted mt-3'>Delete Chat</h1>
           <p className='accountdeletetxt mt-2 '>Are you sure, you want to delete this chat?</p>
           <div className='modalfooterbtn'>
             <div className='orderItems'>

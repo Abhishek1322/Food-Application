@@ -6,7 +6,7 @@ const ChefBookingDone = () => {
     <>
     <div className='chefbookdone orderplacesection paymentdonesection'>
           <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
-          <p className='accountDeleted mt-3'> Booking Done</p>
+          <h1 className='accountDeleted mt-3'> Booking Done</h1>
           <p className='accountdeletetxt mt-2 '>Your Booking has been
             done successfully .</p>
           <div className='modalfooterbtn'>

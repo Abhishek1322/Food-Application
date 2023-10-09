@@ -5,16 +5,16 @@ const DeleteMenuModal = () => {
   return (
     <>
       <div className='DeleteMenuModal paymentdonesection'>
-          <img src={Images.deleteMenuImg} alt='accountdeletedimg' className='img-fluid' />
-          <p className='accountDeleted mt-3'>Delete Item</p>
-          <p className='accountdeletetxt mt-2 '>Are you sure, you want to delete this menu item?
-          </p>
-          <div className='modalfooterbtn mb-4'>
+        <img src={Images.deleteMenuImg} alt='accountdeletedimg' className='img-fluid' />
+        <p className='accountDeleted mt-3'>Delete Item</p>
+        <p className='accountdeletetxt mt-2 '>Are you sure, you want to delete this menu item?
+        </p>
+        <div className='modalfooterbtn mb-4'>
           <div className='orderItems_ flexBox '>
-                        <button className='cancelOrder_ me-4' >Cancel</button>
-                        <button className='submitOrder_'>Yes, Report</button>
-                    </div>
+            <button className='cancelOrder_ me-4' >Cancel</button>
+            <button className='submitOrder_'>Yes, Report</button>
           </div>
+        </div>
       </div>
 
     </>

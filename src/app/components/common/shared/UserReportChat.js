@@ -4,8 +4,8 @@ const UserReportChat = () => {
     return (
         <>
             <div className='reportchatsection reportchatdrop_'>
-                <p className='reportText_'>Are you sure, you want to report
-                    Sarah Bergstrom?</p>
+                <h4 className='reportText_'>Are you sure, you want to report
+                    Sarah Bergstrom?</h4>
                 <div className="input-container mt-5">
                     <textarea type="" className="Reportborder-input " />
                     <label className="border-label">Give a reason</label>
