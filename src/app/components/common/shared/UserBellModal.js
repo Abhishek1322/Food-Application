@@ -49,9 +49,9 @@ const UserBellModal = () => {
                             <div className='innermodal' onClick={() => {
                                 handleUserProfile("chefchat")
                             }}>
-                                <p className='chefName'>Sarah Bergstrom</p>
+                                <h4 className='chefName'>Sarah Bergstrom</h4>
                                 <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <p className='chatTime'>Just Now</p>
+                                <h6 className='chatTime'>Just Now</h6>
                                 <span className='modalChatmsg'>2</span>
                             </div>
                             <div className='mt-3 me-3'>
@@ -69,9 +69,9 @@ const UserBellModal = () => {
                         <div className='chatModal '>
                             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                             <div className='innermodal'>
-                                <p className='chefName'>Hilda Herzog </p>
+                                <h4 className='chefName'>Hilda Herzog </h4>
                                 <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <p className='chatTime'>Just Now</p>
+                                <h6 className='chatTime'>Just Now</h6>
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
@@ -86,9 +86,9 @@ const UserBellModal = () => {
                         <div className='chatModal '>
                             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                             <div className='innermodal'>
-                                <p className='chefName'>Tom Stoltenberg</p>
+                                <h4 className='chefName'>Tom Stoltenberg</h4>
                                 <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <p className='chatTime'>Just Now</p>
+                                <h6 className='chatTime'>Just Now</h6>
                                 <span className='modalChatmsg'>2</span>
                             </div>
                             <div className='mt-3  me-3'>
@@ -104,9 +104,9 @@ const UserBellModal = () => {
                         <div className='chatModal'>
                             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                             <div className='innermodal'>
-                                <p className='chefName'>Sheryl Lowez</p>
+                                <h4 className='chefName'>Sheryl Lowez</h4>
                                 <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <p className='chatTime'>Just Now</p>
+                                <h6 className='chatTime'>Just Now</h6>
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
@@ -121,9 +121,9 @@ const UserBellModal = () => {
                         <div className='chatModal '>
                             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                             <div className='innermodal'>
-                                <p className='chefName'>Olive Kuvalis</p>
+                                <h4 className='chefName'>Olive Kuvalis</h4>
                                 <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <p className='chatTime'>Just Now</p>
+                                <h6 className='chatTime'>Just Now</h6>
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
@@ -138,9 +138,9 @@ const UserBellModal = () => {
                         <div className='chatModal '>
                             <img src={Images.userProfile} className='userprofile' alt='cartImg' />
                             <div className='innermodal'>
-                                <p className='chefName'>Hilda Herzog </p>
+                                <h4 className='chefName'>Hilda Herzog </h4>
                                 <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <p className='chatTime'>Just Now</p>
+                                <h6 className='chatTime'>Just Now</h6>
                             </div>
                             <div className='mt-3  me-3'>
                                 <div class="dropdown dropend">
@@ -204,8 +204,8 @@ const UserBellModal = () => {
                                     className="img-fluid  headerImg_"
                                 />
                                 <div className='headerProfile'>
-                                    <p className='headerTxt_'>John Smith</p>
-                                    <p className='headerInner_'>Online</p>
+                                    <h2 className='headerTxt_'>John Smith</h2>
+                                    <h6 className='headerInner_'>Online</h6>
                                 </div>
 
 
@@ -221,7 +221,7 @@ const UserBellModal = () => {
                                             handleUserProfile("reportchat")
                                         }}>
                                             <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
-                                            <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
+                                            <h1 className='reportchattxt_ m-0 ps-2'>Report Chat</h1>
                                         </li>
                                         <li className=' chatdroplabel flexBox' onClick={() => {
                                             handleUserProfile("clearchat")

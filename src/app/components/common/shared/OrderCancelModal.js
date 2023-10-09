@@ -6,7 +6,7 @@ const OrderCancelModal = () => {
         <>
             <div className='ordercancelsection paymentdonesection'>
                     <img src={Images.OrderPlace} alt='accountdeletedimg' className='img-fluid' />
-                    <p className='accountDeleted mt-3'>Order Canceled</p>
+                    <h1 className='accountDeleted mt-3'>Order Canceled</h1>
                     <p className='accountdeletetxt mt-2 '>Your amount will be refund Within 1 hour.</p>
                     <div className='modalfooterbtn'>
                         <div className='addfoodbtn'>

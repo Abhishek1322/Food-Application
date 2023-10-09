@@ -88,7 +88,7 @@ const User_Navbar = () => {
                     <span className="cartItems">0</span>
                   </div>
                   <button
-                    className="sarahmessagebtn d-none"
+                    className="sarahmessagebtn "
                     onClick={() => {
                       handleUserProfile("bookchef");
                     }}

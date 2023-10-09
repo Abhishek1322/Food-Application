@@ -35,8 +35,8 @@ const UserClearChat = () => {
     <>
       <div className='chefclearchatsection deletesection paymentdonesection'>
         <img src={Images.DeleteModal} alt='accountdeletedimg' className='img-fluid' />
-        <p className='accountDeleted mt-3'>Clear Chat</p>
-        <p className='accountdeletetxt mt-2 '>Are you sure, you want to clear all chat?</p>
+        <h1 className='accountDeleted mt-3'>Clear Chat</h1>
+        <h4 className='accountdeletetxt mt-2 '>Are you sure, you want to clear all chat?</h4>
         <div className='modalfooterbtn'>
           <div className='orderItems'>
             <button className='cancelOrder'>Cancel</button>
@@ -79,8 +79,8 @@ const UserClearChat = () => {
                 className="img-fluid  headerImg_"
               />
               <div className='headerProfile'>
-                <p className='headerTxt_'>John Smith</p>
-                <p className='headerInner_'>Online</p>
+                <h2 className='headerTxt_'>John Smith</h2>
+                <h6 className='headerInner_'>Online</h6>
               </div>
 
 

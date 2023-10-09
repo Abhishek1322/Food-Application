@@ -62,21 +62,21 @@ const UserMyProfile = () => {
                 <div className="profileinfosection">
                   <div className="nameprofile">
                     <div className="firstname">
-                      <p className="dummyText p-0">First Name</p>
-                      <p className="nameheading">
+                      <h4 className="dummyText p-0">First Name</h4>
+                      <h2 className="nameheading">
                         {profile?.userInfo?.firstName}
-                      </p>
+                      </h2>
                     </div>
                     <div className="lastname">
-                      <p className="dummyText p-0">Last Name</p>
-                      <p className="nameheading">
+                      <h4 className="dummyText p-0">Last Name</h4>
+                      <h2 className="nameheading">
                         {profile?.userInfo?.lastName}
-                      </p>
+                      </h2>
                     </div>
                   </div>
                   <div className="emailheading">
-                    <p className="dummyText p-0">Email</p>
-                    <p className="nameheading">{profile?.email}</p>
+                    <h4 className="dummyText p-0">Email</h4>
+                    <h2 className="nameheading">{profile?.email}</h2>
                   </div>
                 </div>
               </div>
