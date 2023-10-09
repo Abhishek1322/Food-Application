@@ -12,10 +12,14 @@ import {
 } from "../../slices/web";
 
 function* chefLists(action) {
+  let targetUtl = `${ApiPath.webApiPath.CHEF_LIST}?page=${action.payload.page}&limit=${action.payload.limit}&`;
+  if (action.payload.address) {
+    targetUtl += `address=${action.payload.address}`;
+  }
   try {
     const resp = yield call(
       ApiClient.get,
-      (action.url = `${ApiPath.webApiPath.CHEF_LIST}?page=${action.payload.page}&limit=${action.payload.limit}`),
+      (action.url = targetUtl),
       (action.payload = action.payload)
     );
     if (resp.status) {
@@ -25,7 +29,6 @@ function* chefLists(action) {
       throw resp;
     }
   } catch (e) {
-    console.log("erorrrrr", e);
     yield put(onErrorStopLoad());
     toast.error(e.response.data.message);
   }

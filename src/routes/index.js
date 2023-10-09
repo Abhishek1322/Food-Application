@@ -11,11 +11,9 @@ const Router = () => {
 
   return (
     <>
-    
       <Routes>
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
-        
           {authData?.userInfo?.role === "user" && (
             <Route
               path="/setting"
@@ -90,6 +88,14 @@ const Router = () => {
               }
             />
           )}
+          <Route
+            path="/request"
+            element={
+              <ChefRoute role="chef">
+                <Containers.RequestPage />
+              </ChefRoute>
+            }
+          />
           <Route
             path="/chef-profile"
             element={
@@ -180,22 +186,62 @@ const Router = () => {
 
         {/* PUBLIC_ROUTES */}
         <Route element={<Layouts.AuthLayout />}>
-          <Route path="/" element={<Containers.Login />} />
-          <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
-          <Route path="/verification" element={<Containers.Verification />} />
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <Containers.Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/choose-roles"
+            element={
+              <PublicRoute>
+                <Containers.ChooseRoles />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/verification"
+            element={
+              <PublicRoute>
+                <Containers.Verification />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/create-account/:role"
-            element={<Containers.CreateAccount />}
+            element={
+              <PublicRoute>
+                <Containers.CreateAccount />
+              </PublicRoute>
+            }
           />
           <Route
             path="/forgot-password"
-            element={<Containers.ForgotPassword />}
+            element={
+              <PublicRoute>
+                <Containers.ForgotPassword />
+              </PublicRoute>
+            }
           />
           <Route
             path="/recover-password"
-            element={<Containers.Recoverpassword />}
+            element={
+              <PublicRoute>
+                <Containers.Recoverpassword />
+              </PublicRoute>
+            }
           />
-          <Route path="/enter-otp" element={<Containers.EnterOtp />} />
+          <Route
+            path="/enter-otp"
+            element={
+              <PublicRoute>
+                <Containers.EnterOtp />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/change-password"
             element={<Containers.ChangePassword />}

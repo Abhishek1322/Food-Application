@@ -108,75 +108,75 @@ const UserEditProfile = () => {
 
   return (
     <>
-      <div className="userEditprofileSection usereditsection ">
-          <div className="row align-items-center">
-            <div className="col-lg-5 col-md-12">
-              <div className="editleft">
-                <img
-                  src={profileUrl ? profileUrl : Images.UserEditProfile}
-                  alt="chefProfileimg"
-                  className="chefprofileimg"
-                />
-                <div className="editprofileimg">
-                  <div className="postAd_upload_icon">
-                    <div className="inputfile-box active">
-                      <div {...getRootProps()} className="file-button text-end">
-                        <input {...getInputProps()} />
-                        <img
-                          src={Images.editProfile}
-                          alt="editprofileimg"
-                          className="img-fluid"
-                        />
-                      </div>
+      <div className="userEditprofileSection usereditsection">
+        <div className="row align-items-center">
+          <div className="col-lg-5 col-md-12">
+            <div className="editleft">
+              <img
+                src={profileUrl ? profileUrl : Images.dummyProfile}
+                alt="chefProfileimg"
+                className="chefprofileimg"
+              />
+              <div className="editprofileimg">
+                <div className="postAd_upload_icon">
+                  <div className="inputfile-box active">
+                    <div {...getRootProps()} className="file-button text-end">
+                      <input {...getInputProps()} />
+                      <img
+                        src={Images.editProfile}
+                        alt="editprofileimg"
+                        className="img-fluid"
+                      />
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-7 col-md-12">
-              <div className="editright">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <div className="input-container mt-5">
-                        <input
-                          type="text"
-                          className="border-input"
-                          placeholder="Enter your first name"
-                          value={firstName}
-                          onChange={(e) => setFirstName(e.target.value)}
-                        />
-                        <label className="border-label">First Name</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <div className="input-container mt-5">
-                        <input
-                          type="text"
-                          value={lastName}
-                          className="border-input"
-                          placeholder="Enter your last name"
-                          onChange={(e) => setLastName(e.target.value)}
-                        />
-                        <label className="border-label">Last Name</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="buttonBox mt-5">
-                    <button
-                      onClick={handleUpdateProfile}
-                      role="button"
-                      className="smallBtn"
-                    >
-                      Update
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className="col-lg-7 col-md-12">
+            <div className="editright">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="input-container mt-5">
+                      <input
+                        type="text"
+                        className="border-input"
+                        placeholder="Enter your first name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                      <label className="border-label">First Name</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="input-container mt-5">
+                      <input
+                        type="text"
+                        value={lastName}
+                        className="border-input"
+                        placeholder="Enter your last name"
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                      <label className="border-label">Last Name</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="buttonBox mt-5">
+                  <button
+                    onClick={handleUpdateProfile}
+                    role="button"
+                    className="smallBtn"
+                  >
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

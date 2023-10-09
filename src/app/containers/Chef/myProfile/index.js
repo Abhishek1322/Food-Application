@@ -136,7 +136,7 @@ const MyProfile = () => {
               {/* left section  */}
               <div className="profileleft">
                 <img
-                  src={profileUrl ? profileUrl : Images.chefProfile}
+                  src={profileUrl ? profileUrl : Images.dummyProfile}
                   alt="chefProfileimg"
                   className="chefprofileimg"
                 />

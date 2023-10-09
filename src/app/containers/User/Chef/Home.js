@@ -14,17 +14,18 @@ const UserChefHome = () => {
   const [chefListData, setChefListData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
+  const [search, setSearch] = useState("");
 
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, []);
+  }, [search]);
 
   const getChefList = (page = currentPage) => {
     let params = {
-      page: currentPage,
+      page: page,
       limit: 12,
-      address: "ds",
+      address: search,
     };
 
     dispatch(
@@ -50,6 +51,13 @@ const UserChefHome = () => {
     <>
       <div className="mainBoxOuter">
         <div className="cheffilter flexBox">
+          <div className="searchSection">
+            <input
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search Chef near you..."
+              type="search"
+            />
+          </div>
           <p className="chefName">Filter By:</p>
           <div className="dropdown">
             <button
@@ -127,7 +135,7 @@ const UserChefHome = () => {
           </div>
         </div>
         <div className="container-fluid">
-          <OwlCarousel
+          {/* <OwlCarousel
             className="owl-theme"
             loop={true}
             margin={10}
@@ -206,37 +214,43 @@ const UserChefHome = () => {
                 <h6 className="sliderheading">Meat Chef</h6>
               </div>
             </div>
-          </OwlCarousel>
+          </OwlCarousel> */}
           <div className="row">
-            {chefListData?.map((item, index) => (
-              <div key={index} className="col-lg-2">
-                <div className="outerBox text-center">
-                  <figure className="chefDetails mb-3">
-                    <img
-                      src={Images.UserICon}
-                      alt="UserICon"
-                      className="img-fluid UserICon"
-                    />
-                  </figure>
-                  <h6 className="smallHeading">
-                    {item.userInfo.firstName} {item.userInfo.lastName}
-                  </h6>
-                  <button className="expBtn" type="button">
-                    {item.chefInfo.experience} Year Exp.
-                  </button>
-                  <div className="flexBox justify-content-between mt-3">
-                    <article className="ratingBox">
-                      <span className="coloredText">
-                        <i className="las la-star startIcon"></i>4.5
-                      </span>
-                    </article>
-                    <article>
-                      <span className="uploadText">845 reviews</span>
-                    </article>
+            {chefListData && chefListData.length > 0 ? (
+              <>
+                {chefListData?.map((item, index) => (
+                  <div key={index} className="col-lg-2">
+                    <div className="outerBox text-center">
+                      <figure className="chefDetails mb-3">
+                        <img
+                          src={Images.UserICon}
+                          alt="UserICon"
+                          className="img-fluid UserICon"
+                        />
+                      </figure>
+                      <h6 className="smallHeading">
+                        {item.userInfo.firstName} {item.userInfo.lastName}
+                      </h6>
+                      <button className="expBtn" type="button">
+                        {item.chefInfo.experience} Year Exp.
+                      </button>
+                      <div className="flexBox justify-content-between mt-3">
+                        <article className="ratingBox">
+                          <span className="coloredText">
+                            <i className="las la-star startIcon"></i>4.5
+                          </span>
+                        </article>
+                        <article>
+                          <span className="uploadText">845 reviews</span>
+                        </article>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
+              </>
+            ) : (
+              <p>No data found</p>
+            )}
           </div>
         </div>
         {chefListData && chefListData.length > 0 && (
