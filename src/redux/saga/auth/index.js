@@ -280,7 +280,7 @@ function* userLogin(action) {
     if (resp.status) {
       localStorage.setItem(
         "authToken",
-        resp.data && resp.data.data.token ? resp.data.data.token : ""
+        resp.data.data.token ? resp.data.data.token : ""
       );
       localStorage.setItem(
         "userId",
@@ -290,13 +290,9 @@ function* userLogin(action) {
         "id",
         resp.data.data.id ? resp.data.data.userId : ""
       );
-      console.log("checkkkkk", resp);
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
-      // if(resp.data.data.chefInfo.documentVerified){
-        toast.success(resp.data.message);
-      // }
-      
+      toast.success(resp.data.message);
     } else {
       throw resp;
     }

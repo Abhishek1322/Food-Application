@@ -88,7 +88,7 @@ const Router = () => {
               }
             />
           )}
-         
+
           <Route
             path="/chef-profile"
             element={
@@ -190,49 +190,49 @@ const Router = () => {
           <Route
             path="/choose-roles"
             element={
-              <PublicRoute>
-                <Containers.ChooseRoles />
-              </PublicRoute>
+              // <PublicRoute>
+              <Containers.ChooseRoles />
+              // </PublicRoute>
             }
           />
           <Route
             path="/verification"
             element={
-              <PublicRoute>
-                <Containers.Verification />
-              </PublicRoute>
+              // <PublicRoute>
+              <Containers.Verification />
+              // </PublicRoute>
             }
           />
           <Route
             path="/create-account/:role"
             element={
-              <PublicRoute>
-                <Containers.CreateAccount />
-              </PublicRoute>
+              // <PublicRoute>
+              <Containers.CreateAccount />
+              // </PublicRoute>
             }
           />
           <Route
             path="/forgot-password"
             element={
-              <PublicRoute>
-                <Containers.ForgotPassword />
-              </PublicRoute>
+              // <PublicRoute>
+              <Containers.ForgotPassword />
+              // </PublicRoute>
             }
           />
           <Route
             path="/recover-password"
             element={
-              <PublicRoute>
-                <Containers.Recoverpassword />
-              </PublicRoute>
+              // <PublicRoute>
+              <Containers.Recoverpassword />
+              // </PublicRoute>
             }
           />
           <Route
             path="/enter-otp"
             element={
-              <PublicRoute>
-                <Containers.EnterOtp />
-              </PublicRoute>
+              // <PublicRoute>
+              <Containers.EnterOtp />
+              // </PublicRoute>
             }
           />
           <Route
@@ -277,12 +277,12 @@ const Router = () => {
               </UserRoute>
             }
           />
-           <Route
+          <Route
             path="/request"
             element={
-              <ChefRoute role="chef">
-                <Containers.RequestPage />
-              </ChefRoute>
+              // <ChefRoute role="request">
+              <Containers.RequestPage />
+              // </ChefRoute>
             }
           />
         </Route>
