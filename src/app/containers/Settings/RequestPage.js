@@ -67,13 +67,15 @@ const RequestPage = () => {
                 <br /> It will take some time.
               </p>
               <div className="settingBox d-flex align-items-center justify-content-center">
-                <img
+                {/* <img
                   onClick={() => handleLogout()}
                   src={Images.logout}
                   alt="logo"
                   className="img-fluid settingIcon "
-                />
-                <p className="settingBoxtxt ms-3 mb-0">Logout</p>
+                /> */}
+                <Link to="/">
+                  <p className="settingBoxtxt ms-3 mb-0">Back to login</p>
+                </Link>
               </div>
             </div>
           </div>

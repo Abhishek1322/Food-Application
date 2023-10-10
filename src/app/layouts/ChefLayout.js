@@ -1,31 +1,32 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation,Navigate } from "react-router-dom";
 import Chef_Sidebar from "../components/common/chefSidebar";
 import Chef_Navbar from "../components/common/chefNavbar";
+import { useAuthSelector } from "../../redux/selector/auth";
 
-const Chef_Layout = () => {
+const Chef_Layout = ({ role, children }) => {
   const location = useLocation();
-  const pathName = location.pathname;
-  const authRoutes = ["/"];
+  const authData = useAuthSelector();
+  const isAuthenticated = localStorage.getItem("authToken");
 
+  
   return (
     <>
-      {authRoutes.includes(pathName) ? (
-        <>
+      {isAuthenticated && authData?.userInfo?.chefInfo?.documentVerified && authData?.userInfo?.role === "chef"
+      ? 
+        <div className="mainBox">
+          <Chef_Sidebar />
           <main className="main">
+            <Chef_Navbar />
             <Outlet />
           </main>
-        </>
-      ) : (
-        <>
-          <div className="mainBox">
-            <Chef_Sidebar />
-            <main className="main">
-              <Chef_Navbar />
-              <Outlet />
-            </main>
-          </div>
-        </>
+        </div>
+      : (
+        isAuthenticated && authData?.userInfo?.role === "user"
+        ? 
+          <Navigate to="/home-user" />
+        :
+          <Navigate to="/" />          
       )}
     </>
   );

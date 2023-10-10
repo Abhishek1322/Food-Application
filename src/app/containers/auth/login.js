@@ -62,12 +62,12 @@ const Login = () => {
           console.log("respttttected", res);
           if (res.status === 200) {
             if (res.data.data.role === "chef") {
-              // if (res.data.data.chefInfo.documentVerified) {
-              navigate("/setup-profile");
-              // } else {
-              //   toast.error("Please wait for admin approval");
-              //   return;
-              // }
+              if (res.data.data.chefInfo.documentVerified) {
+                navigate("/home");
+              } else {
+                toast.error("Please wait for admin approval");
+                return;
+              }
             } else {
               navigate("/home-user");
             }

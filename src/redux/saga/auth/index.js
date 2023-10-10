@@ -224,6 +224,10 @@ function* verifyOtp(action) {
       (action.payload = action.payload)
     );
     if (resp.status) {
+      localStorage.setItem(
+        "authToken",
+        resp.data && resp.data.data.token ? resp.data.data.token : ""
+      );
       yield put(setVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
@@ -253,10 +257,11 @@ function* userSignUp(action) {
         "userId",
         resp.data.data.id ? resp.data.data.id : ""
       );
-      localStorage.setItem(
-        "authToken",
-        resp.data && resp.data.data.token ? resp.data.data.token : ""
-      );
+
+      if(resp.data.data.role === "chef") {
+        localStorage.setItem("signupFlag",true);
+      }
+
       yield put(setUserSignup(resp.data.data));
       yield call(action.payload.cb, resp);
       toast.success(resp.data.message);
@@ -292,7 +297,10 @@ function* userLogin(action) {
       );
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
-      toast.success(resp.data.message);
+      console.log("resprespresp", resp);
+      if (resp.data.data.chefInfo.documentVerified) {
+        toast.success(resp.data.message);
+      }
     } else {
       throw resp;
     }

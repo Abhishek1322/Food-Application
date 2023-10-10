@@ -13,90 +13,42 @@ const Router = () => {
     <>
       <Routes>
         {/* USER_ROUTES */}
-        <Route element={<Layouts.UserLayout />}>
+        <Route
+          element={
+              <Layouts.UserLayout />
+          }
+        >
           {authData?.userInfo?.role === "user" && (
-            <Route
-              path="/setting"
-              element={
-                <UserRoute role="user">
-                  {" "}
-                  <Containers.SettingMain />
-                </UserRoute>
-              }
-            />
+            <Route path="/setting" element={<Containers.SettingMain />} />
           )}
-          <Route
-            path="/home-user"
-            element={
-              <UserRoute role="user">
-                <Containers.HomeUser />
-              </UserRoute>
-            }
-          />
-          <Route
-            path="/chef-details"
-            element={
-              <UserRoute role="user">
-                <Containers.ChefDetails />
-              </UserRoute>
-            }
-          />
-          <Route
-            path="/user-chef-home"
-            element={
-              <UserRoute role="user">
-                <Containers.UserChefHome />
-              </UserRoute>
-            }
-          />
+          <Route path="/home-user" element={<Containers.HomeUser />} />
+          <Route path="/chef-details" element={<Containers.ChefDetails />} />
+          <Route path="/user-chef-home" element={<Containers.UserChefHome />} />
           <Route
             path="/user-order-home"
-            element={
-              <UserRoute role="user">
-                <Containers.UserOrderHome />
-              </UserRoute>
-            }
+            element={<Containers.UserOrderHome />}
           />
           <Route
             path="/user-myprofile"
-            element={
-              <UserRoute role="user">
-                <Containers.UserMyProfile />
-              </UserRoute>
-            }
+            element={<Containers.UserMyProfile />}
           />
           <Route
             path="/user-editprofile"
-            element={
-              <UserRoute role="user">
-                <Containers.UserEditProfile />
-              </UserRoute>
-            }
+            element={<Containers.UserEditProfile />}
           />
         </Route>
 
         {/* CHEF_ROUTES */}
-        <Route element={<Layouts.Chef_Layout />}>
+        <Route
+          element={
+              <Layouts.Chef_Layout />
+          }
+        >
           {authData?.userInfo?.role === "chef" && (
-            <Route
-              path="/setting"
-              element={
-                // <ChefRoute role="chef">
-
-                <Containers.SettingMain />
-                // </ChefRoute>
-              }
-            />
+            <Route path="/setting" element={<Containers.SettingMain />} />
           )}
 
-          <Route
-            path="/chef-profile"
-            element={
-              <ChefRoute role="chef">
-                <Containers.myprofile />
-              </ChefRoute>
-            }
-          />
+          <Route path="/chef-profile" element={<Containers.myprofile />} />
           <Route
             path="/edit-chef-profile"
             element={<Containers.EditProfile />}
@@ -120,121 +72,45 @@ const Router = () => {
           />
           <Route
             path="/edit-chef-profile"
-            element={
-              <ChefRoute role="chef">
-                <Containers.EditProfile />
-              </ChefRoute>
-            }
+            element={<Containers.EditProfile />}
           />
-          <Route
-            path="/new-booking"
-            element={
-              <ChefRoute role="chef">
-                <Containers.NewBooking />
-              </ChefRoute>
-            }
-          />
-          <Route
-            path="/menu"
-            element={
-              <ChefRoute role="chef">
-                <Containers.Menu />
-              </ChefRoute>
-            }
-          />
-          <Route
-            path="/home"
-            element={
-              <ChefRoute role="chef">
-                <Containers.HomeRequsest />
-              </ChefRoute>
-            }
-          />
+          <Route path="/new-booking" element={<Containers.NewBooking />} />
+          <Route path="/menu" element={<Containers.Menu />} />
+          <Route path="/home" element={<Containers.HomeRequsest />} />
           <Route
             path="/booking-details"
-            element={
-              <ChefRoute role="chef">
-                <Containers.BookingDetails />
-              </ChefRoute>
-            }
+            element={<Containers.BookingDetails />}
           />
 
-          <Route
-            path="/order-details"
-            element={
-              <ChefRoute role="chef">
-                <Containers.OrderDetails />
-              </ChefRoute>
-            }
-          />
+          <Route path="/order-details" element={<Containers.OrderDetails />} />
           <Route
             path="/anotherorder-detail"
-            element={
-              <ChefRoute role="chef">
-                <Containers.AnotherOrderdetail />
-              </ChefRoute>
-            }
+            element={<Containers.AnotherOrderdetail />}
           />
         </Route>
 
         {/* PUBLIC_ROUTES */}
         <Route element={<Layouts.AuthLayout />}>
-          <Route
-            path="/"
-            element={
-              <PublicRoute>
-                <Containers.Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/choose-roles"
-            element={
-              // <PublicRoute>
-              <Containers.ChooseRoles />
-              // </PublicRoute>
-            }
-          />
-          <Route
-            path="/verification"
-            element={
-              // <PublicRoute>
-              <Containers.Verification />
-              // </PublicRoute>
-            }
-          />
+          <Route path="/" element={<Containers.Login />} />
+          <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
+          <Route path="/verification" element={<Containers.Verification />} />
           <Route
             path="/create-account/:role"
-            element={
-              // <PublicRoute>
-              <Containers.CreateAccount />
-              // </PublicRoute>
-            }
+            element={<Containers.CreateAccount />}
           />
+
+          <Route path="/setup-profile" element={<Containers.SetupProfile />} />
+          <Route path="/request" element={<Containers.RequestPage />} />
+
           <Route
             path="/forgot-password"
-            element={
-              // <PublicRoute>
-              <Containers.ForgotPassword />
-              // </PublicRoute>
-            }
+            element={<Containers.ForgotPassword />}
           />
           <Route
             path="/recover-password"
-            element={
-              // <PublicRoute>
-              <Containers.Recoverpassword />
-              // </PublicRoute>
-            }
+            element={<Containers.Recoverpassword />}
           />
-          <Route
-            path="/enter-otp"
-            element={
-              // <PublicRoute>
-              <Containers.EnterOtp />
-              // </PublicRoute>
-            }
-          />
+          <Route path="/enter-otp" element={<Containers.EnterOtp />} />
           <Route
             path="/change-password"
             element={<Containers.ChangePassword />}
@@ -243,13 +119,13 @@ const Router = () => {
             path="/delete-account"
             element={<Containers.DeleteAccount />}
           />
-          <Route path="/loading" element={<Containers.Loading />} />
-          <Route path="/loading-page" element={<Containers.Loadingpage />} />
+          {/* <Route path="/loading" element={<Containers.Loading />} />
+          <Route path="/loading-page" element={<Containers.Loadingpage />} /> */}
           <Route
             path="/account-deleted"
             element={<Containers.AccountDeleted />}
           />
-          <Route
+          {/* <Route
             path="/term-condition"
             element={<Containers.TermAndCondition />}
           />
@@ -257,16 +133,8 @@ const Router = () => {
           <Route
             path="/privacy-policy"
             element={<Containers.PrivacyPolicy />}
-          />
-          <Route
-            path="/setup-profile"
-            element={
-              <ChefRoute role="chef">
-                <Containers.SetupProfile />
-              </ChefRoute>
-            }
-          />
-          <Route path="/cart" element={<Containers.Cart />} />
+          /> */}
+          {/* <Route path="/cart" element={<Containers.Cart />} />
           <Route path="/chat" element={<Containers.Chat />} />
           <Route path="/notification" element={<Containers.Notification />} />
           <Route
@@ -276,15 +144,7 @@ const Router = () => {
                 <Containers.UserManageAddress />
               </UserRoute>
             }
-          />
-          <Route
-            path="/request"
-            element={
-              // <ChefRoute role="request">
-              <Containers.RequestPage />
-              // </ChefRoute>
-            }
-          />
+          /> */}
         </Route>
       </Routes>
     </>
