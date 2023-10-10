@@ -508,13 +508,17 @@ input:-webkit-autofill:active {
   background: #fcefe5;
   display: inline-block;
   padding: 16px 9px;
-  margin: 2rem 10px;
+  margin-top: 2rem;
+  margin-right: 8px;
   color: #2e3333;
   font-family: Crimson Text;
   font-size: 12px;
   font-weight: 600;
   width: 50px;
   text-align: center;
+}
+.availability .weekDays {
+  width: 38px;
 }
 
 .weekDays.active {
@@ -569,8 +573,9 @@ input:-webkit-autofill:active {
 
 .DeleteIcon {
   position: absolute;
-  top: 20px;
+  top: 35px;
   cursor: pointer;
+  left: 40px;
 }
 
 /* End setup profile page */
