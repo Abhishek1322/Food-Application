@@ -88,14 +88,7 @@ const Router = () => {
               }
             />
           )}
-          <Route
-            path="/request"
-            element={
-              <ChefRoute role="chef">
-                <Containers.RequestPage />
-              </ChefRoute>
-            }
-          />
+         
           <Route
             path="/chef-profile"
             element={
@@ -282,6 +275,14 @@ const Router = () => {
               <UserRoute role="user">
                 <Containers.UserManageAddress />
               </UserRoute>
+            }
+          />
+           <Route
+            path="/request"
+            element={
+              <ChefRoute role="chef">
+                <Containers.RequestPage />
+              </ChefRoute>
             }
           />
         </Route>

@@ -290,9 +290,13 @@ function* userLogin(action) {
         "id",
         resp.data.data.id ? resp.data.data.userId : ""
       );
+      console.log("checkkkkk", resp);
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
-      toast.success(resp.data.message);
+      // if(resp.data.data.chefInfo.documentVerified){
+        toast.success(resp.data.message);
+      // }
+      
     } else {
       throw resp;
     }
