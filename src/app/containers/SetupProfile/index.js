@@ -238,7 +238,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // select address
@@ -249,7 +249,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // week days
@@ -398,13 +398,12 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${
-                                          activeTab === "restaurant"
-                                            ? "active"
-                                            : path == "/restaurant"
+                                        className={`chefType ${activeTab === "restaurant"
+                                          ? "active"
+                                          : path == "/restaurant"
                                             ? "active"
                                             : ""
-                                        }`}
+                                          }`}
                                         onClick={() =>
                                           setActiveTab("restaurant")
                                         }
@@ -423,13 +422,12 @@ const SetupProfile = () => {
                                         />
                                       </li>
                                       <li
-                                        className={`chefType ${
-                                          activeTab === "home"
-                                            ? "active"
-                                            : path == "/home"
+                                        className={`chefType ${activeTab === "home"
+                                          ? "active"
+                                          : path == "/home"
                                             ? "active"
                                             : ""
-                                        }`}
+                                          }`}
                                         onClick={() => setActiveTab("home")}
                                       >
                                         Home
@@ -514,15 +512,15 @@ const SetupProfile = () => {
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
                                                   ? {
-                                                      backgroundColor:
-                                                        "#41b6e6",
-                                                      cursor: "pointer",
-                                                    }
+                                                    backgroundColor:
+                                                      "#41b6e6",
+                                                    cursor: "pointer",
+                                                  }
                                                   : {
-                                                      backgroundColor:
-                                                        "#ffffff",
-                                                      cursor: "pointer",
-                                                    };
+                                                    backgroundColor:
+                                                      "#ffffff",
+                                                    cursor: "pointer",
+                                                  };
                                                 return (
                                                   <div
                                                     {...getSuggestionItemProps(
@@ -649,7 +647,7 @@ const SetupProfile = () => {
                                   ))}
                                 </ul>
                                 <div className="timeSlotBox pb-5">
-                                  <h6 class="HeadingsmallText">Time Slots</h6>
+                                  <h6 class="HeadingsmallText">Availability </h6>
                                   <hr className="borderBottom"></hr>
 
                                   {showTimeSlot && (
@@ -673,25 +671,26 @@ const SetupProfile = () => {
                                               className="ClockIcon"
                                             />
                                           </div> */}
-                                            <div className="availableTime flexBox">
-                                              <p className="border-input">
-                                                From
-                                              </p>
-
-                                              <img
-                                                src={Images.availabilityClock}
-                                                className="clockImg pe-1"
-                                              />
-                                              <TimePicker
-                                                disableClock
-                                                clearIcon=""
-                                                onChange={handleStartTime}
-                                                value={startTime}
-                                                format="h:mm a"
-                                                showLeadingZeros={false}
-                                                amPmAriaLabel="Select AM/PM"
-                                                className="custom-time-picker customPicker"
-                                              />
+                                            <div className="myavailability mt-4">
+                                              <div className="availability_Box ">
+                                                <p className="innerBoxText">From</p>
+                                                <div className="availableTime flexBox ">
+                                                  <img
+                                                    src={Images.availabilityClock}
+                                                    className="clockImg pe-1"
+                                                  />
+                                                  <TimePicker
+                                                    disableClock
+                                                    clearIcon=""
+                                                    onChange={handleStartTime}
+                                                    value={startTime}
+                                                    format="h:mm a"
+                                                    showLeadingZeros={false}
+                                                    amPmAriaLabel="Select AM/PM"
+                                                    className="custom-time-picker customPicker"
+                                                  />
+                                                </div>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
@@ -708,8 +707,7 @@ const SetupProfile = () => {
                                               className="ClockIcon"
                                             />
                                           </div> */}
-                                            <div className="availableTime flexBox">
-                                              <p className="border-input">
+                                            {/* <p className="border-input">
                                                 From
                                               </p>
 
@@ -726,7 +724,27 @@ const SetupProfile = () => {
                                                 showLeadingZeros={false}
                                                 amPmAriaLabel="Select AM/PM"
                                                 className="custom-time-picker customPicker"
-                                              />
+                                              /> */}
+                                            <div className="myavailability mt-4 ">
+                                              <div className="availability_Box  ms-3">
+                                                <p className="innerBoxText">To</p>
+                                                <div className="availableTime flexBox ">
+                                                  <img
+                                                    src={Images.availabilityClock}
+                                                    className="clockImg pe-1"
+                                                  />
+                                                  <TimePicker
+                                                    disableClock
+                                                    clearIcon=""
+                                                    onChange={handleStartTime}
+                                                    value={startTime}
+                                                    format="h:mm a"
+                                                    showLeadingZeros={false}
+                                                    amPmAriaLabel="Select AM/PM"
+                                                    className="custom-time-picker customPicker"
+                                                  />
+                                                </div>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
