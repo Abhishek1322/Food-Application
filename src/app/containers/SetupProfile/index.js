@@ -173,7 +173,7 @@ const SetupProfile = () => {
       );
     } else if (flag == 2) {
       let params = {
-        step: "3",
+        step: "2",
         availability: availability.filter(
           (value) =>
             value.day !== "" &&
@@ -198,7 +198,7 @@ const SetupProfile = () => {
         return;
       }
       let params = {
-        step: "2",
+        step: "3",
         verificationDocument: documentUrl,
       };
       dispatch(
@@ -206,7 +206,7 @@ const SetupProfile = () => {
           ...params,
           cb(res) {
             if (res.status === 200) {
-              navigate("/home");
+              navigate("/request");
             }
           },
         })
@@ -238,7 +238,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   // select address
@@ -249,7 +249,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   // week days
@@ -398,12 +398,13 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${activeTab === "restaurant"
-                                          ? "active"
-                                          : path == "/restaurant"
+                                        className={`chefType ${
+                                          activeTab === "restaurant"
+                                            ? "active"
+                                            : path == "/restaurant"
                                             ? "active"
                                             : ""
-                                          }`}
+                                        }`}
                                         onClick={() =>
                                           setActiveTab("restaurant")
                                         }
@@ -422,12 +423,13 @@ const SetupProfile = () => {
                                         />
                                       </li>
                                       <li
-                                        className={`chefType ${activeTab === "home"
-                                          ? "active"
-                                          : path == "/home"
+                                        className={`chefType ${
+                                          activeTab === "home"
+                                            ? "active"
+                                            : path == "/home"
                                             ? "active"
                                             : ""
-                                          }`}
+                                        }`}
                                         onClick={() => setActiveTab("home")}
                                       >
                                         Home
@@ -512,15 +514,15 @@ const SetupProfile = () => {
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
                                                   ? {
-                                                    backgroundColor:
-                                                      "#41b6e6",
-                                                    cursor: "pointer",
-                                                  }
+                                                      backgroundColor:
+                                                        "#41b6e6",
+                                                      cursor: "pointer",
+                                                    }
                                                   : {
-                                                    backgroundColor:
-                                                      "#ffffff",
-                                                    cursor: "pointer",
-                                                  };
+                                                      backgroundColor:
+                                                        "#ffffff",
+                                                      cursor: "pointer",
+                                                    };
                                                 return (
                                                   <div
                                                     {...getSuggestionItemProps(
@@ -647,7 +649,9 @@ const SetupProfile = () => {
                                   ))}
                                 </ul>
                                 <div className="timeSlotBox pb-5">
-                                  <h6 class="HeadingsmallText">Availability </h6>
+                                  <h6 class="HeadingsmallText">
+                                    Availability{" "}
+                                  </h6>
                                   <hr className="borderBottom"></hr>
 
                                   {showTimeSlot && (
@@ -673,10 +677,14 @@ const SetupProfile = () => {
                                           </div> */}
                                             <div className="myavailability mt-4">
                                               <div className="availability_Box ">
-                                                <p className="innerBoxText">From</p>
+                                                <p className="innerBoxText">
+                                                  From
+                                                </p>
                                                 <div className="availableTime flexBox ">
                                                   <img
-                                                    src={Images.availabilityClock}
+                                                    src={
+                                                      Images.availabilityClock
+                                                    }
                                                     className="clockImg pe-1"
                                                   />
                                                   <TimePicker
@@ -727,17 +735,21 @@ const SetupProfile = () => {
                                               /> */}
                                             <div className="myavailability mt-4 ">
                                               <div className="availability_Box  ms-3">
-                                                <p className="innerBoxText">To</p>
+                                                <p className="innerBoxText">
+                                                  To
+                                                </p>
                                                 <div className="availableTime flexBox ">
                                                   <img
-                                                    src={Images.availabilityClock}
+                                                    src={
+                                                      Images.availabilityClock
+                                                    }
                                                     className="clockImg pe-1"
                                                   />
                                                   <TimePicker
                                                     disableClock
                                                     clearIcon=""
-                                                    onChange={handleStartTime}
-                                                    value={startTime}
+                                                    onChange={handleEndTime}
+                                                    value={endTime}
                                                     format="h:mm a"
                                                     showLeadingZeros={false}
                                                     amPmAriaLabel="Select AM/PM"
@@ -781,7 +793,7 @@ const SetupProfile = () => {
                               </div>
                               <div className="flexBox justify-content-center">
                                 <button
-                                  onClick={(e) => handleBack(e, "pagetwoback")}
+                                  onClick={(e) => handleBack(e, "pageoneback")}
                                   className="submit_btn"
                                 >
                                   <span className="addMore me-3">
@@ -847,7 +859,7 @@ const SetupProfile = () => {
                               </div>
                               <div className="flexBox justify-content-center mt-3">
                                 <button
-                                  onClick={(e) => handleBack(e, "pageoneback")}
+                                  onClick={(e) => handleBack(e, "pagetwoback")}
                                   className="submit_btn"
                                   type="submit"
                                 >
