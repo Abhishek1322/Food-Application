@@ -45,7 +45,8 @@ const User_Navbar = () => {
                   <h1 className="chefCommonHeader">
                     Hello, <span className="chefHeading">John!</span>
                   </h1>
-                  <p>location</p>
+                  <img src={Images.HeaderLocation} className="img-fluid" alt="headerlocation"/>
+                  <span className="ordertimeaddress ms-1">New York, 10003, 2nd Street dorm</span>
                 </div>
                 <div className="col-lg-6 col-sm-12 text-end">
                   <div className="flexBox">

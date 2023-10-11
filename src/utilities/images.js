@@ -113,6 +113,7 @@ import ManageLocation from "../public/images/ManageLocation.png"
 import CartFood from "../public/images/cartfood.svg"
 import verifyDeliveredImg from "../public/images/verifyDeliveredImg.svg"
 import dummyProfile from "../public/images/dummyProfile.svg"
+import HeaderLocation from "../public/images/headerLocation.svg"
 
 
 
@@ -232,5 +233,6 @@ export {
     ManageLocation,
     CartFood,
     verifyDeliveredImg,
-    dummyProfile
+    dummyProfile,
+    HeaderLocation,
 }
