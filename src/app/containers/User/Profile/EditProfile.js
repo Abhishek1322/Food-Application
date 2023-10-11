@@ -115,7 +115,7 @@ const UserEditProfile = () => {
               <img
                 src={profileUrl ? profileUrl : Images.dummyProfile}
                 alt="chefProfileimg"
-                className="chefSideProfile"
+                className="chefprofileimg "
               />
               <div className="editprofileimg">
                 <div className="postAd_upload_icon">
