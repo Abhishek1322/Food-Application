@@ -17,8 +17,9 @@ p {
 }
 
 .chefprofileimg {
-    width: 100%;
-    height: auto;
+   width: 100%;
+   height: auto;
+   border-radius: 50px;
 }
 
 /* right section  */
@@ -239,8 +240,11 @@ p {
 
 /* User Side ChefDetails*/
 .chefdetailsection {
-    padding: 10px 31px;
+    margin: 20px 31px;
 }
+.chefdetailsection .listItems_{
+    width: 100%;
+} 
 
 .sarahchef {
     border-radius: 15px;
@@ -1790,7 +1794,10 @@ p {
     font-size: 14px;
     font-weight: 400;
 }
-
+.userchefhome .pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
 /*user-chef-home  css end*/
 /*user-order-home css start*/
 .userordersection {

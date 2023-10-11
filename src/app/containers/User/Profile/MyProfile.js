@@ -40,7 +40,7 @@ const UserMyProfile = () => {
                 <img
                   src={profilePhoto ? profilePhoto :  Images.dummyProfile}
                   alt="chefSideProfile"
-                  className="chefSideProfile"
+                  className="chefprofileimg"
                 />
               </div>
             </div>

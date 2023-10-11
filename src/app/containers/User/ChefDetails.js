@@ -86,7 +86,7 @@ const ChefDetails = () => {
                 <div className='sarahdata'>
                     <div className='row'>
                         <div className='col-lg-3 col-md-6 col-sm-12 d-flex justify-content-start'>
-                            <h6 className='chatSearchere_'> <span className='sarahtime'>£45</span>/hour</h6>
+                            <p className='chatSearchere_'> <span className='sarahtime'>£45</span>/hour</p>
                         </div>
                         <div className='col-lg-3 col-md-6 col-sm-12'>
                             <h6 className='chefName'>Experience</h6>
@@ -98,7 +98,7 @@ const ChefDetails = () => {
                                 handleUserProfile("ratingchef")
                             }}>
                                 <i class="las la-star startIcon"></i>
-                                <h6 className='ratingheading'>4.5 (845 Reviews)</h6>
+                                <p className='ratingheading'>4.5 (845 Reviews)</p>
                             </div>
 
                         </div>

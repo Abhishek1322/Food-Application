@@ -49,7 +49,7 @@ const UserChefHome = () => {
 
   return (
     <>
-      <div className="mainBoxOuter">
+      <div className="mainBoxOuter userchefhome">
         <div className="cheffilter flexBox">
           <div className="searchbar me-4">
             <input
@@ -136,7 +136,6 @@ const UserChefHome = () => {
             </ul>
           </div>
         </div>
-        <div className="container-fluid">
           {/* <OwlCarousel
             className="owl-theme"
             loop={true}
@@ -217,7 +216,7 @@ const UserChefHome = () => {
               </div>
             </div>
           </OwlCarousel> */}
-          <div className="row">
+          <div className="row mt-5">
             {chefListData && chefListData.length > 0 ? (
               <>
                 {chefListData?.map((item, index) => (
@@ -254,7 +253,6 @@ const UserChefHome = () => {
               <p>No data found</p>
             )}
           </div>
-        </div>
         {chefListData && chefListData.length > 0 && (
           <ReactPaginate
             previousLabel={"prev"}
