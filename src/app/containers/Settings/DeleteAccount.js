@@ -48,10 +48,10 @@ const DeleteAccount = () => {
                 className="img-fluid innerHeaderArrow"
               />
             </Link>
-            <p className="settingMainHeading text-align-center ">
+            <h1 className="settingMainHeading text-align-center ">
               {" "}
               Delete Account
-            </p>
+            </h1>
           </div>
           <div className="commonheightbox_ deleteBox_">
             <div className="changepassword">

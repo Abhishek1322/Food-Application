@@ -8,7 +8,7 @@ const ContactUs = () => {
                 <div className="container-fluid">
                     <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
                         <img src={Images.backArrowpassword} alt="logo" className="img-fluid innerHeaderArrow " />
-                        <p className='settingMainHeading text-align-center '>Contact Us</p>
+                        <h1 className='settingMainHeading text-align-center '>Contact Us</h1>
                     </div>
                     <div className='changepassword'>
                         <div className="logRight mt-5">

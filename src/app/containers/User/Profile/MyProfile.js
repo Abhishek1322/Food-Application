@@ -39,8 +39,8 @@ const UserMyProfile = () => {
               <div className="profileleft">
                 <img
                   src={profilePhoto ? profilePhoto :  Images.dummyProfile}
-                  alt="chefProfileimg"
-                  className="chefprofileimg"
+                  alt="chefSideProfile"
+                  className="chefSideProfile"
                 />
               </div>
             </div>

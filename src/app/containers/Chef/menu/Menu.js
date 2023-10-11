@@ -41,7 +41,7 @@ const Menu = () => {
             <div className='row align-items-center'>
               <div className='col-lg-12'>
                 <div className='innerhomeheader'>
-                  <p className='headerinnerheading'>List of Your Menu Items</p>
+                  <h2 className='headerinnerheading'>List of Your Menu Items</h2>
                   <div className='menuItems ' onClick={() => {
                     handleUserProfile("addMenuItemModal")
                   }}>
