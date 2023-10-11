@@ -68,6 +68,7 @@ const Chef_Navbar = () => {
                   <img src={Images.backArrowpassword} className="innerHeaderArrow" />
                   <h1 className="chefCommonHeader ps-2">My Profile</h1>
                 </div> */}
+                
                 </div>
                 <div className="col-lg-6 col-sm-12 text-end">
                   <div className="flexBox">
