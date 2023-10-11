@@ -9,7 +9,27 @@ import {
   setUpdateProfileImage,
   setUserProfileDetails,
   setChefLists,
+  setGetMenusLists,
 } from "../../slices/web";
+
+function* getMenusLists(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.webApiPath.MENUS_LIST}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setGetMenusLists(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
 
 function* chefLists(action) {
   let targetUtl = `${ApiPath.webApiPath.CHEF_LIST}?page=${action.payload.page}&limit=${action.payload.limit}&`;
@@ -118,6 +138,7 @@ function* webSaga() {
   yield all([takeLatest("web/updateProfileImage", updateProfileImage)]);
   yield all([takeLatest("web/getUserProfileDetails", getUserProfileDetails)]);
   yield all([takeLatest("web/chefLists", chefLists)]);
+  yield all([takeLatest("web/getMenusLists", getMenusLists)]);
 }
 
 export default webSaga;

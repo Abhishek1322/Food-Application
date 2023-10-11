@@ -17,6 +17,7 @@ const ApiPath = {
   },
   webApiPath: {
     CHEF_LIST: "/users/chefs",
+    MENUS_LIST: "/menus",
   },
 };
 

@@ -5,12 +5,14 @@ import BellModal from "./shared/bellModal";
 import Notification from "./shared/notification";
 import Myorder from "./shared/myorderModal";
 import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useAuthSelector } from "../../../redux/selector/auth";
 
 const Chef_Navbar = () => {
   const location = useLocation();
   const { pathname } = location;
-  console.log("pathnamepathname", pathname);
+  const authData = useAuthSelector();
+  console.log("authDataauthData", authData);
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -47,7 +49,10 @@ const Chef_Navbar = () => {
                 <div className="col-lg-6 col-sm-12">
                   {/* ----Home Page Header html */}
                   <h1 className="chefCommonHeader">
-                    Hello, <span className="chefHeading">Sarah!</span>
+                    Hello,{" "}
+                    <span className="chefHeading">
+                      {authData?.userInfo?.userInfo?.firstName} !
+                    </span>
                   </h1>
                   {/* ----setting Page Header  
                 {/* <h1 className="chefCommonHeader">Settings</h1> */}
@@ -346,6 +351,30 @@ const Chef_Navbar = () => {
                       />
                       <span className="cartItems">5</span>
                     </div>
+                  </div>
+                </div>
+              </div>
+            ) : pathname === "/chef-profile" ||
+              pathname === "/edit-chef-profile" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <div className="insideCommonHeader">
+                    <Link
+                      to={
+                        pathname === "/chef-profile" ? "/home" : "/chef-profile"
+                      }
+                    >
+                      <img
+                        src={Images.backArrowpassword}
+                        className="innerHeaderArrow"
+                      />
+                    </Link>
+
+                    <h1 className="chefCommonHeader ps-2">
+                      {pathname === "/chef-profile"
+                        ? "My Profile"
+                        : "Edit Profile"}
+                    </h1>
                   </div>
                 </div>
               </div>

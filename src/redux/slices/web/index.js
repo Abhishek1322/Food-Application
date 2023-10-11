@@ -5,12 +5,20 @@ const initialState = {
   chefProfileDetails: [],
   userProfileDetails: [],
   chefListData: [],
+  menusList: [],
 };
 
 export const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
+    getMenusLists: (state) => {
+      state.loading = true;
+    },
+    setGetMenusLists: (state, action) => {
+      state.loading = false;
+      state.menusList = action.payload;
+    },
     chefLists: (state) => {
       state.loading = true;
     },
@@ -63,6 +71,8 @@ export const {
   setUserProfileDetails,
   chefLists,
   setChefLists,
+  getMenusLists,
+  setGetMenusLists,
 } = webSlice.actions;
 
 export default webSlice.reducer;

@@ -10,6 +10,7 @@ import {
   onErrorStopLoad,
 } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
 const MyProfile = () => {
   const [key, setKey] = useState(Math.random());
@@ -322,7 +323,8 @@ const MyProfile = () => {
                     {slotTime.from && slotTime.to && activeWeekDay ? (
                       <div className="expertisevalue">
                         <p className="expertheading">
-                          {slotTime.from} - {slotTime.to}
+                          {moment(slotTime.from, "h:mm A").format("h:mm A")} -{" "}
+                          {moment(slotTime.to, "h:mm A").format("h:mm A")}
                         </p>
                       </div>
                     ) : (
