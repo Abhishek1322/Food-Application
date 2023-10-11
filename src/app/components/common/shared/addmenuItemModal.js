@@ -50,16 +50,6 @@ const AddmenuItemModal = (props) => {
     setKey(Math.random());
   };
 
-  // open modal
-  const handleUserProfile = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
-
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad);

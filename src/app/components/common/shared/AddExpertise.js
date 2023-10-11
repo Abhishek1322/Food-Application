@@ -69,7 +69,7 @@ const AddExpertise = (props) => {
   return (
     <>
       <form onSubmit={(e) => handleAddInput(e)}>
-        <div className="text-end mt-4">
+        <div className="text-end mt-2">
           <button type="submit" className="addMore d-inline-block">
             <i className="las la-plus"></i>Add More
           </button>
@@ -78,7 +78,7 @@ const AddExpertise = (props) => {
         <div className="modalscroll">
           {expertice.map((value, index) => (
             <>
-              <div className="input-container  mt-3">
+              <div className="input-container">
                 <input
                   ref={index === expertice.length - 1 ? emailRef : null}
                   onChange={(e) => handleChangeInput(index, e.target.value)}

@@ -53,7 +53,6 @@ const Menu = () => {
     dispatch(
       getMenusLists({
         cb(res) {
-          console.log("resresresres", res);
           if (res.status === 200) {
             setMenuList(res.data.data.data);
           }
@@ -87,7 +86,7 @@ const Menu = () => {
                   {menuList && menuList.length > 0 ? (
                     <>
                       {menuList.map((item, index) => (
-                        <div className="listItems_">
+                        <div key={index} className="listItems_">
                           <div className="menu_Items">
                             <div className="innerItems_">
                               <img
@@ -218,6 +217,7 @@ const Menu = () => {
             <FoodDetailModal
               menuId={menuId}
               menuListAll={menuListAll}
+              handleOpenInnerModal={()=>handleUserProfile()}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -245,6 +245,12 @@ const Menu = () => {
                   <p className="chatUser">Add your menu items below.</p>
                 </div>
               </div>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+            </>
+          ) : modalDetail.flag === "foodDetail" ? (
+            <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
