@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import * as Images from "../../../../utilities/images"
-import CustomModal from './CustomModal'
-import FoodDetailModal from './foodDetailModal'
+import React, { useState } from "react";
+import * as Images from "../../../../utilities/images";
+import CustomModal from "./CustomModal";
+import FoodDetailModal from "./foodDetailModal";
 
 const AfterUploadImage = () => {
   const [key, setKey] = useState(Math.random());
@@ -21,7 +21,6 @@ const AfterUploadImage = () => {
     setKey(Math.random());
   };
   const handleUserProfile = (flag) => {
-
     setModalDetail({
       show: true,
       flag: flag,
@@ -32,49 +31,64 @@ const AfterUploadImage = () => {
 
   return (
     <>
-      <div className='menuModal_'>
+      <div className="menuModal_">
         <div className="input-container mt-5">
-          <textarea type="" className=" menuReport_button   " placeholder='Chicken Salad' />
-          <img src={Images.categoryImg} className='cateofyImg_' />
+          <textarea
+            type=""
+            className=" menuReport_button   "
+            placeholder="Chicken Salad"
+          />
+          <img src={Images.categoryImg} className="cateofyImg_" />
           <label className="border-label">Item Name</label>
-
         </div>
         <div className="input-container mt-4">
-          <textarea type="" className=" menuReport_button   " placeholder='Non-Veg' />
-          <img src={Images.menuDishImg} className='cateofyImg_' />
+          <textarea
+            type=""
+            className=" menuReport_button   "
+            placeholder="Non-Veg"
+          />
+          <img src={Images.menuDishImg} className="cateofyImg_" />
           <label className="border-label">Category</label>
         </div>
-        <div className='flexBox justify-content-between editMenuFields_ '>
+        <div className="flexBox justify-content-between editMenuFields_ ">
           <div className="input-container mt-5">
-            <textarea type="" className=" menuEditbuttom " placeholder='22.00' />
-            <img src={Images.euroImg} className='cateofyImg_' />
+            <textarea
+              type=""
+              className=" menuEditbuttom "
+              placeholder="22.00"
+            />
+            <img src={Images.euroImg} className="cateofyImg_" />
             <label className="border-label">Price</label>
-
           </div>
           <div className="input-container mt-5 pe-3 flexBox">
-            <textarea type="" className=" menuEditbuttom " placeholder='45' />
-            <p className='inneredittxt'>MIN</p>
-            <img src={Images.clockImg} className='cateofyImg_' />
+            <textarea type="" className=" menuEditbuttom " placeholder="45" />
+            <p className="inneredittxt">MIN</p>
+            <img src={Images.clockImg} className="cateofyImg_" />
             <label className="border-label">Delivery Time</label>
           </div>
         </div>
       </div>
       <div className="input-container mt-4">
-        <textarea type="" className=" menuReport_button  menuDescrition_  " placeholder='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' />
+        <textarea
+          type=""
+          className=" menuReport_button  menuDescrition_  "
+          placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+        />
         <label className="border-label">Description</label>
-
       </div>
-      <div className='editImgBox_'>
-        <p className='chefName mt-4 pb-3'>Upload Image </p>
-        <img src={Images.editMenuImg} className='editFoodImg' />
-        <span className='cancelEditImg'>
+      <div className="editImgBox_">
+        <p className="chefName mt-4 pb-3">Upload Image </p>
+        <img src={Images.editMenuImg} className="editFoodImg" />
+        <span className="cancelEditImg">
           <i class="fas fa-times cancelEdit"></i>
         </span>
-
       </div>
-      <button className='foodmodalbtn  modalfooterbtn' onClick={() => {
-        handleUserProfile("foodDetailModal")
-      }} >
+      <button
+        className="foodmodalbtn  modalfooterbtn"
+        onClick={() => {
+          handleUserProfile("foodDetailModal");
+        }}
+      >
         Save Changes
       </button>
 
@@ -85,58 +99,71 @@ const AfterUploadImage = () => {
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}
-        className={modalDetail.flag === "foodDetailModal" ? "commonWidth customContent" : ""}
-        ids={modalDetail.flag === "foodDetailModal" ? "foodDetail" : "editFoodDetailsModal" ? "editFoodDetail" : "clickDeletemenuModal" ? "clickDeleteMenu" :""}
+        className={
+          modalDetail.flag === "foodDetailModal"
+            ? "commonWidth customContent"
+            : ""
+        }
+        ids={
+          modalDetail.flag === "foodDetailModal"
+            ? "foodDetail"
+            : "editFoodDetailsModal"
+            ? "editFoodDetail"
+            : "clickDeletemenuModal"
+            ? "clickDeleteMenu"
+            : ""
+        }
         child={
           modalDetail.flag === "foodDetailModal" ? (
-            <FoodDetailModal
-              close={() => handleOnCloseModal()}
-
-            />
-          ) :""
+            <FoodDetailModal close={() => handleOnCloseModal()} />
+          ) : (
+            ""
+          )
         }
         header={
-          modalDetail.flag === "foodDetailModal" ?
-          <>
-            <div className='foodDetailHeader_'>
-              <p onClick={handleOnCloseModal} className='modal_cancel'>
-                <img src={Images.modalCancel} className='ModalCancel' />
-              </p>
-            </div>
-            {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
+          modalDetail.flag === "foodDetailModal" ? (
+            <>
+              <div className="foodDetailHeader_">
+                <p onClick={handleOnCloseModal} className="modal_cancel">
+                  <img src={Images.modalCancel} className="ModalCancel" />
+                </p>
+              </div>
+              {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
                         </p> */}
-          </>
-          :
-          modalDetail.flag === "editFoodDetailsModal" ?
-          <>
-            <div className='editadressheading'>
-              <div className='edithead'>
-                <p className="modal_Heading">
-                Edit Item
-                </p>
-                <p className='chatUser'>Edit your menu items below.</p>
+            </>
+          ) : modalDetail.flag === "editFoodDetailsModal" ? (
+            <>
+              <div className="editadressheading">
+                <div className="edithead">
+                  <p className="modal_Heading">Edit Item</p>
+                  <p className="chatUser">Edit your menu items below.</p>
+                </div>
               </div>
-            </div>
-            <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} className='ModalCancel' />
-            </p>
-          </>
-          :
-          modalDetail.flag === "clickDeletemenuModal" ?
-          <>
-            <div className='editadressheading'>
-             <img src={Images.backArrowpassword} className='img-fluid arrowCommon_'/>
-            </div>
-            {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+            </>
+          ) : modalDetail.flag === "clickDeletemenuModal" ? (
+            <>
+              <div className="editadressheading">
+                <img
+                  src={Images.backArrowpassword}
+                  className="img-fluid arrowCommon_"
+                />
+              </div>
+              {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
               <img src={Images.modalCancel} className='ModalCancel' />
             </p> */}
-          </>:""
+            </>
+          ) : (
+            ""
+          )
         }
         onCloseModal={() => handleOnCloseModal()}
       />
     </>
-  )
-}
+  );
+};
 
-export default AfterUploadImage
+export default AfterUploadImage;

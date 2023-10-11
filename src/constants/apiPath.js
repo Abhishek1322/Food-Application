@@ -17,7 +17,9 @@ const ApiPath = {
   },
   webApiPath: {
     CHEF_LIST: "/users/chefs",
-    MENUS_LIST: "/menus",
+    MENUS: "/menus",
+    GET_FILES_URL: "/menus/upload-image",
+    EDIT_MENU_ITEM: "/menus",
   },
 };
 
