@@ -26,7 +26,7 @@ const EditMenuModal = () => {
             <label className="border-label">Price</label>
 
           </div>
-          <div className="input-container mt-5 pe-3 flexBox">
+          <div className="input-container mt-5 flexBox">
             <input type="" className=" menuEditbuttom " placeholder='45' />
             <p className='inneredittxt'>MIN</p>
             <img src={Images.clockImg} className='cateofyImg_' />
