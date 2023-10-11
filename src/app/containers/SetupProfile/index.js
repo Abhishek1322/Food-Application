@@ -17,13 +17,14 @@ import PlacesAutocomplete, {
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
-import {
+import auth, {
   chefSetupProfile,
   onErrorStopLoad,
   chefProfileDocument,
 } from "../../../redux/slices/auth";
 import Loading from "../Settings/Loading";
 import { useAuthSelector } from "../../../redux/selector/auth";
+import { getChefProfileDetails } from "../../../redux/slices/web";
 
 const SetupProfile = () => {
   const [activeTab, setActiveTab] = useState("restaurant");
@@ -32,6 +33,7 @@ const SetupProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authData = useAuthSelector();
+  const userId = localStorage.getItem("userId");
   const [page, setPage] = useState("pageone");
   const [pageNumber, setPageNumber] = useState(2);
   const [key, setKey] = useState(Math.random());
@@ -51,13 +53,13 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-
+  console.log("availability", availability);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
+  
   //onchange input
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -129,7 +131,6 @@ const SetupProfile = () => {
   const nextPage = (page) => {
     setPage(page);
   };
-
   //form login
   const handleSubmit = (e, flag) => {
     e.preventDefault();
@@ -147,7 +148,7 @@ const SetupProfile = () => {
         toast.error("Please add your rate per hour");
         return;
       }
-      const updateExperticeValues = experticeValue.filter((value) => {
+      const updateExperticeValues = experticeValue?.filter((value) => {
         return value != "";
       });
       let params = {
@@ -172,14 +173,21 @@ const SetupProfile = () => {
         })
       );
     } else if (flag == 2) {
-      let params = {
-        step: "2",
-        availability: availability.filter(
+      const updateValue = availability
+        .filter(
           (value) =>
             value.day !== "" &&
             value.timeSlots.from &&
             value.timeSlots.to !== undefined
-        ),
+        )
+        .map((item, index) => {
+          const { _id, ...rest } = item;
+          return rest;
+        });
+
+      let params = {
+        step: "2",
+        availability: updateValue,
       };
       dispatch(
         chefSetupProfile({
@@ -319,29 +327,61 @@ const SetupProfile = () => {
   };
 
   // getting availability
+  // useEffect(() => {
+  //   const dayIndex = availability.findIndex(
+  //     (item) => item.day === activeWeekDay
+  //   );
+  //   if (dayIndex !== -1) {
+  //     const updatedAvailability = [...availability];
+  //     updatedAvailability[dayIndex].timeSlots.from = startTime;
+  //     updatedAvailability[dayIndex].timeSlots.to = endTime;
+  //     setAvailability(updatedAvailability);
+  //   } else {
+  //     setAvailability([
+  //       ...availability,
+  //       {
+  //         day: activeWeekDay,
+  //         timeSlots: {
+  //           from: startTime,
+  //           to: endTime,
+  //         },
+  //       },
+  //     ]);
+  //   }
+  // }, [startTime, endTime, activeWeekDay]);
   useEffect(() => {
-    const dayIndex = availability.findIndex(
-      (item) => item.day === activeWeekDay
-    );
-    if (dayIndex !== -1) {
-      const updatedAvailability = [...availability];
-      updatedAvailability[dayIndex].timeSlots.from = startTime;
-      updatedAvailability[dayIndex].timeSlots.to = endTime;
-      setAvailability(updatedAvailability);
-    } else {
-      setAvailability([
-        ...availability,
-        {
-          day: activeWeekDay,
-          timeSlots: {
-            from: startTime,
-            to: endTime,
-          },
-        },
-      ]);
-    }
-  }, [startTime, endTime, activeWeekDay]);
+    setAvailability((prevAvailability) => {
+      const dayIndex = prevAvailability.findIndex(
+        (item) => item.day === activeWeekDay
+      );
 
+      if (dayIndex !== -1) {
+        return prevAvailability.map((item, index) => {
+          if (index === dayIndex) {
+            return {
+              ...item,
+              timeSlots: {
+                from: startTime,
+                to: endTime,
+              },
+            };
+          }
+          return item;
+        });
+      } else {
+        return [
+          ...prevAvailability,
+          {
+            day: activeWeekDay,
+            timeSlots: {
+              from: startTime,
+              to: endTime,
+            },
+          },
+        ];
+      }
+    });
+  }, [startTime, endTime, activeWeekDay]);
   // getting startTime slot
   const handleStartTime = (value) => {
     setStartTime(value);
@@ -350,6 +390,50 @@ const SetupProfile = () => {
   // getting EndTime slot
   const handleEndTime = (value) => {
     setEndTime(value);
+  };
+
+  // getting chef profile information
+  useEffect(() => {
+    chefProfileDetails();
+  }, []);
+
+  const chefProfileDetails = () => {
+    let params = {
+      userid: userId,
+    };
+    dispatch(
+      getChefProfileDetails({
+        ...params,
+        cb(res) {
+          console.log("setLoggggg", res);
+          if (res.status === 200) {
+            setActiveTab(res.data.data.chefInfo.type);
+            setExperticeValue(res?.data?.data?.chefInfo?.expertise);
+            setFormData({
+              experience: res.data.data.chefInfo.experience,
+              bio: res.data.data.chefInfo.bio,
+              rateperhour: res.data.data.chefInfo.ratePerHour,
+            });
+            setAddress(res.data.data.chefInfo.address);
+            setLatitude(res.data.data.chefInfo.coordinates[0]);
+            setLongitude(res.data.data.chefInfo.coordinates[1]);
+            const removeId = res.data.data.chefInfo.availability?.map(
+              (item, index) => {
+                const { _id, ...rest } = item;
+                return item;
+              }
+            );
+            setAvailability(removeId);
+            if (res.data.data.chefInfo.step === "1") {
+              setPage("pagetwo");
+            }
+            if (res.data.data.chefInfo.step === "2") {
+              setPage("pagethree");
+            }
+          }
+        },
+      })
+    );
   };
 
   return (
@@ -464,6 +548,7 @@ const SetupProfile = () => {
                                       name="experience"
                                       className="border-input"
                                       placeholder="Add experience"
+                                      value={formData.experience}
                                     />
                                     <img
                                       src={Images.Experience}
@@ -559,6 +644,7 @@ const SetupProfile = () => {
                                       name="bio"
                                       className="border-input"
                                       placeholder="Add your bio"
+                                      value={formData.bio}
                                     ></textarea>
                                     <label className="border-label">Bio</label>
                                   </div>
@@ -572,6 +658,7 @@ const SetupProfile = () => {
                                       name="rateperhour"
                                       className="border-input"
                                       placeholder="Rate per hour"
+                                      value={formData.rateperhour}
                                     />
                                     <label className="border-label">
                                       Rate Per Hour

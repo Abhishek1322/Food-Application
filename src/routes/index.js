@@ -13,11 +13,7 @@ const Router = () => {
     <>
       <Routes>
         {/* USER_ROUTES */}
-        <Route
-          element={
-              <Layouts.UserLayout />
-          }
-        >
+        <Route element={<Layouts.UserLayout />}>
           {authData?.userInfo?.role === "user" && (
             <Route path="/setting" element={<Containers.SettingMain />} />
           )}
@@ -39,11 +35,7 @@ const Router = () => {
         </Route>
 
         {/* CHEF_ROUTES */}
-        <Route
-          element={
-              <Layouts.Chef_Layout />
-          }
-        >
+        <Route element={<Layouts.Chef_Layout />}>
           {authData?.userInfo?.role === "chef" && (
             <Route path="/setting" element={<Containers.SettingMain />} />
           )}
@@ -111,6 +103,10 @@ const Router = () => {
             element={<Containers.Recoverpassword />}
           />
           <Route path="/enter-otp" element={<Containers.EnterOtp />} />
+        </Route>
+
+        {/* COMMON_ROUTES */}
+        <Route element={<Layouts.CommonLayout />}>
           <Route
             path="/change-password"
             element={<Containers.ChangePassword />}
@@ -119,13 +115,13 @@ const Router = () => {
             path="/delete-account"
             element={<Containers.DeleteAccount />}
           />
-          {/* <Route path="/loading" element={<Containers.Loading />} />
-          <Route path="/loading-page" element={<Containers.Loadingpage />} /> */}
+          <Route path="/loading" element={<Containers.Loading />} />
+          <Route path="/loading-page" element={<Containers.Loadingpage />} />
           <Route
             path="/account-deleted"
             element={<Containers.AccountDeleted />}
           />
-          {/* <Route
+          <Route
             path="/term-condition"
             element={<Containers.TermAndCondition />}
           />
@@ -133,18 +129,14 @@ const Router = () => {
           <Route
             path="/privacy-policy"
             element={<Containers.PrivacyPolicy />}
-          /> */}
-          {/* <Route path="/cart" element={<Containers.Cart />} />
+          />
+          <Route path="/cart" element={<Containers.Cart />} />
           <Route path="/chat" element={<Containers.Chat />} />
           <Route path="/notification" element={<Containers.Notification />} />
           <Route
             path="/user-manageaddress"
-            element={
-              <UserRoute role="user">
-                <Containers.UserManageAddress />
-              </UserRoute>
-            }
-          /> */}
+            element={<Containers.UserManageAddress />}
+          />
         </Route>
       </Routes>
     </>

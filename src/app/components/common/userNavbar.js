@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import UserCartModal from "./shared/UserCartModal";
 import BookNowModal from "./shared/BookNowModal";
 import UserBellModal from "./shared/UserBellModal";
 import UserNotification from "./shared/UserNotification";
+import { useAuthSelector } from "../../../redux/selector/auth";
 
 const User_Navbar = () => {
   const location = useLocation();
   const { pathname } = location;
+  const authData = useAuthSelector();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -43,7 +45,11 @@ const User_Navbar = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6 col-sm-12">
                   <h1 className="chefCommonHeader">
-                    Hello, <span className="chefHeading">John!</span>
+                    Hello,{" "}
+                    <span className="chefHeading">
+                      {" "}
+                      {authData?.userInfo?.userInfo?.firstName} !
+                    </span>
                   </h1>
                   <p>location</p>
                 </div>
@@ -246,8 +252,7 @@ const User_Navbar = () => {
                   </div>
                 </div>
               </div>
-            ) : (
-              pathname ==="/setting" ?
+            ) : pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-sm-12">
                   <h1 className="chefCommonHeader">Settings</h1>
@@ -314,7 +319,89 @@ const User_Navbar = () => {
                     </button>
                   </div>
                 </div>
-              </div> :""
+              </div>
+            ) : pathname === "/user-myprofile" ||
+              pathname === "/user-editprofile" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <div className="insideCommonHeader">
+                    <Link
+                      to={
+                        pathname === "/user-myprofile"
+                          ? "/home-user"
+                          : "/user-myprofile"
+                      }
+                    >
+                      <img
+                        src={Images.backArrowpassword}
+                        className="innerHeaderArrow"
+                      />
+                    </Link>
+
+                    <h1 className="chefCommonHeader ps-2">
+                      {pathname === "/user-myprofile"
+                        ? "My Profile"
+                        : "Edit Profile"}
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            ) : pathname === "/chef-details" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <div className="insideCommonHeader">
+                    <Link to="/user-chef-home">
+                      <img
+                        src={Images.backArrowpassword}
+                        className="innerHeaderArrow"
+                      />
+                    </Link>
+                    <h1 className="chefCommonHeader ps-2">Chef Details</h1>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <button
+                        className="sarahmessagebtn"
+                        onClick={() => {
+                          handleUserProfile("bookchef");
+                        }}
+                      >
+                        <div className="booknowimg">
+                          <img
+                            src={Images.lightcap}
+                            alt="timesquareimage"
+                            className="img-fluid"
+                          />
+                        </div>
+
+                        <p className="availableheading">Book Now</p>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* booking Common Header */}
+                  {/* <div className='orderItems_ flexBox '>
+                  <button className='cancelOrder_ me-4' >Reject</button>
+                  <button className='submitOrder_'>Accept</button>
+                </div> */}
+
+                  {/* order Details Header html & order Delivered */}
+                  {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
+                  {/* Order Delivered Html */}
+                  {/* <button
+                  className="chefRightHeader m-0 text-end"
+                  onClick={() => {
+                    handleUserProfile("verifyOrderDetailModal");
+                  }}
+                >
+                  Order Delivered
+                </button> */}
+                </div>
+              </div>
+            ) : (
+              ""
             )}
           </div>
         </div>

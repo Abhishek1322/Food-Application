@@ -59,16 +59,27 @@ const Login = () => {
       userLogin({
         ...params,
         cb(res) {
-          console.log("respttttected", res);
           if (res.status === 200) {
             if (res.data.data.role === "chef") {
               if (res.data.data.chefInfo.documentVerified) {
+                toast.success("Successfully logged in")
                 navigate("/home");
-              } else {
+              } else if (
+                !res.data.data.chefInfo.documentVerified &&
+                res.data.data.chefInfo.step === "3"
+              ) {
                 toast.error("Please wait for admin approval");
+                localStorage.removeItem("authToken");
                 return;
+              } else if (
+                !res.data.data.chefInfo.documentVerified &&
+                res.data.data.chefInfo.step !== "3"
+              ) {
+                toast.success("Successfully logged in")
+                navigate("/setup-profile");
               }
             } else {
+              toast.success("Successfully logged in")
               navigate("/home-user");
             }
           }

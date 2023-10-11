@@ -258,8 +258,8 @@ function* userSignUp(action) {
         resp.data.data.id ? resp.data.data.id : ""
       );
 
-      if(resp.data.data.role === "chef") {
-        localStorage.setItem("signupFlag",true);
+      if (resp.data.data.role === "chef") {
+        localStorage.setItem("signupFlag", true);
       }
 
       yield put(setUserSignup(resp.data.data));
@@ -298,9 +298,9 @@ function* userLogin(action) {
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
       console.log("resprespresp", resp);
-      if (resp.data.data.chefInfo.documentVerified) {
-        toast.success(resp.data.message);
-      }
+      // if (resp.data.data.chefInfo.documentVerified) {
+      //   toast.success(resp.data.message);
+      // }
     } else {
       throw resp;
     }
