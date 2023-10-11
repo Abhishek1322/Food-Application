@@ -59,7 +59,7 @@ const Myorder = () => {
 
                                         <div class="tab-content" id="pills-tabContent">
                                             <div class="tab-pane fade active show" id="pills-home">
-                                             <div className='Myorders_'>
+                                             <div className='Myorders_ '>
                                              <div className='ordermodalBox'>
                                                     <div className='myorders_'>
                                                         <p className='orderId'>#12548</p>

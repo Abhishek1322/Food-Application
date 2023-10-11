@@ -78,9 +78,9 @@ const ChangePassword = () => {
                 className="img-fluid  innerHeaderArrow"
               />
             </Link>
-            <p className="settingMainHeading text-align-center">
+            <h1 className="settingMainHeading text-align-center">
               Change Password
-            </p>
+            </h1>
           </div>
           <div className="changepassword">
             <div className="changepasswordForm">

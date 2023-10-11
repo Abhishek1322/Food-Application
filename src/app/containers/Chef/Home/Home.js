@@ -111,7 +111,7 @@ const HomeRequsest = () => {
                                                     </div>
                                                 </div>
                                                 <p className='orderTime'>Order placed on 12:24 pm</p>
-                                                <div className='orderItems'>
+                                                <div className='ordered_'>
                                                     <button className='cancelOrder'>CANCEL</button>
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
@@ -139,7 +139,7 @@ const HomeRequsest = () => {
                                                     </div>
                                                 </div>
                                                 <p className='orderTime'>Order placed on 12:24 pm</p>
-                                                <div className='orderItems'>
+                                                <div className='ordered_'>
                                                     <button className='cancelOrder'>CANCEL</button>
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
@@ -167,7 +167,7 @@ const HomeRequsest = () => {
                                                     </div>
                                                 </div>
                                                 <p className='orderTime'>Order placed on 12:24 pm</p>
-                                                <div className='orderItems'>
+                                                <div className='ordered_'>
                                                     <button className='cancelOrder'>CANCEL</button>
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
@@ -195,7 +195,7 @@ const HomeRequsest = () => {
                                                     </div>
                                                 </div>
                                                 <p className='orderTime'>Order placed on 12:24 pm</p>
-                                                <div className='orderItems'>
+                                                <div className='ordered_'>
                                                     <button className='cancelOrder'>CANCEL</button>
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
@@ -223,7 +223,7 @@ const HomeRequsest = () => {
                                                     </div>
                                                 </div>
                                                 <p className='orderTime'>Order placed on 12:24 pm</p>
-                                                <div className='orderItems'>
+                                                <div className='ordered_'>
                                                     <button className='cancelOrder'>CANCEL</button>
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>

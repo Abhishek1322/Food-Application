@@ -54,6 +54,26 @@ const Chef_Navbar = () => {
                       {authData?.userInfo?.userInfo?.firstName} !
                     </span>
                   </h1>
+                  {/* ----setting Page Header  
+                {/* <h1 className="chefCommonHeader">Settings</h1> */}
+                  {/* ----Booking Details Page Header html  &  For after booking Details Also */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Booking Details</h1>
+                </div> */}
+
+                  {/* Order Details Header  html */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">Order Details</h1>
+                </div>
+              </div> */}
+              {/* My Profile Page header css */}
+              {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <h1 className="chefCommonHeader ps-2">My Profile</h1>
+                </div> */}
+                
                 </div>
                 <div className="col-lg-6 col-sm-12 text-end">
                   <div className="flexBox">

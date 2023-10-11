@@ -42,21 +42,18 @@ const Menu = () => {
 
   return (
     <>
-      <div className="mainchef_">
-        <div className="menuPage">
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-lg-12">
-                <div className="innerhomeheader">
-                  <p className="headerinnerheading">List of Your Menu Items</p>
-                  <div
-                    className="menuItems "
-                    onClick={() => {
-                      handleUserProfile("addMenuItemModal");
-                    }}
-                  >
-                    <i class="fas fa-plus plusmenuImg"></i>
-                    <p className="innermenuItem">Add Menu Item</p>
+      <div className='mainchef_'>
+        <div className='menuPage'>
+          <div className='container-fluid'>
+            <div className='row align-items-center'>
+              <div className='col-lg-12'>
+                <div className='innerhomeheader'>
+                  <h2 className='headerinnerheading'>List of Your Menu Items</h2>
+                  <div className='menuItems ' onClick={() => {
+                    handleUserProfile("addMenuItemModal")
+                  }}>
+                    <i class="fas fa-plus plusmenuImg" ></i>
+                    <p className='innermenuItem'>Add Menu Item</p>
                   </div>
                 </div>
                 <div className="profileDetail">

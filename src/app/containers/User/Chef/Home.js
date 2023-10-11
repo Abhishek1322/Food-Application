@@ -51,12 +51,14 @@ const UserChefHome = () => {
     <>
       <div className="mainBoxOuter">
         <div className="cheffilter flexBox">
-          <div className="searchSection">
+          <div className="searchbar me-4">
             <input
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Chef near you..."
               type="search"
+              className='searchtext'
             />
+            <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
           </div>
           <p className="chefName">Filter By:</p>
           <div className="dropdown">
