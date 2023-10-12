@@ -326,29 +326,7 @@ const SetupProfile = () => {
     setShowTimeSlot(true);
   };
 
-  // getting availability
-  // useEffect(() => {
-  //   const dayIndex = availability.findIndex(
-  //     (item) => item.day === activeWeekDay
-  //   );
-  //   if (dayIndex !== -1) {
-  //     const updatedAvailability = [...availability];
-  //     updatedAvailability[dayIndex].timeSlots.from = startTime;
-  //     updatedAvailability[dayIndex].timeSlots.to = endTime;
-  //     setAvailability(updatedAvailability);
-  //   } else {
-  //     setAvailability([
-  //       ...availability,
-  //       {
-  //         day: activeWeekDay,
-  //         timeSlots: {
-  //           from: startTime,
-  //           to: endTime,
-  //         },
-  //       },
-  //     ]);
-  //   }
-  // }, [startTime, endTime, activeWeekDay]);
+  
   useEffect(() => {
     setAvailability((prevAvailability) => {
       const dayIndex = prevAvailability.findIndex(
