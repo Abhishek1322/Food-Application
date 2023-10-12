@@ -127,7 +127,7 @@ const BookNowModal = () => {
                                     type="text"
                                     className="border-input"
                                     placeholder='Write here'
-                                    rows={5}
+                                    rows={4}
                                 />
                                 <label className="border-label">Description</label>
                             </div>

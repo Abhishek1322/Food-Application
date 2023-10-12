@@ -216,7 +216,7 @@ const UserChefHome = () => {
               </div>
             </div>
           </OwlCarousel> */}
-          <div className="row mt-5">
+          <div className="row mt-3">
             {chefListData && chefListData.length > 0 ? (
               <>
                 {chefListData?.map((item, index) => (

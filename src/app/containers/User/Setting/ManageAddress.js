@@ -46,7 +46,7 @@ const UserManageAddress = () => {
                                 </div>
                                 <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">Add New and Edit your
                                     Saved Addresses</h6>
-                                <div className='managehome'>
+                                <div className='managehome mt-5'>
                                     <img src={Images.ManageHome} alt='Homeimg' className='img-fluid' />
                                     <div className='managetext'>
                                         <h6 className='notificationText'>Home</h6>

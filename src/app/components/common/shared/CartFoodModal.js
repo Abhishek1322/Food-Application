@@ -36,7 +36,7 @@ const CartFoodModal = () => {
             <div className='cartfoodsection'>
                 <div className='foodmodal'>
                     <img src={Images.CartFood} alt='saladimage' className='img-fluid' />
-                    <h2 className='foodmodalheading'>Chicken Salad</h2>
+                    <h2 className='foodmodalheading mt-2'>Chicken Salad</h2>
                     <div className='restroinfo'>
                         <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
                         <div className='johnchatdetail'>
@@ -54,7 +54,7 @@ const CartFoodModal = () => {
                             <h6 className='chefName'>Rating</h6>
                             <div className='chefrating mt-1'>
                                 <i class="las la-star startIcon"></i>
-                                <h6 className='ratingheading'>4.5 (845 Reviews)</h6>
+                                <p className='ratingheading'>4.5 (845 Reviews)</p>
                             </div>
                         </div>
                     </div>
