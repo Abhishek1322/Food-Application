@@ -221,13 +221,13 @@ const UserBellModal = () => {
                                             handleUserProfile("reportchat")
                                         }}>
                                             <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
-                                            <h1 className='reportchattxt_ m-0 ps-2'>Report Chat</h1>
+                                            <h1 className='reportchat m-0 ps-2'>Report Chat</h1>
                                         </li>
                                         <li className=' chatdroplabel flexBox' onClick={() => {
                                             handleUserProfile("clearchat")
                                         }}>
                                             <img src={Images.ChatModal} className=' img-fluid reporticon_' />
-                                            <p className='reportchattxt_ m-0 ps-2'>Clear Chat</p>
+                                            <p className='reportchat m-0 ps-2'>Clear Chat</p>
                                         </li>
 
                                     </ul>

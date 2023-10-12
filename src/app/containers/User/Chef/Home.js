@@ -46,7 +46,7 @@ const UserChefHome = () => {
 
   return (
     <>
-      <div className="mainBoxOuter">
+      <div className="mainBoxOuter userchefhome">
         <div className="cheffilter flexBox">
           <div className="searchbar me-4">
             <input
@@ -138,7 +138,7 @@ const UserChefHome = () => {
           </div>
         </div>
         <div className="container-fluid">
-          <div className="row">
+          <div className="row mt-3">
             {chefListData && chefListData.length > 0 ? (
               <>
                 {chefListData?.map((item, index) => (
@@ -182,7 +182,6 @@ const UserChefHome = () => {
               <p>No data found</p>
             )}
           </div>
-        </div>
         {chefListData && chefListData.length > 0 && (
           <ReactPaginate
             previousLabel={"prev"}
