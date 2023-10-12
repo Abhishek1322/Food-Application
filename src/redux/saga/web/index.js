@@ -15,7 +15,27 @@ import {
   seteditMenuItem,
   setSingleMenu,
   setDeleteMenuItem,
+  setGetSingleChef,
 } from "../../slices/web";
+
+function* getSingleChef(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.webApiPath.SINGLE_CHEF_DETAIL}?chefId=${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setGetSingleChef(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
 
 function* deleteMenuItem(action) {
   try {
@@ -253,6 +273,7 @@ function* webSaga() {
   yield all([takeLatest("web/editMenuItem", editMenuItem)]);
   yield all([takeLatest("web/singleMenu", singleMenu)]);
   yield all([takeLatest("web/deleteMenuItem", deleteMenuItem)]);
+  yield all([takeLatest("web/getSingleChef", getSingleChef)]);
 }
 
 export default webSaga;

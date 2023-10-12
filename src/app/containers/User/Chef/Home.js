@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { chefLists } from "../../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
@@ -15,7 +12,7 @@ const UserChefHome = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
   const [search, setSearch] = useState("");
-
+  console.log("chefListDatachefListData", chefListData);
   // get all chef lists
   useEffect(() => {
     getChefList();
@@ -56,9 +53,13 @@ const UserChefHome = () => {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Chef near you..."
               type="search"
-              className='searchtext'
+              className="searchtext"
             />
-            <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
+            <img
+              src={Images.searchbar}
+              className="searchbarImg"
+              alt="searchbar"
+            />
           </div>
           <p className="chefName">Filter By:</p>
           <div className="dropdown">
@@ -137,98 +138,25 @@ const UserChefHome = () => {
           </div>
         </div>
         <div className="container-fluid">
-          {/* <OwlCarousel
-            className="owl-theme"
-            loop={true}
-            margin={10}
-            nav
-            dots={false}
-            autoWidth={true}
-          >
-            <div className="chefslidermain active manageimg">
-              <h6 className="sliderheading ">All</h6>
-            </div>
-            <div className="chefslidermain manageimg">
-              <h6 className="sliderheading">Butcher Chef</h6>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Chef-Owner</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Commis Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Executive Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Fish Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Fry Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Grill Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Head Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Meat Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Fish Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Fry Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Grill Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Head Chef</h6>
-              </div>
-            </div>
-            <div className="item">
-              <div className="chefslidermain manageimg">
-                <h6 className="sliderheading">Meat Chef</h6>
-              </div>
-            </div>
-          </OwlCarousel> */}
           <div className="row">
             {chefListData && chefListData.length > 0 ? (
               <>
                 {chefListData?.map((item, index) => (
                   <div key={index} className="col-lg-2">
+                    {console.log("itemmmmmm", item)}
                     <div className="outerBox text-center">
                       <figure className="chefDetails mb-3">
-                        <img
-                          src={Images.UserICon}
-                          alt="UserICon"
-                          className="img-fluid UserICon"
-                        />
+                        <Link to={`/chef-details?id=${item._id}`}>
+                          <img
+                            src={
+                              item.userInfo.profilePhoto
+                                ? item.userInfo.profilePhoto
+                                : Images.UserICon
+                            }
+                            alt="UserICon"
+                            className="img-fluid UserICon"
+                          />
+                        </Link>
                       </figure>
                       <h6 className="smallHeading">
                         {item.userInfo.firstName} {item.userInfo.lastName}

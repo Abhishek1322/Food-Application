@@ -1,62 +1,31 @@
-import React from 'react'
+import React from "react";
 import * as Images from "../../../../utilities/images";
+import moment from "moment";
 
-const AvailableModal = () => {
+const AvailableModal = (props) => {
+  const { chefData } = props;
   return (
     <>
-        <div className='modalContent'>
-           <div className='availabledays'>
-            <p className='notificationText'>Mon</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>7:30 am - 08:30 pm</p>
+      <div className="modalContent">
+        {chefData?.chefInfo?.availability?.map((item, index) => (
+          <div key={index} className="availabledays mb-3">
+            <p className="notificationText text-capitalize">{item?.day}</p>
+            <div className="daytimes">
+              <img
+                src={Images.ClockIcon}
+                alt="clockimage"
+                className="img-fluid"
+              />
+              <p className="daytimesheading">
+                {moment(item?.timeSlots?.from, "h:mm A").format("h:mm A")} -{" "}
+                {moment(item?.timeSlots?.to, "h:mm A").format("h:mm A")}
+              </p>
             </div>
-           </div>
-           <div className='availabledays mt-3'>
-            <p className='notificationText'>Tue</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>8:30 am - 06:30 pm</p>
-            </div>
-           </div>
-           <div className='availabledays mt-3'>
-            <p className='notificationText'>Wed</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>8:00 am - 07:30 pm</p>
-            </div>
-           </div>
-           <div className='availabledays mt-3'>
-            <p className='notificationText'>Thu</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>9:30 am - 08:00 pm</p>
-            </div>
-           </div>
-           <div className='availabledays mt-3'>
-            <p className='notificationText'>Fri</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>8:30 am - 06:30 pm</p>
-            </div>
-           </div>
-           <div className='availabledays mt-3'>
-            <p className='notificationText'>Sat</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>8:30 am - 07:30 pm</p>
-            </div>
-           </div>
-           <div className='availabledays mt-3'>
-            <p className='notificationText'>Sun</p>
-            <div className='daytimes '>
-                <img src={Images.ClockIcon} alt='clockimage' className='img-fluid'/>
-                <p className='daytimesheading'>8:30 am - 07:00 pm</p>
-            </div>
-           </div>
-        </div>
+          </div>
+        ))}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default AvailableModal
+export default AvailableModal;

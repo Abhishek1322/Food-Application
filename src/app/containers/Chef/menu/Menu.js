@@ -18,7 +18,7 @@ const Menu = () => {
     title: "",
     flag: "",
   });
-
+  console.log("menuIdmenuId", menuId);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -30,6 +30,7 @@ const Menu = () => {
   };
   // open modal
   const handleUserProfile = (flag, id) => {
+    console.log("flagflagflagflag", flag);
     setModalDetail({
       show: true,
       flag: flag,
@@ -78,7 +79,7 @@ const Menu = () => {
                       handleUserProfile("addMenuItemModal");
                     }}
                   >
-                    <i class="fas fa-plus plusmenuImg"></i>
+                    <i className="fas fa-plus plusmenuImg"></i>
                     <p className="innermenuItem">Add Menu Item</p>
                   </div>
                 </div>
@@ -104,18 +105,18 @@ const Menu = () => {
                               />
 
                               <div className="Dotsheader_">
-                                <div class="dropdown ">
+                                <div className="dropdown ">
                                   <button
-                                    class="btn btn-secondary dropdown-toggle modalheaderDot_"
+                                    className="btn btn-secondary dropdown-toggle modalheaderDot_"
                                     type="button"
                                     id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                   >
-                                    <i class="fas fa-ellipsis-v menuBtnIcon"></i>
+                                    <i className="fas fa-ellipsis-v menuBtnIcon"></i>
                                   </button>
                                   <ul
-                                    class="dropdown-menu menuItems_"
+                                    className="dropdown-menu menuItems_"
                                     aria-labelledby="dropdownMenuButton1 "
                                   >
                                     <div className=" menuChat">
@@ -217,7 +218,7 @@ const Menu = () => {
             <FoodDetailModal
               menuId={menuId}
               menuListAll={menuListAll}
-              handleOpenInnerModal={()=>handleUserProfile()}
+              handleOpenInnerModal={(flag, id) => handleUserProfile(flag, id)}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -245,12 +246,6 @@ const Menu = () => {
                   <p className="chatUser">Add your menu items below.</p>
                 </div>
               </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
-              </p>
-            </>
-          ) : modalDetail.flag === "foodDetail" ? (
-            <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>

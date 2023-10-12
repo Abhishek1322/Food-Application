@@ -1,42 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
-import { Link } from "react-router-dom";
-import EditFoodDetailsModal from "./editFoodDetailsModal";
-import ClickDeleteMenuModal from "./clickDeleteMenuModal";
-import CustomModal from "./CustomModal";
 import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 
 const FoodDetailModal = (props) => {
-  const { menuId, close, menuListAll,handleOpenInnerModal } = props;
-  const [key, setKey] = useState(Math.random());
+  const { menuId, close, handleOpenInnerModal } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const dispatch = useDispatch();
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-  console.log("foodDetails", foodDetails);
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-
-  // open modal
-  const handleUserProfile = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
 
   // close loader after page load
   useEffect(() => {
@@ -65,7 +35,7 @@ const FoodDetailModal = (props) => {
       <div className="foodDetailModal_">
         <div className="cartfoodsection">
           <div className="topFoodmenu">
-            <div className="Dotsheader_">
+            <div className="Dotsheader_ d-flex align-items-center justify-content-between">
               <div class="dropdown">
                 <button
                   class="btn btn-secondary dropdown-toggle modalheaderDot_"
@@ -84,7 +54,7 @@ const FoodDetailModal = (props) => {
                     <div
                       className="flexBox pb-2 "
                       onClick={() => {
-                        handleOpenInnerModal("foodDetail");
+                        handleOpenInnerModal("editMenuModal", menuId);
                       }}
                     >
                       <img
@@ -96,18 +66,21 @@ const FoodDetailModal = (props) => {
                     <div
                       className="flexBox"
                       onClick={() => {
-                        handleUserProfile("clickDeletemenuModal");
+                        handleOpenInnerModal("deleteMenuModal", menuId);
                       }}
                     >
                       <img
                         src={Images.cartDelete}
                         className=" img-fluid reporticon_"
                       />
-                      <p className="reportchattxt_ m-0 ps-2">Delete Chat</p>
+                      <p className="reportchattxt_ m-0 ps-2">Delete</p>
                     </div>
                   </div>
                 </ul>
               </div>
+              <p onClick={() => close()} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
             </div>
           </div>
           <div className="foodmodal">
@@ -118,17 +91,13 @@ const FoodDetailModal = (props) => {
             />
             <p className="foodmodalheading">{foodDetails?.name}</p>
             <div className="restroinfo">
-              <Link to="#">
-                <img
-                  src={Images.sarahcap}
-                  alt="sarahcapimage"
-                  className="img-fluid "
-                />
-              </Link>
+              <img
+                src={Images.sarahcap}
+                alt="sarahcapimage"
+                className="img-fluid"
+              />
               <div className="johnchatdetail">
-                <Link to="#">
-                  <p className="chatDates">Category</p>
-                </Link>
+                <p className="chatDates">{foodDetails?.category}</p>
               </div>
             </div>
           </div>
@@ -164,77 +133,6 @@ const FoodDetailModal = (props) => {
           <p className="foodamountmodal">{foodDetails?.price}.00</p>
         </div>
       </div>
-
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "editFoodDetailsModal"
-            ? "commonWidth customContent"
-            : ""
-        }
-        ids={
-          modalDetail.flag === "editFoodDetailsModal"
-            ? "editFoodDetail"
-            : "clickDeletemenuModal"
-            ? "clickDeleteMenu"
-            : ""
-        }
-        child={
-          modalDetail.flag === "editFoodDetailsModal" ? (
-            <EditFoodDetailsModal close={() => handleOnCloseModal()} />
-          ) : modalDetail.flag === "clickDeletemenuModal" ? (
-            <ClickDeleteMenuModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "foodDetailModal" ? (
-            <>
-              <div className="foodDetailHeader_">
-                <p onClick={handleOnCloseModal} className="modal_cancel">
-                  <img src={Images.modalCancel} className="ModalCancel" />
-                </p>
-              </div>
-              {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p> */}
-            </>
-          ) : modalDetail.flag === "editFoodDetailsModal" ? (
-            <>
-              <div className="editadressheading">
-                <div className="edithead">
-                  <p className="modal_Heading">Edit Item</p>
-                  <p className="chatUser">Edit your menu items below.</p>
-                </div>
-              </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
-              </p>
-            </>
-          ) : modalDetail.flag === "clickDeletemenuModal" ? (
-            <>
-              <div className="editadressheading">
-                <img
-                  src={Images.backArrowpassword}
-                  className="img-fluid arrowCommon_"
-                />
-              </div>
-              {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} className='ModalCancel' />
-            </p> */}
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

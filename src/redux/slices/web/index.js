@@ -8,19 +8,26 @@ const initialState = {
   menusList: [],
   imageUrl: [],
   getSingleMenu: [],
+  getSingleChef:[]
 };
 
 export const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
+    getSingleChef: (state) => {
+      state.loading = true;
+    },
+    setGetSingleChef: (state, action) => {
+      state.loading = false;
+      state.getSingleChef = action.payload;
+    },
     deleteMenuItem: (state) => {
       state.loading = true;
     },
     setDeleteMenuItem: (state, action) => {
       state.loading = false;
     },
-
     singleMenu: (state) => {
       state.loading = true;
     },
@@ -119,6 +126,8 @@ export const {
   setSingleMenu,
   deleteMenuItem,
   setDeleteMenuItem,
+  getSingleChef,
+  setGetSingleChef,
 } = webSlice.actions;
 
 export default webSlice.reducer;

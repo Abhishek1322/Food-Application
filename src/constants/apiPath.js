@@ -20,6 +20,7 @@ const ApiPath = {
     MENUS: "/menus",
     GET_FILES_URL: "/menus/upload-image",
     EDIT_MENU_ITEM: "/menus",
+    SINGLE_CHEF_DETAIL:"/users/chefDetail"
   },
 };
 
