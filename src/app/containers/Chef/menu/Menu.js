@@ -4,12 +4,15 @@ import CustomModal from "../../../components/common/shared/CustomModal";
 import EditMenuModal from "../../../components/common/shared/editMenuModal";
 import DeleteMenuModal from "../../../components/common/shared/DeleteMenuModal";
 import AddmenuItemModal from "../../../components/common/shared/addmenuItemModal";
+import FoodDetailModal from "../../../components/common/shared/foodDetailModal";
 import { getMenusLists, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
+  const [menuList, setMenuList] = useState([]);
+  const [menuId, setMenuId] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -26,13 +29,14 @@ const Menu = () => {
     setKey(Math.random());
   };
   // open modal
-  const handleUserProfile = (flag) => {
+  const handleUserProfile = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
       type: flag,
     });
     setKey(Math.random());
+    setMenuId(id);
   };
 
   // close loader after page load
@@ -40,496 +44,130 @@ const Menu = () => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // get all menu lists
+  useEffect(() => {
+    menuListAll();
+  }, []);
+
+  const menuListAll = () => {
+    dispatch(
+      getMenusLists({
+        cb(res) {
+          if (res.status === 200) {
+            setMenuList(res.data.data.data);
+          }
+        },
+      })
+    );
+  };
+
   return (
     <>
-      <div className='mainchef_'>
-        <div className='menuPage'>
-          <div className='container-fluid'>
-            <div className='row align-items-center'>
-              <div className='col-lg-12'>
-                <div className='innerhomeheader'>
-                  <h2 className='headerinnerheading'>List of Your Menu Items</h2>
-                  <div className='menuItems ' onClick={() => {
-                    handleUserProfile("addMenuItemModal")
-                  }}>
-                    <i class="fas fa-plus plusmenuImg" ></i>
-                    <p className='innermenuItem'>Add Menu Item</p>
+      <div className="mainchef_">
+        <div className="menuPage">
+          <div className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-lg-12">
+                <div className="innerhomeheader">
+                  <h2 className="headerinnerheading">
+                    List of Your Menu Items
+                  </h2>
+                  <div
+                    className="menuItems "
+                    onClick={() => {
+                      handleUserProfile("addMenuItemModal");
+                    }}
+                  >
+                    <i class="fas fa-plus plusmenuImg"></i>
+                    <p className="innermenuItem">Add Menu Item</p>
                   </div>
                 </div>
                 <div className="profileDetail">
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                        <div className="Dotsheader_">
-                          <div class="dropdown ">
-                            <button
-                              class="btn btn-secondary dropdown-toggle modalheaderDot_"
-                              type="button"
-                              id="dropdownMenuButton1"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i class="fas fa-ellipsis-v menuBtnIcon"></i>
-                            </button>
-                            <ul
-                              class="dropdown-menu menuItems_"
-                              aria-labelledby="dropdownMenuButton1 "
-                            >
-                              <div className=" menuChat">
-                                <div
-                                  className="flexBox pb-3 "
-                                  onClick={() => {
-                                    handleUserProfile("editMenuModal");
-                                  }}
-                                >
-                                  <img
-                                    src={Images.EditImg}
-                                    className=" img-fluid reporticon_"
-                                  />
-                                  <p className="ps-2">Edit</p>
-                                </div>
-                                <div
-                                  className="flexBox"
-                                  onClick={() => {
-                                    handleUserProfile("deleteMenuModal");
-                                  }}
-                                >
-                                  <img
-                                    src={Images.cartDelete}
-                                    className=" img-fluid reporticon_"
-                                  />
-                                  <p className="reportchattxt_ m-0 ps-2">
-                                    Delete Chat
-                                  </p>
+                  {menuList && menuList.length > 0 ? (
+                    <>
+                      {menuList.map((item, index) => (
+                        <div key={index} className="listItems_">
+                          <div className="menu_Items">
+                            <div className="innerItems_">
+                              <img
+                                src={Images.ItemsBgMenu}
+                                alt="logo"
+                                className="bgmenuImg_"
+                              />
+                              <img
+                                onClick={() => {
+                                  handleUserProfile("foodDetail", item._id);
+                                }}
+                                src={item.image}
+                                alt="logo"
+                                className="menuItem_"
+                              />
+
+                              <div className="Dotsheader_">
+                                <div class="dropdown ">
+                                  <button
+                                    class="btn btn-secondary dropdown-toggle modalheaderDot_"
+                                    type="button"
+                                    id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                  >
+                                    <i class="fas fa-ellipsis-v menuBtnIcon"></i>
+                                  </button>
+                                  <ul
+                                    class="dropdown-menu menuItems_"
+                                    aria-labelledby="dropdownMenuButton1 "
+                                  >
+                                    <div className=" menuChat">
+                                      <div
+                                        className="flexBox pb-3 "
+                                        onClick={() => {
+                                          handleUserProfile(
+                                            "editMenuModal",
+                                            item._id
+                                          );
+                                        }}
+                                      >
+                                        <img
+                                          src={Images.EditImg}
+                                          className=" img-fluid reporticon_"
+                                        />
+                                        <p className="ps-2">Edit</p>
+                                      </div>
+                                      <div
+                                        className="flexBox"
+                                        onClick={() => {
+                                          handleUserProfile(
+                                            "deleteMenuModal",
+                                            item._id
+                                          );
+                                        }}
+                                      >
+                                        <img
+                                          src={Images.cartDelete}
+                                          className=" img-fluid reporticon_"
+                                        />
+                                        <p className="reportchattxt_ m-0 ps-2">
+                                          Delete
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </ul>
                                 </div>
                               </div>
-                            </ul>
+                            </div>
                           </div>
+                          <p className="itemIs_">{item.name}</p>
+                          <p className="category_">{item.category}</p>
+                          <button className="itemsPrice_">
+                            £{item.price}.00
+                          </button>
                         </div>
-                      </div>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-12">
-                <div className="profileDetail">
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-12">
-                <div className="profileDetail">
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
-                  <div className="listItems_">
-                    <div className="menu_Items">
-                      <div className="innerItems_">
-                        <img
-                          src={Images.ItemsBgMenu}
-                          alt="logo"
-                          className="bgmenuImg_"
-                        />
-                        <img
-                          src={Images.menuItems}
-                          alt="logo"
-                          className="menuItem_"
-                        />
-                      </div>
-                      <i class="fas fa-ellipsis-v menuIcon_"></i>
-                    </div>
-                    <p className="itemIs_">Chicken Salad</p>
-                    <p className="category_">Food Category</p>
-                    <button className="itemsPrice_">£22.00</button>
-                  </div>
+                      ))}
+                    </>
+                  ) : (
+                    <p>No data found</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -559,11 +197,29 @@ const Menu = () => {
         }
         child={
           modalDetail.flag === "editMenuModal" ? (
-            <EditMenuModal close={() => handleOnCloseModal()} />
+            <EditMenuModal
+              menuId={menuId}
+              menuListAll={menuListAll}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "deleteMenuModal" ? (
-            <DeleteMenuModal close={() => handleOnCloseModal()} />
+            <DeleteMenuModal
+              menuId={menuId}
+              menuListAll={menuListAll}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "addMenuItemModal" ? (
-            <AddmenuItemModal close={() => handleOnCloseModal()} />
+            <AddmenuItemModal
+              menuListAll={menuListAll}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "foodDetail" ? (
+            <FoodDetailModal
+              menuId={menuId}
+              menuListAll={menuListAll}
+              handleOpenInnerModal={()=>handleUserProfile()}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )
@@ -589,6 +245,12 @@ const Menu = () => {
                   <p className="chatUser">Add your menu items below.</p>
                 </div>
               </div>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" />
+              </p>
+            </>
+          ) : modalDetail.flag === "foodDetail" ? (
+            <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img src={Images.modalCancel} className="ModalCancel" />
               </p>
