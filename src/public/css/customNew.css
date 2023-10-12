@@ -1787,7 +1787,7 @@ line-height: normal;
     display: inline-block;
     width: 100%;
     padding: 0px 0px 8px 10px;
-    background-image: url(http://localhost:3000/static/media/downArrow.cb70ef2bae8e4a51e1a0.svg);
+    background-image: url(../images/downArrow.svg);
     background-repeat: no-repeat;
     color: #ABADAD;
     font-size: 8px;
@@ -1800,11 +1800,11 @@ line-height: normal;
     font-size: 14px;
     font-weight: 400;
 }
-.userchefhome .pagination {
+ .pagination {
     justify-content: end;
     margin-top: 20px;
 }
-.userchefhome .previous a ,.userchefhome .next a{
+.previous a , .next a{
     border-radius: 8px;
 background: #fff;
 padding: 10px 25px;
@@ -1815,19 +1815,20 @@ box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
 text-transform: capitalize;
 border:1px solid #E65C00
 }
-.userchefhome .pagination li a{
+ .pagination li a{
     border:1px solid #E65C00;
     padding: 5px 18px;
     margin: 0 5px;
     border-radius: 8px;
     font-size: 16px;
+    color: #E65C00 !important;
 }
-.userchefhome .pagination .active a{
+ .pagination .active a{
     background-color: #E65C00;
-    color: #fff;
+    color: #fff !important;
     
 }
-.userchefhome .pagination  a{
+ .pagination  a{
     background-color: #fff ;
     border:1px solid #E65C00;
     padding: 5px 18px;
