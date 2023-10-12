@@ -64,10 +64,6 @@ const ChefDetails = () => {
     setMenuId(id);
   };
 
-  useEffect(() => {
-    console.log("navigatorrrrrrr", navigator);
-  }, []);
-
   return (
     <>
       <div className="chefdetailsection">
@@ -172,7 +168,7 @@ const ChefDetails = () => {
                   handleUserProfile("ratingchef");
                 }}
               >
-                <i class="las la-star startIcon"></i>
+                <i className="las la-star startIcon"></i>
                 <h6 className="ratingheading">4.5 (845 Reviews)</h6>
               </div>
             </div>
@@ -223,7 +219,6 @@ const ChefDetails = () => {
                 {chefData?.menus?.map((val, i) => {
                   return (
                     <div key={i} className="col-lg-2 col-md-4 col-sm-6">
-                      {console.log("valueeeeee", val)}
                       <div className="listItems_">
                         <div className="menu_Items">
                           <div className="innerItems_">
@@ -233,6 +228,9 @@ const ChefDetails = () => {
                               className="bgmenuImg_"
                             />
                             <img
+                              onClick={() => {
+                                handleUserProfile("CartFood", val?._id);
+                              }}
                               src={val?.image ? val?.image : Images.SaladImg}
                               alt="logo"
                               className="menuItem_"
@@ -245,12 +243,7 @@ const ChefDetails = () => {
                           <button className="itemsPrice_ ">
                             £ {val?.price}
                           </button>
-                          <div
-                            onClick={() => {
-                              handleUserProfile("CartFood", val?._id);
-                            }}
-                            className="sarahbasket"
-                          >
+                          <div className="sarahbasket">
                             <img
                               src={Images.basketImg}
                               alt="basketimage"

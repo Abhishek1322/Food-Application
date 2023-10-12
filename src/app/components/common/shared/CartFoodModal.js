@@ -16,7 +16,7 @@ const CartFoodModal = (props) => {
     title: "",
     flag: "",
   });
-  console.log("foodDetailsfoodDetails", foodDetails);
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -63,7 +63,11 @@ const CartFoodModal = (props) => {
     <>
       <div className="cartfoodsection">
         <div className="foodmodal">
-          <img src={Images.CartFood} alt="saladimage" className="img-fluid" />
+          <img
+            src={foodDetails?.image ? foodDetails?.image : Images.CartFood}
+            alt="saladimage"
+            className="img-fluid"
+          />
           <h2 className="foodmodalheading mt-2">{foodDetails?.name}</h2>
           <div className="restroinfo">
             <Link to="#">
@@ -91,7 +95,7 @@ const CartFoodModal = (props) => {
             <div className="foodrating">
               <h6 className="chefName">Rating</h6>
               <div className="chefrating mt-1">
-                <i class="las la-star startIcon"></i>
+                <i className="las la-star startIcon"></i>
                 <p className="ratingheading">4.5 (845 Reviews)</p>
               </div>
             </div>
@@ -116,7 +120,7 @@ const CartFoodModal = (props) => {
                 handleUserProfile("CartFoodOrder");
               }}
             >
-              Add to Cart
+              Buy Now
             </button>
           </div>
         </div>
@@ -136,7 +140,10 @@ const CartFoodModal = (props) => {
         ids={modalDetail.flag === "CartFoodOrder" ? "CartFoodOrderModal" : ""}
         child={
           modalDetail.flag === "CartFoodOrder" ? (
-            <CartFoodModalOrder close={() => handleOnCloseModal()} />
+            <CartFoodModalOrder
+              menuId={menuId}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )
