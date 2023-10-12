@@ -59,11 +59,11 @@ const SetupProfile = () => {
     title: "",
     flag: "",
   });
-  
+
   //onchange input
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value.trim() });
+    setFormData({ ...formData, [name]: value });
   };
 
   // remove document
@@ -326,7 +326,6 @@ const SetupProfile = () => {
     setShowTimeSlot(true);
   };
 
-  
   useEffect(() => {
     setAvailability((prevAvailability) => {
       const dayIndex = prevAvailability.findIndex(

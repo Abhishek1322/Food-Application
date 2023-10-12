@@ -29,7 +29,7 @@ const EditMenuModal = (props) => {
   //onchange input
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value.trim() });
+    setFormData({ ...formData, [name]: value });
   };
 
   // close loader after page load
