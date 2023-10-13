@@ -142,13 +142,13 @@ const EnterOtp = (props) => {
 
                     <p className="mb-3 mt-3">
                       Don’t Received{" "}
-                      <a
+                      <Link
                         onClick={(e) => handleResendOtp(e)}
                         className="Link"
                         href="/auth/otp"
                       >
                         Resend
-                      </a>{" "}
+                      </Link>{" "}
                     </p>
 
                     <div className="buttonBox mt-5">

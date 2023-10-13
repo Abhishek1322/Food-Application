@@ -95,7 +95,6 @@ const ChefDetails = () => {
                         alt="sarahcapimage"
                         className="img-fluid"
                       />
-
                       <div className="johnchatdetail">
                         <p className="chatDates">{chefData?.chefInfo?.type}</p>
                       </div>
@@ -170,7 +169,7 @@ const ChefDetails = () => {
                 }}
               >
                 <i className="las la-star startIcon"></i>
-                <h6 className="ratingheading">4.5 (845 Reviews)</h6>
+                <p className="ratingheading">4.5 (845 Reviews)</p>
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12">
@@ -193,7 +192,7 @@ const ChefDetails = () => {
               <h3 className="innerDummyHeading ">Expertise</h3>
               <div className="chefexpertise mt-2">
                 {chefData?.chefInfo?.expertise &&
-                chefData?.chefInfo?.expertise.length > 0 ? (
+                  chefData?.chefInfo?.expertise.length > 0 ? (
                   <>
                     {chefData?.chefInfo?.expertise?.map((item, index) => (
                       <div key={index} className="expertisevalue">
@@ -279,12 +278,12 @@ const ChefDetails = () => {
           modalDetail.flag === "availabilityModal"
             ? "availablebtnModal"
             : modalDetail.flag === "CartFood"
-            ? "CartModalFood"
-            : modalDetail.flag === "ratingchef"
-            ? "ratingusermodal"
-            : modalDetail.flag === "chefcart"
-            ? "usercartmodal"
-            : ""
+              ? "CartModalFood"
+              : modalDetail.flag === "ratingchef"
+                ? "ratingusermodal"
+                : modalDetail.flag === "chefcart"
+                  ? "usercartmodal"
+                  : ""
         }
         child={
           modalDetail.flag === "availabilityModal" ? (
@@ -318,7 +317,7 @@ const ChefDetails = () => {
             <>
               <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg"/>
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : (

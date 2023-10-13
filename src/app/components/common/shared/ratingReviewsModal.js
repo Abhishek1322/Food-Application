@@ -13,7 +13,7 @@ const RatingReviewsModal = () => {
             </div>
             <p className='overallTxt ps-2'>Overall</p>
           </div>
-          <img src={Images.ratingAndReview} className='RatingImg_' />
+          <img src={Images.ratingAndReview} className='RatingImg_' alt ="RatingImg" />
         </div>
 
         <div className='flexBox justify-content-between pt-3'>

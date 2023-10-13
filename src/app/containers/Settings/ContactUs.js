@@ -7,14 +7,14 @@ const ContactUs = () => {
             <div className="contactUs">
                 <div className="container-fluid">
                     <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
-                        <img src={Images.backArrowpassword} alt="logo" className="img-fluid innerHeaderArrow " />
+                        <img src={Images.backArrowpassword} alt="backarrowImg" className="img-fluid innerHeaderArrow " />
                         <h1 className='settingMainHeading text-align-center '>Contact Us</h1>
                     </div>
                     <div className='changepassword'>
                         <div className="logRight mt-5">
                             <div className="changepasswordForm">
                                 <div className='changepasswordImg d-flex justify-content-center'>
-                                    <img src={Images.contactUs} alt="logo" className="img-fluid  contactusImg" />
+                                    <img src={Images.contactUs} alt="contactUs" className="img-fluid  contactusImg" />
                                 </div>
                                 <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">We will answer your questions
                                     & problems</h6>

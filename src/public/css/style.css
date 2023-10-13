@@ -30,7 +30,10 @@ li {
 }
 
 .main_Setting {
-    padding: 15px 31px 0px 31px;
+  padding: 15px 31px 0px 31px;
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
 }
 .settingMainHeading {
   color: #2e3333;
@@ -85,23 +88,25 @@ li {
   font-weight: 400;
 }
 
-.sidebarLinks {
+/* .sidebarLinks {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 15px 11px;
   margin-bottom: 35px;
-}
+} */
 
 .sidebarItems {
   color: #979999;
-  text-align: center;
   font-size: 12px;
   font-weight: 400;
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px 11px;
+  margin-bottom: 35px;
 }
 
 .sidebarItems:hover {

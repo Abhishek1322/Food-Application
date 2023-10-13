@@ -246,8 +246,8 @@ p {
     width: 100%;
 } 
 .sarahImg_{
-    max-width: 100%;
-    height: auto;
+    width: 105px;
+    height: 105px;
     border-radius: 50%;
 }
 .sarahchef {
@@ -1297,7 +1297,12 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
+.modalContent .cheftext{
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 #userchatdelete {
     max-width: 406px;
     margin: 0;

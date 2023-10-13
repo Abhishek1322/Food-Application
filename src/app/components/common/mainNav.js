@@ -39,7 +39,7 @@ const Resources = () => {
                     <figure className="menuBox">
                       <img
                         src={Images.chat}
-                        alt="logo"
+                        alt="chatImg"
                         className="img-fluid chatIconImage"
                         onClick={() => {
                           setModalDetail({ show: true, flag: "chatBox" });
@@ -58,7 +58,7 @@ const Resources = () => {
                     >
                       <img
                         src={Images.bellImage}
-                        alt="logo"
+                        alt="bellImg"
                         className="img-fluid chatIconImage"
                       />
                     </figure>
@@ -66,7 +66,7 @@ const Resources = () => {
                   <div className="menuBox cart">
                     <img
                       src={Images.basketImg}
-                      alt="logo"
+                      alt="basketImg"
                       className="img-fluid basketImg"
                       onClick={() => {
                         setModalDetail({ show: true, flag: "CartModal" });
@@ -116,21 +116,21 @@ const Resources = () => {
             <>
               <h2 className="modal_Heading">Chat</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : modalDetail.flag === "Notification" ? (
             <>
               <h2 className="modal_Heading">Notification</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel"alt="modalcancelimg"  />
               </p>
             </>
           ) : modalDetail.flag === "CartModal" ? (
             <>
               <h2 className="modal_Heading">Cart</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg"  />
               </p>
             </>
           ) : (

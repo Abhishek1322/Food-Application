@@ -94,17 +94,17 @@ const CartModalCheckout = () => {
                         <div className='checkouthome'>
                             <div className='homedropdown mt-2'>
                                 <h6 className='notificationText'>Home</h6>
-                                <div class="dropdown dropend">
+                                <div className="dropdown dropend">
                                     <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li><Link to="#" class="dropdown-item"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></Link></li>
-                                        <li><Link to="#" class="dropdown-item"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></Link></li>
+                                    <ul className="dropdown-menu">
+                                        <li><Link to="#" className="dropdown-item"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></Link></li>
+                                        <li><Link to="#" className="dropdown-item"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></Link></li>
                                     </ul>
                                 </div>
                             </div>
                             <p className='cheftext mt-2'>New York, 10003, 2nd Street dorm</p>
-                            <div class="round">
-                                <input id="" name="" type="checkbox" value="" class="checkbx" />
+                            <div className="round">
+                                <input id="" name="" type="checkbox" value="" className="checkbx" />
                             </div>
                         </div>
                         <div className='checkouthome'>

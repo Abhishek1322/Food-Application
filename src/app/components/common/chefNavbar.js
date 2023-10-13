@@ -58,22 +58,22 @@ const Chef_Navbar = () => {
                 {/* <h1 className="chefCommonHeader">Settings</h1> */}
                   {/* ----Booking Details Page Header html  &  For after booking Details Also */}
                   {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">Booking Details</h1>
                 </div> */}
 
                   {/* Order Details Header  html */}
                   {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow"  alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">Order Details</h1>
                 </div>
               </div> */}
-              {/* My Profile Page header css */}
-              {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  {/* My Profile Page header css */}
+                  {/* <div className="insideCommonHeader">
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow"  alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">My Profile</h1>
                 </div> */}
-                
+
                 </div>
                 <div className="col-lg-6 col-sm-12 text-end">
                   <div className="flexBox">
@@ -147,13 +147,13 @@ const Chef_Navbar = () => {
                 {/* <h1 className="chefCommonHeader">Settings</h1> */}
                   {/* ----Booking Details Page Header html  &  For after booking Details Also */}
                   {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">Booking Details</h1>
                 </div> */}
 
                   {/* Order Details Header  html */}
                   {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">Order Details</h1>
                 </div>
               </div> */}
@@ -230,13 +230,13 @@ const Chef_Navbar = () => {
                 {/* <h1 className="chefCommonHeader">Settings</h1> */}
                   {/* ----Booking Details Page Header html  &  For after booking Details Also */}
                   {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">Booking Details</h1>
                 </div> */}
 
                   {/* Order Details Header  html */}
                   {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" />
+                  <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">Order Details</h1>
                 </div>
               </div> */}
@@ -367,6 +367,7 @@ const Chef_Navbar = () => {
                       <img
                         src={Images.backArrowpassword}
                         className="innerHeaderArrow"
+                        alt="arrowHeaderImg"
                       />
                     </Link>
 
@@ -398,12 +399,12 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox"
             ? "chatBox"
             : modalDetail.flag === "Notification"
-            ? "Notification"
-            : modalDetail.flag === "Myorder"
-            ? "myOrder"
-            : modalDetail.flag === "verifyOrderDetailModal"
-            ? "verifyOrderDetail"
-            : ""
+              ? "Notification"
+              : modalDetail.flag === "Myorder"
+                ? "myOrder"
+                : modalDetail.flag === "verifyOrderDetailModal"
+                  ? "verifyOrderDetail"
+                  : ""
         }
         child={
           modalDetail.flag === "chatBox" ? (
@@ -423,28 +424,28 @@ const Chef_Navbar = () => {
             <>
               <h2 className="modal_Heading">Chat</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
               </p>
             </>
           ) : modalDetail.flag === "Notification" ? (
             <>
               <h2 className="modal_Heading">Notification</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
               </p>
             </>
           ) : modalDetail.flag === "Myorder" ? (
             <>
               <h2 className="modal_Heading">My Order</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
               </p>
             </>
           ) : modalDetail.flag === "verifyOrderDetailModal" ? (
             <>
               <div className="cancelCommonHeader">
                 <p onClick={handleOnCloseModal} className="modal_cancel">
-                  <img src={Images.modalCancel} className="ModalCancel" />
+                  <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
                 </p>
               </div>
             </>

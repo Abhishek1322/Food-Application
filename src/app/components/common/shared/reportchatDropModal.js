@@ -79,7 +79,7 @@ const ReportchatDropModal = () => {
                         My Orders
                         </h2>
                         <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
+                            <img src={Images.modalCancel} className='ModalCancel' alt='modalCancelimg' />
                         </p>
                     </>
                     :

@@ -3,9 +3,9 @@ import * as Images from "../../../../utilities/images"
 
 
 const UserOrderEdit = () => {
-  return (
-    <>
-        <div className='ordereditsection editadressection'>
+    return (
+        <>
+            <div className='ordereditsection editadressection'>
                 <div className='tabsection'>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -25,73 +25,73 @@ const UserOrderEdit = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='New York'
-                                                />
-                                                <label className="border-label">City</label>
-                                            </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='New York'
+                                            />
+                                            <label className="border-label">City</label>
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-6'>
-                                            <div className="input-container mt-4">
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-6'>
+                                        <div className="input-container mt-4">
                                             <select className="cateSelectbox border-input" required="">
-                                                    <option value="">State</option>
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                </select>
-                                                <label className="border-label">Select</label>
-                                            </div>
-                                        </div>
-                                        <div className='col-lg-6'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="Zip Code"
-                                                    className="border-input"
-                                                    placeholder='123'
-                                                />
-                                                <label className="border-label">Zip Code</label>
-                                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                                            </div>
+                                                <option value="">State</option>
+                                                <option>Category1</option>
+                                                <option>Category2</option>
+                                            </select>
+                                            <label className="border-label">Select</label>
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='Enter Address '
-                                                />
-                                                <label className="border-label">Street Address</label>
-                                            </div>
+                                    <div className='col-lg-6'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="Zip Code"
+                                                className="border-input"
+                                                placeholder='123'
+                                            />
+                                            <label className="border-label">Zip Code</label>
+                                            <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='Enter Plot / Building Number'
-                                                />
-                                                <label className="border-label">Plot / Building Number</label>
-                                            </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='Enter Address '
+                                            />
+                                            <label className="border-label">Street Address</label>
                                         </div>
                                     </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='Enter Plot / Building Number'
+                                            />
+                                            <label className="border-label">Plot / Building Number</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn' type='button'>
-                                        Update & Save
+                                            Update & Save
                                         </button>
                                     </div>
                                 </div>
@@ -103,69 +103,69 @@ const UserOrderEdit = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='New York'
-                                                />
-                                                <label className="border-label">City</label>
-                                            </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='New York'
+                                            />
+                                            <label className="border-label">City</label>
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-6'>
-                                            <div className="input-container mt-4">
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-6'>
+                                        <div className="input-container mt-4">
                                             <select className="cateSelectbox border-input" required="">
-                                                    <option value="">State</option>
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                </select>
-                                                <label className="border-label">Select</label>
-                                            </div>
-                                        </div>
-                                        <div className='col-lg-6'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="Zip Code"
-                                                    className="border-input"
-                                                    placeholder='123'
-                                                />
-                                                <label className="border-label">Zip Code</label>
-                                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                                            </div>
+                                                <option value="">State</option>
+                                                <option>Category1</option>
+                                                <option>Category2</option>
+                                            </select>
+                                            <label className="border-label">Select</label>
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='Enter Address '
-                                                />
-                                                <label className="border-label">Street Address</label>
-                                            </div>
+                                    <div className='col-lg-6'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="Zip Code"
+                                                className="border-input"
+                                                placeholder='123'
+                                            />
+                                            <label className="border-label">Zip Code</label>
+                                            <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='Enter Plot / Building Number'
-                                                />
-                                                <label className="border-label">Plot / Building Number</label>
-                                            </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='Enter Address '
+                                            />
+                                            <label className="border-label">Street Address</label>
                                         </div>
                                     </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='Enter Plot / Building Number'
+                                            />
+                                            <label className="border-label">Plot / Building Number</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn' type='button'>
@@ -181,73 +181,73 @@ const UserOrderEdit = () => {
                                     <img src={Images.Target} alt='locationtargetimg' className='img-fluid' />
                                     <span className='modalclearAll'>User Current Location</span>
                                 </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='New York'
-                                                />
-                                                <label className="border-label">City</label>
-                                            </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='New York'
+                                            />
+                                            <label className="border-label">City</label>
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-6'>
-                                            <div className="input-container mt-4">
-                                                <select className="cateSelectbox border-input" required="">
-                                                    <option value="">State</option>
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                </select>
-                                                <label className="border-label">Select</label>
-                                            </div>
-                                        </div>
-                                        <div className='col-lg-6'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="Zip Code"
-                                                    className="border-input"
-                                                    placeholder='123'
-                                                />
-                                                <label className="border-label">Zip Code</label>
-                                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                                            </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-6'>
+                                        <div className="input-container mt-4">
+                                            <select className="cateSelectbox border-input" required="">
+                                                <option value="">State</option>
+                                                <option>Category1</option>
+                                                <option>Category2</option>
+                                            </select>
+                                            <label className="border-label">Select</label>
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='Enter Address '
-                                                />
-                                                <label className="border-label">Street Address</label>
-                                            </div>
+                                    <div className='col-lg-6'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="Zip Code"
+                                                className="border-input"
+                                                placeholder='123'
+                                            />
+                                            <label className="border-label">Zip Code</label>
+                                            <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-lg-12'>
-                                            <div className="input-container mt-4">
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className="border-input"
-                                                    placeholder='Enter Plot / Building Number'
-                                                />
-                                                <label className="border-label">Plot / Building Number</label>
-                                            </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='Enter Address '
+                                            />
+                                            <label className="border-label">Street Address</label>
                                         </div>
                                     </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-lg-12'>
+                                        <div className="input-container mt-4">
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                className="border-input"
+                                                placeholder='Enter Plot / Building Number'
+                                            />
+                                            <label className="border-label">Plot / Building Number</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
                                         <button className='foodmodalbtn' type='button'>
-                                         Save
+                                            Save
                                         </button>
                                     </div>
                                 </div>
@@ -255,9 +255,9 @@ const UserOrderEdit = () => {
                         </div>
                     </div>
                 </div>
-        </div>
-    </>
-  )
+            </div>
+        </>
+    )
 }
 
 export default UserOrderEdit

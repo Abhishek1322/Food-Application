@@ -35,7 +35,7 @@ const BellModal = () => {
 
             <div className='modalContent'>
                 <div className='searchbar '>
-                    <input type='text' placeholder='Search Chef near you...' className='searchtext'
+                    <input type='search' placeholder='Search Chef near you...' className='searchtext'
                     />
                     <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
                 </div>
@@ -164,15 +164,15 @@ const BellModal = () => {
                             <img src={Images.modalCancel} className='ModalCancel' />
                         </p> */}
                         <div className='Dotsheader_'>
-                            <div class="dropdown ">
-                                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                            <div className="dropdown ">
+                                <button className="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' alt="modalHeaderImg" />
                                 </button>
-                                <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
+                                <ul className="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
                                     <div className=' chatnext_ flexBox' onClick={() => {
                                         handleUserProfile("reportchatD")
                                     }}>
-                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' alt="reportchatImg" />
                                         <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
                                     </div>
                                 </ul>

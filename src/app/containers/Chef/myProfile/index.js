@@ -383,21 +383,21 @@ const MyProfile = () => {
             <>
               <h2 className="modal_Heading">Add Expetise</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel"/>
               </p>
             </>
           ) : modalDetail.flag === "addAvailabilityModal" ? (
             <>
               <h2 className="modal_Heading">My Availability</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
               </p>
             </>
           ) : modalDetail.flag === "ratingReviewsModal" ? (
             <>
               <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel"/>
               </p>
             </>
           ) : (

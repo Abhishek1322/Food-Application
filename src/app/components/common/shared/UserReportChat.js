@@ -10,7 +10,6 @@ const UserReportChat = () => {
                     <textarea type="" className="Reportborder-input " />
                     <label className="border-label">Give a reason</label>
                 </div>
-
                 <div className='orderItems_ flexBox justify-content-between modalfooterbtn'>
                     <button className='cancelOrder_' type='button' >Cancel</button>
                     <button className='submitOrder_' type='button'>Yes, Report</button>

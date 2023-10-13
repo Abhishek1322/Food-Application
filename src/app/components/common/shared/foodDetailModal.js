@@ -60,6 +60,7 @@ const FoodDetailModal = (props) => {
                       <img
                         src={Images.EditImg}
                         className=" img-fluid reporticon_"
+                        alt="editImg"
                       />
                       <p className="ps-2">Edit</p>
                     </div>
@@ -72,6 +73,7 @@ const FoodDetailModal = (props) => {
                       <img
                         src={Images.cartDelete}
                         className=" img-fluid reporticon_"
+                        alt="cartDeleteImg"
                       />
                       <p className="reportchattxt_ m-0 ps-2">Delete</p>
                     </div>
@@ -79,7 +81,7 @@ const FoodDetailModal = (props) => {
                 </ul>
               </div>
               <p onClick={() => close()} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </div>
           </div>
