@@ -67,7 +67,7 @@ const AddmenuItemModal = () => {
 
         </div>
         <div className='editImgBox_'>
-          <p className='chefName mt-4 pb-3'>Upload Image </p>
+          <p className='chefName mt-4 pb-3'>Upload Image hjbfejk </p>
           <div className='uploadImgebox choosetoUpload'>
             <div className="postAd_upload_icon">
               <div className="inputfile-box active">
@@ -122,7 +122,7 @@ const AddmenuItemModal = () => {
               </div>
             </div>
             <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} className='ModalCancel' />
+              <img src={Images.modalCancel} alt='modalCancel' className='ModalCancel' />
             </p>
             {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
