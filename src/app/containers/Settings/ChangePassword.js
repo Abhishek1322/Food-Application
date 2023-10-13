@@ -74,7 +74,7 @@ const ChangePassword = () => {
             <Link to="/setting">
               <img
                 src={Images.backArrowpassword}
-                alt="logo"
+                alt="headerarrowImg"
                 className="img-fluid  innerHeaderArrow"
               />
             </Link>

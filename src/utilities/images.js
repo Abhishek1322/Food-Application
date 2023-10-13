@@ -114,6 +114,7 @@ import CartFood from "../public/images/cartfood.svg"
 import verifyDeliveredImg from "../public/images/verifyDeliveredImg.svg"
 import dummyProfile from "../public/images/dummyProfile.svg"
 import HeaderLocation from "../public/images/headerLocation.svg"
+import uploadFileImg from "../public/images/uploadFileImg.svg"
 
 
 
@@ -235,4 +236,5 @@ export {
     verifyDeliveredImg,
     dummyProfile,
     HeaderLocation,
+    uploadFileImg,
 }

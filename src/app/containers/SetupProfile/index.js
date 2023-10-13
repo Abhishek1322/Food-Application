@@ -246,7 +246,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // select address
@@ -257,7 +257,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // week days
@@ -459,13 +459,12 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${
-                                          activeTab === "restaurant"
+                                        className={`chefType ${activeTab === "restaurant"
                                             ? "active"
                                             : path == "/restaurant"
-                                            ? "active"
-                                            : ""
-                                        }`}
+                                              ? "active"
+                                              : ""
+                                          }`}
                                         onClick={() =>
                                           setActiveTab("restaurant")
                                         }
@@ -484,13 +483,12 @@ const SetupProfile = () => {
                                         />
                                       </li>
                                       <li
-                                        className={`chefType ${
-                                          activeTab === "home"
+                                        className={`chefType ${activeTab === "home"
                                             ? "active"
                                             : path == "/home"
-                                            ? "active"
-                                            : ""
-                                        }`}
+                                              ? "active"
+                                              : ""
+                                          }`}
                                         onClick={() => setActiveTab("home")}
                                       >
                                         Home
@@ -576,15 +574,15 @@ const SetupProfile = () => {
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
                                                   ? {
-                                                      backgroundColor:
-                                                        "#41b6e6",
-                                                      cursor: "pointer",
-                                                    }
+                                                    backgroundColor:
+                                                      "#41b6e6",
+                                                    cursor: "pointer",
+                                                  }
                                                   : {
-                                                      backgroundColor:
-                                                        "#ffffff",
-                                                      cursor: "pointer",
-                                                    };
+                                                    backgroundColor:
+                                                      "#ffffff",
+                                                    cursor: "pointer",
+                                                  };
                                                 return (
                                                   <div
                                                     {...getSuggestionItemProps(
@@ -883,14 +881,23 @@ const SetupProfile = () => {
                               <div className="form-group col-md-12 mb-3">
                                 <div className="uploadImgebox">
                                   {pdfFiles ? (
-                                    <div>
-                                      <p>{pdfFiles.name}</p>
-                                      <p
+                                    <div className="innerUploadImgBox">
+                                     <div className="flexBox ms-4">
+                                   <div>
+                                   <img src={Images.uploadFileImg} className="uploadFileIcon" alt="uploadFileIcon" />
+                                   </div>
+                                      <div className="fileDetail">
+                                      <p className="uploadFileDetail ms-3 mb-0" placeholder="File Name. pdf">{pdfFiles.name}</p>
+                                      <span className="timeOrder_ mb-0">373 kb</span>
+                                      </div>
+                                     </div>
+                                      <p 
+                                        className=" cancelUploadFile me-3"
                                         onClick={() =>
                                           handleRemoveDocument(pdfFiles.name)
                                         }
                                       >
-                                        x
+                                      <i class="fas fa-times uploadcancelIcon "></i>
                                       </p>
                                     </div>
                                   ) : (
@@ -921,13 +928,13 @@ const SetupProfile = () => {
                                   )}
                                 </div>
                               </div>
-                              <div className="flexBox justify-content-center mt-3">
+                              <div className="flexBox justify-content-center uploadFileButton ">
                                 <button
                                   onClick={(e) => handleBack(e, "pagetwoback")}
                                   className="submit_btn"
                                   type="submit"
                                 >
-                                  <span className="addMore me-3">
+                                  <span className="addMore me-4">
                                     <i class="las la-angle-left"></i> Back
                                   </span>
                                 </button>
@@ -936,7 +943,7 @@ const SetupProfile = () => {
                                   className="submit_btn"
                                   type="submit"
                                 >
-                                  <span className="smallBtn">Next</span>
+                                  <span className="smallBtn">Save</span>
                                 </button>
                               </div>
                             </>

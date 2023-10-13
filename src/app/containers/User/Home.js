@@ -72,7 +72,7 @@ const HomeUser = () => {
                 </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">3</span>
                   <img
                     src={Images.RatingStar}
@@ -80,10 +80,10 @@ const HomeUser = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">3</span>
                   <img
                     src={Images.RatingStar}
@@ -91,10 +91,10 @@ const HomeUser = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">1</span>
                   <img
                     src={Images.RatingStar}
@@ -102,7 +102,7 @@ const HomeUser = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

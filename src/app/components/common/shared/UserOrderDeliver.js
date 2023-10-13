@@ -30,7 +30,7 @@ const UserOrderDeliver = () => {
         </div>
         <div className='modalfooterbtn'>
           <div className='addfoodbtn'>
-            <button className='foodmodalbtn modalfooddelivery'>
+            <button className='foodmodalbtn modalfooddelivery' type='button'>
               <p className='orderfooterbtn'>Total Paid</p>
               <p className='orderfooterprice'>£66.00</p>
             </button>

@@ -7,7 +7,7 @@ const Loading = () => {
         <div className="loaderImage_">
           <img
             src={Images.loadingsettingpage1}
-            alt="logo"
+            alt="loadingsettingpage1"
             className="img-fluid changepswloader_"
             id="line"
           />

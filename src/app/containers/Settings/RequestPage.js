@@ -55,7 +55,7 @@ const RequestPage = () => {
               <div className="changepasswordImg d-flex justify-content-center">
                 <img
                   src={Images.accountDeleted}
-                  alt="logo"
+                  alt="accountDeletedImg"
                   className="img-fluid innerHeaderArrow "
                 />
               </div>

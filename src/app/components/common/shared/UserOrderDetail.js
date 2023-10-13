@@ -57,7 +57,7 @@ const UserOrderDetail = () => {
         </div>
         <div className='modalfooterbtn'>
           <div className='addfoodbtn'>
-            <button className='foodmodalbtn modalfooddelivery' onClick={() => {
+            <button className='foodmodalbtn modalfooddelivery' type='button' onClick={() => {
               handleUserProfile("orderdeliver")
             }}>
               <p className='orderfooterbtn'>Total Paid</p>
@@ -94,7 +94,7 @@ const UserOrderDetail = () => {
               </div>
             </div>
             <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} className='ModalCancel' />
+              <img src={Images.modalCancel} className='ModalCancel' alt='modalcancelimg'/>
             </p>
           </>
           :

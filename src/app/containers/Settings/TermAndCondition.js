@@ -9,7 +9,7 @@ const TermAndCondition = () => {
                     <div className='row'>
                         <div className='col-md-12'>
                                 <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
-                                    <img src={Images.backArrowpassword} alt="logo" className="img-fluid  innerHeaderArrow" />
+                                    <img src={Images.backArrowpassword} alt="arrowImg" className="img-fluid  innerHeaderArrow" />
                                     <h1 className='settingMainHeading text-align-center '>Terms & Conditions</h1>
                                 </div>
                                 <div className='termAndCond'>

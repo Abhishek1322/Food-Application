@@ -20,7 +20,7 @@ const AccountDeleted = () => {
               <div className="changepasswordImg d-flex justify-content-center">
                 <img
                   src={Images.accountDeleted}
-                  alt="logo"
+                  alt="deleteImg"
                   className="img-fluid innerHeaderArrow "
                 />
               </div>

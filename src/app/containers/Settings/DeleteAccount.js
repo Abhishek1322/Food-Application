@@ -44,7 +44,7 @@ const DeleteAccount = () => {
             <Link to="/setting">
               <img
                 src={Images.backArrowpassword}
-                alt="logo"
+                alt="backArrowImg"
                 className="img-fluid innerHeaderArrow"
               />
             </Link>
@@ -58,7 +58,7 @@ const DeleteAccount = () => {
               <div className="changepasswordImg d-flex justify-content-center ">
                 <img
                   src={Images.deleteImg}
-                  alt="logo"
+                  alt="deleteimg"
                   className="img-fluid .contactusImg "
                 />
               </div>

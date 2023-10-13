@@ -273,10 +273,10 @@ const AddmenuItemModal = (props) => {
                   <p className="chatUser">Add your menu items below.</p>
                 </div>
               </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
-              </p>
-              {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
+            <p onClick={handleOnCloseModal} className='modal_cancel'>
+              <img src={Images.modalCancel} alt='modalCancel' className='ModalCancel' />
+            </p>
+            {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
                             <img src={Images.modalCancel} className='ModalCancel' />
                         </p> */}
             </>

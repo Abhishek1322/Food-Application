@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { chefLists } from "../../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
 
+
 const UserChefHome = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -80,7 +81,7 @@ const UserChefHome = () => {
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">4</span>
                   <img
                     src={Images.RatingStar}
@@ -88,10 +89,10 @@ const UserChefHome = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">5</span>
                   <img
                     src={Images.RatingStar}
@@ -99,10 +100,10 @@ const UserChefHome = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Rating</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">3</span>
                   <img
                     src={Images.RatingStar}
@@ -110,10 +111,10 @@ const UserChefHome = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                   <span className="filterheading">3</span>
                   <img
                     src={Images.RatingStar}
@@ -121,10 +122,10 @@ const UserChefHome = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="#">
                   <span className="filterheading">1</span>
                   <img
                     src={Images.RatingStar}
@@ -132,7 +133,7 @@ const UserChefHome = () => {
                     className="img-fluid ms-1 me-1"
                   />
                   <span className="filterheading">Above Rating</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

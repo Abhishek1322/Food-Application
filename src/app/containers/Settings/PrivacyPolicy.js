@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
                     <div className='row'>
                         <div className='col-md-12'>
                             <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
-                                <img src={Images.backArrowpassword} alt="logo" className="img-fluid innerHeaderArrow " />
+                                <img src={Images.backArrowpassword} alt="arrowpswImg" className="img-fluid innerHeaderArrow " />
                                 <h1 className='settingMainHeading text-align-center '>Privacy Policy</h1>
                             </div>
                             <div className='termAndCond'>
