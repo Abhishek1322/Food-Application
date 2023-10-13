@@ -9,7 +9,9 @@ import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
 import { useDispatch } from "react-redux";
 
-const AddAddressModal = () => {
+
+const AddAddressModal = (props) => {
+  const { handleGetUserAddress, close } = props;
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const [city, setCity] = useState("");
@@ -25,7 +27,7 @@ const AddAddressModal = () => {
     title: "",
     flag: "",
   });
-  console.log("addressType", addressType);
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -120,13 +122,15 @@ const AddAddressModal = () => {
       zipCode: zipCode,
       streetAddress: streetAddress,
       plotNumber: building,
+      coordinates: [latitude, longitude],
     };
     dispatch(
       addAddress({
         ...params,
         cb(res) {
           if (res.status === 200) {
-            alert("sucess");
+            handleGetUserAddress();
+            close();
           }
         },
       })
