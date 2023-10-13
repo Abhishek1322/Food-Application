@@ -167,7 +167,7 @@ const UserEditProfile = () => {
                 <div className="buttonBox mt-5">
                   <button
                     onClick={handleUpdateProfile}
-                    role="button"
+                    type="button"
                     className="smallBtn"
                   >
                     Update

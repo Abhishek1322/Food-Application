@@ -513,21 +513,21 @@ const User_Navbar = () => {
             <>
               <h2 className="modal_Heading">Chat</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg"/>
               </p>
             </>
           ) : modalDetail.flag === "userNotification" ? (
             <>
               <h2 className="modal_Heading">Notification</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : modalDetail.flag === "Usercart" ? (
             <>
               <h2 className="modal_Heading">Cart</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : modalDetail.flag === "bookchef" ? (
@@ -537,7 +537,7 @@ const User_Navbar = () => {
                 <p className="chatUser">Enter your venue details below.</p>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : (

@@ -39,8 +39,8 @@ const UserClearChat = () => {
         <h4 className='accountdeletetxt mt-2 '>Are you sure, you want to clear all chat?</h4>
         <div className='modalfooterbtn'>
           <div className='orderItems'>
-            <button className='cancelOrder'>Cancel</button>
-            <button className='acceptOrder' onClick={() => {
+            <button className='cancelOrder' type='button'>Cancel</button>
+            <button className='acceptOrder' type='button' onClick={() => {
               handleUserProfile("clearchatnext")
             }}>Yes, Clear</button>
           </div>
@@ -93,11 +93,11 @@ const UserClearChat = () => {
                 </button>
                 <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
                   <li className=' chatdroplabel flexBox'>
-                    <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                    <img src={Images.reportchatIcon} className=' img-fluid reporticon_' alt='reportchatimg'/>
                     <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
                   </li>
                   <li className=' chatdroplabel flexBox'>
-                    <img src={Images.ChatModal} className=' img-fluid reporticon_' />
+                    <img src={Images.ChatModal} className=' img-fluid reporticon_' alt='clearchatimg' />
                     <p className='reportchattxt_ m-0 ps-2'>Clear Chat</p>
                   </li>
 

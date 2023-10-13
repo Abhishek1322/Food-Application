@@ -90,7 +90,7 @@ const UserOrderEdit = () => {
                                     </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
-                                        <button className='foodmodalbtn'>
+                                        <button className='foodmodalbtn' type='button'>
                                         Update & Save
                                         </button>
                                     </div>
@@ -168,7 +168,7 @@ const UserOrderEdit = () => {
                                     </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
-                                        <button className='foodmodalbtn'>
+                                        <button className='foodmodalbtn' type='button'>
                                             Save
                                         </button>
                                     </div>
@@ -246,7 +246,7 @@ const UserOrderEdit = () => {
                                     </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
-                                        <button className='foodmodalbtn'>
+                                        <button className='foodmodalbtn' type='button'>
                                          Save
                                         </button>
                                     </div>

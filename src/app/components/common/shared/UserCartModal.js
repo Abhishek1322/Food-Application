@@ -53,13 +53,13 @@ const UserCartModal = () => {
         </div>
         <div className='modalfooterbtn'>
           <div className='outeraddItem'>
-            <button className='addItems'>+ Add More Items</button>
+            <button className='addItems' type='button'>+ Add More Items</button>
             <div className='orderNow'>
               <div className='totalPrice'>
                 <h6 className='totaltxt'>Total</h6>
                 <p className='price'>£44.00</p>
               </div>
-              <button className='orderbutton'>Order Now</button>
+              <button className='orderbutton' type='button'>Order Now</button>
             </div>
           </div>
         </div>
