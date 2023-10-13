@@ -22,6 +22,9 @@ const ApiPath = {
     EDIT_MENU_ITEM: "/menus",
     SINGLE_CHEF_DETAIL:"/users/chefDetail"
   },
+  userApiPath:{
+     ADD_ADDRESS:"/user_delivery_address"
+  }
 };
 
 export default ApiPath;
