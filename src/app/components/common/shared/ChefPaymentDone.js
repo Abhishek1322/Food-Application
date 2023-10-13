@@ -30,9 +30,9 @@ const ChefPaymentDone = () => {
         });
         setKey(Math.random());
     };
-  return (
-  <>
-    <div className='paymentdonesection'>
+    return (
+        <>
+            <div className='paymentdonesection'>
                 <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
                 <h1 className='accountDeleted mt-3'> Payment Done</h1>
                 <p className='accountdeletetxt mt-2 '>Your payment has been successfully done
@@ -40,8 +40,8 @@ const ChefPaymentDone = () => {
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
                         <button className='foodmodalbtn' type='button' onClick={() => {
-                                            handleUserProfile("bookingdone")
-                                        }}>
+                            handleUserProfile("bookingdone")
+                        }}>
                             Order Placed
                         </button>
                     </div>
@@ -86,8 +86,8 @@ const ChefPaymentDone = () => {
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />
-  </>
-  )
+        </>
+    )
 }
 
 export default ChefPaymentDone

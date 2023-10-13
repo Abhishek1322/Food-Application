@@ -34,26 +34,26 @@ const ChefBookModal = () => {
     return (
         <>
             <div className='chefbookmodalsection mt-3'>
-                    <h2 className='chatheadtext m-3 '>Hire Chef</h2>
-                    <div className='row align-items-center m-2'>
-                        <div className='col-lg-9'>
-                            <div className='sarahinfo'>
-                                <div className='sarahimg'>
-                                    <img src={Images.UserICon} alt='sarahimage' className='img-fluid' />
-                                </div>
-                                <div className='saraheading'>
-                                    <h4 className='chatheadtext'>Sarah Bergstrom</h4>
-                                    <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
-                                    <button className='restrodetail' type='button'>
-                                        Restaurant
-                                    </button>
-                                </div>
+                <h2 className='chatheadtext m-3 '>Hire Chef</h2>
+                <div className='row align-items-center m-2'>
+                    <div className='col-lg-9'>
+                        <div className='sarahinfo'>
+                            <div className='sarahimg'>
+                                <img src={Images.UserICon} alt='sarahimage' className='img-fluid' />
+                            </div>
+                            <div className='saraheading'>
+                                <h4 className='chatheadtext'>Sarah Bergstrom</h4>
+                                <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
+                                <button className='restrodetail' type='button'>
+                                    Restaurant
+                                </button>
                             </div>
                         </div>
-                        <div className='col-lg-3'>
-                            <h6 className='chatTime_'> <span className='bookchefprice'>£45</span>/hour</h6>
-                        </div>
                     </div>
+                    <div className='col-lg-3'>
+                        <h6 className='chatTime_'> <span className='bookchefprice'>£45</span>/hour</h6>
+                    </div>
+                </div>
                 <div className='chefbookslots'>
                     <p className='chefName mt-3'>Book Time Slot</p>
                     <div className='bookslots mt-2'>

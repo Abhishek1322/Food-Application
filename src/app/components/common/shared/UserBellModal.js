@@ -38,121 +38,115 @@ const UserBellModal = () => {
     return (
         <>
             <div className='userbellsection modalContent'>
-                    <div className='searchbar '>
-                        <input type='text' placeholder='Search Chef near you...' className='searchtext'
-                        />
-                        <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
-
-                    </div>
-                    <div className='modalscroll'>
-                        <div className='chatModal'>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='innermodal' onClick={() => {
-                                handleUserProfile("chefchat")
-                            }}>
-                                <h4 className='chefName'>Sarah Bergstrom</h4>
-                                <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <h6 className='chatTime'>Just Now</h6>
-                                <span className='modalChatmsg'>2</span>
-                            </div>
-                            <div className='mt-3 me-3'>
-                                <div class="dropdown dropend">
-                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li onClick={() => {
-                                            handleUserProfile("deletechat")
-                                        }}><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                <div className='searchbar '>
+                    <input type='search' placeholder='Search Chef near you...' className='searchtext'
+                    />
+                    <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
+                </div>
+                <div className='modalscroll'>
+                    <div className='chatModal'>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='innermodal' onClick={() => {
+                            handleUserProfile("chefchat")
+                        }}>
+                            <h4 className='chefName'>Sarah Bergstrom</h4>
+                            <p className='cheftext '>Contrary to popular belief, Ipsum...</p>
+                            <h6 className='chatTime'>Just Now</h6>
+                            <span className='modalChatmsg'>2</span>
                         </div>
-                        <div className='chatModal '>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='innermodal'>
-                                <h4 className='chefName'>Hilda Herzog </h4>
-                                <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <h6 className='chatTime'>Just Now</h6>
-                            </div>
-                            <div className='mt-3  me-3'>
-                                <div class="dropdown dropend">
-                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className='chatModal '>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='innermodal'>
-                                <h4 className='chefName'>Tom Stoltenberg</h4>
-                                <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <h6 className='chatTime'>Just Now</h6>
-                                <span className='modalChatmsg'>2</span>
-                            </div>
-                            <div className='mt-3  me-3'>
-                                <div class="dropdown dropend">
-                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className='chatModal'>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='innermodal'>
-                                <h4 className='chefName'>Sheryl Lowez</h4>
-                                <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <h6 className='chatTime'>Just Now</h6>
-                            </div>
-                            <div className='mt-3  me-3'>
-                                <div class="dropdown dropend">
-                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className='chatModal '>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='innermodal'>
-                                <h4 className='chefName'>Olive Kuvalis</h4>
-                                <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <h6 className='chatTime'>Just Now</h6>
-                            </div>
-                            <div className='mt-3  me-3'>
-                                <div class="dropdown dropend">
-                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className='chatModal '>
-                            <img src={Images.userProfile} className='userprofile' alt='cartImg' />
-                            <div className='innermodal'>
-                                <h4 className='chefName'>Hilda Herzog </h4>
-                                <p className='cheftext'>Contrary to popular belief, Ipsum...</p>
-                                <h6 className='chatTime'>Just Now</h6>
-                            </div>
-                            <div className='mt-3  me-3'>
-                                <div class="dropdown dropend">
-                                    <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                    <ul class="dropdown-menu">
-                                        <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
-                                    </ul>
-                                </div>
+                        <div className='mt-3 me-3'>
+                            <div class="dropdown dropend">
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
+                                <ul class="dropdown-menu">
+                                    <li onClick={() => {
+                                        handleUserProfile("deletechat")
+                                    }}><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                    <div className='chatModal '>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='innermodal'>
+                            <h4 className='chefName'>Hilda Herzog </h4>
+                            <p className='cheftext '>Contrary to popular belief, Ipsum...</p>
+                            <h6 className='chatTime'>Just Now</h6>
+                        </div>
+                        <div className='mt-3  me-3'>
+                            <div class="dropdown dropend">
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
+                                <ul class="dropdown-menu">
+                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='chatModal '>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='innermodal'>
+                            <h4 className='chefName'>Tom Stoltenberg</h4>
+                            <p className='cheftext '>Contrary to popular belief, Ipsum...</p>
+                            <h6 className='chatTime'>Just Now</h6>
+                            <span className='modalChatmsg'>2</span>
+                        </div>
+                        <div className='mt-3  me-3'>
+                            <div class="dropdown dropend">
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
+                                <ul class="dropdown-menu">
+                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='chatModal'>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='innermodal'>
+                            <h4 className='chefName'>Sheryl Lowez</h4>
+                            <p className='cheftext '>Contrary to popular belief, Ipsum...</p>
+                            <h6 className='chatTime'>Just Now</h6>
+                        </div>
+                        <div className='mt-3  me-3'>
+                            <div class="dropdown dropend">
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
+                                <ul class="dropdown-menu">
+                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='chatModal '>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='innermodal'>
+                            <h4 className='chefName'>Olive Kuvalis</h4>
+                            <p className='cheftext '>Contrary to popular belief, Ipsum...</p>
+                            <h6 className='chatTime'>Just Now</h6>
+                        </div>
+                        <div className='mt-3  me-3'>
+                            <div class="dropdown dropend">
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
+                                <ul class="dropdown-menu">
+                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='chatModal '>
+                        <img src={Images.userProfile} className='userprofile' alt='cartImg' />
+                        <div className='innermodal'>
+                            <h4 className='chefName'>Hilda Herzog </h4>
+                            <p className='cheftext '>Contrary to popular belief, Ipsum...</p>
+                            <h6 className='chatTime'>Just Now</h6>
+                        </div>
+                        <div className='mt-3  me-3'>
+                            <div class="dropdown dropend">
+                                <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
+                                <ul class="dropdown-menu">
+                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <CustomModal
                 key={key}
@@ -179,11 +173,11 @@ const UserBellModal = () => {
                         )
                             :
                             modalDetail.flag === "clearchat" ? (
-                            <UserClearChat close={() => handleOnCloseModal()} />
-                        )
-                            :
-                            ''
-                            }
+                                <UserClearChat close={() => handleOnCloseModal()} />
+                            )
+                                :
+                                ''
+                }
                 header=
 
                 {modalDetail.flag === "deletechat" ?
@@ -208,29 +202,25 @@ const UserBellModal = () => {
                                     <h2 className='headerTxt_'>John Smith</h2>
                                     <h6 className='headerInner_'>Online</h6>
                                 </div>
-
-
-
                             </div>
                             <div className='Dotsheader_'>
                                 <div class="dropdown ">
                                     <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                                        <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' alt='modalheaderimg' />
                                     </button>
                                     <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
                                         <li className=' chatdroplabel flexBox' onClick={() => {
                                             handleUserProfile("reportchat")
                                         }}>
-                                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                            <img src={Images.reportchatIcon} className=' img-fluid reporticon_' alt='reportchat' />
                                             <h1 className='reportchat m-0 ps-2'>Report Chat</h1>
                                         </li>
                                         <li className=' chatdroplabel flexBox' onClick={() => {
                                             handleUserProfile("clearchat")
                                         }}>
-                                            <img src={Images.ChatModal} className=' img-fluid reporticon_' />
+                                            <img src={Images.ChatModal} className=' img-fluid reporticon_' alt='clearchat' />
                                             <p className='reportchat m-0 ps-2'>Clear Chat</p>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -250,12 +240,12 @@ const UserBellModal = () => {
                             :
 
                             modalDetail.flag === "clearchat" ?
-                            <>
-                               <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
-                            </>
-                            :
+                                <>
+                                    <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                                </>
+                                :
 
-                            ''
+                                ''
                 }
                 onCloseModal={() => handleOnCloseModal()}
             />

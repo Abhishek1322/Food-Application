@@ -82,18 +82,15 @@ const UserClearChat = () => {
                 <h2 className='headerTxt_'>John Smith</h2>
                 <h6 className='headerInner_'>Online</h6>
               </div>
-
-
-
             </div>
             <div className='Dotsheader_'>
               <div class="dropdown ">
                 <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                  <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' alt='drodownimg' />
                 </button>
                 <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
                   <li className=' chatdroplabel flexBox'>
-                    <img src={Images.reportchatIcon} className=' img-fluid reporticon_' alt='reportchatimg'/>
+                    <img src={Images.reportchatIcon} className=' img-fluid reporticon_' alt='reportchatimg' />
                     <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
                   </li>
                   <li className=' chatdroplabel flexBox'>
