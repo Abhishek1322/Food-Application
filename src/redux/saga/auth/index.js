@@ -332,6 +332,7 @@ function* userLogout(action) {
   }
 }
 
+
 function* authSaga() {
   yield all([
     takeLatest("auth/userSignUp", userSignUp),
