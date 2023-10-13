@@ -1830,7 +1830,6 @@ body {
   background: transparent;
   border: none;
 }
-
 .changepsw_loader {
   height: 100vh;
   background-color: #ffffff;
@@ -1842,17 +1841,39 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} 
 
 .loaderImage_ {
   text-align: center;
 }
+.changepswloader_{
+  width: 80px;
+  height: 80px;
+}
+.zoom-in-zoom-out {
+  /* width: 80px;
+  height: 80px; */
+  flex-shrink: 0;
+  animation: zoom-in-zoom-out 3s ease-out infinite;
+}
 
-#line {
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/* #line {
   border-radius: 50%;
   border: 3px solid transparent;
   animation: line 2s linear infinite forwards;
-}
+} */
 
 @keyframes line {
   0% {
@@ -1865,7 +1886,7 @@ body {
 }
 
 .method-3 {
-  font-size: 16px;
+  font-size: 12px;
   position: relative;
   color: #d4d4d4;
   display: inline-block;

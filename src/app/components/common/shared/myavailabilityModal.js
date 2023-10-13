@@ -233,7 +233,7 @@ const MyavailabilityModal = (props) => {
           {/* My availability time Slot Modal HTML START */}
           {/* <div className="timeSlotbutton flexBox justify-content-center mt-4">
             <button className="slotButton">
-              <i class="fas fa-plus addmore"></i>
+              <i className="fas fa-plus addmore"></i>
               Add Time Slot{" "}
             </button>
           </div> */}

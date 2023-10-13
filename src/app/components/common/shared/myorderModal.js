@@ -41,13 +41,13 @@ const Myorder = () => {
                     <div className='searchbar '>
                         <input type='search' placeholder='Search Chef near you...' className='searchtext' />
                         <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
-                        <section class="content-header">
-                            <div class="row">
-                                <div class="Maincontentbox">
-                                    <div class="infopages">
-                                        <ul class="nav nav-pills mb-3 insidetabs_" id="pills-tab" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link innertext_ active" id="terms" data-id="1" data-bs-toggle="pill" data-bs-target="#pills-home">Recent Orders</button>
+                        <section className="content-header">
+                            <div className="row">
+                                <div className="Maincontentbox">
+                                    <div className="infopages">
+                                        <ul className="nav nav-pills mb-3 insidetabs_" id="pills-tab" role="tablist">
+                                            <li className="nav-item" role="presentation">
+                                                <button className="nav-link innertext_ active" id="terms" data-id="1" data-bs-toggle="pill" data-bs-target="#pills-home">Recent Orders</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-profile">In-Progress</button>
