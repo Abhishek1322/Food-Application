@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import CustomModal from "./CustomModal";
 import CartFoodModalOrder from "./CartFoodModalOrder";
 
-
 const CartFoodModal = (props) => {
   const { menuId } = props;
   const [foodDetails, setFoodDetails] = useState([]);
