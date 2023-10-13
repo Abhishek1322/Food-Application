@@ -18,7 +18,7 @@ const Chef_Sidebar = () => {
     <>
       <div className="sideBar">
         <div className="sidebarlogo ">
-          <img src={Images.Logo} alt="logo" className="img-fluid" />
+          <img src={Images.Logo} alt="logo" className="img-fluid"/>
         </div>
         <div className="sidelist">
           <ul>

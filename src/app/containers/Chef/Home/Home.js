@@ -10,19 +10,19 @@ const HomeRequsest = () => {
                         <div className='row'>
                             <div className='col-lg-12 col-sm-12'>
                                 <div className='innerhomeheader'>
-                                    <p className='headerinnerheading'>New Booking Requests</p>
+                                    <h2 className='headerinnerheading'>New Booking Requests</h2>
                                     <div className='seeAll'>
-                                        <p className='headerinnertxt'>see All</p>
-                                        <img src={Images.homeArow} alt="logo" className="seeArrow" />
+                                        <h4 className='headerinnertxt'>see All</h4>
+                                        <img src={Images.homeArow} alt="homearrow" className="seeArrow" />
                                     </div>
                                 </div>
                                 <div className='profileDetail'>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
-                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                             <div className='detailInfo'>
-                                                <p className='userProfile'>John Smith</p>
-                                                <p className='userInfo'>Jul 20, 2023</p>
+                                                <h3 className='userProfile'>John Smith</h3>
+                                                <h4 className='userInfo'>Jul 20, 2023</h4>
                                             </div>
                                         </div>
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -32,10 +32,10 @@ const HomeRequsest = () => {
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
-                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                             <div className='detailInfo'>
-                                                <p className='userProfile'>John Smith</p>
-                                                <p className='userInfo'>Jul 20, 2023</p>
+                                                <h3 className='userProfile'>John Smith</h3>
+                                                <h4 className='userInfo'>Jul 20, 2023</h4>
                                             </div>
                                         </div>
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -45,10 +45,10 @@ const HomeRequsest = () => {
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
-                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                             <div className='detailInfo'>
-                                                <p className='userProfile'>John Smith</p>
-                                                <p className='userInfo'>Jul 20, 2023</p>
+                                                <h3 className='userProfile'>John Smith</h3>
+                                                <h4 className='userInfo'>Jul 20, 2023</h4>
                                             </div>
                                         </div>
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -58,10 +58,10 @@ const HomeRequsest = () => {
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
-                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                             <div className='detailInfo'>
-                                                <p className='userProfile'>John Smith</p>
-                                                <p className='userInfo'>Jul 20, 2023</p>
+                                                <h3 className='userProfile'>John Smith</h3>
+                                                <h4 className='userInfo'>Jul 20, 2023</h4>
                                             </div>
                                         </div>
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -71,10 +71,10 @@ const HomeRequsest = () => {
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
-                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                             <div className='detailInfo'>
-                                                <p className='userProfile'>John Smith</p>
-                                                <p className='userInfo'>Jul 20, 2023</p>
+                                                <h3 className='userProfile'>John Smith</h3>
+                                                <h4 className='userInfo'>Jul 20, 2023</h4>
                                             </div>
                                         </div>
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -83,10 +83,10 @@ const HomeRequsest = () => {
                                     </div>
                                 </div>
                                 <div className='innerhomeheader'>
-                                    <p className='headerinnerheading'>Recent Orderss</p>
+                                    <h3 className='headerinnerheading'>Recent Orderss</h3>
                                     <div className='seeAll'>
-                                        <p className='headerinnertxt'>see All</p>
-                                        <img src={Images.homeArow} alt="logo" className="seeArrow" />
+                                        <h4 className='headerinnertxt'>see All</h4>
+                                        <img src={Images.homeArow} alt="arrowImg" className="seeArrow" />
                                     </div>
                                 </div>
 
@@ -98,10 +98,10 @@ const HomeRequsest = () => {
                                         <div className='userOrderInfo'>
                                             <div className='orderRequest'>
                                                 <div className='profileInfo'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                     <div className='detailInfo'>
-                                                        <p className='userProfile'>Agatha Christie</p>
-                                                        <p className='orderFrom'>Order From</p>
+                                                        <h3 className='userProfile'>Agatha Christie</h3>
+                                                        <h4 className='orderFrom'>Order From</h4>
                                                     </div>
                                                 </div>
                                                 <div className='orderItems'>
@@ -126,10 +126,10 @@ const HomeRequsest = () => {
                                         <div className='userOrderInfo'>
                                             <div className='orderRequest'>
                                                 <div className='profileInfo'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                     <div className='detailInfo'>
-                                                        <p className='userProfile'>Agatha Christie</p>
-                                                        <p className='orderFrom'>Order From</p>
+                                                        <h3 className='userProfile'>Agatha Christie</h3>
+                                                        <h4 className='orderFrom'>Order From</h4>
                                                     </div>
                                                 </div>
                                                 <div className='orderItems'>
@@ -154,10 +154,10 @@ const HomeRequsest = () => {
                                         <div className='userOrderInfo'>
                                             <div className='orderRequest'>
                                                 <div className='profileInfo'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                     <div className='detailInfo'>
-                                                        <p className='userProfile'>Agatha Christie</p>
-                                                        <p className='orderFrom'>Order From</p>
+                                                        <h3 className='userProfile'>Agatha Christie</h3>
+                                                        <h4 className='orderFrom'>Order From</h4>
                                                     </div>
                                                 </div>
                                                 <div className='orderItems'>
@@ -182,10 +182,10 @@ const HomeRequsest = () => {
                                         <div className='userOrderInfo'>
                                             <div className='orderRequest'>
                                                 <div className='profileInfo'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                     <div className='detailInfo'>
-                                                        <p className='userProfile'>Agatha Christie</p>
-                                                        <p className='orderFrom'>Order From</p>
+                                                        <h3 className='userProfile'>Agatha Christie</h3>
+                                                        <h4 className='orderFrom'>Order From</h4>
                                                     </div>
                                                 </div>
                                                 <div className='orderItems'>
@@ -210,10 +210,10 @@ const HomeRequsest = () => {
                                         <div className='userOrderInfo'>
                                             <div className='orderRequest'>
                                                 <div className='profileInfo'>
-                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                     <div className='detailInfo'>
-                                                        <p className='userProfile'>Agatha Christie</p>
-                                                        <p className='orderFrom'>Order From</p>
+                                                        <h3 className='userProfile'>Agatha Christie</h3>
+                                                        <h4 className='orderFrom'>Order From</h4>
                                                     </div>
                                                 </div>
                                                 <div className='orderItems'>

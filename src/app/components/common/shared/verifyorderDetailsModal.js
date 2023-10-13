@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import OTPInput from "react-otp-input";
@@ -82,13 +82,13 @@ const VerifyorderDetailsModal = () => {
                     />
                     <p className="mb-3 mt-4 inner_Text">
                     Customer not received the OTP?{" "}
-                        <a
+                        <Link
                             onClick={(e) => handleResendOtp(e)}
                             className="resendLink"
                             href="/auth/otp"
                         >
                           <span className="insideText">Resend</span>
-                        </a>{" "}
+                        </Link>{" "}
                     </p>
                 </form>
                 <div className='modalfooterbtn mb-4'>

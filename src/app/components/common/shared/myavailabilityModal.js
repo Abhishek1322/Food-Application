@@ -182,6 +182,7 @@ const MyavailabilityModal = (props) => {
                     <img
                       src={Images.availabilityClock}
                       className="clockImg pe-1"
+                      alt="availabilityclockImg"
                     />
                     <TimePicker
                       disableClock
@@ -203,6 +204,7 @@ const MyavailabilityModal = (props) => {
                     <img
                       src={Images.availabilityClock}
                       className="clockImg pe-1"
+                      alt="availabilityclockImg"
                     />
                     <TimePicker
                       disableClock
@@ -222,6 +224,7 @@ const MyavailabilityModal = (props) => {
                   onClick={handleCloseTimeSlot}
                   src={Images.editprofileDelete}
                   className="deleteAvailable"
+                  alt="deleteprofileImg"
                 />
               </div>
             </div>

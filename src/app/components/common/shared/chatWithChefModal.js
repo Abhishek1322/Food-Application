@@ -36,9 +36,9 @@ const ChatWithChefModal = () => {
 
             <div className='modalfooterbtn  borderWith_'>
             <div className='chatSearchHere_ '>
-                <input className='chatSearchere_' type='text' placeholder='Type Something...' />
-                <img src={Images.chatgalleryImg} alt="logo" className="gallerImg" data-tooltip title="Click to go [crazy]" />
-                <img src={Images.chatSendImg} alt="logo" className="sendImg" onClick={() => {
+                <input className='chatSearchere_' type='search' placeholder='Type Something...' />
+                <img src={Images.chatgalleryImg} alt="galleryImg" className="gallerImg" data-tooltip title="Click to go [crazy]" />
+                <img src={Images.chatSendImg} alt="chatsendImg" className="sendImg" onClick={() => {
                                         handleUserProfile("orderReadyForDelivery")
                                     }} />
 
@@ -70,7 +70,7 @@ const ChatWithChefModal = () => {
                      <div className='Common_header'>
                      <img
                                 src={Images.backArrowpassword}
-                                alt="logo"
+                                alt="arrowPswImg"
                                 className="img-fluid  arrowCommon_"
                             />
                             <div className='headerProfile ps-2'>
@@ -89,7 +89,7 @@ const ChatWithChefModal = () => {
                                 Cart
                             </h2> */}
                             <p onClick={handleOnCloseModal} className='modal_cancel'>
-                                <img src={Images.modalCancel} className='ModalCancel' />
+                                <img src={Images.modalCancel} className='ModalCancel' alt='modalCancel' />
                             </p>
                         </>
                         :

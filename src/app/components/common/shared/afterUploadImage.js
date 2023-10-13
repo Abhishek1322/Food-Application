@@ -35,10 +35,10 @@ const AfterUploadImage = () => {
         <div className="input-container mt-5">
           <textarea
             type=""
-            className=" menuReport_button   "
+            className=" menuReport_button"
             placeholder="Chicken Salad"
           />
-          <img src={Images.categoryImg} className="cateofyImg_" />
+          <img src={Images.categoryImg} className="cateofyImg_" alt=" categoryImg" />
           <label className="border-label">Item Name</label>
         </div>
         <div className="input-container mt-4">
@@ -47,7 +47,7 @@ const AfterUploadImage = () => {
             className=" menuReport_button   "
             placeholder="Non-Veg"
           />
-          <img src={Images.menuDishImg} className="cateofyImg_" />
+          <img src={Images.menuDishImg} className="cateofyImg_" alt="menuDishImg" />
           <label className="border-label">Category</label>
         </div>
         <div className="flexBox justify-content-between editMenuFields_ ">
@@ -57,13 +57,13 @@ const AfterUploadImage = () => {
               className=" menuEditbuttom "
               placeholder="22.00"
             />
-            <img src={Images.euroImg} className="cateofyImg_" />
+            <img src={Images.euroImg} className="cateofyImg_" alt="EuroImg" />
             <label className="border-label">Price</label>
           </div>
           <div className="input-container mt-5 pe-3 flexBox">
             <textarea type="" className=" menuEditbuttom " placeholder="45" />
             <p className="inneredittxt">MIN</p>
-            <img src={Images.clockImg} className="cateofyImg_" />
+            <img src={Images.clockImg} className="cateofyImg_" alt="clcokImg" />
             <label className="border-label">Delivery Time</label>
           </div>
         </div>
@@ -78,9 +78,9 @@ const AfterUploadImage = () => {
       </div>
       <div className="editImgBox_">
         <p className="chefName mt-4 pb-3">Upload Image </p>
-        <img src={Images.editMenuImg} className="editFoodImg" />
+        <img src={Images.editMenuImg} className="editFoodImg" alt="editmenu" />
         <span className="cancelEditImg">
-          <i class="fas fa-times cancelEdit"></i>
+          <i className="fas fa-times cancelEdit"></i>
         </span>
       </div>
       <button
@@ -108,10 +108,10 @@ const AfterUploadImage = () => {
           modalDetail.flag === "foodDetailModal"
             ? "foodDetail"
             : "editFoodDetailsModal"
-            ? "editFoodDetail"
-            : "clickDeletemenuModal"
-            ? "clickDeleteMenu"
-            : ""
+              ? "editFoodDetail"
+              : "clickDeletemenuModal"
+                ? "clickDeleteMenu"
+                : ""
         }
         child={
           modalDetail.flag === "foodDetailModal" ? (
@@ -125,11 +125,11 @@ const AfterUploadImage = () => {
             <>
               <div className="foodDetailHeader_">
                 <p onClick={handleOnCloseModal} className="modal_cancel">
-                  <img src={Images.modalCancel} className="ModalCancel" />
+                  <img src={Images.modalCancel} className="ModalCancel" alt="modalCancelImg" />
                 </p>
               </div>
               {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
+                            <img src={Images.modalCancel} className='ModalCancel' alt="modalcancel" />
                         </p> */}
             </>
           ) : modalDetail.flag === "editFoodDetailsModal" ? (
@@ -141,7 +141,7 @@ const AfterUploadImage = () => {
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalCancelImg" />
               </p>
             </>
           ) : modalDetail.flag === "clickDeletemenuModal" ? (
@@ -150,10 +150,11 @@ const AfterUploadImage = () => {
                 <img
                   src={Images.backArrowpassword}
                   className="img-fluid arrowCommon_"
+                  alt="modalCancelImg"
                 />
               </div>
               {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} className='ModalCancel' />
+              <img src={Images.modalCancel} className='ModalCancel' alt="modalCancel" />
             </p> */}
             </>
           ) : (

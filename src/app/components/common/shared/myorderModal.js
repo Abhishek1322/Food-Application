@@ -39,7 +39,7 @@ const Myorder = () => {
             <div className='modalContent'>
                 <div className='modalscroll'>
                     <div className='searchbar '>
-                        <input type='text' placeholder='Search Chef near you...' className='searchtext' />
+                        <input type='search' placeholder='Search Chef near you...' className='searchtext' />
                         <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
                         <section class="content-header">
                             <div class="row">
@@ -67,7 +67,7 @@ const Myorder = () => {
                                                         <div className='userOrderInfo'>
                                                             <div className='orderRequest'>
                                                                 <div className='profileInfo'>
-                                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                                     <div className='detailInfo'>
                                                                         <p className='userProfile'>Agatha Christie</p>
                                                                         <p className='orderFrom'>Order From</p>
@@ -98,7 +98,7 @@ const Myorder = () => {
                                                         <div className='userOrderInfo'>
                                                             <div className='orderRequest'>
                                                                 <div className='profileInfo'>
-                                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                    <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                                     <div className='detailInfo'>
                                                                         <p className='userProfile'>Agatha Christie</p>
                                                                         <p className='orderFrom'>Order From</p>
@@ -134,7 +134,7 @@ const Myorder = () => {
                                                                 <div className='userOrderInfo'>
                                                                     <div className='orderRequest'>
                                                                         <div className='profileInfo'>
-                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                                             <div className='detailInfo'>
                                                                                 <p className='userProfile'>Agatha Christie</p>
                                                                                 <p className='orderFrom'>Order From</p>
@@ -165,7 +165,7 @@ const Myorder = () => {
                                                                 <div className='userOrderInfo'>
                                                                     <div className='orderRequest'>
                                                                         <div className='profileInfo'>
-                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                                             <div className='detailInfo'>
                                                                                 <p className='userProfile'>Agatha Christie</p>
                                                                                 <p className='orderFrom'>Order From</p>
@@ -202,7 +202,7 @@ const Myorder = () => {
                                                                 <div className='userOrderInfo'>
                                                                     <div className='orderRequest'>
                                                                         <div className='profileInfo'>
-                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                                             <div className='detailInfo'>
                                                                                 <p className='userProfile'>Agatha Christie</p>
                                                                                 <p className='orderFrom'>Order From</p>
@@ -233,7 +233,7 @@ const Myorder = () => {
                                                                 <div className='userOrderInfo'>
                                                                     <div className='orderRequest'>
                                                                         <div className='profileInfo'>
-                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <img src={Images.homeProfile} alt="profile" className="homeprofile" />
                                                                             <div className='detailInfo'>
                                                                                 <p className='userProfile'>Agatha Christie</p>
                                                                                 <p className='orderFrom'>Order From</p>
@@ -323,7 +323,7 @@ const Myorder = () => {
                                 Cart
                             </h2> */}
                             <p onClick={handleOnCloseModal} className='modal_cancel'>
-                                <img src={Images.modalCancel} className='ModalCancel' />
+                                <img src={Images.modalCancel} className='ModalCancel' alt='modalCancel' />
                             </p>
                         </>
                         :

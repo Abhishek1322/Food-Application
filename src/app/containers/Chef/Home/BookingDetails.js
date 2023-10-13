@@ -12,12 +12,12 @@ const BookingDetails = () => {
                                 <div className='chefJohn'>
                                     <div className='chatWithChef'>
                                         <div className='chefjohnDetail'>
-                                            <img src={Images.homeProfile} alt="logo" className="chefJohnImg" />
+                                            <img src={Images.homeProfile} alt="profile" className="chefJohnImg" />
                                             <div className='chefinfo'>
                                                 <p className='johnExplorer'>John Smith Explorer</p>
                                                 <div className='johnChatTime'>
                                                 <div className='chefInfo'>
-                                                        <img src={Images.chefCalender} alt="logo" className="chefInfo_" />
+                                                        <img src={Images.chefCalender} alt="calender" className="chefInfo_" />
                                                     </div>
                                                     <div className='johnchatdetail'>
                                                         <p className='chatDates'>Jul 20, 2023</p>

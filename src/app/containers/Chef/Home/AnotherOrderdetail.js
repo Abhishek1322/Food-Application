@@ -13,7 +13,7 @@ const AnotherOrderdetail = () => {
                                 <div className='orderIdDetail'>
                                     <p className='orderId_'>Order #12548</p>
                                     <p className='recentOrder deliver'>Delivered</p>
-                                </div> 
+                                </div>
                                 <div className='chefJohn'>
                                     <div className='chatWithChef'>
                                         <div className='chefjohnDetail'>
@@ -21,9 +21,9 @@ const AnotherOrderdetail = () => {
                                             <div className='chefinfo'>
                                                 <p className='johnExplorer'>John Smith</p>
                                                 <div className='johnChatTime'>
-                                                 <div className='chefInfo'>
-                                                 <img src={Images.chefLocationImg} alt="chefLocationImg" className="chefLocation_" />
-                                                 </div>
+                                                    <div className='chefInfo'>
+                                                        <img src={Images.chefLocationImg} alt="chefLocationImg" className="chefLocation_" />
+                                                    </div>
                                                     <div className='johnchatdetail'>
                                                         <p className='chatDates'>Jul 20, 2023</p>
                                                     </div>

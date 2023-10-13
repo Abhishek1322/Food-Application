@@ -37,14 +37,14 @@ const OrderReadyForDelivery = () => {
                     <div className='orderProfile'>
                         <div class="ordermenuProfile">
                             <div className='orderprofile_ '>
-                                <img src={Images.userProfile} alt="logo" class="homeprofile" />
+                                <img src={Images.userProfile} alt="profile" class="homeprofile" />
                                 <div class="detailInfo">
                                     <p class="userProfile">John Smith</p>
                                     <p class="userInfo">Order From</p>
                                 </div>
                             </div>
                             <div className='chat_'>
-                                <img src={Images.orderMsgImg} className='orderchat'  />
+                                <img src={Images.orderMsgImg} className='orderchat'alt='msgImg'  />
                             </div>
                         </div>
                         <p className='notificationText pt-3'>Delivery Address</p>
@@ -60,7 +60,7 @@ const OrderReadyForDelivery = () => {
                         <div className='orderProfile'>
                             <div class="profileInfo">
                                 <div className='orderprofile_ flexBox'>
-                                    <img src={Images.foodItems} alt="logo" class="homeprofile" />
+                                    <img src={Images.foodItems} alt="fooditemsImg" class="homeprofile" />
                                     <div class="detailInfo">
                                         <p className='userInfo'>Food Category</p>
                                         <p class="userProfile">Chicken Salad</p>
@@ -108,7 +108,7 @@ const OrderReadyForDelivery = () => {
                         <div className='Common_header'>
                      <img
                                 src={Images.backArrowpassword}
-                                alt="logo"
+                                alt="arrowPswImg"
                                 className="img-fluid  arrowCommon_"
                             />
                             <div className='headerProfile ps-2'>

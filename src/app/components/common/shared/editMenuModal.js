@@ -154,7 +154,7 @@ const EditMenuModal = (props) => {
               value={formData.itemName}
               onChange={(e) => handleChange(e)}
             />
-            <img src={Images.categoryImg} className="cateofyImg_" />
+            <img src={Images.categoryImg} className="cateofyImg_" alt="categoryImg"/>
             <label className="border-label">Item Name</label>
           </div>
           <div className="input-container mt-4">
@@ -168,7 +168,7 @@ const EditMenuModal = (props) => {
               <MenuItem value={"veg"}>Veg</MenuItem>
               <MenuItem value={"non-veg"}>Non Veg</MenuItem>
             </Select>
-            <img src={Images.menuDishImg} className="cateofyImg_" />
+            <img src={Images.menuDishImg} className="cateofyImg_"  alt="menudishImg" />
             <label className="border-label">Category</label>
           </div>
           <div className="flexBox justify-content-between editMenuFields_ ">
@@ -181,7 +181,7 @@ const EditMenuModal = (props) => {
                 placeholder="e.g. 22.00"
                 value={formData.price}
               />
-              <img src={Images.euroImg} className="cateofyImg_" />
+              <img src={Images.euroImg} className="cateofyImg_" alt="euroImg"/>
               <label className="border-label">Price</label>
             </div>
             <div className="input-container mt-5 pe-3 flexBox">
@@ -194,7 +194,7 @@ const EditMenuModal = (props) => {
                 value={formData.deliveryTime}
               />
               <p className="inneredittxt">MIN</p>
-              <img src={Images.clockImg} className="cateofyImg_" />
+              <img src={Images.clockImg} className="cateofyImg_" alt="clockImg"/>
               <label className="border-label">Delivery Time</label>
             </div>
           </div>
@@ -214,7 +214,7 @@ const EditMenuModal = (props) => {
           <p className="chefName mt-4 pb-3">Upload Image </p>
           {imageUrl ? (
             <>
-              <img src={imageUrl} className="editFoodImg" />
+              <img src={imageUrl} className="editFoodImg" alt="editFoodImg" />
               <span className="cancelEditImg">
                 <i
                   onClick={() => handleRemoveImage(imageUrl)}

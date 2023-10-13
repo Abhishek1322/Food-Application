@@ -8,7 +8,7 @@ const UserClearChatNext = () => {
       <div className='chatclearnextsection'>
         <div className='chatfooterbtn'>
           <div className='chatSearchHere_'>
-            <input className='chatSearchere_' type='text' placeholder='Type Something...' />
+            <input className='chatSearchere_' type='search' placeholder='Type Something...' />
             <div className='modaltooltip'>
               <img src={Images.chatgalleryImg} alt="logo" className="gallerImg" data-tooltip title="Click to go [crazy]" />
               <span class="tooltiptext">Your only able to send photos from gallery</span>

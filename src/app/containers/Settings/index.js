@@ -52,6 +52,7 @@ const SettingMain = (props) => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-6 ">
+              <Link to="/change-password">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
@@ -63,17 +64,17 @@ const SettingMain = (props) => {
                     <p className="settingBoxtxt ms-3 mb-0">Change Password</p>
                   </div>
                   <div className="iconImg">
-                    <Link to="/change-password">
                       <img
                         src={Images.nextIcon}
                         alt="nexticonImg"
                         className="img-fluid nextIcon"
                       />
-                    </Link>
                   </div>
                 </div>
+                </Link>
               </div>
               <div className="col-lg-6">
+              <Link to="/delete-account">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
@@ -85,17 +86,17 @@ const SettingMain = (props) => {
                     <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
                   </div>
                   <div className="iconImg">
-                    <Link to="/delete-account">
                       <img
                         src={Images.nextIcon}
                         alt="nextIcon"
                         className="img-fluid nextIcon"
                       />
-                    </Link>
                   </div>
                 </div>
+                </Link>
               </div>
               <div className="col-lg-6 ">
+              <Link to="/term-condition">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
@@ -115,8 +116,10 @@ const SettingMain = (props) => {
                     />
                   </div>
                 </div>
+              </Link>
               </div>
               <div className="col-lg-6">
+              <Link to="/privacy-policy">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
@@ -134,8 +137,10 @@ const SettingMain = (props) => {
                     />
                   </div>
                 </div>
+              </Link>
               </div>
               <div className="col-lg-6 ">
+              <Link to="/contactu-us">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img
@@ -153,6 +158,7 @@ const SettingMain = (props) => {
                     />
                   </div>
                 </div>
+                </Link>
               </div>
 
               {authData?.userInfo?.role === "user" && (
@@ -177,9 +183,8 @@ const SettingMain = (props) => {
                 </div>
               )}
 
-              <div className="settingBox d-flex align-items-center justify-content-center">
+              <div className="settingBox d-flex align-items-center justify-content-center"   onClick={() => handleLogout()}>
                 <img
-                  onClick={() => handleLogout()}
                   src={Images.logout}
                   alt="logo"
                   className="img-fluid settingIcon "

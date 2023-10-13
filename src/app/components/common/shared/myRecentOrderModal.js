@@ -64,7 +64,7 @@ const MyRecentOrderModal = () => {
                         <div className='orderProfile'>
                             <div class="profileInfo">
                                 <div className='orderprofile_ flexBox'>
-                                    <img src={Images.foodItems} alt="logo" class="homeprofile" />
+                                    <img src={Images.foodItems} alt="foodImtems" class="homeprofile" />
                                     <div class="detailInfo">
                                         <p className='userInfo'>Food Category</p>
                                         <p class="userProfile">Chicken Salad</p>
@@ -113,12 +113,12 @@ const MyRecentOrderModal = () => {
                         <div className='Common_header'>
                             <img
                                 src={Images.backArrowpassword}
-                                alt="logo"
+                                alt="arrowpassword"
                                 className="img-fluid  arrowCommon_"
                             />
                             <img
                                 src={Images.userProfile}
-                                alt="logo"
+                                alt="userprofile"
                                 className="img-fluid  headerImg_"
                             />
                             <div className='headerProfile'>
@@ -132,13 +132,13 @@ const MyRecentOrderModal = () => {
                         <div className='Dotsheader_'>
                             <div class="dropdown ">
                                 <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' />
+                                    <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' alt="modalheader" />
                                 </button>
                                 <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
                                     <div className=' chatnext_ flexBox' onClick={() => {
                                         handleUserProfile("reportchatD")
                                     }}>
-                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' />
+                                        <img src={Images.reportchatIcon} className=' img-fluid reporticon_' alt='reporticon' />
                                         <p className='reportchattxt_ m-0 ps-2'>Report Chat</p>
                                     </div>
                                 </ul>

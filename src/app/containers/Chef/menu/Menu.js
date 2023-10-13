@@ -132,6 +132,7 @@ const Menu = () => {
                                         <img
                                           src={Images.EditImg}
                                           className=" img-fluid reporticon_"
+                                          alt="reportImg"
                                         />
                                         <p className="ps-2">Edit</p>
                                       </div>
@@ -147,6 +148,7 @@ const Menu = () => {
                                         <img
                                           src={Images.cartDelete}
                                           className=" img-fluid reporticon_"
+                                          alt="cartDelete"
                                         />
                                         <p className="reportchattxt_ m-0 ps-2">
                                           Delete
@@ -235,7 +237,7 @@ const Menu = () => {
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel"  alt="modalcancel"/>
               </p>
             </>
           ) : modalDetail.flag === "addMenuItemModal" ? (
@@ -247,7 +249,7 @@ const Menu = () => {
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
               </p>
             </>
           ) : (
