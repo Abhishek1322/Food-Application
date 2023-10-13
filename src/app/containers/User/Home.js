@@ -17,97 +17,97 @@ const HomeUser = () => {
     <>
       <div className="mainBoxOuter">
         <div className="container-fluid">
-        <div className="row align-items-center mt-2 mb-2">
-        <div className="col-lg-6 col-md-12">
-          <h6 className="headingSub">Chefs Near You </h6>
-          </div>
-          <div className="col-lg-6 col-md-12">
-          <div className="cheffilter flexBox">
-          <div className="searchbar me-4">
-            <input
-              placeholder="Search Chef near you..."
-              type="search"
-              className='searchtext'
-            />
-            <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
-          </div>
-          <p className="chefName">Filter By:</p>
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span className="filterheading">4</span>
-              <img
-                src={Images.RatingStar}
-                alt="starimg"
-                className="img-fluid ms-1 me-1"
-              />
-              <span className="filterheading">Above Rating</span>
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <Link className="dropdown-item" to="#">
-                  <span className="filterheading">4</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
+          <div className="row align-items-center mt-2 mb-2">
+            <div className="col-lg-6 col-md-12">
+              <h6 className="headingSub">Chefs Near You </h6>
+            </div>
+            <div className="col-lg-6 col-md-12">
+              <div className="cheffilter flexBox">
+                <div className="searchbar me-4">
+                  <input
+                    placeholder="Search Chef near you..."
+                    type="search"
+                    className='searchtext'
                   />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-              <li>
-              <Link className="dropdown-item" to="#">
-                  <span className="filterheading">5</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Rating</span>
-                </Link>
-              </li>
-              <li>
-              <Link className="dropdown-item" to="#">
-                  <span className="filterheading">3</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-              <li>
-              <Link className="dropdown-item" to="#">
-                  <span className="filterheading">3</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-              <li>
-              <Link className="dropdown-item" to="#">
-                  <span className="filterheading">1</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-          </div>
+                  <img src={Images.searchbar} className='searchbarImg' alt='searchbar' />
+                </div>
+                <p className="chefName">Filter By:</p>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <span className="filterheading">4</span>
+                    <img
+                      src={Images.RatingStar}
+                      alt="starimg"
+                      className="img-fluid ms-1 me-1"
+                    />
+                    <span className="filterheading">Above Rating</span>
+                  </button>
+                  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        <span className="filterheading">4</span>
+                        <img
+                          src={Images.RatingStar}
+                          alt="starimg"
+                          className="img-fluid ms-1 me-1"
+                        />
+                        <span className="filterheading">Above Rating</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        <span className="filterheading">5</span>
+                        <img
+                          src={Images.RatingStar}
+                          alt="starimg"
+                          className="img-fluid ms-1 me-1"
+                        />
+                        <span className="filterheading">Rating</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        <span className="filterheading">3</span>
+                        <img
+                          src={Images.RatingStar}
+                          alt="starimg"
+                          className="img-fluid ms-1 me-1"
+                        />
+                        <span className="filterheading">Above Rating</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        <span className="filterheading">3</span>
+                        <img
+                          src={Images.RatingStar}
+                          alt="starimg"
+                          className="img-fluid ms-1 me-1"
+                        />
+                        <span className="filterheading">Above Rating</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        <span className="filterheading">1</span>
+                        <img
+                          src={Images.RatingStar}
+                          alt="starimg"
+                          className="img-fluid ms-1 me-1"
+                        />
+                        <span className="filterheading">Above Rating</span>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="row">
             {slides &&

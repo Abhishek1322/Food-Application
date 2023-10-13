@@ -30,96 +30,96 @@ const ChefBookPay = () => {
         });
         setKey(Math.random());
     };
-  return (
-   <>
-<div className='paymodalsection'>
+    return (
+        <>
+            <div className='paymodalsection'>
+                <div className='row m-2'>
+                    <div className='col-lg-12'>
+                        <div className="input-container mt-4">
+                            <input
+                                type="text"
+                                name="city"
+                                className="border-input"
+                                placeholder='Card Holder’s Name'
+                            />
+                            <label className="border-label">Card Holder’s Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div className='paynowinputs'>
                     <div className='row m-2'>
                         <div className='col-lg-12'>
                             <div className="input-container mt-4">
                                 <input
                                     type="text"
-                                    name="city"
+                                    name="Zip Code"
                                     className="border-input"
-                                    placeholder='Card Holder’s Name'
+                                    placeholder='5485 2658 2154 2210'
                                 />
-                                <label className="border-label">Card Holder’s Name</label>
+                                <label className="border-label">Card No</label>
+                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
                             </div>
                         </div>
                     </div>
-                        <div className='paynowinputs'>
-                            <div className='row m-2'>
-                                <div className='col-lg-12'>
-                                    <div className="input-container mt-4">
-                                        <input
-                                            type="text"
-                                            name="Zip Code"
-                                            className="border-input"
-                                            placeholder='5485 2658 2154 2210'
-                                        />
-                                        <label className="border-label">Card No</label>
-                                        <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='row m-2'>
-                                <div className='col-lg-6'>
-                                    <div className="input-container mt-4">
-                                        <input
-                                            type="text"
-                                            name="Zip Code"
-                                            className="border-input"
-                                            placeholder='MM/YY'
-                                        />
-                                        <label className="border-label">Expires On</label>
-                                        <img src={Images.Calendar} alt="InfoIcon" className='InputIcon' />
-                                    </div>
-                                </div>
-                                <div className='col-lg-6'>
-                                    <div className="input-container mt-4">
-                                        <input
-                                            type="text"
-                                            name="Zip Code"
-                                            className="border-input"
-                                            placeholder='123'
-                                        />
-                                        <label className="border-label">Card No</label>
-                                        <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                                    </div>
-                                </div>
+                    <div className='row m-2'>
+                        <div className='col-lg-6'>
+                            <div className="input-container mt-4">
+                                <input
+                                    type="text"
+                                    name="Zip Code"
+                                    className="border-input"
+                                    placeholder='MM/YY'
+                                />
+                                <label className="border-label">Expires On</label>
+                                <img src={Images.Calendar} alt="InfoIcon" className='InputIcon' />
                             </div>
                         </div>
+                        <div className='col-lg-6'>
+                            <div className="input-container mt-4">
+                                <input
+                                    type="text"
+                                    name="Zip Code"
+                                    className="border-input"
+                                    placeholder='123'
+                                />
+                                <label className="border-label">Card No</label>
+                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
                         <button className='foodmodalbtn' type='button' onClick={() => {
-                                            handleUserProfile("chefpaydone")
-                                        }}>
+                            handleUserProfile("chefpaydone")
+                        }}>
                             Pay £90.00
                         </button>
                     </div>
                 </div>
             </div>
             <CustomModal
-          key={key}
-          show={modalDetail.show}
-          backdrop="static"
-          showCloseBtn={false}
-          isRightSideModal={true}
-          mediumWidth={false}
-          className={modalDetail.flag === "chefpaydone" ? "commonWidth customContent" : ""}
-          ids={modalDetail.flag === "chefpaydone" ? "chefpaydonemodal" : ""}
-          child={
-            modalDetail.flag === "chefpaydone" ? (
-              <ChefPaymentDone
-                close={() => handleOnCloseModal()}
-              />
-            ) :
-              ""
-          }
-          header=
+                key={key}
+                show={modalDetail.show}
+                backdrop="static"
+                showCloseBtn={false}
+                isRightSideModal={true}
+                mediumWidth={false}
+                className={modalDetail.flag === "chefpaydone" ? "commonWidth customContent" : ""}
+                ids={modalDetail.flag === "chefpaydone" ? "chefpaydonemodal" : ""}
+                child={
+                    modalDetail.flag === "chefpaydone" ? (
+                        <ChefPaymentDone
+                            close={() => handleOnCloseModal()}
+                        />
+                    ) :
+                        ""
+                }
+                header=
 
-          {modalDetail.flag === "chefpaydone" ?
-            <>
-              {/* <div className='editadressheading'>
+                {modalDetail.flag === "chefpaydone" ?
+                    <>
+                        {/* <div className='editadressheading'>
                             <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
                             <div className='edithead'>
                                 <h2 className="modal_Heading">
@@ -131,14 +131,14 @@ const ChefBookPay = () => {
               <p onClick={handleOnCloseModal} className='modal_cancel'>
                 <img src={Images.modalCancel} className='ModalCancel' />
               </p> */}
-            </>
-            :
-            ''
-          }
-          onCloseModal={() => handleOnCloseModal()}
-        />
-   </>
-  )
+                    </>
+                    :
+                    ''
+                }
+                onCloseModal={() => handleOnCloseModal()}
+            />
+        </>
+    )
 }
 
 export default ChefBookPay

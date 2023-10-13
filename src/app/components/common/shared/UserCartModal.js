@@ -20,7 +20,6 @@ const UserCartModal = () => {
                 <div className='Quantiycheck'>
                   <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
                 </div>
-
               </div>
             </div>
           </div>
@@ -43,7 +42,6 @@ const UserCartModal = () => {
                 <div className='Quantiycheck'>
                   <img src={Images.plusModal} className='calQuantity' alt='minusModal' />
                 </div>
-
               </div>
             </div>
           </div>
