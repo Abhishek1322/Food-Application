@@ -36,18 +36,18 @@ const FoodDetailModal = (props) => {
         <div className="cartfoodsection">
           <div className="topFoodmenu">
             <div className="Dotsheader_ d-flex align-items-center justify-content-between">
-              <div class="dropdown">
+              <div className="dropdown">
                 <button
-                  class="btn btn-secondary dropdown-toggle modalheaderDot_"
+                  className="btn btn-secondary dropdown-toggle modalheaderDot_"
                   type="button"
                   id="dropdownMenuButton1"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i class="fas fa-ellipsis-v foodDetailicon"></i>
+                  <i className="fas fa-ellipsis-v foodDetailicon"></i>
                 </button>
                 <ul
-                  class="dropdown-menu menuItems_"
+                  className="dropdown-menu menuItems_"
                   aria-labelledby="dropdownMenuButton1 "
                 >
                   <div className=" menuChat">
@@ -114,7 +114,7 @@ const FoodDetailModal = (props) => {
               <div className="foodrating">
                 <p className="chefName">Rating</p>
                 <div className="chefrating mt-1">
-                  <i class="las la-star startIcon"></i>
+                  <i className="las la-star startIcon"></i>
                   <p className="ratingheading">4.5 (845 Reviews)</p>
                 </div>
               </div>
