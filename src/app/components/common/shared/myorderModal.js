@@ -59,204 +59,204 @@ const Myorder = () => {
 
                                         <div class="tab-content" id="pills-tabContent">
                                             <div class="tab-pane fade active show" id="pills-home">
-                                             <div className='Myorders_ '>
-                                             <div className='ordermodalBox'>
-                                                    <div className='myorders_'>
-                                                        <p className='orderId'>#12548</p>
+                                                <div className='Myorders_ '>
+                                                    <div className='ordermodalBox'>
+                                                        <div className='myorders_'>
+                                                            <p className='orderId'>#12548</p>
+                                                        </div>
+                                                        <div className='userOrderInfo'>
+                                                            <div className='orderRequest'>
+                                                                <div className='profileInfo'>
+                                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                    <div className='detailInfo'>
+                                                                        <p className='userProfile'>Agatha Christie</p>
+                                                                        <p className='orderFrom'>Order From</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='orderItems'>
+                                                                    <div className='orderiem_'>
+                                                                        <p className='Items'>4 Items</p>
+                                                                        <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                    </div>
+                                                                    <div className='showOrder'>
+                                                                        <p className='orderPrice'>£22.00</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='orderItems'>
+                                                                    <button className='cancelOrder'>CANCEL</button>
+                                                                    <button className='acceptOrder' onClick={() => {
+                                                                        handleUserProfile("myRecentOrder")
+                                                                    }}>ACCEPT</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div className='userOrderInfo'>
-                                                        <div className='orderRequest'>
-                                                            <div className='profileInfo'>
-                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
-                                                                <div className='detailInfo'>
-                                                                    <p className='userProfile'>Agatha Christie</p>
-                                                                    <p className='orderFrom'>Order From</p>
+                                                    <div className='ordermodalBox'>
+                                                        <div className='myorders_'>
+                                                            <p className='orderId'>#12548</p>
+                                                        </div>
+                                                        <div className='userOrderInfo'>
+                                                            <div className='orderRequest'>
+                                                                <div className='profileInfo'>
+                                                                    <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                    <div className='detailInfo'>
+                                                                        <p className='userProfile'>Agatha Christie</p>
+                                                                        <p className='orderFrom'>Order From</p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <div className='orderiem_'>
-                                                                    <p className='Items'>4 Items</p>
-                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                <div className='orderItems'>
+                                                                    <div className='orderiem_'>
+                                                                        <p className='Items'>4 Items</p>
+                                                                        <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                    </div>
+                                                                    <div className='showOrder'>
+                                                                        <p className='orderPrice'>£22.00</p>
+                                                                    </div>
                                                                 </div>
-                                                                <div className='showOrder'>
-                                                                    <p className='orderPrice'>£22.00</p>
+                                                                <div className='orderItems'>
+                                                                    <button className='cancelOrder'>CANCEL</button>
+                                                                    <button className='acceptOrder'>ACCEPT</button>
                                                                 </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder' onClick={() => {
-                                                                    handleUserProfile("myRecentOrder")
-                                                                }}>ACCEPT</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className='ordermodalBox'>
-                                                    <div className='myorders_'>
-                                                        <p className='orderId'>#12548</p>
-                                                    </div>
-                                                    <div className='userOrderInfo'>
-                                                        <div className='orderRequest'>
-                                                            <div className='profileInfo'>
-                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
-                                                                <div className='detailInfo'>
-                                                                    <p className='userProfile'>Agatha Christie</p>
-                                                                    <p className='orderFrom'>Order From</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <div className='orderiem_'>
-                                                                    <p className='Items'>4 Items</p>
-                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                                                </div>
-                                                                <div className='showOrder'>
-                                                                    <p className='orderPrice'>£22.00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder'>ACCEPT</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                             </div>
                                             </div>
 
                                             <div class="tab-pane fade" id="pills-profile">
                                                 <div class="tabinnercontent">
                                                     <form method="POST" action="https://soulmate.itechnolabs.tech/page" autocomplete="off">
-                                                    <div className='Myorders_'>
-                                             <div className='ordermodalBox'>
-                                                    <div className='myorders_'>
-                                                        <p className='orderId'>#12548</p>
-                                                    </div>
-                                                    <div className='userOrderInfo'>
-                                                        <div className='orderRequest'>
-                                                            <div className='profileInfo'>
-                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
-                                                                <div className='detailInfo'>
-                                                                    <p className='userProfile'>Agatha Christie</p>
-                                                                    <p className='orderFrom'>Order From</p>
+                                                        <div className='Myorders_'>
+                                                            <div className='ordermodalBox'>
+                                                                <div className='myorders_'>
+                                                                    <p className='orderId'>#12548</p>
+                                                                </div>
+                                                                <div className='userOrderInfo'>
+                                                                    <div className='orderRequest'>
+                                                                        <div className='profileInfo'>
+                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <div className='detailInfo'>
+                                                                                <p className='userProfile'>Agatha Christie</p>
+                                                                                <p className='orderFrom'>Order From</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <div className='orderiem_'>
+                                                                                <p className='Items'>4 Items</p>
+                                                                                <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                            </div>
+                                                                            <div className='showOrder'>
+                                                                                <p className='orderPrice'>£22.00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <button className='cancelOrder'>CANCEL</button>
+                                                                            <button className='acceptOrder' onClick={() => {
+                                                                                handleUserProfile("myRecentOrder")
+                                                                            }}>ACCEPT</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div className='orderItems'>
-                                                                <div className='orderiem_'>
-                                                                    <p className='Items'>4 Items</p>
-                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                            <div className='ordermodalBox'>
+                                                                <div className='myorders_'>
+                                                                    <p className='orderId'>#12548</p>
                                                                 </div>
-                                                                <div className='showOrder'>
-                                                                    <p className='orderPrice'>£22.00</p>
+                                                                <div className='userOrderInfo'>
+                                                                    <div className='orderRequest'>
+                                                                        <div className='profileInfo'>
+                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <div className='detailInfo'>
+                                                                                <p className='userProfile'>Agatha Christie</p>
+                                                                                <p className='orderFrom'>Order From</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <div className='orderiem_'>
+                                                                                <p className='Items'>4 Items</p>
+                                                                                <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                            </div>
+                                                                            <div className='showOrder'>
+                                                                                <p className='orderPrice'>£22.00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <button className='cancelOrder'>CANCEL</button>
+                                                                            <button className='acceptOrder'>ACCEPT</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder' onClick={() => {
-                                                                    handleUserProfile("myRecentOrder")
-                                                                }}>ACCEPT</button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div className='ordermodalBox'>
-                                                    <div className='myorders_'>
-                                                        <p className='orderId'>#12548</p>
-                                                    </div>
-                                                    <div className='userOrderInfo'>
-                                                        <div className='orderRequest'>
-                                                            <div className='profileInfo'>
-                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
-                                                                <div className='detailInfo'>
-                                                                    <p className='userProfile'>Agatha Christie</p>
-                                                                    <p className='orderFrom'>Order From</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <div className='orderiem_'>
-                                                                    <p className='Items'>4 Items</p>
-                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                                                </div>
-                                                                <div className='showOrder'>
-                                                                    <p className='orderPrice'>£22.00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder'>ACCEPT</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                             </div>
                                                     </form>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="pills-delivered">
                                                 <div class="tabinnercontent">
                                                     <form method="POST" action="https://soulmate.itechnolabs.tech/page" autocomplete="off">
-                                                    <div className='Myorders_'>
-                                             <div className='ordermodalBox'>
-                                                    <div className='myorders_'>
-                                                        <p className='orderId'>#12548</p>
-                                                    </div>
-                                                    <div className='userOrderInfo'>
-                                                        <div className='orderRequest'>
-                                                            <div className='profileInfo'>
-                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
-                                                                <div className='detailInfo'>
-                                                                    <p className='userProfile'>Agatha Christie</p>
-                                                                    <p className='orderFrom'>Order From</p>
+                                                        <div className='Myorders_'>
+                                                            <div className='ordermodalBox'>
+                                                                <div className='myorders_'>
+                                                                    <p className='orderId'>#12548</p>
+                                                                </div>
+                                                                <div className='userOrderInfo'>
+                                                                    <div className='orderRequest'>
+                                                                        <div className='profileInfo'>
+                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <div className='detailInfo'>
+                                                                                <p className='userProfile'>Agatha Christie</p>
+                                                                                <p className='orderFrom'>Order From</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <div className='orderiem_'>
+                                                                                <p className='Items'>4 Items</p>
+                                                                                <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                            </div>
+                                                                            <div className='showOrder'>
+                                                                                <p className='orderPrice'>£22.00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <button className='cancelOrder'>CANCEL</button>
+                                                                            <button className='acceptOrder' onClick={() => {
+                                                                                handleUserProfile("myRecentOrder")
+                                                                            }}>ACCEPT</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div className='orderItems'>
-                                                                <div className='orderiem_'>
-                                                                    <p className='Items'>4 Items</p>
-                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                            <div className='ordermodalBox'>
+                                                                <div className='myorders_'>
+                                                                    <p className='orderId'>#12548</p>
                                                                 </div>
-                                                                <div className='showOrder'>
-                                                                    <p className='orderPrice'>£22.00</p>
+                                                                <div className='userOrderInfo'>
+                                                                    <div className='orderRequest'>
+                                                                        <div className='profileInfo'>
+                                                                            <img src={Images.homeProfile} alt="logo" className="homeprofile" />
+                                                                            <div className='detailInfo'>
+                                                                                <p className='userProfile'>Agatha Christie</p>
+                                                                                <p className='orderFrom'>Order From</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <div className='orderiem_'>
+                                                                                <p className='Items'>4 Items</p>
+                                                                                <p className='timeOrder_'>Order placed on 12:24 pm</p>
+                                                                            </div>
+                                                                            <div className='showOrder'>
+                                                                                <p className='orderPrice'>£22.00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='orderItems'>
+                                                                            <button className='cancelOrder'>CANCEL</button>
+                                                                            <button className='acceptOrder'>ACCEPT</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder' onClick={() => {
-                                                                    handleUserProfile("myRecentOrder")
-                                                                }}>ACCEPT</button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div className='ordermodalBox'>
-                                                    <div className='myorders_'>
-                                                        <p className='orderId'>#12548</p>
-                                                    </div>
-                                                    <div className='userOrderInfo'>
-                                                        <div className='orderRequest'>
-                                                            <div className='profileInfo'>
-                                                                <img src={Images.homeProfile} alt="logo" className="homeprofile" />
-                                                                <div className='detailInfo'>
-                                                                    <p className='userProfile'>Agatha Christie</p>
-                                                                    <p className='orderFrom'>Order From</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <div className='orderiem_'>
-                                                                    <p className='Items'>4 Items</p>
-                                                                    <p className='timeOrder_'>Order placed on 12:24 pm</p>
-                                                                </div>
-                                                                <div className='showOrder'>
-                                                                    <p className='orderPrice'>£22.00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className='orderItems'>
-                                                                <button className='cancelOrder'>CANCEL</button>
-                                                                <button className='acceptOrder'>ACCEPT</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                             </div>
-                                                        
+
                                                     </form>
                                                 </div>
                                             </div>

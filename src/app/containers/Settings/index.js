@@ -56,7 +56,7 @@ const SettingMain = (props) => {
                   <div className="settingBox d-flex align-items-center">
                     <img
                       src={Images.password}
-                      alt="logo"
+                      alt="passwordImg"
                       className="img-fluid settingIcon"
                     />
 
@@ -66,7 +66,7 @@ const SettingMain = (props) => {
                     <Link to="/change-password">
                       <img
                         src={Images.nextIcon}
-                        alt="logo"
+                        alt="nexticonImg"
                         className="img-fluid nextIcon"
                       />
                     </Link>
@@ -78,7 +78,7 @@ const SettingMain = (props) => {
                   <div className="settingBox d-flex align-items-center">
                     <img
                       src={Images.DeleteSetting}
-                      alt="logo"
+                      alt="DeleteSetting"
                       className="img-fluid settingIcon"
                     />
 
@@ -88,7 +88,7 @@ const SettingMain = (props) => {
                     <Link to="/delete-account">
                       <img
                         src={Images.nextIcon}
-                        alt="logo"
+                        alt="nextIcon"
                         className="img-fluid nextIcon"
                       />
                     </Link>
@@ -100,7 +100,7 @@ const SettingMain = (props) => {
                   <div className="settingBox d-flex align-items-center">
                     <img
                       src={Images.termconditions}
-                      alt="logo"
+                      alt="termconditions"
                       className="img-fluid settingIcon"
                     />
                     <p className="settingBoxtxt ms-3 mb-0">
@@ -110,7 +110,7 @@ const SettingMain = (props) => {
                   <div className="iconImg">
                     <img
                       src={Images.nextIcon}
-                      alt="logo"
+                      alt="nextIcon"
                       className="img-fluid nextIcon"
                     />
                   </div>
@@ -121,7 +121,7 @@ const SettingMain = (props) => {
                   <div className="settingBox d-flex align-items-center">
                     <img
                       src={Images.privacypolicy}
-                      alt="logo"
+                      alt="privacypolicy"
                       className="img-fluid settingIcon"
                     />
                     <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
@@ -129,7 +129,7 @@ const SettingMain = (props) => {
                   <div className="iconImg">
                     <img
                       src={Images.nextIcon}
-                      alt="logo"
+                      alt="nextIcon"
                       className="img-fluid nextIcon"
                     />
                   </div>
@@ -140,7 +140,7 @@ const SettingMain = (props) => {
                   <div className="settingBox d-flex align-items-center">
                     <img
                       src={Images.settingcontactus}
-                      alt="logo"
+                      alt="settingcontactus"
                       className="img-fluid settingIcon "
                     />
                     <p className="settingBoxtxt ms-3 mb-0">Contact Us</p>
@@ -148,7 +148,7 @@ const SettingMain = (props) => {
                   <div className="iconImg">
                     <img
                       src={Images.nextIcon}
-                      alt="logo"
+                      alt="nextIcon"
                       className="img-fluid nextIcon"
                     />
                   </div>
@@ -161,7 +161,7 @@ const SettingMain = (props) => {
                     <div className="settingBox d-flex align-items-center">
                       <img
                         src={Images.logout}
-                        alt="logo"
+                        alt="logout"
                         className="img-fluid settingIcon "
                       />
                       <p className="settingBoxtxt ms-3 mb-0">Manage Address</p>
@@ -169,7 +169,7 @@ const SettingMain = (props) => {
                     <div className="iconImg">
                       <img
                         src={Images.nextIcon}
-                        alt="logo"
+                        alt="nextIcon"
                         className="img-fluid nextIcon"
                       />
                     </div>
