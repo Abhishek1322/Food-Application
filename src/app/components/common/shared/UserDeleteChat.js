@@ -11,8 +11,8 @@ const UserDeleteChat = () => {
           <p className='accountdeletetxt mt-2 '>Are you sure, you want to delete this chat?</p>
           <div className='modalfooterbtn'>
             <div className='orderItems'>
-              <button className='cancelOrder'>CANCEL</button>
-              <button className='acceptOrder'>ACCEPT</button>
+              <button className='cancelOrder' type='button'>CANCEL</button>
+              <button className='acceptOrder' type='button'>ACCEPT</button>
             </div>
           </div>
         </div>

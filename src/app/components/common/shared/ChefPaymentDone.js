@@ -39,7 +39,7 @@ const ChefPaymentDone = () => {
                     for order no. #12458</p>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
-                        <button className='foodmodalbtn'onClick={() => {
+                        <button className='foodmodalbtn' type='button' onClick={() => {
                                             handleUserProfile("bookingdone")
                                         }}>
                             Order Placed

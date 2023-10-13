@@ -10,7 +10,7 @@ const OrderCancelModal = () => {
                     <p className='accountdeletetxt mt-2 '>Your amount will be refund Within 1 hour.</p>
                     <div className='modalfooterbtn'>
                         <div className='addfoodbtn'>
-                            <button className='foodmodalbtn'>
+                            <button className='foodmodalbtn' type='button'>
                                 Okay
                             </button>
                         </div>

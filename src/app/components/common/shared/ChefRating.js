@@ -132,7 +132,7 @@ const ChefRating = () => {
                 </div>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
-                        <button className='foodmodalbtn'onClick={() => {
+                        <button className='foodmodalbtn' type='button' onClick={() => {
                                             handleUserProfile("giverate")
                                         }}>
                             Rate Us

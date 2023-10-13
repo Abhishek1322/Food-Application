@@ -95,6 +95,7 @@ const axiosPutFormData = (url, params) => {
     var formData = new FormData();
     formData.append("file", params?.file);
   }
+
   return axiosInstance
     .put(url, formData)
     .then((response) => {

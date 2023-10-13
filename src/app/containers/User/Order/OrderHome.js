@@ -136,7 +136,7 @@ const UserOrderHome = () => {
                             </div>
                         </div>
                         <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
+                            <img src={Images.modalCancel} className='ModalCancel' alt='modalcancelimg' />
                         </p>
                     </>
                     :

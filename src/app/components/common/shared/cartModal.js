@@ -83,13 +83,13 @@ const CartModal = () => {
       </div>
       <div className='modalfooterbtn'>
         <div className='outeraddItem'>
-          <button className='addItems'>+ Add More Items</button>
+          <button className='addItems' type='button'>+ Add More Items</button>
         <div className='orderNow'>
           <div className='totalPrice'>
             <h6 className='totaltxt'>Total</h6>
             <p className='price'>£44.00</p>
           </div>
-          <button className='orderbutton' onClick={() => {
+          <button className='orderbutton' type='button' onClick={() => {
             handleUserProfile("cartcheckout")
           }}>CheckOut</button>
         </div>
@@ -121,7 +121,7 @@ const CartModal = () => {
               Cart
             </h2>}
             <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} className='ModalCancel' />
+              <img src={Images.modalCancel} className='ModalCancel' alt='modalcancelimg' />
             </p>
           </>
           :

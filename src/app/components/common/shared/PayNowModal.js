@@ -90,7 +90,7 @@ const PayNowModal = () => {
                 </div>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
-                        <button className='foodmodalbtn' onClick={() => {
+                        <button className='foodmodalbtn' type='submit' onClick={() => {
                             handleUserProfile("paydone")
                         }}>
                             Pay £44.00

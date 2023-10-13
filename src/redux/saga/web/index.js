@@ -10,13 +10,142 @@ import {
   setUserProfileDetails,
   setChefLists,
   setGetMenusLists,
+  setCreateMenu,
+  setCreateImageUrl,
+  seteditMenuItem,
+  setSingleMenu,
+  setDeleteMenuItem,
+  setGetSingleChef,
 } from "../../slices/web";
+
+function* getSingleChef(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.webApiPath.SINGLE_CHEF_DETAIL}?chefId=${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setGetSingleChef(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
+
+function* deleteMenuItem(action) {
+  try {
+    const resp = yield call(
+      ApiClient.delete,
+      (action.url = `${ApiPath.webApiPath.MENUS}/${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setDeleteMenuItem(resp.data));
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
+
+function* singleMenu(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.webApiPath.MENUS}/${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setSingleMenu(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
+
+function* editMenuItem(action) {
+  const paramToSend = { ...action.payload };
+  delete paramToSend.id;
+
+  try {
+    const resp = yield call(
+      ApiClient.put,
+      (action.url = `${ApiPath.webApiPath.EDIT_MENU_ITEM}/${action.payload.id}`),
+      (action.payload = paramToSend)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(seteditMenuItem(action.payload));
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.data[0]);
+  }
+}
+
+function* createImageUrl(action) {
+  try {
+    const resp = yield call(
+      ApiClient.postFormData,
+      (action.url = ApiPath.webApiPath.GET_FILES_URL),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setCreateImageUrl(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* createMenu(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.webApiPath.MENUS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setCreateMenu(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getMenusLists(action) {
   try {
     const resp = yield call(
       ApiClient.get,
-      (action.url = `${ApiPath.webApiPath.MENUS_LIST}`),
+      (action.url = `${ApiPath.webApiPath.MENUS}`),
       (action.payload = action.payload)
     );
     if (resp.status) {
@@ -139,6 +268,12 @@ function* webSaga() {
   yield all([takeLatest("web/getUserProfileDetails", getUserProfileDetails)]);
   yield all([takeLatest("web/chefLists", chefLists)]);
   yield all([takeLatest("web/getMenusLists", getMenusLists)]);
+  yield all([takeLatest("web/createMenu", createMenu)]);
+  yield all([takeLatest("web/createImageUrl", createImageUrl)]);
+  yield all([takeLatest("web/editMenuItem", editMenuItem)]);
+  yield all([takeLatest("web/singleMenu", singleMenu)]);
+  yield all([takeLatest("web/deleteMenuItem", deleteMenuItem)]);
+  yield all([takeLatest("web/getSingleChef", getSingleChef)]);
 }
 
 export default webSaga;

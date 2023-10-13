@@ -51,3 +51,11 @@
         right: 23px;
     }
 }
+@media (max-width:1366px) {
+    .chefratingsection .modalscroll {
+        height: 550px;
+    }
+    .chefchatsection .chatnext {
+        padding-top: 244px;
+    }
+}   

@@ -90,7 +90,7 @@ const ChefBookPay = () => {
                         </div>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
-                        <button className='foodmodalbtn' onClick={() => {
+                        <button className='foodmodalbtn' type='button' onClick={() => {
                                             handleUserProfile("chefpaydone")
                                         }}>
                             Pay £90.00

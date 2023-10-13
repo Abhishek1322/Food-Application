@@ -38,9 +38,9 @@ const YourOrderModal = () => {
                 <p className='accountdeletetxt mt-2 '>Cancellation charges apply.</p>
                 <div className='modalfooterbtn'>
                     <div className='addfoodbtn'>
-                        <button className='settingBoxtxt'>
+                        <button className='settingBoxtxt' type='button'>
                             No, don’t                            </button>
-                        <button className='foodmodalbtn' onClick={() => {
+                        <button className='foodmodalbtn' type='button' onClick={() => {
                             handleUserProfile("ordercancel")
                         }}>
                             Yes, Cancel

@@ -127,14 +127,14 @@ const BookNowModal = () => {
                                     type="text"
                                     className="border-input"
                                     placeholder='Write here'
-                                    rows={5}
+                                    rows={4}
                                 />
                                 <label className="border-label">Description</label>
                             </div>
                         </div>
                     </div>
                     <div className='modalfooterbtn'>
-                        <button className='foodmodalbtn' onClick={() => {
+                        <button className='foodmodalbtn' type='submit' onClick={() => {
                             handleUserProfile("chefbook")
                         }}>
                             book Now
@@ -166,7 +166,7 @@ const BookNowModal = () => {
                             Check Out
                         </h2>
                         <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
+                            <img src={Images.modalCancel} className='ModalCancel' alt='modalcancelimg' />
                         </p>
                     </>
                     :

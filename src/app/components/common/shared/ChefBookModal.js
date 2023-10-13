@@ -44,7 +44,7 @@ const ChefBookModal = () => {
                                 <div className='saraheading'>
                                     <h4 className='chatheadtext'>Sarah Bergstrom</h4>
                                     <Link to="#"><img src={Images.sarahcap} alt='sarahcapimage' className='img-fluid' /></Link>
-                                    <button className='restrodetail'>
+                                    <button className='restrodetail' type='button'>
                                         Restaurant
                                     </button>
                                 </div>
@@ -79,7 +79,7 @@ const ChefBookModal = () => {
                                     <h6 className='totaltxt'>Total</h6>
                                     <p className='price'>£90.00</p>
                                 </div>
-                                <button className='orderbutton' onClick={() => {
+                                <button className='orderbutton' type='button' onClick={() => {
                                     handleUserProfile("chefpay")
                                 }}>Pay Now</button>
                             </div>
@@ -118,7 +118,7 @@ const ChefBookModal = () => {
                             </div>
                         </div>
                         <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
+                            <img src={Images.modalCancel} className='ModalCancel' alt='modalcancelimg' />
                         </p>
                     </>
                     :

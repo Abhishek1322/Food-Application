@@ -34,7 +34,7 @@ p {
 /* chefdata  */
 .chefdata {
     padding-bottom: 48px;
-    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
     border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
     margin-top: 38px;
 
@@ -201,9 +201,9 @@ p {
 
 .editprofileimg {
     position: absolute;
-    right: 25px;
+    right: 10px;
     top: 0;
-    margin: 25px auto;
+    margin: 6px auto;
 }
 
 .border-box {
@@ -245,7 +245,11 @@ p {
 .chefdetailsection .listItems_{
     width: 100%;
 } 
-
+.sarahImg_{
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
 .sarahchef {
     border-radius: 15px;
     background: #FFF;
@@ -279,8 +283,8 @@ p {
     position: absolute;
     display: none;
     padding: 10px;
-    margin: 25px auto;
-    right: 90px;
+    margin: 11px auto;
+    right: 70px;
     top: 10px;
 }
 
@@ -404,8 +408,9 @@ p {
 
 @media (max-width:1366px) {
     .sarahinformation {
-        right: -110px;
+        right: -123px;
     }
+   
 }
 
 @media (max-width:768px) {
@@ -500,9 +505,9 @@ p {
 }
 
 .deliverytimesheet {
-    border-top: 2px dashed rgba(192, 194, 194, 0.50);
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
     margin-top: 20px;
-    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
     padding: 20px 20px;
 
 }
@@ -693,7 +698,7 @@ p {
     border-top: 1px dashed rgba(192, 194, 194, 0.50);
     padding-top: 20px;
     margin-top: 30px;
-
+    padding: 20px 10px 0px 10px;
 }
 
 /* checkbox */
@@ -866,8 +871,8 @@ p {
 }
 
 .paynowinputs {
-    border-top: 2px dashed rgba(192, 194, 194, 0.50);
-    border-bottom: 2px dashed rgba(192, 194, 194, 0.50);
+    border-top: 1px dashed rgba(192, 194, 194, 0.50);
+    border-bottom: 1px dashed rgba(192, 194, 194, 0.50);
     margin-top: 41px;
     padding-bottom: 41px;
 }
@@ -1284,6 +1289,14 @@ p {
 .userbellsection .dropdown-menu {
     min-width: 130px
 }
+.reportchat{
+    color: #2E3333;
+font-family: Open Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 
 #userchatdelete {
     max-width: 406px;
@@ -1487,10 +1500,12 @@ p {
 
 .usercartcheck .outeraddItem {
     padding: 20px 10px 0px 10px;
+    border-top: 1px dashed rgba(192, 194, 194, 0.5);
 }
 
 .usercartsection .outeraddItem {
     padding: 20px 10px 0px 10px;
+    border-top: 1px dashed rgba(192, 194, 194, 0.5);
 }
 
 .usercartsection .modalfooterbtn {
@@ -1499,11 +1514,6 @@ p {
 
 #usercartsection .modal-body {
     padding: 0;
-}
-
-
-.cartcheckoutsection .outeraddItem {
-    padding: 20px 10px 0px 10px;
 }
 
 #cartcheckoutModal .modal-body {
@@ -1779,9 +1789,8 @@ p {
     background: #FFFFFF;
     border: none;
     display: inline-block;
-    width: 100%;
-    padding: 0px 0px 8px 10px;
-    background-image: url(http://localhost:3000/static/media/downArrow.cb70ef2bae8e4a51e1a0.svg);
+    padding: 0px 0px 8px 16px;
+    background-image: url(../images/downArrow.svg);
     background-repeat: no-repeat;
     color: #ABADAD;
     font-size: 8px;
@@ -1794,9 +1803,40 @@ p {
     font-size: 14px;
     font-weight: 400;
 }
-.userchefhome .pagination {
-    justify-content: center;
+ .pagination {
+    justify-content: end;
     margin-top: 20px;
+}
+.previous a , .next a{
+    border-radius: 8px;
+background: #fff;
+padding: 10px 25px;
+color: #E65C00 !important;
+font-size: 18px;
+font-weight: 600;
+box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+text-transform: capitalize;
+border:1px solid #E65C00
+}
+ .pagination li a{
+    border:1px solid #E65C00;
+    padding: 5px 18px;
+    margin: 0 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #E65C00 !important;
+}
+ .pagination .active a{
+    background-color: #E65C00;
+    color: #fff !important;
+    
+}
+ .pagination  a{
+    background-color: #fff ;
+    border:1px solid #E65C00;
+    padding: 5px 18px;
+    color: #E65C00;
+    
 }
 /*user-chef-home  css end*/
 /*user-order-home css start*/
