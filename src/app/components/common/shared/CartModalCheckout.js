@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import * as Images from "../../../../utilities/images"
 import CustomModal from './CustomModal'
 import EditAddressModal from './EditAddressModal'
+import { Link } from "react-router-dom";
+
 
 const CartModalCheckout = () => {
     const [key, setKey] = useState(Math.random());
@@ -95,8 +97,8 @@ const CartModalCheckout = () => {
                                 <div class="dropdown dropend">
                                     <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
-                                        <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
+                                        <li><Link to="#" class="dropdown-item"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></Link></li>
+                                        <li><Link to="#" class="dropdown-item"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -111,8 +113,8 @@ const CartModalCheckout = () => {
                                 <div class="dropdown dropend">
                                     <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
-                                        <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
+                                        <li><Link to="#" class="dropdown-item"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></Link></li>
+                                        <li><Link to="#" class="dropdown-item"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -125,13 +127,13 @@ const CartModalCheckout = () => {
                 </div>
                 <div className='modalfooterbtn'>
                     <div className='outeraddItem'>
-                        <button className='addItems'>+ Add More Items</button>
+                        <button className='addItems' type='submit'>+ Add More Items</button>
                         <div className='orderNow'>
                             <div className='totalPrice'>
                                 <p className='totaltxt'>Total</p>
                                 <p className='price'>£44.00</p>
                             </div>
-                            <button className='orderbutton' onClick={() => {
+                            <button className='orderbutton' type='submit' onClick={() => {
                                 handleUserProfile("editmodal")
                             }}>Pay Now</button>
                         </div>

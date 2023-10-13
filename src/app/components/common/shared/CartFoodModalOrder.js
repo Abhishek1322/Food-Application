@@ -141,6 +141,7 @@ const CartFoodModalOrder = (props) => {
             </div>
             <button
               className="orderbutton"
+              type="button"
               onClick={() => {
                 handleUserProfile("CartModal");
               }}
@@ -173,7 +174,7 @@ const CartFoodModalOrder = (props) => {
             <>
               <h2 className="modal_Heading">Cart</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : (

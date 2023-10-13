@@ -39,7 +39,7 @@ const OrderPlaceModal = () => {
                         successfully placed.</p>
                     <div className='modalfooterbtn'>
                         <div className='addfoodbtn'>
-                            <button className='foodmodalbtn' onClick={() => {
+                            <button className='foodmodalbtn' type='button' onClick={() => {
                                             handleUserProfile("yourorderplace")
                                         }}>
                             Okay
@@ -49,7 +49,7 @@ const OrderPlaceModal = () => {
                             <div class="progress-bar orderprogress" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p className='progressheading'>59 Sec</p>
-                        <button className='itemsQuantity'>Cancel Order</button>
+                        <button className='itemsQuantity' type='button'>Cancel Order</button>
                     </div>
             </div>
             <CustomModal

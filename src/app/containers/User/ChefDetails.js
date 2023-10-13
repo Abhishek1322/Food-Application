@@ -80,7 +80,7 @@ const ChefDetails = () => {
                         : Images.UserICon
                     }
                     alt="sarahimage"
-                    className="img-fluid"
+                    className="sarahImg_"
                   />
                 </div>
                 <div className="saraheading">
@@ -119,6 +119,7 @@ const ChefDetails = () => {
               <div className="flexBox justify-content-end">
                 <button
                   className="sarahavailablebtn"
+                  type="button"
                   onClick={() => {
                     handleUserProfile("availabilityModal");
                   }}
@@ -130,7 +131,7 @@ const ChefDetails = () => {
                   />
                   <span className="availableheading">Availability</span>
                 </button>
-                <button className="sarahmessagebtn">
+                <button className="sarahmessagebtn" type="button">
                   <img
                     src={Images.ChefChat}
                     alt="timesquareimage"
@@ -240,7 +241,7 @@ const ChefDetails = () => {
                         <h6 className="itemIs_">{val?.name}</h6>
                         <h6 className="category_">{val?.category}</h6>
                         <div className="sarahmenuprice">
-                          <button className="itemsPrice_ ">
+                          <button className="itemsPrice_ " type="button">
                             £ {val?.price}
                           </button>
                           <div className="sarahbasket">
@@ -304,7 +305,7 @@ const ChefDetails = () => {
             <>
               <h2 className="modal_Heading">Availability</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : modalDetail.flag === "CartFood" ? (
@@ -313,14 +314,14 @@ const ChefDetails = () => {
                                 Cart
                             </h2> */}
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>
             </>
           ) : modalDetail.flag === "ratingchef" ? (
             <>
               <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" />
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg"/>
               </p>
             </>
           ) : (

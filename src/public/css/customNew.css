@@ -245,7 +245,11 @@ p {
 .chefdetailsection .listItems_{
     width: 100%;
 } 
-
+.sarahImg_{
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
 .sarahchef {
     border-radius: 15px;
     background: #FFF;

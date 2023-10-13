@@ -38,8 +38,8 @@ const ChefGiveRating = () => {
                 </div>
                 <div className='modalfooterbtn'>
                     <div className='orderItems'>
-                        <button className='cancelOrder'>CANCEL</button>
-                        <button className='acceptOrder'>ACCEPT</button>
+                        <button className='cancelOrder' type='submit'>CANCEL</button>
+                        <button className='acceptOrder' type='submit'>ACCEPT</button>
                     </div>
                 </div>
             </div>

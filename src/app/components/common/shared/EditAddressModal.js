@@ -117,7 +117,7 @@ const EditAddressModal = () => {
                                     </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
-                                        <button className='foodmodalbtn'>
+                                        <button className='foodmodalbtn' type='submit'>
                                             Save
                                         </button>
                                     </div>
@@ -195,7 +195,7 @@ const EditAddressModal = () => {
                                     </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
-                                        <button className='foodmodalbtn'>
+                                        <button className='foodmodalbtn' type='submit'>
                                             Save
                                         </button>
                                     </div>
@@ -273,7 +273,7 @@ const EditAddressModal = () => {
                                     </div>
                                 <div className='modalfooterbtn'>
                                     <div className='addfoodbtn'>
-                                        <button className='foodmodalbtn' onClick={() => {
+                                        <button className='foodmodalbtn' type='submit' onClick={() => {
                                             handleUserProfile("paynow")
                                         }}>
                                             Update & Save
@@ -315,7 +315,7 @@ const EditAddressModal = () => {
                             </div>
                         </div>
                         <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
+                            <img src={Images.modalCancel} className='ModalCancel' alt='modalcancelimg' />
                         </p>
                     </>
                     :
