@@ -169,7 +169,7 @@ const ChefDetails = () => {
                 }}
               >
                 <i className="las la-star startIcon"></i>
-                <h6 className="ratingheading">4.5 (845 Reviews)</h6>
+                <p className="ratingheading">4.5 (845 Reviews)</p>
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12">
