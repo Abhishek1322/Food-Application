@@ -38,7 +38,7 @@ const EditFoodDetailsModal = () => {
                     <p className='chefName mt-4 pb-3'>Upload Image </p>
                     <img src={Images.editMenuImg} className='editFoodImg' alt='editMneuImg' />
                     <span className='cancelEditImg'>
-                        <i class="fas fa-times cancelEdit"></i>
+                        <i className="fas fa-times cancelEdit"></i>
                     </span>
                 </div>
                 <button className='foodmodalbtn  modalfooterbtn mb-4'>

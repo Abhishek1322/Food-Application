@@ -9,14 +9,14 @@ const NewBooking = () => {
         <div className='Newbooking_'>
           <nav>
             <div className='newBooking-tabs'>
-              <div class="nav nav-tabs bookingNav" id="nav-tab" role="tablist">
-                <button class="nav-link bookingNavHeader active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Bookings </button>
-                <button class="nav-link bookingNavHeader" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Accepted</button>
+              <div className="nav nav-tabs bookingNav" id="nav-tab" role="tablist">
+                <button className="nav-link bookingNavHeader active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Bookings </button>
+                <button className="nav-link bookingNavHeader" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Accepted</button>
               </div>
             </div>
           </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show  active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div className="tab-content" id="nav-tabContent">
+            <div className="tab-pane fade show  active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
               <div className='container-fluid'>
                 <div className='row'>
                   <div className='col-lg-12'>
@@ -227,7 +227,7 @@ const NewBooking = () => {
 
               </div>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
               <div className='container-fluid'>
                 <div className='row'>
                   <div className='col-lg-12'>

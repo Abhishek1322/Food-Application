@@ -124,7 +124,7 @@ const Verification = () => {
                   <div className="buttonBox">
                     <Link to="/create-account/:user">
                       <button type="submit" role="button" className="backBtn">
-                        <i class="las la-angle-left"></i> Back
+                        <i className="las la-angle-left"></i> Back
                       </button>
                     </Link>
                   </div>

@@ -12,7 +12,7 @@ const HomeRequsest = () => {
                                 <div className='innerhomeheader'>
                                     <h2 className='headerinnerheading'>New Booking Requests</h2>
                                     <div className='seeAll'>
-                                        <h4 className='headerinnertxt'>see All</h4>
+                                        <p className='headerinnertxt'>see All</p>
                                         <img src={Images.homeArow} alt="homearrow" className="seeArrow" />
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@ const HomeRequsest = () => {
                                 <div className='innerhomeheader'>
                                     <h3 className='headerinnerheading'>Recent Orderss</h3>
                                     <div className='seeAll'>
-                                        <h4 className='headerinnertxt'>see All</h4>
+                                        <p className='headerinnertxt'>see All</p>
                                         <img src={Images.homeArow} alt="arrowImg" className="seeArrow" />
                                     </div>
                                 </div>

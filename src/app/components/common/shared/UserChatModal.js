@@ -33,7 +33,7 @@ const UserChatModal = () => {
                         <input className='chatSearchere_' type='search' placeholder='Type Something...' />
                         <div className='modaltooltip'>
                             <img src={Images.chatgalleryImg} alt="logo" className="gallerImg" data-tooltip title="Click to go [crazy]" />
-                            <span class="tooltiptext">Your only able to send photos from gallery</span>
+                            <span className="tooltiptext">Your only able to send photos from gallery</span>
                         </div>
                         <img src={Images.chatSendImg} alt="logo" className="sendImg" />
                     </div>

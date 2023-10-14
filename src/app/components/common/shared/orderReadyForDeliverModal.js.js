@@ -35,12 +35,12 @@ const OrderReadyForDelivery = () => {
     <div className='myrecentOrders_'>
                 <div className='modalscroll'>
                     <div className='orderProfile'>
-                        <div class="ordermenuProfile">
+                        <div className="ordermenuProfile">
                             <div className='orderprofile_ '>
-                                <img src={Images.userProfile} alt="profile" class="homeprofile" />
-                                <div class="detailInfo">
-                                    <p class="userProfile">John Smith</p>
-                                    <p class="userInfo">Order From</p>
+                                <img src={Images.userProfile} alt="profile" className="homeprofile" />
+                                <div className="detailInfo">
+                                    <p className="userProfile">John Smith</p>
+                                    <p className="userInfo">Order From</p>
                                 </div>
                             </div>
                             <div className='chat_'>
@@ -58,13 +58,13 @@ const OrderReadyForDelivery = () => {
                     <div className='orderDetails_'>
                         <p className='reportText_ pt-3 pb-3'>Ordered Items</p>
                         <div className='orderProfile'>
-                            <div class="profileInfo">
+                            <div className="profileInfo">
                                 <div className='orderprofile_ flexBox'>
-                                    <img src={Images.foodItems} alt="fooditemsImg" class="homeprofile" />
-                                    <div class="detailInfo">
+                                    <img src={Images.foodItems} alt="fooditemsImg" className="homeprofile" />
+                                    <div className="detailInfo">
                                         <p className='userInfo'>Food Category</p>
-                                        <p class="userProfile">Chicken Salad</p>
-                                        <p class="orderPrice">£22.00</p>
+                                        <p className="userProfile">Chicken Salad</p>
+                                        <p className="orderPrice">£22.00</p>
                                     </div>
                                 </div>
                                 <p className='cheftext'>2X</p>

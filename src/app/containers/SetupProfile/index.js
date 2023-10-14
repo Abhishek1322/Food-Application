@@ -687,7 +687,7 @@ const SetupProfile = () => {
                           ),
                           pagetwo: (
                             <>
-                              <h6 class="Headingsmall">Set Availability</h6>
+                              <h6 className="Headingsmall">Set Availability</h6>
                               <p className="subHeadingSmall mb-4">
                                 Add your available time slots.
                               </p>
@@ -711,7 +711,7 @@ const SetupProfile = () => {
                                   ))}
                                 </ul>
                                 <div className="timeSlotBox pb-5">
-                                  <h6 class="HeadingsmallText">
+                                  <h6 className="HeadingsmallText">
                                     Availability{" "}
                                   </h6>
                                   <hr className="borderBottom"></hr>
@@ -849,7 +849,7 @@ const SetupProfile = () => {
                                         type="button"
                                         className="addButton"
                                       >
-                                        <i class="las la-plus"></i>Add Time Slot{" "}
+                                        <i className="las la-plus"></i>Add Time Slot{" "}
                                       </button>
                                     </div>
                                   )}
@@ -861,7 +861,7 @@ const SetupProfile = () => {
                                   className="submit_btn"
                                 >
                                   <span className="addMore me-3">
-                                    <i class="las la-angle-left"></i> Back
+                                    <i className="las la-angle-left"></i> Back
                                   </span>
                                 </button>
                                 <button
@@ -875,7 +875,7 @@ const SetupProfile = () => {
                           ),
                           pagethree: (
                             <>
-                              <h6 class="Headingsmall">Upload Documents</h6>
+                              <h6 className="Headingsmall">Upload Documents</h6>
                               <p className="subHeadingSmall mb-4">
                                 Upload your passport or certificate for the
                                 verifications.
@@ -899,7 +899,7 @@ const SetupProfile = () => {
                                           handleRemoveDocument(pdfFiles.name)
                                         }
                                       >
-                                      <i class="fas fa-times uploadcancelIcon "></i>
+                                      <i className="fas fa-times uploadcancelIcon "></i>
                                       </p>
                                     </div>
                                   ) : (
@@ -937,7 +937,7 @@ const SetupProfile = () => {
                                   type="submit"
                                 >
                                   <span className="addMore me-4">
-                                    <i class="las la-angle-left"></i> Back
+                                    <i className="las la-angle-left"></i> Back
                                   </span>
                                 </button>
                                 <button

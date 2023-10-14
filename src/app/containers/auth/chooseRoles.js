@@ -41,16 +41,16 @@ const ChooseRoles = () => {
             </figure>
             <div className="flexBox justify-content-end">
               <h3 className="smallSubheading">Already have an a account?</h3>
-              <div class="form-group">
-                <label class="toggle">
+              <div className="form-group">
+                <label className="toggle">
                   <input
                     onChange={handleToggleChange}
                     checked={isToggleOn}
                     type="checkbox"
                   />
-                  <span class="slider"></span>
+                  <span className="slider"></span>
                   <span
-                    class="labels"
+                    className="labels"
                     data-on="Sign Up"
                     data-off="Login"
                   ></span>

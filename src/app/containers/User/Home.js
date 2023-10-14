@@ -129,7 +129,7 @@ const HomeUser = () => {
                       <div className="flexBox justify-content-between mt-3">
                         <article className="ratingBox">
                           <span className="coloredText">
-                            <i class="las la-star startIcon"></i>4.5
+                            <i className="las la-star startIcon"></i>4.5
                           </span>
                         </article>
                         <article>

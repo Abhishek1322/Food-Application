@@ -97,7 +97,7 @@ const ForgotPassword = () => {
                   <div className="buttonBox">
                     <Link to="/">
                       <button type="button" role="button" className="backBtn">
-                        <i class="las la-angle-left"></i> Back to Login
+                        <i className="las la-angle-left"></i> Back to Login
                       </button>
                     </Link>
                   </div>

@@ -147,7 +147,7 @@ const MyavailabilityModal = (props) => {
     <>
       <div className="ProfilePageModal">
         <div className="availabilityModal">
-          <ul class="myAvailability_">
+          <ul className="myAvailability_">
             {week.map((day, index) => (
               <>
                 <li

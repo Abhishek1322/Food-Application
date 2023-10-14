@@ -49,16 +49,16 @@ const Myorder = () => {
                                             <li className="nav-item" role="presentation">
                                                 <button className="nav-link innertext_ active" id="terms" data-id="1" data-bs-toggle="pill" data-bs-target="#pills-home">Recent Orders</button>
                                             </li>
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-profile">In-Progress</button>
+                                            <li className="nav-item" role="presentation">
+                                                <button className="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-profile">In-Progress</button>
                                             </li>
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-delivered">Delivered</button>
+                                            <li className="nav-item" role="presentation">
+                                                <button className="nav-link innertext_" id="privacy" data-id="2" data-bs-toggle="pill" data-bs-target="#pills-delivered">Delivered</button>
                                             </li>
                                         </ul>
 
-                                        <div class="tab-content" id="pills-tabContent">
-                                            <div class="tab-pane fade active show" id="pills-home">
+                                        <div className="tab-content" id="pills-tabContent">
+                                            <div className="tab-pane fade active show" id="pills-home">
                                                 <div className='Myorders_ '>
                                                     <div className='ordermodalBox'>
                                                         <div className='myorders_'>
@@ -123,8 +123,8 @@ const Myorder = () => {
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane fade" id="pills-profile">
-                                                <div class="tabinnercontent">
+                                            <div className="tab-pane fade" id="pills-profile">
+                                                <div className="tabinnercontent">
                                                     <form method="POST" action="https://soulmate.itechnolabs.tech/page" autocomplete="off">
                                                         <div className='Myorders_'>
                                                             <div className='ordermodalBox'>
@@ -191,8 +191,8 @@ const Myorder = () => {
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="pills-delivered">
-                                                <div class="tabinnercontent">
+                                            <div className="tab-pane fade" id="pills-delivered">
+                                                <div className="tabinnercontent">
                                                     <form method="POST" action="https://soulmate.itechnolabs.tech/page" autocomplete="off">
                                                         <div className='Myorders_'>
                                                             <div className='ordermodalBox'>
@@ -260,13 +260,13 @@ const Myorder = () => {
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="faq">
-                                                <div class="tabinnercontent">
-                                                    <div class="d-flex justify-content-between">
+                                            <div className="tab-pane fade" id="faq">
+                                                <div className="tabinnercontent">
+                                                    <div className="d-flex justify-content-between">
                                                         <h3>FAQ</h3>
-                                                        <button type="button" class="dt-button create-new btn btn-primary add_question waves-effect waves-float waves-light" data-bs-toggle="modal" data-bs-target="#addFaqModal" data-backdrop="static" data-keyboard="false"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Faq</button>
+                                                        <button type="button" className="dt-button create-new btn btn-primary add_question waves-effect waves-float waves-light" data-bs-toggle="modal" data-bs-target="#addFaqModal" data-backdrop="static" data-keyboard="false"><i className="fas fa-plus"></i>&nbsp;&nbsp;Add Faq</button>
                                                     </div>
-                                                    <div class="col-md-12 col-12">
+                                                    <div className="col-md-12 col-12">
                                                         helllo
                                                     </div>
                                                 </div>

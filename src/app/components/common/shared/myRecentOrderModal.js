@@ -37,12 +37,12 @@ const MyRecentOrderModal = () => {
             <div className='myrecentOrders_'>
                 <div className='modalscroll'>
                     <div className='orderProfile'>
-                        <div class="ordermenuProfile">
+                        <div className="ordermenuProfile">
                             <div className='orderprofile_ '>
-                                <img src={Images.userProfile} alt="logo" class="homeprofile" />
-                                <div class="detailInfo">
-                                    <p class="userProfile">John Smith</p>
-                                    <p class="userInfo">Order From</p>
+                                <img src={Images.userProfile} alt="logo" className="homeprofile" />
+                                <div className="detailInfo">
+                                    <p className="userProfile">John Smith</p>
+                                    <p className="userInfo">Order From</p>
                                 </div>
                             </div>
                             <div className='chat_'>
@@ -62,13 +62,13 @@ const MyRecentOrderModal = () => {
                     <div className='orderDetails_'>
                         <p className='reportText_ pt-3 pb-3'>Ordered Items</p>
                         <div className='orderProfile'>
-                            <div class="profileInfo">
+                            <div className="profileInfo">
                                 <div className='orderprofile_ flexBox'>
-                                    <img src={Images.foodItems} alt="foodImtems" class="homeprofile" />
-                                    <div class="detailInfo">
+                                    <img src={Images.foodItems} alt="foodImtems" className="homeprofile" />
+                                    <div className="detailInfo">
                                         <p className='userInfo'>Food Category</p>
-                                        <p class="userProfile">Chicken Salad</p>
-                                        <p class="orderPrice">£22.00</p>
+                                        <p className="userProfile">Chicken Salad</p>
+                                        <p className="orderPrice">£22.00</p>
                                     </div>
                                 </div>
                                 <p className='cheftext'>2X</p>
@@ -130,11 +130,11 @@ const MyRecentOrderModal = () => {
 
                         </div>
                         <div className='Dotsheader_'>
-                            <div class="dropdown ">
-                                <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div className="dropdown ">
+                                <button className="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' alt="modalheader" />
                                 </button>
-                                <ul class="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
+                                <ul className="dropdown-menu chatmenu_" aria-labelledby="dropdownMenuButton1">
                                     <div className=' chatnext_ flexBox' onClick={() => {
                                         handleUserProfile("reportchatD")
                                     }}>

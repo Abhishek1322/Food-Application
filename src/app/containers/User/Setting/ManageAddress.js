@@ -51,11 +51,11 @@ const UserManageAddress = () => {
                                 <div className='managetext'>
                                     <h6 className='notificationText'>Home</h6>
                                     <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
-                                    <div class="dropdown  dropstart managedrop">
+                                    <div className="dropdown  dropstart managedrop">
                                         <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
-                                            <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
+                                            <li><a className="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -65,11 +65,11 @@ const UserManageAddress = () => {
                                 <div className='managetext'>
                                     <h6 className='notificationText'>Office</h6>
                                     <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
-                                    <div class="dropdown  dropstart managedrop">
+                                    <div className="dropdown  dropstart managedrop">
                                         <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
-                                            <li><a class="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
+                                            <li><a className="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
