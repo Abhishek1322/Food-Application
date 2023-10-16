@@ -107,16 +107,16 @@ const UserManageAddress = () => {
                       <div className="managetext">
                         <h6 className="notificationText">{item?.type}</h6>
                         <p className="cheftext pt-1">{item?.streetAddress}</p>
-                        <div class="dropdown  dropstart managedrop">
+                        <div className="dropdown  dropstart managedrop">
                           <img
                             src={Images.chatsDots}
                             className="dropdown-toggle manageimg"
                             alt="cartcancel"
                             data-bs-toggle="dropdown"
                           />
-                          <ul class="dropdown-menu">
+                          <ul className="dropdown-menu">
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a className="dropdown-item" href="#">
                                 <img
                                   src={Images.EditImg}
                                   alt="editimage"
@@ -133,7 +133,7 @@ const UserManageAddress = () => {
                               </a>
                             </li>
                             <li>
-                              <a class="dropdown-item " href="#">
+                              <a className="dropdown-item " href="#">
                                 <img
                                   src={Images.cartDelete}
                                   alt="editimage"
