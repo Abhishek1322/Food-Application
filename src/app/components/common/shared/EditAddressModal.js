@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
+import {
+  singleAddress,
+  editUserAddress,
+  onErrorStopLoad,
+} from "../../../../redux/slices/user";
+import { useDispatch } from "react-redux";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 
-const EditAddressModal = () => {
+const EditAddressModal = (props) => {
+  const { close, addressId, handleGetUserAddress } = props;
+  const dispatch = useDispatch();
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [addressType, setAddressType] = useState("");
+  const [building, setBuilding] = useState("");
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -21,6 +41,7 @@ const EditAddressModal = () => {
     setKey(Math.random());
   };
 
+  // open modal
   const handleUserProfile = (flag) => {
     setModalDetail({
       show: true,
@@ -29,13 +50,126 @@ const EditAddressModal = () => {
     });
     setKey(Math.random());
   };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // getting address
+  useEffect(() => {
+    let params = {
+      id: addressId,
+    };
+    dispatch(
+      singleAddress({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setCity(res.data.data.city);
+            setState(res.data.data.state);
+            setZipCode(res.data.data.zipCode);
+            setStreetAddress(res.data.data.streetAddress);
+            setBuilding(res.data.data.plotNumber);
+            setAddressType(res.data.data.type);
+            setLatitude(res.data.data.coordinates.coordinates[0]);
+            setLongitude(res.data.data.coordinates.coordinates[1]);
+          }
+        },
+      })
+    );
+  }, []);
+
+  // handle change city
+  const autoCompleteHandleChange = (city) => {
+    setCity(city);
+    geocodeByAddress(city)
+      .then((results) => {
+        setLatitude(results[0].geometry.location.lat());
+        setLongitude(results[0].geometry.location.lng());
+      })
+      .catch((error) => {});
+  };
+
+  // select city
+  const autoCompleteHandleSelect = (city) => {
+    setCity(city);
+    geocodeByAddress(city)
+      .then((results) => {
+        setLatitude(results[0].geometry.location.lat());
+        setLongitude(results[0].geometry.location.lng());
+        if (results.length > 0) {
+          // Extract the state from the results
+          const addressComponents = results[0].address_components;
+          const stateComponent = addressComponents.find((component) =>
+            component.types.includes("administrative_area_level_1")
+          );
+          // If stateComponent exists, set the state value
+          if (stateComponent) {
+            const stateName = stateComponent.long_name;
+            setState(stateName);
+          }
+          // Extract the ZIP code from the results
+          const zipCodeComponent = addressComponents.find((component) =>
+            component.types.includes("postal_code")
+          );
+          if (zipCodeComponent) {
+            const zipCode = zipCodeComponent.long_name;
+            setZipCode(zipCode);
+          }
+          // Extract the local street address (route) or locality
+          const routeComponent = addressComponents.find((component) =>
+            component.types.includes("route")
+          );
+          const localityComponent = addressComponents.find((component) =>
+            component.types.includes("locality")
+          );
+          if (routeComponent) {
+            const localStreet = routeComponent.long_name;
+            setStreetAddress(localStreet);
+          } else if (localityComponent) {
+            const localStreet = localityComponent.long_name;
+            setStreetAddress(localStreet);
+          }
+        }
+      })
+      .catch((error) => {});
+  };
+
+  // edit address
+  const handleSubmitEditAddess = () => {
+    let params = {
+      id: addressId,
+      type: addressType,
+      city: city,
+      state: state,
+      zipCode: zipCode,
+      streetAddress: streetAddress,
+      plotNumber: building,
+      coordinates: [latitude, longitude],
+    };
+    dispatch(
+      editUserAddress({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleGetUserAddress();
+            close();
+          }
+        },
+      })
+    );
+  };
   return (
     <>
       <div className="editadressection tabsection">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link active"
+              onClick={() => setAddressType("home")}
+              className={
+                addressType === "home" ? "nav-link active" : "nav-link"
+              }
               id="home-tab"
               data-bs-toggle="tab"
               data-bs-target="#home"
@@ -47,12 +181,15 @@ const EditAddressModal = () => {
               Home
             </button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link"
+              onClick={() => setAddressType("office")}
+              className={
+                addressType === "office" ? "nav-link active" : "nav-link"
+              }
               id="profile-tab"
               data-bs-toggle="tab"
-              data-bs-target="#profile"
+              data-bs-target="#office"
               type="button"
               role="tab"
               aria-controls="profile"
@@ -61,12 +198,15 @@ const EditAddressModal = () => {
               Office
             </button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link"
+              onClick={() => setAddressType("other")}
+              className={
+                addressType === "other" ? "nav-link active" : "nav-link"
+              }
               id="contact-tab"
               data-bs-toggle="tab"
-              data-bs-target="#contact"
+              data-bs-target="#other"
               type="button"
               role="tab"
               aria-controls="contact"
@@ -76,13 +216,8 @@ const EditAddressModal = () => {
             </button>
           </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
-          <div
-            class="tab-pane fade show active"
-            id="home"
-            role="tabpanel"
-            aria-labelledby="home-tab"
-          >
+        <div className="tab-content" id="myTabContent">
+          <div role="tabpanel" aria-labelledby="home-tab">
             <div className="tabbodysection">
               <div className="tabslocation">
                 <img
@@ -95,12 +230,65 @@ const EditAddressModal = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="New York"
-                    />
+                    <PlacesAutocomplete
+                      className=""
+                      autoComplete="off"
+                      value={city}
+                      onChange={autoCompleteHandleChange}
+                      onSelect={autoCompleteHandleSelect}
+                      searchOptions={{
+                        componentRestrictions: {
+                          country: ["Ind"],
+                        },
+                      }}
+                    >
+                      {({
+                        getInputProps,
+                        suggestions,
+                        getSuggestionItemProps,
+                        loading,
+                      }) => (
+                        <div>
+                          <input
+                            {...getInputProps({
+                              placeholder: "Street Address",
+                              className:
+                                "location-search-input customform-control border-input",
+                            })}
+                          />
+                          <div className="autocomplete-dropdown-container">
+                            {loading && <div>Loading...</div>}
+                            {suggestions.map((suggestion, index) => {
+                              const className = suggestion.active
+                                ? "suggestion-item--active"
+                                : "suggestion-item";
+                              // inline style for demonstration purpose
+                              const style = suggestion.active
+                                ? {
+                                    backgroundColor: "#41b6e6",
+                                    cursor: "pointer",
+                                  }
+                                : {
+                                    backgroundColor: "#ffffff",
+                                    cursor: "pointer",
+                                  };
+                              return (
+                                <div
+                                  {...getSuggestionItemProps(suggestion, {
+                                    className,
+                                    style,
+                                  })}
+                                  key={index}
+                                >
+                                  <span>{suggestion.description}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </PlacesAutocomplete>
+
                     <label className="border-label">City</label>
                   </div>
                 </div>
@@ -108,21 +296,31 @@ const EditAddressModal = () => {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="input-container mt-4">
-                    <select className="cateSelectbox border-input" required="">
-                      <option value="">State</option>
-                      <option>Category1</option>
-                      <option>Category2</option>
-                    </select>
-                    <label className="border-label">Select</label>
+                    <input
+                      type="text"
+                      name="State"
+                      className="border-input"
+                      placeholder="State"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                    />
+                    <label className="border-label">State</label>
+                    <img
+                      src={Images.ZipCode}
+                      alt="InfoIcon"
+                      className="InputIcon"
+                    />
                   </div>
                 </div>
                 <div className="col-lg-6">
                   <div className="input-container mt-4">
                     <input
-                      type="text"
+                      type="number"
                       name="Zip Code"
                       className="border-input"
-                      placeholder="123"
+                      placeholder="Zip code"
+                      value={zipCode}
+                      onChange={(e) => setZipCode(e.target.value)}
                     />
                     <label className="border-label">Zip Code</label>
                     <img
@@ -138,9 +336,11 @@ const EditAddressModal = () => {
                   <div className="input-container mt-4">
                     <input
                       type="text"
-                      name="city"
+                      name="street"
                       className="border-input"
-                      placeholder="Enter Address "
+                      placeholder="Enter Address"
+                      value={streetAddress}
+                      onChange={(e) => setStreetAddress(e.target.value)}
                     />
                     <label className="border-label">Street Address</label>
                   </div>
@@ -154,192 +354,8 @@ const EditAddressModal = () => {
                       name="city"
                       className="border-input"
                       placeholder="Enter Plot / Building Number"
-                    />
-                    <label className="border-label">
-                      Plot / Building Number
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className="modalfooterbtn">
-                <div className="addfoodbtn">
-                  <button className="foodmodalbtn" type="submit">
-                    Save
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="profile"
-            role="tabpanel"
-            aria-labelledby="profile-tab"
-          >
-            <div className="tabbodysection">
-              <div className="tabslocation">
-                <img
-                  src={Images.Target}
-                  alt="locationtargetimg"
-                  className="img-fluid"
-                />
-                <span className="modalclearAll">User Current Location</span>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="New York"
-                    />
-                    <label className="border-label">City</label>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-6">
-                  <div className="input-container mt-4">
-                    <select className="cateSelectbox border-input" required="">
-                      <option value="">State</option>
-                      <option>Category1</option>
-                      <option>Category2</option>
-                    </select>
-                    <label className="border-label">Select</label>
-                  </div>
-                </div>
-                <div className="col-lg-6">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="Zip Code"
-                      className="border-input"
-                      placeholder="123"
-                    />
-                    <label className="border-label">Zip Code</label>
-                    <img
-                      src={Images.ZipCode}
-                      alt="InfoIcon"
-                      className="InputIcon"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="Enter Address "
-                    />
-                    <label className="border-label">Street Address</label>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="Enter Plot / Building Number"
-                    />
-                    <label className="border-label">
-                      Plot / Building Number
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className="modalfooterbtn">
-                <div className="addfoodbtn">
-                  <button className="foodmodalbtn" type="submit">
-                    Save
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="contact"
-            role="tabpanel"
-            aria-labelledby="contact-tab"
-          >
-            <div className="tabbodysection">
-              <div className="tabslocation">
-                <img
-                  src={Images.Target}
-                  alt="locationtargetimg"
-                  className="img-fluid"
-                />
-                <span className="modalclearAll">User Current Location</span>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="New York"
-                    />
-                    <label className="border-label">City</label>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-6">
-                  <div className="input-container mt-4">
-                    <select className="cateSelectbox border-input" required="">
-                      <option value="">State</option>
-                      <option>Category1</option>
-                      <option>Category2</option>
-                    </select>
-                    <label className="border-label">Select</label>
-                  </div>
-                </div>
-                <div className="col-lg-6">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="Zip Code"
-                      className="border-input"
-                      placeholder="123"
-                    />
-                    <label className="border-label">Zip Code</label>
-                    <img
-                      src={Images.ZipCode}
-                      alt="InfoIcon"
-                      className="InputIcon"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="Enter Address "
-                    />
-                    <label className="border-label">Street Address</label>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="input-container mt-4">
-                    <input
-                      type="text"
-                      name="city"
-                      className="border-input"
-                      placeholder="Enter Plot / Building Number"
+                      value={building}
+                      onChange={(e) => setBuilding(e.target.value)}
                     />
                     <label className="border-label">
                       Plot / Building Number
@@ -350,11 +366,8 @@ const EditAddressModal = () => {
               <div className="modalfooterbtn">
                 <div className="addfoodbtn">
                   <button
+                    onClick={handleSubmitEditAddess}
                     className="foodmodalbtn"
-                    type="submit"
-                    onClick={() => {
-                      handleUserProfile("paynow");
-                    }}
                   >
                     Update & Save
                   </button>
@@ -396,7 +409,7 @@ const EditAddressModal = () => {
                   <p className="chatUser">Debit/Credit cards acceptable</p>
                 </div>
               </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
+              <p onClick={close} className="modal_cancel">
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"

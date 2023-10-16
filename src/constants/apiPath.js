@@ -25,6 +25,9 @@ const ApiPath = {
   userApiPath: {
     ADD_ADDRESS: "/user_delivery_address",
     GET_ADDRESS: "/user_delivery_address/all",
+    EDIT_ADDRESS: "/user_delivery_address",
+    GET_SINGLE_ADDRESS: "/user_delivery_address",
+    CONTACT_US: "/support_tickets/support-ticktes",
   },
 };
 

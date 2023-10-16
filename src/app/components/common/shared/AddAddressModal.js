@@ -9,7 +9,6 @@ import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
 import { useDispatch } from "react-redux";
 
-
 const AddAddressModal = (props) => {
   const { handleGetUserAddress, close } = props;
   const dispatch = useDispatch();
@@ -144,7 +143,9 @@ const AddAddressModal = (props) => {
           <li className="nav-item" role="presentation">
             <button
               onClick={() => setAddressType("home")}
-              className="nav-link active"
+              className={
+                addressType === "home" ? "nav-link active" : "nav-link"
+              }
               id="home-tab"
               data-bs-toggle="tab"
               data-bs-target="#home"
@@ -159,10 +160,12 @@ const AddAddressModal = (props) => {
           <li className="nav-item" role="presentation">
             <button
               onClick={() => setAddressType("office")}
-              className="nav-link"
+              className={
+                addressType === "office" ? "nav-link active" : "nav-link"
+              }
               id="profile-tab"
               data-bs-toggle="tab"
-              data-bs-target="#profile"
+              data-bs-target="#office"
               type="button"
               role="tab"
               aria-controls="profile"
@@ -174,10 +177,12 @@ const AddAddressModal = (props) => {
           <li className="nav-item" role="presentation">
             <button
               onClick={() => setAddressType("other")}
-              className="nav-link"
+              className={
+                addressType === "other" ? "nav-link active" : "nav-link"
+              }
               id="contact-tab"
               data-bs-toggle="tab"
-              data-bs-target="#contact"
+              data-bs-target="#other"
               type="button"
               role="tab"
               aria-controls="contact"
@@ -188,18 +193,7 @@ const AddAddressModal = (props) => {
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
-          <div
-            className="tab-pane fade show active"
-            id={
-              addAddress === "home"
-                ? "home"
-                : addAddress === "office"
-                ? "office"
-                : "other"
-            }
-            role="tabpanel"
-            aria-labelledby="home-tab"
-          >
+          <div role="tabpanel" aria-labelledby="home-tab">
             <div className="tabbodysection">
               <div className="tabslocation">
                 <img

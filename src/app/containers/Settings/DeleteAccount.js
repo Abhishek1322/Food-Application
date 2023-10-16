@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as Images from "../../../utilities/images";
-import swal from "sweetalert";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { onErrorStopLoad, deleteAccount } from "../../../redux/slices/auth";
 import Loading from "./Loading";

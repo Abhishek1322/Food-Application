@@ -3,14 +3,16 @@ import * as Images from "../../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "../../../components/common/shared/CustomModal";
 import AddAddressModal from "../../../components/common/shared/AddAddressModal";
+import EditAddressModal from "../../../components/common/shared/EditAddressModal";
+import DeleteAddressModal from "../../../components/common/shared/DeleteAddressModal";
 import { getUserAddress, onErrorStopLoad } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
-import EditAddressModal from "../../../components/common/shared/EditAddressModal";
 
 const UserManageAddress = () => {
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const [address, setAddress] = useState([]);
+  const [addressId, setAddressId] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -27,13 +29,14 @@ const UserManageAddress = () => {
     setKey(Math.random());
   };
   // open modal
-  const handleUserProfile = (flag) => {
+  const handleUserProfile = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
       type: flag,
     });
     setKey(Math.random());
+    setAddressId(id);
   };
 
   // stop loader on page load
@@ -46,6 +49,7 @@ const UserManageAddress = () => {
     handleGetUserAddress();
   }, []);
 
+  // get user address
   const handleGetUserAddress = () => {
     dispatch(
       getUserAddress({
@@ -90,7 +94,6 @@ const UserManageAddress = () => {
                 <>
                   {address?.map((item, index) => (
                     <div key={index} className="managehome mt-5 mb-3">
-                      {console.log("itemmmmmmmmm", item)}
                       <img
                         src={
                           item.type === "home"
@@ -116,31 +119,34 @@ const UserManageAddress = () => {
                           />
                           <ul className="dropdown-menu">
                             <li>
-                              <a className="dropdown-item" href="#">
-                                <img
-                                  src={Images.EditImg}
-                                  alt="editimage"
-                                  className="img-fluid"
-                                />{" "}
-                                <span
-                                  onClick={() => {
-                                    handleUserProfile("editaddress");
-                                  }}
-                                  className="editdrop"
-                                >
-                                  Edit{" "}
-                                </span>
-                              </a>
+                              <img
+                                src={Images.EditImg}
+                                alt="editimage"
+                                className="img-fluid"
+                              />{" "}
+                              <span
+                                onClick={() => {
+                                  handleUserProfile("editaddress", item?._id);
+                                }}
+                                className="editdrop"
+                              >
+                                Edit{" "}
+                              </span>
                             </li>
                             <li>
-                              <a className="dropdown-item " href="#">
-                                <img
-                                  src={Images.cartDelete}
-                                  alt="editimage"
-                                  className="img-fluid"
-                                />{" "}
-                                <span className="editdrop">Delete</span>
-                              </a>
+                              <img
+                                src={Images.cartDelete}
+                                alt="editimage"
+                                className="img-fluid"
+                              />{" "}
+                              <span
+                                onClick={() => {
+                                  handleUserProfile("deleteaddress", item?._id);
+                                }}
+                                className="editdrop"
+                              >
+                                Delete
+                              </span>
                             </li>
                           </ul>
                         </div>
@@ -193,6 +199,8 @@ const UserManageAddress = () => {
             ? "ordereditaddress"
             : modalDetail.flag === "editaddress"
             ? "ordereditaddress"
+            : modalDetail.flag === "deleteaddress"
+            ? "ordereditaddress"
             : ""
         }
         child={
@@ -203,6 +211,13 @@ const UserManageAddress = () => {
             />
           ) : modalDetail.flag === "editaddress" ? (
             <EditAddressModal
+              addressId={addressId}
+              handleGetUserAddress={handleGetUserAddress}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "deleteaddress" ? (
+            <DeleteAddressModal
+              addressId={addressId}
               handleGetUserAddress={handleGetUserAddress}
               close={() => handleOnCloseModal()}
             />
@@ -238,6 +253,20 @@ const UserManageAddress = () => {
                 <div className="edithead">
                   <h2 className="modal_Heading">Edit Address</h2>
                   <p className="chatUser">Edit Address below</p>
+                </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "deleteaddress" ? (
+            <>
+              <div className="editadressheading">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="backarrowimage"
+                  className="img-fluid"
+                />
+                <div className="edithead">
+                  <h2 className="modal_Heading">Delete Address</h2>
                 </div>
               </div>
             </>

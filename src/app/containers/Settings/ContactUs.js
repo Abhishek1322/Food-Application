@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../utilities/images";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  onErrorStopLoad,
+  addContactUsDetail,
+} from "../../../redux/slices/user";
 
 const ContactUs = () => {
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+
+  //onChange input
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setFormData({ ...formData, [name]: value});
+  };
+
+  // stop loader on refresh page
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
   return (
     <>
       <div className="contactUs">
@@ -41,7 +66,9 @@ const ContactUs = () => {
                           <input
                             type="text"
                             className="border-input"
-                            placeholder="Bangura"
+                            placeholder="Enter your first name"
+                            name="firstName"
+                            onChange={(e) => handleChange(e)}
                           />
                           <label className="border-label">First Name</label>
                         </div>
@@ -51,7 +78,9 @@ const ContactUs = () => {
                           <input
                             type="text"
                             className="border-input"
-                            placeholder="Serve"
+                            placeholder="Enter your last name"
+                            name="lastName"
+                            onChange={(e) => handleChange(e)}
                           />
                           <label className="border-label">Last Name</label>
                         </div>
@@ -64,14 +93,22 @@ const ContactUs = () => {
                     <input
                       type="text"
                       className="border-input"
-                      placeholder="bangura@serveitlocal.com"
+                      placeholder="Enter your last email address"
+                      name="email"
+                      onChange={(e) => handleChange(e)}
                     />
                     <label className="border-label">Email</label>
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="input-container mt-5">
-                    <textarea type="" className="border-input" />
+                    <textarea
+                      placeholder="Write message..."
+                      name="message"
+                      onChange={(e) => handleChange(e)}
+                      type="text"
+                      className="border-input"
+                    />
                     <label className="border-label">Your Message</label>
                   </div>
                 </div>
