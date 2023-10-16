@@ -29,9 +29,9 @@ const ContactUs = () => {
                     className="img-fluid  contactusImg"
                   />
                 </div>
-                <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
+                <h2 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
                   We will answer your questions & problems
-                </h6>
+                </h2>
 
                 <div className="topInputfields">
                   <div className="container p-0">

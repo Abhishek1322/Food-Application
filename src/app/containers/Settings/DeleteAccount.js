@@ -62,10 +62,10 @@ const DeleteAccount = () => {
                   className="img-fluid .contactusImg "
                 />
               </div>
-              <h6 className="settingMainText d-flex  justify-content-center">
+              <h2 className="settingMainText d-flex  justify-content-center">
                 Are you sure, you want to delete
                 <br /> your account?
-              </h6>
+              </h2>
               <div className="buttonBox d-flex  justify-content-center">
                 <Link to="/setting">
                   <button className="cancelBtn">cancel</button>

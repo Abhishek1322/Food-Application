@@ -19,7 +19,7 @@ const AnotherOrderdetail = () => {
                                         <div className='chefjohnDetail'>
                                             <img src={Images.homeProfile} alt="homeProfileImg" className="chefJohnImg" />
                                             <div className='chefinfo'>
-                                                <p className='johnExplorer'>John Smith</p>
+                                                <h2 className='johnExplorer'>John Smith</h2>
                                                 <div className='johnChatTime'>
                                                     <div className='chefInfo'>
                                                         <img src={Images.chefLocationImg} alt="chefLocationImg" className="chefLocation_" />
@@ -49,15 +49,15 @@ const AnotherOrderdetail = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <p className='orderId_'>Ordered Items</p>
+                                <h3 className='orderId_'>Ordered Items</h3>
                                 <div className='row align-items-center'>
                                     <div className='col-lg-10'>
                                         <div className='orderedFoodItems'>
                                             <div className='foodCategory flexBox'>
                                                 <img src={Images.foodItems} alt="foodItemsImg" className="foodItemImg" />
                                                 <div className='categoryinfo'>
-                                                    <p className='foodcategory_'>Food Category</p>
-                                                    <p className='innerfood'>Chicken Salad</p>
+                                                    <h4 className='foodcategory_'>Food Category</h4>
+                                                    <h5 className='innerfood'>Chicken Salad</h5>
                                                     <p className='innePrice'>£22.00</p>
                                                 </div>
                                             </div>
@@ -67,8 +67,8 @@ const AnotherOrderdetail = () => {
                                             <div className='foodCategory flexBox'>
                                                 <img src={Images.foodItems} alt="foodItemsImg" className="foodItemImg" />
                                                 <div className='categoryinfo'>
-                                                    <p className='foodcategory_'>Food Category</p>
-                                                    <p className='innerfood'>Chicken Salad</p>
+                                                    <h4 className='foodcategory_'>Food Category</h4>
+                                                    <h5 className='innerfood'>Chicken Salad</h5>
                                                     <p className='innePrice'>£22.00</p>
                                                 </div>
                                             </div>

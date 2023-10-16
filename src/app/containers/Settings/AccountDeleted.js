@@ -27,9 +27,9 @@ const AccountDeleted = () => {
               <h6 className="accountDeleted mb-3 d-flex  justify-content-center mt-3">
                 Account Deleted
               </h6>
-              <p className="accountdeletetxt mb-3 d-flex  justify-content-center mt-3">
+              <h2 className="accountdeletetxt mb-3 d-flex  justify-content-center mt-3">
                 Your account has been deleted successfully.
-              </p>
+              </h2>
             </div>
           </div>
         </div>
