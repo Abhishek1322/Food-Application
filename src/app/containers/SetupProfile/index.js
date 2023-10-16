@@ -674,6 +674,7 @@ const SetupProfile = () => {
                                         </li>
                                       ))}
                                   </ul>
+                                  
                                 </div>
                               </div>
                               <button
