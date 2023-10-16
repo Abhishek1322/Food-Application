@@ -427,6 +427,16 @@ p {
 }
 
 /*modal Css start*/
+.foodModalimg{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.ratingImage{
+    width: 42px;
+    height: 42px;
+    border-radius: 42px;
+}
 #availablebtnModal {
     max-width: 406px;
     margin: 0;
@@ -1819,7 +1829,6 @@ padding: 10px 25px;
 color: #E65C00 !important;
 font-size: 18px;
 font-weight: 600;
-box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
 text-transform: capitalize;
 border:1px solid #E65C00
 }
