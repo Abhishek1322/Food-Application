@@ -46,66 +46,6 @@ const UserManageAddress = () => {
     handleGetUserAddress();
   }, []);
 
-<<<<<<< HEAD
-        setModalDetail({
-            show: true,
-            flag: flag,
-            type: flag,
-        });
-        setKey(Math.random());
-    };
-    return (
-        <>
-            <div className='settingmanagesection contactUs'>
-                <div className='commonInnerHeader d-flex align-items-center mt-4 ms-3'>
-                    <img src={Images.backArrowpassword} alt="logo" className="img-fluid innerHeaderArrow " />
-                    <h1 className='settingMainHeading text-align-center '>Manage Address</h1>
-                </div>
-                <div className='changepassword'>
-                    <div className="logRight mt-5">
-                        <div className="changepasswordForm">
-                            <div className='changepasswordImg d-flex justify-content-center'>
-                                <img src={Images.ManageLocation} alt="logo" className="img-fluid  contactusImg" />
-                            </div>
-                            <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">Add New and Edit your
-                                Saved Addresses</h6>
-                            <div className='managehome mt-5'>
-                                <img src={Images.ManageHome} alt='Homeimg' className='img-fluid' />
-                                <div className='managetext'>
-                                    <h6 className='notificationText'>Home</h6>
-                                    <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
-                                    <div className="dropdown  dropstart managedrop">
-                                        <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
-                                        <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
-                                            <li><a className="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='managehome mt-3'>
-                                <img src={Images.ManageOffice} alt='Homeimg' className='img-fluid' />
-                                <div className='managetext'>
-                                    <h6 className='notificationText'>Office</h6>
-                                    <p className='cheftext pt-1'>New York, 10003, 2nd Street dorm</p>
-                                    <div className="dropdown  dropstart managedrop">
-                                        <img src={Images.chatsDots} className='dropdown-toggle manageimg' alt='cartcancel' data-bs-toggle="dropdown" />
-                                        <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="#"><img src={Images.EditImg} alt='editimage' className='img-fluid' /> <span className='editdrop'>Edit </span></a></li>
-                                            <li><a className="dropdown-item " href="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <Link to="#">
-                                <h6 className='cancelOrder' onClick={() => {
-                                    handleUserProfile("ordereditmodal")
-                                }}>+ Add New Address</h6>
-                            </Link>
-                            <div className="buttonBox mt-5 d-flex  justify-content-center">
-                                <button type="submit" role="button" className="smallBtn">SAVE</button>
-                            </div>
-=======
   const handleGetUserAddress = () => {
     dispatch(
       getUserAddress({
@@ -203,7 +143,6 @@ const UserManageAddress = () => {
                               </a>
                             </li>
                           </ul>
->>>>>>> c65e2ca72508dc8f46600127c8c1f27fe9df711f
                         </div>
                       </div>
                     </div>

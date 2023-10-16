@@ -34,6 +34,7 @@ li {
   position: sticky;
   top: 0px;
   background-color: #fff;
+  z-index: 1;
 }
 .settingMainHeading {
   color: #2e3333;
