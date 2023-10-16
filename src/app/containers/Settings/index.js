@@ -59,8 +59,7 @@ const SettingMain = (props) => {
                         alt="passwordImg"
                         className="img-fluid settingIcon"
                       />
-
-                      <p className="settingBoxtxt ms-3 mb-0">Change Password</p>
+                      <h2 className="settingBoxtxt ms-3 mb-0">Change Password</h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -82,7 +81,7 @@ const SettingMain = (props) => {
                         className="img-fluid settingIcon"
                       />
 
-                      <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
+                      <h2 className="settingBoxtxt ms-3 mb-0">Delete Account</h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -126,7 +125,7 @@ const SettingMain = (props) => {
                         alt="privacypolicy"
                         className="img-fluid settingIcon"
                       />
-                      <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
+                      <h2 className="settingBoxtxt ms-3 mb-0">Privacy Policy</h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -147,7 +146,7 @@ const SettingMain = (props) => {
                         alt="settingcontactus"
                         className="img-fluid settingIcon "
                       />
-                      <p className="settingBoxtxt ms-3 mb-0">Contact Us</p>
+                      <h2 className="settingBoxtxt ms-3 mb-0">Contact Us</h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -170,7 +169,7 @@ const SettingMain = (props) => {
                         className="img-fluid settingIcon "
                       />
 
-                      <p className="settingBoxtxt ms-3 mb-0">Manage Address</p>
+                      <h2 className="settingBoxtxt ms-3 mb-0">Manage Address</h2>
                     </div>
                     <div className="iconImg">
                       <Link to="/user-manageaddress">
@@ -194,7 +193,7 @@ const SettingMain = (props) => {
                   alt="logo"
                   className="img-fluid settingIcon "
                 />
-                <p className="settingBoxtxt ms-3 mb-0">Logout</p>
+                <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
               </div>
             </div>
           </div>

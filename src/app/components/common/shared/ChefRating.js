@@ -35,7 +35,7 @@ const ChefRating = () => {
             <div className='chefratingsection'>
                 <div className='userrate modalscroll'>
                     <div className='chefrateimg'>
-                        <img src={Images.UserProfileRate} alt='userrating' className='img-fluid' />
+                        <img src={Images.UserProfileRate} alt='userrating' className='ratingImage' />
                         <div className='reviewrating'>
                             <div className='chefreviews'>
                                 <div className='venuInfo'>Alejandro Hagenes</div>
@@ -54,7 +54,7 @@ const ChefRating = () => {
                         </div>
                     </div>
                     <div className='chefrateimg'>
-                        <img src={Images.UserRating} alt='userrating' className='img-fluid' />
+                        <img src={Images.UserRating} alt='userrating' className='ratingImage' />
                         <div className='reviewrating'>
                             <div className='chefreviews'>
                                 <div className='venuInfo'>Jeffrey Towne</div>
@@ -73,7 +73,7 @@ const ChefRating = () => {
                         </div>
                     </div>
                     <div className='chefrateimg'>
-                        <img src={Images.UserProfileRate} alt='userrating' className='img-fluid' />
+                        <img src={Images.UserProfileRate} alt='userrating' className='ratingImage' />
                         <div className='reviewrating'>
                             <div className='chefreviews'>
                                 <div className='venuInfo'>Alejandro Hagenes</div>
@@ -92,7 +92,7 @@ const ChefRating = () => {
                         </div>
                     </div>
                     <div className='chefrateimg'>
-                        <img src={Images.UserRating} alt='userrating' className='img-fluid' />
+                        <img src={Images.UserRating} alt='userrating' className='ratingImage' />
                         <div className='reviewrating'>
                             <div className='chefreviews'>
                                 <div className='venuInfo'>Jeffrey Towne</div>
@@ -111,7 +111,7 @@ const ChefRating = () => {
                         </div>
                     </div>
                     <div className='chefrateimg'>
-                        <img src={Images.UserProfileRate} alt='userrating' className='img-fluid' />
+                        <img src={Images.UserProfileRate} alt='userrating' className='ratingImage' />
                         <div className='reviewrating'>
                             <div className='chefreviews'>
                                 <div className='venuInfo'>Alejandro Hagenes</div>

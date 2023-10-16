@@ -28,7 +28,6 @@ const HomeRequsest = () => {
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
-
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
@@ -41,7 +40,6 @@ const HomeRequsest = () => {
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
-
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
@@ -54,7 +52,6 @@ const HomeRequsest = () => {
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
-
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
@@ -67,7 +64,6 @@ const HomeRequsest = () => {
                                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
                                             <span className='more'> more...</span>
                                         </p>
-
                                     </div>
                                     <div className='homeProfileBox'>
                                         <div className='profileInfo'>
@@ -89,7 +85,6 @@ const HomeRequsest = () => {
                                         <img src={Images.homeArow} alt="arrowImg" className="seeArrow" />
                                     </div>
                                 </div>
-
                                 <div className='profileDetail'>
                                     <div className='orderDetailBox'>
                                         <div className='orderDetails'>
@@ -116,7 +111,6 @@ const HomeRequsest = () => {
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div className='orderDetailBox'>
@@ -144,7 +138,6 @@ const HomeRequsest = () => {
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div className='orderDetailBox'>
@@ -172,7 +165,6 @@ const HomeRequsest = () => {
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div className='orderDetailBox'>
@@ -200,7 +192,6 @@ const HomeRequsest = () => {
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div className='orderDetailBox'>
@@ -228,12 +219,10 @@ const HomeRequsest = () => {
                                                     <button className='acceptOrder'>ACCEPT</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

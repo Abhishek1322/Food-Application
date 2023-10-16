@@ -80,7 +80,7 @@ const Menu = () => {
                     }}
                   >
                     <i className="fas fa-plus plusmenuImg"></i>
-                    <p className="innermenuItem">Add Menu Item</p>
+                    <h3 className="innermenuItem">Add Menu Item</h3>
                   </div>
                 </div>
                 <div className="profileDetail">
@@ -193,10 +193,10 @@ const Menu = () => {
           modalDetail.flag === "editMenuModal"
             ? "editMenu"
             : "deleteMenuModal"
-            ? "deleteMenu"
-            : "addMenuItemModal"
-            ? "addMenuItem"
-            : ""
+              ? "deleteMenu"
+              : "addMenuItemModal"
+                ? "addMenuItem"
+                : ""
         }
         child={
           modalDetail.flag === "editMenuModal" ? (
@@ -237,7 +237,7 @@ const Menu = () => {
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel"  alt="modalcancel"/>
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
               </p>
             </>
           ) : modalDetail.flag === "addMenuItemModal" ? (

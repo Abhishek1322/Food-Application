@@ -25,8 +25,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="logo" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -37,21 +37,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
-                          </div>
-                        </div>
-                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
-                          <span className='more'> more...</span>
-                        </p>
-
-                      </div>
-                      <div className='homeProfileBox'>
-                        <div className='profileInfo'>
-                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
-                          <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -63,8 +50,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -76,8 +63,21 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
+                          </div>
+                        </div>
+                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
+                          <span className='more'> more...</span>
+                        </p>
+
+                      </div>
+                      <div className='homeProfileBox'>
+                        <div className=' profileInfo'>
+                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
+                          <div className='detailInfo'>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -93,8 +93,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -105,21 +105,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
-                          </div>
-                        </div>
-                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
-                          <span className='more'> more...</span>
-                        </p>
-
-                      </div>
-                      <div className='homeProfileBox'>
-                        <div className='profileInfo'>
-                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
-                          <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -131,8 +118,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -144,8 +131,21 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
+                          </div>
+                        </div>
+                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
+                          <span className='more'> more...</span>
+                        </p>
+
+                      </div>
+                      <div className='homeProfileBox'>
+                        <div className='profileInfo'>
+                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
+                          <div className='detailInfo'>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -161,8 +161,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -173,21 +173,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
-                          </div>
-                        </div>
-                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
-                          <span className='more'> more...</span>
-                        </p>
-
-                      </div>
-                      <div className='homeProfileBox'>
-                        <div className='profileInfo'>
-                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
-                          <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -199,8 +186,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -212,8 +199,21 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
+                          </div>
+                        </div>
+                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
+                          <span className='more'> more...</span>
+                        </p>
+
+                      </div>
+                      <div className='homeProfileBox'>
+                        <div className='profileInfo'>
+                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
+                          <div className='detailInfo'>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -221,10 +221,8 @@ const NewBooking = () => {
                         </p>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </div>
             </div>
             <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -236,8 +234,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -248,21 +246,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
-                          </div>
-                        </div>
-                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
-                          <span className='more'> more...</span>
-                        </p>
-
-                      </div>
-                      <div className='homeProfileBox'>
-                        <div className='profileInfo'>
-                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
-                          <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -274,8 +259,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -287,8 +272,21 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
+                          </div>
+                        </div>
+                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
+                          <span className='more'> more...</span>
+                        </p>
+
+                      </div>
+                      <div className='homeProfileBox'>
+                        <div className='profileInfo'>
+                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
+                          <div className='detailInfo'>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -304,8 +302,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -316,21 +314,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
-                          </div>
-                        </div>
-                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
-                          <span className='more'> more...</span>
-                        </p>
-
-                      </div>
-                      <div className='homeProfileBox'>
-                        <div className='profileInfo'>
-                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
-                          <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -342,8 +327,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -355,8 +340,21 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
+                          </div>
+                        </div>
+                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
+                          <span className='more'> more...</span>
+                        </p>
+
+                      </div>
+                      <div className='homeProfileBox'>
+                        <div className='profileInfo'>
+                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
+                          <div className='detailInfo'>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -372,8 +370,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -384,21 +382,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
-                          </div>
-                        </div>
-                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
-                          <span className='more'> more...</span>
-                        </p>
-
-                      </div>
-                      <div className='homeProfileBox'>
-                        <div className='profileInfo'>
-                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
-                          <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -410,8 +395,8 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -423,8 +408,21 @@ const NewBooking = () => {
                         <div className='profileInfo'>
                           <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
                           <div className='detailInfo'>
-                            <p className='userProfile'>John Smith</p>
-                            <p className='userInfo'>Jul 20, 2023</p>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
+                          </div>
+                        </div>
+                        <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
+                          <span className='more'> more...</span>
+                        </p>
+
+                      </div>
+                      <div className='homeProfileBox'>
+                        <div className='profileInfo'>
+                          <img src={Images.homeProfile} alt="homeProfileImg" className="homeprofile" />
+                          <div className='detailInfo'>
+                            <h4 className='userProfile'>John Smith</h4>
+                            <h5 className='userInfo'>Jul 20, 2023</h5>
                           </div>
                         </div>
                         <p className='userInfoTxt'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. distracted by the readable content of a page when looking at its layout. The point of using
@@ -432,10 +430,8 @@ const NewBooking = () => {
                         </p>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

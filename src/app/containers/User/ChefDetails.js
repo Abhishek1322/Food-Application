@@ -196,7 +196,7 @@ const ChefDetails = () => {
                   <>
                     {chefData?.chefInfo?.expertise?.map((item, index) => (
                       <div key={index} className="expertisevalue">
-                        <h6 className="expertheading">{item}</h6>
+                        <p className="expertheading">{item}</p>
                       </div>
                     ))}
                   </>

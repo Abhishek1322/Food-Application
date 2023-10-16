@@ -158,7 +158,6 @@ const BookNowModal = () => {
                         ""
                 }
                 header=
-
                 {modalDetail.flag === "chefbook" ?
                     <>
                         <h2 className="modal_Heading">

@@ -91,9 +91,9 @@ const ChangePassword = () => {
                   className="img-fluid "
                 />
               </div>
-              <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
+              <h2 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
                 Create your new password.
-              </h6>
+              </h2>
 
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="input-container mt-5">

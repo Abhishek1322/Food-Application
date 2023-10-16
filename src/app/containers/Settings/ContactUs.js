@@ -7,17 +7,18 @@ import {
   addContactUsDetail,
 } from "../../../redux/slices/user";
 import { toast } from "react-toastify";
+import { useUserSelector } from "../../../redux/selector/user";
+import Loading from "./Loading";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
+  const userSelector = useUserSelector();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     message: "",
   });
-
-  console.log("sdfcsdcsdc", formData);
 
   //onChange input
   const handleChange = (e) => {
@@ -65,13 +66,23 @@ const ContactUs = () => {
     dispatch(
       addContactUsDetail({
         ...params,
-        cb(res) {},
+        cb(res) {
+          if (res.status === 200) {
+            setFormData({
+              firstName: "",
+              lastName: "",
+              email: "",
+              message: "",
+            });
+          }
+        },
       })
     );
   };
 
   return (
     <>
+      {userSelector.loading && <Loading />}
       <div className="contactUs">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3">
@@ -97,9 +108,9 @@ const ContactUs = () => {
                       className="img-fluid  contactusImg"
                     />
                   </div>
-                  <h6 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
+                  <h2 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
                     We will answer your questions & problems
-                  </h6>
+                  </h2>
 
                   <div className="topInputfields">
                     <div className="container p-0">
