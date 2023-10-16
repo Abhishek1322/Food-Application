@@ -67,7 +67,7 @@ const CartFoodModalOrder = (props) => {
           <img
             src={foodDetails?.image ? foodDetails?.image : Images.CartFood}
             alt="saladimage"
-            className="img-fluid"
+            className="foodModalimg"
           />
           <h2 className="foodmodalheading mt-2">{foodDetails?.name}</h2>
           <div className="restroinfo">
