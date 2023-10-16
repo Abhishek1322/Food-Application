@@ -55,12 +55,12 @@ const UserBellModal = () => {
                             <span className='modalChatmsg'>2</span>
                         </div>
                         <div className='mt-3 me-3'>
-                            <div class="dropdown dropend">
+                            <div className="dropdown dropend">
                                 <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                <ul class="dropdown-menu">
+                                <ul className="dropdown-menu">
                                     <li onClick={() => {
                                         handleUserProfile("deletechat")
-                                    }}><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                    }}><Link className="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -73,10 +73,10 @@ const UserBellModal = () => {
                             <h6 className='chatTime'>Just Now</h6>
                         </div>
                         <div className='mt-3  me-3'>
-                            <div class="dropdown dropend">
+                            <div className="dropdown dropend">
                                 <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -90,10 +90,10 @@ const UserBellModal = () => {
                             <span className='modalChatmsg'>2</span>
                         </div>
                         <div className='mt-3  me-3'>
-                            <div class="dropdown dropend">
+                            <div className="dropdown dropend">
                                 <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -106,10 +106,10 @@ const UserBellModal = () => {
                             <h6 className='chatTime'>Just Now</h6>
                         </div>
                         <div className='mt-3  me-3'>
-                            <div class="dropdown dropend">
+                            <div className="dropdown dropend">
                                 <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -122,10 +122,10 @@ const UserBellModal = () => {
                             <h6 className='chatTime'>Just Now</h6>
                         </div>
                         <div className='mt-3  me-3'>
-                            <div class="dropdown dropend">
+                            <div className="dropdown dropend">
                                 <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -138,10 +138,10 @@ const UserBellModal = () => {
                             <h6 className='chatTime'>Just Now</h6>
                         </div>
                         <div className='mt-3  me-3'>
-                            <div class="dropdown dropend">
+                            <div className="dropdown dropend">
                                 <img src={Images.chatsDots} className='dropdown-toggle' alt='cartcancel' data-bs-toggle="dropdown" />
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="#"><img src={Images.cartDelete} alt='editimage' className='img-fluid' /> <span className='editdrop'>Delete Chat</span></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -204,11 +204,11 @@ const UserBellModal = () => {
                                 </div>
                             </div>
                             <div className='Dotsheader_'>
-                                <div class="dropdown ">
-                                    <button class="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div className="dropdown ">
+                                    <button className="btn btn-secondary dropdown-toggle modalheaderDot_" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img src={Images.modalHeader} className=' img-fluid chatreportIcon_' alt='modalheaderimg' />
                                     </button>
-                                    <ul class="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
+                                    <ul className="dropdown-menu chatdrop" aria-labelledby="dropdownMenuButton1">
                                         <li className=' chatdroplabel flexBox' onClick={() => {
                                             handleUserProfile("reportchat")
                                         }}>
