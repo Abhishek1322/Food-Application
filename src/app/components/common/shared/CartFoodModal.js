@@ -112,6 +112,7 @@ const CartFoodModal = (props) => {
           </div>
         </div>
         <h4 className="foodamountmodal">£ {foodDetails?.price}.00</h4>
+
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
             <button
@@ -153,7 +154,11 @@ const CartFoodModal = (props) => {
           modalDetail.flag === "CartFoodOrder" ? (
             <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : (

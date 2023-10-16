@@ -309,9 +309,6 @@ const ChefDetails = () => {
             </>
           ) : modalDetail.flag === "CartFood" ? (
             <>
-              {/* <h2 className="modal_Heading">
-                                Cart
-                            </h2> */}
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
               </p>

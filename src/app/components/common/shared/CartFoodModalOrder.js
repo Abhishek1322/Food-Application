@@ -5,6 +5,7 @@ import CustomModal from "./CustomModal";
 import CartModal from "./cartModal";
 import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
+import AddAddressModal from "./AddAddressModal";
 
 const CartFoodModalOrder = (props) => {
   const { menuId } = props;
@@ -88,7 +89,9 @@ const CartFoodModalOrder = (props) => {
           <div className="modalfooddelivery">
             <div className="foodeliverytime">
               <h6 className="chefName">Delivery Time</h6>
-              <h6 className="chatSearchere_  mt-1">{foodDetails?.deliveryTime} mins</h6>
+              <h6 className="chatSearchere_  mt-1">
+                {foodDetails?.deliveryTime} mins
+              </h6>
             </div>
             <div className="foodrating">
               <h6 className="chefName">Rating</h6>
@@ -106,9 +109,7 @@ const CartFoodModalOrder = (props) => {
           </div>
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Description</h6>
-            <p className="chatSearchere_  mt-1 ">
-            {foodDetails?.description}
-            </p>
+            <p className="chatSearchere_  mt-1 ">{foodDetails?.description}</p>
           </div>
         </div>
         <div className="orderamount">
@@ -143,7 +144,7 @@ const CartFoodModalOrder = (props) => {
               className="orderbutton"
               type="button"
               onClick={() => {
-                handleUserProfile("CartModal");
+                handleUserProfile("AddAddress");
               }}
             >
               Order Now
@@ -161,10 +162,18 @@ const CartFoodModalOrder = (props) => {
         className={
           modalDetail.flag === "CartModal" ? "commonWidth customContent" : ""
         }
-        ids={modalDetail.flag === "CartModal" ? "CartModal" : ""}
+        ids={
+          modalDetail.flag === "CartModal"
+            ? "CartModal"
+            : modalDetail.flag === "AddAddress"
+            ? "editaddress"
+            : ""
+        }
         child={
           modalDetail.flag === "CartModal" ? (
             <CartModal close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "AddAddress" ? (
+            <AddAddressModal close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
@@ -174,9 +183,26 @@ const CartFoodModalOrder = (props) => {
             <>
               <h2 className="modal_Heading">Cart</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
+          ) : modalDetail.flag === "AddAddress" ? (
+            <div className="editadressheading">
+              <img
+                onClick={handleOnCloseModal}
+                src={Images.backArrowpassword}
+                alt="backarrowimage"
+                className="img-fluid"
+              />
+              <div className="edithead">
+                <h2 className="modal_Heading">Add New Address</h2>
+                <p className="chatUser">Add Address below</p>
+              </div>
+            </div>
           ) : (
             ""
           )

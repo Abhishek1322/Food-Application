@@ -39,7 +39,6 @@ const SettingMain = (props) => {
     });
   };
 
-  
   // stop loader on refresh page
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -52,112 +51,112 @@ const SettingMain = (props) => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-6 ">
-              <Link to="/change-password">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center">
-                    <img
-                      src={Images.password}
-                      alt="passwordImg"
-                      className="img-fluid settingIcon"
-                    />
+                <Link to="/change-password">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center">
+                      <img
+                        src={Images.password}
+                        alt="passwordImg"
+                        className="img-fluid settingIcon"
+                      />
 
-                    <p className="settingBoxtxt ms-3 mb-0">Change Password</p>
-                  </div>
-                  <div className="iconImg">
+                      <p className="settingBoxtxt ms-3 mb-0">Change Password</p>
+                    </div>
+                    <div className="iconImg">
                       <img
                         src={Images.nextIcon}
                         alt="nexticonImg"
                         className="img-fluid nextIcon"
                       />
+                    </div>
                   </div>
-                </div>
                 </Link>
               </div>
               <div className="col-lg-6">
-              <Link to="/delete-account">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center">
-                    <img
-                      src={Images.DeleteSetting}
-                      alt="DeleteSetting"
-                      className="img-fluid settingIcon"
-                    />
+                <Link to="/delete-account">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center">
+                      <img
+                        src={Images.DeleteSetting}
+                        alt="DeleteSetting"
+                        className="img-fluid settingIcon"
+                      />
 
-                    <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
-                  </div>
-                  <div className="iconImg">
+                      <p className="settingBoxtxt ms-3 mb-0">Delete Account</p>
+                    </div>
+                    <div className="iconImg">
                       <img
                         src={Images.nextIcon}
                         alt="nextIcon"
                         className="img-fluid nextIcon"
                       />
+                    </div>
                   </div>
-                </div>
                 </Link>
               </div>
               <div className="col-lg-6 ">
-              <Link to="/term-condition">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center">
-                    <img
-                      src={Images.termconditions}
-                      alt="termconditions"
-                      className="img-fluid settingIcon"
-                    />
-                    <p className="settingBoxtxt ms-3 mb-0">
-                      Terms & Conditions
-                    </p>
+                <Link to="/term-condition">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center">
+                      <img
+                        src={Images.termconditions}
+                        alt="termconditions"
+                        className="img-fluid settingIcon"
+                      />
+                      <p className="settingBoxtxt ms-3 mb-0">
+                        Terms & Conditions
+                      </p>
+                    </div>
+                    <div className="iconImg">
+                      <img
+                        src={Images.nextIcon}
+                        alt="nextIcon"
+                        className="img-fluid nextIcon"
+                      />
+                    </div>
                   </div>
-                  <div className="iconImg">
-                    <img
-                      src={Images.nextIcon}
-                      alt="nextIcon"
-                      className="img-fluid nextIcon"
-                    />
-                  </div>
-                </div>
-              </Link>
+                </Link>
               </div>
               <div className="col-lg-6">
-              <Link to="/privacy-policy">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center">
-                    <img
-                      src={Images.privacypolicy}
-                      alt="privacypolicy"
-                      className="img-fluid settingIcon"
-                    />
-                    <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
+                <Link to="/privacy-policy">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center">
+                      <img
+                        src={Images.privacypolicy}
+                        alt="privacypolicy"
+                        className="img-fluid settingIcon"
+                      />
+                      <p className="settingBoxtxt ms-3 mb-0">Privacy Policy</p>
+                    </div>
+                    <div className="iconImg">
+                      <img
+                        src={Images.nextIcon}
+                        alt="nextIcon"
+                        className="img-fluid nextIcon"
+                      />
+                    </div>
                   </div>
-                  <div className="iconImg">
-                    <img
-                      src={Images.nextIcon}
-                      alt="nextIcon"
-                      className="img-fluid nextIcon"
-                    />
-                  </div>
-                </div>
-              </Link>
+                </Link>
               </div>
               <div className="col-lg-6 ">
-              <Link to="/contactu-us">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center">
-                    <img
-                      src={Images.settingcontactus}
-                      alt="settingcontactus"
-                      className="img-fluid settingIcon "
-                    />
-                    <p className="settingBoxtxt ms-3 mb-0">Contact Us</p>
+                <Link to="/contactu-us">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center">
+                      <img
+                        src={Images.settingcontactus}
+                        alt="settingcontactus"
+                        className="img-fluid settingIcon "
+                      />
+                      <p className="settingBoxtxt ms-3 mb-0">Contact Us</p>
+                    </div>
+                    <div className="iconImg">
+                      <img
+                        src={Images.nextIcon}
+                        alt="nextIcon"
+                        className="img-fluid nextIcon"
+                      />
+                    </div>
                   </div>
-                  <div className="iconImg">
-                    <img
-                      src={Images.nextIcon}
-                      alt="nextIcon"
-                      className="img-fluid nextIcon"
-                    />
-                  </div>
-                </div>
                 </Link>
               </div>
 
@@ -170,20 +169,26 @@ const SettingMain = (props) => {
                         alt="logout"
                         className="img-fluid settingIcon "
                       />
+
                       <p className="settingBoxtxt ms-3 mb-0">Manage Address</p>
                     </div>
                     <div className="iconImg">
-                      <img
-                        src={Images.nextIcon}
-                        alt="nextIcon"
-                        className="img-fluid nextIcon"
-                      />
+                      <Link to="/user-manageaddress">
+                        <img
+                          src={Images.nextIcon}
+                          alt="nextIcon"
+                          className="img-fluid nextIcon"
+                        />
+                      </Link>
                     </div>
                   </div>
                 </div>
               )}
 
-              <div className="settingBox d-flex align-items-center justify-content-center"   onClick={() => handleLogout()}>
+              <div
+                className="settingBox d-flex align-items-center justify-content-center"
+                onClick={() => handleLogout()}
+              >
                 <img
                   src={Images.logout}
                   alt="logo"
