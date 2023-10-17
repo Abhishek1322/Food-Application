@@ -30,7 +30,8 @@ const BookingDetails = () => {
                                     <div className='chefChat'>
                                         <div className='chatwithjohn'>
                                             <div className='chatImg'>
-                                                <i className="fas fa-comment-dots chatImage"></i>
+                                                <img src={Images.ChefChat} className='chatImage' alt='chatImage'/>
+                                                {/* <i className="fas fa-comment-dots chatImage"></i> */}
                                             </div>
                                             <div className='chatText'>
                                                 <p className='chat'>chat</p>
