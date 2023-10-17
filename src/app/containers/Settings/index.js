@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import * as Images from "../../../utilities/images";
+import * as Images from "../../../utilities/images"
 import swal from "sweetalert";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import CustomModal from "../../components/common/shared/CustomModal";
 import {
   userLogout,
   onErrorStopLoad,
   deleteAccount,
 } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
+import LogoutModal from "../../components/common/shared/logoutModal";
 
 const SettingMain = (props) => {
   const authData = useAuthSelector();
@@ -43,7 +45,32 @@ const SettingMain = (props) => {
   useEffect(() => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
 
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  const handleUserProfile = (flag) => {
+
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
   return (
     <>
       <div className="main_Setting">
@@ -186,7 +213,10 @@ const SettingMain = (props) => {
 
               <div
                 className="settingBox d-flex align-items-center justify-content-center"
-                onClick={() => handleLogout()}
+                // onClick={() => handleLogout()}
+                onClick={() => {
+                  handleUserProfile("logOutModal")
+                }}
               >
                 <img
                   src={Images.logout}
@@ -199,6 +229,42 @@ const SettingMain = (props) => {
           </div>
         </div>
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={modalDetail.flag === "logOutModal" ? "commonWidth customContent" : ""}
+        ids={modalDetail.flag === "logOutModal" ? "logout" : ""}
+        child={
+          modalDetail.flag === "logOutModal" ? (
+            <LogoutModal
+              close={() => handleOnCloseModal()}
+            />
+          ) :
+            ""
+        }
+        header=
+
+        {modalDetail.flag === "logOutModal" ?
+          <>
+            {/* <div className="editadressheading">
+                <div className="edithead">
+                  <p className="modal_Heading">Add Menu Item</p>
+                  <p className="chatUser">Add your menu items below.</p>
+                </div>
+              </div>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
+              </p> */}
+          </>
+          :
+          ''
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   );
 };

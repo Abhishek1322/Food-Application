@@ -36,6 +36,7 @@ li {
   background-color: #fff;
   z-index: 1;
 }
+
 .settingMainHeading {
   color: #2e3333;
   font-family: Crimson Text;
@@ -107,9 +108,8 @@ li {
   align-items: center;
   text-align: center;
   padding: 15px 11px;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
-
 .sidebarItems:hover {
   color: #979999;
 }
@@ -340,9 +340,9 @@ body {
 
 /* Changepasword */
 .innerHeaderArrow {
-    cursor: pointer;
-    width: 44px;
-    height: 44px;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
 }
 
 .commonInnerHeader {
@@ -836,9 +836,10 @@ body {
 
 /* Home Page Css Start */
 .ordered_ {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
+
 .innerhomeheader {
   display: flex;
   justify-content: space-between;
@@ -897,7 +898,7 @@ body {
   color: #2e3333;
   font-size: 14px;
   font-weight: 700;
-  margin: 0;
+  margin-bottom: 5px;
 }
 
 .userInfo {
@@ -908,22 +909,23 @@ body {
 }
 
 .profileDetail {
-    display: flex;
-    margin: 20px 0;
-    /* flex-wrap: wrap; */
+  display: flex;
+  margin: 20px 0;
+  /* flex-wrap: wrap; */
 }
 
 .homeProfileBox {
-    padding: 20px 15px 27px 20px;
-    background-color: #FFF;
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-    border-radius: 15px;
-    width: calc(20% - 17px);
-    margin-right: 21px;
-    margin-bottom: 20px;
+  padding: 20px 15px 27px 20px;
+  background-color: #FFF;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  width: calc(20% - 17px);
+  margin-right: 21px;
+  margin-bottom: 20px;
 }
-.homeProfileBox:last-child{
-    margin-right: 0;
+
+.homeProfileBox:last-child {
+  margin-right: 0;
 }
 
 .profileInfo {
@@ -944,15 +946,16 @@ body {
 }
 
 .orderDetailBox {
-    border-radius: 15px;
-    background: #FFF;
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-    width: calc(20% - 17px);
-    margin-right: 21px;
-    margin-bottom: 20px;
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+  width: calc(20% - 17px);
+  margin-right: 21px;
+  margin-bottom: 20px;
 }
-.orderDetailBox:last-child{
-    margin-right: 0;
+
+.orderDetailBox:last-child {
+  margin-right: 0;
 }
 
 .orderId {
@@ -962,10 +965,10 @@ body {
 }
 
 .orderDetails {
-    border-radius: 15px 15px 0px 0px;
-    background: #2E3333;
-    width: 100%;
-    padding: 9px 15px;
+  border-radius: 15px 15px 0px 0px;
+  background: #2E3333;
+  width: 100%;
+  padding: 9px 15px;
 }
 
 .orderFrom {
@@ -1453,18 +1456,19 @@ body {
 
 
 .listItems_ {
-    border-radius: 15px;
-    background: #FFF;
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    padding: 7px 3px;
-    width: calc(20% - 85px);
-    margin-right: 21px;
-    margin-bottom: 20px;
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 7px 3px;
+  width: calc(20% - 85px);
+  margin-right: 21px;
+  margin-bottom: 20px;
 }
-.listItems_:last-child{
-    margin-right: 0;
+
+.listItems_:last-child {
+  margin-right: 0;
 }
 
 .menuItem_ {
@@ -1831,6 +1835,7 @@ body {
   background: transparent;
   border: none;
 }
+
 .changepsw_loader {
   height: 100vh;
   background-color: #ffffff;
@@ -1842,15 +1847,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-} 
+}
 
 .loaderImage_ {
   text-align: center;
 }
-.changepswloader_{
+
+.changepswloader_ {
   width: 80px;
   height: 80px;
 }
+
 .zoom-in-zoom-out {
   /* width: 80px;
   height: 80px; */
@@ -1862,9 +1869,11 @@ body {
   0% {
     transform: scale(1, 1);
   }
+
   50% {
     transform: scale(1.5, 1.5);
   }
+
   100% {
     transform: scale(1, 1);
   }
@@ -2041,8 +2050,9 @@ body {
   height: 56px;
   flex-shrink: 0;
 }
+
 .menuReport_button::placeholder {
-    color: #2e3333;
+  color: #2e3333;
 }
 
 .menuEditbuttom {
@@ -2113,9 +2123,9 @@ body {
 }
 
 .editFoodImg {
-    width: 100%;
-    height: 134px;
-    border-radius: 20px;
+  width: 100%;
+  height: 134px;
+  border-radius: 20px;
 }
 
 .editImgBox_ {
@@ -2129,22 +2139,22 @@ body {
 }
 
 .cancelEditImg {
-    position: absolute;
-    top: 33px;
-    right: -3px;
-    background-color: red;
-    width: 24px;
-    height: 24px;
-    border-radius: 50px;
-    border: 5px solid #fff;
-    padding: 12px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 900;
-    font-size: 14px;
-    text-align: center;
+  position: absolute;
+  top: 33px;
+  right: -3px;
+  background-color: red;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  border: 5px solid #fff;
+  padding: 12px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 14px;
+  text-align: center;
 }
 
 /*----------------------------Edit Profile Page Modal 2  Css start---------------- */
@@ -2163,6 +2173,7 @@ body {
   width: 38px;
   height: 46px;
 }
+
 .clockImg {
   width: 16px;
   height: 16px;
@@ -2173,6 +2184,7 @@ body {
   overflow-y: auto;
   margin-top: 19px;
 }
+
 .availableTime .react-time-picker__inputGroup__input {
   padding: 0px;
   color: #979999;
@@ -2180,11 +2192,13 @@ body {
   font-weight: 400;
   outline: none;
 }
+
 .availabilityDays.active {
   border-radius: 10px;
   background: #e65c00;
   box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.3);
 }
+
 .availableTime .react-time-picker__inputGroup__divider,
 .react-time-picker__inputGroup__leadingZero {
   color: #979999;
@@ -2205,6 +2219,7 @@ body {
   width: 100%;
   max-width: 132px;
 }
+
 .availabilityModal .myavailability {
   display: flex;
   flex-wrap: nowrap;
@@ -2220,15 +2235,18 @@ body {
   width: 100%;
   max-width: 132px;
 }
+
 .availability_Box .innerBoxText {
   color: #2e3333;
   font-size: 12px;
   font-weight: 400;
   padding: 16px 21px;
 }
+
 .availability_Box .availableTime {
   margin: 10px;
 }
+
 .availability_Box {
   filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
   border: 1px solid #e9e9e9;
@@ -2236,14 +2254,17 @@ body {
   display: flex;
   align-items: center;
 }
+
 .addBtn {
   color: #e65c00;
   margin-right: 6px;
 }
+
 .timeSlotBtn {
   display: flex;
   justify-content: center;
 }
+
 .addTimeSlot {
   color: #e65c00;
   font-size: 14px;
@@ -2252,6 +2273,7 @@ body {
   border-radius: 24px;
   padding: 8px 18px 10px 32px;
 }
+
 .deleteAvailable {
   right: 12px;
   background: rgb(255 0 0 / 6%);
@@ -2453,10 +2475,11 @@ body {
   background: #fff;
   display: inline-block;
 }
-.chefSideProfile{
-    width: 544px;
-    height: 544px;
-    border-radius: 50px;
+
+.chefSideProfile {
+  width: 544px;
+  height: 544px;
+  border-radius: 50px;
 }
 
 /* common header booking details css End */
@@ -2497,6 +2520,7 @@ body {
   width: 100%;
   justify-content: end;
 }
+
 .verifyOrderDetailModal {
   display: flex;
   flex-direction: column;
@@ -2504,22 +2528,60 @@ body {
   justify-content: center;
   margin-top: 105px;
 }
+
 .inner_Text {
   color: #979999;
   font-size: 14px;
   font-weight: 400;
 }
+
 .insideText {
   color: #e65c00;
   font-weight: 600;
 }
-.dateBox
-  svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
+
+.dateBox svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
   display: none;
 }
+
 .dateBox button.react-time-picker__clock-button.react-time-picker__button {
   display: none;
 }
+
 .availableTime .react-time-picker__wrapper {
   border: none;
 }
+
+/* -------------------  Logout Modal CsS Start ----------------------  */
+#logout .modal-content {
+  height: 45vh;
+  max-width: 600px;
+  margin: 0;
+  margin-left: auto;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.logoutImg {
+  width: 84px;
+  height: 112px;
+}
+
+.DeleteMenuModal {
+  text-align: center;
+}
+
+.Logoutfooterbtn {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 15px auto;
+  max-width: 336px;
+  right: 80px;
+}
+
+#logout .modal-header {
+  border-bottom: transparent;
+}
+
+/* Logout Modal CsS End  */

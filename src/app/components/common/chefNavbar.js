@@ -304,84 +304,106 @@ const Chef_Navbar = () => {
                 </button> */}
                 </div>
               </div>
-            ) : pathname === "/setting" ? (
-              <div className="row align-items-center">
-                <div className="col-lg-6 col-sm-12">
-                  <h1 className="chefCommonHeader">Setting</h1>
-                </div>
-                <div className="col-lg-6 col-sm-12 text-end">
-                  <div className="flexBox">
-                    <div className="headermenu">
-                      <figure className="menuBox">
-                        <img
-                          src={Images.chat}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                          onClick={() => {
-                            setModalDetail({ show: true, flag: "chatBox" });
-                            setKey(Math.random());
-                          }}
-                        />
-                      </figure>
-                    </div>
-                    <div className="headeritem">
-                      <figure
-                        className="menuBox"
-                        onClick={() => {
-                          setModalDetail({ show: true, flag: "Notification" });
-                          setKey(Math.random());
-                        }}
-                      >
-                        <img
-                          src={Images.bellImage}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                        />
-                      </figure>
-                    </div>
-                    <div className="menuBox cart">
-                      <img
-                        src={Images.chefnavImage}
-                        alt="logo"
-                        className="img-fluid basketImg"
-                        onClick={() => {
-                          setModalDetail({ show: true, flag: "Myorder" });
-                          setKey(Math.random());
-                        }}
-                      />
-                      <span className="cartItems">5</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : pathname === "/chef-profile" ||
-              pathname === "/edit-chef-profile" ? (
-              <div className="row align-items-center">
-                <div className="col-lg-6 col-sm-12">
-                  <div className="insideCommonHeader">
-                    <Link
-                      to={
-                        pathname === "/chef-profile" ? "/home" : "/chef-profile"
-                      }
-                    >
-                      <img
-                        src={Images.backArrowpassword}
-                        className="innerHeaderArrow"
-                        alt="arrowHeaderImg"
-                      />
-                    </Link>
+            )
 
-                    <h1 className="chefCommonHeader ps-2">
-                      {pathname === "/chef-profile"
-                        ? "My Profile"
-                        : "Edit Profile"}
-                    </h1>
+              : pathname === "/booking-details" ? (
+                <div className="row align-items-center">
+                  <div className="col-lg-6 col-sm-12">
+                    {/* ----Home Page Header html */}
+                    <div className="insideCommonHeader">
+                      <Link to="/new-booking">
+                        <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
+                      </Link>
+                      <h1 className="chefCommonHeader ps-2">Booking Details</h1>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-sm-12 text-end">
+                    <div className='orderItems_ flexBox '>
+                      <button className='cancelOrder_ me-4' >Reject</button>
+                      <button className='submitOrder_'>Accept</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              ""
-            )}
+              )
+
+                : pathname === "/setting" ? (
+                  <div className="row align-items-center">
+                    <div className="col-lg-6 col-sm-12">
+                      <h1 className="chefCommonHeader">Setting</h1>
+                    </div>
+                    <div className="col-lg-6 col-sm-12 text-end">
+                      <div className="flexBox">
+                        <div className="headermenu">
+                          <figure className="menuBox">
+                            <img
+                              src={Images.chat}
+                              alt="logo"
+                              className="img-fluid chatIconImage"
+                              onClick={() => {
+                                setModalDetail({ show: true, flag: "chatBox" });
+                                setKey(Math.random());
+                              }}
+                            />
+                          </figure>
+                        </div>
+                        <div className="headeritem">
+                          <figure
+                            className="menuBox"
+                            onClick={() => {
+                              setModalDetail({ show: true, flag: "Notification" });
+                              setKey(Math.random());
+                            }}
+                          >
+                            <img
+                              src={Images.bellImage}
+                              alt="logo"
+                              className="img-fluid chatIconImage"
+                            />
+                          </figure>
+                        </div>
+                        <div className="menuBox cart">
+                          <img
+                            src={Images.chefnavImage}
+                            alt="logo"
+                            className="img-fluid basketImg"
+                            onClick={() => {
+                              setModalDetail({ show: true, flag: "Myorder" });
+                              setKey(Math.random());
+                            }}
+                          />
+                          <span className="cartItems">5</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : pathname === "/chef-profile" ||
+                  pathname === "/edit-chef-profile" ? (
+                  <div className="row align-items-center">
+                    <div className="col-lg-6 col-sm-12">
+                      <div className="insideCommonHeader">
+                        <Link
+                          to={
+                            pathname === "/chef-profile" ? "/home" : "/chef-profile"
+                          }
+                        >
+                          <img
+                            src={Images.backArrowpassword}
+                            className="innerHeaderArrow"
+                            alt="arrowHeaderImg"
+                          />
+                        </Link>
+
+                        <h1 className="chefCommonHeader ps-2">
+                          {pathname === "/chef-profile"
+                            ? "My Profile"
+                            : "Edit Profile"}
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
           </div>
         </div>
       </div>
