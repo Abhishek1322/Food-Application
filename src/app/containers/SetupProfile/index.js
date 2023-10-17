@@ -97,9 +97,13 @@ const SetupProfile = () => {
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     if (
       rejectedFiles.length > 0 &&
-      rejectedFiles[0]?.file?.type !== "application.pdf"
+      rejectedFiles[0]?.file?.type !== "image/jpeg" &&
+      "image/jpg" &&
+      "image/png" &&
+      "image/svg" &&
+      "application.pdf"
     ) {
-      toast.error("Please upload PDF files only");
+      toast.error("Please upload PDF files and Image  only");
       return;
     }
 
@@ -114,6 +118,10 @@ const SetupProfile = () => {
     onDrop,
     accept: {
       "application/pdf": [".pdf"],
+      "image/jpeg": [],
+      "image/png": [],
+      "image/jpg": [],
+      "image/svg": [],
     },
     multiple: false,
   });
@@ -246,7 +254,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   // select address
@@ -257,7 +265,7 @@ const SetupProfile = () => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   // week days
@@ -413,6 +421,25 @@ const SetupProfile = () => {
     );
   };
 
+  // format bytes
+  function formatBytes(bytes, decimals = 2, isBinary = false) {
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB"]; // or ['B', 'KB', 'MB', 'GB', 'TB']
+
+    if (!+bytes) {
+      return `0 ${sizes[0]}`;
+    }
+
+    const inByte = isBinary ? 1024 : 1000;
+    const dm = decimals < 0 ? 0 : decimals;
+
+    const pow = Math.floor(Math.log(bytes) / Math.log(inByte));
+    const maxPow = Math.min(pow, sizes.length - 1);
+
+    return `${parseFloat((bytes / Math.pow(inByte, maxPow)).toFixed(dm))} ${
+      sizes[maxPow]
+    }`;
+  }
+
   return (
     <>
       {authData.loading && <Loading />}
@@ -459,12 +486,13 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${activeTab === "restaurant"
+                                        className={`chefType ${
+                                          activeTab === "restaurant"
                                             ? "active"
                                             : path == "/restaurant"
-                                              ? "active"
-                                              : ""
-                                          }`}
+                                            ? "active"
+                                            : ""
+                                        }`}
                                         onClick={() =>
                                           setActiveTab("restaurant")
                                         }
@@ -483,12 +511,13 @@ const SetupProfile = () => {
                                         />
                                       </li>
                                       <li
-                                        className={`chefType ${activeTab === "home"
+                                        className={`chefType ${
+                                          activeTab === "home"
                                             ? "active"
                                             : path == "/home"
-                                              ? "active"
-                                              : ""
-                                          }`}
+                                            ? "active"
+                                            : ""
+                                        }`}
                                         onClick={() => setActiveTab("home")}
                                       >
                                         Home
@@ -574,15 +603,15 @@ const SetupProfile = () => {
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
                                                   ? {
-                                                    backgroundColor:
-                                                      "#41b6e6",
-                                                    cursor: "pointer",
-                                                  }
+                                                      backgroundColor:
+                                                        "#41b6e6",
+                                                      cursor: "pointer",
+                                                    }
                                                   : {
-                                                    backgroundColor:
-                                                      "#ffffff",
-                                                    cursor: "pointer",
-                                                  };
+                                                      backgroundColor:
+                                                        "#ffffff",
+                                                      cursor: "pointer",
+                                                    };
                                                 return (
                                                   <div
                                                     {...getSuggestionItemProps(
@@ -674,7 +703,6 @@ const SetupProfile = () => {
                                         </li>
                                       ))}
                                   </ul>
-                                  
                                 </div>
                               </div>
                               <button
@@ -850,7 +878,8 @@ const SetupProfile = () => {
                                         type="button"
                                         className="addButton"
                                       >
-                                        <i className="las la-plus"></i>Add Time Slot{" "}
+                                        <i className="las la-plus"></i>Add Time
+                                        Slot{" "}
                                       </button>
                                     </div>
                                   )}
@@ -885,22 +914,33 @@ const SetupProfile = () => {
                                 <div className="uploadImgebox">
                                   {pdfFiles ? (
                                     <div className="innerUploadImgBox">
-                                     <div className="flexBox ms-4">
-                                   <div>
-                                   <img src={Images.uploadFileImg} className="uploadFileIcon" alt="uploadFileIcon" />
-                                   </div>
-                                      <div className="fileDetail">
-                                      <p className="uploadFileDetail ms-3 mb-0" placeholder="File Name. pdf">{pdfFiles.name}</p>
-                                      <span className="timeOrder_ mb-0">373 kb</span>
+                                      <div className="flexBox ms-4">
+                                        <div>
+                                          <img
+                                            src={Images.uploadFileImg}
+                                            className="uploadFileIcon"
+                                            alt="uploadFileIcon"
+                                          />
+                                        </div>
+                                        <div className="fileDetail">
+                                          <p
+                                            className="uploadFileDetail ms-3 mb-0"
+                                            placeholder="File Name. pdf"
+                                          >
+                                            {pdfFiles.name}
+                                          </p>
+                                          <span className="timeOrder_ mb-0">
+                                            {formatBytes(pdfFiles.size)}
+                                          </span>
+                                        </div>
                                       </div>
-                                     </div>
-                                      <p 
+                                      <p
                                         className=" cancelUploadFile me-3"
                                         onClick={() =>
                                           handleRemoveDocument(pdfFiles.name)
                                         }
                                       >
-                                      <i className="fas fa-times uploadcancelIcon "></i>
+                                        <i className="fas fa-times uploadcancelIcon "></i>
                                       </p>
                                     </div>
                                   ) : (
@@ -988,7 +1028,11 @@ const SetupProfile = () => {
             <>
               <h2 className="modal_Heading">Add Expertise</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancel"
+                />
               </p>
             </>
           ) : (

@@ -80,12 +80,12 @@ textarea:focus-visible {
   border-radius: 7px;
 }
 
-.checkBox:checked+.checkBoxTxt:before {
+.checkBox:checked + .checkBoxTxt:before {
   background: #388e1e;
   border: 2px solid #388e1e;
 }
 
-.checkBox:checked+.checkBoxTxt:after {
+.checkBox:checked + .checkBoxTxt:after {
   content: "";
   display: block;
   position: absolute;
@@ -106,8 +106,8 @@ textarea:focus-visible {
   left: -9999px;
 }
 
-.customRadio:checked+label,
-.customRadio:not(:checked)+label {
+.customRadio:checked + label,
+.customRadio:not(:checked) + label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
@@ -116,8 +116,8 @@ textarea:focus-visible {
   color: #666;
 }
 
-.customRadio:checked+label:before,
-.customRadio:not(:checked)+label:before {
+.customRadio:checked + label:before,
+.customRadio:not(:checked) + label:before {
   content: "";
   position: absolute;
   left: 0;
@@ -129,8 +129,8 @@ textarea:focus-visible {
   background: transparent;
 }
 
-.customRadio:checked+label:after,
-.customRadio:not(:checked)+label:after {
+.customRadio:checked + label:after,
+.customRadio:not(:checked) + label:after {
   content: "";
   width: 10px;
   height: 10px;
@@ -143,13 +143,13 @@ textarea:focus-visible {
   transition: all 0.2s ease;
 }
 
-.customRadio:not(:checked)+label:after {
+.customRadio:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
 
-.customRadio:checked+label:after {
+.customRadio:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -444,7 +444,7 @@ input:-webkit-autofill:active {
 }
 
 .uploadFileDetail {
-  color: #2E3333;
+  color: #2e3333;
   font-size: 14px;
   font-weight: 600;
 }
@@ -464,7 +464,7 @@ input:-webkit-autofill:active {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  background-color: rgba(230, 92, 0, 0.10);
+  background-color: rgba(230, 92, 0, 0.1);
   justify-content: space-between;
   border-radius: 16px;
 }
@@ -480,7 +480,7 @@ input:-webkit-autofill:active {
 .uploadcancelIcon {
   width: 10px;
   height: 10px;
-  color: #2E3333;
+  color: #2e3333;
 }
 
 .uploadImgebox {
@@ -702,4 +702,7 @@ input:-webkit-autofill:active {
 .dayavailability.active {
   background: #e65c00;
   box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.3);
+}
+.react-time-picker__inputGroup__input:invalid {
+  background: none !important;
 }

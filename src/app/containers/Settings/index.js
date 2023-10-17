@@ -1,50 +1,15 @@
 import React, { useState, useEffect } from "react";
-import * as Images from "../../../utilities/images"
-import swal from "sweetalert";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import * as Images from "../../../utilities/images";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CustomModal from "../../components/common/shared/CustomModal";
-import {
-  userLogout,
-  onErrorStopLoad,
-  deleteAccount,
-} from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import LogoutModal from "../../components/common/shared/logoutModal";
 
 const SettingMain = (props) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  // logout handler
-  const handleLogout = (_id) => {
-    swal({
-      className: "sweetAlertLogout",
-      title: "Are you sure?",
-      text: "Are you sure to log out this account",
-      icon: "warning",
-      dangerMode: true,
-      buttons: true,
-    }).then((logout) => {
-      if (logout) {
-        dispatch(
-          userLogout({
-            cb(res) {
-              navigate("/");
-            },
-          })
-        );
-        // swal("", "Your document has been deleted!", "success");
-      }
-    });
-  };
-
-  // stop loader on refresh page
-  useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -63,7 +28,6 @@ const SettingMain = (props) => {
   };
 
   const handleUserProfile = (flag) => {
-
     setModalDetail({
       show: true,
       flag: flag,
@@ -86,7 +50,9 @@ const SettingMain = (props) => {
                         alt="passwordImg"
                         className="img-fluid settingIcon"
                       />
-                      <h2 className="settingBoxtxt ms-3 mb-0">Change Password</h2>
+                      <h2 className="settingBoxtxt ms-3 mb-0">
+                        Change Password
+                      </h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -108,7 +74,9 @@ const SettingMain = (props) => {
                         className="img-fluid settingIcon"
                       />
 
-                      <h2 className="settingBoxtxt ms-3 mb-0">Delete Account</h2>
+                      <h2 className="settingBoxtxt ms-3 mb-0">
+                        Delete Account
+                      </h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -152,7 +120,9 @@ const SettingMain = (props) => {
                         alt="privacypolicy"
                         className="img-fluid settingIcon"
                       />
-                      <h2 className="settingBoxtxt ms-3 mb-0">Privacy Policy</h2>
+                      <h2 className="settingBoxtxt ms-3 mb-0">
+                        Privacy Policy
+                      </h2>
                     </div>
                     <div className="iconImg">
                       <img
@@ -196,7 +166,9 @@ const SettingMain = (props) => {
                         className="img-fluid settingIcon "
                       />
 
-                      <h2 className="settingBoxtxt ms-3 mb-0">Manage Address</h2>
+                      <h2 className="settingBoxtxt ms-3 mb-0">
+                        Manage Address
+                      </h2>
                     </div>
                     <div className="iconImg">
                       <Link to="/user-manageaddress">
@@ -213,9 +185,8 @@ const SettingMain = (props) => {
 
               <div
                 className="settingBox d-flex align-items-center justify-content-center"
-                // onClick={() => handleLogout()}
                 onClick={() => {
-                  handleUserProfile("logOutModal")
+                  handleUserProfile("logOutModal");
                 }}
               >
                 <img
@@ -236,32 +207,16 @@ const SettingMain = (props) => {
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}
-        className={modalDetail.flag === "logOutModal" ? "commonWidth customContent" : ""}
+        className={
+          modalDetail.flag === "logOutModal" ? "commonWidth customContent" : ""
+        }
         ids={modalDetail.flag === "logOutModal" ? "logout" : ""}
         child={
           modalDetail.flag === "logOutModal" ? (
-            <LogoutModal
-              close={() => handleOnCloseModal()}
-            />
-          ) :
+            <LogoutModal close={() => handleOnCloseModal()} />
+          ) : (
             ""
-        }
-        header=
-
-        {modalDetail.flag === "logOutModal" ?
-          <>
-            {/* <div className="editadressheading">
-                <div className="edithead">
-                  <p className="modal_Heading">Add Menu Item</p>
-                  <p className="chatUser">Add your menu items below.</p>
-                </div>
-              </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
-              </p> */}
-          </>
-          :
-          ''
+          )
         }
         onCloseModal={() => handleOnCloseModal()}
       />
