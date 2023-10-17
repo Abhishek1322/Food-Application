@@ -10,9 +10,30 @@ import {
   setSingleAddress,
   setDeleteAddress,
   setAddContactUsDetail,
+  setGetHelperPages,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getHelperPages(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.HELPER_PAGES_BY_SLUG}/${action.payload.slug}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetHelperPages(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* addContactUsDetail(action) {
   try {
@@ -155,6 +176,7 @@ function* userSaga() {
   yield all([takeLatest("user/singleAddress", singleAddress)]);
   yield all([takeLatest("user/deleteAddress", deleteAddress)]);
   yield all([takeLatest("user/addContactUsDetail", addContactUsDetail)]);
+  yield all([takeLatest("user/getHelperPages", getHelperPages)]);
 }
 
 export default userSaga;

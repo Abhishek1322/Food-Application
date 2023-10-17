@@ -4,12 +4,20 @@ const initialState = {
   loading: false,
   address: [],
   userAddres: [],
+  helperPagesData: [],
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getHelperPages: (state) => {
+      state.loading = true;
+    },
+    setGetHelperPages: (state, action) => {
+      state.loading = false;
+      state.helperPagesData = action.payload;
+    },
     addContactUsDetail: (state) => {
       state.loading = true;
     },
@@ -69,6 +77,8 @@ export const {
   setDeleteAddress,
   addContactUsDetail,
   setAddContactUsDetail,
+  setGetHelperPages,
+  getHelperPages
 } = userSilce.actions;
 
 export default userSilce.reducer;

@@ -28,6 +28,8 @@ const ApiPath = {
     EDIT_ADDRESS: "/user_delivery_address",
     GET_SINGLE_ADDRESS: "/user_delivery_address",
     CONTACT_US: "/support_tickets/support-ticktes",
+    HELPER_PAGES: "/helperPages/get-by-slug",
+    HELPER_PAGES_BY_SLUG: "/helperPages/slug",
   },
 };
 
