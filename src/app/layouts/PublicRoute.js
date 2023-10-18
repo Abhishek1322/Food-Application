@@ -18,10 +18,7 @@ const   PublicRoute = ({ children }) => {
     "/create-account/user",
   ];
   const isAuthenticated = Boolean(localStorage.getItem("authToken"));
-  console.log(
-    "authDataauthDatadscsc",
-    authData?.userInfo?.chefInfo?.documentVerified
-  );
+ 
   if (!isAuthenticated && authRoutes.includes(pathName)) {
     return children;
   } else if (

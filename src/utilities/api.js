@@ -107,7 +107,6 @@ const axiosPutFormData = (url, params) => {
 };
 
 const axiosPutFormDataProfile = (url, params) => {
-  console.log("paramsparamsparams",params);
   var formData = new FormData();
   formData.append("step", params?.step);
   formData.append("firstName", params?.firstName);

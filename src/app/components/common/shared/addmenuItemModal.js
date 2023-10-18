@@ -33,7 +33,7 @@ const AddmenuItemModal = (props) => {
     deliveryTime: "",
     description: "",
   });
-  console.log("formDataformData", formData);
+  
   //onchange input
   const handleChange = (e) => {
     const { value, name } = e.target;

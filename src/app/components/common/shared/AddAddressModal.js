@@ -62,7 +62,6 @@ const AddAddressModal = (props) => {
     setCity(city);
     geocodeByAddress(city)
       .then((results) => {
-        console.log("resultsresults", results);
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
         if (results.length > 0) {
@@ -75,7 +74,6 @@ const AddAddressModal = (props) => {
           if (stateComponent) {
             const stateName = stateComponent.long_name;
             setState(stateName);
-            console.log("Selected state:", stateName);
           }
           // Extract the ZIP code from the results
           const zipCodeComponent = addressComponents.find((component) =>
@@ -84,7 +82,6 @@ const AddAddressModal = (props) => {
           if (zipCodeComponent) {
             const zipCode = zipCodeComponent.long_name;
             setZipCode(zipCode);
-            console.log("ZIP code:", zipCode);
           }
           // Extract the local street address (route) or locality
           const routeComponent = addressComponents.find((component) =>
@@ -96,11 +93,9 @@ const AddAddressModal = (props) => {
           if (routeComponent) {
             const localStreet = routeComponent.long_name;
             setStreetAddress(localStreet);
-            console.log("Local street address:", localStreet);
           } else if (localityComponent) {
             const localStreet = localityComponent.long_name;
             setStreetAddress(localStreet);
-            console.log("Local street address:", localStreet);
           }
         }
       })

@@ -12,7 +12,6 @@ const Chef_Navbar = () => {
   const location = useLocation();
   const { pathname } = location;
   const authData = useAuthSelector();
-  console.log("authDataauthData", authData);
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,

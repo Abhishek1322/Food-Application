@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import * as Images from "../../../utilities/images";
 import MultiStepProgressBar from "./component/multiStepProgressBar";
@@ -17,7 +17,7 @@ import PlacesAutocomplete, {
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
-import auth, {
+import {
   chefSetupProfile,
   onErrorStopLoad,
   chefProfileDocument,
@@ -27,9 +27,9 @@ import { useAuthSelector } from "../../../redux/selector/auth";
 import { getChefProfileDetails } from "../../../redux/slices/web";
 
 const SetupProfile = () => {
-  const [activeTab, setActiveTab] = useState("restaurant");
   const location = useLocation();
   const path = location.pathname;
+  const toastId = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authData = useAuthSelector();
@@ -37,6 +37,7 @@ const SetupProfile = () => {
   const [page, setPage] = useState("pageone");
   const [pageNumber, setPageNumber] = useState(2);
   const [key, setKey] = useState(Math.random());
+  const [activeTab, setActiveTab] = useState("restaurant");
   const [experticeValue, setExperticeValue] = useState([]);
   const [pdfFiles, setPdfFiles] = useState("");
   const [address, setAddress] = useState("");
@@ -53,7 +54,7 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-  console.log("availability", availability);
+
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -103,12 +104,12 @@ const SetupProfile = () => {
       "image/svg" &&
       "application.pdf"
     ) {
-      toast.error("Please upload PDF files and Image  only");
+      showToast("Please upload PDF files and Image  only");
       return;
     }
 
     if (acceptedFiles[0].size > "5242880") {
-      toast.error("Please upload file within 5 Mb");
+      showToast("Please upload file within 5 Mb");
       return;
     }
     setPdfFiles(acceptedFiles[0]);
@@ -144,16 +145,16 @@ const SetupProfile = () => {
     e.preventDefault();
     if (flag == 1) {
       if (!formData.experience) {
-        toast.error("Please add your experience");
+        showToast("Please add your experience");
         return;
       } else if (!address) {
-        toast.error("Please add your address");
+        showToast("Please add your address");
         return;
       } else if (!formData.bio) {
-        toast.error("Please add your bio");
+        showToast("Please add your bio");
         return;
       } else if (!formData.rateperhour) {
-        toast.error("Please add your rate per hour");
+        showToast("Please add your rate per hour");
         return;
       }
       const updateExperticeValues = experticeValue?.filter((value) => {
@@ -210,13 +211,18 @@ const SetupProfile = () => {
       );
     } else if (flag == 3) {
       if (!documentUrl) {
-        toast.error("Please upload your document");
+        showToast("Please upload your document");
         return;
       }
       let params = {
         step: "3",
-        verificationDocument: documentUrl,
+        verificationDocument: {
+          mimeType: pdfFiles.type,
+          size: pdfFiles.size.toString(),
+          url: documentUrl,
+        },
       };
+
       dispatch(
         chefSetupProfile({
           ...params,
@@ -328,7 +334,7 @@ const SetupProfile = () => {
   // show time slot
   const handleShowSlot = () => {
     if (!activeWeekDay) {
-      toast.error("Please select slot day first");
+      showToast("Please select slot day first");
       return;
     }
     setShowTimeSlot(true);
@@ -390,7 +396,6 @@ const SetupProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          console.log("setLoggggg", res);
           if (res.status === 200) {
             setActiveTab(res.data.data.chefInfo.type);
             setExperticeValue(res?.data?.data?.chefInfo?.expertise);
@@ -439,6 +444,13 @@ const SetupProfile = () => {
       sizes[maxPow]
     }`;
   }
+
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
 
   return (
     <>
@@ -658,7 +670,7 @@ const SetupProfile = () => {
                                   <div className="input-container mt-5">
                                     <input
                                       onChange={(e) => handleChange(e)}
-                                      type="text"
+                                      type="number"
                                       name="rateperhour"
                                       className="border-input"
                                       placeholder="Rate per hour"

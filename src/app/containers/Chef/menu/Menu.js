@@ -18,7 +18,8 @@ const Menu = () => {
     title: "",
     flag: "",
   });
-  console.log("menuIdmenuId", menuId);
+
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -30,7 +31,6 @@ const Menu = () => {
   };
   // open modal
   const handleUserProfile = (flag, id) => {
-    console.log("flagflagflagflag", flag);
     setModalDetail({
       show: true,
       flag: flag,

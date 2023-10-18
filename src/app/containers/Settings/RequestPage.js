@@ -1,50 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Images from "../../../utilities/images";
-import swal from "sweetalert";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { userLogout, onErrorStopLoad } from "../../../redux/slices/auth";
-import { useAuthSelector } from "../../../redux/selector/auth";
+import LogoutModal from "../../components/common/shared/logoutModal";
+import CustomModal from "../../components/common/shared/CustomModal";
 
 const RequestPage = () => {
-  const authData = useAuthSelector();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
 
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       navigate("/");
-  //     }, 2500);
-  //   }, []);
-
-  // logout handler
-  const handleLogout = (_id) => {
-    swal({
-      className: "sweetAlertLogout",
-      title: "Are you sure?",
-      text: "Are you sure to log out this account",
-      icon: "warning",
-      dangerMode: true,
-      buttons: true,
-    }).then((logout) => {
-      if (logout) {
-        dispatch(
-          userLogout({
-            cb(res) {
-              navigate("/");
-            },
-          })
-        );
-        // swal("", "Your document has been deleted!", "success");
-      }
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
     });
+    setKey(Math.random());
   };
 
-  // stop loader on refresh page
-  useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
+  // open modal
+  const handleOpenModal = (flag) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
 
   return (
     <>
@@ -67,20 +52,44 @@ const RequestPage = () => {
                 <br /> It will take some time.
               </p>
               <div className="settingBox d-flex align-items-center justify-content-center">
-                {/* <img
-                  onClick={() => handleLogout()}
-                  src={Images.logout}
-                  alt="logo"
-                  className="img-fluid settingIcon "
-                /> */}
-                <Link to="/">
-                  <p className="settingBoxtxt ms-3 mb-0">Back to login</p>
-                </Link>
+                <div
+                  className="settingBox d-flex align-items-center justify-content-center"
+                  onClick={() => {
+                    handleOpenModal("logOutModal");
+                  }}
+                >
+                  <img
+                    src={Images.logout}
+                    alt="logo"
+                    className="img-fluid settingIcon "
+                  />
+                  <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "logOutModal" ? "commonWidth customContent" : ""
+        }
+        ids={modalDetail.flag === "logOutModal" ? "logout" : ""}
+        child={
+          modalDetail.flag === "logOutModal" ? (
+            <LogoutModal close={() => handleOnCloseModal()} />
+          ) : (
+            ""
+          )
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   );
 };

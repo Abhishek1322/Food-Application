@@ -3,9 +3,9 @@ import * as Images from "../../../../utilities/images";
 import { toast } from "react-toastify";
 
 const AddExpertise = (props) => {
-  
   const { setExperticeValue, close, experticeValue } = props;
   const emailRef = useRef(null);
+  const toastId = useRef(null);
   const [expertice, setExpertice] = useState([""]);
   const [newInputIndex, setNewInputIndex] = useState(null);
 
@@ -14,8 +14,7 @@ const AddExpertise = (props) => {
     e.preventDefault();
     const checkEmptyInput = expertice[expertice.length - 1] === "";
     if (checkEmptyInput) {
-      toast.dismiss();
-      toast.error("Please fill current field");
+      showToast("Please fill current field");
       return;
     }
     setExpertice([...expertice, ""]);
@@ -50,6 +49,11 @@ const AddExpertise = (props) => {
 
   // submit expertice values
   const handleSubmitExpertice = () => {
+    const checkSameExpertice = new Set(expertice).size !== expertice.length;
+    if (checkSameExpertice) {
+      showToast("Some expertice name already exists");
+      return;
+    }
     setExperticeValue(expertice);
     close();
   };
@@ -66,6 +70,13 @@ const AddExpertise = (props) => {
     }
   }, [experticeValue]);
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   return (
     <>
       <form onSubmit={(e) => handleAddInput(e)}>
@@ -78,7 +89,7 @@ const AddExpertise = (props) => {
         <div className="modalscroll">
           {expertice.map((value, index) => (
             <>
-              <div className="input-container">
+              <div key={index} className="input-container">
                 <input
                   ref={index === expertice.length - 1 ? emailRef : null}
                   onChange={(e) => handleChangeInput(index, e.target.value)}

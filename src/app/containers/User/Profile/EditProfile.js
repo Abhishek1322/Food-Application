@@ -27,7 +27,6 @@ const UserEditProfile = () => {
       getUserProfileDetails({
         ...params,
         cb(res) {
-          console.log(res);
           if (res.status === 200) {
             setFirstName(res.data.data.userInfo.firstName);
             setLastName(res.data.data.userInfo.lastName);

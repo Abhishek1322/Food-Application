@@ -62,24 +62,24 @@ const Login = () => {
           if (res.status === 200) {
             if (res.data.data.role === "chef") {
               if (res.data.data.chefInfo.documentVerified) {
-                toast.success("Successfully logged in")
+                toast.success("Successfully logged in");
                 navigate("/home");
               } else if (
                 !res.data.data.chefInfo.documentVerified &&
                 res.data.data.chefInfo.step === "3"
               ) {
-                toast.error("Please wait for admin approval");
+                showToast("Please wait for admin approval");
                 localStorage.removeItem("authToken");
                 return;
               } else if (
                 !res.data.data.chefInfo.documentVerified &&
                 res.data.data.chefInfo.step !== "3"
               ) {
-                toast.success("Successfully logged in")
+                toast.success("Successfully logged in");
                 navigate("/setup-profile");
               }
-            } else {
-              toast.success("Successfully logged in")
+            } else if (res.data.data.status === "Active") {
+              toast.success("Successfully logged in");
               navigate("/home-user");
             }
           }

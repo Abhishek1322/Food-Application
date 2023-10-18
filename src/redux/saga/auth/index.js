@@ -297,10 +297,9 @@ function* userLogin(action) {
       );
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
-      console.log("resprespresp", resp);
-      // if (resp.data.data.chefInfo.documentVerified) {
-      //   toast.success(resp.data.message);
-      // }
+      if (resp.data.data.isActive === false) {
+        toast.error(resp.data.message);
+      }
     } else {
       throw resp;
     }
@@ -331,7 +330,6 @@ function* userLogout(action) {
     toast.error(e.response.data.message);
   }
 }
-
 
 function* authSaga() {
   yield all([

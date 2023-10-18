@@ -20,7 +20,6 @@ const UserMyProfile = () => {
       getUserProfileDetails({
         ...params,
         cb(res) {
-          console.log("ressss", res);
           if (res.status === 200) {
             setProfile(res.data.data);
             setProfilePhoto(res.data.data.userInfo.profilePhoto);

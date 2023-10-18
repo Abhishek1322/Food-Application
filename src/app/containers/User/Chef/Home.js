@@ -13,7 +13,7 @@ const UserChefHome = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
   const [search, setSearch] = useState("");
-  console.log("chefListDatachefListData", chefListData);
+
   // get all chef lists
   useEffect(() => {
     getChefList();
@@ -144,7 +144,6 @@ const UserChefHome = () => {
               <>
                 {chefListData?.map((item, index) => (
                   <div key={index} className="col-lg-2">
-                    {console.log("itemmmmmm", item)}
                     <div className="outerBox text-center">
                       <figure className="chefDetails mb-3">
                         <Link to={`/chef-details?id=${item._id}`}>

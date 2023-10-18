@@ -6,11 +6,7 @@ const ChefRoute = ({ role, children }) => {
   const authData = useAuthSelector();
   const location = useLocation();
   const { pathname } = location;
-  console.log("pathnamepathname", pathname);
-  console.log(
-    "authDataauthData",
-    authData?.userInfo?.chefInfo?.documentVerified
-  );
+
   const isAuthenticated = localStorage.getItem("authToken");
   return isAuthenticated &&
     ((role === "chef" &&
