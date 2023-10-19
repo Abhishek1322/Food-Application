@@ -59,7 +59,7 @@ const ContactUs = () => {
     let params = {
       firstName: formData.firstName,
       lastName: formData.lastName,
-      email: formData.lastName,
+      email: formData.email,
       message: formData.message,
     };
 
@@ -122,6 +122,7 @@ const ContactUs = () => {
                               className="border-input"
                               placeholder="Enter your first name"
                               name="firstName"
+                              value={formData.firstName}
                               onChange={(e) => handleChange(e)}
                             />
                             <label className="border-label">First Name</label>
@@ -134,6 +135,7 @@ const ContactUs = () => {
                               className="border-input"
                               placeholder="Enter your last name"
                               name="lastName"
+                              value={formData.lastName}
                               onChange={(e) => handleChange(e)}
                             />
                             <label className="border-label">Last Name</label>
@@ -149,6 +151,7 @@ const ContactUs = () => {
                         className="border-input"
                         placeholder="Enter your last email address"
                         name="email"
+                        value={formData.email}
                         onChange={(e) => handleChange(e)}
                       />
                       <label className="border-label">Email</label>
@@ -162,6 +165,7 @@ const ContactUs = () => {
                         name="message"
                         onChange={(e) => handleChange(e)}
                         type="text"
+                        value={formData.message}
                         className="border-input"
                       />
                       <label className="border-label">Your Message</label>
