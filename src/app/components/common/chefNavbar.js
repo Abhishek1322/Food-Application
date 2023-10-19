@@ -7,12 +7,20 @@ import Myorder from "./shared/myorderModal";
 import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
 import { Link, useLocation } from "react-router-dom";
 import { useAuthSelector } from "../../../redux/selector/auth";
+import { useDispatch } from "react-redux";
+import {
+  getChefProfileDetails,
+  onErrorStopLoad,
+} from "../../../redux/slices/web";
 
 const Chef_Navbar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const { pathname } = location;
+  const userId = localStorage.getItem("userId");
   const authData = useAuthSelector();
   const [key, setKey] = useState(Math.random());
+  const [chefProfileData, setProfileData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -38,6 +46,28 @@ const Chef_Navbar = () => {
     setKey(Math.random());
   };
 
+  // stop loader on refresh page
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // get chef data
+  useEffect(() => {
+    let params = {
+      userid: userId,
+    };
+    dispatch(
+      getChefProfileDetails({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setProfileData(res.data);
+          }
+        },
+      })
+    );
+  }, []);
+
   return (
     <>
       <div className="main_Setting">
@@ -50,7 +80,7 @@ const Chef_Navbar = () => {
                   <h1 className="chefCommonHeader">
                     Hello,{" "}
                     <span className="chefHeading">
-                      {authData?.userInfo?.userInfo?.firstName} !
+                      {chefProfileData?.data?.userInfo?.firstName} !
                     </span>
                   </h1>
                   {/* ----setting Page Header  
@@ -72,7 +102,6 @@ const Chef_Navbar = () => {
                   <img src={Images.backArrowpassword} className="innerHeaderArrow"  alt="arrowHeaderImg" />
                   <h1 className="chefCommonHeader ps-2">My Profile</h1>
                 </div> */}
-
                 </div>
                 <div className="col-lg-6 col-sm-12 text-end">
                   <div className="flexBox">
@@ -303,106 +332,106 @@ const Chef_Navbar = () => {
                 </button> */}
                 </div>
               </div>
-            )
-
-              : pathname === "/booking-details" ? (
-                <div className="row align-items-center">
-                  <div className="col-lg-6 col-sm-12">
-                    {/* ----Home Page Header html */}
-                    <div className="insideCommonHeader">
-                      <Link to="/new-booking">
-                        <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
-                      </Link>
-                      <h1 className="chefCommonHeader ps-2">Booking Details</h1>
-                    </div>
+            ) : pathname === "/booking-details" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  {/* ----Home Page Header html */}
+                  <div className="insideCommonHeader">
+                    <Link to="/new-booking">
+                      <img
+                        src={Images.backArrowpassword}
+                        className="innerHeaderArrow"
+                        alt="arrowHeaderImg"
+                      />
+                    </Link>
+                    <h1 className="chefCommonHeader ps-2">Booking Details</h1>
                   </div>
-                  <div className="col-lg-6 col-sm-12 text-end">
-                    <div className='orderItems_ flexBox '>
-                      <button className='cancelOrder_ me-4' >Reject</button>
-                      <button className='submitOrder_'>Accept</button>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="orderItems_ flexBox ">
+                    <button className="cancelOrder_ me-4">Reject</button>
+                    <button className="submitOrder_">Accept</button>
+                  </div>
+                </div>
+              </div>
+            ) : pathname === "/setting" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <h1 className="chefCommonHeader">Setting</h1>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="flexBox">
+                    <div className="headermenu">
+                      <figure className="menuBox">
+                        <img
+                          src={Images.chat}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                          onClick={() => {
+                            setModalDetail({ show: true, flag: "chatBox" });
+                            setKey(Math.random());
+                          }}
+                        />
+                      </figure>
+                    </div>
+                    <div className="headeritem">
+                      <figure
+                        className="menuBox"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Notification" });
+                          setKey(Math.random());
+                        }}
+                      >
+                        <img
+                          src={Images.bellImage}
+                          alt="logo"
+                          className="img-fluid chatIconImage"
+                        />
+                      </figure>
+                    </div>
+                    <div className="menuBox cart">
+                      <img
+                        src={Images.chefnavImage}
+                        alt="logo"
+                        className="img-fluid basketImg"
+                        onClick={() => {
+                          setModalDetail({ show: true, flag: "Myorder" });
+                          setKey(Math.random());
+                        }}
+                      />
+                      <span className="cartItems">5</span>
                     </div>
                   </div>
                 </div>
-              )
+              </div>
+            ) : pathname === "/chef-profile" ||
+              pathname === "/edit-chef-profile" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <div className="insideCommonHeader">
+                    <Link
+                      to={
+                        pathname === "/chef-profile" ? "/home" : "/chef-profile"
+                      }
+                    >
+                      <img
+                        src={Images.backArrowpassword}
+                        className="innerHeaderArrow"
+                        alt="arrowHeaderImg"
+                      />
+                    </Link>
 
-                : pathname === "/setting" ? (
-                  <div className="row align-items-center">
-                    <div className="col-lg-6 col-sm-12">
-                      <h1 className="chefCommonHeader">Setting</h1>
-                    </div>
-                    <div className="col-lg-6 col-sm-12 text-end">
-                      <div className="flexBox">
-                        <div className="headermenu">
-                          <figure className="menuBox">
-                            <img
-                              src={Images.chat}
-                              alt="logo"
-                              className="img-fluid chatIconImage"
-                              onClick={() => {
-                                setModalDetail({ show: true, flag: "chatBox" });
-                                setKey(Math.random());
-                              }}
-                            />
-                          </figure>
-                        </div>
-                        <div className="headeritem">
-                          <figure
-                            className="menuBox"
-                            onClick={() => {
-                              setModalDetail({ show: true, flag: "Notification" });
-                              setKey(Math.random());
-                            }}
-                          >
-                            <img
-                              src={Images.bellImage}
-                              alt="logo"
-                              className="img-fluid chatIconImage"
-                            />
-                          </figure>
-                        </div>
-                        <div className="menuBox cart">
-                          <img
-                            src={Images.chefnavImage}
-                            alt="logo"
-                            className="img-fluid basketImg"
-                            onClick={() => {
-                              setModalDetail({ show: true, flag: "Myorder" });
-                              setKey(Math.random());
-                            }}
-                          />
-                          <span className="cartItems">5</span>
-                        </div>
-                      </div>
-                    </div>
+                    <h1 className="chefCommonHeader ps-2">
+                      {pathname === "/chef-profile"
+                        ? "My Profile"
+                        : "Edit Profile"}
+                    </h1>
                   </div>
-                ) : pathname === "/chef-profile" ||
-                  pathname === "/edit-chef-profile" ? (
-                  <div className="row align-items-center">
-                    <div className="col-lg-6 col-sm-12">
-                      <div className="insideCommonHeader">
-                        <Link
-                          to={
-                            pathname === "/chef-profile" ? "/home" : "/chef-profile"
-                          }
-                        >
-                          <img
-                            src={Images.backArrowpassword}
-                            className="innerHeaderArrow"
-                            alt="arrowHeaderImg"
-                          />
-                        </Link>
-
-                        <h1 className="chefCommonHeader ps-2">
-                          {pathname === "/chef-profile"
-                            ? "My Profile"
-                            : "Edit Profile"}
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -420,12 +449,12 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox"
             ? "chatBox"
             : modalDetail.flag === "Notification"
-              ? "Notification"
-              : modalDetail.flag === "Myorder"
-                ? "myOrder"
-                : modalDetail.flag === "verifyOrderDetailModal"
-                  ? "verifyOrderDetail"
-                  : ""
+            ? "Notification"
+            : modalDetail.flag === "Myorder"
+            ? "myOrder"
+            : modalDetail.flag === "verifyOrderDetailModal"
+            ? "verifyOrderDetail"
+            : ""
         }
         child={
           modalDetail.flag === "chatBox" ? (
@@ -445,28 +474,44 @@ const Chef_Navbar = () => {
             <>
               <h2 className="modal_Heading">Chat</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="cancelModal"
+                />
               </p>
             </>
           ) : modalDetail.flag === "Notification" ? (
             <>
               <h2 className="modal_Heading">Notification</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="cancelModal"
+                />
               </p>
             </>
           ) : modalDetail.flag === "Myorder" ? (
             <>
               <h2 className="modal_Heading">My Order</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="cancelModal"
+                />
               </p>
             </>
           ) : modalDetail.flag === "verifyOrderDetailModal" ? (
             <>
               <div className="cancelCommonHeader">
                 <p onClick={handleOnCloseModal} className="modal_cancel">
-                  <img src={Images.modalCancel} className="ModalCancel" alt="cancelModal" />
+                  <img
+                    src={Images.modalCancel}
+                    className="ModalCancel"
+                    alt="cancelModal"
+                  />
                 </p>
               </div>
             </>

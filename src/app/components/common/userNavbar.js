@@ -7,20 +7,25 @@ import BookNowModal from "./shared/BookNowModal";
 import UserBellModal from "./shared/UserBellModal";
 import UserNotification from "./shared/UserNotification";
 import { useAuthSelector } from "../../../redux/selector/auth";
+import { useDispatch } from "react-redux";
+import { getUserProfileDetails } from "../../../redux/slices/web";
 
 const User_Navbar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const { pathname } = location;
   const APIkey = "Enter-your-api-key";
   const authData = useAuthSelector();
+  const userId = localStorage.getItem("userId");
   const [key, setKey] = useState(Math.random());
   const [currentLocation, setCurrentLocation] = useState();
+  const [userData, setUserData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
+  console.log("userDatauserData", userData);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -40,6 +45,7 @@ const User_Navbar = () => {
     setKey(Math.random());
   };
 
+  // get current location
   function getLocationInfo(latitude, longitude) {
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${APIkey}`;
     fetch(url)
@@ -56,6 +62,7 @@ const User_Navbar = () => {
       .catch((error) => console.error(error));
   }
 
+  // get let long
   function success(pos) {
     var crd = pos.coords;
     console.log("Your current position is:");
@@ -66,6 +73,7 @@ const User_Navbar = () => {
     getLocationInfo(crd.latitude, crd.longitude);
   }
 
+  // handling error
   function errors(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
@@ -76,6 +84,7 @@ const User_Navbar = () => {
     maximumAge: 0,
   };
 
+  // hanldle location
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.permissions
@@ -97,6 +106,24 @@ const User_Navbar = () => {
     }
   }, []);
 
+  // getting user profile details
+  useEffect(() => {
+    let params = {
+      userid: userId,
+    };
+
+    dispatch(
+      getUserProfileDetails({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setUserData(res.data.data);
+          }
+        },
+      })
+    );
+  }, []);
+
   return (
     <>
       <div className="main_Setting">
@@ -109,7 +136,7 @@ const User_Navbar = () => {
                     Hello,{" "}
                     <span className="chefHeading">
                       {" "}
-                      {authData?.userInfo?.userInfo?.firstName} !
+                      {userData?.userInfo?.firstName} !
                     </span>
                   </h1>
                   <img
@@ -513,21 +540,33 @@ const User_Navbar = () => {
             <>
               <h2 className="modal_Heading">Chat</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg"/>
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : modalDetail.flag === "userNotification" ? (
             <>
               <h2 className="modal_Heading">Notification</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : modalDetail.flag === "Usercart" ? (
             <>
               <h2 className="modal_Heading">Cart</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : modalDetail.flag === "bookchef" ? (
@@ -537,7 +576,11 @@ const User_Navbar = () => {
                 <p className="chatUser">Enter your venue details below.</p>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : (
