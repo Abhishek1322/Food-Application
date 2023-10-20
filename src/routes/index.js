@@ -138,6 +138,10 @@ const Router = () => {
             path="/user-manageaddress"
             element={<Containers.UserManageAddress />}
           />
+           <Route
+            path="*"
+            element={<Containers.PageNotFound />}
+          />
         </Route>
       </Routes>
     </>
