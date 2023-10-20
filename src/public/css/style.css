@@ -110,6 +110,7 @@ li {
   padding: 15px 11px;
   margin-bottom: 30px;
 }
+
 .sidebarItems:hover {
   color: #979999;
 }
@@ -2585,3 +2586,15 @@ body {
 }
 
 /* Logout Modal CsS End  */
+
+/* Chef Profile Img css Start */
+.chefprofileimg_ {
+  width: 544px;
+  height: 544px;
+  border-radius: 50px;
+}
+
+/* Page Not Found Css Start  */
+.notfound_ {
+  background-color: #fefefe;
+}

@@ -139,7 +139,7 @@ const MyProfile = () => {
                 <img
                   src={profileUrl ? profileUrl : Images.dummyProfile}
                   alt="chefProfileimg"
-                  className="chefprofileimg"
+                  className="chefprofileimg_"
                 />
               </div>
             </div>

@@ -36,6 +36,7 @@ import UserMyProfile from "./User/Profile/MyProfile"
 import UserEditProfile from "./User/Profile/EditProfile"
 import UserManageAddress from "./User/Setting/ManageAddress"
 import RequestPage from "./Settings/RequestPage"
+import PageNotFound from "../components/errorPage/PageNotFound"
 
 
 
@@ -79,4 +80,5 @@ export {
     UserEditProfile,
     UserManageAddress,
     RequestPage,
+    PageNotFound
 }
