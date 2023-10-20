@@ -81,7 +81,11 @@ const FoodDetailModal = (props) => {
                 </ul>
               </div>
               <p onClick={() => close()} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </div>
           </div>
@@ -119,12 +123,7 @@ const FoodDetailModal = (props) => {
                 </div>
               </div>
             </div>
-            <div className="deliverfrom mt-2">
-              <p className="chefName">Deliver From</p>
-              <p className="chatSearchere_  mt-1">
-                46 Abingdon Road, Brandeston, United Kingdom IP13 4PB
-              </p>
-            </div>
+
             <div className="deliverfrom mt-2">
               <p className="chefName">Description</p>
               <p className="chatSearchere_  mt-1 ">
@@ -132,7 +131,7 @@ const FoodDetailModal = (props) => {
               </p>
             </div>
           </div>
-          <p className="foodamountmodal">{foodDetails?.price}.00</p>
+          <p className="foodamountmodal">£ {foodDetails?.price}.00</p>
         </div>
       </div>
     </>

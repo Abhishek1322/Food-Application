@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 const AddExpertiseModal = (props) => {
   const { close, experticeValue, chefProfileDetails } = props;
   const emailRef = useRef(null);
+  const toastId = useRef(null);
   const dispatch = useDispatch();
   const [expertice, setExpertice] = useState([""]);
   const [newInputIndex, setNewInputIndex] = useState(null);
@@ -50,8 +51,20 @@ const AddExpertiseModal = (props) => {
     }
   }, [expertice, newInputIndex]);
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // submit expertice values
   const handleSubmitExpertice = () => {
+    const checkSameExpertice = new Set(expertice).size !== expertice.length;
+    if (checkSameExpertice) {
+      showToast("Some expertice name is same please choose a different one");
+      return;
+    }
     const updateExperticeValues = expertice.filter((value) => value !== "");
 
     let params = {

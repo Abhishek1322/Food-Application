@@ -51,7 +51,7 @@ const AddExpertise = (props) => {
   const handleSubmitExpertice = () => {
     const checkSameExpertice = new Set(expertice).size !== expertice.length;
     if (checkSameExpertice) {
-      showToast("Some expertice name already exists");
+      showToast("Some expertice name is same please choose a different one");
       return;
     }
     setExperticeValue(expertice);

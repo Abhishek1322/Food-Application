@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import * as Images from "../../../../utilities/images";
-import CustomModal from "./CustomModal";
-import AfterUploadImage from "./afterUploadImage";
 import {
   createMenu,
   createImageUrl,
@@ -14,11 +12,10 @@ import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 
 const AddmenuItemModal = (props) => {
-
-  const {close,menuListAll} = props;
-
-  const [key, setKey] = useState(Math.random());
+  const { close, menuListAll } = props;
+  const toastId = useRef(null);
   const dispatch = useDispatch();
+  const [key, setKey] = useState(Math.random());
   const [category, setCategory] = useState("veg");
   const [itemImage, setItemImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -33,7 +30,7 @@ const AddmenuItemModal = (props) => {
     deliveryTime: "",
     description: "",
   });
-  
+
   //onchange input
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -55,25 +52,54 @@ const AddmenuItemModal = (props) => {
     dispatch(onErrorStopLoad);
   }, [dispatch]);
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // create new menu
   const handleCreateMenu = () => {
-    let params = {
-      name:formData.itemName,
-      category:category,
-      price:formData.price,
-      deliveryTime:formData.deliveryTime,
-      description:formData.description,
-      image:imageUrl
+    if (!formData.itemName) {
+      showToast("Please add item name");
+      return;
+    } else if (!category) {
+      showToast("Please select category");
+      return;
+    } else if (!formData.price) {
+      showToast("Please add item price");
+      return;
+    } else if (!formData.deliveryTime) {
+      showToast("Please add item delivery time");
+      return;
+    } else if (!formData.description) {
+      showToast("Please add item description");
+      return;
+    } else if (!imageUrl) {
+      showToast("Please add item image");
+      return;
     }
-    dispatch(createMenu({
-      ...params,
-      cb(res){
-        if(res.status === 200){
-          close()
-          menuListAll();
-        }
-      }
-    }))
+
+    let params = {
+      name: formData.itemName,
+      category: category,
+      price: formData.price,
+      deliveryTime: formData.deliveryTime,
+      description: formData.description,
+      image: imageUrl,
+    };
+    dispatch(
+      createMenu({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            close();
+            menuListAll();
+          }
+        },
+      })
+    );
   };
 
   // getting item image
@@ -86,7 +112,7 @@ const AddmenuItemModal = (props) => {
         "image/png" &&
         "image/svg"
       ) {
-        toast.error("Please upload valid image");
+        showToast("Please upload valid image");
         return;
       }
       setItemImage(acceptedFiles[0]);
@@ -144,7 +170,12 @@ const AddmenuItemModal = (props) => {
               name="itemName"
               onChange={(e) => handleChange(e)}
             />
-            <img src={Images.categoryImg} className="cateofyImg_" alt ="categoryImg"_ />
+            <img
+              src={Images.categoryImg}
+              className="cateofyImg_"
+              alt="categoryImg"
+              _
+            />
             <label className="border-label">Item Name</label>
           </div>
           <div className="input-container mt-4">
@@ -159,7 +190,12 @@ const AddmenuItemModal = (props) => {
               <MenuItem value={"non-veg"}>Non Veg</MenuItem>
             </Select>
 
-            <img src={Images.menuDishImg} className="cateofyImg_"  alt="menuDishImg"_/>
+            <img
+              src={Images.menuDishImg}
+              className="cateofyImg_"
+              alt="menuDishImg"
+              _
+            />
             <label className="border-label">Category</label>
           </div>
           <div className="flexBox justify-content-between editMenuFields_ ">
@@ -183,7 +219,11 @@ const AddmenuItemModal = (props) => {
                 placeholder="e.g. 45"
               />
               <p className="inneredittxt">MIN</p>
-              <img src={Images.clockImg} className="cateofyImg_"  alt="clockimg"/>
+              <img
+                src={Images.clockImg}
+                className="cateofyImg_"
+                alt="clockimg"
+              />
               <label className="border-label">Delivery Time</label>
             </div>
           </div>
@@ -244,48 +284,6 @@ const AddmenuItemModal = (props) => {
       >
         Add
       </button>
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "afterimgUploadModal"
-            ? "commonWidth customContent"
-            : ""
-        }
-        ids={modalDetail.flag === "afterimgUploadModal" ? "readyWithOrder" : ""}
-        child={
-          modalDetail.flag === "afterimgUploadModal" ? (
-            <AfterUploadImage close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "afterimgUploadModal" ? (
-            <>
-              <div className="editadressheading">
-                <div className="edithead">
-                  <p className="modal_Heading">Add Menu Item</p>
-                  <p className="chatUser">Add your menu items below.</p>
-                </div>
-              </div>
-            <p onClick={handleOnCloseModal} className='modal_cancel'>
-              <img src={Images.modalCancel} alt='modalCancel' className='ModalCancel' />
-            </p>
-            {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p> */}
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };
