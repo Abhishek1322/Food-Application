@@ -11,7 +11,6 @@ const Router = () => {
 
   return (
     <>
-    
       <Routes>
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
