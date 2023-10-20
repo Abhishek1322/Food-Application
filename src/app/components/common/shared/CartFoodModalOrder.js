@@ -10,8 +10,12 @@ import AddAddressModal from "./AddAddressModal";
 const CartFoodModalOrder = (props) => {
   const { menuId } = props;
   const [foodDetails, setFoodDetails] = useState([]);
+  const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
+  const [quantity, setQuantity] = useState(1);
+  const [itemPrice, setItemPrice] = useState("");
+  const [totalPrice, setTotalPrice] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -53,12 +57,29 @@ const CartFoodModalOrder = (props) => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setFoodDetails(res.data.data);
+            setFoodDetails(res.data.data.item);
+            setItemPrice(res.data.data.price);
+            setTotalPrice(res.data.data.price);
+            setDeliverFrom(res.data.data.address)
           }
         },
       })
     );
   }, []);
+  
+  // increase item quantity
+  const handleIcreaseQuantity = () => {
+    setQuantity(quantity + 1);
+    setTotalPrice((pre) => Number(pre) + Number(itemPrice));
+  };
+
+  // decrease item quantity
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      setTotalPrice((pre) => Number(pre) - Number(itemPrice));
+    }
+  };
 
   return (
     <>
@@ -104,7 +125,7 @@ const CartFoodModalOrder = (props) => {
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Deliver From</h6>
             <p className="chatSearchere_  mt-1">
-              46 Abingdon Road, Brandeston, United Kingdom IP13 4PB
+              {deliverFrom}
             </p>
           </div>
           <div className="deliverfrom mt-2">
@@ -113,19 +134,25 @@ const CartFoodModalOrder = (props) => {
           </div>
         </div>
         <div className="orderamount">
-          <h6 className="foodamountmodal">£{foodDetails?.price}.00</h6>
+          <h6 className="foodamountmodal">£{totalPrice}.00</h6>
           <div className="quantitymodal">
             <h6 className="notificationText ">Quantity:</h6>
             <div className="quantity">
-              <div className="Quantiycheck">
+              <div
+                onClick={() => handleDecreaseQuantity()}
+                className="Quantiycheck"
+              >
                 <img
                   src={Images.minusModal}
                   className="calQuantity"
                   alt="minusModal"
                 />
               </div>
-              <span className="number">02</span>
-              <div className="Quantiycheck">
+              <span className="number">{quantity}</span>
+              <div
+                onClick={() => handleIcreaseQuantity()}
+                className="Quantiycheck"
+              >
                 <img
                   src={Images.plusModal}
                   className="calQuantity"
@@ -138,7 +165,7 @@ const CartFoodModalOrder = (props) => {
         <div className="modalfooterbtn">
           <div className="orderNow">
             <div className="totalPrice">
-              <p className="price">£{foodDetails?.price}.00</p>
+              <p className="price">£{totalPrice}.00</p>
             </div>
             <button
               className="orderbutton"

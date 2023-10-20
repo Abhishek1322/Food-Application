@@ -25,7 +25,7 @@ const User_Navbar = () => {
     title: "",
     flag: "",
   });
-  console.log("userDatauserData", userData);
+  
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 const FoodDetailModal = (props) => {
   const { menuId, close, handleOpenInnerModal } = props;
   const [foodDetails, setFoodDetails] = useState([]);
+  const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
 
   // close loader after page load
@@ -23,7 +24,8 @@ const FoodDetailModal = (props) => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setFoodDetails(res.data.data);
+            setFoodDetails(res.data.data.item);
+            setDeliverFrom(res.data.data.address)
           }
         },
       })

@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import CustomModal from "../../components/common/shared/CustomModal";
 import AvailableModal from "../../components/common/shared/availableModal";
 import CartFoodModal from "../../components/common/shared/CartFoodModal";
+import AddToCartModal from "../../components/common/shared/AddToCartModal";
 import ChefRating from "../../components/common/shared/ChefRating";
 import { useDispatch } from "react-redux";
 import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
@@ -192,7 +193,7 @@ const ChefDetails = () => {
               <h3 className="innerDummyHeading ">Expertise</h3>
               <div className="chefexpertise mt-2">
                 {chefData?.chefInfo?.expertise &&
-                  chefData?.chefInfo?.expertise.length > 0 ? (
+                chefData?.chefInfo?.expertise.length > 0 ? (
                   <>
                     {chefData?.chefInfo?.expertise?.map((item, index) => (
                       <div key={index} className="expertisevalue">
@@ -243,7 +244,12 @@ const ChefDetails = () => {
                           <button className="itemsPrice_ " type="button">
                             £ {val?.price}
                           </button>
-                          <div className="sarahbasket">
+                          <div
+                            onClick={() => {
+                              handleUserProfile("Addtocart", val?._id);
+                            }}
+                            className="sarahbasket"
+                          >
                             <img
                               src={Images.basketImg}
                               alt="basketimage"
@@ -278,12 +284,14 @@ const ChefDetails = () => {
           modalDetail.flag === "availabilityModal"
             ? "availablebtnModal"
             : modalDetail.flag === "CartFood"
-              ? "CartModalFood"
-              : modalDetail.flag === "ratingchef"
-                ? "ratingusermodal"
-                : modalDetail.flag === "chefcart"
-                  ? "usercartmodal"
-                  : ""
+            ? "CartModalFood"
+            : modalDetail.flag === "ratingchef"
+            ? "ratingusermodal"
+            : modalDetail.flag === "chefcart"
+            ? "usercartmodal"
+            : modalDetail.flag === "Addtocart"
+            ? "usercartmodal"
+            : ""
         }
         child={
           modalDetail.flag === "availabilityModal" ? (
@@ -295,6 +303,11 @@ const ChefDetails = () => {
             <CartFoodModal menuId={menuId} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "ratingchef" ? (
             <ChefRating close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "Addtocart" ? (
+            <AddToCartModal
+              menuId={menuId}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )
@@ -304,23 +317,47 @@ const ChefDetails = () => {
             <>
               <h2 className="modal_Heading">Availability</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : modalDetail.flag === "CartFood" ? (
             <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
           ) : modalDetail.flag === "ratingchef" ? (
             <>
               <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancelimg" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
               </p>
             </>
-          ) : (
+          )
+          : modalDetail.flag === "Addtocart" ? (
+            <>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
+              </p>
+            </>
+          )
+           : (
             ""
           )
         }
