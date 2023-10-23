@@ -305,6 +305,7 @@ const ChefDetails = () => {
             <ChefRating close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Addtocart" ? (
             <AddToCartModal
+              chefId={id}
               menuId={menuId}
               close={() => handleOnCloseModal()}
             />

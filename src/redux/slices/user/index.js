@@ -5,12 +5,41 @@ const initialState = {
   address: [],
   userAddres: [],
   helperPagesData: [],
+  cartData: [],
+  cartCount: [],
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getAllCartCartCount: (state) => {
+      state.loading = true;
+    },
+    setGetAllCartCartCount: (state, action) => {
+      state.loading = false;
+      state.cartCount = action.payload;
+    },
+    deleteCartItem: (state) => {
+      state.loading = true;
+    },
+    setDeleteCartItem: (state, action) => {
+      state.loading = false;
+      state.cartData = action.payload;
+    },
+    getAllCart: (state) => {
+      state.loading = true;
+    },
+    setGetAllCart: (state, action) => {
+      state.loading = false;
+      state.cartData = action.payload;
+    },
+    addToCart: (state) => {
+      state.loading = true;
+    },
+    setAddToCart: (state) => {
+      state.loading = false;
+    },
     getHelperPages: (state) => {
       state.loading = true;
     },
@@ -78,7 +107,15 @@ export const {
   addContactUsDetail,
   setAddContactUsDetail,
   setGetHelperPages,
-  getHelperPages
+  getHelperPages,
+  addToCart,
+  setAddToCart,
+  getAllCart,
+  setGetAllCart,
+  deleteCartItem,
+  setDeleteCartItem,
+  getAllCartCartCount,
+  setGetAllCartCartCount
 } = userSilce.actions;
 
 export default userSilce.reducer;

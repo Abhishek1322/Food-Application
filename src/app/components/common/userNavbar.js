@@ -9,6 +9,10 @@ import UserNotification from "./shared/UserNotification";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../redux/slices/web";
+import {
+  getAllCartCartCount,
+  onErrorStopLoad,
+} from "../../../redux/slices/user";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -25,7 +29,7 @@ const User_Navbar = () => {
     title: "",
     flag: "",
   });
-  
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -124,6 +128,24 @@ const User_Navbar = () => {
     );
   }, []);
 
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // get cart data and cart count
+  useEffect(() => {
+    dispatch(
+      getAllCartCartCount({
+        cb(res) {
+          if (res.status === 200) {
+            console.log("response", res);
+          }
+        },
+      })
+    );
+  }, []);
+
   return (
     <>
       <div className="main_Setting">
@@ -180,15 +202,17 @@ const User_Navbar = () => {
                         />
                       </figure>
                     </div>
-                    <div className="menuBox cart">
+                    <div
+                      onClick={() => {
+                        setModalDetail({ show: true, flag: "Usercart" });
+                        setKey(Math.random());
+                      }}
+                      className="menuBox cart"
+                    >
                       <img
                         src={Images.basketImg}
                         alt="logo"
                         className="img-fluid basketImg"
-                        onClick={() => {
-                          setModalDetail({ show: true, flag: "Usercart" });
-                          setKey(Math.random());
-                        }}
                       />
                       <span className="cartItems">0</span>
                     </div>
