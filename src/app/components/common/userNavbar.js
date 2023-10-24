@@ -9,10 +9,7 @@ import UserNotification from "./shared/UserNotification";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../redux/slices/web";
-import {
-  getAllCartCartCount,
-  onErrorStopLoad,
-} from "../../../redux/slices/user";
+import { useUserSelector } from "../../../redux/selector/user";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -20,6 +17,7 @@ const User_Navbar = () => {
   const { pathname } = location;
   const APIkey = "Enter-your-api-key";
   const authData = useAuthSelector();
+  const allUserData = useUserSelector();
   const userId = localStorage.getItem("userId");
   const [key, setKey] = useState(Math.random());
   const [currentLocation, setCurrentLocation] = useState();
@@ -128,47 +126,44 @@ const User_Navbar = () => {
     );
   }, []);
 
-  // stop loader on page load
-  useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
-
-  // get cart data and cart count
-  useEffect(() => {
-    dispatch(
-      getAllCartCartCount({
-        cb(res) {
-          if (res.status === 200) {
-            console.log("response", res);
-          }
-        },
-      })
-    );
-  }, []);
-
   return (
     <>
       <div className="main_Setting">
         <div className="navMain">
           <div className="container-fluid p-0">
-            {pathname === "/home-user" ? (
+            {pathname === "/home-user" ||
+            pathname === "/user-chef-home" ||
+            pathname === "/user-order-home" ||
+            pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-sm-12">
-                  <h1 className="chefCommonHeader">
-                    Hello,{" "}
-                    <span className="chefHeading">
-                      {" "}
-                      {userData?.userInfo?.firstName} !
-                    </span>
-                  </h1>
-                  <img
-                    src={Images.HeaderLocation}
-                    className="img-fluid"
-                    alt="headerlocation"
-                  />
-                  <span className="ordertimeaddress ms-1">
-                    New York, 10003, 2nd Street dorm
-                  </span>
+                  {pathname === "/home-user" ? (
+                    <>
+                      <h1 className="chefCommonHeader">
+                        Hello,{" "}
+                        <span className="chefHeading">
+                          {" "}
+                          {userData?.userInfo?.firstName} !
+                        </span>
+                      </h1>
+                      <img
+                        src={Images.HeaderLocation}
+                        className="img-fluid"
+                        alt="headerlocation"
+                      />
+                      <span className="ordertimeaddress ms-1">
+                        New York, 10003, 2nd Street dorm
+                      </span>
+                    </>
+                  ) : pathname === "/user-chef-home" ? (
+                    <h1 className="chefCommonHeader">Chefs</h1>
+                  ) : pathname === "/user-order-home" ? (
+                    <h1 className="chefCommonHeader">My Orders</h1>
+                  ) : pathname === "/setting" ? (
+                    <h1 className="chefCommonHeader">Setting</h1>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="col-lg-6 col-sm-12 text-end">
                   <div className="flexBox">
@@ -214,211 +209,11 @@ const User_Navbar = () => {
                         alt="logo"
                         className="img-fluid basketImg"
                       />
-                      <span className="cartItems">0</span>
-                    </div>
-                    <button
-                      className="sarahmessagebtn d-none"
-                      onClick={() => {
-                        handleUserProfile("bookchef");
-                      }}
-                    >
-                      <div className="booknowimg">
-                        <img
-                          src={Images.lightcap}
-                          alt="timesquareimage"
-                          className="img-fluid"
-                        />
-                      </div>
-
-                      <p className="availableheading">Book Now</p>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : pathname === "/user-chef-home" ? (
-              <div className="row align-items-center">
-                <div className="col-lg-6 col-sm-12">
-                  <h1 className="chefCommonHeader">Chefs</h1>
-                </div>
-                <div className="col-lg-6 col-sm-12 text-end">
-                  <div className="flexBox">
-                    <div className="headermenu">
-                      <figure className="menuBox">
-                        <img
-                          src={Images.chat}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                          onClick={() => {
-                            handleUserProfile("chatmessage");
-                          }}
-                        />
-                      </figure>
-                    </div>
-                    <div className="headeritem">
-                      <figure
-                        className="menuBox"
-                        onClick={() => {
-                          setModalDetail({
-                            show: true,
-                            flag: "userNotification",
-                          });
-                          setKey(Math.random());
-                        }}
-                      >
-                        <img
-                          src={Images.bellImage}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                        />
-                      </figure>
-                    </div>
-                    <div className="menuBox cart">
-                      <img
-                        src={Images.basketImg}
-                        alt="logo"
-                        className="img-fluid basketImg"
-                        onClick={() => {
-                          setModalDetail({ show: true, flag: "Usercart" });
-                          setKey(Math.random());
-                        }}
-                      />
-                      <span className="cartItems">0</span>
-                    </div>
-                    <button
-                      className="sarahmessagebtn d-none"
-                      onClick={() => {
-                        handleUserProfile("bookchef");
-                      }}
-                    >
-                      <div className="booknowimg">
-                        <img
-                          src={Images.lightcap}
-                          alt="timesquareimage"
-                          className="img-fluid"
-                        />
-                      </div>
-
-                      <p className="availableheading">Book Now</p>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : pathname === "/user-order-home" ? (
-              <div className="row align-items-center">
-                <div className="col-lg-6 col-sm-12">
-                  <h1 className="chefCommonHeader">My Orders</h1>
-                </div>
-                <div className="col-lg-6 col-sm-12 text-end">
-                  <div className="flexBox">
-                    <div className="headermenu">
-                      <figure className="menuBox">
-                        <img
-                          src={Images.chat}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                          onClick={() => {
-                            handleUserProfile("chatmessage");
-                          }}
-                        />
-                      </figure>
-                    </div>
-                    <div className="headeritem">
-                      <figure
-                        className="menuBox"
-                        onClick={() => {
-                          setModalDetail({
-                            show: true,
-                            flag: "userNotification",
-                          });
-                          setKey(Math.random());
-                        }}
-                      >
-                        <img
-                          src={Images.bellImage}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                        />
-                      </figure>
-                    </div>
-                    <div className="menuBox cart">
-                      <img
-                        src={Images.basketImg}
-                        alt="logo"
-                        className="img-fluid basketImg"
-                        onClick={() => {
-                          setModalDetail({ show: true, flag: "Usercart" });
-                          setKey(Math.random());
-                        }}
-                      />
-                      <span className="cartItems">0</span>
-                    </div>
-                    <button
-                      className="sarahmessagebtn d-none"
-                      onClick={() => {
-                        handleUserProfile("bookchef");
-                      }}
-                    >
-                      <div className="booknowimg">
-                        <img
-                          src={Images.lightcap}
-                          alt="timesquareimage"
-                          className="img-fluid"
-                        />
-                      </div>
-
-                      <p className="availableheading">Book Now</p>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : pathname === "/setting" ? (
-              <div className="row align-items-center">
-                <div className="col-lg-6 col-sm-12">
-                  <h1 className="chefCommonHeader">Settings</h1>
-                </div>
-                <div className="col-lg-6 col-sm-12 text-end">
-                  <div className="flexBox">
-                    <div className="headermenu">
-                      <figure className="menuBox">
-                        <img
-                          src={Images.chat}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                          onClick={() => {
-                            handleUserProfile("chatmessage");
-                          }}
-                        />
-                      </figure>
-                    </div>
-                    <div className="headeritem">
-                      <figure
-                        className="menuBox"
-                        onClick={() => {
-                          setModalDetail({
-                            show: true,
-                            flag: "userNotification",
-                          });
-                          setKey(Math.random());
-                        }}
-                      >
-                        <img
-                          src={Images.bellImage}
-                          alt="logo"
-                          className="img-fluid chatIconImage"
-                        />
-                      </figure>
-                    </div>
-                    <div className="menuBox cart">
-                      <img
-                        src={Images.basketImg}
-                        alt="logo"
-                        className="img-fluid basketImg"
-                        onClick={() => {
-                          setModalDetail({ show: true, flag: "Usercart" });
-                          setKey(Math.random());
-                        }}
-                      />
-                      <span className="cartItems">0</span>
+                      <span className="cartItems">
+                        {allUserData?.cartCount?.totalRecords
+                          ? allUserData?.cartCount?.totalRecords
+                          : 0}
+                      </span>
                     </div>
                     <button
                       className="sarahmessagebtn d-none"
@@ -584,7 +379,7 @@ const User_Navbar = () => {
             </>
           ) : modalDetail.flag === "Usercart" ? (
             <>
-              <h2 className="modal_Heading">Cart</h2>
+              <h2 className="modal_Heading">CheckOut</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img
                   src={Images.modalCancel}

@@ -14,34 +14,9 @@ import {
   setAddToCart,
   setGetAllCart,
   setDeleteCartItem,
-  setGetAllCartCartCount,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
-
-function* getAllCartCartCount(action) {
-  try {
-    const resp = yield call(
-      ApiClient.get,
-      (action.url = ApiPath.userApiPath.ALL_CART_COUNT),
-      (action.payload = action.payload)
-    );
-    if (resp.status) {
-      yield put(setGetAllCartCartCount(resp.data.data));
-      yield call(action.payload.cb, resp);
-    } else {
-      throw resp;
-    }
-  } catch (e) {
-    yield put(onErrorStopLoad());
-    toast.dismiss();
-    if (e.response.data.data[0]) {
-      toast.error(e.response.data.data[0]);
-    } else {
-      toast.error(e.response.data.message);
-    }
-  }
-}
 
 function* deleteCartItem(action) {
   try {
@@ -80,11 +55,7 @@ function* getAllCart(action) {
   } catch (e) {
     yield put(onErrorStopLoad());
     toast.dismiss();
-    if (e.response.data.data[0]) {
-      toast.error(e.response.data.data[0]);
-    } else {
-      toast.error(e.response.data.message);
-    }
+    toast.error(e.response.data.message);
   }
 }
 
@@ -278,7 +249,6 @@ function* userSaga() {
   yield all([takeLatest("user/addToCart", addToCart)]);
   yield all([takeLatest("user/getAllCart", getAllCart)]);
   yield all([takeLatest("user/deleteCartItem", deleteCartItem)]);
-  yield all([takeLatest("user/getAllCartCartCount", getAllCartCartCount)]);
 }
 
 export default userSaga;

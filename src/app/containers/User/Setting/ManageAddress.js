@@ -92,67 +92,73 @@ const UserManageAddress = () => {
               </h6>
               {address && address.length > 0 ? (
                 <>
-                  {address?.map((item, index) => (
-                    <div key={index} className="managehome mt-5 mb-3">
-                      <img
-                        src={
-                          item.type === "home"
-                            ? Images.ManageHome
-                            : item.type === "office"
-                            ? Images.ManageOffice
-                            : item.type === "other"
-                            ? Images.chatsDots
-                            : ""
-                        }
-                        alt="Homeimg"
-                        className="img-fluid"
-                      />
-                      <div className="managetext">
-                        <h6 className="notificationText">{item?.type}</h6>
-                        <p className="cheftext pt-1">{item?.streetAddress}</p>
-                        <div className="dropdown  dropstart managedrop">
-                          <img
-                            src={Images.chatsDots}
-                            className="dropdown-toggle manageimg"
-                            alt="cartcancel"
-                            data-bs-toggle="dropdown"
-                          />
-                          <ul className="dropdown-menu">
-                            <li>
-                              <img
-                                src={Images.EditImg}
-                                alt="editimage"
-                                className="img-fluid"
-                              />{" "}
-                              <span
-                                onClick={() => {
-                                  handleUserProfile("editaddress", item?._id);
-                                }}
-                                className="editdrop"
-                              >
-                                Edit{" "}
-                              </span>
-                            </li>
-                            <li>
-                              <img
-                                src={Images.cartDelete}
-                                alt="editimage"
-                                className="img-fluid"
-                              />{" "}
-                              <span
-                                onClick={() => {
-                                  handleUserProfile("deleteaddress", item?._id);
-                                }}
-                                className="editdrop"
-                              >
-                                Delete
-                              </span>
-                            </li>
-                          </ul>
+                  {address
+                    ?.slice()
+                    ?.reverse()
+                    ?.map((item, index) => (
+                      <div key={index} className="managehome mt-5 mb-3">
+                        <img
+                          src={
+                            item.type === "home"
+                              ? Images.ManageHome
+                              : item.type === "office"
+                              ? Images.ManageOffice
+                              : item.type === "other"
+                              ? Images.chatsDots
+                              : ""
+                          }
+                          alt="Homeimg"
+                          className="img-fluid"
+                        />
+                        <div className="managetext">
+                          <h6 className="notificationText">{item?.type}</h6>
+                          <p className="cheftext pt-1">{item?.streetAddress}</p>
+                          <div className="dropdown  dropstart managedrop">
+                            <img
+                              src={Images.chatsDots}
+                              className="dropdown-toggle manageimg"
+                              alt="cartcancel"
+                              data-bs-toggle="dropdown"
+                            />
+                            <ul className="dropdown-menu">
+                              <li>
+                                <img
+                                  src={Images.EditImg}
+                                  alt="editimage"
+                                  className="img-fluid"
+                                />{" "}
+                                <span
+                                  onClick={() => {
+                                    handleUserProfile("editaddress", item?._id);
+                                  }}
+                                  className="editdrop"
+                                >
+                                  Edit{" "}
+                                </span>
+                              </li>
+                              <li>
+                                <img
+                                  src={Images.cartDelete}
+                                  alt="editimage"
+                                  className="img-fluid"
+                                />{" "}
+                                <span
+                                  onClick={() => {
+                                    handleUserProfile(
+                                      "deleteaddress",
+                                      item?._id
+                                    );
+                                  }}
+                                  className="editdrop"
+                                >
+                                  Delete
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                   <Link to="#">
                     <h6
                       className="cancelOrder"

@@ -3,16 +3,14 @@ import * as Images from "../../../../utilities/images";
 import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../../../redux/slices/user";
-import { useAuthSelector } from "../../../../redux/selector/auth";
+import { addToCart, getAllCart } from "../../../../redux/slices/user";
 
 const AddToCartModal = (props) => {
-  const { menuId, close, chefId } = props;
-  const authData = useAuthSelector();
+  const { menuId, close } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
-  
+
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -39,7 +37,6 @@ const AddToCartModal = (props) => {
   // add menu item in cart
   const handleAddCart = () => {
     let params = {
-      chefId: chefId,
       menuItemId: menuId,
       quantity: 1,
     };
@@ -49,8 +46,18 @@ const AddToCartModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             close();
+            getLatestCart();
           }
         },
+      })
+    );
+  };
+
+  // get latest cart count
+  const getLatestCart = () => {
+    dispatch(
+      getAllCart({
+        cb(res) {},
       })
     );
   };

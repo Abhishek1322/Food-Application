@@ -222,7 +222,7 @@ const AddAddressModal = (props) => {
                         <div>
                           <input
                             {...getInputProps({
-                              placeholder: "Street Address",
+                              placeholder: "City",
                               className:
                                 "location-search-input customform-control border-input",
                             })}

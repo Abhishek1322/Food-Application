@@ -13,13 +13,6 @@ export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
-    getAllCartCartCount: (state) => {
-      state.loading = true;
-    },
-    setGetAllCartCartCount: (state, action) => {
-      state.loading = false;
-      state.cartCount = action.payload;
-    },
     deleteCartItem: (state) => {
       state.loading = true;
     },
@@ -33,6 +26,7 @@ export const userSilce = createSlice({
     setGetAllCart: (state, action) => {
       state.loading = false;
       state.cartData = action.payload;
+      state.cartCount = action.payload;
     },
     addToCart: (state) => {
       state.loading = true;
@@ -114,8 +108,6 @@ export const {
   setGetAllCart,
   deleteCartItem,
   setDeleteCartItem,
-  getAllCartCartCount,
-  setGetAllCartCartCount
 } = userSilce.actions;
 
 export default userSilce.reducer;
