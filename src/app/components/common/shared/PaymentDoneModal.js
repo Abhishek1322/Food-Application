@@ -3,7 +3,8 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderPlaceModal from "./OrderPlaceModal";
 
-const PaymentDoneModal = () => {
+const PaymentDoneModal = (props) => {
+  const {close} = props;
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -63,7 +64,10 @@ const PaymentDoneModal = () => {
         ids={modalDetail.flag === "orderplace" ? "ordermodalplace" : ""}
         child={
           modalDetail.flag === "orderplace" ? (
-            <OrderPlaceModal close={() => handleOnCloseModal()} />
+            <OrderPlaceModal close={() => {
+            handleOnCloseModal()
+            close()
+            }} />
           ) : (
             ""
           )

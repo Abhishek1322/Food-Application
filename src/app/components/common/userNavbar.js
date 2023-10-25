@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
-import UserCartModal from "./shared/UserCartModal";
 import BookNowModal from "./shared/BookNowModal";
 import UserBellModal from "./shared/UserBellModal";
 import UserNotification from "./shared/UserNotification";
@@ -10,6 +9,7 @@ import { useAuthSelector } from "../../../redux/selector/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../redux/slices/web";
 import { useUserSelector } from "../../../redux/selector/user";
+import CartModal from "./shared/cartModal";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -199,7 +199,7 @@ const User_Navbar = () => {
                     </div>
                     <div
                       onClick={() => {
-                        setModalDetail({ show: true, flag: "Usercart" });
+                        setModalDetail({ show: true, flag: "cartModal" });
                         setKey(Math.random());
                       }}
                       className="menuBox cart"
@@ -335,7 +335,7 @@ const User_Navbar = () => {
             ? "chatmessagemodal"
             : modalDetail.flag === "userNotification"
             ? "userNotificationModal"
-            : modalDetail.flag === "Usercart"
+            : modalDetail.flag === "cartModal"
             ? "usercartmodal"
             : modalDetail.flag === "bookchef"
             ? "bookchefmodal"
@@ -346,8 +346,8 @@ const User_Navbar = () => {
             <UserBellModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "userNotification" ? (
             <UserNotification close={() => handleOnCloseModal()} />
-          ) : modalDetail.flag === "Usercart" ? (
-            <UserCartModal close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "cartModal" ? (
+            <CartModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "bookchef" ? (
             <BookNowModal close={() => handleOnCloseModal()} />
           ) : (
@@ -377,9 +377,9 @@ const User_Navbar = () => {
                 />
               </p>
             </>
-          ) : modalDetail.flag === "Usercart" ? (
+          ) : modalDetail.flag === "cartModal" ? (
             <>
-              <h2 className="modal_Heading">CheckOut</h2>
+              <h2 className="modal_Heading">Cart</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img
                   src={Images.modalCancel}

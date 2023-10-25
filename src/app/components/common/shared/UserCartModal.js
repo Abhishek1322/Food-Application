@@ -12,14 +12,12 @@ import AddAddressModal from "./AddAddressModal";
 import EditAddressModal from "./EditAddressModal";
 import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
-import { useUserSelector } from "../../../../redux/selector/user";
 import PayNowModal from "./PayNowModal";
 
 const UserCartModal = (props) => {
   const { close } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const allUserData = useUserSelector();
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const [chefId, setChefId] = useState("");
@@ -176,7 +174,7 @@ const UserCartModal = (props) => {
 
   return (
     <>
-      <div className="usercartcheck">
+      <div className="usercartcheck userCheckOutModal">
         {allCartItems && allCartItems?.length > 0 ? (
           <>
             {allCartItems?.map((item, index) => (
@@ -398,7 +396,12 @@ const UserCartModal = (props) => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "payNow" ? (
-            <PayNowModal close={() => handleOnCloseModal()} />
+            <PayNowModal
+              close={() => {
+                close();
+                handleOnCloseModal();
+              }}
+            />
           ) : (
             ""
           )
@@ -452,7 +455,10 @@ const UserCartModal = (props) => {
             <>
               <div className="editadressheading">
                 <img
-                  onClick={handleOnCloseModal}
+                  onClick={() => {
+                    close();
+                    handleOnCloseModal();
+                  }}
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
                   className="img-fluid"
@@ -462,7 +468,13 @@ const UserCartModal = (props) => {
                   <p className="chatUser">Debit/Credit cards acceptable</p>
                 </div>
               </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
+              <p
+                onClick={() => {
+                  handleOnCloseModal();
+                  close();
+                }}
+                className="modal_cancel"
+              >
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"

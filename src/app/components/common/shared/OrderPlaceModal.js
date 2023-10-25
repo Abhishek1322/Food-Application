@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
+import { Progress } from "antd";
 
 const OrderPlaceModal = (props) => {
   const { close } = props;
-
   const [key, setKey] = useState(Math.random());
   const [countDown, setCountDown] = useState(60);
+  const [barPercentage, setBarPercentage] = useState();
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-  console.log("countDowncountDown", countDown);
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -34,10 +35,11 @@ const OrderPlaceModal = (props) => {
     setKey(Math.random());
   };
 
+  // run timer
   useEffect(() => {
     const timer = setInterval(() => {
       setCountDown((pre) => pre - 1);
-    }, 200);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, []);
@@ -47,6 +49,13 @@ const OrderPlaceModal = (props) => {
     if (countDown === 0) {
       close();
     }
+  }, [countDown]);
+
+  // set percentage
+  useEffect(() => {
+    const getPercent = (countDown / 60) * 100;
+    const getTotalPercent = 100 - getPercent;
+    setBarPercentage(getTotalPercent);
   }, [countDown]);
 
   return (
@@ -67,23 +76,25 @@ const OrderPlaceModal = (props) => {
               className="foodmodalbtn"
               type="button"
               onClick={() => {
-                handleOpenModal("yourorderplace");
+                close();
               }}
             >
               Okay
             </button>
           </div>
-          <div className="progress orderbar">
-            <div
-              className="progress-bar orderprogress"
-              role="progressbar"
-              aria-valuenow="25"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-          </div>
+          <Progress
+            className="cancelProgressBar"
+            showInfo={false}
+            percent={barPercentage}
+            status="active"
+          />
+
           <p className="progressheading">{countDown} Sec</p>
-          <button className="itemsQuantity" type="button">
+          <button
+            onClick={() => handleOpenModal("wantCancelOrder")}
+            className="itemsQuantity"
+            type="button"
+          >
             Cancel Order
           </button>
         </div>
@@ -96,34 +107,22 @@ const OrderPlaceModal = (props) => {
         isRightSideModal={true}
         mediumWidth={false}
         className={
-          modalDetail.flag === "yourorderplace"
+          modalDetail.flag === "wantCancelOrder"
             ? "commonWidth customContent"
             : ""
         }
-        ids={modalDetail.flag === "yourorderplace" ? "yourordermodalplace" : ""}
-        child={
-          modalDetail.flag === "yourorderplace" ? (
-            <YourOrderModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
+        ids={
+          modalDetail.flag === "wantCancelOrder" ? "yourordermodalplace" : ""
         }
-        header={
-          modalDetail.flag === "yourorderplace" ? (
-            <>
-              {/* <div className='editadressheading'>
-                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
-                            <div className='edithead'>
-                                <h2 className="modal_Heading">
-                                    Pay Now
-                                </h2>
-                                <p className='chatUser'>Debit/Credit cards acceptable</p>
-                            </div>
-                        </div>
-                        <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p> */}
-            </>
+        child={
+          modalDetail.flag === "wantCancelOrder" ? (
+            <YourOrderModal
+              close={() => {
+                close();
+               
+              }}
+              closeModal={()=> handleOnCloseModal()}
+            />
           ) : (
             ""
           )

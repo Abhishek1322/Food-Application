@@ -2030,3 +2030,22 @@ p {
   align-items: center;
   justify-content: center;
 }
+
+.cancelProgressBar .ant-progress-inner {
+  margin-top: 21px;
+  background-color: hsl(24 100% 94% / 1);
+  border-radius: 50px;
+  height: 10px;
+}
+
+.cancelProgressBar .ant-progress-bg {
+  background-color: #e65c00 !important;
+  height: 10px !important;
+}
+
+.userCheckOutModal .modalfooterbtn {
+  max-width: 336px !important;
+}
+.userCheckOutModal .outeraddItem {
+  padding: 0 !important;
+}

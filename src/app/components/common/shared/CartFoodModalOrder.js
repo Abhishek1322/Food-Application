@@ -8,7 +8,7 @@ import UserCartModal from "./UserCartModal";
 import { addToCart } from "../../../../redux/slices/user";
 
 const CartFoodModalOrder = (props) => {
-  const { menuId } = props;
+  const { menuId, close } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -208,7 +208,12 @@ const CartFoodModalOrder = (props) => {
         ids={modalDetail.flag === "allCart" ? "CartModal" : ""}
         child={
           modalDetail.flag === "allCart" ? (
-            <UserCartModal close={() => handleOnCloseModal()} />
+            <UserCartModal
+              close={() => {
+                handleOnCloseModal();
+                close();
+              }}
+            />
           ) : (
             ""
           )
@@ -217,7 +222,13 @@ const CartFoodModalOrder = (props) => {
           modalDetail.flag === "allCart" ? (
             <>
               <h2 className="modal_Heading">CheckOut</h2>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
+              <p
+                onClick={() => {
+                  handleOnCloseModal();
+                  close();
+                }}
+                className="modal_cancel"
+              >
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"

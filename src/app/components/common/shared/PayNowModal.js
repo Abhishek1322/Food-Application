@@ -3,7 +3,9 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import PaymentDoneModal from "./PaymentDoneModal";
 
-const PayNowModal = () => {
+const PayNowModal = (props) => {
+  const { close } = props;
+
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -126,7 +128,9 @@ const PayNowModal = () => {
         ids={modalDetail.flag === "paydone" ? "paydonemodal" : ""}
         child={
           modalDetail.flag === "paydone" ? (
-            <PaymentDoneModal close={() => handleOnCloseModal()} />
+            <PaymentDoneModal close={() => {
+              close();
+            handleOnCloseModal()}} />
           ) : (
             ""
           )
