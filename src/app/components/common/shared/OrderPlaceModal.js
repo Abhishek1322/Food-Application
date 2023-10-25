@@ -1,98 +1,136 @@
-import React, { useState } from 'react'
-import * as Images from "../../../../utilities/images"
-import CustomModal from './CustomModal';
-import YourOrderModal from './YourOrderModal';
+import React, { useEffect, useState } from "react";
+import * as Images from "../../../../utilities/images";
+import CustomModal from "./CustomModal";
+import YourOrderModal from "./YourOrderModal";
+import { Progress } from "antd";
 
-const OrderPlaceModal = () => {
-    const [key, setKey] = useState(Math.random());
-    const [modalDetail, setModalDetail] = useState({
-        show: false,
-        title: "",
-        flag: "",
+const OrderPlaceModal = (props) => {
+  const { close } = props;
+  const [key, setKey] = useState(Math.random());
+  const [countDown, setCountDown] = useState(60);
+  const [barPercentage, setBarPercentage] = useState();
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
     });
+    setKey(Math.random());
+  };
 
-    //closeModal
-    const handleOnCloseModal = () => {
-        setModalDetail({
-            show: false,
-            title: "",
-            flag: "",
-        });
-        setKey(Math.random());
-    };
+  // open modal
+  const handleOpenModal = (flag) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
 
-    const handleUserProfile = (flag) => {
+  // run timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountDown((pre) => pre - 1);
+    }, 1000);
 
-        setModalDetail({
-            show: true,
-            flag: flag,
-            type: flag,
-        });
-        setKey(Math.random());
-    };
-    return (
-        <>
-            <div className='orderplacesection paymentdonesection'>
-                    <img src={Images.accountDeleted} alt='accountdeletedimg' className='img-fluid' />
-                    <h1 className='accountDeleted mt-3'> Order Placed</h1>
-                    <p className='accountdeletetxt mt-2 '>Your order has been
-                        successfully placed.</p>
-                    <div className='modalfooterbtn'>
-                        <div className='addfoodbtn'>
-                            <button className='foodmodalbtn' type='button' onClick={() => {
-                                            handleUserProfile("yourorderplace")
-                                        }}>
-                            Okay
-                            </button>
-                        </div>
-                        <div className="progress orderbar">
-                            <div className="progress-bar orderprogress" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <p className='progressheading'>59 Sec</p>
-                        <button className='itemsQuantity' type='button'>Cancel Order</button>
-                    </div>
-            </div>
-            <CustomModal
-                key={key}
-                show={modalDetail.show}
-                backdrop="static"
-                showCloseBtn={false}
-                isRightSideModal={true}
-                mediumWidth={false}
-                className={modalDetail.flag === "yourorderplace" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "yourorderplace" ? "yourordermodalplace" : ""}
-                child={
-                    modalDetail.flag === "yourorderplace" ? (
-                        <YourOrderModal
-                            close={() => handleOnCloseModal()}
-                        />
-                    ) :
-                        ""
-                }
-                header=
+    return () => clearInterval(timer);
+  }, []);
 
-                {modalDetail.flag === "yourorderplace" ?
-                    <>
-                        {/* <div className='editadressheading'>
-                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
-                            <div className='edithead'>
-                                <h2 className="modal_Heading">
-                                    Pay Now
-                                </h2>
-                                <p className='chatUser'>Debit/Credit cards acceptable</p>
-                            </div>
-                        </div>
-                        <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p> */}
-                    </>
-                    :
-                    ''
-                }
-                onCloseModal={() => handleOnCloseModal()}
+  // close existing modal
+  useEffect(() => {
+    if (countDown === 0) {
+      close();
+    }
+  }, [countDown]);
+
+  // set percentage
+  useEffect(() => {
+    const getPercent = (countDown / 60) * 100;
+    const getTotalPercent = 100 - getPercent;
+    setBarPercentage(getTotalPercent);
+  }, [countDown]);
+
+  return (
+    <>
+      <div className="orderplacesection paymentdonesection">
+        <img
+          src={Images.accountDeleted}
+          alt="accountdeletedimg"
+          className="img-fluid"
+        />
+        <h1 className="accountDeleted mt-3"> Order Placed</h1>
+        <p className="accountdeletetxt mt-2 ">
+          Your order has been successfully placed.
+        </p>
+        <div className="modalfooterbtn">
+          <div className="addfoodbtn">
+            <button
+              className="foodmodalbtn"
+              type="button"
+              onClick={() => {
+                close();
+              }}
+            >
+              Okay
+            </button>
+          </div>
+          <Progress
+            className="cancelProgressBar"
+            showInfo={false}
+            percent={barPercentage}
+            status="active"
+          />
+
+          <p className="progressheading">{countDown} Sec</p>
+          <button
+            onClick={() => handleOpenModal("wantCancelOrder")}
+            className="itemsQuantity"
+            type="button"
+          >
+            Cancel Order
+          </button>
+        </div>
+      </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "wantCancelOrder"
+            ? "commonWidth customContent"
+            : ""
+        }
+        ids={
+          modalDetail.flag === "wantCancelOrder" ? "yourordermodalplace" : ""
+        }
+        child={
+          modalDetail.flag === "wantCancelOrder" ? (
+            <YourOrderModal
+              close={() => {
+                close();
+               
+              }}
+              closeModal={()=> handleOnCloseModal()}
             />
-        </>
-    )
-}
+          ) : (
+            ""
+          )
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
+    </>
+  );
+};
 
-export default OrderPlaceModal
+export default OrderPlaceModal;

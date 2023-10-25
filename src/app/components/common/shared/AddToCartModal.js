@@ -3,9 +3,10 @@ import * as Images from "../../../../utilities/images";
 import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart, getAllCart } from "../../../../redux/slices/user";
 
 const AddToCartModal = (props) => {
-  const { menuId } = props;
+  const { menuId, close } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -32,6 +33,34 @@ const AddToCartModal = (props) => {
       })
     );
   }, []);
+
+  // add menu item in cart
+  const handleAddCart = () => {
+    let params = {
+      menuItemId: menuId,
+      quantity: 1,
+    };
+    dispatch(
+      addToCart({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            close();
+            getLatestCart();
+          }
+        },
+      })
+    );
+  };
+
+  // get latest cart count
+  const getLatestCart = () => {
+    dispatch(
+      getAllCart({
+        cb(res) {},
+      })
+    );
+  };
 
   return (
     <>
@@ -87,7 +116,11 @@ const AddToCartModal = (props) => {
 
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
-            <button className="foodmodalbtn" type="button">
+            <button
+              onClick={() => handleAddCart()}
+              className="foodmodalbtn"
+              type="button"
+            >
               Add to cart
             </button>
           </div>

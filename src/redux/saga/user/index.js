@@ -11,9 +11,78 @@ import {
   setDeleteAddress,
   setAddContactUsDetail,
   setGetHelperPages,
+  setAddToCart,
+  setGetAllCart,
+  setDeleteCartItem,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* deleteCartItem(action) {
+  try {
+    const resp = yield call(
+      ApiClient.put,
+      (action.url = `${ApiPath.userApiPath.REMOVE_CART}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setDeleteCartItem(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* getAllCart(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = ApiPath.userApiPath.ALL_CART),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetAllCart(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* addToCart(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.userApiPath.ADD_CART),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setAddToCart(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
 
 function* getHelperPages(action) {
   try {
@@ -177,6 +246,9 @@ function* userSaga() {
   yield all([takeLatest("user/deleteAddress", deleteAddress)]);
   yield all([takeLatest("user/addContactUsDetail", addContactUsDetail)]);
   yield all([takeLatest("user/getHelperPages", getHelperPages)]);
+  yield all([takeLatest("user/addToCart", addToCart)]);
+  yield all([takeLatest("user/getAllCart", getAllCart)]);
+  yield all([takeLatest("user/deleteCartItem", deleteCartItem)]);
 }
 
 export default userSaga;

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "./CustomModal";
-import CartModal from "./cartModal";
 import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
-import AddAddressModal from "./AddAddressModal";
+import UserCartModal from "./UserCartModal";
+import { addToCart } from "../../../../redux/slices/user";
 
 const CartFoodModalOrder = (props) => {
-  const { menuId } = props;
+  const { menuId, close } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const CartFoodModalOrder = (props) => {
   };
 
   // open modal
-  const handleUserProfile = (flag) => {
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -57,16 +57,16 @@ const CartFoodModalOrder = (props) => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setFoodDetails(res.data.data.item);
-            setItemPrice(res.data.data.price);
-            setTotalPrice(res.data.data.price);
-            setDeliverFrom(res.data.data.address)
+            setFoodDetails(res?.data?.data?.item);
+            setItemPrice(res?.data?.data?.item?.price);
+            setTotalPrice(res?.data?.data?.item?.price);
+            setDeliverFrom(res?.data?.data?.address);
           }
         },
       })
     );
   }, []);
-  
+
   // increase item quantity
   const handleIcreaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -79,6 +79,24 @@ const CartFoodModalOrder = (props) => {
       setQuantity(quantity - 1);
       setTotalPrice((pre) => Number(pre) - Number(itemPrice));
     }
+  };
+
+  // add menu item in cart
+  const handleAddCart = () => {
+    let params = {
+      menuItemId: menuId,
+      quantity: quantity,
+    };
+    dispatch(
+      addToCart({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleOpenModal("allCart");
+          }
+        },
+      })
+    );
   };
 
   return (
@@ -124,9 +142,7 @@ const CartFoodModalOrder = (props) => {
           </div>
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Deliver From</h6>
-            <p className="chatSearchere_  mt-1">
-              {deliverFrom}
-            </p>
+            <p className="chatSearchere_  mt-1">{deliverFrom}</p>
           </div>
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Description</h6>
@@ -171,10 +187,10 @@ const CartFoodModalOrder = (props) => {
               className="orderbutton"
               type="button"
               onClick={() => {
-                handleUserProfile("AddAddress");
+                handleAddCart();
               }}
             >
-              Order Now
+              CheckOut
             </button>
           </div>
         </div>
@@ -189,27 +205,30 @@ const CartFoodModalOrder = (props) => {
         className={
           modalDetail.flag === "CartModal" ? "commonWidth customContent" : ""
         }
-        ids={
-          modalDetail.flag === "CartModal"
-            ? "CartModal"
-            : modalDetail.flag === "AddAddress"
-            ? "editaddress"
-            : ""
-        }
+        ids={modalDetail.flag === "allCart" ? "CartModal" : ""}
         child={
-          modalDetail.flag === "CartModal" ? (
-            <CartModal close={() => handleOnCloseModal()} />
-          ) : modalDetail.flag === "AddAddress" ? (
-            <AddAddressModal close={() => handleOnCloseModal()} />
+          modalDetail.flag === "allCart" ? (
+            <UserCartModal
+              close={() => {
+                handleOnCloseModal();
+                close();
+              }}
+            />
           ) : (
             ""
           )
         }
         header={
-          modalDetail.flag === "CartModal" ? (
+          modalDetail.flag === "allCart" ? (
             <>
-              <h2 className="modal_Heading">Cart</h2>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
+              <h2 className="modal_Heading">CheckOut</h2>
+              <p
+                onClick={() => {
+                  handleOnCloseModal();
+                  close();
+                }}
+                className="modal_cancel"
+              >
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"
@@ -217,19 +236,6 @@ const CartFoodModalOrder = (props) => {
                 />
               </p>
             </>
-          ) : modalDetail.flag === "AddAddress" ? (
-            <div className="editadressheading">
-              <img
-                onClick={handleOnCloseModal}
-                src={Images.backArrowpassword}
-                alt="backarrowimage"
-                className="img-fluid"
-              />
-              <div className="edithead">
-                <h2 className="modal_Heading">Add New Address</h2>
-                <p className="chatUser">Add Address below</p>
-              </div>
-            </div>
           ) : (
             ""
           )

@@ -345,8 +345,7 @@ const ChefDetails = () => {
                 />
               </p>
             </>
-          )
-          : modalDetail.flag === "Addtocart" ? (
+          ) : modalDetail.flag === "Addtocart" ? (
             <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img
@@ -356,8 +355,7 @@ const ChefDetails = () => {
                 />
               </p>
             </>
-          )
-           : (
+          ) : (
             ""
           )
         }

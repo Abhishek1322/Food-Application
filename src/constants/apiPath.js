@@ -30,6 +30,10 @@ const ApiPath = {
     CONTACT_US: "/support_tickets/support-ticktes",
     HELPER_PAGES: "/helperPages/get-by-slug",
     HELPER_PAGES_BY_SLUG: "/helperPages/slug",
+    ADD_CART: "/cart",
+    ALL_CART: "/cart/cart",
+    REMOVE_CART: "/cart/remove-item",
+    ALL_CART_COUNT: "/cart/my-cart",
   },
 };
 

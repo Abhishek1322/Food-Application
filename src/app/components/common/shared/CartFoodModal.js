@@ -7,7 +7,7 @@ import CustomModal from "./CustomModal";
 import CartFoodModalOrder from "./CartFoodModalOrder";
 
 const CartFoodModal = (props) => {
-  const { menuId } = props;
+  const { menuId,close } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const CartFoodModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             setFoodDetails(res.data.data.item);
-            setDeliverFrom(res.data.data.address)
+            setDeliverFrom(res.data.data.address);
           }
         },
       })
@@ -104,9 +104,7 @@ const CartFoodModal = (props) => {
           </div>
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Deliver From</h6>
-            <p className="chatSearchere_  mt-1">
-              {deliverFrom}
-            </p>
+            <p className="chatSearchere_  mt-1">{deliverFrom}</p>
           </div>
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Description</h6>
@@ -146,7 +144,9 @@ const CartFoodModal = (props) => {
           modalDetail.flag === "CartFoodOrder" ? (
             <CartFoodModalOrder
               menuId={menuId}
-              close={() => handleOnCloseModal()}
+              close={() => {handleOnCloseModal()
+                close()
+              }}
             />
           ) : (
             ""
@@ -155,7 +155,9 @@ const CartFoodModal = (props) => {
         header={
           modalDetail.flag === "CartFoodOrder" ? (
             <>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
+              <p onClick={()=>{
+                close()
+                handleOnCloseModal()}} className="modal_cancel">
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"

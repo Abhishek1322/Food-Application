@@ -116,6 +116,7 @@ import dummyProfile from "../public/images/dummyProfile.svg"
 import HeaderLocation from "../public/images/headerLocation.svg"
 import uploadFileImg from "../public/images/uploadFileImg.svg"
 import logoutImg from "../public/images/logoutImg.svg"
+import otherImg from "../public/images/Other.svg"
 
 
 
@@ -239,4 +240,5 @@ export {
     HeaderLocation,
     uploadFileImg,
     logoutImg,
+    otherImg,
 }
