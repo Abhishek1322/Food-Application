@@ -1689,7 +1689,7 @@ line-height: normal;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
-    margin: 8px 5px 8px 10px;
+    margin: 8px 5px 8px 25px;
 }
 
 .totalPrice {
