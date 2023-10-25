@@ -4,7 +4,7 @@ import CustomModal from "./CustomModal";
 import OrderPlaceModal from "./OrderPlaceModal";
 
 const PaymentDoneModal = (props) => {
-  const {close} = props;
+  const {close,orderId} = props;
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -35,7 +35,7 @@ const PaymentDoneModal = (props) => {
   useEffect(() => {
     setTimeout(() => {
       handleOpneModal("orderplace");
-    }, 1500);
+    }, 1700);
   }, []);
 
   return (
@@ -64,7 +64,7 @@ const PaymentDoneModal = (props) => {
         ids={modalDetail.flag === "orderplace" ? "ordermodalplace" : ""}
         child={
           modalDetail.flag === "orderplace" ? (
-            <OrderPlaceModal close={() => {
+            <OrderPlaceModal orderId={orderId} close={() => {
             handleOnCloseModal()
             close()
             }} />

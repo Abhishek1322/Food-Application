@@ -34,6 +34,9 @@ const ApiPath = {
     ALL_CART: "/cart/cart",
     REMOVE_CART: "/cart/remove-item",
     ALL_CART_COUNT: "/cart/my-cart",
+    MENU_ORDER: "/order",
+    CANCEL_ORDER: "/order/change-status",
+    GET_ALL_ORDER: "/order/user",
   },
 };
 

@@ -3,9 +3,11 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
 import { Progress } from "antd";
+import { useDispatch } from "react-redux";
 
 const OrderPlaceModal = (props) => {
-  const { close } = props;
+  const { close, orderId } = props;
+  const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const [countDown, setCountDown] = useState(60);
   const [barPercentage, setBarPercentage] = useState();
@@ -57,6 +59,8 @@ const OrderPlaceModal = (props) => {
     const getTotalPercent = 100 - getPercent;
     setBarPercentage(getTotalPercent);
   }, [countDown]);
+
+ 
 
   return (
     <>
@@ -117,11 +121,11 @@ const OrderPlaceModal = (props) => {
         child={
           modalDetail.flag === "wantCancelOrder" ? (
             <YourOrderModal
+            orderId={orderId}
               close={() => {
                 close();
-               
               }}
-              closeModal={()=> handleOnCloseModal()}
+              closeModal={() => handleOnCloseModal()}
             />
           ) : (
             ""

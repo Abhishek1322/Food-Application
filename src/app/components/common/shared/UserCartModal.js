@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import {
   getAllCart,
@@ -13,6 +13,7 @@ import EditAddressModal from "./EditAddressModal";
 import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
 import PayNowModal from "./PayNowModal";
+import { toast } from "react-toastify";
 
 const UserCartModal = (props) => {
   const { close } = props;
@@ -20,6 +21,8 @@ const UserCartModal = (props) => {
   const navigate = useNavigate();
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
+  const toastId = useRef(null);
+  console.log("cartIdcartId", cartId);
   const [chefId, setChefId] = useState("");
   const [key, setKey] = useState(Math.random());
   const [totalPrice, setTotalPrice] = useState([]);
@@ -150,8 +153,20 @@ const UserCartModal = (props) => {
     });
     setKey(Math.random());
   };
+
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // open modal
   const handleOpenModal = (flag, id) => {
+    if (flag === "payNow" && !selectedAddress) {
+      showToast("Please select delivery address");
+      return;
+    }
     setModalDetail({
       show: true,
       flag: flag,
@@ -401,6 +416,9 @@ const UserCartModal = (props) => {
                 close();
                 handleOnCloseModal();
               }}
+              cartId={cartId}
+              selectedAddress={selectedAddress}
+              orderPrice={totalPrice}
             />
           ) : (
             ""

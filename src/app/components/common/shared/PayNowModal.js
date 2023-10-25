@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import PaymentDoneModal from "./PaymentDoneModal";
+import { createOrder, onErrorStopLoad } from "../../../../redux/slices/user";
+import { useDispatch } from "react-redux";
+import { usePaymentInputs } from "react-payment-inputs";
+import { toast } from "react-toastify";
 
 const PayNowModal = (props) => {
-  const { close } = props;
-
+  const { close, cartId, selectedAddress, orderPrice } = props;
+  const dispatch = useDispatch();
+  const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
+  const [orderId, setOrderId] = useState("");
+  const [formData, setFormData] = useState({
+    cardHolderName: "",
+    cardNumber: "",
+    cardExpiry: "",
+    cvv: "",
+  });
+
+
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
+
+  const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } =
+    usePaymentInputs();
+
+  //onchange input
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -23,7 +46,8 @@ const PayNowModal = (props) => {
     setKey(Math.random());
   };
 
-  const handleUserProfile = (flag) => {
+  // open modal
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -31,6 +55,59 @@ const PayNowModal = (props) => {
     });
     setKey(Math.random());
   };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
+  // create order
+  const handleCreateOrder = () => {
+    if (!formData.cardHolderName) {
+      showToast("Please enter cardholder name");
+      return;
+    } else if (!formData.cardNumber) {
+      showToast("Please enter card number");
+      return;
+    } else if (!formData.expiryDate) {
+      showToast("Please enter card expiry date");
+      return;
+    } else if (!formData.cvc) {
+      showToast("Please enter cvv number");
+      return;
+    }
+
+    let params = {
+      cartId: cartId,
+      address: {
+        addressId: selectedAddress,
+      },
+      cardHolderName: formData.cardHolderName,
+      cardNumber: formData.cardNumber,
+      expiresOn: formData.expiryDate,
+      cvv: formData.cvc,
+    };
+
+    dispatch(
+      createOrder({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleOpenModal("paydone");
+            setOrderId(res?.data?.data?._id)
+          }
+        },
+      })
+    );
+  };
+
   return (
     <>
       <div className="paymodalsection">
@@ -38,8 +115,9 @@ const PayNowModal = (props) => {
           <div className="col-lg-12">
             <div className="input-container mt-4">
               <input
+                onChange={handleChange}
                 type="text"
-                name="city"
+                name="cardHolderName"
                 className="border-input"
                 placeholder="Card Holder’s Name"
               />
@@ -52,11 +130,13 @@ const PayNowModal = (props) => {
             <div className="col-lg-12">
               <div className="input-container mt-4">
                 <input
-                  type="text"
-                  name="Zip Code"
+                  name="cardNumber"
                   className="border-input"
                   placeholder="5485 2658 2154 2210"
+                  {...getCardNumberProps({ onChange: handleChange })}
+                  value={formData.cardNumber}
                 />
+
                 <label className="border-label">Card No</label>
                 <img
                   src={Images.ZipCode}
@@ -70,11 +150,13 @@ const PayNowModal = (props) => {
             <div className="col-lg-6">
               <div className="input-container mt-4">
                 <input
-                  type="text"
-                  name="Zip Code"
                   className="border-input"
                   placeholder="MM/YY"
+                  name="cardExpiry"
+                  {...getExpiryDateProps({ onChange: handleChange })}
+                  value={formData.expiryDate}
                 />
+
                 <label className="border-label">Expires On</label>
                 <img
                   src={Images.Calendar}
@@ -86,12 +168,14 @@ const PayNowModal = (props) => {
             <div className="col-lg-6">
               <div className="input-container mt-4">
                 <input
-                  type="text"
-                  name="Zip Code"
+                  name="cvv"
                   className="border-input"
                   placeholder="123"
+                  {...getCVCProps({ onChange: handleChange })}
+                  value={formData.cvc}
                 />
-                <label className="border-label">Card No</label>
+
+                <label className="border-label">Cvv</label>
                 <img
                   src={Images.ZipCode}
                   alt="InfoIcon"
@@ -107,10 +191,10 @@ const PayNowModal = (props) => {
               className="foodmodalbtn"
               type="submit"
               onClick={() => {
-                handleUserProfile("paydone");
+                handleCreateOrder();
               }}
             >
-              Pay £44.00
+              Pay £{orderPrice}.00
             </button>
           </div>
         </div>
@@ -128,9 +212,13 @@ const PayNowModal = (props) => {
         ids={modalDetail.flag === "paydone" ? "paydonemodal" : ""}
         child={
           modalDetail.flag === "paydone" ? (
-            <PaymentDoneModal close={() => {
-              close();
-            handleOnCloseModal()}} />
+            <PaymentDoneModal
+              close={() => {
+                close();
+                handleOnCloseModal();
+              }}
+              orderId={orderId}
+            />
           ) : (
             ""
           )

@@ -7,12 +7,34 @@ const initialState = {
   helperPagesData: [],
   cartData: [],
   cartCount: [],
+  allOrders: [],
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getAllOrder: (state) => {
+      state.loading = true;
+    },
+    setGetAllOrder: (state, action) => {
+      state.loading = false;
+      state.allOrders = action.payload;
+    },
+
+    cancelOrder: (state) => {
+      state.loading = true;
+    },
+    setCancelOrder: (state, action) => {
+      state.loading = false;
+    },
+    createOrder: (state) => {
+      state.loading = true;
+    },
+    setCreateOrder: (state, action) => {
+      state.loading = false;
+    },
+
     deleteCartItem: (state) => {
       state.loading = true;
     },
@@ -108,6 +130,12 @@ export const {
   setGetAllCart,
   deleteCartItem,
   setDeleteCartItem,
+  createOrder,
+  setCreateOrder,
+  cancelOrder,
+  setCancelOrder,
+  getAllOrder,
+  setGetAllOrder,
 } = userSilce.actions;
 
 export default userSilce.reducer;

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderCancelModal from "./OrderCancelModal";
+import { cancelOrder, onErrorStopLoad } from "../../../../redux/slices/user";
+import { useDispatch } from "react-redux";
 
 const YourOrderModal = (props) => {
-  const { close, closeModal } = props;
+  const { close, closeModal, orderId } = props;
+  const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -31,6 +34,30 @@ const YourOrderModal = (props) => {
     });
     setKey(Math.random());
   };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // Cancel Order
+  const handleCancelOrder = () => {
+    let params = {
+      status: "cancelled",
+      id: orderId,
+    };
+    dispatch(
+      cancelOrder({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleOpenModal("ordercancel");
+          }
+        },
+      })
+    );
+  };
+
   return (
     <>
       <div className="yourordersection paymentdonesection">
@@ -57,7 +84,7 @@ const YourOrderModal = (props) => {
               className="foodmodalbtn"
               type="button"
               onClick={() => {
-                handleOpenModal("ordercancel");
+                handleCancelOrder();
               }}
             >
               Yes, Cancel

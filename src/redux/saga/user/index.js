@@ -14,9 +14,85 @@ import {
   setAddToCart,
   setGetAllCart,
   setDeleteCartItem,
+  setCreateOrder,
+  setCancelOrder,
+  setGetAllOrder,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getAllOrder(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.GET_ALL_ORDER}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetAllOrder(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* cancelOrder(action) {
+  const deleteParams = { ...action.payload };
+  delete deleteParams.id;
+
+  try {
+    const resp = yield call(
+      ApiClient.patch,
+      (action.url = `${ApiPath.userApiPath.CANCEL_ORDER}/${action.payload.id}`),
+      (action.payload = deleteParams)
+    );
+    if (resp.status) {
+      yield put(setCancelOrder(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
+
+function* createOrder(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.userApiPath.MENU_ORDER),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setCreateOrder(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
 
 function* deleteCartItem(action) {
   try {
@@ -249,6 +325,9 @@ function* userSaga() {
   yield all([takeLatest("user/addToCart", addToCart)]);
   yield all([takeLatest("user/getAllCart", getAllCart)]);
   yield all([takeLatest("user/deleteCartItem", deleteCartItem)]);
+  yield all([takeLatest("user/createOrder", createOrder)]);
+  yield all([takeLatest("user/cancelOrder", cancelOrder)]);
+  yield all([takeLatest("user/getAllOrder", getAllOrder)]);
 }
 
 export default userSaga;

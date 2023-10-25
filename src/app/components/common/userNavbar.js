@@ -15,7 +15,7 @@ const User_Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { pathname } = location;
-  const APIkey = "Enter-your-api-key";
+  const APIkey = "";
   const authData = useAuthSelector();
   const allUserData = useUserSelector();
   const userId = localStorage.getItem("userId");
