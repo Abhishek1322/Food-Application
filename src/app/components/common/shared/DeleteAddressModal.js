@@ -31,7 +31,7 @@ const DeleteAddressModal = (props) => {
   }, [dispatch]);
   return (
     <>
-      <div className="DeleteMenuModal paymentdonesection">
+      <div className="DeleteMenuModal paymentdonesection userDelete">
         <img
           src={Images.deleteMenuImg}
           alt="accountdeletedimg"
