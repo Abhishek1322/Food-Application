@@ -14,6 +14,13 @@ export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getSingleOrder: (state) => {
+      state.loading = true;
+    },
+    setGetSingleOrder: (state, action) => {
+      state.loading = false;
+    },
+
     getAllOrder: (state) => {
       state.loading = true;
     },
@@ -136,6 +143,8 @@ export const {
   setCancelOrder,
   getAllOrder,
   setGetAllOrder,
+  getSingleOrder,
+  setGetSingleOrder,
 } = userSilce.actions;
 
 export default userSilce.reducer;

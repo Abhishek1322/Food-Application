@@ -27,7 +27,8 @@ const UserCartModal = (props) => {
   const [key, setKey] = useState(Math.random());
   const [totalPrice, setTotalPrice] = useState([]);
   const [address, setAddress] = useState([]);
-  const latestAddress = [...address].reverse();
+  const latestAddress =
+    address && address.length > 0 ? [...address].reverse() : [];
   const [addressId, setAddressId] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [modalDetail, setModalDetail] = useState({
@@ -274,60 +275,66 @@ const UserCartModal = (props) => {
                 </div>
 
                 <div className="checkouthomeoffice mt-3">
-                  {latestAddress?.slice(0, 2)?.map((item, index) => (
-                    <div key={index} className="checkouthome">
-                      <div className="homedropdown mt-2">
-                        <h6 className="notificationText">{item?.type}</h6>
-                        <div className="dropdown dropend">
-                          <img
-                            src={Images.chatsDots}
-                            className="dropdown-toggle manageimg"
-                            alt="cartcancel"
-                            data-bs-toggle="dropdown"
-                          />
-                          <ul className="dropdown-menu">
-                            <li
-                              onClick={() => {
-                                handleOpenModal("editaddress", item?._id);
-                              }}
-                            >
+                  {latestAddress && latestAddress.length > 0 ? (
+                    <>
+                      {latestAddress?.slice(0, 2)?.map((item, index) => (
+                        <div key={index} className="checkouthome">
+                          <div className="homedropdown mt-2">
+                            <h6 className="notificationText">{item?.type}</h6>
+                            <div className="dropdown dropend">
                               <img
-                                src={Images.EditImg}
-                                alt="editimage"
-                                className="img-fluid"
-                              />{" "}
-                              <span className="editdrop">Edit </span>
-                            </li>
-                            <li
-                              onClick={() => {
-                                handleOpenModal("deleteaddress", item?._id);
-                              }}
-                            >
-                              <img
-                                src={Images.cartDelete}
-                                alt="editimage"
-                                className="img-fluid"
-                              />{" "}
-                              <span className="editdrop">Delete</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                                src={Images.chatsDots}
+                                className="dropdown-toggle manageimg"
+                                alt="cartcancel"
+                                data-bs-toggle="dropdown"
+                              />
+                              <ul className="dropdown-menu">
+                                <li
+                                  onClick={() => {
+                                    handleOpenModal("editaddress", item?._id);
+                                  }}
+                                >
+                                  <img
+                                    src={Images.EditImg}
+                                    alt="editimage"
+                                    className="img-fluid"
+                                  />{" "}
+                                  <span className="editdrop">Edit </span>
+                                </li>
+                                <li
+                                  onClick={() => {
+                                    handleOpenModal("deleteaddress", item?._id);
+                                  }}
+                                >
+                                  <img
+                                    src={Images.cartDelete}
+                                    alt="editimage"
+                                    className="img-fluid"
+                                  />{" "}
+                                  <span className="editdrop">Delete</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
 
-                      <p className="cheftext mt-2">{item?.streetAddress}</p>
-                      <div className="round roundSelect">
-                        <input
-                          onClick={(e) => handleSelectAddress(e, item?._id)}
-                          id=""
-                          name=""
-                          type="checkbox"
-                          value=""
-                          className="checkbx"
-                          checked={item?._id === selectedAddress}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                          <p className="cheftext mt-2">{item?.streetAddress}</p>
+                          <div className="round roundSelect">
+                            <input
+                              onClick={(e) => handleSelectAddress(e, item?._id)}
+                              id=""
+                              name=""
+                              type="checkbox"
+                              value=""
+                              className="checkbx"
+                              checked={item?._id === selectedAddress}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <p>No address found</p>
+                  )}
                 </div>
               </div>
             )}

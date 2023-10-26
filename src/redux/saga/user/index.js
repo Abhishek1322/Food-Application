@@ -17,9 +17,30 @@ import {
   setCreateOrder,
   setCancelOrder,
   setGetAllOrder,
+  setGetSingleOrder,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getSingleOrder(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.GET_SINGLE_ORDER}/${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetSingleOrder(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getAllOrder(action) {
   try {
@@ -328,6 +349,7 @@ function* userSaga() {
   yield all([takeLatest("user/createOrder", createOrder)]);
   yield all([takeLatest("user/cancelOrder", cancelOrder)]);
   yield all([takeLatest("user/getAllOrder", getAllOrder)]);
+  yield all([takeLatest("user/getSingleOrder", getSingleOrder)]);
 }
 
 export default userSaga;

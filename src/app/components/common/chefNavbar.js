@@ -6,7 +6,6 @@ import Notification from "./shared/notification";
 import Myorder from "./shared/myorderModal";
 import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
 import { Link, useLocation } from "react-router-dom";
-import { useAuthSelector } from "../../../redux/selector/auth";
 import { useDispatch } from "react-redux";
 import {
   getChefProfileDetails,
@@ -17,8 +16,11 @@ const Chef_Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { pathname } = location;
+  const { search } = location;
+  const searchParams = new URLSearchParams(search);
+  const recentOrderId = searchParams.get("recent-order");
+  console.log("recentOrderIdrecentOrderId", recentOrderId);
   const userId = localStorage.getItem("userId");
-  const authData = useAuthSelector();
   const [key, setKey] = useState(Math.random());
   const [chefProfileData, setProfileData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
@@ -426,6 +428,27 @@ const Chef_Navbar = () => {
                         ? "My Profile"
                         : "Edit Profile"}
                     </h1>
+                  </div>
+                </div>
+              </div>
+            ) : pathname === "/order-details" ? (
+              <div className="row align-items-center">
+                <div className="col-lg-6 col-sm-12">
+                  <div className="insideCommonHeader d-flex">
+                    <Link to="/home" className="d-flex">
+                      <img
+                        src={Images.backArrowpassword}
+                        className="innerHeaderArrow"
+                        alt="arrowHeaderImg"
+                      />
+                      <h1 className="chefCommonHeader ps-2">Order Details</h1>
+                    </Link>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-sm-12 text-end">
+                  <div className="orderItems_ flexBox ">
+                    <button className="cancelOrder_ me-4">Reject</button>
+                    <button className="submitOrder_">Accept</button>
                   </div>
                 </div>
               </div>

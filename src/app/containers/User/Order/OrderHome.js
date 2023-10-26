@@ -11,12 +11,13 @@ const UserOrderHome = () => {
 
   const [key, setKey] = useState(Math.random());
   const [allOrders, setAllOrders] = useState([]);
+  const [foodOrderId, setFoodOrderId] = useState("");
+  const [orderDetail, setOrderDetail] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -29,13 +30,14 @@ const UserOrderHome = () => {
   };
 
   // open modal
-  const handleOpenModal = (flag) => {
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
       type: flag,
     });
     setKey(Math.random());
+    setFoodOrderId(id);
   };
 
   // get all orders
@@ -59,107 +61,79 @@ const UserOrderHome = () => {
   return (
     <>
       <div className="userordersection">
-        {/* <div className="row">
-          <div className="col-lg-12">
-            <div
-              className="orderprocess active mb-3"
-              onClick={() => {
-                handleOpenModal("orderdetail");
-              }}
-            >
-              <article className="flexBox justify-content-between">
-                <h6 className="fooodquantity_">#12548</h6>
-                <h6 className="chatTime_">In-Progress</h6>
-              </article>
-              <div className="orderchefinfo">
-                <div className="row">
-                  <div className="col-lg-6 col-md-12">
-                    <div className="flexBox">
-                      <img
-                        src={Images.OrderChef}
-                        alt="chefimg"
-                        className="img-fluid"
-                      />
-                      <div className="orderchefname">
-                        <h6 className="chefName ">Sarah Bergstrom</h6>
-                        <h6 className="orderFrom">Order From</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-12">
-                    <div className="orderstatus">
-                      <h6 className="Items">4 Items</h6>
-                      <h6 className="timeOrder_">Order placed on 12:24 pm</h6>
-                      <div className="userorderprice">
-                        <h5 className="orderPrice ">£22.00</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="row">
-          {allOrders?.map((item, index) => {
-            return (
-              <div key={index} className="col-lg-12">
-                <div
-                  className={
-                    item?.status === "pending"
-                      ? "orderprocess  mb-3"
-                      : item?.status === "cancelled"
-                      ? "orderprocess bg-danger mb-3"
-                      : "orderprocess active mb-3"
-                  }
-                  onClick={() => {
-                    handleOpenModal("orderdetail");
-                  }}
-                >
-                  <article className="flexBox justify-content-between">
-                    <h6 className="fooodquantity_">#{item?.orderId}</h6>
-                    <h6 className="chatTime_">{item?.status}</h6>
-                  </article>
-                  <div className="orderchefinfo">
-                    <div className="row">
-                      <div className="col-lg-6 col-md-12">
-                        <div className="flexBox">
-                          <img
-                            src={
-                              item?.chefId?.userInfo?.profilePhoto
-                                ? item?.chefId?.userInfo?.profilePhoto
-                                : Images.OrderChef
-                            }
-                            alt="chefimg"
-                            className="img-fluid"
-                          />
-                          <div className="orderchefname">
-                            <h6 className="chefName">
-                              {item?.chefId?.userInfo?.firstName}{" "}
-                              {item?.chefId?.userInfo?.lastName}
-                            </h6>
-                            <h6 className="orderFrom">Order From</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-12">
-                        <div className="orderstatus">
-                          <h6 className="Items">{item?.itemCount} Items</h6>
-                          <h6 className="timeOrder_">
-                            Order placed on{" "}
-                            {moment(item?.updatedAt).format("hh:mm A")}
-                          </h6>
-                          <div className="userorderprice">
-                            <h5 className="orderPrice ">£{item?.amount}.00</h5>
+          {allOrders && allOrders.length > 0 ? (
+            <>
+              {allOrders
+                ?.filter((value) => value?.status !== "cancelled")
+                ?.map((item, index) => {
+                  return (
+                    <div key={index} className="col-lg-12">
+                      {console.log("itemmmmmm", item)}
+                      <div
+                        className={
+                          item?.status === "pending"
+                            ? "orderprocess  mb-3"
+                            : item?.status === "cancelled"
+                            ? "orderprocess bg-danger mb-3"
+                            : "orderprocess active mb-3"
+                        }
+                        onClick={() => {
+                          handleOpenModal("orderdetail", item?._id);
+                        }}
+                      >
+                        <article className="flexBox justify-content-between">
+                          <h6 className="fooodquantity_">#{item?.orderId}</h6>
+                          <h6 className="chatTime_">{item?.status}</h6>
+                        </article>
+                        <div className="orderchefinfo">
+                          <div className="row">
+                            <div className="col-lg-6 col-md-12">
+                              <div className="flexBox">
+                                <img
+                                  src={
+                                    item?.chefId?.userInfo?.profilePhoto
+                                      ? item?.chefId?.userInfo?.profilePhoto
+                                      : Images.OrderChef
+                                  }
+                                  alt="chefimg"
+                                  className="img-fluid"
+                                />
+                                <div className="orderchefname">
+                                  <h6 className="chefName">
+                                    {item?.chefId?.userInfo?.firstName}{" "}
+                                    {item?.chefId?.userInfo?.lastName}
+                                  </h6>
+                                  <h6 className="orderFrom">Order From</h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-lg-6 col-md-12">
+                              <div className="orderstatus">
+                                <h6 className="Items">
+                                  {item?.itemCount} Items
+                                </h6>
+                                <h6 className="timeOrder_">
+                                  Order placed on{" "}
+                                  {moment(item?.updatedAt).format("hh:mm A")}
+                                </h6>
+                                <div className="userorderprice">
+                                  <h5 className="orderPrice ">
+                                    £{item?.amount}.00
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                  );
+                })}
+            </>
+          ) : (
+            <p>No Order found</p>
+          )}
         </div>
       </div>
       <CustomModal
@@ -175,7 +149,11 @@ const UserOrderHome = () => {
         ids={modalDetail.flag === "orderdetail" ? "userorderdetail" : ""}
         child={
           modalDetail.flag === "orderdetail" ? (
-            <UserOrderDetail close={() => handleOnCloseModal()} />
+            <UserOrderDetail
+              foodOrderId={foodOrderId}
+              close={() => handleOnCloseModal()}
+              setOrderDetail={setOrderDetail}
+            />
           ) : (
             ""
           )
@@ -185,8 +163,16 @@ const UserOrderHome = () => {
             <>
               <div className="Common_header">
                 <div className="headerProfile">
-                  <p className="headerTxt_">Order #12548</p>
-                  <p className="headerInner_">In-Progress</p>
+                  <p className="headerTxt_">Order #{orderDetail?.orderId}</p>
+                  <p
+                    className={
+                      orderDetail?.status === "delivered"
+                        ? "headerInner_ delivered"
+                        : "headerInner_ inprofress"
+                    }
+                  >
+                    {orderDetail?.status}
+                  </p>
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
