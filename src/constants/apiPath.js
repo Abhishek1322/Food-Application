@@ -37,6 +37,12 @@ const ApiPath = {
     MENU_ORDER: "/order",
     CANCEL_ORDER: "/order/change-status",
     GET_ALL_ORDER: "/order/user",
+    GET_SINGLE_ORDER: "/order/order",
+  },
+  chefApiPath: {
+    GET_RECENT_ORDER: "/order/chef",
+    ACCEPT_ORDER: "/order/change-status",
+    GET_CHEF_SINGLE_ORDER: "/order/order",
   },
 };
 

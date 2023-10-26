@@ -1,94 +1,247 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
+import { useDispatch } from "react-redux";
+import {
+  getSingleOrderDetail,
+  onErrorStopLoadChef,
+  acceptOrder,
+} from "../../../../redux/slices/chef";
+import { Link, useLocation } from "react-router-dom";
+import moment from "moment";
 
 const AnotherOrderdetail = () => {
-    return (
-        <>
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { search } = location;
+  const searchParams = new URLSearchParams(search);
+  const recentOrderId = searchParams.get("recent-order");
+  const [orderDetails, setOrderDetails] = useState([]);
+  console.log("recentOrderId", recentOrderId);
 
-            <div className='mainchef_ '>
-                <div className='orderDeatils'>
-                    <div className='container-fluid'>
-                        <div className='row align-items-center'>
-                            <div className='col-lg-12'>
-                                <div className='orderIdDetail'>
-                                    <p className='orderId_'>Order #12548</p>
-                                    <p className='recentOrder deliver'>Delivered</p>
-                                </div>
-                                <div className='chefJohn'>
-                                    <div className='chatWithChef'>
-                                        <div className='chefjohnDetail'>
-                                            <img src={Images.homeProfile} alt="homeProfileImg" className="chefJohnImg" />
-                                            <div className='chefinfo'>
-                                                <h2 className='johnExplorer'>John Smith</h2>
-                                                <div className='johnChatTime'>
-                                                    <div className='chefInfo'>
-                                                        <img src={Images.chefLocationImg} alt="chefLocationImg" className="chefLocation_" />
-                                                    </div>
-                                                    <div className='johnchatdetail'>
-                                                        <p className='chatDates'>Jul 20, 2023</p>
-                                                    </div>
-                                                </div>
-                                                <p className='itemsQuantity'>2 Items</p>
-                                                <p className='ordertimeaddress'>Order placed on 12:24 pm</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='chefChat'>
-                                        <div className='chatwithjohn johnchat'>
-                                            <div className='chatImg chaticon'>
-                                                <i class="fas fa-comment-dots chatImage chatbg"></i>
-                                            </div>
-                                            <div className='chatText'>
-                                                <p className='chat'>chat</p>
-                                            </div>
-                                        </div>
-                                        <div className='deliveryAddress'>
-                                            <p className='deliveryinfo'>Delivery Address</p>
-                                            <p className='orderAddress'>46 Abingdon Road, Brandeston, United <br /> Kingdom
-                                                IP13 4PB</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 className='orderId_'>Ordered Items</h3>
-                                <div className='row align-items-center'>
-                                    <div className='col-lg-10'>
-                                        <div className='orderedFoodItems'>
-                                            <div className='foodCategory flexBox'>
-                                                <img src={Images.foodItems} alt="foodItemsImg" className="foodItemImg" />
-                                                <div className='categoryinfo'>
-                                                    <h4 className='foodcategory_'>Food Category</h4>
-                                                    <h5 className='innerfood'>Chicken Salad</h5>
-                                                    <p className='innePrice'>£22.00</p>
-                                                </div>
-                                            </div>
-                                            <p className='fooodquantity_'>2X</p>
-                                        </div>
-                                        <div className='orderedFoodItems'>
-                                            <div className='foodCategory flexBox'>
-                                                <img src={Images.foodItems} alt="foodItemsImg" className="foodItemImg" />
-                                                <div className='categoryinfo'>
-                                                    <h4 className='foodcategory_'>Food Category</h4>
-                                                    <h5 className='innerfood'>Chicken Salad</h5>
-                                                    <p className='innePrice'>£22.00</p>
-                                                </div>
-                                            </div>
-                                            <p className='fooodquantity_'>2X</p>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2'>
-                                        <div className='paidAmmount totalAmmount'>
-                                            <p className='totalPaid'>Total paid</p>
-                                            <p className='foodBill'> £66.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  // get order details
+
+  useEffect(() => {
+    handleGetOrderDetails();
+  }, []);
+
+  const handleGetOrderDetails = () => {
+    let params = {
+      id: recentOrderId,
+    };
+    dispatch(
+      getSingleOrderDetail({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setOrderDetails(res?.data?.data);
+          }
+        },
+      })
+    );
+  };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoadChef());
+  }, [dispatch]);
+
+  // order ready for delivery
+  const handleOrderReady = (status) => {
+    let params = {
+      id: recentOrderId,
+      status: status,
+    };
+    dispatch(
+      acceptOrder({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleGetOrderDetails();
+          }
+        },
+      })
+    );
+  };
+
+  return (
+    <>
+      <div className="mainchef_ ">
+        <div className="row align-items-center">
+          <div className="col-lg-6 col-sm-12">
+            <div className="insideCommonHeader d-flex">
+              <Link to="/home" className="d-flex">
+                <img
+                  src={Images.backArrowpassword}
+                  className="innerHeaderArrow"
+                  alt="arrowHeaderImg"
+                />
+                <h1 className="chefCommonHeader ps-2">Order Details</h1>
+              </Link>
             </div>
-        </>
-    )
-}
+          </div>
+          <div className="col-lg-6 col-sm-12 d-flex justify-content-end">
+            <div className="orderItems_ flexBox ">
+              {orderDetails?.status === "accepted" ? (
+                <button
+                  onClick={() => handleOrderReady("readyForDelivery")}
+                  className="chefRightHeader m-0 text-end"
+                >
+                  Order Ready for Delivery
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleOrderReady("delivered")}
+                  className="chefRightHeader m-0 text-end"
+                >
+                  Order Delivered
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
 
-export default AnotherOrderdetail
+        <div className="orderDeatils">
+          <div className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-lg-12">
+                <div className="orderIdDetail">
+                  <p className="orderId_">Order #{orderDetails?.orderId}</p>
+                  {orderDetails?.status === "accepted" ? (
+                    <p className="recentOrder deliver">In-Progress</p>
+                  ) : orderDetails?.status === "readyForDelivery" ? (
+                    <p className="recentOrder deliver">Ready for Delivery</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="chefJohn">
+                  <div className="chatWithChef">
+                    <div className="chefjohnDetail">
+                      <img
+                        src={orderDetails?.userId?.userInfo?.profilePhoto}
+                        alt="homeProfileImg"
+                        className="chefJohnImg"
+                      />
+                      <div className="chefinfo">
+                        <h2 className="johnExplorer">
+                          {orderDetails?.userId?.userInfo?.firstName}{" "}
+                          {orderDetails?.userId?.userInfo?.lastName}
+                        </h2>
+                        <div className="johnChatTime">
+                          <div className="chefInfo">
+                            <img
+                              src={Images.chefLocationImg}
+                              alt="chefLocationImg"
+                              className="chefLocation_"
+                            />
+                          </div>
+                          <div className="johnchatdetail">
+                            <p className="chatDates">
+                              {moment(orderDetails?.updatedAt).format(
+                                "MMM D, YYYY"
+                              )}
+                            </p>
+                          </div>
+                        </div>
+                        {orderDetails?.itemCount === "1" ? (
+                          <p className="itemsQuantity">
+                            {orderDetails?.itemCount} Item
+                          </p>
+                        ) : (
+                          <p className="itemsQuantity">
+                            {orderDetails?.itemCount} Items
+                          </p>
+                        )}
+                        <p className="ordertimeaddress">
+                          Order placed on{" "}
+                          {moment(orderDetails?.updatedAt).format("hh:mm A")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="chefChat">
+                    <div
+                      className={
+                        orderDetails?.status === "accepted" ||
+                        orderDetails?.status === "readyForDelivery"
+                          ? "chatwithjohn"
+                          : "chatwithjohn johnchat"
+                      }
+                    >
+                      <div
+                        className={
+                          (orderDetails?.status === orderDetails?.status) ===
+                            "accepted" ||
+                          orderDetails?.status === "readyForDelivery"
+                            ? "chatImg"
+                            : "chatImg chaticon"
+                        }
+                      >
+                        <i
+                          className={
+                            (orderDetails?.status === orderDetails?.status) ===
+                              "accepted" ||
+                            orderDetails?.status === "readyForDelivery"
+                              ? "fas fa-comment-dots chatImage chatbg"
+                              : "fas fa-comment-dots chatImage chatbg"
+                          }
+                        ></i>
+                      </div>
+                      <div className="chatText">
+                        <p className="chat">chat</p>
+                      </div>
+                    </div>
+                    <div className="deliveryAddress">
+                      <p className="deliveryinfo">Delivery Address</p>
+                      <p className="orderAddress">
+                        {orderDetails?.address?.city}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <h3 className="orderId_">Ordered Items</h3>
+                <div className="row align-items-center">
+                  <div className="col-lg-10">
+                    {orderDetails?.items?.map((item, index) => (
+                      <div key={index} className="orderedFoodItems">
+                        <div className="foodCategory flexBox">
+                          <img
+                            src={item?.image}
+                            alt="foodItemsImg"
+                            className="foodItemImg"
+                          />
+                          <div className="categoryinfo">
+                            <h4 className="foodcategory_">{item?.category}</h4>
+                            <h5 className="innerfood">{item?.name}</h5>
+                            <p className="innePrice">£{item?.netPrice}.00</p>
+                          </div>
+                        </div>
+                        <p className="fooodquantity_">{item?.quantity}X</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="col-lg-2">
+                    <div
+                      className={
+                        (orderDetails?.status === orderDetails?.status) ===
+                          "accepted" ||
+                        orderDetails?.status === "readyForDelivery"
+                          ? "paidAmmount"
+                          : "paidAmmount totalAmmount"
+                      }
+                    >
+                      <p className="totalPaid">Total paid</p>
+                      <p className="foodBill"> £{orderDetails?.total}.00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default AnotherOrderdetail;

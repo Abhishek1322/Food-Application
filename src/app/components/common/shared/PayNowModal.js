@@ -20,7 +20,6 @@ const PayNowModal = (props) => {
     cvv: "",
   });
 
-
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -86,9 +85,7 @@ const PayNowModal = (props) => {
 
     let params = {
       cartId: cartId,
-      address: {
-        addressId: selectedAddress,
-      },
+      addressId: selectedAddress,
       cardHolderName: formData.cardHolderName,
       cardNumber: formData.cardNumber,
       expiresOn: formData.expiryDate,
@@ -101,7 +98,7 @@ const PayNowModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             handleOpenModal("paydone");
-            setOrderId(res?.data?.data?._id)
+            setOrderId(res?.data?.data?._id);
           }
         },
       })
@@ -132,6 +129,7 @@ const PayNowModal = (props) => {
                 <input
                   name="cardNumber"
                   className="border-input"
+                  maxLength="19"
                   placeholder="5485 2658 2154 2210"
                   {...getCardNumberProps({ onChange: handleChange })}
                   value={formData.cardNumber}
