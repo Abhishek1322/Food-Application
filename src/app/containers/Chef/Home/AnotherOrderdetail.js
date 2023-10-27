@@ -8,14 +8,24 @@ import {
 } from "../../../../redux/slices/chef";
 import { Link, useLocation } from "react-router-dom";
 import moment from "moment";
+import CustomModal from "../../../components/common/shared/CustomModal";
+import VerifyorderDetailsModal from "../../../components/common/shared/verifyorderDetailsModal";
+import { useChefSelector } from "../../../../redux/selector/chef";
 
 const AnotherOrderdetail = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { search } = location;
+  const chefData = useChefSelector();
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
   console.log("recentOrderId", recentOrderId);
 
   // get order details
@@ -32,6 +42,7 @@ const AnotherOrderdetail = () => {
       getSingleOrderDetail({
         ...params,
         cb(res) {
+          console.log("resres11111", res);
           if (res.status === 200) {
             setOrderDetails(res?.data?.data);
           }
@@ -63,6 +74,26 @@ const AnotherOrderdetail = () => {
     );
   };
 
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  // open modal
+  const handleOpenModal = (flag) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
+
   return (
     <>
       <div className="mainchef_ ">
@@ -84,13 +115,18 @@ const AnotherOrderdetail = () => {
               {orderDetails?.status === "accepted" ? (
                 <button
                   onClick={() => handleOrderReady("readyForDelivery")}
-                  className="chefRightHeader m-0 text-end"
+                  className="chefRightHeader m-0 text-end d-flex align-items-center gap-2"
                 >
+                  {chefData?.loading && (
+                    <span className="spinner-border spinner-border-sm"></span>
+                  )}
                   Order Ready for Delivery
                 </button>
+              ) : orderDetails?.status === "delivered" ? (
+                ""
               ) : (
                 <button
-                  onClick={() => handleOrderReady("delivered")}
+                  onClick={() => handleOpenModal("verifyOrder")}
                   className="chefRightHeader m-0 text-end"
                 >
                   Order Delivered
@@ -108,6 +144,8 @@ const AnotherOrderdetail = () => {
                   <p className="orderId_">Order #{orderDetails?.orderId}</p>
                   {orderDetails?.status === "accepted" ? (
                     <p className="recentOrder deliver">In-Progress</p>
+                  ) : orderDetails?.status === "delivered" ? (
+                    <p className="recentOrder deliver">Delivered</p>
                   ) : orderDetails?.status === "readyForDelivery" ? (
                     <p className="recentOrder deliver">Ready for Delivery</p>
                   ) : (
@@ -118,7 +156,11 @@ const AnotherOrderdetail = () => {
                   <div className="chatWithChef">
                     <div className="chefjohnDetail">
                       <img
-                        src={orderDetails?.userId?.userInfo?.profilePhoto}
+                        src={
+                          orderDetails?.userId?.userInfo?.profilePhoto
+                            ? orderDetails?.userId?.userInfo?.profilePhoto
+                            : Images.dummyProfile
+                        }
                         alt="homeProfileImg"
                         className="chefJohnImg"
                       />
@@ -170,8 +212,7 @@ const AnotherOrderdetail = () => {
                     >
                       <div
                         className={
-                          (orderDetails?.status === orderDetails?.status) ===
-                            "accepted" ||
+                          orderDetails?.status === "accepted" ||
                           orderDetails?.status === "readyForDelivery"
                             ? "chatImg"
                             : "chatImg chaticon"
@@ -179,8 +220,7 @@ const AnotherOrderdetail = () => {
                       >
                         <i
                           className={
-                            (orderDetails?.status === orderDetails?.status) ===
-                              "accepted" ||
+                            orderDetails?.status === "accepted" ||
                             orderDetails?.status === "readyForDelivery"
                               ? "fas fa-comment-dots chatImage chatbg"
                               : "fas fa-comment-dots chatImage chatbg"
@@ -223,8 +263,7 @@ const AnotherOrderdetail = () => {
                   <div className="col-lg-2">
                     <div
                       className={
-                        (orderDetails?.status === orderDetails?.status) ===
-                          "accepted" ||
+                        orderDetails?.status === "accepted" ||
                         orderDetails?.status === "readyForDelivery"
                           ? "paidAmmount"
                           : "paidAmmount totalAmmount"
@@ -240,6 +279,31 @@ const AnotherOrderdetail = () => {
           </div>
         </div>
       </div>
+
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "verifyOrder" ? "commonWidth customContent" : ""
+        }
+        ids={modalDetail.flag === "verifyOrder" ? "chatBox" : ""}
+        child={
+          modalDetail.flag === "verifyOrder" ? (
+            <VerifyorderDetailsModal
+              handleGetOrderDetails={handleGetOrderDetails}
+              recentOrderId={recentOrderId}
+              close={() => handleOnCloseModal()}
+            />
+          ) : (
+            ""
+          )
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   );
 };

@@ -13,6 +13,7 @@ const PayNowModal = (props) => {
   const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
   const [orderId, setOrderId] = useState("");
+  const [orderNumber, setOrderNumber] = useState("");
   const [formData, setFormData] = useState({
     cardHolderName: "",
     cardNumber: "",
@@ -99,6 +100,7 @@ const PayNowModal = (props) => {
           if (res.status === 200) {
             handleOpenModal("paydone");
             setOrderId(res?.data?.data?._id);
+            setOrderNumber(res?.data?.data?.orderId);
           }
         },
       })
@@ -215,6 +217,7 @@ const PayNowModal = (props) => {
                 close();
                 handleOnCloseModal();
               }}
+              orderNumber={orderNumber}
               orderId={orderId}
             />
           ) : (

@@ -7,7 +7,55 @@ import {
   setAcceptOrder,
   onErrorStopLoadChef,
   setGetSingleOrderDetail,
+  setConfirmOrderOtp,
+  setConfirmResendOtp,
 } from "../../slices/chef";
+
+function* confirmResendOtp(action) {
+
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.chefApiPath.RESEND_OTP}/${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setConfirmResendOtp(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoadChef());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* confirmOrderOtp(action) {
+  const deleteParams = { ...action.payload };
+  delete deleteParams.id;
+
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.chefApiPath.CONFIRM_ORDER_OTP}/${action.payload.id}`),
+      (action.payload = deleteParams)
+    );
+    if (resp.status) {
+      yield put(setConfirmOrderOtp(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoadChef());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getSingleOrderDetail(action) {
   try {
@@ -30,10 +78,17 @@ function* getSingleOrderDetail(action) {
 }
 
 function* getRecentOrder(action) {
+  let tartgetUrl = `${ApiPath.chefApiPath.GET_RECENT_ORDER}`;
+  if (action.payload.status) {
+    tartgetUrl += `?status=${action.payload.status}`;
+  }
+  if (action.payload.search) {
+    tartgetUrl += `&search=${action.payload.search}`;
+  }
   try {
     const resp = yield call(
       ApiClient.get,
-      (action.url = `${ApiPath.chefApiPath.GET_RECENT_ORDER}?search=${action.payload.search}`),
+      (action.url = tartgetUrl),
       (action.payload = action.payload)
     );
     if (resp.status) {
@@ -77,6 +132,9 @@ function* chefSaga() {
   yield all([takeLatest("chef/getRecentOrder", getRecentOrder)]);
   yield all([takeLatest("chef/acceptOrder", acceptOrder)]);
   yield all([takeLatest("chef/getSingleOrderDetail", getSingleOrderDetail)]);
+  yield all([takeLatest("chef/confirmOrderOtp", confirmOrderOtp)]);
+  yield all([takeLatest("chef/confirmResendOtp", confirmResendOtp)]);
+
 }
 
 export default chefSaga;

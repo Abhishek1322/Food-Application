@@ -9,13 +9,26 @@ export const chefSilce = createSlice({
   name: "chef",
   initialState,
   reducers: {
+    confirmResendOtp: (state) => {
+      state.loading = true;
+    },
+    setConfirmResendOtp: (state, action) => {
+      state.loading = false;
+    },
+
+    confirmOrderOtp: (state) => {
+      state.loading = true;
+    },
+    setConfirmOrderOtp: (state, action) => {
+      state.loading = false;
+    },
+
     getSingleOrderDetail: (state) => {
       state.loading = true;
     },
     setGetSingleOrderDetail: (state, action) => {
       state.loading = false;
     },
-
     acceptOrder: (state) => {
       state.loading = true;
     },
@@ -44,6 +57,10 @@ export const {
   onErrorStopLoadChef,
   getSingleOrderDetail,
   setGetSingleOrderDetail,
+  confirmOrderOtp,
+  setConfirmOrderOtp,
+  confirmResendOtp,
+  setConfirmResendOtp
 } = chefSilce.actions;
 
 export default chefSilce.reducer;

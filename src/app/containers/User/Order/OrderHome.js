@@ -65,17 +65,19 @@ const UserOrderHome = () => {
           {allOrders && allOrders.length > 0 ? (
             <>
               {allOrders
-                ?.filter((value) => value?.status !== "cancelled")
+                ?.filter(
+                  (value) =>
+                    value?.status !== "cancelled" &&
+                    value?.status !== "readyForDelivery"
+                )
+
                 ?.map((item, index) => {
                   return (
                     <div key={index} className="col-lg-12">
-                      {console.log("itemmmmmm", item)}
                       <div
                         className={
-                          item?.status === "pending"
+                          item?.status === "delivered"
                             ? "orderprocess  mb-3"
-                            : item?.status === "cancelled"
-                            ? "orderprocess bg-danger mb-3"
                             : "orderprocess active mb-3"
                         }
                         onClick={() => {
@@ -119,7 +121,7 @@ const UserOrderHome = () => {
                                 </h6>
                                 <div className="userorderprice">
                                   <h5 className="orderPrice ">
-                                    £{item?.amount}.00
+                                    £{item?.total}.00
                                   </h5>
                                 </div>
                               </div>

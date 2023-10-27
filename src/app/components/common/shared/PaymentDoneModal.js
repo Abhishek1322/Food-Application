@@ -4,7 +4,7 @@ import CustomModal from "./CustomModal";
 import OrderPlaceModal from "./OrderPlaceModal";
 
 const PaymentDoneModal = (props) => {
-  const {close,orderId} = props;
+  const {close,orderId,orderNumber} = props;
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -48,7 +48,7 @@ const PaymentDoneModal = (props) => {
         />
         <h1 className="accountDeleted mt-3"> Payment Done</h1>
         <p className="accountdeletetxt mt-2 ">
-          Your payment has been successfully done for order no. #12458
+          Your payment has been successfully done for order no. #{orderNumber}
         </p>
       </div>
       <CustomModal

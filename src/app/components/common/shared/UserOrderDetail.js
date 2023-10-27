@@ -4,10 +4,11 @@ import { useDispatch } from "react-redux";
 import { getSingleOrder, onErrorStopLoad } from "../../../../redux/slices/user";
 
 const UserOrderDetail = (props) => {
-  const { foodOrderId,setOrderDetail } = props;
+  const { foodOrderId, setOrderDetail } = props;
   const dispatch = useDispatch();
   const [foodDetail, setFoodDetail] = useState([]);
-  console.log("foodDetailfoodDetail", foodDetail);
+  const [totalAmount, setTotalAmount] = useState("");
+  console.log("totalAmount", totalAmount);
 
   // stop loader on page load
   useEffect(() => {
@@ -26,7 +27,8 @@ const UserOrderDetail = (props) => {
         cb(res) {
           if (res.status === 200) {
             setFoodDetail(res?.data?.data);
-            setOrderDetail(res?.data?.data)
+            setOrderDetail(res?.data?.data);
+            setTotalAmount(res?.data?.data)
           }
         },
       })
@@ -36,33 +38,28 @@ const UserOrderDetail = (props) => {
   return (
     <>
       <div className="Userordersection">
-        <div className="modalDetail usermodaldetail">
-          <div className="usercartDetail">
-            <img src={Images.FoodIcon} className="userprofile" alt="cartImg" />
-            <div className="insideModal">
-              <p className="foodtext">Food Category</p>
-              <p className="foodItem">Chicken Salad</p>
-              <p className="foodPrice">£22.00</p>
+        {foodDetail?.items?.map((item, index) => (
+          <div key={index} className="modalDetail usermodaldetail">
+            {console.log("itemitem", item)}
+            <div className="usercartDetail">
+              <img src={item?.image} className="userprofile" alt="cartImg" />
+              <div className="insideModal">
+                <p className="foodtext">{item?.category}</p>
+                <p className="foodItem">{item?.name}</p>
+                <p className="foodPrice">£{item?.netPrice}.00</p>
+              </div>
             </div>
+            <p className="fooodquantity_">{item?.quantity}X</p>
           </div>
-          <p className="fooodquantity_">2X</p>
-        </div>
-        <div className="modalDetail usermodaldetail ">
-          <div className="usercartDetail">
-            <img src={Images.FoodIcon} className="userprofile" alt="cartImg" />
-            <div className="insideModal">
-              <p className="foodtext">Food Category</p>
-              <p className="foodItem">Chicken Salad</p>
-              <p className="foodPrice">£22.00</p>
-            </div>
-          </div>
-          <p className="fooodquantity_">2X</p>
-        </div>
+        ))}
+
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
             <button className="foodmodalbtn modalfooddelivery" type="button">
               <p className="orderfooterbtn">Total Paid</p>
-              <p className="orderfooterprice">£{foodDetail?.amount}.00</p>
+              <p className="orderfooterprice">
+                £{totalAmount?.total}.00
+              </p>
             </button>
           </div>
         </div>

@@ -7,18 +7,21 @@ import {
   onErrorStopLoadChef,
 } from "../../../../redux/slices/chef";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useChefSelector } from "../../../../redux/selector/chef";
 
 const HomeRequsest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const chefData = useChefSelector();
+  const [isLoading, setIsloading] = useState("");
   const [recentOrders, setGetRecentOrders] = useState([]);
-  console.log("recentOrders", recentOrders);
+  console.log("chefDatachefData", chefData);
 
   // get recent order
   const handleRecentOrder = () => {
     let params = {
-      search: "pending",
+      status: "pending",
     };
 
     dispatch(
@@ -52,6 +55,7 @@ const HomeRequsest = () => {
   //accept and reject order
   const handleAcceptOrder = (e, id, status) => {
     e.stopPropagation();
+    setIsloading(status);
     let params = {
       id: id,
       status: status,
@@ -82,7 +86,9 @@ const HomeRequsest = () => {
                 <div className="innerhomeheader">
                   <h2 className="headerinnerheading">New Booking Requests</h2>
                   <div className="seeAll">
-                    <p className="headerinnertxt">see All</p>
+                    <Link to="/new-booking">
+                      <p className="headerinnertxt">see All</p>
+                    </Link>
                     <img
                       src={Images.homeArow}
                       alt="homearrow"
@@ -245,7 +251,9 @@ const HomeRequsest = () => {
                                 )}
 
                                 <div className="showOrder">
-                                  <p className="orderPrice">£22.00</p>
+                                  <p className="orderPrice">
+                                    £{item?.total}.00
+                                  </p>
                                 </div>
                               </div>
                               <p className="orderTime">
@@ -257,16 +265,24 @@ const HomeRequsest = () => {
                                   onClick={(e) =>
                                     handleAcceptOrder(e, item?._id, "cancelled")
                                   }
-                                  className="cancelOrder"
+                                  className="cancelOrder d-flex align-items-center gap-2"
                                 >
+                                  {chefData?.laoding &&
+                                    isLoading === "cancelled" && (
+                                      <span className="spinner-border spinner-border-sm"></span>
+                                    )}
                                   CANCEL
                                 </button>
                                 <button
                                   onClick={(e) =>
                                     handleAcceptOrder(e, item?._id, "accepted")
                                   }
-                                  className="acceptOrder"
+                                  className="acceptOrder d-flex align-items-center gap-2"
                                 >
+                                  {chefData?.laoding &&
+                                    isLoading === "accepted" && (
+                                      <span className="spinner-border spinner-border-sm"></span>
+                                    )}
                                   ACCEPT
                                 </button>
                               </div>
