@@ -2059,7 +2059,7 @@ margin: 0;
   height: 10px;
 }
 
-.cancelProgressBar .ant-progress-bg {
+.cancelProgressBar .ant-progress-bg { 
   background-color: #e65c00 !important;
   height: 10px !important;
 }
