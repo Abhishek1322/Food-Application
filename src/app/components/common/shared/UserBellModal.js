@@ -182,7 +182,7 @@ const UserBellModal = () => {
 
                 {modalDetail.flag === "deletechat" ?
                     <>
-                        <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                        <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid arrowCommon_' />
                     </>
                     :
                     modalDetail.flag === "chefchat" ?
@@ -241,7 +241,7 @@ const UserBellModal = () => {
 
                             modalDetail.flag === "clearchat" ?
                                 <>
-                                    <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                                    <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid arrowCommon_' />
                                 </>
                                 :
 

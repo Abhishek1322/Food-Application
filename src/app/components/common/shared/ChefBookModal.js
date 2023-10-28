@@ -109,7 +109,7 @@ const ChefBookModal = () => {
                 {modalDetail.flag === "chefpay" ?
                     <>
                         <div className='editadressheading'>
-                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid arrowCommon_' />
                             <div className='edithead'>
                                 <h2 className="modal_Heading">
                                     Pay Now

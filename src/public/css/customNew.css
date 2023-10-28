@@ -5,7 +5,7 @@ p {
 }
 
 .profilesection {
-  margin-top: 60px;
+  margin-top: 100px;
   margin-left: 32px;
   margin-right: 32px;
 }
@@ -17,8 +17,10 @@ p {
 
 .chefprofileimg {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 50px;
+  max-width: 690px;
+  max-height: 610px;
 }
 
 /* right section  */
@@ -112,9 +114,11 @@ p {
 .infoimg {
   max-width: 100%;
   height: auto;
+  cursor: pointer;
+  display: inline;
 }
 
-.infoimg:hover + .information {
+.infoimg:hover+.information {
   display: block;
 }
 
@@ -188,7 +192,7 @@ p {
 
 /* editProfile */
 .usereditsection {
-  margin-top: 60px;
+  margin-top: 100px;
   margin-left: 32px;
   margin-right: 32px;
 }
@@ -199,9 +203,10 @@ p {
 
 .editprofileimg {
   position: absolute;
-  right: 10px;
+  right: 16px;
   top: 0;
-  margin: 6px auto;
+  /* margin: 6px auto; */
+  /* right: 13px; */
 }
 
 .border-box {
@@ -240,14 +245,17 @@ p {
 .chefdetailsection {
   margin: 20px 31px;
 }
+
 .chefdetailsection .listItems_ {
   width: 100%;
 }
+
 .sarahImg_ {
   width: 105px;
   height: 105px;
   border-radius: 50%;
 }
+
 .sarahchef {
   border-radius: 15px;
   background: #fff;
@@ -286,12 +294,17 @@ p {
   top: 10px;
 }
 
-.infoimg:hover + .sarahinformation {
+.infoimg:hover+.sarahinformation {
   display: block;
 }
 
 .restroinfo .johnchatdetail {
   padding: 4px 15px;
+  cursor: pointer;
+}
+
+.cursorPoint {
+  cursor: pointer;
 }
 
 .sarahbtn {
@@ -419,17 +432,25 @@ p {
   max-width: 100%;
 }
 
+.chefOrderImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 /*modal Css start*/
 .foodModalimg {
   width: 120px;
   height: 120px;
   border-radius: 50%;
 }
+
 .ratingImage {
   width: 42px;
   height: 42px;
   border-radius: 42px;
 }
+
 #availablebtnModal {
   max-width: 406px;
   margin: 0;
@@ -644,6 +665,10 @@ p {
   right: 0px;
 }
 
+#CartModal .userCheckOutModal .orderbutton {
+  margin: 8px 5px 8px 8px;
+}
+
 /* #cartcheckoutModal .modal-content {
     width: 100%;
     max-width: 362px;
@@ -757,6 +782,7 @@ p {
   font-weight: 400;
   line-height: 33px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .dropdown-item {
@@ -1284,6 +1310,7 @@ p {
 .userbellsection .dropdown-menu {
   min-width: 130px;
 }
+
 .reportchat {
   color: #2e3333;
   font-family: Open Sans;
@@ -1292,12 +1319,14 @@ p {
   font-weight: 400;
   line-height: normal;
 }
+
 .modalContent .cheftext {
   max-width: 200px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
+
 #userchatdelete {
   max-width: 406px;
   margin: 0;
@@ -1486,16 +1515,32 @@ p {
   top: 25px;
   right: 0px;
 }
+
 /* #usercartmodal .modalfooterbtn{
   left: 12px;
 } */
+#usercartmodal .modal-header,
+#usercartmodal .modal_Heading {
+  border: none;
+}
+
+#usercartmodal .modal_cancel {
+  margin-left: auto;
+}
+
 #usercartmodal .modal-body {
   padding: 0;
 }
+
+.addCartModal .modalfooterbtn {
+  left: 12px;
+}
+
 .usermodaldetail {
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
   margin: 20px;
 }
+
 .usercartcheck .modalfooterbtn {
   max-width: none;
 }
@@ -1533,15 +1578,19 @@ p {
 .editadressection .modalfooterbtn {
   left: 13px;
 }
+
 .editadressection {
   padding: 20px;
 }
+
 #chefbookpaymodal .modal-body {
   padding: 0;
 }
+
 .paymodalsection .modalfooterbtn {
   left: 12px;
 }
+
 /* Cart modal Css  start */
 .settingModal {
   width: 362px;
@@ -1664,21 +1713,21 @@ p {
 }
 
 .orderbutton {
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 10px;
-    background: #E65C00;
-    box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
-    display: flex;
-    width: 156px;
-    height: 49px;
-    padding: 18px 29px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    margin: 8px 5px 8px 15px;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #E65C00;
+  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+  display: flex;
+  width: 156px;
+  height: 49px;
+  padding: 18px 29px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin: 8px 5px 8px 15px;
 }
 
 .totalPrice {
@@ -1806,10 +1855,12 @@ p {
   font-size: 14px;
   font-weight: 400;
 }
+
 .pagination {
   justify-content: end;
   margin-top: 20px;
 }
+
 .previous a,
 .next a {
   border-radius: 8px;
@@ -1821,6 +1872,7 @@ p {
   text-transform: capitalize;
   border: 1px solid #e65c00;
 }
+
 .pagination li a {
   border: 1px solid #e65c00;
   padding: 5px 18px;
@@ -1829,16 +1881,19 @@ p {
   font-size: 16px;
   color: #e65c00 !important;
 }
+
 .pagination .active a {
   background-color: #e65c00;
   color: #fff !important;
 }
+
 .pagination a {
   background-color: #fff;
   border: 1px solid #e65c00;
   padding: 5px 18px;
   color: #e65c00;
 }
+
 /*user-chef-home  css end*/
 /*user-order-home css start*/
 .userordersection {
@@ -1858,6 +1913,7 @@ p {
   flex-wrap: nowrap;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
 }
+
 .orderchefinfo {
   padding: 15px 20px 20px 10px;
   border-radius: 13px;
@@ -1890,15 +1946,19 @@ p {
 .orderprocess.active .fooodquantity_ {
   color: #fff;
 }
+
 .orderprocess.active .chatTime_ {
   color: #fff;
 }
+
 .orderprocess .chatTime_ {
   padding: 10px 20px;
 }
+
 .orderprocess .fooodquantity_ {
   padding: 10px 20px;
 }
+
 #userorderdetail,
 #userorderdeliver,
 #ordereditaddress {
@@ -1909,60 +1969,76 @@ p {
   top: 25px;
   right: 0px;
 }
-#ordereditaddress .modal-body{
+
+#ordereditaddress .modal-body {
   padding: 0;
 }
+
 #userorderdetail .headerInner_:before {
   background-color: #e65c00 !important;
 }
+
 #userorderdetail .modal-body {
   padding: 0;
 }
+
 #userorderdetail .modalfooterbtn {
   left: 12px;
 }
+
 .Userordersection .fooodquantity_ {
   padding: 15px;
 }
+
 .Userordersection .modalDetail {
   justify-content: space-around;
 }
+
 .orderfooterbtn {
   color: #fff;
   font-size: 15px;
   font-weight: 600;
 }
+
 .orderfooterprice {
   color: #fff;
   font-size: 22px;
   font-weight: 700;
   text-transform: uppercase;
 }
+
 .Userordersection .foodmodalbtn {
   padding: 18px 22px;
 }
+
 .Userordersection .modalfooddelivery {
   align-items: center;
 }
+
 #userorderdeliver .modal-body {
   padding: 0;
 }
+
 #userorderdeliver .modalfooterbtn {
   left: 12px;
 }
+
 .orderdeliversection .foodmodalbtn {
   background-color: #2e3333;
 }
+
 /*user-order-home css end*/
 /* start sidebar */
 .userSidebar {
   position: fixed;
   top: 0;
 }
+
 .usermain {
   width: calc(100% - 100px);
   margin-left: 100px;
 }
+
 /*User-profile-page start*/
 .userprofilesection .profileright {
   padding: 0px 70px;
@@ -1970,9 +2046,11 @@ p {
   display: flex;
   align-items: center;
 }
+
 .profileinfosection {
   width: 100%;
 }
+
 .managehome {
   background-color: #fff;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
@@ -1983,34 +2061,40 @@ p {
   position: relative;
   border-radius: 12px;
 }
+
 .managedrop {
   position: absolute;
   top: 0;
   right: 20px;
   margin: 10px auto;
 }
+
 .manageimg {
   cursor: pointer;
 }
+
 .settingmanagesection .cancelOrder {
   margin-top: 20px;
   border: none;
   text-align: right;
   font-weight: 600;
 }
+
 .settingmanagesection .settingMainText {
   margin: 21px 55px 38px 55px;
 }
+
 .managescroll {
   height: 250px;
   overflow-y: scroll;
 
 }
+
 .settingmanagesection .modalscroll {
   height: 100%;
   max-height: 250px;
   overflow-y: auto;
-margin: 0;
+  margin: 0;
 }
 
 .userEditprofileSection .postAd_upload_icon {
@@ -2024,10 +2108,12 @@ margin: 0;
   appearance: none !important;
   resize: none;
 }
+
 .userEditprofileSection .postAd_upload_icon::placeholder {
   color: #e65c00 !important;
   font-size: 14px !important;
 }
+
 /*chef home css*/
 .cheffilter .searchbarImg {
   padding: 10px;
@@ -2037,6 +2123,7 @@ margin: 0;
   max-width: 100%;
   height: auto;
 }
+
 .cheffilter .searchtext {
   padding: 15px 120px 15px 24px;
 }
@@ -2059,7 +2146,7 @@ margin: 0;
   height: 10px;
 }
 
-.cancelProgressBar .ant-progress-bg { 
+.cancelProgressBar .ant-progress-bg {
   background-color: #e65c00 !important;
   height: 10px !important;
 }
@@ -2067,16 +2154,23 @@ margin: 0;
 .orderNow .orderbutton {
   margin: 8px 5px 8px 15px;
 }
+
 .paymodalsection .input-container {
   margin: 0 10px;
 }
+
 .userDelete .flexBox {
   justify-content: space-evenly;
 }
 
-.userDelete .modalfooterbtn{
+.userDelete .modalfooterbtn {
   left: 12px;
 }
-.modalheaderDot .btn-check:active+.btn-secondary:focus, .btn-check:checked+.btn-secondary:focus, .btn-secondary.active:focus, .btn-secondary:active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+
+.modalheaderDot .btn-check:active+.btn-secondary:focus,
+.btn-check:checked+.btn-secondary:focus,
+.btn-secondary.active:focus,
+.btn-secondary:active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: none;
 }

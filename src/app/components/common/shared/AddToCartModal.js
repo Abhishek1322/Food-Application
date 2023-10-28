@@ -64,7 +64,7 @@ const AddToCartModal = (props) => {
 
   return (
     <>
-      <div className="cartfoodsection">
+      <div className="cartfoodsection addCartModal">
         <div className="foodmodal">
           <img
             src={foodDetails?.image ? foodDetails?.image : Images.CartFood}

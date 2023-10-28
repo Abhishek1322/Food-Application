@@ -131,13 +131,11 @@ const ChefRating = () => {
                     </div>
                 </div>
                 <div className='modalfooterbtn'>
-                    <div className='addfoodbtn'>
                         <button className='foodmodalbtn' type='button' onClick={() => {
                                             handleUserProfile("giverate")
                                         }}>
                             Rate Us
                         </button>
-                    </div>
                 </div>
             </div>
             <CustomModal
@@ -162,7 +160,7 @@ const ChefRating = () => {
           {modalDetail.flag === "giverate" ?
             <>
               <div className='editadressheading'>
-                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
+                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid arrowCommon_' />
                             <div className='edithead'>
                                 <h2 className="modal_Heading">
                                 Give Rating & Reviews

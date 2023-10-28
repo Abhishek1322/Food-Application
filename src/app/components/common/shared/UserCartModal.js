@@ -439,7 +439,7 @@ const UserCartModal = (props) => {
                   onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
-                  className="img-fluid"
+                  className="img-fluid arrowCommon_"
                 />
                 <div className="edithead">
                   <h2 className="modal_Heading">Add New Address</h2>
@@ -454,7 +454,7 @@ const UserCartModal = (props) => {
                   onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
-                  className="img-fluid"
+                  className="img-fluid arrowCommon_"
                 />
                 <div className="edithead">
                   <h2 className="modal_Heading">Edit Address</h2>
@@ -469,7 +469,7 @@ const UserCartModal = (props) => {
                   onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
-                  className="img-fluid"
+                  className="img-fluid arrowCommon_"
                 />
                 <div className="edithead">
                   <h2 className="modal_Heading">Delete Address</h2>
@@ -486,7 +486,7 @@ const UserCartModal = (props) => {
                   }}
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
-                  className="img-fluid"
+                  className="img-fluid arrowCommon_"
                 />
                 <div className="edithead">
                   <h2 className="modal_Heading">Pay Now</h2>

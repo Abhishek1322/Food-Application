@@ -259,7 +259,7 @@ const CartModalCheckout = () => {
                 <img
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
-                  className="img-fluid"
+                  className="img-fluid arrowCommon_"
                 />
                 <div className="edithead">
                   <h2 className="modal_Heading">Edit Address</h2>

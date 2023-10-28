@@ -70,8 +70,8 @@ const ChefDetails = () => {
       <div className="chefdetailsection">
         <div className="sarahchef">
           {/* chef data section  */}
-          <div className="row">
-            <div className="col-lg-5 col-md-12">
+          <div className="row align-items-center">
+            <div className="col-lg-5 col-md-6 col-sm-12">
               <div className="sarahinfo">
                 <div className="sarahimg">
                   <img
@@ -94,7 +94,7 @@ const ChefDetails = () => {
                       <img
                         src={Images.sarahcap}
                         alt="sarahcapimage"
-                        className="img-fluid"
+                        className="img-fluid cursorPoint"
                       />
                       <div className="johnchatdetail">
                         <p className="chatDates">{chefData?.chefInfo?.type}</p>
@@ -115,7 +115,7 @@ const ChefDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-7 col-md-12">
+            <div className="col-lg-7 col-md-6 col-sm-12">
               <div className="flexBox justify-content-end">
                 <button
                   className="sarahavailablebtn"
@@ -193,7 +193,7 @@ const ChefDetails = () => {
               <h3 className="innerDummyHeading ">Expertise</h3>
               <div className="chefexpertise mt-2">
                 {chefData?.chefInfo?.expertise &&
-                chefData?.chefInfo?.expertise.length > 0 ? (
+                  chefData?.chefInfo?.expertise.length > 0 ? (
                   <>
                     {chefData?.chefInfo?.expertise?.map((item, index) => (
                       <div key={index} className="expertisevalue">
@@ -234,7 +234,7 @@ const ChefDetails = () => {
                               }}
                               src={val?.image ? val?.image : Images.SaladImg}
                               alt="logo"
-                              className="menuItem_"
+                              className="menuItem_ cursorPoint"
                             />
                           </div>
                         </div>
@@ -253,7 +253,7 @@ const ChefDetails = () => {
                             <img
                               src={Images.basketImg}
                               alt="basketimage"
-                              className="img-fluid"
+                              className="img-fluid cursorPoint"
                             />
                           </div>
                         </div>
@@ -284,14 +284,14 @@ const ChefDetails = () => {
           modalDetail.flag === "availabilityModal"
             ? "availablebtnModal"
             : modalDetail.flag === "CartFood"
-            ? "CartModalFood"
-            : modalDetail.flag === "ratingchef"
-            ? "ratingusermodal"
-            : modalDetail.flag === "chefcart"
-            ? "usercartmodal"
-            : modalDetail.flag === "Addtocart"
-            ? "usercartmodal"
-            : ""
+              ? "CartModalFood"
+              : modalDetail.flag === "ratingchef"
+                ? "ratingusermodal"
+                : modalDetail.flag === "chefcart"
+                  ? "usercartmodal"
+                  : modalDetail.flag === "Addtocart"
+                    ? "usercartmodal"
+                    : ""
         }
         child={
           modalDetail.flag === "availabilityModal" ? (

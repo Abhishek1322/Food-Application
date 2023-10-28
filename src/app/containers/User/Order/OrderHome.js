@@ -99,7 +99,7 @@ const UserOrderHome = () => {
                                       : Images.OrderChef
                                   }
                                   alt="chefimg"
-                                  className="img-fluid"
+                                  className="img-fluid chefOrderImg"
                                 />
                                 <div className="orderchefname">
                                   <h6 className="chefName">

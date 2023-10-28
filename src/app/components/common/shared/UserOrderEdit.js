@@ -373,7 +373,7 @@ const UserOrderEdit = () => {
                 <img
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
-                  className="img-fluid"
+                  className="img-fluid arrowCommon_"
                 />
                 <div className="edithead">
                   <h2 className="modal_Heading">Pay Now</h2>
