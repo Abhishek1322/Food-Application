@@ -17,7 +17,6 @@ const OrderDetails = () => {
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
-  console.log("recentOrderId", recentOrderId);
 
   // get order details
 

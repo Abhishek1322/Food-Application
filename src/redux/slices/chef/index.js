@@ -3,12 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   allRecentOrder: [],
+  latestOrder: false,
 };
 
 export const chefSilce = createSlice({
   name: "chef",
   initialState,
   reducers: {
+    getLatestOrder: (state,action) => {
+      state.latestOrder = action.payload;
+    },
+
     confirmResendOtp: (state) => {
       state.loading = true;
     },
@@ -60,7 +65,8 @@ export const {
   confirmOrderOtp,
   setConfirmOrderOtp,
   confirmResendOtp,
-  setConfirmResendOtp
+  setConfirmResendOtp,
+  getLatestOrder,
 } = chefSilce.actions;
 
 export default chefSilce.reducer;

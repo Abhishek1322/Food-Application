@@ -4,9 +4,11 @@ import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, getAllCart } from "../../../../redux/slices/user";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const AddToCartModal = (props) => {
   const { menuId, close } = props;
+  const userData = useUserSelector();
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -117,10 +119,14 @@ const AddToCartModal = (props) => {
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
             <button
+              disabled={userData?.loading}
               onClick={() => handleAddCart()}
               className="foodmodalbtn"
               type="button"
             >
+              {userData?.loading && (
+                <span className="spinner-border spinner-border-sm me-1"></span>
+              )}
               Add to cart
             </button>
           </div>

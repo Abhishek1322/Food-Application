@@ -193,7 +193,7 @@ const ChefDetails = () => {
               <h3 className="innerDummyHeading ">Expertise</h3>
               <div className="chefexpertise mt-2">
                 {chefData?.chefInfo?.expertise &&
-                  chefData?.chefInfo?.expertise.length > 0 ? (
+                chefData?.chefInfo?.expertise.length > 0 ? (
                   <>
                     {chefData?.chefInfo?.expertise?.map((item, index) => (
                       <div key={index} className="expertisevalue">
@@ -284,14 +284,14 @@ const ChefDetails = () => {
           modalDetail.flag === "availabilityModal"
             ? "availablebtnModal"
             : modalDetail.flag === "CartFood"
-              ? "CartModalFood"
-              : modalDetail.flag === "ratingchef"
-                ? "ratingusermodal"
-                : modalDetail.flag === "chefcart"
-                  ? "usercartmodal"
-                  : modalDetail.flag === "Addtocart"
-                    ? "usercartmodal"
-                    : ""
+            ? "CartModalFood"
+            : modalDetail.flag === "ratingchef"
+            ? "ratingusermodal"
+            : modalDetail.flag === "chefcart"
+            ? "usercartmodal"
+            : modalDetail.flag === "Addtocart"
+            ? "usercartmodal"
+            : ""
         }
         child={
           modalDetail.flag === "availabilityModal" ? (

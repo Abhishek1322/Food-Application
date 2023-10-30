@@ -1,9 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import * as Containers from "../app/containers";
 import * as Layouts from "../app/layouts";
-import UserRoute from "../app/layouts/UserRoute";
-import ChefRoute from "../app/layouts/ChefRoute";
-import PublicRoute from "../app/layouts/PublicRoute";
 import { useAuthSelector } from "../redux/selector/auth";
 
 const Router = () => {

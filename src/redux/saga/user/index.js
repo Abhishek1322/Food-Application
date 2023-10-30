@@ -18,9 +18,34 @@ import {
   setCancelOrder,
   setGetAllOrder,
   setGetSingleOrder,
+  setUpdateCartItem,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* updateCartItem(action) {
+  try {
+    const resp = yield call(
+      ApiClient.put,
+      (action.url = ApiPath.userApiPath.UPDATE_CART_ITEM),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setUpdateCartItem(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
 
 function* getSingleOrder(action) {
   try {
@@ -350,6 +375,7 @@ function* userSaga() {
   yield all([takeLatest("user/cancelOrder", cancelOrder)]);
   yield all([takeLatest("user/getAllOrder", getAllOrder)]);
   yield all([takeLatest("user/getSingleOrder", getSingleOrder)]);
+  yield all([takeLatest("user/updateCartItem", updateCartItem)]);
 }
 
 export default userSaga;

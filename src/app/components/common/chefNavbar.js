@@ -11,6 +11,7 @@ import {
   getChefProfileDetails,
   onErrorStopLoad,
 } from "../../../redux/slices/web";
+import { useChefSelector } from "../../../redux/selector/chef";
 
 const Chef_Navbar = () => {
   const location = useLocation();
@@ -19,8 +20,8 @@ const Chef_Navbar = () => {
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
-  console.log("recentOrderIdrecentOrderId", recentOrderId);
   const userId = localStorage.getItem("userId");
+  const chefData = useChefSelector();
   const [key, setKey] = useState(Math.random());
   const [chefProfileData, setProfileData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
@@ -157,7 +158,11 @@ const Chef_Navbar = () => {
                           handleOpenModal("Myorder");
                         }}
                       />
-                      <span className="cartItems">5</span>
+                      <span className="cartItems">
+                        {chefData?.allRecentOrder?.total
+                          ? chefData?.allRecentOrder?.total
+                          : 0}
+                      </span>
                     </div>
                   </div>
 

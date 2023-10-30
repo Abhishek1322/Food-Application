@@ -19,7 +19,9 @@ const User_Sidebar = () => {
     <>
       <div className="sideBar userSidebar">
         <div className="sidebarlogo ">
-          <img src={Images.Logo} alt="logo" className="img-fluid" />
+          <Link to="/home-user">
+            <img src={Images.Logo} alt="logo" className="img-fluid" />
+          </Link>
         </div>
         <div className="sidelist">
           <ul>

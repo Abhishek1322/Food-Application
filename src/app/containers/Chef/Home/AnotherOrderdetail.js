@@ -26,7 +26,6 @@ const AnotherOrderdetail = () => {
     title: "",
     flag: "",
   });
-  console.log("recentOrderId", recentOrderId);
 
   // get order details
 
@@ -42,7 +41,6 @@ const AnotherOrderdetail = () => {
       getSingleOrderDetail({
         ...params,
         cb(res) {
-          console.log("resres11111", res);
           if (res.status === 200) {
             setOrderDetails(res?.data?.data);
           }

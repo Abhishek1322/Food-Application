@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -8,10 +8,14 @@ import { addAddress, onErrorStopLoad } from "../../../../redux/slices/user";
 import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
 import { useDispatch } from "react-redux";
+import { useUserSelector } from "../../../../redux/selector/user";
+import { toast } from "react-toastify";
 
 const AddAddressModal = (props) => {
   const { handleGetUserAddress, close } = props;
   const dispatch = useDispatch();
+  const toastId = useRef(null);
+  const userData = useUserSelector();
   const [key, setKey] = useState(Math.random());
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -107,8 +111,31 @@ const AddAddressModal = (props) => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // submit addresss
   const handleSubmitAddess = () => {
+    if (!city) {
+      showToast("Please enter your city name");
+      return;
+    } else if (!state) {
+      showToast("Please enter your state name");
+      return;
+    } else if (!zipCode) {
+      showToast("Please enter your zip code");
+      return;
+    } else if (!streetAddress) {
+      showToast("Please enter your street address");
+      return;
+    } else if (!building) {
+      showToast("Please enter your building number");
+      return;
+    }
     let params = {
       type: addressType,
       city: city,
@@ -336,7 +363,14 @@ const AddAddressModal = (props) => {
               </div>
               <div className="modalfooterbtn">
                 <div className="addfoodbtn">
-                  <button onClick={handleSubmitAddess} className="foodmodalbtn">
+                  <button
+                    disabled={userData?.loading}
+                    onClick={handleSubmitAddess}
+                    className="foodmodalbtn"
+                  >
+                    {userData?.loading && (
+                      <span className="spinner-border spinner-border-sm me-1"></span>
+                    )}
                     Save
                   </button>
                 </div>

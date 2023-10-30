@@ -7,7 +7,7 @@ const Chef_Sidebar = () => {
   const location = useLocation();
   const webData = useWebSelector();
   const [chefProfile, setChefProfile] = useState("");
-  
+
   useEffect(() => {
     if (webData) {
       setChefProfile(webData?.chefProfileDetails?.data?.userInfo?.profilePhoto);
@@ -17,8 +17,10 @@ const Chef_Sidebar = () => {
   return (
     <>
       <div className="sideBar">
-        <div className="sidebarlogo ">
-          <img src={Images.Logo} alt="logo" className="img-fluid"/>
+        <div className="sidebarlogo">
+          <Link to="/home">
+            <img src={Images.Logo} alt="logo" className="img-fluid" />
+          </Link>
         </div>
         <div className="sidelist">
           <ul>
@@ -30,8 +32,12 @@ const Chef_Sidebar = () => {
               }
             >
               <Link to="/home" className="sidebarItems">
-                <img src={Images.homeOrange} className="imgHide"  alt="homeImg"/>
-                <img src={Images.Home} className="imgShow"   alt="homeImg"/>
+                <img
+                  src={Images.homeOrange}
+                  className="imgHide"
+                  alt="homeImg"
+                />
+                <img src={Images.Home} className="imgShow" alt="homeImg" />
                 <span className="d-block">Home</span>
               </Link>
             </li>
@@ -43,8 +49,16 @@ const Chef_Sidebar = () => {
               }
             >
               <Link to="/menu" className="sidebarItems">
-                <img src={Images.chefmenuOrange} className="imgHide"  alt="menuImg" />
-                <img src={Images.chefsideMenu} className="imgShow"  alt="menuImg" />
+                <img
+                  src={Images.chefmenuOrange}
+                  className="imgHide"
+                  alt="menuImg"
+                />
+                <img
+                  src={Images.chefsideMenu}
+                  className="imgShow"
+                  alt="menuImg"
+                />
                 <span className="d-block">Menu</span>
               </Link>
             </li>
@@ -56,8 +70,16 @@ const Chef_Sidebar = () => {
               }
             >
               <Link to="/new-booking" className="sidebarItems">
-                <img src={Images.myorderorange} className="imgHide"  alt="BookingImg" />
-                <img src={Images.myorder} className="imgShow" alt="BookingImg" />
+                <img
+                  src={Images.myorderorange}
+                  className="imgHide"
+                  alt="BookingImg"
+                />
+                <img
+                  src={Images.myorder}
+                  className="imgShow"
+                  alt="BookingImg"
+                />
                 <span className="d-block">Bookings</span>
               </Link>
             </li>
@@ -70,8 +92,16 @@ const Chef_Sidebar = () => {
               }
             >
               <Link to="/setting" className=" sidebarItems">
-                <img src={Images.setting} className="imgHide"  alt="settingImg"/>
-                <img src={Images.settingGray} className="imgShow"   alt="settingImg" />
+                <img
+                  src={Images.setting}
+                  className="imgHide"
+                  alt="settingImg"
+                />
+                <img
+                  src={Images.settingGray}
+                  className="imgShow"
+                  alt="settingImg"
+                />
                 <span className="d-block">Settings</span>
               </Link>
             </li>

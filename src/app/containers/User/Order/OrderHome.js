@@ -8,7 +8,6 @@ import moment from "moment";
 
 const UserOrderHome = () => {
   const dispatch = useDispatch();
-
   const [key, setKey] = useState(Math.random());
   const [allOrders, setAllOrders] = useState([]);
   const [foodOrderId, setFoodOrderId] = useState("");
@@ -68,7 +67,8 @@ const UserOrderHome = () => {
                 ?.filter(
                   (value) =>
                     value?.status !== "cancelled" &&
-                    value?.status !== "readyForDelivery"
+                    value?.status !== "readyForDelivery" &&
+                    value?.status !== "accepted"
                 )
 
                 ?.map((item, index) => {

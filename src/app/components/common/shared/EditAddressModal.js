@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
@@ -12,10 +12,14 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import { useUserSelector } from "../../../../redux/selector/user";
+import { toast } from "react-toastify";
 
 const EditAddressModal = (props) => {
   const { close, addressId, handleGetUserAddress } = props;
   const dispatch = useDispatch();
+  const toastId = useRef(null);
+  const userData = useUserSelector();
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
@@ -136,8 +140,34 @@ const EditAddressModal = (props) => {
       .catch((error) => {});
   };
 
+ // show only one toast at one time
+ const showToast = (msg) => {
+  if (!toast.isActive(toastId.current)) {
+    toastId.current = toast.error(msg);
+  }
+};
+
+
   // edit address
   const handleSubmitEditAddess = () => {
+
+    if (!city) {
+      showToast("Please enter your city name");
+      return;
+    } else if (!state) {
+      showToast("Please enter your state name");
+      return;
+    } else if (!zipCode) {
+      showToast("Please enter your zip code");
+      return;
+    } else if (!streetAddress) {
+      showToast("Please enter your street address");
+      return;
+    } else if (!building) {
+      showToast("Please enter your building number");
+      return;
+    }
+
     let params = {
       id: addressId,
       type: addressType,
@@ -366,9 +396,13 @@ const EditAddressModal = (props) => {
               <div className="modalfooterbtn">
                 <div className="addfoodbtn">
                   <button
+                    disabled={userData?.loading}
                     onClick={handleSubmitEditAddess}
                     className="foodmodalbtn"
                   >
+                    {userData?.loading && (
+                      <span className="spinner-border spinner-border-sm me-1"></span>
+                    )}
                     Update & Save
                   </button>
                 </div>

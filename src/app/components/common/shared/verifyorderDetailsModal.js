@@ -12,12 +12,13 @@ import {
 import { useChefSelector } from "../../../../redux/selector/chef";
 
 const VerifyorderDetailsModal = (props) => {
-  const { close, recentOrderId, handleGetOrderDetails } = props;
+  const { close, recentOrderId, handleGetOrderDetails } =
+    props;
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const chefData = useChefSelector();
   const [otp, setOtp] = useState("");
-  const [isLoading,setIsLoading] = useState("")
+  const [isLoading, setIsLoading] = useState("");
 
   // show only one toast at one time
   const showToast = (msg) => {
@@ -27,9 +28,9 @@ const VerifyorderDetailsModal = (props) => {
   };
 
   // submit otp
-  const handleSubmitOtp = (e,status) => {
+  const handleSubmitOtp = (e, status) => {
     e.preventDefault();
-    setIsLoading(status)
+    setIsLoading(status);
     if (!otp) {
       showToast("Please enter otp");
       return;
@@ -57,8 +58,9 @@ const VerifyorderDetailsModal = (props) => {
   }, [dispatch]);
 
   // resend OTP
-  const handleResendOtp = (e) => {
+  const handleResendOtp = (e, status) => {
     e.preventDefault();
+    setIsLoading(status);
     let params = {
       id: recentOrderId,
     };
@@ -78,7 +80,7 @@ const VerifyorderDetailsModal = (props) => {
         <p className="accountdeletetxt ms-5 me-5 mb-4">
           Enter the OTP that we sent on customer’s email.
         </p>
-        <form onSubmit={(e) => handleSubmitOtp(e,"verify")}>
+        <form onSubmit={(e) => handleSubmitOtp(e, "verify")}>
           <OTPInput
             value={otp}
             onChange={setOtp}
@@ -89,11 +91,16 @@ const VerifyorderDetailsModal = (props) => {
           <p className="mb-3 mt-4 inner_Text">
             Customer not received the OTP?{" "}
             <Link
-              onClick={(e) => handleResendOtp(e)}
+              onClick={(e) => handleResendOtp(e, "resend")}
               className="resendLink"
               href=""
             >
-              <span className="insideText">Resend</span>
+              <span className="insideText">
+                {chefData?.loading && isLoading === "resend" && (
+                  <span className="spinner-border spinner-border-sm me-1"></span>
+                )}
+                Resend
+              </span>
             </Link>{" "}
           </p>
           <div className="modalfooterbtn mb-4">

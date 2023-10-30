@@ -4,6 +4,7 @@ import {
   getAllCart,
   onErrorStopLoad,
   deleteCartItem,
+  updateCartItem,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 import CustomModal from "./CustomModal";
@@ -76,43 +77,26 @@ const CartModal = (props) => {
 
   // manage cart data e.g. quantity and price
   const handleCartData = (type, menuId, quantity) => {
-    if (type === "increase") {
-      const updateCart = allCartItems?.map((item, index) => {
-        if (menuId === item?.menuItemId?._id) {
-          return {
-            ...item,
-            quantity: item?.quantity + 1,
-            itemTotalPrice: item?.itemTotalPrice + item?.netPrice,
-          };
-        }
-        return item;
-      });
-      const totalCartPrice = updateCart.reduce(
-        (previousValue, currentValue, index) =>
-          previousValue + currentValue.itemTotalPrice,
-        0
-      );
-      setTotalPrice(totalCartPrice);
-      setAllCartItems(updateCart);
-    } else if (type === "decrease" && quantity > 1) {
-      const updateCart = allCartItems?.map((item, index) => {
-        if (menuId === item?.menuItemId?._id) {
-          return {
-            ...item,
-            quantity: item?.quantity - 1,
-            itemTotalPrice: item?.itemTotalPrice - item?.netPrice,
-          };
-        }
-        return item;
-      });
-      const totalCartPrice = updateCart.reduce(
-        (previousValue, currentValue, index) =>
-          previousValue + currentValue.itemTotalPrice,
-        0
-      );
-      setTotalPrice(totalCartPrice);
-      setAllCartItems(updateCart);
-    }
+    let params = {
+      cartId: cartId,
+      menuItemId: menuId,
+      quantity:
+        type === "increase"
+          ? quantity + 1
+          : type === "decrease" && quantity > 1
+          ? quantity - 1
+          : 1,
+    };
+    dispatch(
+      updateCartItem({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleGetAllCart();
+          }
+        },
+      })
+    );
   };
 
   //closeModal

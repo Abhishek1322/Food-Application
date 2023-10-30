@@ -6,9 +6,11 @@ import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import UserCartModal from "./UserCartModal";
 import { addToCart } from "../../../../redux/slices/user";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const CartFoodModalOrder = (props) => {
   const { menuId, close } = props;
+  const userData = useUserSelector();
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -184,12 +186,16 @@ const CartFoodModalOrder = (props) => {
               <p className="price">£{totalPrice}.00</p>
             </div>
             <button
-              className="orderbutton"
+               disabled={userData?.loading}
+              className="orderbutton p-0"
               type="button"
               onClick={() => {
                 handleAddCart();
               }}
             >
+              {userData?.loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
               CheckOut
             </button>
           </div>

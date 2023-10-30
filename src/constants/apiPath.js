@@ -38,13 +38,14 @@ const ApiPath = {
     CANCEL_ORDER: "/order/change-status",
     GET_ALL_ORDER: "/order/user",
     GET_SINGLE_ORDER: "/order/order",
+    UPDATE_CART_ITEM: "/cart/update",
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
     ACCEPT_ORDER: "/order/change-status",
     GET_CHEF_SINGLE_ORDER: "/order/order",
-    CONFIRM_ORDER_OTP:"/order/deliver",
-    RESEND_OTP:"/order/resend"
+    CONFIRM_ORDER_OTP: "/order/deliver",
+    RESEND_OTP: "/order/resend",
   },
 };
 

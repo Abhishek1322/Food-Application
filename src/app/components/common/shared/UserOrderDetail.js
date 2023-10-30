@@ -8,7 +8,6 @@ const UserOrderDetail = (props) => {
   const dispatch = useDispatch();
   const [foodDetail, setFoodDetail] = useState([]);
   const [totalAmount, setTotalAmount] = useState("");
-  console.log("totalAmount", totalAmount);
 
   // stop loader on page load
   useEffect(() => {
@@ -40,7 +39,6 @@ const UserOrderDetail = (props) => {
       <div className="Userordersection">
         {foodDetail?.items?.map((item, index) => (
           <div key={index} className="modalDetail usermodaldetail">
-            {console.log("itemitem", item)}
             <div className="usercartDetail">
               <img src={item?.image} className="userprofile" alt="cartImg" />
               <div className="insideModal">

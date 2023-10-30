@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   getRecentOrder,
   acceptOrder,
+  getLatestOrder,
   onErrorStopLoadChef,
 } from "../../../../redux/slices/chef";
 import moment from "moment";
@@ -16,7 +17,6 @@ const HomeRequsest = () => {
   const chefData = useChefSelector();
   const [isLoading, setIsloading] = useState("");
   const [recentOrders, setGetRecentOrders] = useState([]);
-  console.log("chefDatachefData", chefData);
 
   // get recent order
   const handleRecentOrder = () => {
@@ -30,6 +30,7 @@ const HomeRequsest = () => {
         cb(res) {
           if (res.status === 200) {
             setGetRecentOrders(res?.data?.data?.data);
+            dispatch(getLatestOrder(false));
           }
         },
       })
@@ -39,7 +40,7 @@ const HomeRequsest = () => {
   // get recent order
   useEffect(() => {
     handleRecentOrder();
-  }, []);
+  }, [chefData?.latestOrder]);
 
   // stop loader on page load
   useEffect(() => {
@@ -219,7 +220,6 @@ const HomeRequsest = () => {
                           key={index}
                           className="orderDetailBox"
                         >
-                          {console.log("item=====", item)}
                           <div className="orderDetails">
                             <p className="orderId">#{item?.orderId}</p>
                           </div>
@@ -227,7 +227,11 @@ const HomeRequsest = () => {
                             <div className="orderRequest">
                               <div className="profileInfo">
                                 <img
-                                  src={Images.homeProfile}
+                                  src={
+                                    item?.userId?.userInfo?.profilePhoto
+                                      ? item?.userId?.userInfo?.profilePhoto
+                                      : Images.dummyProfile
+                                  }
                                   alt="profile"
                                   className="homeprofile"
                                 />

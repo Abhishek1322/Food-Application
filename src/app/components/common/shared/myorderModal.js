@@ -3,20 +3,26 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import MyRecentOrderModal from "./myRecentOrderModal";
 import {
+  acceptOrder,
   getRecentOrder,
+  getLatestOrder,
   onErrorStopLoadChef,
 } from "../../../../redux/slices/chef";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { useChefSelector } from "../../../../redux/selector/chef";
 
-const Myorder = () => {
+const Myorder = (props) => {
+  const { close } = props;
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const chefData = useChefSelector();
   const [orderStatus, setOrderStatus] = useState("pending");
   const [orderDetails, setOrderDetails] = useState([]);
   const [searchOrder, setSearchOrder] = useState("");
+  const [singleOrderId, setSingleOrderId] = useState("");
+  const [orderId, setOrderId] = useState("");
+  const [isLoading, setIsloading] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -34,13 +40,14 @@ const Myorder = () => {
   };
 
   // open modal
-  const handleOpenModal = (flag) => {
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
       type: flag,
     });
     setKey(Math.random());
+    setSingleOrderId(id);
   };
 
   // stop loader on page load
@@ -65,6 +72,32 @@ const Myorder = () => {
         cb(res) {
           if (res.status === 200) {
             setOrderDetails(res?.data?.data?.data);
+            dispatch(getLatestOrder(true));
+          }
+        },
+      })
+    );
+  };
+
+  //accept and reject order
+  const handleAcceptOrder = (e, id, status) => {
+    e.stopPropagation();
+    setIsloading(status);
+    let params = {
+      id: id,
+      status: status,
+    };
+    dispatch(
+      acceptOrder({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            if (status === "accepted") {
+              handleOpenModal("myRecentOrder", id);
+            } else {
+              close();
+            }
+            dispatch(getLatestOrder(true));
           }
         },
       })
@@ -143,7 +176,7 @@ const Myorder = () => {
                               {orderDetails?.map((item, index) => (
                                 <div
                                   onClick={() => {
-                                    handleOpenModal("myRecentOrder");
+                                    handleOpenModal("myRecentOrder", item?._id);
                                   }}
                                   key={index}
                                   className="ordermodalBox"
@@ -156,9 +189,9 @@ const Myorder = () => {
                                       <div className="profileInfo">
                                         <img
                                           src={
-                                            item?.userId?.userInfo?.profileImage
+                                            item?.userId?.userInfo?.profilePhoto
                                               ? item?.userId?.userInfo
-                                                  ?.profileImage
+                                                  ?.profilePhoto
                                               : Images.dummyProfile
                                           }
                                           alt="profile"
@@ -200,10 +233,36 @@ const Myorder = () => {
                                       </div>
                                       {item?.status === "pending" && (
                                         <div className="orderItems">
-                                          <button className="cancelOrder">
+                                          <button
+                                            onClick={(e) =>
+                                              handleAcceptOrder(
+                                                e,
+                                                item?._id,
+                                                "cancelled"
+                                              )
+                                            }
+                                            className="cancelOrder"
+                                          >
+                                            {chefData?.laoding &&
+                                              isLoading === "cancelled" && (
+                                                <span className="spinner-border spinner-border-sm"></span>
+                                              )}
                                             CANCEL
                                           </button>
-                                          <button className="acceptOrder">
+                                          <button
+                                            onClick={(e) =>
+                                              handleAcceptOrder(
+                                                e,
+                                                item?._id,
+                                                "accepted"
+                                              )
+                                            }
+                                            className="acceptOrder"
+                                          >
+                                            {chefData?.laoding &&
+                                              isLoading === "accepted" && (
+                                                <span className="spinner-border spinner-border-sm"></span>
+                                              )}
                                             ACCEPT
                                           </button>
                                         </div>
@@ -242,8 +301,13 @@ const Myorder = () => {
         child={
           modalDetail.flag === "myRecentOrder" ? (
             <MyRecentOrderModal
-              orderDetails={orderDetails}
-              close={() => handleOnCloseModal()}
+              handleGetRecenetOrders={handleGetRecenetOrders}
+              setOrderId={setOrderId}
+              singleOrderId={singleOrderId}
+              close={() => {
+                close();
+                handleOnCloseModal();
+              }}
             />
           ) : (
             ""
@@ -254,14 +318,27 @@ const Myorder = () => {
             <>
               <div className="Common_header">
                 <img
-                  onClick={handleOnCloseModal}
+                  onClick={() => {
+                    handleOnCloseModal();
+                    close();
+                  }}
                   src={Images.backArrowpassword}
                   alt="logo"
                   className="img-fluid  arrowCommon_"
                 />
                 <div className="headerProfile ps-2">
-                  <p className="modal_Heading">Order #12548</p>
-                  <p className="innerhead_ ps-3">Recent Order</p>
+                  <p className="modal_Heading">Order #{orderId?.orderId}</p>
+                  {orderId?.status === "pending" ? (
+                    <p className="innerhead_ ps-3">Recent Order</p>
+                  ) : orderId?.status === "accepted" ? (
+                    <p className="innerhead_ ps-3">In-Progress</p>
+                  ) : orderId?.status === "readyForDelivery" ? (
+                    <p className="innerhead_ ps-3">Ready for Delivery</p>
+                  ) : orderId?.status === "delivered" ? (
+                    <p className="innerhead_ ps-3">Order Delivered</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </>
