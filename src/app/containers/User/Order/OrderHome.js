@@ -64,21 +64,16 @@ const UserOrderHome = () => {
           {allOrders && allOrders.length > 0 ? (
             <>
               {allOrders
-                ?.filter(
-                  (value) =>
-                    value?.status !== "cancelled" &&
-                    value?.status !== "readyForDelivery" &&
-                    value?.status !== "accepted"
-                )
+                ?.filter((value) => value?.status !== "cancelled")
 
                 ?.map((item, index) => {
                   return (
                     <div key={index} className="col-lg-12">
                       <div
                         className={
-                          item?.status === "delivered"
-                            ? "orderprocess  mb-3"
-                            : "orderprocess active mb-3"
+                          item?.status === "readyForDelivery" && "accepted"
+                            ? "orderprocess active mb-3"
+                            : "orderprocess mb-3"
                         }
                         onClick={() => {
                           handleOpenModal("orderdetail", item?._id);
@@ -86,7 +81,11 @@ const UserOrderHome = () => {
                       >
                         <article className="flexBox justify-content-between">
                           <h6 className="fooodquantity_">#{item?.orderId}</h6>
-                          <h6 className="chatTime_">{item?.status}</h6>
+                          {item?.status === "readyForDelivery" && "accepted" ? (
+                            <h6 className="chatTime_">In-Progress</h6>
+                          ) : (
+                            <h6 className="chatTime_">Delivered</h6>
+                          )}
                         </article>
                         <div className="orderchefinfo">
                           <div className="row">
