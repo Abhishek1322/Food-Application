@@ -64,16 +64,21 @@ const UserOrderHome = () => {
           {allOrders && allOrders.length > 0 ? (
             <>
               {allOrders
-                ?.filter((value) => value?.status !== "cancelled")
+                ?.filter(
+                  (value) =>
+                    value?.status !== "cancelled" &&
+                    value?.status !== "accepted" &&
+                    value?.status !== "readyForDelivery"
+                )
 
                 ?.map((item, index) => {
                   return (
                     <div key={index} className="col-lg-12">
                       <div
                         className={
-                          item?.status === "readyForDelivery" && "accepted"
-                            ? "orderprocess active mb-3"
-                            : "orderprocess mb-3"
+                          item?.status === "delivered"
+                            ? "orderprocess  mb-3"
+                            : "orderprocess active mb-3"
                         }
                         onClick={() => {
                           handleOpenModal("orderdetail", item?._id);
@@ -81,7 +86,7 @@ const UserOrderHome = () => {
                       >
                         <article className="flexBox justify-content-between">
                           <h6 className="fooodquantity_">#{item?.orderId}</h6>
-                          {item?.status === "readyForDelivery" && "accepted" ? (
+                          {item?.status === "pending" ? (
                             <h6 className="chatTime_">In-Progress</h6>
                           ) : (
                             <h6 className="chatTime_">Delivered</h6>
@@ -165,15 +170,12 @@ const UserOrderHome = () => {
               <div className="Common_header">
                 <div className="headerProfile">
                   <p className="headerTxt_">Order #{orderDetail?.orderId}</p>
-                  <p
-                    className={
-                      orderDetail?.status === "delivered"
-                        ? "headerInner_ delivered"
-                        : "headerInner_ inprofress"
-                    }
-                  >
-                    {orderDetail?.status}
-                  </p>
+                
+                  {orderDetail?.status === "pending" ? (
+                    <p className="headerInner_ inprofress">In-Progress</p>
+                  ) : (
+                    <p className="headerInner_ delivered">Delivered</p>
+                  )}
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
