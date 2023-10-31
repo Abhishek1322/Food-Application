@@ -287,11 +287,11 @@ p {
   width: 100%;
   max-width: 300px;
   position: absolute;
-  display: none;
+   display: none; 
   padding: 10px;
   margin: 11px auto;
-  right: 70px;
   top: 10px;
+  left: 150px;
 }
 
 .infoimg:hover+.sarahinformation {
@@ -414,11 +414,11 @@ p {
     justify-content: end;
 } */
 
-@media (max-width: 1366px) {
+/* @media (max-width: 1366px) {
   .sarahinformation {
     right: -123px;
   }
-}
+} */
 
 @media (max-width: 768px) {
   /* .buttonBoxmodal {
@@ -2152,7 +2152,7 @@ p {
 }
 
 .orderNow .orderbutton {
-  margin: 8px 5px 8px 15px;
+  margin: 8px 5px 8px 12px;
 }
 
 .paymodalsection .input-container {

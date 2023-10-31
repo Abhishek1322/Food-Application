@@ -141,11 +141,11 @@ const AnotherOrderdetail = () => {
                 <div className="orderIdDetail">
                   <p className="orderId_">Order #{orderDetails?.orderId}</p>
                   {orderDetails?.status === "accepted" ? (
-                    <p className="recentOrder deliver">In-Progress</p>
+                    <p className="progress_">In-Progress</p>
                   ) : orderDetails?.status === "delivered" ? (
                     <p className="recentOrder deliver">Delivered</p>
                   ) : orderDetails?.status === "readyForDelivery" ? (
-                    <p className="recentOrder deliver">Ready for Delivery</p>
+                    <p className="readyDeliver">Ready for Delivery</p>
                   ) : (
                     ""
                   )}
