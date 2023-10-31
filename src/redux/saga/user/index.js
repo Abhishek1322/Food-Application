@@ -71,7 +71,7 @@ function* getAllOrder(action) {
   try {
     const resp = yield call(
       ApiClient.get,
-      (action.url = `${ApiPath.userApiPath.GET_ALL_ORDER}`),
+      (action.url = `${ApiPath.userApiPath.GET_ALL_ORDER}?limit=${action.payload.limit}&page=${action.payload.page}`),
       (action.payload = action.payload)
     );
     if (resp.status) {

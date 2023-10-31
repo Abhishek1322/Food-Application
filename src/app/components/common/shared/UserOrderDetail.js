@@ -19,7 +19,6 @@ const UserOrderDetail = (props) => {
     let params = {
       id: foodOrderId,
     };
-
     dispatch(
       getSingleOrder({
         ...params,
@@ -27,7 +26,7 @@ const UserOrderDetail = (props) => {
           if (res.status === 200) {
             setFoodDetail(res?.data?.data);
             setOrderDetail(res?.data?.data);
-            setTotalAmount(res?.data?.data)
+            setTotalAmount(res?.data?.data);
           }
         },
       })
@@ -53,11 +52,16 @@ const UserOrderDetail = (props) => {
 
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
-            <button className="foodmodalbtn modalfooddelivery" type="button">
+            <button
+              className={
+                foodDetail?.status === "delivered"
+                  ? "foodmodalbtn foodmodalbtnDeliver modalfooddelivery"
+                  : "foodmodalbtn modalfooddelivery"
+              }
+              type="button"
+            >
               <p className="orderfooterbtn">Total Paid</p>
-              <p className="orderfooterprice">
-                £{totalAmount?.total}.00
-              </p>
+              <p className="orderfooterprice">£{totalAmount?.total}.00</p>
             </button>
           </div>
         </div>

@@ -2174,3 +2174,6 @@ p {
 .show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: none;
 }
+.foodmodalbtnDeliver{
+  background-color: #2e3333;
+}
