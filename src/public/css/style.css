@@ -849,6 +849,7 @@ body {
 
 .insideCommonHeader {
   display: flex;
+  align-items: center;
 }
 
 .mainchef_ {

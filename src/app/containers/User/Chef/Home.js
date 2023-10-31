@@ -62,8 +62,9 @@ const UserChefHome = () => {
               alt="searchbar"
             />
           </div>
-          <p className="chefName">Filter By:</p>
+          
           <div className="dropdown">
+          <span className="chefName">Filter By:</span>
             <button
               className="btn btn-secondary dropdown-toggle"
               type="button"
@@ -143,7 +144,7 @@ const UserChefHome = () => {
             {chefListData && chefListData.length > 0 ? (
               <>
                 {chefListData?.map((item, index) => (
-                  <div key={index} className="col-lg-2">
+                  <div key={index} className="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <div className="outerBox text-center">
                       <figure className="chefDetails mb-3">
                         <Link to={`/chef-details?id=${item._id}`}>

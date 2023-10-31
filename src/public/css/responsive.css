@@ -15,9 +15,9 @@
         max-height: 592px;
     }
 }
-@media (max-width: 1280px){
 
-}
+@media (max-width: 1280px) {}
+
 @media (max-width:991px) {
     .logRight {
         position: relative;
@@ -35,28 +35,59 @@
     .Chef {
         right: 0px;
     }
-    /* .sarahavailablebtn {
-        border-radius: 12px;
-        background: #979999;
-        border: none;
+
+    .sarahavailablebtn {
         margin-right: 5px;
-        padding: 10px 11px 10px 10px;
+        padding: 10px 18px 10px 10px;
     }
+
+    .sarahmessagebtn {
+        padding: 10px 18px 10px 10px;
+    }
+
     .availableimg {
-        border-radius: 8px;
-        background: hsl(0deg 0% 100% / 30%);
         padding: 7px;
         width: 100%;
         max-width: 35px;
     }
+
     .availableheading {
-        color: #fff;
-        text-align: center;
         font-size: 12px;
-        font-weight: 600;
-        line-height: normal;
         margin-left: 8px;
-    } */
+    }
+
+    .sarahImg_ {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
+
+    .restroinfo .johnchatdetail {
+        padding: 4px 8px;
+        cursor: pointer;
+    }
+
+    .chefdetailsection .johnExplorer {
+        color: #2e3333;
+        font-size: 27px;
+        font-weight: 600;
+        margin-bottom: 0;
+        text-transform: capitalize;
+    }
+
+    .profileleft {
+        display: flex;
+        justify-content: center;
+    }
+
+    .editleft {
+        display: flex;
+        justify-content: center;
+    }
+
+    .myprofileLink {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width:767px) {
@@ -95,6 +126,61 @@
     .foodBox {
         display: none;
     }
+
+    .cheffilter {
+        margin-bottom: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cheffilter .btn-secondary {
+        padding: 0;
+    }
+
+    .dropdown,
+    .dropend,
+    .dropstart,
+    .dropup {
+        position: relative;
+        margin: 12px;
+    }
+
+    .sarahinfo {
+        display: flex;
+        align-items: center;
+        width: auto;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .contentLast {
+        justify-content: center !important;
+        margin-top: 15px;
+    }
+
+    .contentCenter {
+        display: flex;
+    }
+
+    .chefCommonHeader {
+        font-size: 28px !important;
+    }
+
+    .navMain .flexBox {
+        justify-content: end !important;
+    } 
+
+    .innerHeaderArrow {
+        cursor: pointer;
+        width: 34px;
+        height: 34px;
+    }
+    .sarahinformation {
+        left: 0;
+    }
+    .main_Setting .sarahmessagebtn {
+        padding: 10px 20px;
+    }
 }
 
 @media (max-width:575px) {
@@ -105,6 +191,29 @@
     .toggleButtonMain {
         right: 23px;
     }
+
+    .cheffilter .searchtext {
+        padding: 15px 90px 15px 24px;
+    }
+    .innerHeaderArrow {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .chefCommonHeader {
+        font-size: 24px !important;
+    }
+    .main_Setting .sarahmessagebtn {
+        margin: 0;
+        padding: 10px;
+    }
+    .main_Setting .booknowimg {
+         margin-right: 0px; 
+    }
+    .availableimg {
+        padding: 7px;
+        width: 100%;
+        max-width: 30px;
+    }
 }
 
 @media (min-width:425px) {
@@ -113,6 +222,12 @@
         max-height: 600px;
     }
 
+}
+
+@media (max-width:425px) {
+    .sideBar {
+        height: 100%;
+    }
 }
 
 @media (min-width:325px) {

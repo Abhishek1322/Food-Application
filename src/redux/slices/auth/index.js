@@ -6,12 +6,19 @@ const initialState = {
   chefDocumentUrl: {},
   userInfo: [],
   userEmail: {},
+  showSideBar:false
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+
+    toggleSidebar: (state, action) => {
+      state.loading = false;
+      state.showSideBar = action.payload;
+    },
+
     chefProfileDocument: (state) => {
       state.loading = true;
     },
@@ -137,6 +144,7 @@ export const {
   setChefSetupProfile,
   chefProfileDocument,
   setChefProfileDocument,
+  toggleSidebar,
 } = authSlice.actions;
 
 export default authSlice.reducer;

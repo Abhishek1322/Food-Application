@@ -47,7 +47,7 @@ const UserMyProfile = () => {
               {/* right section  */}
               <Link
                 to="/user-editprofile"
-                className="d-flex justify-content-end"
+                className="d-flex justify-content-end myprofileLink"
               >
                 <img
                   src={Images.edit}

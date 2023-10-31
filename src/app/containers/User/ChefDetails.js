@@ -71,7 +71,7 @@ const ChefDetails = () => {
         <div className="sarahchef">
           {/* chef data section  */}
           <div className="row align-items-center">
-            <div className="col-lg-5 col-md-6 col-sm-12">
+            <div className="col-lg-5 col-md-6 col-sm-12 contentCenter">
               <div className="sarahinfo">
                 <div className="sarahimg">
                   <img
@@ -115,10 +115,10 @@ const ChefDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-7 col-md-6 col-sm-12">
-              <div className="flexBox justify-content-end">
+            <div className="col-lg-7 col-md-6 col-sm-12 ">
+              <div className="flexBox justify-content-end contentLast">
                 <button
-                  className="sarahavailablebtn"
+                  className="sarahavailablebtn flexBox"
                   type="button"
                   onClick={() => {
                     handleUserProfile("availabilityModal");
@@ -131,7 +131,7 @@ const ChefDetails = () => {
                   />
                   <span className="availableheading">Availability</span>
                 </button>
-                <button className="sarahmessagebtn" type="button">
+                <button className="sarahmessagebtn flexBox" type="button">
                   <img
                     src={Images.ChefChat}
                     alt="timesquareimage"

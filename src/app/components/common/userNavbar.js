@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../redux/slices/web";
 import { useUserSelector } from "../../../redux/selector/user";
 import CartModal from "./shared/cartModal";
+import { toggleSidebar } from "../../../redux/slices/auth";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -20,6 +21,8 @@ const User_Navbar = () => {
   const allUserData = useUserSelector();
   const userId = localStorage.getItem("userId");
   const [key, setKey] = useState(Math.random());
+  const [toggle, setToggle] = useState(true)
+
   const [currentLocation, setCurrentLocation] = useState();
   const [userData, setUserData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
@@ -126,15 +129,21 @@ const User_Navbar = () => {
     );
   }, []);
 
+
+  // toggle SideBar
+  useEffect(() => {
+    dispatch(toggleSidebar(toggle))
+  }, [toggle])
+
   return (
     <>
       <div className="main_Setting">
         <div className="navMain">
           <div className="container-fluid p-0">
             {pathname === "/home-user" ||
-            pathname === "/user-chef-home" ||
-            pathname === "/user-order-home" ||
-            pathname === "/setting" ? (
+              pathname === "/user-chef-home" ||
+              pathname === "/user-order-home" ||
+              pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   {pathname === "/home-user" ? (
@@ -215,6 +224,8 @@ const User_Navbar = () => {
                           : 0}
                       </span>
                     </div>
+                    <button onClick={() => setToggle(!toggle)} className="toggleSideBtn"><i className="fas fa-bars"></i></button>
+
                     <button
                       className="sarahmessagebtn d-none"
                       onClick={() => {
@@ -231,6 +242,7 @@ const User_Navbar = () => {
 
                       <p className="availableheading">Book Now</p>
                     </button>
+
                   </div>
                 </div>
               </div>
@@ -262,7 +274,7 @@ const User_Navbar = () => {
               </div>
             ) : pathname === "/chef-details" ? (
               <div className="row align-items-center">
-                <div className="col-lg-6 col-md-6 col-sm-12">
+                <div className="col-lg-6 col-md-6 col-sm-6">
                   <div className="insideCommonHeader">
                     <Link to="/user-chef-home">
                       <img
@@ -273,9 +285,9 @@ const User_Navbar = () => {
                     <h1 className="chefCommonHeader ps-2">Chef Details</h1>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 text-end">
+                <div className="col-lg-6 col-md-6 col-sm-6 text-end">
                   <div className="flexBox">
-                    <div className="headermenu">
+                    <div className="headerBook">
                       <button
                         className="sarahmessagebtn"
                         onClick={() => {
@@ -292,7 +304,10 @@ const User_Navbar = () => {
 
                         <p className="availableheading">Book Now</p>
                       </button>
+
                     </div>
+                    <button onClick={() => setToggle(!toggle)} className="toggleSideBtn"><i className="fas fa-bars"></i></button>
+
                   </div>
 
                   {/* booking Common Header */}
@@ -334,12 +349,12 @@ const User_Navbar = () => {
           modalDetail.flag === "chatmessage"
             ? "chatmessagemodal"
             : modalDetail.flag === "userNotification"
-            ? "userNotificationModal"
-            : modalDetail.flag === "cartModal"
-            ? "usercartmodal"
-            : modalDetail.flag === "bookchef"
-            ? "bookchefmodal"
-            : ""
+              ? "userNotificationModal"
+              : modalDetail.flag === "cartModal"
+                ? "usercartmodal"
+                : modalDetail.flag === "bookchef"
+                  ? "bookchefmodal"
+                  : ""
         }
         child={
           modalDetail.flag === "chatmessage" ? (
