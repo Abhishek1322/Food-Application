@@ -25,7 +25,7 @@ const EditMenuModal = (props) => {
     deliveryTime: "",
     description: "",
   });
-
+  console.log("formDataformData", formData);
   //onchange input
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -48,13 +48,13 @@ const EditMenuModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             setFormData({
-              itemName: res.data.data.name,
-              price: res.data.data.price,
-              deliveryTime: res.data.data.deliveryTime,
-              description: res.data.data.description,
+              itemName: res?.data?.data?.item?.name,
+              price: res?.data?.data?.item?.price,
+              deliveryTime: res?.data?.data?.item?.deliveryTime,
+              description: res?.data?.data?.item?.description,
             });
-            setCategory(res.data.data.category);
-            setImageUrl(res.data.data.image);
+            setCategory(res?.data?.data?.item?.category);
+            setImageUrl(res?.data?.data?.item?.image);
           }
         },
       })
@@ -154,7 +154,11 @@ const EditMenuModal = (props) => {
               value={formData.itemName}
               onChange={(e) => handleChange(e)}
             />
-            <img src={Images.categoryImg} className="cateofyImg_" alt="categoryImg"/>
+            <img
+              src={Images.categoryImg}
+              className="cateofyImg_"
+              alt="categoryImg"
+            />
             <label className="border-label">Item Name</label>
           </div>
           <div className="input-container mt-4">
@@ -168,7 +172,11 @@ const EditMenuModal = (props) => {
               <MenuItem value={"veg"}>Veg</MenuItem>
               <MenuItem value={"non-veg"}>Non Veg</MenuItem>
             </Select>
-            <img src={Images.menuDishImg} className="cateofyImg_"  alt="menudishImg" />
+            <img
+              src={Images.menuDishImg}
+              className="cateofyImg_"
+              alt="menudishImg"
+            />
             <label className="border-label">Category</label>
           </div>
           <div className="flexBox justify-content-between editMenuFields_ ">
@@ -181,7 +189,7 @@ const EditMenuModal = (props) => {
                 placeholder="e.g. 22.00"
                 value={formData.price}
               />
-              <img src={Images.euroImg} className="cateofyImg_" alt="euroImg"/>
+              <img src={Images.euroImg} className="cateofyImg_" alt="euroImg" />
               <label className="border-label">Price</label>
             </div>
             <div className="input-container mt-5 pe-3 flexBox">
@@ -194,7 +202,11 @@ const EditMenuModal = (props) => {
                 value={formData.deliveryTime}
               />
               <p className="inneredittxt">MIN</p>
-              <img src={Images.clockImg} className="cateofyImg_" alt="clockImg"/>
+              <img
+                src={Images.clockImg}
+                className="cateofyImg_"
+                alt="clockImg"
+              />
               <label className="border-label">Delivery Time</label>
             </div>
           </div>
