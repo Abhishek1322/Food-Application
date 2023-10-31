@@ -16,9 +16,7 @@
     }
 }
 @media (max-width: 1280px){
-.sarahinformation {
-    right: -151px;
-} 
+
 }
 @media (max-width:991px) {
     .logRight {
@@ -37,6 +35,28 @@
     .Chef {
         right: 0px;
     }
+    /* .sarahavailablebtn {
+        border-radius: 12px;
+        background: #979999;
+        border: none;
+        margin-right: 5px;
+        padding: 10px 11px 10px 10px;
+    }
+    .availableimg {
+        border-radius: 8px;
+        background: hsl(0deg 0% 100% / 30%);
+        padding: 7px;
+        width: 100%;
+        max-width: 35px;
+    }
+    .availableheading {
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: normal;
+        margin-left: 8px;
+    } */
 }
 
 @media (max-width:767px) {
@@ -97,6 +117,6 @@
 
 @media (min-width:325px) {
     .chefchatsection .chatnext {
-        padding-top: 275px;
+        padding-top: 235px;
     }
 }

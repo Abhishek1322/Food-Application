@@ -105,13 +105,14 @@ const OrderDetails = () => {
             <div className="row align-items-center">
               <div className="col-lg-12">
                 <div className="orderIdDetail">
+               
                   <p className="orderId_">Order #{orderDetails?.orderId}</p>
                   {orderDetails?.status === "accepted" ? (
-                    <p className="recentOrder deliver">In-Progress</p>
+                    <p className="recentOrder progress_">In-Progress</p>
                   ) : orderDetails?.status === "readyForDelivery" ? (
                     <p className="recentOrder deliver">Ready for Delivery</p>
                   ) : (
-                    <p className="recentOrder deliver">Recent Order</p>
+                    <p className="recentOrder recentOrder">Recent Order</p>
                   )}
                 </div>
                 <div className="chefJohn">

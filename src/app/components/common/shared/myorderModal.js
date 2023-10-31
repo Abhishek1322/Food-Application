@@ -106,7 +106,7 @@ const Myorder = (props) => {
 
   return (
     <>
-      <div className="modalContent">
+      <div className="modalContent ">
         <div className="modalscroll">
           <div className="searchbar ">
             <input
@@ -331,11 +331,11 @@ const Myorder = (props) => {
                   {orderId?.status === "pending" ? (
                     <p className="innerhead_ ps-3">Recent Order</p>
                   ) : orderId?.status === "accepted" ? (
-                    <p className="innerhead_ ps-3">In-Progress</p>
+                    <p className="ps-3 progress_ position-relative">In-Progress</p>
                   ) : orderId?.status === "readyForDelivery" ? (
-                    <p className="innerhead_ ps-3">Ready for Delivery</p>
+                    <p className="readyDeliver position-relative ps-3">Ready for Delivery</p>
                   ) : orderId?.status === "delivered" ? (
-                    <p className="innerhead_ ps-3">Order Delivered</p>
+                    <p className="recentOrder deliver ps-3 position-relative">Order Delivered</p>
                   ) : (
                     ""
                   )}

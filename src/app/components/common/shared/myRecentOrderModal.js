@@ -99,7 +99,7 @@ const MyRecentOrderModal = (props) => {
 
   return (
     <>
-      <div className="myrecentOrders_">
+      <div className="myrecentOrders_ orderModalBtn">
         <div className="modalscroll">
           <div className="orderProfile">
             <div className="ordermenuProfile">
@@ -175,7 +175,7 @@ const MyRecentOrderModal = (props) => {
           <div
             className={
               orderDetail?.status === "delivered"
-                ? "totalAmmount flexBox justify-content-between pb-4"
+                ? "totalAmmount flexBox justify-content-between"
                 : "totalOrderAmount_ flexBox justify-content-between pb-4"
             }
           >

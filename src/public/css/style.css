@@ -1262,6 +1262,41 @@ body {
   bottom: 6px;
   left: 0;
 }
+ .readyDeliver{
+  color: #979999;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 12px;
+  
+}
+.readyDeliver:before{
+  background-color: #FFC107;
+  content: "";
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  border-radius: 50px;
+  bottom: 6px;
+  left: 0;
+}
+.progress_:before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background-color: #e65c00;
+  position: absolute;
+  border-radius: 50px;
+  bottom: 6px;
+  left: 0;
+}
+.progress_ {
+  color: #979999;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 12px;
+}
 
 .recentOrder {
   color: #979999;
@@ -1270,7 +1305,12 @@ body {
   margin-bottom: 0;
   margin-left: 12px;
 }
-
+.orderModalBtn .totalAmmount {
+  padding: 15px;
+}
+.verifyOrderDetailModal .modalfooterbtn {
+  right: 5px;
+}
 .ordertimeaddress {
   color: #979999;
   font-size: 14px;
@@ -1604,6 +1644,7 @@ body {
 .arrowCommon_ {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 .headerImg_ {
