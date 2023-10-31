@@ -5,6 +5,7 @@ import UserOrderDetail from "../../../components/common/shared/UserOrderDetail";
 import { getAllOrder, onErrorStopLoad } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import ReactPaginate from "react-paginate";
 
 const UserOrderHome = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const UserOrderHome = () => {
   const [allOrders, setAllOrders] = useState([]);
   const [foodOrderId, setFoodOrderId] = useState("");
   const [orderDetail, setOrderDetail] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -41,21 +44,33 @@ const UserOrderHome = () => {
 
   // get all orders
   useEffect(() => {
+    let params = {
+      limit: 10,
+      page: currentPage,
+    };
+
     dispatch(
       getAllOrder({
+        ...params,
         cb(res) {
           if (res.status === 200) {
             setAllOrders(res?.data?.data?.data);
+            setPageCount(res.data.data.total_pages);
           }
         },
       })
     );
-  }, []);
+  }, [currentPage]);
 
   // stop looader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
+
+  // Page change handler
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected + 1);
+  };
 
   return (
     <>
@@ -63,84 +78,88 @@ const UserOrderHome = () => {
         <div className="row">
           {allOrders && allOrders.length > 0 ? (
             <>
-              {allOrders
-                ?.filter(
-                  (value) =>
-                    value?.status !== "cancelled" &&
-                    value?.status !== "accepted" &&
-                    value?.status !== "readyForDelivery"
-                )
-
-                ?.map((item, index) => {
-                  return (
-                    <div key={index} className="col-lg-12">
-                      <div
-                        className={
-                          item?.status === "delivered"
-                            ? "orderprocess  mb-3"
-                            : "orderprocess active mb-3"
-                        }
-                        onClick={() => {
-                          handleOpenModal("orderdetail", item?._id);
-                        }}
-                      >
-                        <article className="flexBox justify-content-between">
-                          <h6 className="fooodquantity_">#{item?.orderId}</h6>
-                          {item?.status === "pending" ? (
-                            <h6 className="chatTime_">In-Progress</h6>
-                          ) : (
-                            <h6 className="chatTime_">Delivered</h6>
-                          )}
-                        </article>
-                        <div className="orderchefinfo">
-                          <div className="row">
-                            <div className="col-lg-6 col-md-12">
-                              <div className="flexBox">
-                                <img
-                                  src={
-                                    item?.chefId?.userInfo?.profilePhoto
-                                      ? item?.chefId?.userInfo?.profilePhoto
-                                      : Images.OrderChef
-                                  }
-                                  alt="chefimg"
-                                  className="img-fluid chefOrderImg"
-                                />
-                                <div className="orderchefname">
-                                  <h6 className="chefName">
-                                    {item?.chefId?.userInfo?.firstName}{" "}
-                                    {item?.chefId?.userInfo?.lastName}
-                                  </h6>
-                                  <h6 className="orderFrom">Order From</h6>
-                                </div>
+              {allOrders?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-12">
+                    <div
+                      className={
+                        item?.status === "pending" ||
+                        item?.status === "accepted" ||
+                        item?.status === "readyForDelivery"
+                          ? "orderprocess active mb-3"
+                          : "orderprocess  mb-3"
+                      }
+                      onClick={() => {
+                        handleOpenModal("orderdetail", item?._id);
+                      }}
+                    >
+                      <article className="flexBox justify-content-between">
+                        <h6 className="fooodquantity_">#{item?.orderId}</h6>
+                        {item?.status === "pending" ||
+                        item?.status === "accepted" ||
+                        item?.status === "readyForDelivery" ? (
+                          <h6 className="chatTime_">In-Progress</h6>
+                        ) : (
+                          <h6 className="chatTime_">Delivered</h6>
+                        )}
+                      </article>
+                      <div className="orderchefinfo">
+                        <div className="row">
+                          <div className="col-lg-6 col-md-12">
+                            <div className="flexBox">
+                              <img
+                                src={
+                                  item?.chefId?.userInfo?.profilePhoto
+                                    ? item?.chefId?.userInfo?.profilePhoto
+                                    : Images.OrderChef
+                                }
+                                alt="chefimg"
+                                className="img-fluid chefOrderImg"
+                              />
+                              <div className="orderchefname">
+                                <h6 className="chefName">
+                                  {item?.chefId?.userInfo?.firstName}{" "}
+                                  {item?.chefId?.userInfo?.lastName}
+                                </h6>
+                                <h6 className="orderFrom">Order From</h6>
                               </div>
                             </div>
-                            <div className="col-lg-6 col-md-12">
-                              <div className="orderstatus">
-                                <h6 className="Items">
-                                  {item?.itemCount} Items
-                                </h6>
-                                <h6 className="timeOrder_">
-                                  Order placed on{" "}
-                                  {moment(item?.updatedAt).format("hh:mm A")}
-                                </h6>
-                                <div className="userorderprice">
-                                  <h5 className="orderPrice ">
-                                    £{item?.total}.00
-                                  </h5>
-                                </div>
+                          </div>
+                          <div className="col-lg-6 col-md-12">
+                            <div className="orderstatus">
+                              <h6 className="Items">{item?.itemCount} Items</h6>
+                              <h6 className="timeOrder_">
+                                Order placed on{" "}
+                                {moment(item?.updatedAt).format("hh:mm A")}
+                              </h6>
+                              <div className="userorderprice">
+                                <h5 className="orderPrice ">
+                                  £{item?.total}.00
+                                </h5>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
             </>
           ) : (
             <p>No Order found</p>
           )}
         </div>
+        <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          pageCount={pageCount}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={3}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
       </div>
       <CustomModal
         key={key}
@@ -170,11 +189,13 @@ const UserOrderHome = () => {
               <div className="Common_header">
                 <div className="headerProfile">
                   <p className="headerTxt_">Order #{orderDetail?.orderId}</p>
-                
-                  {orderDetail?.status === "pending" ? (
+
+                  {orderDetail?.status === "pending" ||
+                  orderDetail?.status === "accepted" ||
+                  orderDetail?.status === "readyForDelivery" ? (
                     <p className="headerInner_ inprofress">In-Progress</p>
                   ) : (
-                    <p className="headerInner_ delivered">Delivered</p>
+                    <p className="orderDelivered">Delivered</p>
                   )}
                 </div>
               </div>

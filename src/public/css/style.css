@@ -1659,7 +1659,7 @@ body {
   align-items: center;
 }
 
-.headerInner_:before {
+.headerInner_:before , .orderDelivered:before{
   content: "";
   position: absolute;
   width: 7px;
@@ -1670,6 +1670,13 @@ body {
   left: -11px;
 }
 
+.orderDelivered {
+  color: #979999;
+  font-size: 12px;
+  font-weight: 600;
+  position: relative;
+  margin-left: 11px;
+}
 .headerTxt_ {
   color: #2e3333;
   font-family: Crimson Text;

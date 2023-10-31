@@ -3,9 +3,7 @@ import * as Images from "../../../../utilities/images";
 import ReactStars from "react-rating-stars-component";
 
 const ChefGiveRating = () => {
-  const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
+  const ratingChanged = (newRating) => {};
 
   return (
     <>

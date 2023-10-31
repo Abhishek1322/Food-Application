@@ -88,7 +88,7 @@ const HomeRequsest = () => {
                   <h2 className="headerinnerheading">New Booking Requests</h2>
                   <div className="seeAll">
                     <Link to="/new-booking">
-                      <p className="headerinnertxt">see All</p>
+                      <p className="headerinnertxt">See All</p>
                     </Link>
                     <img
                       src={Images.homeArow}
@@ -201,9 +201,9 @@ const HomeRequsest = () => {
                 </div>
 
                 <div className="innerhomeheader">
-                  <h3 className="headerinnerheading">Recent Orderss</h3>
+                  <h3 className="headerinnerheading">Recent Orders</h3>
                   <div className="seeAll">
-                    <p className="headerinnertxt">see All</p>
+                    <p className="headerinnertxt">See All</p>
                     <img
                       src={Images.homeArow}
                       alt="arrowImg"
@@ -214,7 +214,7 @@ const HomeRequsest = () => {
                 <div className="profileDetail">
                   {recentOrders && recentOrders.length > 0 ? (
                     <>
-                      {recentOrders?.map((item, index) => (
+                      {recentOrders?.slice(0, 5)?.map((item, index) => (
                         <div
                           onClick={(e) => handleOpenRecentOder(e, item?._id)}
                           key={index}
