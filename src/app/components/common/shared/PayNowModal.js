@@ -27,8 +27,7 @@ const PayNowModal = (props) => {
     flag: "",
   });
 
-  const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } =
-    usePaymentInputs();
+  const { meta, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
   //onchange input
   const handleChange = (e) => {
@@ -107,6 +106,21 @@ const PayNowModal = (props) => {
     );
   };
 
+  // format card number
+  const handleFormatCardNumber = (value) => {
+    const v = value
+      .replace(/\s+/g, "")
+      .replace(/[^0-9]/gi, "")
+      .substr(0, 16);
+    const parts = [];
+
+    for (let i = 0; i < v.length; i += 4) {
+      parts.push(v.substr(i, 4));
+    }
+
+    return parts.length > 1 ? parts.join(" ") : value;
+  };
+
   return (
     <>
       <div className="paymodalsection">
@@ -132,9 +146,9 @@ const PayNowModal = (props) => {
                   name="cardNumber"
                   className="border-input"
                   maxLength="19"
-                  placeholder="5485 2658 2154 2210"
-                  {...getCardNumberProps({ onChange: handleChange })}
-                  value={formData.cardNumber}
+                  placeholder="0000 0000 0000 0000"
+                  onChange={handleChange}
+                  value={handleFormatCardNumber(formData.cardNumber)}
                 />
 
                 <label className="border-label">Card No</label>
