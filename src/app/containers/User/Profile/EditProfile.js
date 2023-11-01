@@ -124,7 +124,7 @@ const UserEditProfile = () => {
                       <img
                         src={Images.editProfile}
                         alt="editprofileimg"
-                        className="img-fluid"
+                        className="img-fluid uploadEditImg"
                       />
                     </div>
                   </div>

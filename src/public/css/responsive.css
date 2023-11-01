@@ -88,6 +88,9 @@
     .myprofileLink {
         margin-top: 20px;
     }
+    .orderstatus {
+        margin-top: 10px;
+    }
 }
 
 @media (max-width:767px) {
@@ -168,18 +171,83 @@
 
     .navMain .flexBox {
         justify-content: end !important;
-    } 
+    }
 
     .innerHeaderArrow {
         cursor: pointer;
         width: 34px;
         height: 34px;
     }
+
     .sarahinformation {
         left: 0;
     }
+
     .main_Setting .sarahmessagebtn {
         padding: 10px 20px;
+    }
+    /* .mainBox.inActiveSidebar .usermain {
+     margin: 0;
+     width: 100%;
+     
+   }  */
+
+    .toggleSideBtn {
+        display: block;
+    }
+
+    .mainBox.inActiveSidebar .userSidebar {
+        position: absolute;
+        left: -100px;
+        transition: all 0.5s;
+        z-index: 2;
+
+    }
+    .mainBox.activeSidebar .userSidebar {
+        position: absolute;
+        left: 0px;
+        z-index: 2;
+        transition: all 0.5s;
+    }
+
+    .usermain {
+        width: calc(100% - 0px);
+        margin-left: 0;
+    }
+
+    .settingMain {
+        height: 79vh;
+        overflow: scroll;
+        padding-bottom: 20px;
+    }
+
+    .mainBoxOuter {
+        padding: 10px 31px;
+        height: 78vh;
+        overflow: scroll;
+    }
+
+    .chefdetailsection {
+        height: 80vh;
+        overflow: scroll;
+    }
+    .userordersection {
+        padding: 10px 31px;
+        height: 80vh;
+        overflow: scroll;
+    }
+    .chatIconImage {
+        padding: 15px 16px !important;
+    }
+    .cart {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    .basketImg {
+        left: 16px !important;
+        top: 12px !important;
+        width: 30px !important;
+        height: 30px !important;
     }
 }
 
@@ -195,25 +263,31 @@
     .cheffilter .searchtext {
         padding: 15px 90px 15px 24px;
     }
+
     .innerHeaderArrow {
         width: 35px !important;
         height: 35px !important;
     }
+
     .chefCommonHeader {
         font-size: 24px !important;
     }
+
     .main_Setting .sarahmessagebtn {
         margin: 0;
         padding: 10px;
     }
+
     .main_Setting .booknowimg {
-         margin-right: 0px; 
+        margin-right: 0px;
     }
+
     .availableimg {
         padding: 7px;
         width: 100%;
         max-width: 30px;
     }
+
 }
 
 @media (min-width:425px) {
@@ -228,10 +302,26 @@
     .sideBar {
         height: 100%;
     }
+    .uploadEditImg {
+        max-width: 40px;
+        max-height: 40px;
+    }
+    .userprofilesection .profileright {
+         padding: 0px; 
+    }
+    .pagination {
+        justify-content: center;
+    }
 }
 
 @media (min-width:325px) {
     .chefchatsection .chatnext {
         padding-top: 235px;
+    }
+}
+
+@media (max-width:372px) {
+    .userorderprice {
+        margin-top: 10px;
     }
 }

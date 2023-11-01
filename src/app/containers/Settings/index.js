@@ -37,7 +37,6 @@ const SettingMain = (props) => {
   };
   return (
     <>
-      <div className="main_Setting">
         <div className="settingMain">
           <div className="container-fluid">
             <div className="row">
@@ -199,7 +198,6 @@ const SettingMain = (props) => {
             </div>
           </div>
         </div>
-      </div>
       <CustomModal
         key={key}
         show={modalDetail.show}

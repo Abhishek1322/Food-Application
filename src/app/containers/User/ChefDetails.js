@@ -71,7 +71,7 @@ const ChefDetails = () => {
         <div className="sarahchef">
           {/* chef data section  */}
           <div className="row align-items-center">
-            <div className="col-lg-5 col-md-6 col-sm-12 contentCenter">
+            <div className="col-lg-5 col-md-6 col-12 contentCenter">
               <div className="sarahinfo">
                 <div className="sarahimg">
                   <img
@@ -115,7 +115,7 @@ const ChefDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-7 col-md-6 col-sm-12 ">
+            <div className="col-lg-7 col-md-6 col-12 ">
               <div className="flexBox justify-content-end contentLast">
                 <button
                   className="sarahavailablebtn flexBox"

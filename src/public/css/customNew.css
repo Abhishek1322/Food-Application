@@ -665,7 +665,7 @@ p {
 }
 
 #CartModal .userCheckOutModal .orderbutton {
-  margin: 8px 5px 8px 8px;
+  margin: 8px 5px 8px 12px;
 }
 
 /* #cartcheckoutModal .modal-content {
@@ -1935,7 +1935,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .orderprocess.active {
@@ -2177,15 +2177,54 @@ p {
   margin: 8px 5px 8px 8px;
 }
 .usercartcheck .orderNow .orderbutton {
-  margin: 8px 5px 8px 8px;
+  margin: 8px 5px 8px 12px;
 }
-button.toggleSideBtn {
+.toggleSideBtn {
   color: #e65c00;
   border: 1px solid  #e65c00;
   border-radius: 8px;
   font-size: 18px;
   padding: 5px 10px;
+  margin:0 10px;
+  display: none;
 }
 .foodmodalbtnDeliver{
   background-color: #2e3333;
+}
+/* .mainBox.inActiveSidebar 
+ .userSidebar {
+    position: absolute;
+    left: -100px;
+
+}
+.mainBox.inActiveSidebar .usermain {
+  margin: 0;
+  width: 100%;
+  
+} 
+.mainBox.activeSidebar .userSidebar {
+  position: absolute;
+  left: 0px;
+  z-index: 2;
+  transition: all 0.5s;
+}
+.mainBoxOuter {
+  padding: 10px 31px;
+  height: calc(100vh - 0px);
+  overflow: auto;
+}
+ .usermain {
+  width: calc(100% - 0px);
+  margin-left: 0;
+}  */
+.settingMain{
+  padding: 15px 31px 0px 31px;
+}
+.uploadEditImg {
+  width: 100%;
+  max-width: 50px;
+  height: 100%;
+  max-height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
 }

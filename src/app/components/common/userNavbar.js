@@ -274,7 +274,7 @@ const User_Navbar = () => {
               </div>
             ) : pathname === "/chef-details" ? (
               <div className="row align-items-center">
-                <div className="col-lg-6 col-md-6 col-sm-6">
+                <div className="col-lg-6 col-md-6 col-6">
                   <div className="insideCommonHeader">
                     <Link to="/user-chef-home">
                       <img
@@ -285,7 +285,7 @@ const User_Navbar = () => {
                     <h1 className="chefCommonHeader ps-2">Chef Details</h1>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 text-end">
+                <div className="col-lg-6 col-md-6 col-6 text-end">
                   <div className="flexBox">
                     <div className="headerBook">
                       <button
