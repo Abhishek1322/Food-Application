@@ -130,7 +130,7 @@ const MyProfile = () => {
 
   return (
     <>
-      <section className="profilesection">
+      <section className="profilesectionChef">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-5 col-md-12">

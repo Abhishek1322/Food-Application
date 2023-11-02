@@ -9,6 +9,14 @@
     }
 }
 
+@media (max-width:1800px) {
+    .mainchef_ {
+        padding: 10px 31px 10px 31px;
+        height: 82vh;
+        overflow: scroll;
+    }
+}
+
 @media (min-width:1366px) {
     .chefratingsection .modalscroll {
         height: 100%;
@@ -16,7 +24,11 @@
     }
 }
 
-@media (max-width: 1280px) {}
+@media (max-width: 1200px) {
+    /* .main {
+        width: calc(100% - 0px) !important;
+    } */
+}
 
 @media (max-width:991px) {
     .logRight {
@@ -88,6 +100,7 @@
     .myprofileLink {
         margin-top: 20px;
     }
+
     .orderstatus {
         margin-top: 10px;
     }
@@ -186,6 +199,7 @@
     .main_Setting .sarahmessagebtn {
         padding: 10px 20px;
     }
+
     /* .mainBox.inActiveSidebar .usermain {
      margin: 0;
      width: 100%;
@@ -203,6 +217,7 @@
         z-index: 2;
 
     }
+
     .mainBox.activeSidebar .userSidebar {
         position: absolute;
         left: 0px;
@@ -231,18 +246,22 @@
         height: 80vh;
         overflow: scroll;
     }
+
     .userordersection {
         padding: 10px 31px;
         height: 80vh;
         overflow: scroll;
     }
+
     .chatIconImage {
         padding: 15px 16px !important;
     }
+
     .cart {
         width: 60px !important;
         height: 60px !important;
     }
+
     .basketImg {
         left: 16px !important;
         top: 12px !important;
@@ -302,13 +321,16 @@
     .sideBar {
         height: 100%;
     }
+
     .uploadEditImg {
         max-width: 40px;
         max-height: 40px;
     }
+
     .userprofilesection .profileright {
-         padding: 0px; 
+        padding: 0px;
     }
+
     .pagination {
         justify-content: center;
     }
@@ -318,10 +340,17 @@
     .chefchatsection .chatnext {
         padding-top: 235px;
     }
+
 }
 
 @media (max-width:372px) {
     .userorderprice {
         margin-top: 10px;
+    }
+}
+
+@media (min-width:325px) and (max-width:1800px) {
+    .chatnext {
+        padding-top: 255px !important;
     }
 }

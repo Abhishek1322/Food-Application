@@ -158,7 +158,7 @@ const SettingMain = (props) => {
               {authData?.userInfo?.role === "user" && (
                 <div className="col-lg-6">
                   <div className="leftbox">
-                    <div className="settingBox d-flex align-items-center">
+                    <div className="settingBox d-flex align-items-center ">
                       <img
                         src={Images.logout}
                         alt="logout"
@@ -183,7 +183,7 @@ const SettingMain = (props) => {
               )}
 
               <div
-                className="settingBox d-flex align-items-center justify-content-center"
+                className="settingBox d-flex align-items-center justify-content-center cursorPoint"
                 onClick={() => {
                   handleUserProfile("logOutModal");
                 }}

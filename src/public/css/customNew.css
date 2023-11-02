@@ -5,9 +5,7 @@ p {
 }
 
 .profilesection {
-  margin-top: 100px;
-  margin-left: 32px;
-  margin-right: 32px;
+ margin: 100px 90px 0 90px;
 }
 
 /* leftsection css  */
@@ -191,9 +189,7 @@ p {
 
 /* editProfile */
 .usereditsection {
-  margin-top: 100px;
-  margin-left: 32px;
-  margin-right: 32px;
+  margin: 100px 90px 0 90px;
 }
 
 .editleft {
@@ -2227,4 +2223,22 @@ p {
   max-height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+.profilesectionChef{
+margin-top: 100px;
+margin-left: 32px;
+margin-right: 32px;
+}
+.editsection .editprofileimg {
+  position: absolute;
+  right: 14px;
+  top: 22px;
+}
+.col-1-5{
+  width: 20%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
 }

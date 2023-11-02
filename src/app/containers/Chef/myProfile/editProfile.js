@@ -171,7 +171,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <section className="editsection">
+      <section className="editsection profilesectionChef">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-5 col-md-12">

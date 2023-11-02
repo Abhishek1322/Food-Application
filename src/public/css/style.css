@@ -913,7 +913,7 @@ body {
 .profileDetail {
   display: flex;
   margin: 20px 0;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap; 
 }
 
 .homeProfileBox {
@@ -2638,7 +2638,7 @@ body {
 
 /* Chef Profile Img css Start */
 .chefprofileimg_ {
-  width: 544px;
+  width: 100%;
   height: 544px;
   border-radius: 50px;
 }
