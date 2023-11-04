@@ -9,13 +9,7 @@
     }
 }
 
-@media (max-width:1800px) {
-    .mainchef_ {
-        padding: 10px 31px 10px 31px;
-        height: 82vh;
-        overflow: scroll;
-    }
-}
+@media (max-width:1800px) {}
 
 @media (min-width:1366px) {
     .chefratingsection .modalscroll {
@@ -24,10 +18,26 @@
     }
 }
 
+@media (max-width:1365px) {
+    .menuPage .profileDetail {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .homePage .profileDetail {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .Newbooking_ .profileDetail {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+}
+
 @media (max-width: 1200px) {
     /* .main {
         width: calc(100% - 0px) !important;
     } */
+
 }
 
 @media (max-width:991px) {
@@ -103,6 +113,17 @@
 
     .orderstatus {
         margin-top: 10px;
+    }
+
+    .menuPage .profileDetail {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .homePage .profileDetail {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .Newbooking_ .profileDetail {
+        grid-template-columns: 1fr 1fr 1fr ;
     }
 }
 
@@ -233,7 +254,6 @@
     .settingMain {
         height: 79vh;
         overflow: scroll;
-        padding-bottom: 20px;
     }
 
     .mainBoxOuter {
@@ -268,6 +288,18 @@
         width: 30px !important;
         height: 30px !important;
     }
+
+    .menuPage .profileDetail {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .homePage .profileDetail {
+        grid-template-columns: 1fr 1fr;
+    }
+    .Newbooking_ .profileDetail {
+        grid-template-columns: 1fr 1fr ;
+    }
+
 }
 
 @media (max-width:575px) {
@@ -305,6 +337,17 @@
         padding: 7px;
         width: 100%;
         max-width: 30px;
+    }
+
+    .menuPage .profileDetail {
+        grid-template-columns: 1fr;
+    }
+
+    .homePage .profileDetail {
+        grid-template-columns: 1fr;
+    }
+    .Newbooking_ .profileDetail {
+        grid-template-columns: 1fr ;
     }
 
 }

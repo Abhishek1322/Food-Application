@@ -133,7 +133,7 @@ const AddExpertiseModal = (props) => {
           ))}
         </div>
       </form>
-      <div className="buttomBtn text-center">
+      <div className="buttomBtn text-center modalfooterbtn">
         <button onClick={handleSubmitExpertice} className="smallBtn w-100">
           Done
         </button>

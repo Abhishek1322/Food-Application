@@ -421,7 +421,8 @@ input:-webkit-autofill:active {
 .buttomBtn {
   position: fixed;
   bottom: 50px;
-  width: 19.4%;
+  width: 100%;
+  max-width: 327px;
 }
 
 /* End AddExpertise modal */

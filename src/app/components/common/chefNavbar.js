@@ -81,7 +81,7 @@ const Chef_Navbar = () => {
             pathname === "/new-booking" ||
             pathname === "/setting" ? (
               <div className="row align-items-center">
-                <div className="col-lg-6 col-sm-12">
+                <div className="col-lg-6 col-md-6">
                   {/* ----Home Page Header html */}
 
                   {pathname === "/home" ? (
@@ -121,7 +121,7 @@ const Chef_Navbar = () => {
                   <h1 className="chefCommonHeader ps-2">My Profile</h1>
                 </div> */}
                 </div>
-                <div className="col-lg-6 col-sm-12 text-end">
+                <div className="col-lg-6 col-md-6 text-end">
                   <div className="flexBox">
                     <div className="headermenu">
                       <figure className="menuBox">

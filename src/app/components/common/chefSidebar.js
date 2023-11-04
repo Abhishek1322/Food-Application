@@ -16,7 +16,7 @@ const Chef_Sidebar = () => {
 
   return (
     <>
-      <div className="sideBar">
+      <div className="sideBar chefsideBar ">
         <div className="sidebarlogo">
           <Link to="/home">
             <img src={Images.Logo} alt="logo" className="img-fluid" />

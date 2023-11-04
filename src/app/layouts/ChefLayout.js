@@ -25,7 +25,7 @@ const Chef_Layout = ({ role, children }) => {
           ) : (
             <div className="mainBox">
               <Chef_Sidebar />
-              <main className="main">
+              <main className="main chefmain">
                 <Chef_Navbar />
                 <Outlet />
               </main>

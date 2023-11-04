@@ -34,7 +34,7 @@ li {
   position: sticky;
   top: 0px;
   background-color: #fff;
-  z-index: 1;
+  z-index: 4;
 }
 
 .settingMainHeading {
@@ -914,6 +914,9 @@ body {
   display: flex;
   margin: 20px 0;
   flex-wrap: wrap; 
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px; */
 }
 
 .homeProfileBox {
@@ -1263,15 +1266,17 @@ body {
   bottom: 6px;
   left: 0;
 }
- .readyDeliver{
+
+.readyDeliver {
   color: #979999;
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 0;
   margin-left: 12px;
-  
+
 }
-.readyDeliver:before{
+
+.readyDeliver:before {
   background-color: #FFC107;
   content: "";
   width: 7px;
@@ -1281,6 +1286,7 @@ body {
   bottom: 6px;
   left: 0;
 }
+
 .progress_:before {
   content: "";
   width: 7px;
@@ -1291,6 +1297,7 @@ body {
   bottom: 6px;
   left: 0;
 }
+
 .progress_ {
   color: #979999;
   font-size: 14px;
@@ -1306,12 +1313,15 @@ body {
   margin-bottom: 0;
   margin-left: 12px;
 }
+
 .orderModalBtn .totalAmmount {
   padding: 15px;
 }
+
 .verifyOrderDetailModal .modalfooterbtn {
   right: 5px;
 }
+
 .ordertimeaddress {
   color: #979999;
   font-size: 14px;
@@ -1659,7 +1669,8 @@ body {
   align-items: center;
 }
 
-.headerInner_:before , .orderDelivered:before{
+.headerInner_:before,
+.orderDelivered:before {
   content: "";
   position: absolute;
   width: 7px;
@@ -1677,6 +1688,7 @@ body {
   position: relative;
   margin-left: 11px;
 }
+
 .headerTxt_ {
   color: #2e3333;
   font-family: Crimson Text;
@@ -2589,8 +2601,7 @@ body {
   font-weight: 600;
 }
 
-.dateBox
-  svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
+.dateBox svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
   display: none;
 }
 
@@ -2658,6 +2669,7 @@ body {
   top: 5px;
   left: -11px;
 }
+
 .headerInner_ .inprofress:before {
   content: "";
   position: absolute;

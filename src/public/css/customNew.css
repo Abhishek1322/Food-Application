@@ -5,7 +5,7 @@ p {
 }
 
 .profilesection {
- margin: 100px 90px 0 90px;
+  margin: 100px 90px 0 90px;
 }
 
 /* leftsection css  */
@@ -176,6 +176,7 @@ p {
   background: #fcefe5;
   padding: 15px 15px;
   text-align: center;
+  cursor: pointer;
 }
 
 .cheftime {
@@ -282,7 +283,7 @@ p {
   width: 100%;
   max-width: 300px;
   position: absolute;
-   display: none; 
+  display: none;
   padding: 10px;
   margin: 11px auto;
   top: 10px;
@@ -2029,8 +2030,17 @@ p {
   top: 0;
 }
 
+.chefsideBar {
+  position: fixed !important;
+  top: 0;
+}
+
 .usermain {
   width: calc(100% - 100px);
+  margin-left: 100px;
+}
+
+.chefmain {
   margin-left: 100px;
 }
 
@@ -2169,24 +2179,29 @@ p {
 .show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: none;
 }
+
 .userCheckOutModal .orderNow .orderbutton {
   margin: 8px 5px 8px 8px;
 }
+
 .usercartcheck .orderNow .orderbutton {
   margin: 8px 5px 8px 12px;
 }
+
 .toggleSideBtn {
   color: #e65c00;
-  border: 1px solid  #e65c00;
+  border: 1px solid #e65c00;
   border-radius: 8px;
   font-size: 18px;
   padding: 5px 10px;
-  margin:0 10px;
+  margin: 0 10px;
   display: none;
 }
-.foodmodalbtnDeliver{
+
+.foodmodalbtnDeliver {
   background-color: #2e3333;
 }
+
 /* .mainBox.inActiveSidebar 
  .userSidebar {
     position: absolute;
@@ -2213,9 +2228,11 @@ p {
   width: calc(100% - 0px);
   margin-left: 0;
 }  */
-.settingMain{
+.settingMain {
   padding: 15px 31px 0px 31px;
+  padding-bottom: 15px;
 }
+
 .uploadEditImg {
   width: 100%;
   max-width: 50px;
@@ -2224,21 +2241,41 @@ p {
   border-radius: 50%;
   cursor: pointer;
 }
-.profilesectionChef{
-margin-top: 100px;
-margin-left: 32px;
-margin-right: 32px;
+
+.profilesectionChef {
+  margin-top: 100px;
+  margin-left: 32px;
+  margin-right: 32px;
 }
+
 .editsection .editprofileimg {
   position: absolute;
   right: 14px;
   top: 22px;
 }
-.col-1-5{
-  width: 20%;
-  float: left;
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+.menuPage .profileDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+.menuPage .listItems_ {
+  width: 100%;
+  /* max-width: 160px; */
+  margin-right: 0;
+}
+.homePage .profileDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-gap: 15px;
+}
+.homePage .profileDetail .homeProfileBox {
+  width: 100%;
+}
+.Newbooking_ .profileDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-gap: 15px;
+}
+.Newbooking_ .profileDetail .homeProfileBox {
+  width: 100%;
 }
