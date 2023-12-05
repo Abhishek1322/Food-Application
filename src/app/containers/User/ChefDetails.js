@@ -8,6 +8,7 @@ import AddToCartModal from "../../components/common/shared/AddToCartModal";
 import ChefRating from "../../components/common/shared/ChefRating";
 import { useDispatch } from "react-redux";
 import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
+import ChatnextModal from "../../components/common/shared/chatnextModal";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -131,7 +132,13 @@ const ChefDetails = () => {
                   />
                   <span className="availableheading">Availability</span>
                 </button>
-                <button className="sarahmessagebtn flexBox" type="button">
+                <button
+                  onClick={() => {
+                    handleUserProfile("chatModal");
+                  }}
+                  className="sarahmessagebtn flexBox"
+                  type="button"
+                >
                   <img
                     src={Images.ChefChat}
                     alt="timesquareimage"
@@ -291,6 +298,8 @@ const ChefDetails = () => {
             ? "usercartmodal"
             : modalDetail.flag === "Addtocart"
             ? "usercartmodal"
+            : modalDetail.flag === "chatModal"
+            ? "userchatmodal"
             : ""
         }
         child={
@@ -308,6 +317,8 @@ const ChefDetails = () => {
               menuId={menuId}
               close={() => handleOnCloseModal()}
             />
+          ) : modalDetail.flag === "chatModal" ? (
+            <ChatnextModal menuId={menuId} close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
@@ -354,6 +365,82 @@ const ChefDetails = () => {
                   alt="modalcancelimg"
                 />
               </p>
+            </>
+          ) : modalDetail.flag === "chatModal" ? (
+            <>
+              <div className="Common_header">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="logo"
+                  className="img-fluid  arrowCommon_"
+                />
+                <img
+                  src={
+                    chefData?.userInfo?.profilePhoto
+                      ? chefData?.userInfo?.profilePhoto
+                      : Images.UserICon
+                  }
+                  alt="logo"
+                  className="img-fluid  headerImg_"
+                />
+                <div className="headerProfile">
+                  <h2 className="headerTxt_">
+                    {" "}
+                    {chefData?.userInfo?.firstName}{" "}
+                    {chefData?.userInfo?.lastName}
+                  </h2>
+                  <h6 className="headerInner_">Online</h6>
+                </div>
+              </div>
+              <div className="Dotsheader_">
+                <div className="dropdown ">
+                  <button
+                    className="btn btn-secondary dropdown-toggle modalheaderDot_"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src={Images.modalHeader}
+                      className=" img-fluid chatreportIcon_"
+                      alt="modalheaderimg"
+                    />
+                  </button>
+                  <ul
+                    className="dropdown-menu chatdrop"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li
+                      className=" chatdroplabel flexBox"
+                      onClick={() => {
+                        handleUserProfile("reportchat");
+                      }}
+                    >
+                      <img
+                        src={Images.reportchatIcon}
+                        className=" img-fluid reporticon_"
+                        alt="reportchat"
+                      />
+                      <h1 className="reportchat m-0 ps-2">Report Chat</h1>
+                    </li>
+                    <li
+                      className=" chatdroplabel flexBox"
+                      onClick={() => {
+                        handleUserProfile("clearchat");
+                      }}
+                    >
+                      <img
+                        src={Images.ChatModal}
+                        className=" img-fluid reporticon_"
+                        alt="clearchat"
+                      />
+                      <p className="reportchat m-0 ps-2">Clear Chat</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </>
           ) : (
             ""

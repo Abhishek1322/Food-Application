@@ -186,8 +186,8 @@ const SetupProfile = () => {
         .filter(
           (value) =>
             value.day !== "" &&
-            value.timeSlots.from &&
-            value.timeSlots.to !== undefined
+            value.startTime &&
+            value.endTime !== undefined
         )
         .map((item, index) => {
           const { _id, ...rest } = item;
@@ -311,11 +311,11 @@ const SetupProfile = () => {
     const getPreviousFromTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setStartTime(getPreviousFromTime?.timeSlots?.from);
+    setStartTime(getPreviousFromTime?.startTime);
     const getPreviousToTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setEndTime(getPreviousToTime?.timeSlots?.to);
+    setEndTime(getPreviousToTime?.endTime);
     if (availability && availability.length < 0) {
       setShowTimeSlot(true);
     }
@@ -351,10 +351,8 @@ const SetupProfile = () => {
           if (index === dayIndex) {
             return {
               ...item,
-              timeSlots: {
-                from: startTime,
-                to: endTime,
-              },
+              startTime: startTime,
+              endTime: endTime,
             };
           }
           return item;
@@ -364,15 +362,14 @@ const SetupProfile = () => {
           ...prevAvailability,
           {
             day: activeWeekDay,
-            timeSlots: {
-              from: startTime,
-              to: endTime,
-            },
+            startTime: startTime,
+            endTime: endTime,
           },
         ];
       }
     });
   }, [startTime, endTime, activeWeekDay]);
+
   // getting startTime slot
   const handleStartTime = (value) => {
     setStartTime(value);

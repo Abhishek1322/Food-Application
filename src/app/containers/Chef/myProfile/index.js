@@ -21,10 +21,10 @@ const MyProfile = () => {
   const [expertice, setExpertice] = useState([]);
   const [availability, setAvailability] = useState([]);
   const [profileUrl, setProfileUrl] = useState("");
-
+  
   const [slotTime, setSlotTimes] = useState({
-    from: "",
-    to: "",
+    startTime: "",
+    endTime: "",
   });
 
   const [modalDetail, setModalDetail] = useState({
@@ -118,8 +118,8 @@ const MyProfile = () => {
       }
     );
     setSlotTimes({
-      from: updateSlotTimes?.timeSlots?.from,
-      to: updateSlotTimes?.timeSlots?.to,
+      startTime: updateSlotTimes?.startTime,
+      endTime: updateSlotTimes?.endTime,
     });
   };
 
@@ -320,11 +320,11 @@ const MyProfile = () => {
                     ))}
                   </ul>
                   <div className="cheftime">
-                    {slotTime.from && slotTime.to && activeWeekDay ? (
+                    {slotTime.startTime && slotTime.endTime && activeWeekDay ? (
                       <div className="expertisevalue">
                         <p className="expertheading">
-                          {moment(slotTime.from, "h:mm A").format("h:mm A")} -{" "}
-                          {moment(slotTime.to, "h:mm A").format("h:mm A")}
+                          {moment(slotTime.startTime, "h:mm A").format("h:mm A")} -{" "}
+                          {moment(slotTime.endTime, "h:mm A").format("h:mm A")}
                         </p>
                       </div>
                     ) : (

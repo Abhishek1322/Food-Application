@@ -12,7 +12,7 @@ const MyavailabilityModal = (props) => {
   const [endTime, setEndTime] = useState("00:00");
   const [availability, setAvailability] = useState(availabilityData);
   const [showTimeSlot, setShowTimeSlot] = useState(true);
-
+  
   // week days
   const week = [
     {
@@ -50,11 +50,11 @@ const MyavailabilityModal = (props) => {
     const getPreviousFromTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setStartTime(getPreviousFromTime?.timeSlots?.from);
+    setStartTime(getPreviousFromTime?.startTime);
     const getPreviousToTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setEndTime(getPreviousToTime?.timeSlots?.to);
+    setEndTime(getPreviousToTime?.endTime);
     setShowTimeSlot(true);
   };
 
@@ -80,10 +80,8 @@ const MyavailabilityModal = (props) => {
           if (index === dayIndex) {
             return {
               ...item,
-              timeSlots: {
-                from: startTime,
-                to: endTime,
-              },
+              startTime: startTime,
+              endTime: endTime,
             };
           }
           return item;
@@ -93,10 +91,8 @@ const MyavailabilityModal = (props) => {
           ...prevAvailability,
           {
             day: activeWeekDay,
-            timeSlots: {
-              from: startTime,
-              to: endTime,
-            },
+            startTime: startTime,
+            endTime: endTime,
           },
         ];
       }
@@ -108,12 +104,10 @@ const MyavailabilityModal = (props) => {
     const updateValue = availability
       .filter(
         (value) =>
-          value.day !== "" &&
-          value.timeSlots.from &&
-          value.timeSlots.to !== undefined
+          value.day !== "" && value.startTime && value.endTime !== undefined
       )
       .map((item, index) => {
-        const { _id, ...rest } = item;
+        const { _id, timeSlots, ...rest } = item;
         return rest;
       });
 
