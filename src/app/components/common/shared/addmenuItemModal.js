@@ -37,16 +37,6 @@ const AddmenuItemModal = (props) => {
     setFormData({ ...formData, [name]: value.trim() });
   };
 
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad);
@@ -185,6 +175,7 @@ const AddmenuItemModal = (props) => {
               onChange={(e) => setCategory(e.target.value)}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
+              // IconComponent={<i className="fas fa-angle-down"></i>}
             >
               <MenuItem value={"veg"}>Veg</MenuItem>
               <MenuItem value={"non-veg"}>Non Veg</MenuItem>
@@ -277,7 +268,25 @@ const AddmenuItemModal = (props) => {
         </div>
       </div>
       <button
-        className="foodmodalbtn  modalfooterbtn"
+        disabled={
+          !formData.itemName ||
+          !formData.price ||
+          !formData.deliveryTime ||
+          !formData.description ||
+          !imageUrl ||
+          !category
+        }
+        className={
+          !formData.itemName ||
+          !formData.price ||
+          !formData.deliveryTime ||
+          !formData.description ||
+          !imageUrl ||
+          !category
+            ? "foodmodalbtn  modalfooterbtn disbale-btn"
+            : "foodmodalbtn  modalfooterbtn"
+        }
+        // className="foodmodalbtn  modalfooterbtn"
         onClick={() => {
           handleCreateMenu();
         }}

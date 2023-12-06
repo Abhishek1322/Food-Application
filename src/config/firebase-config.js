@@ -1,18 +1,17 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from '@firebase/firestore';
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "@firebase/firestore";
+import { getStorage } from "@firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyABE4akAtb_B2yFfCFbu1pLoxL_L1VF6lk",
-  authDomain: "tokyo-baton-401811.firebaseapp.com",
-  projectId: "tokyo-baton-401811",
-  storageBucket: "tokyo-baton-401811.appspot.com",
-  messagingSenderId: "696838990663",
-  appId: "1:696838990663:web:09170bb002f3089a943a62"
+  apiKey: "AIzaSyAq5qyr5Ro2va8nAoj0sMXTtjMXsdM2BSo",
+  authDomain: "serveritlocal.firebaseapp.com",
+  projectId: "serveritlocal",
+  storageBucket: "serveritlocal.appspot.com",
+  messagingSenderId: "1058208585599",
+  appId: "1:1058208585599:web:410f925b657e2ee7122c4a",
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth(app)
-const provider = new GoogleAuthProvider();
+const storage = getStorage(app);
 
-export {db, auth, provider}
+export { db, storage };

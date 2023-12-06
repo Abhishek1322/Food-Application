@@ -31,7 +31,7 @@ function* chefProfileDocument(action) {
     if (resp.status) {
       yield put(setChefProfileDocument(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }

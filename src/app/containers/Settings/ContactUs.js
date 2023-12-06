@@ -9,10 +9,12 @@ import {
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../redux/selector/user";
 import Loading from "./Loading";
+import { getUserProfileDetails } from "../../../redux/slices/web";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
   const userSelector = useUserSelector();
+  const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -69,9 +71,6 @@ const ContactUs = () => {
         cb(res) {
           if (res.status === 200) {
             setFormData({
-              firstName: "",
-              lastName: "",
-              email: "",
               message: "",
             });
           }
@@ -79,6 +78,28 @@ const ContactUs = () => {
       })
     );
   };
+
+  // getting user profile details
+  useEffect(() => {
+    let params = {
+      userid: userId,
+    };
+    dispatch(
+      getUserProfileDetails({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setFormData({
+              firstName: res?.data?.data?.userInfo?.firstName,
+              lastName: res?.data?.data?.userInfo?.lastName,
+              email: res?.data?.data?.email,
+              message: "",
+            });
+          }
+        },
+      })
+    );
+  }, []);
 
   return (
     <>
@@ -118,6 +139,7 @@ const ContactUs = () => {
                         <div className="col-lg-6 col-md-6">
                           <div className="input-container mt-5">
                             <input
+                              readOnly
                               type="text"
                               className="border-input"
                               placeholder="Enter your first name"
@@ -131,6 +153,7 @@ const ContactUs = () => {
                         <div className="col-lg-6 col-md-6">
                           <div className="input-container mt-5">
                             <input
+                              readOnly
                               type="text"
                               className="border-input"
                               placeholder="Enter your last name"
@@ -147,6 +170,7 @@ const ContactUs = () => {
                   <div className="col-lg-12">
                     <div className="input-container mt-5">
                       <input
+                        readOnly
                         type="text"
                         className="border-input"
                         placeholder="Enter your last email address"

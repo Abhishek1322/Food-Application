@@ -2279,3 +2279,6 @@ p {
 .Newbooking_ .profileDetail .homeProfileBox {
   width: 100%;
 }
+button.foodmodalbtn.modalfooterbtn.disbale-btn {
+  background: #ffad77;
+}

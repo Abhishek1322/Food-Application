@@ -13,12 +13,12 @@ const Menu = () => {
   const [key, setKey] = useState(Math.random());
   const [menuList, setMenuList] = useState([]);
   const [menuId, setMenuId] = useState("");
+  const [searchMenu, setSearchMenu] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -51,6 +51,8 @@ const Menu = () => {
   }, []);
 
   const menuListAll = () => {
+
+    
     dispatch(
       getMenusLists({
         cb(res) {
@@ -73,14 +75,29 @@ const Menu = () => {
                   <h2 className="headerinnerheading">
                     List of Your Menu Items
                   </h2>
-                  <div
-                    className="menuItems "
-                    onClick={() => {
-                      handleUserProfile("addMenuItemModal");
-                    }}
-                  >
-                    <i className="fas fa-plus plusmenuImg"></i>
-                    <h3 className="innermenuItem">Add Menu Item</h3>
+                  <div className="d-flex align-items-center">
+                    <div className="searchbar me-4">
+                      <input
+                        onChange={(e) => setSearchMenu(e.target.value)}
+                        placeholder="Search menu items..."
+                        type="search"
+                        className="searchtext"
+                      />
+                      <img
+                        src={Images.searchbar}
+                        className="searchbarImg"
+                        alt="searchbar"
+                      />
+                    </div>
+                    <div
+                      className="menuItems "
+                      onClick={() => {
+                        handleUserProfile("addMenuItemModal");
+                      }}
+                    >
+                      <i className="fas fa-plus plusmenuImg"></i>
+                      <h3 className="innermenuItem">Add Menu Item</h3>
+                    </div>
                   </div>
                 </div>
                 <div className="profileDetail">
@@ -193,10 +210,10 @@ const Menu = () => {
           modalDetail.flag === "editMenuModal"
             ? "editMenu"
             : "deleteMenuModal"
-              ? "deleteMenu"
-              : "addMenuItemModal"
-                ? "addMenuItem"
-                : ""
+            ? "deleteMenu"
+            : "addMenuItemModal"
+            ? "addMenuItem"
+            : ""
         }
         child={
           modalDetail.flag === "editMenuModal" ? (
@@ -237,7 +254,11 @@ const Menu = () => {
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancel"
+                />
               </p>
             </>
           ) : modalDetail.flag === "addMenuItemModal" ? (
@@ -249,7 +270,11 @@ const Menu = () => {
                 </div>
               </div>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancel"
+                />
               </p>
             </>
           ) : (

@@ -21,7 +21,7 @@ const User_Navbar = () => {
   const allUserData = useUserSelector();
   const userId = localStorage.getItem("userId");
   const [key, setKey] = useState(Math.random());
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(true);
 
   const [currentLocation, setCurrentLocation] = useState();
   const [userData, setUserData] = useState([]);
@@ -129,11 +129,10 @@ const User_Navbar = () => {
     );
   }, []);
 
-
   // toggle SideBar
   useEffect(() => {
-    dispatch(toggleSidebar(toggle))
-  }, [toggle])
+    dispatch(toggleSidebar(toggle));
+  }, [toggle]);
 
   return (
     <>
@@ -141,9 +140,9 @@ const User_Navbar = () => {
         <div className="navMain">
           <div className="container-fluid p-0">
             {pathname === "/home-user" ||
-              pathname === "/user-chef-home" ||
-              pathname === "/user-order-home" ||
-              pathname === "/setting" ? (
+            pathname === "/user-chef-home" ||
+            pathname === "/user-order-home" ||
+            pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   {pathname === "/home-user" ? (
@@ -169,7 +168,7 @@ const User_Navbar = () => {
                   ) : pathname === "/user-order-home" ? (
                     <h1 className="chefCommonHeader">My Orders</h1>
                   ) : pathname === "/setting" ? (
-                    <h1 className="chefCommonHeader">Setting</h1>
+                    <h1 className="chefCommonHeader">Settings</h1>
                   ) : (
                     ""
                   )}
@@ -224,7 +223,12 @@ const User_Navbar = () => {
                           : 0}
                       </span>
                     </div>
-                    <button onClick={() => setToggle(!toggle)} className="toggleSideBtn"><i className="fas fa-bars"></i></button>
+                    <button
+                      onClick={() => setToggle(!toggle)}
+                      className="toggleSideBtn"
+                    >
+                      <i className="fas fa-bars"></i>
+                    </button>
 
                     <button
                       className="sarahmessagebtn d-none"
@@ -242,7 +246,6 @@ const User_Navbar = () => {
 
                       <p className="availableheading">Book Now</p>
                     </button>
-
                   </div>
                 </div>
               </div>
@@ -304,10 +307,13 @@ const User_Navbar = () => {
 
                         <p className="availableheading">Book Now</p>
                       </button>
-
                     </div>
-                    <button onClick={() => setToggle(!toggle)} className="toggleSideBtn"><i className="fas fa-bars"></i></button>
-
+                    <button
+                      onClick={() => setToggle(!toggle)}
+                      className="toggleSideBtn"
+                    >
+                      <i className="fas fa-bars"></i>
+                    </button>
                   </div>
 
                   {/* booking Common Header */}
@@ -349,12 +355,12 @@ const User_Navbar = () => {
           modalDetail.flag === "chatmessage"
             ? "chatmessagemodal"
             : modalDetail.flag === "userNotification"
-              ? "userNotificationModal"
-              : modalDetail.flag === "cartModal"
-                ? "usercartmodal"
-                : modalDetail.flag === "bookchef"
-                  ? "bookchefmodal"
-                  : ""
+            ? "userNotificationModal"
+            : modalDetail.flag === "cartModal"
+            ? "usercartmodal"
+            : modalDetail.flag === "bookchef"
+            ? "bookchefmodal"
+            : ""
         }
         child={
           modalDetail.flag === "chatmessage" ? (

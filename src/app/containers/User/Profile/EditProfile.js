@@ -43,8 +43,14 @@ const UserEditProfile = () => {
       step: "1",
       firstName: firstName,
       lastName: lastName,
-      profilePhoto: profileUrl,
     };
+
+    if (profileUrl) {
+      params = {
+        ...params,
+        profilePhoto: profileUrl,
+      };
+    }
 
     dispatch(
       updateProfileImage({

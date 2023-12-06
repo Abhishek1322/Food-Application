@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { db } from "../../../../config/firebase-config";
-
+import React, { useState, useEffect, useCallback } from "react";
+import { db, storage } from "../../../../config/firebase-config";
 import {
   collection,
   query,
@@ -12,48 +11,130 @@ import {
 } from "firebase/firestore";
 import * as Images from "../../../../utilities/images";
 import { useAuthSelector } from "../../../../redux/selector/auth";
+import { useDropzone } from "react-dropzone";
+import { toast } from "react-toastify";
+import { chefProfileDocument } from "../../../../redux/slices/auth";
+import { useDispatch } from "react-redux";
+import { ref, uploadBytes } from "@firebase/storage";
 
 const ChatnextModal = () => {
   const authData = useAuthSelector();
+  const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState("");
-  const messagesRef = collection(db, "messages");
-  const userId = localStorage.getItem("userId");
-
+  const [img, setImg] = useState("");
+  const [imageUrl, setImgUrl] = useState("");
+  const messagesRef = collection(db, "chats");
+  console.log("messagesmessages", messages);
   console.log("authDataauthData", authData);
-  console.log("serverTimestampserverTimestamp", serverTimestamp);
-  console.log("dbdbdbdbdbdb", db);
 
   // get all messages
   useEffect(() => {
-    const q = query(
-      collection(db, "messages"),
-      orderBy("createdAt"),
-      limit(50)
-    );
-    const data = onSnapshot(q, (QuerySnapshot) => {
-      let messages = [];
-      QuerySnapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
-      });
-      console.log("messagesmessages", messages);
+    const q = query(collection(db, "chats"), orderBy("updated_at"));
+    const data = onSnapshot(
+      q,
+      (QuerySnapshot) => {
+        let messages = [];
+        QuerySnapshot.forEach((doc) => {
+          messages.push({ ...doc.data(), id: doc.id });
+        });
+        console.log("messagesmessageszzzzzz", messages);
 
-      setMessages(messages);
-    });
+        setMessages(messages);
+      },
+      (error) => {
+        console.log("ErrorMsssss", error);
+      }
+    );
     return () => data;
   }, []);
 
   // send new messages
   const sendMsg = async (e) => {
-    await addDoc(messagesRef, {
-      text: msg,
-      createdAt: serverTimestamp(),
-      uid: authData?.userInfo?.id,
-      photoURL: authData?.userInfo?.userInfo?.profilePhoto
-        ? authData?.userInfo?.userInfo?.profilePhoto
-        : Images.dummyProfile,
-    });
-    setMsg("");
+    if (!msg || msg === "") {
+      return;
+    }
+    await addDoc(
+      messagesRef,
+      {
+        last_message_type: img ? 1 : imageUrl ? 2 : 0,
+        latest_message: msg,
+        updated_at: serverTimestamp(),
+        sender_id: authData?.userInfo?.id,
+        users_data: {
+          id: authData?.userInfo?.id,
+          imageURL: authData?.userInfo?.userInfo?.profilePhoto,
+          name: "",
+          unread_count: "",
+        },
+      },
+      setMsg("")
+    );
+  };
+
+  // validation for upload files
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFiles) => {
+      if (
+        rejectedFiles.length > 0 &&
+        rejectedFiles[0]?.file?.type !== "image/jpeg" &&
+        "image/jpg" &&
+        "image/png" &&
+        "image/svg"
+      ) {
+        toast.error("Please upload valid image");
+        return;
+      }
+      setImg(acceptedFiles[0]);
+    },
+    [img]
+  );
+
+  // showing only images
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/jpeg": [],
+      "image/png": [],
+      "image/jpg": [],
+      "image/svg": [],
+    },
+    multiple: false,
+  });
+
+  // getting uploaded image url
+  useEffect(() => {
+    if (img) {
+      let params = {
+        file: img,
+      };
+      dispatch(
+        chefProfileDocument({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setImgUrl(res.data.data.fileUrl);
+            }
+          },
+        })
+      );
+    }
+  }, [img]);
+
+  // send image msg
+  const handleUpload = async () => {
+    if (!img) {
+      console.error("No file selected");
+      return;
+    }
+    const storagePath = `chats/0-0/${img.name}`;
+    const storageRef = ref(storage, storagePath);
+    try {
+      await uploadBytes(storageRef, img);
+      console.log("File uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading file: ", error);
+    }
   };
 
   return (
@@ -79,8 +160,9 @@ const ChatnextModal = () => {
             <div className="right_chatBox">
               {messages?.map((message, index) => (
                 <div className="py-1" key={index}>
+                  {console.log("messagemessage", message)}
                   <div className="chatinRight_">
-                    <p className="chat_Text">{message?.text}</p>
+                    <p className="chat_Text">{message?.latest_message}</p>
                   </div>
                   <div className="chefchat_detail">
                     <p className="chatTime_ m-0 pe-2 ">2:36 pm</p>
@@ -100,19 +182,27 @@ const ChatnextModal = () => {
             </div>
 
             <div className="chatSearchHere_">
-              <input
-                className="chatSearchere_"
-                type="text"
-                placeholder="Type Something..."
-                value={msg}
-                onChange={(e) => setMsg(e.target.value)}
-              />
-              <img
-                src={Images.chatgalleryImg}
-                alt="chatGallerImg"
-                className="gallerImg infoimg "
-              />
-
+              {imageUrl ? (
+                <img alt="upload-img" src={imageUrl} />
+              ) : (
+                <div className="d-flex">
+                  <textarea
+                    className="chatSearchere_"
+                    type="text"
+                    placeholder="Type Something..."
+                    value={msg}
+                    onChange={(e) => setMsg(e.target.value)}
+                  />
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <img
+                      src={Images.chatgalleryImg}
+                      alt="chatGallerImg"
+                      className="gallerImg infoimg"
+                    />
+                  </div>
+                </div>
+              )}
               <div className="sarahinformation">
                 <p className="chatSearchere_ ">
                   Your only able to send photos from gallery

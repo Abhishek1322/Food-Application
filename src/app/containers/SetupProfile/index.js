@@ -44,8 +44,8 @@ const SetupProfile = () => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const [activeWeekDay, setActiveWeekDay] = useState("");
-  const [startTime, setStartTime] = useState("00:00");
-  const [endTime, setEndTime] = useState("00:00");
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
   const [showTimeSlot, setShowTimeSlot] = useState(false);
   const [availability, setAvailability] = useState([]);
   const [documentUrl, setDocumentUrl] = useState("");
@@ -185,12 +185,10 @@ const SetupProfile = () => {
       const updateValue = availability
         .filter(
           (value) =>
-            value.day !== "" &&
-            value.startTime &&
-            value.endTime !== undefined
+            value.day !== "" && value.startTime && value.endTime !== undefined
         )
         .map((item, index) => {
-          const { _id, ...rest } = item;
+          const { _id, timeSlots, ...rest } = item;
           return rest;
         });
 
@@ -311,11 +309,13 @@ const SetupProfile = () => {
     const getPreviousFromTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setStartTime(getPreviousFromTime?.startTime);
+    setStartTime(
+      getPreviousFromTime?.startTime ? getPreviousFromTime?.startTime : null
+    );
     const getPreviousToTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setEndTime(getPreviousToTime?.endTime);
+    setEndTime(getPreviousToTime?.endTime ? getPreviousToTime?.endTime : null);
     if (availability && availability.length < 0) {
       setShowTimeSlot(true);
     }
@@ -474,9 +474,21 @@ const SetupProfile = () => {
                             <MultiStepProgressBar page={page} />
                           </div>
                           <div className="col-lg-6 text-end">
-                            <button className="PersonalDetails" type="button">
-                              Personal Details
-                            </button>
+                            {page === "pageone" ? (
+                              <button className="PersonalDetails" type="button">
+                                Personal Details
+                              </button>
+                            ) : page === "pagetwo" ? (
+                              <button className="PersonalDetails" type="button">
+                                Availability
+                              </button>
+                            ) : page === "pagethree" ? (
+                              <button className="PersonalDetails" type="button">
+                                Documents
+                              </button>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                       </div>
@@ -495,7 +507,7 @@ const SetupProfile = () => {
                                     </label>
                                     <ul className="border-input cheftypeBox">
                                       <li
-                                        className={`chefType ${
+                                        className={`chefType gap-2 ${
                                           activeTab === "restaurant"
                                             ? "active"
                                             : path == "/restaurant"
@@ -759,22 +771,6 @@ const SetupProfile = () => {
                                       <div className="row">
                                         <div className="col-lg-5">
                                           <div className="input-container mt-2">
-                                            {/* <p className="border-input">From</p> */}
-                                            {/* <div className="dateBox">
-                                            <TimePicker
-                                              onChange={handleStartTime}
-                                              value={startTime}
-                                              format="h:mm a"
-                                              showLeadingZeros={false}
-                                              amPmAriaLabel="Select AM/PM"
-                                              className="custom-time-picker customPicker"
-                                            />
-                                            <img
-                                              src={Images.ClockIcon}
-                                              alt="ClockIcon"
-                                              className="ClockIcon"
-                                            />
-                                          </div> */}
                                             <div className="myavailability mt-4">
                                               <div className="availability_Box ">
                                                 <p className="innerBoxText">
@@ -794,7 +790,6 @@ const SetupProfile = () => {
                                                     onChange={handleStartTime}
                                                     value={startTime}
                                                     format="h:mm a"
-                                                    showLeadingZeros={false}
                                                     amPmAriaLabel="Select AM/PM"
                                                     className="custom-time-picker customPicker"
                                                   />
@@ -805,35 +800,6 @@ const SetupProfile = () => {
                                         </div>
                                         <div className="col-lg-5">
                                           <div className="input-container mt-2">
-                                            {/* <div className="dateBox">
-                                            <TimePicker
-                                              onChange={handleEndTime}
-                                              value={endTime}
-                                            />
-                                            <img
-                                              src={Images.ClockIcon}
-                                              alt="ClockIcon"
-                                              className="ClockIcon"
-                                            />
-                                          </div> */}
-                                            {/* <p className="border-input">
-                                                From
-                                              </p>
-
-                                              <img
-                                                src={Images.availabilityClock}
-                                                className="clockImg pe-1"
-                                              />
-                                              <TimePicker
-                                                disableClock
-                                                clearIcon=""
-                                                onChange={handleEndTime}
-                                                value={endTime}
-                                                format="h:mm a"
-                                                showLeadingZeros={false}
-                                                amPmAriaLabel="Select AM/PM"
-                                                className="custom-time-picker customPicker"
-                                              /> */}
                                             <div className="myavailability mt-4 ">
                                               <div className="availability_Box  ms-3">
                                                 <p className="innerBoxText">
@@ -853,7 +819,6 @@ const SetupProfile = () => {
                                                     onChange={handleEndTime}
                                                     value={endTime}
                                                     format="h:mm a"
-                                                    showLeadingZeros={false}
                                                     amPmAriaLabel="Select AM/PM"
                                                     className="custom-time-picker customPicker"
                                                   />

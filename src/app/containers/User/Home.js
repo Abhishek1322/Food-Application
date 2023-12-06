@@ -6,7 +6,6 @@ import { chefLists } from "../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
 
 const HomeUser = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [chefListData, setChefListData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

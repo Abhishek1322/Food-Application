@@ -12,9 +12,13 @@ const ChooseRoles = () => {
   const handleGetRole = (flag) => {
     setRole(flag);
     if (flag === "user") {
-      navigate("/create-account/user");
+      setTimeout(() => {
+        navigate("/create-account/user");
+      }, 100);
     } else if (flag === "chef") {
-      navigate("/create-account/chef");
+      setTimeout(() => {
+        navigate("/create-account/chef");
+      }, 100);
     }
   };
 

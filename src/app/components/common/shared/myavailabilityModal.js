@@ -8,11 +8,11 @@ const MyavailabilityModal = (props) => {
   const { availabilityData, close, chefProfileDetails } = props;
   const dispatch = useDispatch();
   const [activeWeekDay, setActiveWeekDay] = useState("");
-  const [startTime, setStartTime] = useState("00:00");
-  const [endTime, setEndTime] = useState("00:00");
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
   const [availability, setAvailability] = useState(availabilityData);
   const [showTimeSlot, setShowTimeSlot] = useState(true);
-  
+
   // week days
   const week = [
     {
@@ -50,11 +50,13 @@ const MyavailabilityModal = (props) => {
     const getPreviousFromTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setStartTime(getPreviousFromTime?.startTime);
+    setStartTime(
+      getPreviousFromTime?.startTime ? getPreviousFromTime?.startTime : null
+    );
     const getPreviousToTime = availability?.find((item, index) => {
       return item?.day === day;
     });
-    setEndTime(getPreviousToTime?.endTime);
+    setEndTime(getPreviousToTime?.endTime ? getPreviousToTime?.endTime : null);
     setShowTimeSlot(true);
   };
 
@@ -170,7 +172,7 @@ const MyavailabilityModal = (props) => {
           {activeWeekDay && showTimeSlot && (
             <div className="flexBox ">
               <div className="myavailability mt-4">
-                <div className="availabilityBox_ ">
+                <div className="availabilityBox_  p-0">
                   <p className="innerBoxText">From</p>
                   <div className="availableTime flexBox ">
                     <img
@@ -192,7 +194,7 @@ const MyavailabilityModal = (props) => {
                 </div>
               </div>
               <div className="myavailability mt-4 ">
-                <div className="availabilityBox_ me-4 ">
+                <div className="availabilityBox_ me-4 p-0">
                   <p className="innerBoxText">To</p>
                   <div className="availableTime flexBox">
                     <img
