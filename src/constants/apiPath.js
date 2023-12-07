@@ -39,6 +39,8 @@ const ApiPath = {
     GET_ALL_ORDER: "/order/user",
     GET_SINGLE_ORDER: "/order/order",
     UPDATE_CART_ITEM: "/cart/update",
+    ADD_RATING: "/chefRating",
+    GET_RATING:"/chefRating/rating"
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",

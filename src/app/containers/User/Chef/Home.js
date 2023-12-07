@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { chefLists } from "../../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
 
-
 const UserChefHome = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [chefListData, setChefListData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +23,6 @@ const UserChefHome = () => {
       limit: 12,
       address: search,
     };
-
     dispatch(
       chefLists({
         ...params,
@@ -62,9 +59,9 @@ const UserChefHome = () => {
               alt="searchbar"
             />
           </div>
-          
+
           <div className="dropdown">
-          <span className="chefName">Filter By:</span>
+            <span className="chefName">Filter By:</span>
             <button
               className="btn btn-secondary dropdown-toggle"
               type="button"
@@ -144,7 +141,10 @@ const UserChefHome = () => {
             {chefListData && chefListData.length > 0 ? (
               <>
                 {chefListData?.map((item, index) => (
-                  <div key={index} className="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-12">
+                  <div
+                    key={index}
+                    className="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-12"
+                  >
                     <div className="outerBox text-center">
                       <figure className="chefDetails mb-3">
                         <Link to={`/chef-details?id=${item._id}`}>
@@ -168,11 +168,14 @@ const UserChefHome = () => {
                       <div className="flexBox justify-content-between mt-3">
                         <article className="ratingBox">
                           <span className="coloredText">
-                            <i className="las la-star startIcon"></i>4.5
+                            <i className="las la-star startIcon"></i>
+                            {item?.averageRating}
                           </span>
                         </article>
                         <article>
-                          <span className="uploadText">845 reviews</span>
+                          <span className="uploadText">
+                            {item?.reviewCount} reviews
+                          </span>
                         </article>
                       </div>
                     </div>

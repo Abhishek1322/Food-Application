@@ -19,9 +19,56 @@ import {
   setGetAllOrder,
   setGetSingleOrder,
   setUpdateCartItem,
+  setGiveRating,
+  setGetRating,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getRating(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.GET_RATING}?chefId=${action.payload.chefId}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetRating(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* giveRating(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.userApiPath.ADD_RATING),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGiveRating(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
 
 function* updateCartItem(action) {
   try {
@@ -376,6 +423,8 @@ function* userSaga() {
   yield all([takeLatest("user/getAllOrder", getAllOrder)]);
   yield all([takeLatest("user/getSingleOrder", getSingleOrder)]);
   yield all([takeLatest("user/updateCartItem", updateCartItem)]);
+  yield all([takeLatest("user/giveRating", giveRating)]);
+  yield all([takeLatest("user/getRating", getRating)]);
 }
 
 export default userSaga;

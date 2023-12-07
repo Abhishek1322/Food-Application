@@ -31,7 +31,7 @@ const ChefDetails = () => {
   }, [dispatch]);
 
   // get single chef detail
-  useEffect(() => {
+  const handleGetChefDetails = () => {
     let params = {
       id: id,
     };
@@ -43,6 +43,11 @@ const ChefDetails = () => {
         },
       })
     );
+  };
+
+  // get single chef detail
+  useEffect(() => {
+    handleGetChefDetails();
   }, []);
 
   //closeModal
@@ -177,7 +182,9 @@ const ChefDetails = () => {
                 }}
               >
                 <i className="las la-star startIcon"></i>
-                <p className="ratingheading">4.5 (845 Reviews)</p>
+                <p className="ratingheading">
+                  {chefData?.averageRating} ({chefData?.totalReview} Reviews)
+                </p>
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12">
@@ -311,7 +318,7 @@ const ChefDetails = () => {
           ) : modalDetail.flag === "CartFood" ? (
             <CartFoodModal menuId={menuId} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "ratingchef" ? (
-            <ChefRating close={() => handleOnCloseModal()} />
+            <ChefRating handleGetChefDetails={handleGetChefDetails} chefId={id} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Addtocart" ? (
             <AddToCartModal
               menuId={menuId}

@@ -14,6 +14,18 @@ export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getRating: (state) => {
+      state.loading = true;
+    },
+    setGetRating: (state) => {
+      state.loading = false;
+    },
+    giveRating: (state) => {
+      state.loading = true;
+    },
+    setGiveRating: (state) => {
+      state.loading = false;
+    },
     updateCartItem: (state) => {
       state.loading = true;
     },
@@ -153,6 +165,10 @@ export const {
   setGetSingleOrder,
   updateCartItem,
   setUpdateCartItem,
+  giveRating,
+  setGiveRating,
+  getRating,
+  setGetRating,
 } = userSilce.actions;
 
 export default userSilce.reducer;

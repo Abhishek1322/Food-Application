@@ -9,6 +9,7 @@ const AvailableModal = (props) => {
       <div className="modalContent">
         {chefData?.chefInfo?.availability?.map((item, index) => (
           <div key={index} className="availabledays mb-3">
+            {console.log("itemitem", item)}
             <p className="notificationText text-capitalize">{item?.day}</p>
             <div className="daytimes">
               <img
@@ -17,8 +18,8 @@ const AvailableModal = (props) => {
                 className="img-fluid"
               />
               <p className="daytimesheading">
-                {moment(item?.timeSlots?.from, "h:mm A").format("h:mm A")} -{" "}
-                {moment(item?.timeSlots?.to, "h:mm A").format("h:mm A")}
+                {moment(item?.startTime, "h:mm A").format("h:mm A")} -{" "}
+                {moment(item?.endTime, "h:mm A").format("h:mm A")}
               </p>
             </div>
           </div>

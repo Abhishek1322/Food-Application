@@ -150,16 +150,18 @@ const UserOrderHome = () => {
             <p>No Order found</p>
           )}
         </div>
-        <ReactPaginate
-          previousLabel={"prev"}
-          nextLabel={"next"}
-          pageCount={pageCount}
-          pageRangeDisplayed={2}
-          marginPagesDisplayed={3}
-          onPageChange={handlePageChange}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-        />
+        {allOrders && allOrders.length > 0 && (
+          <ReactPaginate
+            previousLabel={"prev"}
+            nextLabel={"next"}
+            pageCount={pageCount}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={3}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+          />
+        )}
       </div>
       <CustomModal
         key={key}
