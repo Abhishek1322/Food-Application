@@ -7,6 +7,7 @@ import AddmenuItemModal from "../../../components/common/shared/addmenuItemModal
 import FoodDetailModal from "../../../components/common/shared/foodDetailModal";
 import { getMenusLists, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
+import ReactPaginate from "react-paginate";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ const Menu = () => {
   const [menuList, setMenuList] = useState([]);
   const [menuId, setMenuId] = useState("");
   const [searchMenu, setSearchMenu] = useState("");
+  const [pageCount, setPageCount] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -48,20 +51,33 @@ const Menu = () => {
   // get all menu lists
   useEffect(() => {
     menuListAll();
-  }, []);
+  }, [searchMenu]);
 
-  const menuListAll = () => {
+  // get all menu lists
+  const menuListAll = (page = currentPage) => {
+    let params = {
+      limit: 14,
+      page: page,
+      search: searchMenu,
+    };
 
-    
     dispatch(
       getMenusLists({
+        ...params,
         cb(res) {
           if (res.status === 200) {
             setMenuList(res.data.data.data);
+            setPageCount(res.data.data.total_pages);
           }
         },
       })
     );
+  };
+
+  // Page change handler
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected + 1);
+    menuListAll(selected + 1);
   };
 
   return (
@@ -80,7 +96,7 @@ const Menu = () => {
                       <input
                         onChange={(e) => setSearchMenu(e.target.value)}
                         placeholder="Search menu items..."
-                        type="search"
+                        type="text"
                         className="searchtext"
                       />
                       <img
@@ -193,6 +209,18 @@ const Menu = () => {
             </div>
           </div>
         </div>
+        {menuList && menuList.length > 0 && (
+          <ReactPaginate
+            previousLabel={"prev"}
+            nextLabel={"next"}
+            pageCount={pageCount}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={3}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination menuPagination"}
+            activeClassName={"active"}
+          />
+        )}
       </div>
       <CustomModal
         key={key}

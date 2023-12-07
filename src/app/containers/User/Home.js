@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { chefLists } from "../../../redux/slices/web";
 import ReactPaginate from "react-paginate";

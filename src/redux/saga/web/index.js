@@ -142,10 +142,15 @@ function* createMenu(action) {
 }
 
 function* getMenusLists(action) {
+  let targetUrl = `${ApiPath.webApiPath.MENUS}?page=${action.payload.page}&limit=${action.payload.limit}&`;
+  if (action.payload.search) {
+    targetUrl += `search=${action.payload.search}`;
+  }
+
   try {
     const resp = yield call(
       ApiClient.get,
-      (action.url = `${ApiPath.webApiPath.MENUS}`),
+      (action.url = targetUrl),
       (action.payload = action.payload)
     );
     if (resp.status) {

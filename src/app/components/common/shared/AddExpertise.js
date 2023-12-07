@@ -94,7 +94,7 @@ const AddExpertise = (props) => {
                   ref={index === expertice.length - 1 ? emailRef : null}
                   onChange={(e) => handleChangeInput(index, e.target.value)}
                   type="text"
-                  className="border-input"
+                  className="border-input inputPlaceholder"
                   placeholder="Experty"
                   value={value}
                 />

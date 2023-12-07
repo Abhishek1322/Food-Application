@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { ref, uploadBytes } from "@firebase/storage";
+import { getUserProfileDetails } from "../../../../redux/slices/web";
 
 const ChatnextModal = () => {
   const authData = useAuthSelector();
@@ -24,9 +25,12 @@ const ChatnextModal = () => {
   const [msg, setMsg] = useState("");
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState("");
   const messagesRef = collection(db, "chats");
+  
   console.log("messagesmessages", messages);
   console.log("authDataauthData", authData);
+  console.log("profilePhoto", profilePhoto);
 
   // get all messages
   useEffect(() => {
@@ -57,13 +61,13 @@ const ChatnextModal = () => {
     await addDoc(
       messagesRef,
       {
-        last_message_type: img ? 1 : imageUrl ? 2 : 0,
+        last_message_type: msg ? 1 : imageUrl ? 2 : 0,
         latest_message: msg,
         updated_at: serverTimestamp(),
         sender_id: authData?.userInfo?.id,
         users_data: {
           id: authData?.userInfo?.id,
-          imageURL: authData?.userInfo?.userInfo?.profilePhoto,
+          imageURL: profilePhoto?.userInfo?.profilePhoto,
           name: "",
           unread_count: "",
         },
@@ -136,6 +140,24 @@ const ChatnextModal = () => {
       console.error("Error uploading file: ", error);
     }
   };
+
+  // getting user profile details
+  useEffect(() => {
+    let params = {
+      userid: authData?.userInfo?.id,
+    };
+
+    dispatch(
+      getUserProfileDetails({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setProfilePhoto(res?.data?.data);
+          }
+        },
+      })
+    );
+  }, []);
 
   return (
     <>

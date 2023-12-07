@@ -3,12 +3,12 @@ import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "@firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAq5qyr5Ro2va8nAoj0sMXTtjMXsdM2BSo",
-  authDomain: "serveritlocal.firebaseapp.com",
-  projectId: "serveritlocal",
-  storageBucket: "serveritlocal.appspot.com",
-  messagingSenderId: "1058208585599",
-  appId: "1:1058208585599:web:410f925b657e2ee7122c4a",
+  apiKey: "AIzaSyBatQyYtqdAmcDPaSOdRrHUDrURaTdQdIc",
+  authDomain: "silocal-5f20d.firebaseapp.com",
+  projectId: "silocal-5f20d",
+  storageBucket: "silocal-5f20d.appspot.com",
+  messagingSenderId: "124892551306",
+  appId: "1:124892551306:web:4947f7371f0c2ccefef573",
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);

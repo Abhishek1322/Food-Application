@@ -140,6 +140,7 @@ const SetupProfile = () => {
   const nextPage = (page) => {
     setPage(page);
   };
+  
   //form login
   const handleSubmit = (e, flag) => {
     e.preventDefault();
@@ -571,8 +572,8 @@ const SetupProfile = () => {
                                       onChange={(e) => handleChange(e)}
                                       type="number"
                                       name="experience"
-                                      className="border-input"
-                                      placeholder="Add experience"
+                                      className="border-input inputPlaceholder"
+                                      placeholder="Add your experience"
                                       value={formData.experience}
                                     />
                                     <img
@@ -610,7 +611,7 @@ const SetupProfile = () => {
                                             {...getInputProps({
                                               placeholder: "Street Address",
                                               className:
-                                                "location-search-input customform-control border-input",
+                                                "location-search-input customform-control border-input inputPlaceholder",
                                             })}
                                           />
                                           <div className="autocomplete-dropdown-container">
@@ -667,7 +668,7 @@ const SetupProfile = () => {
                                     <textarea
                                       onChange={(e) => handleChange(e)}
                                       name="bio"
-                                      className="border-input"
+                                      className="border-input inputPlaceholder "
                                       placeholder="Add your bio"
                                       value={formData.bio}
                                     ></textarea>
@@ -681,7 +682,7 @@ const SetupProfile = () => {
                                       onChange={(e) => handleChange(e)}
                                       type="number"
                                       name="rateperhour"
-                                      className="border-input"
+                                      className="border-input inputPlaceholder"
                                       placeholder="Rate per hour"
                                       value={formData.rateperhour}
                                     />
@@ -840,9 +841,6 @@ const SetupProfile = () => {
                                           </div>
                                         </div>
                                       </div>
-                                      {/* <button onClick={addTimeSlot}>
-                                      Add this slot
-                                    </button> */}
                                     </>
                                   )}
                                   {!showTimeSlot && (

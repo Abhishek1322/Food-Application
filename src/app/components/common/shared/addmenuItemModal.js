@@ -16,7 +16,7 @@ const AddmenuItemModal = (props) => {
   const toastId = useRef(null);
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
-  const [category, setCategory] = useState("veg");
+  const [category, setCategory] = useState("");
   const [itemImage, setItemImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [modalDetail, setModalDetail] = useState({
@@ -155,7 +155,7 @@ const AddmenuItemModal = (props) => {
           <div className="input-container mt-5">
             <input
               type="text"
-              className=" menuReport_button"
+              className="menuReport_button inputPlaceholder"
               placeholder="e.g. Chicken Salad"
               name="itemName"
               onChange={(e) => handleChange(e)}
@@ -170,13 +170,17 @@ const AddmenuItemModal = (props) => {
           </div>
           <div className="input-container mt-4">
             <Select
-              className="menuReport_button"
+              className={
+                category
+                  ? "menuReport_button"
+                  : "menuReport_button inputPlaceholderColor"
+              }
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
-              // IconComponent={<i className="fas fa-angle-down"></i>}
             >
+              <MenuItem value={""}>Select Category</MenuItem>
               <MenuItem value={"veg"}>Veg</MenuItem>
               <MenuItem value={"non-veg"}>Non Veg</MenuItem>
             </Select>
@@ -195,16 +199,20 @@ const AddmenuItemModal = (props) => {
                 type="number"
                 name="price"
                 onChange={(e) => handleChange(e)}
-                className="menuEditbuttom"
-                placeholder="e.g. 22.00"
+                className="menuEditbuttom inputPlaceholder"
+                placeholder="e.g. 22.00 "
               />
-              <img src={Images.euroImg} className="cateofyImg_" alt="euroImg" />
+              <img
+                src={Images.euroImg}
+                className="cateofyImg_ euroImgText"
+                alt="euroImg"
+              />
               <label className="border-label">Price</label>
             </div>
             <div className="input-container mt-5 pe-3 flexBox">
               <input
                 type="number"
-                className="menuEditbuttom"
+                className="menuEditbuttom inputPlaceholder"
                 name="deliveryTime"
                 onChange={(e) => handleChange(e)}
                 placeholder="e.g. 45"
@@ -224,7 +232,7 @@ const AddmenuItemModal = (props) => {
             type="text"
             name="description"
             onChange={(e) => handleChange(e)}
-            className=" menuReport_button  menuDescrition_  "
+            className=" menuReport_button  menuDescrition_ inputPlaceholder"
             placeholder="Type here..."
           />
           <label className="border-label">Description</label>

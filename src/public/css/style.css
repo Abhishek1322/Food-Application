@@ -2683,3 +2683,22 @@ body {
   svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
   left: 11px;
 }
+.inputPlaceholder::placeholder {
+  color: gray;
+  opacity: 1;
+}
+
+.inputPlaceholder::-ms-input-placeholder {
+  color: gray;
+}
+.euroImgText {
+  right: 13px;
+}
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.menuReport_button.inputPlaceholderColor {
+  color: gray;
+}
+.menuPagination {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}
