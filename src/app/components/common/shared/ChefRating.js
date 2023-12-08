@@ -69,47 +69,59 @@ const ChefRating = (props) => {
     <>
       <div className="chefratingsection">
         <div className="userrate modalscroll">
-          {ratingData?.details?.data?.map((item, index) => (
-            <div key={index} className="chefrateimg">
-              <img
-                src={
-                  item?.userId?.userInfo?.profilePhoto
-                    ? item?.userId?.userInfo?.profilePhoto
-                    : Images.dummyProfile
-                }
-                alt="userrating"
-                className="ratingImage"
-              />
-              <div className="reviewrating">
-                <div className="chefreviews">
-                  <div className="venuInfo">
-                    {item?.userId?.userInfo?.firstName}{" "}
-                    {item?.userId?.userInfo?.lastName}
-                  </div>
-                  <div className="cheftext">
-                    {moment(item?.createdAt).format("DD-MM-YYYY  HH:mm:ss")}
-                  </div>
-                </div>
-                <div className="ratingimgmodal">
-                  <ReactStars
-                    count={5}
-                    size={20}
-                    value={item?.rating}
-                    edit={false}
-                    color="#FFE69C"
-                    isHalf={true}
-                    emptyIcon={<i className="far fa-star"></i>}
-                    halfIcon={<i className="fa fa-star-half-alt"></i>}
-                    fullIcon={<i className="fa fa-star"></i>}
-                    activeColor="#FFC107"
+          {ratingData.length > 0 ? (
+            <>
+              {ratingData?.details?.data?.map((item, index) => (
+                <div key={index} className="chefrateimg">
+                  <img
+                    src={
+                      item?.userId?.userInfo?.profilePhoto
+                        ? item?.userId?.userInfo?.profilePhoto
+                        : Images.dummyProfile
+                    }
+                    alt="userrating"
+                    className="ratingImage"
                   />
+                  <div className="reviewrating">
+                    <div className="chefreviews">
+                      <div className="venuInfo">
+                        {item?.userId?.userInfo?.firstName}{" "}
+                        {item?.userId?.userInfo?.lastName}
+                      </div>
+                      <div className="cheftext">
+                        {moment(item?.createdAt).format("DD-MM-YYYY  HH:mm:ss")}
+                      </div>
+                    </div>
+                    <div className="ratingimgmodal">
+                      <ReactStars
+                        count={5}
+                        size={20}
+                        value={item?.rating}
+                        edit={false}
+                        color="#FFE69C"
+                        isHalf={true}
+                        emptyIcon={<i className="far fa-star"></i>}
+                        halfIcon={<i className="fa fa-star-half-alt"></i>}
+                        fullIcon={<i className="fa fa-star"></i>}
+                        activeColor="#FFC107"
+                      />
+                    </div>
+                    <div className="userreviews mt-2">
+                      <p className="cheftext ">{item?.review}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="userreviews mt-2">
-                  <p className="cheftext ">{item?.review}</p>
-                </div>
-              </div>
+              ))}
+            </>
+          ) : (
+            <div>
+              <img
+                className="w-100"
+                alt="no-data-found"
+                src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+              />
             </div>
-          ))}
+          )}
         </div>
         <div className="modalfooterbtn">
           <button

@@ -4,7 +4,7 @@ import {
   collection,
   query,
   limit,
-  orderBy,
+  where,
   onSnapshot,
   addDoc,
   serverTimestamp,
@@ -27,14 +27,16 @@ const ChatnextModal = () => {
   const [imageUrl, setImgUrl] = useState("");
   const [profilePhoto, setProfilePhoto] = useState("");
   const messagesRef = collection(db, "chats");
-  
+
   console.log("messagesmessages", messages);
   console.log("authDataauthData", authData);
   console.log("profilePhoto", profilePhoto);
 
   // get all messages
   useEffect(() => {
-    const q = query(collection(db, "chats"), orderBy("updated_at"));
+    const q = query(collection(db, "chats")
+    // ,where('roomId', '==', roomId)
+    );
     const data = onSnapshot(
       q,
       (QuerySnapshot) => {
@@ -43,7 +45,6 @@ const ChatnextModal = () => {
           messages.push({ ...doc.data(), id: doc.id });
         });
         console.log("messagesmessageszzzzzz", messages);
-
         setMessages(messages);
       },
       (error) => {
@@ -54,23 +55,33 @@ const ChatnextModal = () => {
   }, []);
 
   // send new messages
-  const sendMsg = async (e) => {
+  const handleSendMessage = async (e) => {
     if (!msg || msg === "") {
       return;
     }
+    const senderName =
+      authData?.userInfo?.userInfo?.firstName +
+      " " +
+      authData?.userInfo?.userInfo?.lastName;
+
     await addDoc(
       messagesRef,
       {
-        last_message_type: msg ? 1 : imageUrl ? 2 : 0,
-        latest_message: msg,
-        updated_at: serverTimestamp(),
-        sender_id: authData?.userInfo?.id,
-        users_data: {
-          id: authData?.userInfo?.id,
-          imageURL: profilePhoto?.userInfo?.profilePhoto,
-          name: "",
-          unread_count: "",
+        deletedChatUserIds: [],
+        lastMessage: {
+          createdAt: serverTimestamp(),
+          imageUrl: "",
+          senderId: authData?.userInfo?.id,
         },
+        roomId: 0,
+        unseenMessageCount: 0,
+        user1: {
+          email: authData?.userInfo?.email,
+          full_name: senderName,
+          onlineStatus: 1,
+          profile_image: profilePhoto?.userInfo?.profilePhoto,
+        },
+        users: [],
       },
       setMsg("")
     );
@@ -191,8 +202,8 @@ const ChatnextModal = () => {
                     <p className="chatUser m-0 pe-1">You</p>
                     <img
                       src={
-                        message?.photoURL
-                          ? message?.photoURL
+                        message?.users_data?.imageURL
+                          ? message?.users_data?.imageURL
                           : Images.dummyProfile
                       }
                       alt="profile"
@@ -231,7 +242,7 @@ const ChatnextModal = () => {
                 </p>
               </div>
               <img
-                onClick={sendMsg}
+                onClick={handleSendMessage}
                 src={Images.chatSendImg}
                 alt="chatsendImg"
                 className="sendImg"
