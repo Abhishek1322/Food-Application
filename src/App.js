@@ -1,5 +1,5 @@
+import React, { useEffect, createContext, useContext, useState } from "react";
 import "./App.css";
-import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routes";
 import "./public/css/custom.css";
@@ -14,6 +14,7 @@ import { persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./public/css/style.css";
 
+const MyContext = createContext();
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           </BrowserRouter>
         </PersistGate>
       </Provider>
+
       <ToastContainer />
     </>
   );

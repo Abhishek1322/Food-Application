@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import { ref, uploadBytes } from "@firebase/storage";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
 
-const ChatnextModal = () => {
+const ChatnextModal = ({ chefId }) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
@@ -26,23 +26,21 @@ const ChatnextModal = () => {
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
   const [profilePhoto, setProfilePhoto] = useState("");
-  const messagesRef = collection(db, "chats");
 
   console.log("messagesmessages", messages);
   console.log("authDataauthData", authData);
-  console.log("profilePhoto", profilePhoto);
 
-  // get all messages
+  //   get all messages
   useEffect(() => {
-    const q = query(collection(db, "chats")
-    // ,where('roomId', '==', roomId)
+    const q = query(
+      collection(db, `chats/${authData?.userInfo?.id}-${chefId}/messages`)
     );
     const data = onSnapshot(
       q,
       (QuerySnapshot) => {
         let messages = [];
         QuerySnapshot.forEach((doc) => {
-          messages.push({ ...doc.data(), id: doc.id });
+          messages.push({ ...doc.data() });
         });
         console.log("messagesmessageszzzzzz", messages);
         setMessages(messages);
@@ -53,6 +51,11 @@ const ChatnextModal = () => {
     );
     return () => data;
   }, []);
+
+  const messagesRef = collection(
+    db,
+    `chats/${authData?.userInfo?.id}-${chefId}/messages`
+  );
 
   // send new messages
   const handleSendMessage = async (e) => {
@@ -70,18 +73,20 @@ const ChatnextModal = () => {
         deletedChatUserIds: [],
         lastMessage: {
           createdAt: serverTimestamp(),
-          imageUrl: "",
           senderId: authData?.userInfo?.id,
+          text: msg,
         },
-        roomId: 0,
+        roomId: `${authData?.userInfo?.id}-${chefId}`,
         unseenMessageCount: 0,
         user1: {
           email: authData?.userInfo?.email,
+          fcmToken: "",
           full_name: senderName,
+          id: chefId,
           onlineStatus: 1,
           profile_image: profilePhoto?.userInfo?.profilePhoto,
         },
-        users: [],
+        users: [chefId],
       },
       setMsg("")
     );
@@ -195,15 +200,17 @@ const ChatnextModal = () => {
                 <div className="py-1" key={index}>
                   {console.log("messagemessage", message)}
                   <div className="chatinRight_">
-                    <p className="chat_Text">{message?.latest_message}</p>
+                    <p className="chat_Text">{message?.lastMessage?.text}</p>
                   </div>
                   <div className="chefchat_detail">
-                    <p className="chatTime_ m-0 pe-2 ">2:36 pm</p>
+                    <p className="chatTime_ m-0 pe-2 ">
+                      2.00 pm
+                    </p>
                     <p className="chatUser m-0 pe-1">You</p>
                     <img
                       src={
-                        message?.users_data?.imageURL
-                          ? message?.users_data?.imageURL
+                        message?.user1?.profile_image
+                          ? message?.user1?.profile_image
                           : Images.dummyProfile
                       }
                       alt="profile"
