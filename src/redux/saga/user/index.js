@@ -177,13 +177,10 @@ function* createOrder(action) {
       throw resp;
     }
   } catch (e) {
+    console.log("erorrorro", e);
     yield put(onErrorStopLoad());
     toast.dismiss();
-    if (e.response.data.data[0]) {
-      toast.error(e.response.data.data[0]);
-    } else {
-      toast.error(e.response.data.message);
-    }
+    toast.error(e.response.data.message);
   }
 }
 

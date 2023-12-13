@@ -318,14 +318,22 @@ const ChefDetails = () => {
           ) : modalDetail.flag === "CartFood" ? (
             <CartFoodModal menuId={menuId} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "ratingchef" ? (
-            <ChefRating handleGetChefDetails={handleGetChefDetails} chefId={id} close={() => handleOnCloseModal()} />
+            <ChefRating
+              handleGetChefDetails={handleGetChefDetails}
+              chefId={id}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "Addtocart" ? (
             <AddToCartModal
               menuId={menuId}
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "chatModal" ? (
-            <ChatnextModal chefId={id} close={() => handleOnCloseModal()} />
+            <ChatnextModal
+              chefData={chefData}
+              chefId={id}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )

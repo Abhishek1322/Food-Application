@@ -15,7 +15,20 @@ import { PersistGate } from "redux-persist/integration/react";
 import "./public/css/style.css";
 
 const MyContext = createContext();
+
 function App() {
+  // React.useEffect(() => {
+  //   const msg = firebase.messaging();
+  //   msg
+  //     .requestPermission()
+  //     .then(() => {
+  //       return msg.getToken();
+  //     })
+  //     .then((data) => {
+  //       console.warn("token", data);
+  //     });
+  // }, []);
+
   return (
     <>
       <Provider store={store}>
