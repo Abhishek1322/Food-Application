@@ -211,7 +211,7 @@ const HomeRequsest = () => {
                     />
                   </div>
                 </div>
-                <div className="profileDetail">
+                <div className="profileDetail profileDetailNew">
                   {recentOrders && recentOrders.length > 0 ? (
                     <>
                       {recentOrders?.slice(0, 5)?.map((item, index) => (

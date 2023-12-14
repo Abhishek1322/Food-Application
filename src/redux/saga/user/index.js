@@ -180,7 +180,7 @@ function* createOrder(action) {
     console.log("erorrorro", e);
     yield put(onErrorStopLoad());
     toast.dismiss();
-    toast.error(e.response.data.message);
+    // toast.error(e.response.data.message);
   }
 }
 

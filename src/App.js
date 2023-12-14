@@ -13,21 +13,30 @@ import store from "./redux";
 import { persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./public/css/style.css";
+import { messaging } from "./config/firebase-config";
+import { getToken } from "firebase/messaging";
 
 const MyContext = createContext();
 
 function App() {
-  // React.useEffect(() => {
-  //   const msg = firebase.messaging();
-  //   msg
-  //     .requestPermission()
-  //     .then(() => {
-  //       return msg.getToken();
-  //     })
-  //     .then((data) => {
-  //       console.warn("token", data);
-  //     });
-  // }, []);
+  // Get FCM token
+  useEffect(() => {
+    const requestNotificationPermission = async () => {
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+          const currentToken = await getToken(messaging);
+          console.log("FCM Token:", currentToken);
+          localStorage.setItem("fcmToken", currentToken);
+        } else {
+          console.log("Notification permission denied.");
+        }
+      } catch (error) {
+        console.error("Error requesting notification permission:", error);
+      }
+    };
+    requestNotificationPermission();
+  }, []);
 
   return (
     <>
@@ -38,7 +47,6 @@ function App() {
           </BrowserRouter>
         </PersistGate>
       </Provider>
-
       <ToastContainer />
     </>
   );

@@ -14,6 +14,10 @@ const axiosInstance = axios.create({
 // Set the AUTH token for any request
 axiosInstance.interceptors.request.use(function (config) {
   const token = localStorage.getItem("authToken");
+  const fcmToken = localStorage.getItem("fcmToken");
+  if (fcmToken) {
+    config.headers["Fcm-Token"] = fcmToken;
+  }
   config.headers.Authorization = token ? token : "";
   return config;
 });

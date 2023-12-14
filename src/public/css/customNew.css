@@ -2282,3 +2282,8 @@ p {
 button.foodmodalbtn.modalfooterbtn.disbale-btn {
   background: #ffad77;
 }
+
+/* Abhishek Css start */
+.profileDetail.profileDetailNew {
+  display: flex;
+}
