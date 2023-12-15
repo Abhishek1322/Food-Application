@@ -8,6 +8,8 @@ import {
 } from "../../../../redux/slices/chef";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import ChatWithChefModal from "../../../components/common/shared/chatWithChefModal";
+import CustomModal from "../../../components/common/shared/CustomModal";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
@@ -17,13 +19,19 @@ const OrderDetails = () => {
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
 
   // get order details
-
   useEffect(() => {
     handleGetOrderDetails();
   }, []);
 
+  // get order details
   const handleGetOrderDetails = () => {
     let params = {
       id: recentOrderId,
@@ -67,6 +75,26 @@ const OrderDetails = () => {
     );
   };
 
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  // open modal
+  const handleOpenModal = (flag, id) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
+
   return (
     <>
       <div className="mainchef_ ">
@@ -105,7 +133,6 @@ const OrderDetails = () => {
             <div className="row align-items-center">
               <div className="col-lg-12">
                 <div className="orderIdDetail">
-               
                   <p className="orderId_">Order #{orderDetails?.orderId}</p>
                   {orderDetails?.status === "accepted" ? (
                     <p className="recentOrder progress_">In-Progress</p>
@@ -165,7 +192,12 @@ const OrderDetails = () => {
                     </div>
                   </div>
                   <div className="chefChat">
-                    <div className="chatwithjohn">
+                    <div
+                      onClick={() => {
+                        handleOpenModal("chatAboutOrder");
+                      }}
+                      className="chatwithjohn"
+                    >
                       <div className="chatImg">
                         <i className="fas fa-comment-dots chatImage chatbg"></i>
                       </div>
@@ -214,6 +246,91 @@ const OrderDetails = () => {
           </div>
         </div>
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "chatAboutOrder"
+            ? "commonWidth customContent"
+            : ""
+        }
+        ids={modalDetail.flag === "chatAboutOrder" ? "orderchat" : ""}
+        child={
+          modalDetail.flag === "chatAboutOrder" ? (
+            <ChatWithChefModal
+              orderDetails={orderDetails}
+              close={() => handleOnCloseModal()}
+            />
+          ) : (
+            ""
+          )
+        }
+        header={
+          modalDetail.flag === "chatAboutOrder" ? (
+            <>
+              <div className="Common_header">
+                <img
+                  onClick={() => handleOnCloseModal()}
+                  src={Images.backArrowpassword}
+                  alt="arrowpassword"
+                  className="img-fluid  arrowCommon_"
+                />
+                <img
+                  src={Images.userProfile}
+                  alt="userprofile"
+                  className="img-fluid  headerImg_"
+                />
+                <div className="headerProfile">
+                  <p className="headerTxt_">John Smith</p>
+                  <p className="headerInner_">Online</p>
+                </div>
+              </div>
+              <div className="Dotsheader_">
+                <div className="dropdown ">
+                  <button
+                    className="btn btn-secondary dropdown-toggle modalheaderDot_"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src={Images.modalHeader}
+                      className=" img-fluid chatreportIcon_"
+                      alt="modalheader"
+                    />
+                  </button>
+                  <ul
+                    className="dropdown-menu chatmenu_"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <div
+                      className=" chatnext_ flexBox"
+                      onClick={() => {
+                        handleOpenModal("reportchatD");
+                      }}
+                    >
+                      <img
+                        src={Images.reportchatIcon}
+                        className=" img-fluid reporticon_"
+                        alt="reporticon"
+                      />
+                      <p className="reportchattxt_ m-0 ps-2">Report Chat</p>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : (
+            ""
+          )
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   );
 };

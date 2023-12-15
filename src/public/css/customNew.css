@@ -2253,32 +2253,39 @@ p {
   right: 14px;
   top: 22px;
 }
+
 .menuPage .profileDetail {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
 }
+
 .menuPage .listItems_ {
   width: 100%;
   /* max-width: 160px; */
   margin-right: 0;
 }
+
 .homePage .profileDetail {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
 }
+
 .homePage .profileDetail .homeProfileBox {
   width: 100%;
 }
+
 .Newbooking_ .profileDetail {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
 }
+
 .Newbooking_ .profileDetail .homeProfileBox {
   width: 100%;
 }
+
 button.foodmodalbtn.modalfooterbtn.disbale-btn {
   background: #ffad77;
 }
@@ -2287,3 +2294,125 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 .profileDetail.profileDetailNew {
   display: flex;
 }
+
+.chat-send-btn {
+  border-radius: 10px;
+  background: #E65C00;
+  box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.30);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  fill: #FFF;
+  stroke-width: 1px;
+  stroke: rgba(230, 92, 0, 0.08);
+  filter: drop-shadow(0px 9px 19px rgba(230, 92, 0, 0.03));
+  border: 1px solid #ABADAD;
+  border-radius: 12px;
+  padding: 6px;
+  position: absolute;
+  width: 90%;
+  bottom: 20px;
+}
+
+.chat-input textarea {
+  border: none;
+  outline: none;
+  width: 90%;
+}
+
+.chat-input img {
+  cursor: pointer;
+}
+
+.chat-value {
+  background-color: #EAEBEB;
+  padding: 15px;
+  border-radius: 20px 20px 20px 0px;
+  color: #979999;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: max-content;
+}
+.chat-box-left {
+  width: 85%;
+}
+
+.chat-right-section {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.chat-right-section .chefchat_detail {
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  justify-content: end;
+  gap: 4px;
+  flex-direction: row-reverse;
+}
+
+.chat-right-section .chat-value {
+  background-color: #E65C00;
+  padding: 15px;
+  border-radius: 20px 20px 0px 20px;
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.chat-main-content {
+  height: 570px;
+  overflow: auto;
+  padding-right: 5px;
+}
+
+
+.chat-main-content::-webkit-scrollbar {
+  background-image: linear-gradient(to right, #1c3276, #4c69c3, #1c3276);
+  width: 6px;
+  height: 10%;
+}
+
+.chat-main-content::-webkit-scrollbar-track {
+  background-color: #d9d9d9;
+}
+
+.chat-main-content::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to right, #979999, #979999, #979999);
+  border-radius: 16px;
+  border: 0px solid #d9d9d9;
+}
+
+.chat-main-content::-moz-scrollbar {
+  background-image: linear-gradient(to right, #979999, #979999, #979999);
+  width: 6px;
+  height: 10%;
+}
+
+.chat-main-content::-moz-scrollbar-track {
+  background-image: linear-gradient(to right, #979999, #979999, #979999);
+}
+
+.chat-main-content::-moz-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 0px solid #fff;
+}
+
+
+/* Abhishek Css end */

@@ -22,6 +22,7 @@ import { getUserProfileDetails } from "../../../../redux/slices/web";
 const ChatnextModal = ({ chefId, chefData }) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
+  const fcmToken = localStorage.getItem('fcmToken');
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState("");
   const [img, setImg] = useState("");
@@ -30,7 +31,7 @@ const ChatnextModal = ({ chefId, chefData }) => {
   const room_id = `${authData?.userInfo?.id}-${chefId}`;
 
   console.log("messagesmessages", messages);
-  console.log("chefDatachefData", chefData);
+  console.log("room_idroom_idroom_id", room_id);
 
   // get all messages
   useEffect(() => {
@@ -70,7 +71,6 @@ const ChatnextModal = ({ chefId, chefData }) => {
 
     const receiverName =
       chefData?.userInfo?.firstName + " " + chefData?.userInfo?.lastName;
-    console.log("receiverNamereceiverName", receiverName);
     try {
       const roomDocRef = doc(db, "chats", room_id);
       await setDoc(
@@ -87,15 +87,14 @@ const ChatnextModal = ({ chefId, chefData }) => {
           unseenMessageCount: 0,
           user1: {
             email: authData?.userInfo?.email,
-            fcmToken: "",
+            fcmToken: fcmToken,
             full_name: senderName,
-            id: chefId,
+            id: authData?.userInfo?.id,
             onlineStatus: 1,
             profile_image: profilePhoto?.userInfo?.profilePhoto,
           },
           user2: {
             email: "",
-            fcmToken: "",
             full_name: receiverName,
             id: chefData?._id,
             onlineStatus: 1,
@@ -181,7 +180,6 @@ const ChatnextModal = ({ chefId, chefData }) => {
     let params = {
       userid: authData?.userInfo?.id,
     };
-
     dispatch(
       getUserProfileDetails({
         ...params,
