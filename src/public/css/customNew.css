@@ -2344,9 +2344,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   line-height: normal;
   max-width: max-content;
 }
-.chat-box-left {
-  width: 85%;
-}
+
 
 .chat-right-section {
   display: flex;

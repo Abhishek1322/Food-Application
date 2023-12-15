@@ -25,7 +25,7 @@ const OrderDetails = () => {
     title: "",
     flag: "",
   });
-
+  console.log("orderDetailsorderDetailszzzzzzz", orderDetails);
   // get order details
   useEffect(() => {
     handleGetOrderDetails();
@@ -280,12 +280,19 @@ const OrderDetails = () => {
                   className="img-fluid  arrowCommon_"
                 />
                 <img
-                  src={Images.userProfile}
+                  src={
+                    orderDetails?.userId?.userInfo?.profilePhoto
+                      ? orderDetails?.userId?.userInfo?.profilePhoto
+                      : Images.dummyProfile
+                  }
                   alt="userprofile"
                   className="img-fluid  headerImg_"
                 />
                 <div className="headerProfile">
-                  <p className="headerTxt_">John Smith</p>
+                  <p className="headerTxt_">
+                    {orderDetails?.userId?.userInfo?.firstName}{" "}
+                    {orderDetails?.userId?.userInfo?.lastName}
+                  </p>
                   <p className="headerInner_">Online</p>
                 </div>
               </div>

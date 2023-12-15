@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { db } from "../../../../config/firebase-config";
 import {
   collection,
@@ -22,7 +22,8 @@ import { getUserProfileDetails } from "../../../../redux/slices/web";
 const ChatnextModal = ({ chefId, chefData }) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
-  const fcmToken = localStorage.getItem('fcmToken');
+  const messagesEndRef = useRef(null);
+  const fcmToken = localStorage.getItem("fcmToken");
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState("");
   const [img, setImg] = useState("");
@@ -30,8 +31,17 @@ const ChatnextModal = ({ chefId, chefData }) => {
   const [profilePhoto, setProfilePhoto] = useState("");
   const room_id = `${authData?.userInfo?.id}-${chefId}`;
 
-  console.log("messagesmessages", messages);
+  console.log("authDataauthDataauthData", authData);
   console.log("room_idroom_idroom_id", room_id);
+
+  // scroll bottom
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({
+      block: "end",
+      inline: "end",
+      behavior: "smooth",
+    });
+  };
 
   // get all messages
   useEffect(() => {
@@ -61,68 +71,69 @@ const ChatnextModal = ({ chefId, chefData }) => {
 
   // send new messages
   const handleSendMessage = async (e) => {
-    if (!msg || msg === "") {
-      return;
-    }
-    const senderName =
-      authData?.userInfo?.userInfo?.firstName +
-      " " +
-      authData?.userInfo?.userInfo?.lastName;
+    if (msg || imageUrl) {
+      const senderName =
+        authData?.userInfo?.userInfo?.firstName +
+        " " +
+        authData?.userInfo?.userInfo?.lastName;
 
-    const receiverName =
-      chefData?.userInfo?.firstName + " " + chefData?.userInfo?.lastName;
-    try {
+      const receiverName =
+        chefData?.userInfo?.firstName + " " + chefData?.userInfo?.lastName;
+      try {
+        const roomDocRef = doc(db, "chats", room_id);
+        await setDoc(
+          roomDocRef,
+          {
+            deletedChatUserIds: [],
+            lastMessage: {
+              createdAt: serverTimestamp(),
+              senderId: authData?.userInfo?.id,
+              text: msg,
+              image_url: imageUrl,
+              recieverId: chefId,
+            },
+            roomId: room_id,
+            unseenMessageCount: 0,
+            user1: {
+              email: authData?.userInfo?.email,
+              fcmToken: fcmToken,
+              full_name: senderName,
+              id: authData?.userInfo?.id,
+              onlineStatus: 1,
+              profile_image: profilePhoto?.userInfo?.profilePhoto,
+            },
+            user2: {
+              email: "",
+              full_name: receiverName,
+              id: chefData?._id,
+              onlineStatus: 1,
+              profile_image: chefData?.userInfo?.profilePhoto,
+            },
+            users: [authData?.userInfo?.id, chefId],
+          },
+          setMsg(""),
+          setImgUrl(""),
+          scrollToBottom()
+        );
+      } catch (error) {
+        console.error("Error creating room:", error);
+      }
       const roomDocRef = doc(db, "chats", room_id);
-      await setDoc(
-        roomDocRef,
-        {
-          deletedChatUserIds: [],
-          lastMessage: {
-            createdAt: serverTimestamp(),
-            senderId: authData?.userInfo?.id,
-            text: msg,
-            image_url: imageUrl,
-          },
-          roomId: room_id,
-          unseenMessageCount: 0,
-          user1: {
-            email: authData?.userInfo?.email,
-            fcmToken: fcmToken,
-            full_name: senderName,
-            id: authData?.userInfo?.id,
-            onlineStatus: 1,
-            profile_image: profilePhoto?.userInfo?.profilePhoto,
-          },
-          user2: {
-            email: "",
-            full_name: receiverName,
-            id: chefData?._id,
-            onlineStatus: 1,
-            profile_image: chefData?.userInfo?.profilePhoto,
-          },
-          users: [chefId],
-        },
-        setMsg(""),
-        setImgUrl("")
-      );
-    } catch (error) {
-      console.error("Error creating room:", error);
-    }
-    const roomDocRef = doc(db, "chats", room_id);
-    const roomDocSnapshot = await getDoc(roomDocRef);
-
-    if (roomDocSnapshot.exists()) {
-      const messagesCollectionRef = collection(roomDocRef, "messages");
-      await addDoc(messagesCollectionRef, {
-        createdAt: serverTimestamp(),
-        text: msg,
-        id: "",
-        image_url: imageUrl,
-        senderId: authData?.userInfo?.id,
-      });
-      console.log("Message sent to existing room:", room_id);
-    } else {
-      console.log("Room does not exist with ID:", room_id);
+      const roomDocSnapshot = await getDoc(roomDocRef);
+      if (roomDocSnapshot.exists()) {
+        const messagesCollectionRef = collection(roomDocRef, "messages");
+        await addDoc(messagesCollectionRef, {
+          createdAt: serverTimestamp(),
+          text: msg,
+          id: "",
+          image_url: imageUrl,
+          senderId: authData?.userInfo?.id,
+          recieverId: chefId,
+        });
+        console.log("Message sent to existing room:", room_id);
+      } else {
+        console.log("Room does not exist with ID:", room_id);
+      }
     }
   };
 
@@ -140,6 +151,7 @@ const ChatnextModal = ({ chefId, chefData }) => {
         return;
       }
       setImg(acceptedFiles[0]);
+      scrollToBottom();
     },
     [img]
   );
@@ -203,91 +215,111 @@ const ChatnextModal = ({ chefId, chefData }) => {
     return formattedTime;
   };
 
+  // remove selected image
+  const handleRemoveImage = (url) => {
+    if (url === imageUrl) {
+      setImgUrl("");
+    }
+  };
+
   return (
     <>
-      <div className="modalContent">
-        <div className="modalDetail ">
-          <div className="chatnext">
-            <div className="left_chatBox">
-              <p className="innerchat_">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking layout.
-              </p>
+      <div className="chat-main-content">
+        {messages?.map((message, index) => (
+          <div
+            ref={messagesEndRef}
+            key={index}
+            className={
+              authData?.userInfo?.id === message?.senderId
+                ? "chat-right-section"
+                : "chat-left-section"
+            }
+          >
+            {console.log("messagemessage", message)}
+            <div className="chat-box-left py-2">
+              <p className="chat-value">{message?.text}</p>
               <div className="chefchat_detail">
-                <img
-                  src={Images.homeProfile}
-                  alt="profile"
-                  className="chatnextImg"
-                />
-                <p className="chatUser m-0 ps-1 pe-2">John Smith</p>
-                <p className="chatTime_ m-0">2:34 pm</p>
-              </div>
-            </div>
-            <div className="right_chatBox">
-              {messages?.map((message, index) => (
-                <div className="py-1" key={index}>
-                  {console.log("messagemessage", message)}
-                  <div className="chatinRight_">
-                    <p className="chat_Text">{message?.text}</p>
-                  </div>
-                  <div className="chefchat_detail">
-                    <p className="chatTime_ m-0 pe-2">
-                      {convertTimeFormat(
-                        message?.createdAt?.nanoseconds,
-                        message?.createdAt?.seconds
-                      )}
-                    </p>
-                    <p className="chatUser m-0 pe-1">You</p>
-                    <img
-                      src={
-                        profilePhoto?.userInfo?.profilePhoto
-                          ? profilePhoto?.userInfo?.profilePhoto
-                          : Images.dummyProfile
-                      }
-                      alt="profile"
-                      className="chatnextImg"
-                    />
-                    {message?.image_url && (
-                      <img alt="upload-img" src={message?.image_url} />
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {imageUrl && <img alt="upload-img" src={imageUrl} />}
-            <div className="chatSearchHere_">
-              {console.log("imageUrlimageUrl", imageUrl)}
-              <div className="d-flex">
-                <textarea
-                  className="chatSearchere_"
-                  type="text"
-                  placeholder="Type Something..."
-                  value={msg}
-                  onChange={(e) => setMsg(e.target.value)}
-                />
-                {!imageUrl && (
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <img
-                      src={Images.chatgalleryImg}
-                      alt="chatGallerImg"
-                      className="gallerImg infoimg"
-                    />
-                  </div>
+                {authData?.userInfo?.id === message?.senderId ? (
+                  <img
+                    src={
+                      profilePhoto?.userInfo?.profilePhoto
+                        ? profilePhoto?.userInfo?.profilePhoto
+                        : Images.dummyProfile
+                    }
+                    alt="profile"
+                    className="chatnextImg"
+                  />
+                ) : (
+                  <img
+                    src={
+                      chefData?.userInfo?.profilePhoto
+                        ? chefData?.userInfo?.profilePhoto
+                        : Images.dummyProfile
+                    }
+                    alt="profile"
+                    className="chatnextImg"
+                  />
                 )}
-              </div>
+                {authData?.userInfo?.id === message?.senderId ? (
+                  <p className="chatUser m-0 pe-1">you</p>
+                ) : (
+                  <p className="chatUser m-0 pe-1">
+                    {chefData?.userInfo?.firstName}{" "}
+                    {chefData?.userInfo?.lastName}
+                  </p>
+                )}
 
-              <div className="sarahinformation">
-                <p className="chatSearchere_ ">
-                  Your only able to send photos from gallery
+                <p className="chatTime_ m-0 pe-2">
+                  {convertTimeFormat(
+                    message?.createdAt?.nanoseconds,
+                    message?.createdAt?.seconds
+                  )}
                 </p>
               </div>
+              {message?.image_url && (
+                <img alt="upload-img" src={message?.image_url} />
+              )}
+            </div>
+          </div>
+        ))}
+        {imageUrl && (
+          <div>
+            <img alt="upload-img" src={imageUrl} />
+            <i
+              onClick={() => handleRemoveImage(imageUrl)}
+              className="fa fa-cross"
+            ></i>
+          </div>
+        )}
+
+        <div className="chat-input">
+          <textarea
+            className=""
+            type="text"
+            placeholder="Type Something..."
+            value={msg}
+            onChange={(e) => setMsg(e.target.value)}
+          />
+          <div className="d-flex align-items-center justify-content-center gap-2">
+            {!imageUrl && (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <img
+                  src={Images.chatgalleryImg}
+                  alt="chatGallerImg"
+                  className=""
+                />
+              </div>
+            )}
+            <div className="chat-send-btn">
+              {/* <p className="chatSearchere_">
+              Your only able to send photos from gallery
+            </p> */}
               <img
                 onClick={handleSendMessage}
                 src={Images.chatSendImg}
                 alt="chatsendImg"
-                className="sendImg"
+                className=""
               />
             </div>
           </div>

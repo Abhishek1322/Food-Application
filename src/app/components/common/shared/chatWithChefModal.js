@@ -105,6 +105,7 @@ const ChatWithChefModal = ({ orderDetails }) => {
           lastMessage: {
             createdAt: serverTimestamp(),
             senderId: orderDetails?.chefId?._id,
+            recieverId: orderDetails?.userId?._id,
             text: msg,
             image_url: imageUrl,
           },
@@ -125,7 +126,7 @@ const ChatWithChefModal = ({ orderDetails }) => {
             onlineStatus: 1,
             profile_image: orderDetails?.userId?.userInfo?.profilePhoto,
           },
-          users: [orderDetails?.chefId?._id],
+          users: [orderDetails?.chefId?._id, orderDetails?.userId?._id],
         },
         setMsg(""),
         setImgUrl("")
@@ -144,6 +145,7 @@ const ChatWithChefModal = ({ orderDetails }) => {
         id: "",
         image_url: imageUrl,
         senderId: orderDetails?.chefId?._id,
+        recieverId: orderDetails?.userId?._id,
       });
       console.log("Message sent to existing room:", room_id);
     } else {
@@ -216,120 +218,59 @@ const ChatWithChefModal = ({ orderDetails }) => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // remove selected image
+  const handleRemoveImage = (url) => {
+    if (url === imageUrl) {
+      setImgUrl("");
+    }
+  };
+
   return (
     <>
-      {/* <div className="modalContent">
-        <div className="modalDetail ">
-          <div className="chatnext">
-            <div className="left_chatBox">
-              <p className="innerchat_">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking layout.
-              </p>
-              <div className="chefchat_detail">
-                <img
-                  src={Images.homeProfile}
-                  alt="profile"
-                  className="chatnextImg"
-                />
-                <p className="chatUser m-0 ps-1 pe-2">John Smith</p>
-                <p className="chatTime_ m-0">2:34 pm</p>
-              </div>
-            </div>
-
-            {messages?.map((message, index) => (
-              <div className="right_chatBox">
-                <div className="py-1" key={index}>
-                  {console.log("messagemessage", message)}
-                  <div className="chatinRight_">
-                    <p className="chat_Text">{message?.text}</p>
-                  </div>
-                  <div className="chefchat_detail">
-                    <p className="chatTime_ m-0 pe-2">
-                      {convertTimeFormat(
-                        message?.createdAt?.nanoseconds,
-                        message?.createdAt?.seconds
-                      )}
-                    </p>
-                    <p className="chatUser m-0 pe-1">You</p>
-                    <img
-                      src={
-                        orderDetails?.chefId?.userInfo?.profilePhoto
-                          ? orderDetails?.chefId?.userInfo?.profilePhoto
-                          : Images.dummyProfile
-                      }
-                      alt="profile"
-                      className="chatnextImg"
-                    />
-                    {message?.image_url && (
-                      <img alt="upload-img" src={message?.image_url} />
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {imageUrl && <img alt="upload-img" src={imageUrl} />}
-            <div className="chatSearchOuter">
-            <div className="chatSearchHere_">
-              {console.log("imageUrlimageUrl", imageUrl)}
-              <div className="d-flex">
-                <textarea
-                  className="chatSearchere_"
-                  type="text"
-                  placeholder="Type Something..."
-                  value={msg}
-                  onChange={(e) => setMsg(e.target.value)}
-                />
-                {!imageUrl && (
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <img
-                      src={Images.chatgalleryImg}
-                      alt="chatGallerImg"
-                      className="gallerImg infoimg"
-                    />
-                  </div>
-                )}
-              </div>
-
-              <div className="sarahinformation">
-                <p className="chatSearchere_ ">
-                  Your only able to send photos from gallery
-                </p>
-              </div>
-              <img
-                onClick={handleSendMessage}
-                src={Images.chatSendImg}
-                alt="chatsendImg"
-                className="sendImg"
-              />
-            </div>
-            </div>
-            
-          </div>
-        </div>
-      </div> */}
       <div className="chat-main-content">
         {messages?.map((message, index) => (
-          <div key={index} className="chat-left-section">
+          <div
+            key={index}
+            className={
+              orderDetails?.userId?._id === message?.senderId
+                ? "chat-left-section"
+                : "chat-right-section"
+            }
+          >
             {console.log("messagemessage", message)}
             <div className="chat-box-left py-2">
-              <p className="chat-value">
-               {message?.text}
-              </p>
+              <p className="chat-value">{message?.text}</p>
 
               <div className="chefchat_detail">
-                <img
-                  src={
-                    orderDetails?.chefId?.userInfo?.profilePhoto
-                      ? orderDetails?.chefId?.userInfo?.profilePhoto
-                      : Images.dummyProfile
-                  }
-                  alt="profile"
-                  className="chatnextImg"
-                />
-                <p className="chatUser m-0 pe-1">You</p>
+                {orderDetails?.userId?._id === message?.senderId ? (
+                  <img
+                    src={
+                      orderDetails?.userId?.userInfo?.profilePhoto
+                        ? orderDetails?.userId?.userInfo?.profilePhoto
+                        : Images.dummyProfile
+                    }
+                    alt="profile"
+                    className="chatnextImg"
+                  />
+                ) : (
+                  <img
+                    src={
+                      orderDetails?.chefId?.userInfo?.profilePhoto
+                        ? orderDetails?.chefId?.userInfo?.profilePhoto
+                        : Images.dummyProfile
+                    }
+                    alt="profile"
+                    className="chatnextImg"
+                  />
+                )}
+                {orderDetails?.userId?._id === message?.senderId ? (
+                  <p className="chatUser m-0 pe-1">
+                    {orderDetails?.userId?.userInfo?.firstName}{" "}
+                    {orderDetails?.userId?.userInfo?.lastName}
+                  </p>
+                ) : (
+                  <p className="chatUser m-0 pe-1">You</p>
+                )}
 
                 <p className="chatTime_ m-0 pe-2">
                   {convertTimeFormat(
@@ -337,49 +278,22 @@ const ChatWithChefModal = ({ orderDetails }) => {
                     message?.createdAt?.seconds
                   )}
                 </p>
-
-                {message?.image_url && (
-                  <img alt="upload-img" src={message?.image_url} />
-                )}
               </div>
+              {message?.image_url && (
+                <img alt="upload-img" src={message?.image_url} />
+              )}
             </div>
           </div>
         ))}
-
-        {/* <div className="chat-right-section">
-          <div className="chat-box-left py-2">
-            <p className="chat-value">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking layout.
-            </p>
-
-            <div className="chefchat_detail">
-              <img
-                src={
-                  orderDetails?.chefId?.userInfo?.profilePhoto
-                    ? orderDetails?.chefId?.userInfo?.profilePhoto
-                    :
-                  Images.dummyProfile
-                }
-                alt="profile"
-                className="chatnextImg"
-              />
-              <p className="chatUser m-0 pe-1">You</p>
-
-              <p className="chatTime_ m-0 pe-2">
-                {convertTimeFormat(
-                        message?.createdAt?.nanoseconds,
-                        message?.createdAt?.seconds
-                      )}
-                2.00 pm
-              </p>
-
-              {message?.image_url && (
-                      <img alt="upload-img" src={message?.image_url} />
-                    )}
-            </div>
+        {imageUrl && (
+          <div>
+            <img alt="upload-img" src={imageUrl} />
+            <i
+              onClick={() => handleRemoveImage(imageUrl)}
+              className="fa fa-cross"
+            ></i>
           </div>
-        </div> */}
+        )}
 
         <div className="chat-input">
           <textarea
