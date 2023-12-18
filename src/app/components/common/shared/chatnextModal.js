@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { db } from "../../../../config/firebase-config";
+import { db,PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
 import {
   collection,
   query,
@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
   orderBy,
+  updateDoc,
 } from "firebase/firestore";
 import * as Images from "../../../../utilities/images";
 import { useAuthSelector } from "../../../../redux/selector/auth";
@@ -17,6 +18,7 @@ import { toast } from "react-toastify";
 import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
+
 
 const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const authData = useAuthSelector();
@@ -28,8 +30,8 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
   const [chefData, setChefData] = useState([]);
-  const room_id = `${authData?.userInfo?.id}-${chefId}`;
-
+  const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
+  console.log("room_idroom_id",ROOM_ID);
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -44,7 +46,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   // get all messages
   useEffect(() => {
     const allMessageQuery = query(
-      collection(db, "chats", room_id, "messages"),
+      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, "messages"),
       orderBy("createdAt", "asc")
     );
     const unsubscribe = onSnapshot(allMessageQuery, (snap) => {
@@ -65,8 +67,8 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
     return () => unsubscribe();
   }, []);
 
-  // send new messages
-  const handleSendMessage = async (e) => {
+  // send and update messages
+  const handleUpdateMessage = async (e) => {
     if (msg || imageUrl) {
       const senderName =
         authData?.userInfo?.userInfo?.firstName +
@@ -75,61 +77,120 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
 
       const receiverName =
         chefData?.userInfo?.firstName + " " + chefData?.userInfo?.lastName;
-      try {
-        const roomDocRef = doc(db, "chats", room_id);
-        await setDoc(
-          roomDocRef,
+      const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+      const roomDocSnapshot = await getDoc(roomDocRef);
+      const previousUnseenMessageCount =
+        roomDocSnapshot.data()?.unseenMessageCount || 0;
+      if (roomDocSnapshot.exists()) {
+        const messagesCollectionRef = collection(roomDocRef, "messages");
+        await addDoc(
+          messagesCollectionRef,
           {
-            deletedChatUserIds: [],
-            lastMessage: {
-              createdAt: new Date(),
-              senderId: authData?.userInfo?.id,
-              text: msg,
-              image_url: imageUrl,
-              recieverId: chefId,
-            },
-            roomId: room_id,
-            unseenMessageCount: 0,
-            user1: {
-              email: authData?.userInfo?.email,
-              fcmToken: fcmToken,
-              full_name: senderName,
-              id: authData?.userInfo?.id,
-              onlineStatus: 1,
-              profile_image: authData?.userInfo?.userInfo?.profilePhoto,
-            },
-            user2: {
-              email: chefData?.email,
-              full_name: receiverName,
-              id: chefData?.id,
-              onlineStatus: 1,
-              profile_image: chefData?.userInfo?.profilePhoto,
-            },
-            users: [authData?.userInfo?.id, chefId],
+            createdAt: new Date(),
+            text: msg,
+            id: "",
+            image_url: imageUrl,
+            senderId: authData?.userInfo?.id,
+            recieverId: chefId,
           },
           setMsg(""),
           setImgUrl(""),
           scrollToBottom()
         );
-      } catch (error) {
-        console.error("Error creating room:", error);
-      }
-      const roomDocRef = doc(db, "chats", room_id);
-      const roomDocSnapshot = await getDoc(roomDocRef);
-      if (roomDocSnapshot.exists()) {
-        const messagesCollectionRef = collection(roomDocRef, "messages");
-        await addDoc(messagesCollectionRef, {
-          createdAt: new Date(),
-          text: msg,
-          id: "",
-          image_url: imageUrl,
-          senderId: authData?.userInfo?.id,
-          recieverId: chefId,
-        });
-        console.log("Message sent to existing room:", room_id);
+        try {
+          const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+          await updateDoc(
+            roomDocRef,
+            {
+              deletedChatUserIds: [],
+              lastMessage: {
+                createdAt: new Date(),
+                senderId: authData?.userInfo?.id,
+                text: msg,
+                image_url: imageUrl,
+                recieverId: chefId,
+              },
+              roomId: ROOM_ID,
+              unseenMessageCount: previousUnseenMessageCount + 1,
+              user1: {
+                email: authData?.userInfo?.email,
+                fcmToken: fcmToken,
+                full_name: senderName,
+                id: authData?.userInfo?.id,
+                onlineStatus: 1,
+                profile_image: authData?.userInfo?.userInfo?.profilePhoto,
+              },
+              user2: {
+                email: chefData?.email,
+                full_name: receiverName,
+                id: chefData?.id,
+                onlineStatus: 1,
+                profile_image: chefData?.userInfo?.profilePhoto,
+              },
+              users: [authData?.userInfo?.id, chefId],
+            },
+            setMsg(""),
+            setImgUrl(""),
+            scrollToBottom()
+          );
+        } catch (error) {
+          console.error("Error creating room:", error);
+        }
       } else {
-        console.log("Room does not exist with ID:", room_id);
+        handleSendInitialMessage(senderName, receiverName);
       }
+    }
+  };
+
+  // send initial message
+  const handleSendInitialMessage = async (senderName, receiverName) => {
+    try {
+      const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+      const messagesCollectionRef = collection(roomDocRef, "messages");
+      await setDoc(
+        roomDocRef,
+        {
+          deletedChatUserIds: [],
+          lastMessage: {
+            createdAt: new Date(),
+            senderId: authData?.userInfo?.id,
+            text: msg,
+            image_url: imageUrl,
+            recieverId: chefId,
+          },
+          roomId: ROOM_ID,
+          unseenMessageCount: 1,
+          user1: {
+            email: authData?.userInfo?.email,
+            fcmToken: fcmToken,
+            full_name: senderName,
+            id: authData?.userInfo?.id,
+            onlineStatus: 1,
+            profile_image: authData?.userInfo?.userInfo?.profilePhoto,
+          },
+          user2: {
+            email: chefData?.email,
+            full_name: receiverName,
+            id: chefData?.id,
+            onlineStatus: 1,
+            profile_image: chefData?.userInfo?.profilePhoto,
+          },
+          users: [authData?.userInfo?.id, chefId],
+        },
+        setMsg(""),
+        setImgUrl(""),
+        scrollToBottom()
+      );
+      await addDoc(messagesCollectionRef, {
+        createdAt: new Date(),
+        text: msg,
+        id: "",
+        image_url: imageUrl,
+        senderId: authData?.userInfo?.id,
+        recieverId: chefId,
+      });
+    } catch (error) {
+      console.error("Error creating room:", error);
     }
   };
 
@@ -314,7 +375,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
               Your only able to send photos from gallery
             </p> */}
               <img
-                onClick={handleSendMessage}
+                onClick={handleUpdateMessage}
                 src={Images.chatSendImg}
                 alt="chatsendImg"
                 className=""

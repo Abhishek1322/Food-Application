@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "@firebase/storage";
-import { getMessaging } from "firebase/messaging";
+import { getMessaging,onMessage } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBatQyYtqdAmcDPaSOdRrHUDrURaTdQdIc",
@@ -16,6 +16,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const messaging = getMessaging(app);
+const PARENTCOLLECTIONNAME = "chats";
 
-export { db, storage, app, messaging };
+export const onMessager = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      resolve(payload);
+    });
+  });
 
+export { db, storage, app, messaging, PARENTCOLLECTIONNAME };

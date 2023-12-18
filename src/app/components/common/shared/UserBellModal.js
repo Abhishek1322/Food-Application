@@ -5,16 +5,16 @@ import UserDeleteChat from "./UserDeleteChat";
 import ChatnextModal from "./chatnextModal";
 import UserReportChat from "./UserReportChat";
 import UserClearChat from "./UserClearChat";
-import { Link } from "react-router-dom";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const UserBellModal = () => {
   const [key, setKey] = useState(Math.random());
   const authData = useAuthSelector();
-  const room_id = authData?.userInfo?.id;
+  const sender_id = authData?.userInfo?.id;
   const [allChats, setAllChats] = useState([]);
+  console.log("allChatsallChats", allChats);
   const [userId, setUserId] = useState();
   const [profile, setProfile] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,7 +60,7 @@ const UserBellModal = () => {
       });
       const reversedMessagesList = messagesList.slice().reverse();
       const getMyChats = reversedMessagesList?.filter((item, index) => {
-        return item?.id?.includes(room_id);
+        return item?.id?.includes(sender_id);
       });
       setAllChats(getMyChats);
     });
@@ -114,7 +114,7 @@ const UserBellModal = () => {
                   key={index}
                   className="chatModal"
                   onClick={() => {
-                    handleOpenModal("chefchat", item?.user2?.id);
+                    handleOpenModal("chefchat", item?.user1?.id);
                   }}
                 >
                   <img
@@ -135,7 +135,13 @@ const UserBellModal = () => {
                         item?.lastMessage?.createdAt?.seconds
                       )}
                     </p>
-                    <span className="modalChatmsg">2</span>
+                    {sender_id !== item?.lastMessage?.senderId ? (
+                      <span className="modalChatmsg">
+                        {item?.unseenMessageCount}
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="mt-3 me-3">
                     <img src={Images.chatsDots} className="" alt="cartcancel" />

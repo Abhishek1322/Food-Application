@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderReadyForDeliverModal from "./orderReadyForDeliverModal.js";
-import { db } from "../../../../config/firebase-config";
+import { db,PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
 import {
   collection,
   query,
@@ -12,6 +12,7 @@ import {
   doc,
   getDoc,
   orderBy,
+  updateDoc,
 } from "firebase/firestore";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
@@ -38,8 +39,8 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     title: "",
     flag: "",
   });
-  const room_id = `${userInfo?.id}-${authData?.userInfo?.id}`;
-
+  const ROOM_ID = `${userInfo?.id}-${authData?.userInfo?.id}`;
+  console.log("room_idroom_id", ROOM_ID);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -64,7 +65,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   // get all messages
   useEffect(() => {
     const allMessageQuery = query(
-      collection(db, "chats", room_id, "messages"),
+      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, "messages"),
       orderBy("createdAt", "asc")
     );
     const unsubscribe = onSnapshot(allMessageQuery, (snap) => {
@@ -84,8 +85,10 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     return () => unsubscribe();
   }, [userInfo]);
 
-  // send new messages
-  const handleSendMessage = async (e) => {
+  console.log("userInfouserInfo", userInfo);
+
+  // send and update messages
+  const handleUpdateMessage = async (e) => {
     if (!msg || msg === "") {
       return;
     }
@@ -96,8 +99,73 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
 
     const receiverName =
       userInfo?.userInfo?.firstName + " " + userInfo?.userInfo?.lastName;
+
+    const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+    const roomDocSnapshot = await getDoc(roomDocRef);
+    const previousUnseenMessageCount =
+      roomDocSnapshot.data()?.unseenMessageCount || 0;
+    if (roomDocSnapshot.exists()) {
+      const messagesCollectionRef = collection(roomDocRef, "messages");
+      await addDoc(messagesCollectionRef, {
+        createdAt: new Date(),
+        text: msg,
+        id: "",
+        image_url: imageUrl,
+        senderId: authData?.userInfo?.id,
+        recieverId: userInfo?.id,
+      });
+      try {
+        const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+        await updateDoc(
+          roomDocRef,
+          {
+            deletedChatUserIds: [],
+            lastMessage: {
+              createdAt: new Date(),
+              senderId: authData?.userInfo?.id,
+              recieverId: userInfo?.id,
+              text: msg,
+              image_url: imageUrl,
+            },
+            roomId: ROOM_ID,
+            unseenMessageCount: previousUnseenMessageCount + 1,
+            user1: {
+              email: authData?.userInfo?.email,
+              fcmToken: fcmToken,
+              full_name: senderName,
+              id: authData?.userInfo?.id,
+              onlineStatus: 1,
+              profile_image: authData?.userInfo?.userInfo?.profilePhoto,
+            },
+            user2: {
+              email: userInfo?.email,
+              full_name: receiverName,
+              id: userInfo?.id,
+              onlineStatus: 1,
+              profile_image: userInfo?.userInfo?.profilePhoto,
+            },
+            users: [authData?.userInfo?.id, userInfo?.id],
+          },
+          setMsg(""),
+          setImgUrl("")
+        );
+      } catch (error) {
+        console.error("Error creating room:", error);
+      }
+
+      console.log("Message sent to existing room:", ROOM_ID);
+    } else {
+      handleSendInitialMessage(senderName, receiverName);
+    }
+  };
+
+  console.log("authDataauthData", authData);
+
+  // handle send initial message
+  const handleSendInitialMessage = async (senderName, receiverName) => {
     try {
-      const roomDocRef = doc(db, "chats", room_id);
+      const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+      const messagesCollectionRef = collection(roomDocRef, "messages");
       await setDoc(
         roomDocRef,
         {
@@ -109,8 +177,8 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
             text: msg,
             image_url: imageUrl,
           },
-          roomId: room_id,
-          unseenMessageCount: 0,
+          roomId: ROOM_ID,
+          unseenMessageCount: 1,
           user1: {
             email: authData?.userInfo?.email,
             fcmToken: fcmToken,
@@ -126,19 +194,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
             onlineStatus: 1,
             profile_image: userInfo?.userInfo?.profilePhoto,
           },
-          users: [authData?.userInfo?.id?._id, userInfo?.id],
+          users: [authData?.userInfo?.id, userInfo?.id],
         },
         setMsg(""),
         setImgUrl("")
       );
-    } catch (error) {
-      console.error("Error creating room:", error);
-    }
-    const roomDocRef = doc(db, "chats", room_id);
-    const roomDocSnapshot = await getDoc(roomDocRef);
-
-    if (roomDocSnapshot.exists()) {
-      const messagesCollectionRef = collection(roomDocRef, "messages");
       await addDoc(messagesCollectionRef, {
         createdAt: new Date(),
         text: msg,
@@ -147,9 +207,8 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         senderId: authData?.userInfo?.id,
         recieverId: userInfo?.id,
       });
-      console.log("Message sent to existing room:", room_id);
-    } else {
-      console.log("Room does not exist with ID:", room_id);
+    } catch (error) {
+      console.error("Error creating room:", error);
     }
   };
 
@@ -238,7 +297,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         cb(res) {
           if (res.status === 200) {
             setUserInfo(res?.data?.data);
-            if(handleChefProfle !== undefined) {
+            if (handleChefProfle !== undefined) {
               handleChefProfle(res?.data?.data);
             }
           }
@@ -340,7 +399,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
               Your only able to send photos from gallery
             </p> */}
               <img
-                onClick={handleSendMessage}
+                onClick={handleUpdateMessage}
                 src={Images.chatSendImg}
                 alt="chatsendImg"
                 className=""

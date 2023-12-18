@@ -2,14 +2,22 @@ import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import ReportchatDropModal from "./reportchatDropModal";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  orderBy,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 import ChatWithChefModal from "./chatWithChefModal";
 
 const BellModal = () => {
   const authData = useAuthSelector();
-  const room_id = authData?.userInfo?.id;
+  const sender_id = authData?.userInfo?.id;
   const [key, setKey] = useState(Math.random());
   const [allChats, setAllChats] = useState([]);
   const [userId, setUserId] = useState();
@@ -20,7 +28,7 @@ const BellModal = () => {
     title: "",
     flag: "",
   });
-
+  console.log("allChatsallChats", allChats);
   //close Modal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -32,7 +40,8 @@ const BellModal = () => {
   };
 
   // open modal
-  const handleOpenModal = (flag, id) => {
+  const handleOpenModal = (flag, id, room_id) => {
+    console.log("room_idroom_id", room_id);
     setModalDetail({
       show: true,
       flag: flag,
@@ -40,6 +49,7 @@ const BellModal = () => {
     });
     setKey(Math.random());
     setUserId(id);
+    // handleUnseenMessages(room_id);
   };
 
   // get all conversations
@@ -57,7 +67,7 @@ const BellModal = () => {
       });
       const reversedMessagesList = messagesList.slice().reverse();
       const getMyChats = reversedMessagesList?.filter((item, index) => {
-        return item?.id?.includes(room_id);
+        return item?.id?.includes(sender_id);
       });
       setAllChats(getMyChats);
     });
@@ -86,6 +96,36 @@ const BellModal = () => {
     const search = searchTerm.toLowerCase();
     return fullName.includes(search) || text.includes(search);
   });
+
+  console.log("allChatsallChats", allChats);
+
+  // clear unseen messages count
+  // const handleUnseenMessages = async (room_id) => {
+  //   const zeroUnseenCount = allChats?.map((item) => {
+  //     if (item?.users === room_id) {
+  //       return { ...item, unseenMessageCount: 0 };
+  //     }
+  //     return item;
+  //   });
+  //   const chatObject = Object.fromEntries(zeroUnseenCount.map((item) => item));
+
+  //   console.log("zeroUnseenCountzeroUnseenCount", zeroUnseenCount);
+
+  //   const roomDocRef = doc(db, "chats", room_id);
+  //   const roomDocSnapshot = await getDoc(roomDocRef);
+  //   if (roomDocSnapshot.exists()) {
+  //     try {
+  //       const roomDocRef = doc(db, "chats", room_id);
+  //       await updateDoc(roomDocRef, {
+  //         zeroUnseenCount,
+  //       });
+  //     } catch (error) {
+  //       console.error("Error creating room:", error);
+  //     }
+  //     console.log("Message sent to existing room:", room_id);
+  //   }
+  // };
+
   return (
     <>
       <div className="modalContent">
@@ -110,7 +150,7 @@ const BellModal = () => {
                   key={index}
                   className="chatModal"
                   onClick={() => {
-                    handleOpenModal("chatBell", item?.user1?.id);
+                    handleOpenModal("chatBell", item?.user1?.id, item?.users);
                   }}
                 >
                   <img
@@ -131,7 +171,13 @@ const BellModal = () => {
                         item?.lastMessage?.createdAt?.seconds
                       )}
                     </p>
-                    <span className="modalChatmsg">2</span>
+                    {sender_id !== item?.lastMessage?.senderId ? (
+                      <span className="modalChatmsg">
+                        {item?.unseenMessageCount}
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="mt-3 me-3">
                     <img src={Images.chatsDots} className="" alt="cartcancel" />
