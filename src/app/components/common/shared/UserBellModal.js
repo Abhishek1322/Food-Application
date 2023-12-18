@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import UserDeleteChat from "./UserDeleteChat";
-import UserChatModal from "./UserChatModal";
+import ChatnextModal from "./chatnextModal";
 import UserReportChat from "./UserReportChat";
 import UserClearChat from "./UserClearChat";
 import { Link } from "react-router-dom";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "../../../../config/firebase-config";
+import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const UserBellModal = () => {
   const [key, setKey] = useState(Math.random());
+  const authData = useAuthSelector();
+  const room_id = authData?.userInfo?.id;
+  const [allChats, setAllChats] = useState([]);
+  const [userId, setUserId] = useState();
+  const [profile, setProfile] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -24,22 +33,72 @@ const UserBellModal = () => {
     });
     setKey(Math.random());
   };
-  const handleUserProfile = (flag) => {
+
+  // open modal
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
       type: flag,
     });
     setKey(Math.random());
+    setUserId(id);
   };
+
+  // get all conversations
+  useEffect(() => {
+    handleGetAllChats();
+  }, [searchTerm]);
+
+  // get all chats
+  const handleGetAllChats = () => {
+    const allMessageQuery = query(collection(db, "chats"));
+    onSnapshot(allMessageQuery, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+      const reversedMessagesList = messagesList.slice().reverse();
+      const getMyChats = reversedMessagesList?.filter((item, index) => {
+        return item?.id?.includes(room_id);
+      });
+      setAllChats(getMyChats);
+    });
+  };
+
+  // convert time in UTC to local time
+  const convertTimeFormat = (nanoseconds, seconds) => {
+    const timestamp = new Date(seconds * 1000 + nanoseconds / 1000000);
+    const formattedTime = timestamp.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    return formattedTime;
+  };
+
+  // get profile info
+  const handleChefProfle = (data) => {
+    setProfile(data);
+  };
+
+  // search on chats
+  const filteredChats = allChats.filter((item) => {
+    const fullName = item?.user2?.full_name.toLowerCase();
+    const text = item?.lastMessage?.text.toLowerCase();
+    const search = searchTerm.toLowerCase();
+    return fullName.includes(search) || text.includes(search);
+  });
+
   return (
     <>
       <div className="userbellsection modalContent">
         <div className="searchbar ">
           <input
             type="search"
-            placeholder="Search Chef near you..."
+            placeholder="Search chats..."
             className="searchtext"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <img
             src={Images.searchbar}
@@ -48,221 +107,45 @@ const UserBellModal = () => {
           />
         </div>
         <div className="modalscroll">
-          <div className="chatModal">
-            <img
-              src={Images.userProfile}
-              className="userprofile"
-              alt="cartImg"
-            />
-            <div
-              className="innermodal"
-              onClick={() => {
-                handleUserProfile("chefchat");
-              }}
-            >
-              <h4 className="chefName">Sarah Bergstrom</h4>
-              <p className="cheftext ">Contrary to popular belief, Ipsum...</p>
-              <h6 className="chatTime">Just Now</h6>
-              <span className="modalChatmsg">2</span>
-            </div>
-            <div className="mt-3 me-3">
-              <div className="dropdown dropend">
-                <img
-                  src={Images.chatsDots}
-                  className="dropdown-toggle"
-                  alt="cartcancel"
-                  data-bs-toggle="dropdown"
-                />
-                <ul className="dropdown-menu">
-                  <li
-                    onClick={() => {
-                      handleUserProfile("deletechat");
-                    }}
-                  >
-                    <Link className="dropdown-item" to="#">
-                      <img
-                        src={Images.cartDelete}
-                        alt="editimage"
-                        className="img-fluid"
-                      />{" "}
-                      <span className="editdrop">Delete Chat</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="chatModal ">
-            <img
-              src={Images.userProfile}
-              className="userprofile"
-              alt="cartImg"
-            />
-            <div className="innermodal">
-              <h4 className="chefName">Hilda Herzog </h4>
-              <p className="cheftext ">Contrary to popular belief, Ipsum...</p>
-              <h6 className="chatTime">Just Now</h6>
-            </div>
-            <div className="mt-3  me-3">
-              <div className="dropdown dropend">
-                <img
-                  src={Images.chatsDots}
-                  className="dropdown-toggle"
-                  alt="cartcancel"
-                  data-bs-toggle="dropdown"
-                />
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      <img
-                        src={Images.cartDelete}
-                        alt="editimage"
-                        className="img-fluid"
-                      />{" "}
-                      <span className="editdrop">Delete Chat</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="chatModal ">
-            <img
-              src={Images.userProfile}
-              className="userprofile"
-              alt="cartImg"
-            />
-            <div className="innermodal">
-              <h4 className="chefName">Tom Stoltenberg</h4>
-              <p className="cheftext ">Contrary to popular belief, Ipsum...</p>
-              <h6 className="chatTime">Just Now</h6>
-              <span className="modalChatmsg">2</span>
-            </div>
-            <div className="mt-3  me-3">
-              <div className="dropdown dropend">
-                <img
-                  src={Images.chatsDots}
-                  className="dropdown-toggle"
-                  alt="cartcancel"
-                  data-bs-toggle="dropdown"
-                />
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      <img
-                        src={Images.cartDelete}
-                        alt="editimage"
-                        className="img-fluid"
-                      />{" "}
-                      <span className="editdrop">Delete Chat</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="chatModal">
-            <img
-              src={Images.userProfile}
-              className="userprofile"
-              alt="cartImg"
-            />
-            <div className="innermodal">
-              <h4 className="chefName">Sheryl Lowez</h4>
-              <p className="cheftext ">Contrary to popular belief, Ipsum...</p>
-              <h6 className="chatTime">Just Now</h6>
-            </div>
-            <div className="mt-3  me-3">
-              <div className="dropdown dropend">
-                <img
-                  src={Images.chatsDots}
-                  className="dropdown-toggle"
-                  alt="cartcancel"
-                  data-bs-toggle="dropdown"
-                />
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      <img
-                        src={Images.cartDelete}
-                        alt="editimage"
-                        className="img-fluid"
-                      />{" "}
-                      <span className="editdrop">Delete Chat</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="chatModal ">
-            <img
-              src={Images.userProfile}
-              className="userprofile"
-              alt="cartImg"
-            />
-            <div className="innermodal">
-              <h4 className="chefName">Olive Kuvalis</h4>
-              <p className="cheftext ">Contrary to popular belief, Ipsum...</p>
-              <h6 className="chatTime">Just Now</h6>
-            </div>
-            <div className="mt-3  me-3">
-              <div className="dropdown dropend">
-                <img
-                  src={Images.chatsDots}
-                  className="dropdown-toggle"
-                  alt="cartcancel"
-                  data-bs-toggle="dropdown"
-                />
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      <img
-                        src={Images.cartDelete}
-                        alt="editimage"
-                        className="img-fluid"
-                      />{" "}
-                      <span className="editdrop">Delete Chat</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="chatModal ">
-            <img
-              src={Images.userProfile}
-              className="userprofile"
-              alt="cartImg"
-            />
-            <div className="innermodal">
-              <h4 className="chefName">Hilda Herzog </h4>
-              <p className="cheftext ">Contrary to popular belief, Ipsum...</p>
-              <h6 className="chatTime">Just Now</h6>
-            </div>
-            <div className="mt-3  me-3">
-              <div className="dropdown dropend">
-                <img
-                  src={Images.chatsDots}
-                  className="dropdown-toggle"
-                  alt="cartcancel"
-                  data-bs-toggle="dropdown"
-                />
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      <img
-                        src={Images.cartDelete}
-                        alt="editimage"
-                        className="img-fluid"
-                      />{" "}
-                      <span className="editdrop">Delete Chat</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          {filteredChats && filteredChats.length > 0 ? (
+            <>
+              {filteredChats?.map((item, index) => (
+                <div
+                  key={index}
+                  className="chatModal"
+                  onClick={() => {
+                    handleOpenModal("chefchat", item?.user2?.id);
+                  }}
+                >
+                  <img
+                    src={
+                      item?.user2?.profile_image
+                        ? item?.user2?.profile_image
+                        : Images?.dummyProfile
+                    }
+                    className="userprofile"
+                    alt="cartImg"
+                  />
+                  <div className="innermodal">
+                    <p className="chefName">{item?.user2?.full_name}</p>
+                    <p className="cheftext">{item?.lastMessage?.text}</p>
+                    <p className="chatTime">
+                      {convertTimeFormat(
+                        item?.lastMessage?.createdAt?.nanoseconds,
+                        item?.lastMessage?.createdAt?.seconds
+                      )}
+                    </p>
+                    <span className="modalChatmsg">2</span>
+                  </div>
+                  <div className="mt-3 me-3">
+                    <img src={Images.chatsDots} className="" alt="cartcancel" />
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>No Chats Found</p>
+          )}
         </div>
       </div>
       <CustomModal
@@ -273,7 +156,11 @@ const UserBellModal = () => {
         isRightSideModal={true}
         mediumWidth={false}
         className={
-          modalDetail.flag === "deletechat" ? "commonWidth customContent" : ""
+          modalDetail.flag === "deletechat"
+            ? "commonWidth customContent"
+            : "chefchat"
+            ? "commonWidth customContent"
+            : ""
         }
         ids={
           modalDetail.flag === "deletechat"
@@ -294,7 +181,11 @@ const UserBellModal = () => {
           modalDetail.flag === "deletechat" ? (
             <UserDeleteChat close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "chefchat" ? (
-            <UserChatModal close={() => handleOnCloseModal()} />
+            <ChatnextModal
+              chefId={userId}
+              handleChefProfle={handleChefProfle}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "reportchat" ? (
             <UserReportChat close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "clearchat" ? (
@@ -307,6 +198,7 @@ const UserBellModal = () => {
           modalDetail.flag === "deletechat" ? (
             <>
               <img
+                onClick={handleOnCloseModal}
                 src={Images.backArrowpassword}
                 alt="backarrowimage"
                 className="img-fluid arrowCommon_"
@@ -316,17 +208,25 @@ const UserBellModal = () => {
             <>
               <div className="Common_header">
                 <img
+                  onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="logo"
                   className="img-fluid  arrowCommon_"
                 />
                 <img
-                  src={Images.UserICon}
+                  src={
+                    profile?.userInfo?.profilePhoto
+                      ? profile?.userInfo?.profilePhoto
+                      : Images.dummyProfile
+                  }
                   alt="logo"
                   className="img-fluid  headerImg_"
                 />
                 <div className="headerProfile">
-                  <h2 className="headerTxt_">John Smith</h2>
+                  <h2 className="headerTxt_">
+                    {profile?.userInfo?.firstName} {""}
+                    {profile?.userInfo?.lastName}
+                  </h2>
                   <h6 className="headerInner_">Online</h6>
                 </div>
               </div>
@@ -352,7 +252,7 @@ const UserBellModal = () => {
                     <li
                       className=" chatdroplabel flexBox"
                       onClick={() => {
-                        handleUserProfile("reportchat");
+                        handleOpenModal("reportchat");
                       }}
                     >
                       <img
@@ -365,7 +265,7 @@ const UserBellModal = () => {
                     <li
                       className=" chatdroplabel flexBox"
                       onClick={() => {
-                        handleUserProfile("clearchat");
+                        handleOpenModal("clearchat");
                       }}
                     >
                       <img

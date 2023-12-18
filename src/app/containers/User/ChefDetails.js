@@ -330,7 +330,6 @@ const ChefDetails = () => {
             />
           ) : modalDetail.flag === "chatModal" ? (
             <ChatnextModal
-              chefData={chefData}
               chefId={id}
               close={() => handleOnCloseModal()}
             />

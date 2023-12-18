@@ -5,7 +5,6 @@ import {
   query,
   onSnapshot,
   addDoc,
-  serverTimestamp,
   setDoc,
   doc,
   getDoc,
@@ -19,7 +18,7 @@ import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
 
-const ChatnextModal = ({ chefId, chefData }) => {
+const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
@@ -28,19 +27,18 @@ const ChatnextModal = ({ chefId, chefData }) => {
   const [msg, setMsg] = useState("");
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
-  const [profilePhoto, setProfilePhoto] = useState("");
+  const [chefData, setChefData] = useState([]);
   const room_id = `${authData?.userInfo?.id}-${chefId}`;
-
-  console.log("authDataauthDataauthData", authData);
-  console.log("room_idroom_idroom_id", room_id);
 
   // scroll bottom
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({
-      block: "end",
-      inline: "end",
-      behavior: "smooth",
-    });
+    if (messagesEndRef.current) {
+      messagesEndRef.current?.scrollIntoView({
+        block: "end",
+        inline: "end",
+        behavior: "smooth",
+      });
+    }
   };
 
   // get all messages
@@ -61,13 +59,11 @@ const ChatnextModal = ({ chefId, chefData }) => {
         }
         return item;
       });
-      console.log("messagesListmessagesList", updatedData);
       setMessages(updatedData);
     });
+    handleGetProfile();
     return () => unsubscribe();
   }, []);
-
-  console.log("checkkkkkk", room_id);
 
   // send new messages
   const handleSendMessage = async (e) => {
@@ -86,7 +82,7 @@ const ChatnextModal = ({ chefId, chefData }) => {
           {
             deletedChatUserIds: [],
             lastMessage: {
-              createdAt: serverTimestamp(),
+              createdAt: new Date(),
               senderId: authData?.userInfo?.id,
               text: msg,
               image_url: imageUrl,
@@ -100,12 +96,12 @@ const ChatnextModal = ({ chefId, chefData }) => {
               full_name: senderName,
               id: authData?.userInfo?.id,
               onlineStatus: 1,
-              profile_image: profilePhoto?.userInfo?.profilePhoto,
+              profile_image: authData?.userInfo?.userInfo?.profilePhoto,
             },
             user2: {
-              email: "",
+              email: chefData?.email,
               full_name: receiverName,
-              id: chefData?._id,
+              id: chefData?.id,
               onlineStatus: 1,
               profile_image: chefData?.userInfo?.profilePhoto,
             },
@@ -123,7 +119,7 @@ const ChatnextModal = ({ chefId, chefData }) => {
       if (roomDocSnapshot.exists()) {
         const messagesCollectionRef = collection(roomDocRef, "messages");
         await addDoc(messagesCollectionRef, {
-          createdAt: serverTimestamp(),
+          createdAt: new Date(),
           text: msg,
           id: "",
           image_url: imageUrl,
@@ -188,21 +184,24 @@ const ChatnextModal = ({ chefId, chefData }) => {
   }, [img]);
 
   // getting user profile details
-  useEffect(() => {
+  const handleGetProfile = () => {
     let params = {
-      userid: authData?.userInfo?.id,
+      userid: chefId,
     };
     dispatch(
       getUserProfileDetails({
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setProfilePhoto(res?.data?.data);
+            setChefData(res?.data?.data);
+            if (handleChefProfle !== undefined) {
+              handleChefProfle(res?.data?.data);
+            }
           }
         },
       })
     );
-  }, []);
+  };
 
   // convert time in UTC to local time
   const convertTimeFormat = (nanoseconds, seconds) => {
@@ -235,15 +234,14 @@ const ChatnextModal = ({ chefId, chefData }) => {
                 : "chat-left-section"
             }
           >
-            {console.log("messagemessage", message)}
             <div className="chat-box-left py-2">
               <p className="chat-value">{message?.text}</p>
               <div className="chefchat_detail">
                 {authData?.userInfo?.id === message?.senderId ? (
                   <img
                     src={
-                      profilePhoto?.userInfo?.profilePhoto
-                        ? profilePhoto?.userInfo?.profilePhoto
+                      authData?.userInfo?.userInfo?.profilePhoto
+                        ? authData?.userInfo?.userInfo?.profilePhoto
                         : Images.dummyProfile
                     }
                     alt="profile"

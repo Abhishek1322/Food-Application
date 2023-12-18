@@ -8,7 +8,6 @@ import {
   query,
   onSnapshot,
   addDoc,
-  serverTimestamp,
   setDoc,
   doc,
   getDoc,
@@ -21,22 +20,25 @@ import {
   onErrorStopLoad,
 } from "../../../../redux/slices/auth/index.js";
 import { useDispatch } from "react-redux";
+import { getUserProfileDetails } from "../../../../redux/slices/web";
+import { useAuthSelector } from "../../../../redux/selector/auth.js";
 
-const ChatWithChefModal = ({ orderDetails }) => {
+const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const dispatch = useDispatch();
-  const room_id = `${orderDetails?.userId?._id}-${orderDetails?.chefId?._id}`;
   const fcmToken = localStorage.getItem("fcmToken");
-  console.log("orderDetailsorderDetails", orderDetails);
+  const authData = useAuthSelector();
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState("");
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
+  const [userInfo, setUserInfo] = useState([]);
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
+  const room_id = `${userInfo?.id}-${authData?.userInfo?.id}`;
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -46,6 +48,7 @@ const ChatWithChefModal = ({ orderDetails }) => {
       flag: "",
     });
     setKey(Math.random());
+    close();
   };
 
   // open modal
@@ -76,11 +79,10 @@ const ChatWithChefModal = ({ orderDetails }) => {
         }
         return item;
       });
-      console.log("messagesListmessagesList", updatedData);
       setMessages(updatedData);
     });
     return () => unsubscribe();
-  }, []);
+  }, [userInfo]);
 
   // send new messages
   const handleSendMessage = async (e) => {
@@ -88,14 +90,12 @@ const ChatWithChefModal = ({ orderDetails }) => {
       return;
     }
     const senderName =
-      orderDetails?.chefId?.userInfo?.firstName +
+      authData?.userInfo?.userInfo?.firstName +
       " " +
-      orderDetails?.chefId?.userInfo?.lastName;
+      authData?.userInfo?.userInfo?.lastName;
 
     const receiverName =
-      orderDetails?.userId?.userInfo?.firstName +
-      " " +
-      orderDetails?.userId?.userInfo?.lastName;
+      userInfo?.userInfo?.firstName + " " + userInfo?.userInfo?.lastName;
     try {
       const roomDocRef = doc(db, "chats", room_id);
       await setDoc(
@@ -103,30 +103,30 @@ const ChatWithChefModal = ({ orderDetails }) => {
         {
           deletedChatUserIds: [],
           lastMessage: {
-            createdAt: serverTimestamp(),
-            senderId: orderDetails?.chefId?._id,
-            recieverId: orderDetails?.userId?._id,
+            createdAt: new Date(),
+            senderId: authData?.userInfo?.id,
+            recieverId: userInfo?.id,
             text: msg,
             image_url: imageUrl,
           },
           roomId: room_id,
           unseenMessageCount: 0,
           user1: {
-            email: orderDetails?.chefId?.email,
+            email: authData?.userInfo?.email,
             fcmToken: fcmToken,
             full_name: senderName,
-            id: orderDetails?.chefId?._id,
+            id: authData?.userInfo?.id,
             onlineStatus: 1,
-            profile_image: orderDetails?.chefId?.userInfo?.profilePhoto,
+            profile_image: authData?.userInfo?.userInfo?.profilePhoto,
           },
           user2: {
-            email: orderDetails?.userId?.email,
+            email: userInfo?.email,
             full_name: receiverName,
-            id: orderDetails?.userId?._id,
+            id: userInfo?.id,
             onlineStatus: 1,
-            profile_image: orderDetails?.userId?.userInfo?.profilePhoto,
+            profile_image: userInfo?.userInfo?.profilePhoto,
           },
-          users: [orderDetails?.chefId?._id, orderDetails?.userId?._id],
+          users: [authData?.userInfo?.id?._id, userInfo?.id],
         },
         setMsg(""),
         setImgUrl("")
@@ -140,12 +140,12 @@ const ChatWithChefModal = ({ orderDetails }) => {
     if (roomDocSnapshot.exists()) {
       const messagesCollectionRef = collection(roomDocRef, "messages");
       await addDoc(messagesCollectionRef, {
-        createdAt: serverTimestamp(),
+        createdAt: new Date(),
         text: msg,
         id: "",
         image_url: imageUrl,
-        senderId: orderDetails?.chefId?._id,
-        recieverId: orderDetails?.userId?._id,
+        senderId: authData?.userInfo?.id,
+        recieverId: userInfo?.id,
       });
       console.log("Message sent to existing room:", room_id);
     } else {
@@ -225,6 +225,28 @@ const ChatWithChefModal = ({ orderDetails }) => {
     }
   };
 
+  // getting user profile details
+  useEffect(() => {
+    let params = {
+      userid: orderDetails?.userId?._id
+        ? orderDetails?.userId?._id
+        : orderDetails,
+    };
+    dispatch(
+      getUserProfileDetails({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setUserInfo(res?.data?.data);
+            if(handleChefProfle !== undefined) {
+              handleChefProfle(res?.data?.data);
+            }
+          }
+        },
+      })
+    );
+  }, []);
+
   return (
     <>
       <div className="chat-main-content">
@@ -232,21 +254,20 @@ const ChatWithChefModal = ({ orderDetails }) => {
           <div
             key={index}
             className={
-              orderDetails?.userId?._id === message?.senderId
+              userInfo?.id === message?.senderId
                 ? "chat-left-section"
                 : "chat-right-section"
             }
           >
-            {console.log("messagemessage", message)}
             <div className="chat-box-left py-2">
               <p className="chat-value">{message?.text}</p>
 
               <div className="chefchat_detail">
-                {orderDetails?.userId?._id === message?.senderId ? (
+                {userInfo?.id === message?.senderId ? (
                   <img
                     src={
-                      orderDetails?.userId?.userInfo?.profilePhoto
-                        ? orderDetails?.userId?.userInfo?.profilePhoto
+                      userInfo?.userInfo?.profilePhoto
+                        ? userInfo?.userInfo?.profilePhoto
                         : Images.dummyProfile
                     }
                     alt="profile"
@@ -255,18 +276,18 @@ const ChatWithChefModal = ({ orderDetails }) => {
                 ) : (
                   <img
                     src={
-                      orderDetails?.chefId?.userInfo?.profilePhoto
-                        ? orderDetails?.chefId?.userInfo?.profilePhoto
+                      authData?.userInfo?.userInfo?.profilePhoto
+                        ? authData?.userInfo?.userInfo?.profilePhoto
                         : Images.dummyProfile
                     }
                     alt="profile"
                     className="chatnextImg"
                   />
                 )}
-                {orderDetails?.userId?._id === message?.senderId ? (
+                {userInfo?.id === message?.senderId ? (
                   <p className="chatUser m-0 pe-1">
-                    {orderDetails?.userId?.userInfo?.firstName}{" "}
-                    {orderDetails?.userId?.userInfo?.lastName}
+                    {userInfo?.userInfo?.firstName}{" "}
+                    {userInfo?.userInfo?.lastName}
                   </p>
                 ) : (
                   <p className="chatUser m-0 pe-1">You</p>
@@ -356,6 +377,7 @@ const ChatWithChefModal = ({ orderDetails }) => {
             <>
               <div className="Common_header">
                 <img
+                  onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="arrowPswImg"
                   className="img-fluid  arrowCommon_"
