@@ -312,22 +312,35 @@ const OrderDetails = () => {
                     />
                   </button>
                   <ul
-                    className="dropdown-menu chatmenu_"
+                    className="dropdown-menu chatdrop"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <div
-                      className=" chatnext_ flexBox"
+                    <li
+                      className=" chatdroplabel flexBox"
                       onClick={() => {
-                        handleOpenModal("reportchatD");
+                        handleOpenModal("reportchat");
                       }}
                     >
                       <img
                         src={Images.reportchatIcon}
                         className=" img-fluid reporticon_"
-                        alt="reporticon"
+                        alt="reportchat"
                       />
-                      <p className="reportchattxt_ m-0 ps-2">Report Chat</p>
-                    </div>
+                      <h1 className="reportchat m-0 ps-2">Report Chat</h1>
+                    </li>
+                    <li
+                      className=" chatdroplabel flexBox"
+                      onClick={() => {
+                        handleOpenModal("clearchat");
+                      }}
+                    >
+                      <img
+                        src={Images.ChatModal}
+                        className=" img-fluid reporticon_"
+                        alt="clearchat"
+                      />
+                      <p className="reportchat m-0 ps-2">Clear Chat</p>
+                    </li>
                   </ul>
                 </div>
               </div>

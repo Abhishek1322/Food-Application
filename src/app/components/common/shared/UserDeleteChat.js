@@ -1,23 +1,32 @@
-import React from 'react'
-import * as Images from "../../../../utilities/images"
-
+import React from "react";
+import * as Images from "../../../../utilities/images";
 
 const UserDeleteChat = () => {
   return (
     <>
-      <div className='deletesection paymentdonesection'>
-        <img src={Images.DeleteModal} alt='accountdeletedimg' className='img-fluid' />
-        <h1 className='accountDeleted mt-3'>Delete Chat</h1>
-        <p className='accountdeletetxt mt-2 '>Are you sure, you want to delete this chat?</p>
-        <div className='modalfooterbtn'>
-          <div className='orderItems'>
-            <button className='cancelOrder' type='button'>CANCEL</button>
-            <button className='acceptOrder' type='button'>ACCEPT</button>
+      <div className="deletesection paymentdonesection">
+        <img
+          src={Images.DeleteModal}
+          alt="accountdeletedimg"
+          className="img-fluid"
+        />
+        <h1 className="accountDeleted mt-3">Delete Chat</h1>
+        <p className="accountdeletetxt mt-2 ">
+          Are you sure, you want to delete this chat?
+        </p>
+        <div className="modalfooterbtn">
+          <div className="orderItems">
+            <button className="cancelOrder" type="button">
+              CANCEL
+            </button>
+            <button className="acceptOrder" type="button">
+              ACCEPT
+            </button>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default UserDeleteChat
+export default UserDeleteChat;

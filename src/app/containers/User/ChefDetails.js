@@ -9,6 +9,7 @@ import ChefRating from "../../components/common/shared/ChefRating";
 import { useDispatch } from "react-redux";
 import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
 import ChatnextModal from "../../components/common/shared/chatnextModal";
+import ReportChatModal from "../../components/common/shared/reportChatModal";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -307,6 +308,8 @@ const ChefDetails = () => {
             ? "usercartmodal"
             : modalDetail.flag === "chatModal"
             ? "userchatmodal"
+            : modalDetail.flag === "reportchat"
+            ? "userchatmodal"
             : ""
         }
         child={
@@ -329,10 +332,9 @@ const ChefDetails = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "chatModal" ? (
-            <ChatnextModal
-              chefId={id}
-              close={() => handleOnCloseModal()}
-            />
+            <ChatnextModal chefId={id} close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "reportchat" ? (
+            <ReportChatModal close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
@@ -393,7 +395,7 @@ const ChefDetails = () => {
                   src={
                     chefData?.userInfo?.profilePhoto
                       ? chefData?.userInfo?.profilePhoto
-                      : Images.UserICon
+                      : Images.dummyProfile
                   }
                   alt="logo"
                   className="img-fluid  headerImg_"
