@@ -11,7 +11,7 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../../../config/firebase-config";
+import { db, PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 import ChatWithChefModal from "./chatWithChefModal";
 
@@ -28,7 +28,6 @@ const BellModal = () => {
     title: "",
     flag: "",
   });
-  console.log("allChatsallChats", allChats);
   //close Modal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -41,7 +40,6 @@ const BellModal = () => {
 
   // open modal
   const handleOpenModal = (flag, id, room_id) => {
-    console.log("room_idroom_id", room_id);
     setModalDetail({
       show: true,
       flag: flag,
@@ -49,7 +47,7 @@ const BellModal = () => {
     });
     setKey(Math.random());
     setUserId(id);
-    // handleUnseenMessages(room_id);
+    handleUnseenMessages(room_id);
   };
 
   // get all conversations
@@ -59,7 +57,7 @@ const BellModal = () => {
 
   // get all chats
   const handleGetAllChats = () => {
-    const allMessageQuery = query(collection(db, "chats"));
+    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
     onSnapshot(allMessageQuery, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
@@ -97,34 +95,50 @@ const BellModal = () => {
     return fullName.includes(search) || text.includes(search);
   });
 
-  console.log("allChatsallChats", allChats);
-
   // clear unseen messages count
-  // const handleUnseenMessages = async (room_id) => {
-  //   const zeroUnseenCount = allChats?.map((item) => {
-  //     if (item?.users === room_id) {
-  //       return { ...item, unseenMessageCount: 0 };
-  //     }
-  //     return item;
-  //   });
-  //   const chatObject = Object.fromEntries(zeroUnseenCount.map((item) => item));
-
-  //   console.log("zeroUnseenCountzeroUnseenCount", zeroUnseenCount);
-
-  //   const roomDocRef = doc(db, "chats", room_id);
-  //   const roomDocSnapshot = await getDoc(roomDocRef);
-  //   if (roomDocSnapshot.exists()) {
-  //     try {
-  //       const roomDocRef = doc(db, "chats", room_id);
-  //       await updateDoc(roomDocRef, {
-  //         zeroUnseenCount,
-  //       });
-  //     } catch (error) {
-  //       console.error("Error creating room:", error);
-  //     }
-  //     console.log("Message sent to existing room:", room_id);
-  //   }
-  // };
+  const handleUnseenMessages = async (room_id) => {
+    const zeroUnseenCount = allChats?.find((item) => {
+      return item?.roomId === room_id;
+    });
+    const roomDocRef = doc(db, PARENTCOLLECTIONNAME, room_id);
+    const roomDocSnapshot = await getDoc(roomDocRef);
+    if (roomDocSnapshot.exists()) {
+      try {
+        await updateDoc(roomDocRef, {
+          deletedChatUserIds: [],
+          lastMessage: {
+            createdAt: zeroUnseenCount?.lastMessage?.createdAt,
+            senderId: zeroUnseenCount?.lastMessage?.senderId,
+            recieverId: zeroUnseenCount?.lastMessage?.recieverId,
+            text: zeroUnseenCount?.lastMessage?.text,
+            image_url: zeroUnseenCount?.lastMessage?.image_url,
+          },
+          roomId: zeroUnseenCount?.roomId,
+          unseenMessageCount: 0,
+          user1: {
+            email: zeroUnseenCount?.user1?.email,
+            fcmToken: zeroUnseenCount?.user1?.fcmToken,
+            full_name: zeroUnseenCount?.user1?.full_name,
+            id: zeroUnseenCount?.user1?.id,
+            onlineStatus: 1,
+            profile_image: zeroUnseenCount?.user1?.profile_image,
+          },
+          user2: {
+            email: zeroUnseenCount?.user2?.email,
+            fcmToken: zeroUnseenCount?.user2?.fcmToken,
+            full_name: zeroUnseenCount?.user2?.full_name,
+            id: zeroUnseenCount?.user2?.id,
+            onlineStatus: 1,
+            profile_image: zeroUnseenCount?.user2?.profile_image,
+          },
+          users: zeroUnseenCount?.users,
+        });
+      } catch (error) {
+        console.error("Error creating room:", error);
+      }
+      console.log("Message sent to existing room:", room_id);
+    }
+  };
 
   return (
     <>
@@ -150,7 +164,7 @@ const BellModal = () => {
                   key={index}
                   className="chatModal"
                   onClick={() => {
-                    handleOpenModal("chatBell", item?.user1?.id, item?.users);
+                    handleOpenModal("chatBell", item?.user1?.id, item?.roomId);
                   }}
                 >
                   <img
@@ -171,7 +185,8 @@ const BellModal = () => {
                         item?.lastMessage?.createdAt?.seconds
                       )}
                     </p>
-                    {sender_id !== item?.lastMessage?.senderId ? (
+                    {sender_id !== item?.lastMessage?.senderId &&
+                    item?.unseenMessageCount > 0 ? (
                       <span className="modalChatmsg">
                         {item?.unseenMessageCount}
                       </span>

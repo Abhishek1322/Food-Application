@@ -5,8 +5,15 @@ import UserDeleteChat from "./UserDeleteChat";
 import ChatnextModal from "./chatnextModal";
 import UserReportChat from "./UserReportChat";
 import UserClearChat from "./UserClearChat";
-import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "../../../../config/firebase-config";
+import {
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+  updateDoc,
+} from "firebase/firestore";
+import { db,PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const UserBellModal = () => {
@@ -14,7 +21,6 @@ const UserBellModal = () => {
   const authData = useAuthSelector();
   const sender_id = authData?.userInfo?.id;
   const [allChats, setAllChats] = useState([]);
-  console.log("allChatsallChats", allChats);
   const [userId, setUserId] = useState();
   const [profile, setProfile] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,7 +41,7 @@ const UserBellModal = () => {
   };
 
   // open modal
-  const handleOpenModal = (flag, id) => {
+  const handleOpenModal = (flag, id, room_id) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -43,6 +49,7 @@ const UserBellModal = () => {
     });
     setKey(Math.random());
     setUserId(id);
+    handleUnseenMessages(room_id);
   };
 
   // get all conversations
@@ -52,7 +59,7 @@ const UserBellModal = () => {
 
   // get all chats
   const handleGetAllChats = () => {
-    const allMessageQuery = query(collection(db, "chats"));
+    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
     onSnapshot(allMessageQuery, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
@@ -90,6 +97,51 @@ const UserBellModal = () => {
     return fullName.includes(search) || text.includes(search);
   });
 
+  // clear unseen messages count
+  const handleUnseenMessages = async (room_id) => {
+    const zeroUnseenCount = allChats?.find((item) => {
+      return item?.roomId === room_id;
+    });
+    const roomDocRef = doc(db, PARENTCOLLECTIONNAME, room_id);
+    const roomDocSnapshot = await getDoc(roomDocRef);
+    if (roomDocSnapshot.exists()) {
+      try {
+        await updateDoc(roomDocRef, {
+          deletedChatUserIds: [],
+          lastMessage: {
+            createdAt: zeroUnseenCount?.lastMessage?.createdAt,
+            senderId: zeroUnseenCount?.lastMessage?.senderId,
+            recieverId: zeroUnseenCount?.lastMessage?.recieverId,
+            text: zeroUnseenCount?.lastMessage?.text,
+            image_url: zeroUnseenCount?.lastMessage?.image_url,
+          },
+          roomId: zeroUnseenCount?.roomId,
+          unseenMessageCount: 0,
+          user1: {
+            email: zeroUnseenCount?.user1?.email,
+            fcmToken: zeroUnseenCount?.user1?.fcmToken,
+            full_name: zeroUnseenCount?.user1?.full_name,
+            id: zeroUnseenCount?.user1?.id,
+            onlineStatus: 1,
+            profile_image: zeroUnseenCount?.user1?.profile_image,
+          },
+          user2: {
+            email: zeroUnseenCount?.user2?.email,
+            fcmToken: zeroUnseenCount?.user2?.fcmToken,
+            full_name: zeroUnseenCount?.user2?.full_name,
+            id: zeroUnseenCount?.user2?.id,
+            onlineStatus: 1,
+            profile_image: zeroUnseenCount?.user2?.profile_image,
+          },
+          users: zeroUnseenCount?.users,
+        });
+      } catch (error) {
+        console.error("Error creating room:", error);
+      }
+      console.log("Message sent to existing room:", room_id);
+    }
+  };
+
   return (
     <>
       <div className="userbellsection modalContent">
@@ -114,7 +166,7 @@ const UserBellModal = () => {
                   key={index}
                   className="chatModal"
                   onClick={() => {
-                    handleOpenModal("chefchat", item?.user1?.id);
+                    handleOpenModal("chefchat", item?.user2?.id, item?.roomId);
                   }}
                 >
                   <img
@@ -135,7 +187,7 @@ const UserBellModal = () => {
                         item?.lastMessage?.createdAt?.seconds
                       )}
                     </p>
-                    {sender_id !== item?.lastMessage?.senderId ? (
+                    {sender_id !== item?.lastMessage?.senderId && item?.unseenMessageCount > 0 ? (
                       <span className="modalChatmsg">
                         {item?.unseenMessageCount}
                       </span>

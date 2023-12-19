@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { db,PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
+import {
+  db,
+  PARENTCOLLECTIONNAME,
+  VAPID_KEY,
+} from "../../../../config/firebase-config";
 import {
   collection,
   query,
@@ -18,7 +22,8 @@ import { toast } from "react-toastify";
 import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
-
+import { messaging } from "../../../../config/firebase-config";
+import { getToken } from "firebase/messaging";
 
 const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const authData = useAuthSelector();
@@ -31,7 +36,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [imageUrl, setImgUrl] = useState("");
   const [chefData, setChefData] = useState([]);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  console.log("room_idroom_id",ROOM_ID);
+  
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -95,7 +100,8 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           },
           setMsg(""),
           setImgUrl(""),
-          scrollToBottom()
+          scrollToBottom(),
+          handleSendWebPushNotification(senderName)
         );
         try {
           const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
@@ -123,6 +129,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
               user2: {
                 email: chefData?.email,
                 full_name: receiverName,
+                fcmToken: chefData?.fcmToken,
                 id: chefData?.id,
                 onlineStatus: 1,
                 profile_image: chefData?.userInfo?.profilePhoto,
@@ -171,6 +178,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           user2: {
             email: chefData?.email,
             full_name: receiverName,
+            fcmToken: chefData?.fcmToken,
             id: chefData?.id,
             onlineStatus: 1,
             profile_image: chefData?.userInfo?.profilePhoto,
@@ -179,8 +187,10 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         },
         setMsg(""),
         setImgUrl(""),
-        scrollToBottom()
+        scrollToBottom(),
+        handleSendWebPushNotification(senderName)
       );
+
       await addDoc(messagesCollectionRef, {
         createdAt: new Date(),
         text: msg,
@@ -192,6 +202,30 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
     } catch (error) {
       console.error("Error creating room:", error);
     }
+  };
+
+  // send web push notification
+  const handleSendWebPushNotification = async (senderName) => {
+    // const recipientToken = await getToken(messaging, { vapidKey: VAPID_KEY });
+    const notificationData = {
+      title: "New Message",
+      body: `${senderName}: ${msg}`,
+    };
+
+    const payload = {
+      notification: notificationData,
+      data: notificationData,
+      to: chefData?.fcmToken,
+    };
+
+    await fetch("https://fcm.googleapis.com/fcm/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer AAAAHRQtGIo:APA91bHfwyhY4cv1HeqaG7rSy9cnIQawy96LWye1SyralUJsoct5iT3NjssbzMPlhnncVGLUqLNGuKqdRFL8-FCCA2mrC65uH-3zrExXscs1nc8tBtbC67ZbsOXoeMdYvtYZ_CZW2Yfa`, // Replace with your Firebase Cloud Messaging Server Key
+      },
+      body: JSON.stringify(payload),
+    });
   };
 
   // validation for upload files

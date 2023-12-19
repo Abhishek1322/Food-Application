@@ -13,29 +13,30 @@ import store from "./redux";
 import { persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./public/css/style.css";
-import { messaging } from "./config/firebase-config";
+import { messaging, VAPID_KEY } from "./config/firebase-config";
 import { getToken } from "firebase/messaging";
-
-const MyContext = createContext();
+import Notifications from "./config/Notification";
 
 function App() {
   // Get FCM token
+  async function requestPermission() {
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+      // Generate Token
+      const token = await getToken(messaging, {
+        vapidKey: VAPID_KEY,
+      });
+      localStorage.setItem("fcmToken", token);
+      console.log("Token Gen", token);
+      // Send this token  to server ( db)
+    } else if (permission === "denied") {
+      alert("You denied for the notification");
+    }
+  }
+
+  // Req user for notification permission
   useEffect(() => {
-    const requestNotificationPermission = async () => {
-      try {
-        const permission = await Notification.requestPermission();
-        if (permission === "granted") {
-          const currentToken = await getToken(messaging);
-          console.log("FCM Token:", currentToken);
-          localStorage.setItem("fcmToken", currentToken);
-        } else {
-          console.log("Notification permission denied.");
-        }
-      } catch (error) {
-        console.error("Error requesting notification permission:", error);
-      }
-    };
-    requestNotificationPermission();
+    requestPermission();
   }, []);
 
   return (
@@ -48,6 +49,7 @@ function App() {
         </PersistGate>
       </Provider>
       <ToastContainer />
+      <Notifications />
     </>
   );
 }

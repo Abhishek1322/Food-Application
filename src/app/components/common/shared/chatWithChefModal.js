@@ -2,7 +2,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderReadyForDeliverModal from "./orderReadyForDeliverModal.js";
-import { db,PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
+import {
+  db,
+  messaging,
+  PARENTCOLLECTIONNAME,
+  VAPID_KEY,
+} from "../../../../config/firebase-config";
 import {
   collection,
   query,
@@ -23,6 +28,7 @@ import {
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
 import { useAuthSelector } from "../../../../redux/selector/auth.js";
+import { getToken } from "firebase/messaging";
 
 const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const dispatch = useDispatch();
@@ -40,7 +46,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     flag: "",
   });
   const ROOM_ID = `${userInfo?.id}-${authData?.userInfo?.id}`;
-  console.log("room_idroom_id", ROOM_ID);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -51,7 +56,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     setKey(Math.random());
     close();
   };
-
   // open modal
   const handleOpenModal = (flag) => {
     setModalDetail({
@@ -84,8 +88,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     });
     return () => unsubscribe();
   }, [userInfo]);
-
-  console.log("userInfouserInfo", userInfo);
 
   // send and update messages
   const handleUpdateMessage = async (e) => {
@@ -130,6 +132,14 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
             roomId: ROOM_ID,
             unseenMessageCount: previousUnseenMessageCount + 1,
             user1: {
+              email: userInfo?.email,
+              fcmToken: userInfo?.fcmToken,
+              full_name: receiverName,
+              id: userInfo?.id,
+              onlineStatus: 1,
+              profile_image: userInfo?.userInfo?.profilePhoto,
+            },
+            user2: {
               email: authData?.userInfo?.email,
               fcmToken: fcmToken,
               full_name: senderName,
@@ -137,17 +147,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
               onlineStatus: 1,
               profile_image: authData?.userInfo?.userInfo?.profilePhoto,
             },
-            user2: {
-              email: userInfo?.email,
-              full_name: receiverName,
-              id: userInfo?.id,
-              onlineStatus: 1,
-              profile_image: userInfo?.userInfo?.profilePhoto,
-            },
             users: [authData?.userInfo?.id, userInfo?.id],
           },
           setMsg(""),
-          setImgUrl("")
+          setImgUrl(""),
+          handleSendWebPushNotification(senderName)
         );
       } catch (error) {
         console.error("Error creating room:", error);
@@ -158,8 +162,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       handleSendInitialMessage(senderName, receiverName);
     }
   };
-
-  console.log("authDataauthData", authData);
 
   // handle send initial message
   const handleSendInitialMessage = async (senderName, receiverName) => {
@@ -180,6 +182,14 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
           roomId: ROOM_ID,
           unseenMessageCount: 1,
           user1: {
+            email: userInfo?.email,
+            fcmToken: userInfo?.fcmToken,
+            full_name: receiverName,
+            id: userInfo?.id,
+            onlineStatus: 1,
+            profile_image: userInfo?.userInfo?.profilePhoto,
+          },
+          user2: {
             email: authData?.userInfo?.email,
             fcmToken: fcmToken,
             full_name: senderName,
@@ -187,17 +197,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
             onlineStatus: 1,
             profile_image: authData?.userInfo?.userInfo?.profilePhoto,
           },
-          user2: {
-            email: userInfo?.email,
-            full_name: receiverName,
-            id: userInfo?.id,
-            onlineStatus: 1,
-            profile_image: userInfo?.userInfo?.profilePhoto,
-          },
           users: [authData?.userInfo?.id, userInfo?.id],
         },
         setMsg(""),
-        setImgUrl("")
+        setImgUrl(""),
+        handleSendWebPushNotification(senderName)
       );
       await addDoc(messagesCollectionRef, {
         createdAt: new Date(),
@@ -210,6 +214,30 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     } catch (error) {
       console.error("Error creating room:", error);
     }
+  };
+
+  // send web push notification
+  const handleSendWebPushNotification = async (senderName) => {
+    const recipientToken = await getToken(messaging, { vapidKey: VAPID_KEY });
+    const notificationData = {
+      title: "New Message",
+      body: `${senderName}: ${msg}`,
+    };
+
+    const payload = {
+      notification: notificationData,
+      data: notificationData,
+      to: userInfo?.fcmToken,
+    };
+
+    await fetch("https://fcm.googleapis.com/fcm/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer AAAAHRQtGIo:APA91bHfwyhY4cv1HeqaG7rSy9cnIQawy96LWye1SyralUJsoct5iT3NjssbzMPlhnncVGLUqLNGuKqdRFL8-FCCA2mrC65uH-3zrExXscs1nc8tBtbC67ZbsOXoeMdYvtYZ_CZW2Yfa`, // Replace with your Firebase Cloud Messaging Server Key
+      },
+      body: JSON.stringify(payload),
+    });
   };
 
   // convert time in UTC to local time

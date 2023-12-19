@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "@firebase/storage";
-import { getMessaging,onMessage } from "firebase/messaging";
+import { getMessaging, onMessage } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBatQyYtqdAmcDPaSOdRrHUDrURaTdQdIc",
@@ -17,12 +18,15 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const messaging = getMessaging(app);
 const PARENTCOLLECTIONNAME = "chats";
+const VAPID_KEY =
+  "BIxgyl370mEcMrx4B1IifDDuKT__Cd8uCcmuXt6CamNftgCF8Gyb-3vSctMXN5kabDBSE4BN1-tmu91D8Qya_GQ";
 
-export const onMessager = () =>
+  export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {
+      console.log("payload", payload)
       resolve(payload);
     });
   });
 
-export { db, storage, app, messaging, PARENTCOLLECTIONNAME };
+export { db, storage, app, messaging, PARENTCOLLECTIONNAME, VAPID_KEY };
