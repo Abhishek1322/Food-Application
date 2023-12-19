@@ -36,7 +36,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [imageUrl, setImgUrl] = useState("");
   const [chefData, setChefData] = useState([]);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  
+
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {

@@ -20,12 +20,12 @@ const MyRecentOrderModal = (props) => {
   const [key, setKey] = useState(Math.random());
   const [orderDetail, setOrderDetail] = useState([]);
   const [isLoading, setIsLoading] = useState("");
+  const [usersData, setUserData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -95,6 +95,11 @@ const MyRecentOrderModal = (props) => {
         },
       })
     );
+  };
+
+  // get user data
+  const handleChefProfle = (data) => {
+    setUserData(data);
   };
 
   return (
@@ -255,7 +260,11 @@ const MyRecentOrderModal = (props) => {
         }
         child={
           modalDetail.flag === "chatAboutOrder" ? (
-            <ChatWithChefModal close={() => handleOnCloseModal()} />
+            <ChatWithChefModal
+              handleChefProfle={handleChefProfle}
+              orderDetails={orderDetail}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "orderDeliver" ? (
             <VerifyorderDetailsModal
               handleGetOrderDetails={handleGetSingleOrder}
@@ -271,17 +280,25 @@ const MyRecentOrderModal = (props) => {
             <>
               <div className="Common_header">
                 <img
+                  onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="arrowpassword"
                   className="img-fluid  arrowCommon_"
                 />
                 <img
-                  src={Images.userProfile}
+                  src={
+                    usersData?.userInfo?.profilePhoto
+                      ? usersData?.userInfo?.profilePhoto
+                      : Images.dummyProfile
+                  }
                   alt="userprofile"
                   className="img-fluid  headerImg_"
                 />
                 <div className="headerProfile">
-                  <p className="headerTxt_">John Smith</p>
+                  <p className="headerTxt_">
+                    {usersData?.userInfo?.firstName}{" "}
+                    {usersData?.userInfo?.lastName}
+                  </p>
                   <p className="headerInner_">Online</p>
                 </div>
               </div>
