@@ -13,10 +13,11 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
-import { db,PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
+import { db, PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
+import ReportchatDropModal from "./reportchatDropModal";
 
-const UserBellModal = () => {
+const UserBellModal = ({id}) => {
   const [key, setKey] = useState(Math.random());
   const authData = useAuthSelector();
   const sender_id = authData?.userInfo?.id;
@@ -29,7 +30,7 @@ const UserBellModal = () => {
     title: "",
     flag: "",
   });
-
+  
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -49,7 +50,9 @@ const UserBellModal = () => {
     });
     setKey(Math.random());
     setUserId(id);
-    handleUnseenMessages(room_id);
+    if (room_id) {
+      handleUnseenMessages(room_id);
+    }
   };
 
   // get all conversations
@@ -187,7 +190,8 @@ const UserBellModal = () => {
                         item?.lastMessage?.createdAt?.seconds
                       )}
                     </p>
-                    {sender_id !== item?.lastMessage?.senderId && item?.unseenMessageCount > 0 ? (
+                    {sender_id !== item?.lastMessage?.senderId &&
+                    item?.unseenMessageCount > 0 ? (
                       <span className="modalChatmsg">
                         {item?.unseenMessageCount}
                       </span>
@@ -245,7 +249,10 @@ const UserBellModal = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "reportchat" ? (
-            <UserReportChat close={() => handleOnCloseModal()} />
+            <ReportchatDropModal
+              id={profile?.id}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "clearchat" ? (
             <UserClearChat close={() => handleOnCloseModal()} />
           ) : (
@@ -341,6 +348,7 @@ const UserBellModal = () => {
             <>
               <div className="Common_header">
                 <img
+                  onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="logo"
                   className="img-fluid  arrowCommon_"

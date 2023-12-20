@@ -64,7 +64,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       type: flag,
     });
     setKey(Math.random());
-  }; 
+  };
 
   // get all messages
   useEffect(() => {
@@ -218,7 +218,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
 
   // send web push notification
   const handleSendWebPushNotification = async (senderName) => {
-    const recipientToken = await getToken(messaging, { vapidKey: VAPID_KEY });
     const notificationData = {
       title: "New Message",
       body: `${senderName}: ${msg}`,
@@ -226,7 +225,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     const payload = {
       notification: notificationData,
       data: notificationData,
-      to:userInfo?.fcmToken,
+      to: userInfo?.fcmToken,
     };
 
     await fetch("https://fcm.googleapis.com/fcm/send", {

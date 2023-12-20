@@ -14,6 +14,12 @@ export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    reportChat: (state) => {
+      state.loading = true;
+    },
+    setReportChat: (state) => {
+      state.loading = false;
+    },
     getRating: (state) => {
       state.loading = true;
     },
@@ -169,6 +175,8 @@ export const {
   setGiveRating,
   getRating,
   setGetRating,
+  reportChat,
+  setReportChat,
 } = userSilce.actions;
 
 export default userSilce.reducer;

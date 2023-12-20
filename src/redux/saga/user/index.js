@@ -21,9 +21,37 @@ import {
   setUpdateCartItem,
   setGiveRating,
   setGetRating,
+  setReportChat,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* reportChat(action) {
+  let deleteParams = { ...action.payload };
+  delete deleteParams.id;
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.userApiPath.REPORT_CHAT}?reportedUser=${action.payload.id}`),
+      (action.payload = deleteParams)
+    );
+    if (resp.status) {
+      yield put(setReportChat(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
 
 function* getRating(action) {
   try {
@@ -422,6 +450,7 @@ function* userSaga() {
   yield all([takeLatest("user/updateCartItem", updateCartItem)]);
   yield all([takeLatest("user/giveRating", giveRating)]);
   yield all([takeLatest("user/getRating", getRating)]);
+  yield all([takeLatest("user/reportChat", reportChat)]);
 }
 
 export default userSaga;

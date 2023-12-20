@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import ChatWithChefModal from "../../../components/common/shared/chatWithChefModal";
 import CustomModal from "../../../components/common/shared/CustomModal";
+import ReportchatDropModal from "../../../components/common/shared/reportchatDropModal";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
@@ -256,13 +257,27 @@ const OrderDetails = () => {
         className={
           modalDetail.flag === "chatAboutOrder"
             ? "commonWidth customContent"
+            : modalDetail.flag === "reportchat"
+            ? "commonWidth customContent"
+            : "commonWidth customContent"
+        }
+        ids={
+          modalDetail.flag === "chatAboutOrder"
+            ? "orderchat"
+            : modalDetail.flag === "reportchat"
+            ? "orderchat"
             : ""
         }
-        ids={modalDetail.flag === "chatAboutOrder" ? "orderchat" : ""}
         child={
           modalDetail.flag === "chatAboutOrder" ? (
             <ChatWithChefModal
               orderDetails={orderDetails}
+              id={orderDetails?.userId?._id}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "reportchat" ? (
+            <ReportchatDropModal
+              id={orderDetails?.userId?._id}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -342,6 +357,20 @@ const OrderDetails = () => {
                       <p className="reportchat m-0 ps-2">Clear Chat</p>
                     </li>
                   </ul>
+                </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "reportchat" ? (
+            <>
+              <div className="Common_header gap-2">
+                <img
+                  onClick={() => handleOnCloseModal()}
+                  src={Images.backArrowpassword}
+                  alt="arrowpassword"
+                  className="img-fluid  arrowCommon_"
+                />
+                <div className="headerProfile">
+                  <h2 className="headerTxt_ mb-0">Report Chat</h2>
                 </div>
               </div>
             </>

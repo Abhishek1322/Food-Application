@@ -11,6 +11,8 @@ import { getUserProfileDetails } from "../../../redux/slices/web";
 import { useUserSelector } from "../../../redux/selector/user";
 import CartModal from "./shared/cartModal";
 import { toggleSidebar } from "../../../redux/slices/auth";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -22,15 +24,15 @@ const User_Navbar = () => {
   const userId = localStorage.getItem("userId");
   const [key, setKey] = useState(Math.random());
   const [toggle, setToggle] = useState(true);
-
   const [currentLocation, setCurrentLocation] = useState();
   const [userData, setUserData] = useState([]);
+  const [allChats, setAllChats] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
+  
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -127,12 +129,35 @@ const User_Navbar = () => {
         },
       })
     );
+    handleGetAllChats();
   }, []);
 
   // toggle SideBar
   useEffect(() => {
     dispatch(toggleSidebar(toggle));
   }, [toggle]);
+
+  // get all chats
+  const handleGetAllChats = () => {
+    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
+    onSnapshot(allMessageQuery, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+      const reversedMessagesList = messagesList.slice().reverse();
+      const getMyChats = reversedMessagesList?.filter((item, index) => {
+        return item?.id?.includes(authData?.userInfo?.id);
+      });
+      const getUnseenMessages = getMyChats?.find((item) => {
+        return (
+          item?.unseenMessageCount > 0 &&
+          item?.lastMessage?.senderId !== authData?.userInfo?.id
+        );
+      });
+      setAllChats(getUnseenMessages);
+    });
+  };
 
   return (
     <>
@@ -175,7 +200,11 @@ const User_Navbar = () => {
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 text-end">
                   <div className="flexBox">
-                    <div className="headermenu">
+                    <div
+                      className={
+                        allChats && allChats !== undefined ? "headermenu" : ""
+                      }
+                    >
                       <figure className="menuBox">
                         <img
                           src={Images.chat}
@@ -364,7 +393,10 @@ const User_Navbar = () => {
         }
         child={
           modalDetail.flag === "chatmessage" ? (
-            <UserBellModal close={() => handleOnCloseModal()} />
+            <UserBellModal
+              id={authData?.userInfo?.id}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "userNotification" ? (
             <UserNotification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "cartModal" ? (

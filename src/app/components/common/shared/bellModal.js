@@ -47,7 +47,9 @@ const BellModal = () => {
     });
     setKey(Math.random());
     setUserId(id);
-    handleUnseenMessages(room_id);
+    if (room_id) {
+      handleUnseenMessages(room_id);
+    }
   };
 
   // get all conversations
@@ -230,7 +232,7 @@ const BellModal = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "reportchatD" ? (
-            <ReportchatDropModal close={() => handleOnCloseModal()} />
+            <ReportchatDropModal id={profile?.id} close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
@@ -297,7 +299,21 @@ const BellModal = () => {
                 </div>
               </div>
             </>
-          ) : (
+          )
+          : modalDetail.flag === "reportchatD" ? (
+            <>
+              <div className="Common_header">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="logo"
+                  className="img-fluid  arrowCommon_"
+                />
+                <p className="headerTxt_ m-0 ps-2">Report Chat</p>
+              </div>
+            </>
+          ) 
+           : (
             ""
           )
         }

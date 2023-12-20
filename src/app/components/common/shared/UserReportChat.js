@@ -11,7 +11,7 @@ const UserReportChat = () => {
                     <label className="border-label">Give a reason</label>
                 </div>
                 <div className='orderItems_ flexBox justify-content-between modalfooterbtn'>
-                    <button className='cancelOrder_' type='button' >Cancel</button>
+                    <button className='cancelOrder_' type='button' >Cance</button>
                     <button className='submitOrder_' type='button'>Yes, Report</button>
                 </div>
             </div>

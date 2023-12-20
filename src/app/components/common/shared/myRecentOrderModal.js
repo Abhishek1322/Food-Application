@@ -12,6 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { useChefSelector } from "../../../../redux/selector/chef";
+import ReportchatDropModal from "./reportchatDropModal";
 
 const MyRecentOrderModal = (props) => {
   const { close, singleOrderId, setOrderId, handleGetRecenetOrders } = props;
@@ -26,6 +27,7 @@ const MyRecentOrderModal = (props) => {
     title: "",
     flag: "",
   });
+  console.log("usersDatausersData", usersData);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -256,6 +258,8 @@ const MyRecentOrderModal = (props) => {
             ? "orderchat"
             : modalDetail.flag === "orderDeliver"
             ? "orderchat"
+            : modalDetail.flag === "reportchatD"
+            ? "orderchat"
             : ""
         }
         child={
@@ -269,6 +273,11 @@ const MyRecentOrderModal = (props) => {
             <VerifyorderDetailsModal
               handleGetOrderDetails={handleGetSingleOrder}
               recentOrderId={singleOrderId}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "reportchatD" ? (
+            <ReportchatDropModal
+              id={usersData?.id}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -335,6 +344,20 @@ const MyRecentOrderModal = (props) => {
                       <p className="reportchattxt_ m-0 ps-2">Report Chat</p>
                     </div>
                   </ul>
+                </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "reportchatD" ? (
+            <>
+              <div className="Common_header gap-2">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="arrowpassword"
+                  className="img-fluid  arrowCommon_"
+                />
+                <div className="headerProfile">
+                  <h2 className="headerTxt_ mb-0">Report Chat</h2>
                 </div>
               </div>
             </>

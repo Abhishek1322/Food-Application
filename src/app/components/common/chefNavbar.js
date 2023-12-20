@@ -12,10 +12,14 @@ import {
   onErrorStopLoad,
 } from "../../../redux/slices/web";
 import { useChefSelector } from "../../../redux/selector/chef";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 
 const Chef_Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const authData = useAuthSelector();
   const { pathname } = location;
   const { search } = location;
   const searchParams = new URLSearchParams(search);
@@ -23,7 +27,9 @@ const Chef_Navbar = () => {
   const userId = localStorage.getItem("userId");
   const chefData = useChefSelector();
   const [key, setKey] = useState(Math.random());
+  const [allChats, setAllChats] = useState([]);
   const [chefProfileData, setProfileData] = useState([]);
+
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -69,7 +75,30 @@ const Chef_Navbar = () => {
         },
       })
     );
+    handleGetAllChats();
   }, []);
+
+  // get all chats
+  const handleGetAllChats = () => {
+    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
+    onSnapshot(allMessageQuery, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+      const reversedMessagesList = messagesList.slice().reverse();
+      const getMyChats = reversedMessagesList?.filter((item, index) => {
+        return item?.id?.includes(authData?.userInfo?.id);
+      });
+      const getUnseenMessages = getMyChats?.find((item) => {
+        return (
+          item?.unseenMessageCount > 0 &&
+          item?.lastMessage?.senderId !== authData?.userInfo?.id
+        );
+      });
+      setAllChats(getUnseenMessages);
+    });
+  };
 
   return (
     <>
@@ -123,7 +152,11 @@ const Chef_Navbar = () => {
                 </div>
                 <div className="col-lg-6 col-md-6 text-end">
                   <div className="flexBox">
-                    <div className="headermenu">
+                    <div
+                      className={
+                        allChats && allChats !== undefined ? "headermenu" : ""
+                      }
+                    >
                       <figure className="menuBox">
                         <img
                           src={Images.chat}

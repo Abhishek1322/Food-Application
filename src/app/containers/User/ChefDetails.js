@@ -9,7 +9,7 @@ import ChefRating from "../../components/common/shared/ChefRating";
 import { useDispatch } from "react-redux";
 import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
 import ChatnextModal from "../../components/common/shared/chatnextModal";
-import ReportChatModal from "../../components/common/shared/reportChatModal";
+import ReportchatDropModal from "../../components/common/shared/reportchatDropModal";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -334,7 +334,10 @@ const ChefDetails = () => {
           ) : modalDetail.flag === "chatModal" ? (
             <ChatnextModal chefId={id} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "reportchat" ? (
-            <ReportChatModal close={() => handleOnCloseModal()} />
+            <ReportchatDropModal
+              id={id}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )
@@ -455,6 +458,21 @@ const ChefDetails = () => {
                       <p className="reportchat m-0 ps-2">Clear Chat</p>
                     </li>
                   </ul>
+                </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "reportchat" ? (
+            <>
+              <div className="Common_header gap-2">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="logo"
+                  className="img-fluid  arrowCommon_"
+                />
+
+                <div className="headerProfile">
+                  <h2 className="headerTxt_ mb-0">Report Chat</h2>
                 </div>
               </div>
             </>

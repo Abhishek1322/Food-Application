@@ -1,97 +1,103 @@
-import React, { useState } from 'react'
-import * as Images from "../../../../utilities/images"
-import CustomModal from './CustomModal'
-import Myorder from './myorderModal';
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { reportChat, onErrorStopLoad } from "../../../../redux/slices/user";
+import { toast } from "react-toastify";
+import { getUserProfileDetails } from "../../../../redux/slices/web";
 
-const ReportchatDropModal = () => {
+const ReportchatDropModal = ({ id, close }) => {
+  const dispatch = useDispatch();
+  const toastId = useRef(null);
+  const [chefData, setChefData] = useState([]);
+  const [reportReason, setReportReason] = useState("");
+  console.log("chefDatachefData", chefData);
 
-  const [key, setKey] = useState(Math.random());
-  const [modalDetail, setModalDetail] = useState({
-      show: false,
-      title: "",
-      flag: "",
-  });
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
-  //closeModal
-  const handleOnCloseModal = () => {
-      setModalDetail({
-          show: false,
-          title: "",
-          flag: "",
-      });
-      setKey(Math.random());
+  // getting user profile details
+  useEffect(() => {
+    handleGetProfile();
+  }, []);
+
+  // getting user profile details
+  const handleGetProfile = () => {
+    let params = {
+      userid: id,
+    };
+    dispatch(
+      getUserProfileDetails({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setChefData(res?.data?.data);
+            // if (handleChefProfle !== undefined) {
+            //   handleChefProfle(res?.data?.data);
+            // }
+          }
+        },
+      })
+    );
   };
 
-  const handleUserProfile = (flag) => {
+  // report chat
+  const handleReportChat = () => {
+    if (!reportReason) {
+      showToast("please provide a reason");
+      return;
+    }
+    let params = {
+      id: id,
+      message: reportReason,
+    };
+    dispatch(
+      reportChat({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            close();
+          }
+        },
+      })
+    );
+  };
 
-      setModalDetail({
-          show: true,
-          flag: flag,
-          type: flag,
-      });
-      setKey(Math.random());
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
   };
 
   return (
-   <>
-    <div className='modalContent'>
-      <div className='reportchatdrop_'>
-        <p className='reportText_'>Are you sure, you want to report
-          Sarah Bergstrom?</p>
-        <div className="input-container mt-5">
-          <textarea type="" className="Reportborder-input " />
-          <label className="border-label">Give a reason</label>
-        </div>
-
-        <div className='orderItems_ flexBox justify-content-between modalfooterbtn'>
-              <button className='cancelOrder_' >Cancel</button>
-              <button className='submitOrder_'  onClick={() => {
-                        handleUserProfile("myReportOrder")
-                    }}>Yes, Report</button>
-            </div>
-
-      </div>
-
-    </div>
-    <CustomModal
-                key={key}
-                show={modalDetail.show}
-                backdrop="static"
-                showCloseBtn={false}
-                isRightSideModal={true}
-                mediumWidth={false}
-                className={modalDetail.flag === "myReportOrder" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "myReportOrder" ? "myorderReport":''}
-                child={
-                    modalDetail.flag === "myReportOrder" ? (
-                        <Myorder
-                            close={() => handleOnCloseModal()}
-                            
-                        />
-                    ) :
-                            ""
-                }
-                header=
-
-                {modalDetail.flag === "myReportOrder" ?
-                    <>
-                        <h2 className="modal_Heading">
-                        My Orders
-                        </h2>
-                        <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' alt='modalCancelimg' />
-                        </p>
-                    </>
-                    :
-                        ''
-                }
-                onCloseModal={() => handleOnCloseModal()}
+    <>
+      <div className="modalContent">
+        <div className="reportchatdrop_">
+          <p className="reportText_">
+            Are you sure, you want to report <br />{" "}
+            {chefData?.userInfo?.firstName} {chefData?.userInfo?.lastName} ?
+          </p>
+          <div className="input-container mt-5">
+            <textarea
+              type="text"
+              onChange={(e) => setReportReason(e.target.value)}
+              className="Reportborder-input "
             />
-   </>
-    
-    
-    
-  )
-}
+            <label className="border-label">Give a reason</label>
+          </div>
+          <div className="orderItems_ flexBox justify-content-between modalfooterbtn">
+            <button onClick={close} className="cancelOrder_">
+              Cancel
+            </button>
+            <button onClick={handleReportChat} className="submitOrder_">
+              Yes, Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default ReportchatDropModal
+export default ReportchatDropModal;
