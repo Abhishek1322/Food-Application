@@ -10,16 +10,22 @@ import { useDispatch } from "react-redux";
 import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
 import ChatnextModal from "../../components/common/shared/chatnextModal";
 import ReportchatDropModal from "../../components/common/shared/reportchatDropModal";
+import UserDeleteChat from "../../components/common/shared/UserDeleteChat";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
+import { collection, onSnapshot, query } from "firebase/firestore";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { search } = location;
+  const authData = useAuthSelector();
   const searchParams = new URLSearchParams(search);
   const id = searchParams.get("id");
   const [menuId, setMenuId] = useState("");
   const [chefData, setChefData] = useState([]);
   const [key, setKey] = useState(Math.random());
+  const [allChats, setAllChats] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -48,6 +54,17 @@ const ChefDetails = () => {
 
   // get single chef detail
   useEffect(() => {
+    const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
+    onSnapshot(parentCollectionChat, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+      const getMyChats = messagesList?.filter((item) => {
+        return item?.id?.includes(authData?.userInfo?.id);
+      });
+      setAllChats(getMyChats);
+    });
     handleGetChefDetails();
   }, []);
 
@@ -310,6 +327,8 @@ const ChefDetails = () => {
             ? "userchatmodal"
             : modalDetail.flag === "reportchat"
             ? "userchatmodal"
+            : modalDetail.flag === "clearchat"
+            ? "userchatmodal"
             : ""
         }
         child={
@@ -332,10 +351,14 @@ const ChefDetails = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "chatModal" ? (
-            <ChatnextModal chefId={id} close={() => handleOnCloseModal()} />
+            <ChatnextModal allChats={allChats} chefId={id} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "reportchat" ? (
-            <ReportchatDropModal
-              id={id}
+            <ReportchatDropModal id={id} close={() => handleOnCloseModal()} />
+          ) : modalDetail.flag === "clearchat" ? (
+            <UserDeleteChat
+              sender_id={authData?.userInfo?.id}
+              allChats={allChats}
+              sendRoomId={`${authData?.userInfo?.id}-${id}`}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -474,6 +497,17 @@ const ChefDetails = () => {
                 <div className="headerProfile">
                   <h2 className="headerTxt_ mb-0">Report Chat</h2>
                 </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "clearchat" ? (
+            <>
+              <div className="Common_header gap-2">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="logo"
+                  className="img-fluid  arrowCommon_"
+                />
               </div>
             </>
           ) : (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
+  CHILDCOLLECTIONNAME,
   db,
   PARENTCOLLECTIONNAME,
-  VAPID_KEY,
 } from "../../../../config/firebase-config";
 import {
   collection,
@@ -22,10 +22,8 @@ import { toast } from "react-toastify";
 import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
-import { messaging } from "../../../../config/firebase-config";
-import { getToken } from "firebase/messaging";
 
-const ChatnextModal = ({ chefId, handleChefProfle }) => {
+const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
@@ -48,10 +46,80 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
     }
   };
 
+  // get parent child data
+  // useEffect(() => {
+  //   const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
+  //   onSnapshot(parentCollectionChat, (snap) => {
+  //     const messagesList = snap.docs.map((doc) => {
+  //       const id = doc.id;
+  //       return { id, ...doc.data() };
+  //     });
+  //     const getMyChats = messagesList?.filter((item, index) => {
+  //       return item?.id?.includes(authData?.userInfo?.id);
+  //     });
+  //     getParentCollectionChat(getMyChats);
+  //   });
+  // }, []);
+
+  // const getParentCollectionChat = (chatRoomData) => {
+  //   console.log("chatRoomDatachatRoomData", chatRoomData);
+  //   let lastDeletedAt;
+  //   if (
+  //     chatRoomData &&
+  //     chatRoomData.length > 0 &&
+  //     chatRoomData[0].deletedChatUserIds &&
+  //     chatRoomData[0].deletedChatUserIds.length > 0
+  //   ) {
+  //     let lastDeletedAts = chatRoomData[0].deletedChatUserIds.filter(
+  //       (item) => item.userId == authData?.userInfo?.id
+  //     );
+  //     if (lastDeletedAts.length > 0) {
+  //       lastDeletedAts = lastDeletedAts?.sort(
+  //         (a, b) => b.deletedAt - a.deletedAt
+  //       );
+  //       lastDeletedAt = lastDeletedAts[0].deletedAt;
+  //     }
+  //   }
+
+  //   const allMessageQuery = query(
+  //     collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
+  //     orderBy("createdAt", "asc")
+  //   );
+  //   onSnapshot(allMessageQuery, (snap) => {
+  //     const messagesList = snap.docs.map((doc) => {
+  //       const id = doc.id;
+  //       return { id, ...doc.data() };
+  //     });
+  //     const updatedData = messagesList?.map((item, index) => {
+  //       if (item?.image_url === "") {
+  //         const { image_url, ...rest } = item;
+  //         return rest;
+  //       }
+  //       return item;
+  //     });
+
+  //     let filteredMessages = updatedData;
+  //     if (updatedData && updatedData.length > 0 && lastDeletedAt) {
+  //       filteredMessages = updatedData?.filter(
+  //         (val) => val?.created?.seconds > Math.floor(lastDeletedAt / 1000)
+  //       );
+  //     }
+  //     console.log("filteredMessagesfilteredMessages", filteredMessages);
+
+  //     const lastIndex = filteredMessages.length - 1;
+  //     const lastElement = filteredMessages[lastIndex];
+  //     console.log("lastElementlastElement", lastElement);
+  //     // setTimeout(() => {
+  //     setMessages([lastElement]);
+  //     // }, 1000);
+  //   });
+  //   handleGetProfile();
+  // };
+
   // get all messages
   useEffect(() => {
     const allMessageQuery = query(
-      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, "messages"),
+      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
       orderBy("createdAt", "asc")
     );
     const unsubscribe = onSnapshot(allMessageQuery, (snap) => {
@@ -59,7 +127,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         const id = doc.id;
         return { id, ...doc.data() };
       });
-      const updatedData = messagesList?.map((item, index) => {
+      const updatedData = messagesList?.map((item) => {
         if (item?.image_url === "") {
           const { image_url, ...rest } = item;
           return rest;
@@ -87,7 +155,10 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       const previousUnseenMessageCount =
         roomDocSnapshot.data()?.unseenMessageCount || 0;
       if (roomDocSnapshot.exists()) {
-        const messagesCollectionRef = collection(roomDocRef, "messages");
+        const messagesCollectionRef = collection(
+          roomDocRef,
+          CHILDCOLLECTIONNAME
+        );
         await addDoc(
           messagesCollectionRef,
           {
@@ -148,12 +219,12 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       }
     }
   };
-
+  
   // send initial message
   const handleSendInitialMessage = async (senderName, receiverName) => {
     try {
       const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
-      const messagesCollectionRef = collection(roomDocRef, "messages");
+      const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
       await setDoc(
         roomDocRef,
         {
@@ -319,62 +390,69 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   return (
     <>
       <div className="chat-main-content">
-        {messages?.map((message, index) => (
-          <div
-            ref={messagesEndRef}
-            key={index}
-            className={
-              authData?.userInfo?.id === message?.senderId
-                ? "chat-right-section"
-                : "chat-left-section"
-            }
-          >
-            <div className="chat-box-left py-2">
-              <p className="chat-value">{message?.text}</p>
-              <div className="chefchat_detail">
-                {authData?.userInfo?.id === message?.senderId ? (
-                  <img
-                    src={
-                      authData?.userInfo?.userInfo?.profilePhoto
-                        ? authData?.userInfo?.userInfo?.profilePhoto
-                        : Images.dummyProfile
-                    }
-                    alt="profile"
-                    className="chatnextImg"
-                  />
-                ) : (
-                  <img
-                    src={
-                      chefData?.userInfo?.profilePhoto
-                        ? chefData?.userInfo?.profilePhoto
-                        : Images.dummyProfile
-                    }
-                    alt="profile"
-                    className="chatnextImg"
-                  />
-                )}
-                {authData?.userInfo?.id === message?.senderId ? (
-                  <p className="chatUser m-0 pe-1">you</p>
-                ) : (
-                  <p className="chatUser m-0 pe-1">
-                    {chefData?.userInfo?.firstName}{" "}
-                    {chefData?.userInfo?.lastName}
-                  </p>
-                )}
+        {messages && messages?.length > 0 ? (
+          <>
+            {messages?.map((message, index) => (
+              <div
+                ref={messagesEndRef}
+                key={index}
+                className={
+                  authData?.userInfo?.id === message?.senderId
+                    ? "chat-right-section"
+                    : "chat-left-section"
+                }
+              >
+                <div className="chat-box-left py-2">
+                  <p className="chat-value">{message?.text}</p>
+                  <div className="chefchat_detail">
+                    {authData?.userInfo?.id === message?.senderId ? (
+                      <img
+                        src={
+                          authData?.userInfo?.userInfo?.profilePhoto
+                            ? authData?.userInfo?.userInfo?.profilePhoto
+                            : Images.dummyProfile
+                        }
+                        alt="profile"
+                        className="chatnextImg"
+                      />
+                    ) : (
+                      <img
+                        src={
+                          chefData?.userInfo?.profilePhoto
+                            ? chefData?.userInfo?.profilePhoto
+                            : Images.dummyProfile
+                        }
+                        alt="profile"
+                        className="chatnextImg"
+                      />
+                    )}
+                    {authData?.userInfo?.id === message?.senderId ? (
+                      <p className="chatUser m-0 pe-1">you</p>
+                    ) : (
+                      <p className="chatUser m-0 pe-1">
+                        {chefData?.userInfo?.firstName}{" "}
+                        {chefData?.userInfo?.lastName}
+                      </p>
+                    )}
 
-                <p className="chatTime_ m-0 pe-2">
-                  {convertTimeFormat(
-                    message?.createdAt?.nanoseconds,
-                    message?.createdAt?.seconds
+                    <p className="chatTime_ m-0 pe-2">
+                      {convertTimeFormat(
+                        message?.createdAt?.nanoseconds,
+                        message?.createdAt?.seconds
+                      )}
+                    </p>
+                  </div>
+                  {message?.image_url && (
+                    <img alt="upload-img" src={message?.image_url} />
                   )}
-                </p>
+                </div>
               </div>
-              {message?.image_url && (
-                <img alt="upload-img" src={message?.image_url} />
-              )}
-            </div>
-          </div>
-        ))}
+            ))}
+          </>
+        ) : (
+          <p>No chat found</p>
+        )}
+
         {imageUrl && (
           <div>
             <img alt="upload-img" src={imageUrl} />

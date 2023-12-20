@@ -3,6 +3,7 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderReadyForDeliverModal from "./orderReadyForDeliverModal.js";
 import {
+  CHILDCOLLECTIONNAME,
   db,
   messaging,
   PARENTCOLLECTIONNAME,
@@ -69,7 +70,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   // get all messages
   useEffect(() => {
     const allMessageQuery = query(
-      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, "messages"),
+      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
       orderBy("createdAt", "asc")
     );
     const unsubscribe = onSnapshot(allMessageQuery, (snap) => {
@@ -89,6 +90,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     return () => unsubscribe();
   }, [userInfo]);
 
+  
   // send and update messages
   const handleUpdateMessage = async (e) => {
     if (!msg || msg === "") {
@@ -107,7 +109,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     const previousUnseenMessageCount =
       roomDocSnapshot.data()?.unseenMessageCount || 0;
     if (roomDocSnapshot.exists()) {
-      const messagesCollectionRef = collection(roomDocRef, "messages");
+      const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
       await addDoc(messagesCollectionRef, {
         createdAt: new Date(),
         text: msg,
@@ -167,7 +169,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const handleSendInitialMessage = async (senderName, receiverName) => {
     try {
       const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
-      const messagesCollectionRef = collection(roomDocRef, "messages");
+      const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
       await setDoc(
         roomDocRef,
         {

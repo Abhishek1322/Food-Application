@@ -17,20 +17,21 @@ import { db, PARENTCOLLECTIONNAME } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 import ReportchatDropModal from "./reportchatDropModal";
 
-const UserBellModal = ({id}) => {
+const UserBellModal = ({ id }) => {
   const [key, setKey] = useState(Math.random());
   const authData = useAuthSelector();
   const sender_id = authData?.userInfo?.id;
   const [allChats, setAllChats] = useState([]);
   const [userId, setUserId] = useState();
   const [profile, setProfile] = useState([]);
+  const [sendRoomId, setSendRoomId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-  
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -52,6 +53,7 @@ const UserBellModal = ({id}) => {
     setUserId(id);
     if (room_id) {
       handleUnseenMessages(room_id);
+      setSendRoomId(room_id);
     }
   };
 
@@ -69,10 +71,41 @@ const UserBellModal = ({id}) => {
         return { id, ...doc.data() };
       });
       const reversedMessagesList = messagesList.slice().reverse();
+
       const getMyChats = reversedMessagesList?.filter((item, index) => {
         return item?.id?.includes(sender_id);
       });
-      setAllChats(getMyChats);
+
+      let sortedRecords = getMyChats.map((record) => {
+        const deletedChatUserIds = record.deletedChatUserIds.filter(
+          (item) => item.userId == sender_id
+        );
+        if (deletedChatUserIds && deletedChatUserIds.length > 0) {
+          let sortedDelete = deletedChatUserIds
+            .slice()
+            .sort((a, b) => b.deletedAt - a.deletedAt);
+          return { ...record, sortedRecords: sortedDelete };
+        }
+        return record;
+      });
+
+      let dataSortedFilter = sortedRecords?.filter((val) => {
+        if (
+          !val?.lastMessage?.createdAt?.seconds ||
+          !val?.sortedRecords ||
+          val.sortedRecords.length <= 0
+        ) {
+          return val;
+        } else if (
+          val?.lastMessage?.createdAt.seconds >
+          val.sortedRecords[0].deletedAt / 1000
+        ) {
+          return val;
+        } else {
+          return false;
+        }
+      });
+      setAllChats(dataSortedFilter);
     });
   };
 
@@ -165,42 +198,84 @@ const UserBellModal = ({id}) => {
           {filteredChats && filteredChats.length > 0 ? (
             <>
               {filteredChats?.map((item, index) => (
-                <div
-                  key={index}
-                  className="chatModal"
-                  onClick={() => {
-                    handleOpenModal("chefchat", item?.user2?.id, item?.roomId);
-                  }}
-                >
-                  <img
-                    src={
-                      item?.user2?.profile_image
-                        ? item?.user2?.profile_image
-                        : Images?.dummyProfile
-                    }
-                    className="userprofile"
-                    alt="cartImg"
-                  />
-                  <div className="innermodal">
-                    <p className="chefName">{item?.user2?.full_name}</p>
-                    <p className="cheftext">{item?.lastMessage?.text}</p>
-                    <p className="chatTime">
-                      {convertTimeFormat(
-                        item?.lastMessage?.createdAt?.nanoseconds,
-                        item?.lastMessage?.createdAt?.seconds
+                <div key={index} className="chatModal">
+                  <div
+                    onClick={() => {
+                      handleOpenModal(
+                        "chefchat",
+                        item?.user2?.id,
+                        item?.roomId
+                      );
+                    }}
+                    className="d-flex align-items-center w-100"
+                  >
+                    <img
+                      src={
+                        item?.user2?.profile_image
+                          ? item?.user2?.profile_image
+                          : Images?.dummyProfile
+                      }
+                      className="userprofile"
+                      alt="cartImg"
+                    />
+                    <div className="innermodal">
+                      <p className="chefName">{item?.user2?.full_name}</p>
+                      <p className="cheftext">{item?.lastMessage?.text}</p>
+                      <p className="chatTime">
+                        {convertTimeFormat(
+                          item?.lastMessage?.createdAt?.nanoseconds,
+                          item?.lastMessage?.createdAt?.seconds
+                        )}
+                      </p>
+                      {sender_id !== item?.lastMessage?.senderId &&
+                      item?.unseenMessageCount > 0 ? (
+                        <span className="modalChatmsg">
+                          {item?.unseenMessageCount}
+                        </span>
+                      ) : (
+                        ""
                       )}
-                    </p>
-                    {sender_id !== item?.lastMessage?.senderId &&
-                    item?.unseenMessageCount > 0 ? (
-                      <span className="modalChatmsg">
-                        {item?.unseenMessageCount}
-                      </span>
-                    ) : (
-                      ""
-                    )}
+                    </div>
                   </div>
-                  <div className="mt-3 me-3">
-                    <img src={Images.chatsDots} className="" alt="cartcancel" />
+
+                  <div className="Dotsheader_">
+                    <div className="dropdown ">
+                      <button
+                        className="btn btn-secondary dropdown-toggle modalheaderDot_"
+                        type="button"
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <img
+                          src={Images.modalHeader}
+                          className=" img-fluid chatreportIcon_"
+                          alt="modalHeaderImg"
+                        />
+                      </button>
+                      <ul
+                        className="dropdown-menu chatmenu_"
+                        aria-labelledby="dropdownMenuButton1"
+                      >
+                        <div
+                          onClick={() => {
+                            handleOpenModal(
+                              "deletechat",
+                              item?.user2?.id,
+                              item?.roomId
+                            );
+                          }}
+                          className=" chatnext_ flexBox"
+                        >
+                          <img
+                            src={Images.ChatModal}
+                            className=" img-fluid reporticon_"
+                            alt="reportchatImg"
+                          />
+                          <p className="reportchattxt_ m-0 ps-2">Delete Chat</p>
+                        </div>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -240,11 +315,18 @@ const UserBellModal = ({id}) => {
             : ""
         }
         child={
-          modalDetail.flag === "deletechat" ? (
-            <UserDeleteChat close={() => handleOnCloseModal()} />
+          modalDetail.flag === "deletechat" ||
+          modalDetail.flag === "clearchat" ? (
+            <UserDeleteChat
+              sender_id={sender_id}
+              allChats={allChats}
+              sendRoomId={sendRoomId}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "chefchat" ? (
             <ChatnextModal
               chefId={userId}
+              allChats={allChats}
               handleChefProfle={handleChefProfle}
               close={() => handleOnCloseModal()}
             />
@@ -253,8 +335,6 @@ const UserBellModal = ({id}) => {
               id={profile?.id}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "clearchat" ? (
-            <UserClearChat close={() => handleOnCloseModal()} />
           ) : (
             ""
           )
@@ -359,6 +439,7 @@ const UserBellModal = ({id}) => {
           ) : modalDetail.flag === "clearchat" ? (
             <>
               <img
+                onClick={handleOnCloseModal}
                 src={Images.backArrowpassword}
                 alt="backarrowimage"
                 className="img-fluid arrowCommon_"
