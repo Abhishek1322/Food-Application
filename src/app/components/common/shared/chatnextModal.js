@@ -23,7 +23,7 @@ import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
 
-const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
+const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const authData = useAuthSelector();
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
@@ -34,7 +34,7 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
   const [imageUrl, setImgUrl] = useState("");
   const [chefData, setChefData] = useState([]);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-
+  
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -46,99 +46,71 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
     }
   };
 
-  // get parent child data
-  // useEffect(() => {
-  //   const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
-  //   onSnapshot(parentCollectionChat, (snap) => {
-  //     const messagesList = snap.docs.map((doc) => {
-  //       const id = doc.id;
-  //       return { id, ...doc.data() };
-  //     });
-  //     const getMyChats = messagesList?.filter((item, index) => {
-  //       return item?.id?.includes(authData?.userInfo?.id);
-  //     });
-  //     getParentCollectionChat(getMyChats);
-  //   });
-  // }, []);
-
-  // const getParentCollectionChat = (chatRoomData) => {
-  //   console.log("chatRoomDatachatRoomData", chatRoomData);
-  //   let lastDeletedAt;
-  //   if (
-  //     chatRoomData &&
-  //     chatRoomData.length > 0 &&
-  //     chatRoomData[0].deletedChatUserIds &&
-  //     chatRoomData[0].deletedChatUserIds.length > 0
-  //   ) {
-  //     let lastDeletedAts = chatRoomData[0].deletedChatUserIds.filter(
-  //       (item) => item.userId == authData?.userInfo?.id
-  //     );
-  //     if (lastDeletedAts.length > 0) {
-  //       lastDeletedAts = lastDeletedAts?.sort(
-  //         (a, b) => b.deletedAt - a.deletedAt
-  //       );
-  //       lastDeletedAt = lastDeletedAts[0].deletedAt;
-  //     }
-  //   }
-
-  //   const allMessageQuery = query(
-  //     collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
-  //     orderBy("createdAt", "asc")
-  //   );
-  //   onSnapshot(allMessageQuery, (snap) => {
-  //     const messagesList = snap.docs.map((doc) => {
-  //       const id = doc.id;
-  //       return { id, ...doc.data() };
-  //     });
-  //     const updatedData = messagesList?.map((item, index) => {
-  //       if (item?.image_url === "") {
-  //         const { image_url, ...rest } = item;
-  //         return rest;
-  //       }
-  //       return item;
-  //     });
-
-  //     let filteredMessages = updatedData;
-  //     if (updatedData && updatedData.length > 0 && lastDeletedAt) {
-  //       filteredMessages = updatedData?.filter(
-  //         (val) => val?.created?.seconds > Math.floor(lastDeletedAt / 1000)
-  //       );
-  //     }
-  //     console.log("filteredMessagesfilteredMessages", filteredMessages);
-
-  //     const lastIndex = filteredMessages.length - 1;
-  //     const lastElement = filteredMessages[lastIndex];
-  //     console.log("lastElementlastElement", lastElement);
-  //     // setTimeout(() => {
-  //     setMessages([lastElement]);
-  //     // }, 1000);
-  //   });
-  //   handleGetProfile();
-  // };
-
   // get all messages
   useEffect(() => {
-    const allMessageQuery = query(
-      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
-      orderBy("createdAt", "asc")
-    );
-    const unsubscribe = onSnapshot(allMessageQuery, (snap) => {
+    const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
+    const unsubscribe = onSnapshot(parentCollectionChat, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
         return { id, ...doc.data() };
       });
-      const updatedData = messagesList?.map((item) => {
-        if (item?.image_url === "") {
-          const { image_url, ...rest } = item;
-          return rest;
-        }
-        return item;
+      const getMyChats = messagesList?.filter((item) => {
+        return item?.roomId === ROOM_ID;
       });
-      setMessages(updatedData);
+      getFireStoreData(getMyChats);
     });
     handleGetProfile();
     return () => unsubscribe();
   }, []);
+
+  // get inner messages
+  const getFireStoreData = (allChats) => {
+    if (ROOM_ID) {
+      let lastDeletedAt;
+      if (
+        allChats &&
+        allChats.length > 0 &&
+        allChats[0].deletedChatUserIds &&
+        allChats[0].deletedChatUserIds.length > 0
+      ) {
+        let lastDeletedAts = allChats[0].deletedChatUserIds.filter(
+          (item) => item.userId == authData?.userInfo?.id
+        );
+        if (lastDeletedAts.length > 0) {
+          lastDeletedAts = lastDeletedAts?.sort(
+            (a, b) => b.deletedAt - a.deletedAt
+          );
+          lastDeletedAt = lastDeletedAts[0].deletedAt;
+        }
+      }
+      const allMessageQuery = query(
+        collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
+        orderBy("createdAt", "asc")
+      );
+
+      onSnapshot(allMessageQuery, (snap) => {
+        const messagesList = snap.docs.map((doc) => {
+          const id = doc.id;
+          return { id, ...doc.data() };
+        });
+
+        let filteredMessages = messagesList;
+        if (messagesList && messagesList.length > 0 && lastDeletedAt) {
+          filteredMessages = messagesList?.filter(
+            (val) => val?.createdAt?.seconds > Math.floor(lastDeletedAt / 1000)
+          );
+        }
+        const updatedData = filteredMessages?.map((item) => {
+          if (item?.image_url === "") {
+            const { image_url, ...rest } = item;
+            return rest;
+          }
+          return item;
+        });
+        setMessages(updatedData);
+      });
+    }
+  };
 
   // send and update messages
   const handleUpdateMessage = async (e) => {
@@ -154,6 +126,8 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
       const roomDocSnapshot = await getDoc(roomDocRef);
       const previousUnseenMessageCount =
         roomDocSnapshot.data()?.unseenMessageCount || 0;
+      const previousDeletedChatUserIds = roomDocSnapshot.data();
+
       if (roomDocSnapshot.exists()) {
         const messagesCollectionRef = collection(
           roomDocRef,
@@ -179,7 +153,8 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
           await updateDoc(
             roomDocRef,
             {
-              deletedChatUserIds: [],
+              deletedChatUserIds:
+                previousDeletedChatUserIds?.deletedChatUserIds,
               lastMessage: {
                 createdAt: new Date(),
                 senderId: authData?.userInfo?.id,
@@ -203,7 +178,9 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
                 fcmToken: chefData?.fcmToken,
                 id: chefData?.id,
                 onlineStatus: 1,
-                profile_image: chefData?.userInfo?.profilePhoto,
+                profile_image: chefData?.userInfo?.profilePhoto
+                  ? chefData?.userInfo?.profilePhoto
+                  : "",
               },
               users: [authData?.userInfo?.id, chefId],
             },
@@ -219,7 +196,7 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
       }
     }
   };
-  
+
   // send initial message
   const handleSendInitialMessage = async (senderName, receiverName) => {
     try {
@@ -252,7 +229,9 @@ const ChatnextModal = ({ chefId, handleChefProfle, allChats }) => {
             fcmToken: chefData?.fcmToken,
             id: chefData?.id,
             onlineStatus: 1,
-            profile_image: chefData?.userInfo?.profilePhoto,
+            profile_image: chefData?.userInfo?.profilePhoto
+              ? chefData?.userInfo?.profilePhoto
+              : "",
           },
           users: [authData?.userInfo?.id, chefId],
         },
