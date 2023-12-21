@@ -25,6 +25,7 @@ const BellModal = () => {
   const [profile, setProfile] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sendRoomId, setSendRoomId] = useState("");
+  const [allOldChats, setAllOldChats] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -68,10 +69,12 @@ const BellModal = () => {
         const id = doc.id;
         return { id, ...doc.data() };
       });
+
       const reversedMessagesList = messagesList.slice().reverse();
       const getMyChats = reversedMessagesList?.filter((item, index) => {
         return item?.id?.includes(sender_id);
       });
+      setAllOldChats(getMyChats);
       let sortedRecords = getMyChats.map((record) => {
         const deletedChatUserIds = record.deletedChatUserIds.filter(
           (item) => item.userId == sender_id
@@ -257,7 +260,7 @@ const BellModal = () => {
                         <div
                           onClick={() => {
                             handleOpenModal(
-                              "deletechat",
+                              "clearchat",
                               item?.user1?.id,
                               item?.roomId
                             );
@@ -297,7 +300,7 @@ const BellModal = () => {
             ? "chatbellSection"
             : modalDetail.flag === "chatBell"
             ? "chatbellSection"
-            : modalDetail.flag === "deletechat"
+            : modalDetail.flag === "clearchat"
             ? "chatbellSection"
             : ""
         }
@@ -308,10 +311,10 @@ const BellModal = () => {
               handleChefProfle={handleChefProfle}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "deletechat" ? (
+          ) : modalDetail.flag === "clearchat" ? (
             <UserDeleteChat
               sender_id={sender_id}
-              allChats={allChats}
+              allChats={allOldChats}
               sendRoomId={sendRoomId}
               close={() => handleOnCloseModal()}
             />
@@ -362,15 +365,15 @@ const BellModal = () => {
                     <img
                       src={Images.modalHeader}
                       className=" img-fluid chatreportIcon_"
-                      alt="modalHeaderImg"
+                      alt="modalheaderimg"
                     />
                   </button>
                   <ul
-                    className="dropdown-menu chatmenu_"
+                    className="dropdown-menu chatdrop"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <div
-                      className=" chatnext_ flexBox"
+                    <li
+                      className=" chatdroplabel flexBox"
                       onClick={() => {
                         handleOpenModal("reportchatD");
                       }}
@@ -378,12 +381,36 @@ const BellModal = () => {
                       <img
                         src={Images.reportchatIcon}
                         className=" img-fluid reporticon_"
-                        alt="reportchatImg"
+                        alt="reportchat"
                       />
-                      <p className="reportchattxt_ m-0 ps-2">Report Chat</p>
-                    </div>
+                      <h1 className="reportchat m-0 ps-2">Report Chat</h1>
+                    </li>
+                    <li
+                      className=" chatdroplabel flexBox"
+                      onClick={() => {
+                        handleOpenModal("clearchat");
+                      }}
+                    >
+                      <img
+                        src={Images.ChatModal}
+                        className=" img-fluid reporticon_"
+                        alt="clearchat"
+                      />
+                      <p className="reportchat m-0 ps-2">Clear Chat</p>
+                    </li>
                   </ul>
                 </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "clearchat" ? (
+            <>
+              <div className="Common_header">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="logo"
+                  className="img-fluid  arrowCommon_"
+                />
               </div>
             </>
           ) : modalDetail.flag === "reportchatD" ? (

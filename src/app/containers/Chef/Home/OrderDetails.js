@@ -11,25 +11,46 @@ import moment from "moment";
 import ChatWithChefModal from "../../../components/common/shared/chatWithChefModal";
 import CustomModal from "../../../components/common/shared/CustomModal";
 import ReportchatDropModal from "../../../components/common/shared/reportchatDropModal";
+import UserDeleteChat from "../../../components/common/shared/UserDeleteChat";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
+import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const authData = useAuthSelector()
+  console.log("authDataauthData0",authData);
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
   const [key, setKey] = useState(Math.random());
+  const [allChats, setAllChats] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
   console.log("orderDetailsorderDetailszzzzzzz", orderDetails);
+  console.log("allChatsallChatszzz", allChats);
+
   // get order details
   useEffect(() => {
+    const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
+    const unsubscribe = onSnapshot(parentCollectionChat, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+      const getMyChats = messagesList?.filter((item) => {
+        return item?.id?.includes(authData?.userInfo?.id);
+      });
+      setAllChats(getMyChats);
+    });
     handleGetOrderDetails();
+    return () => unsubscribe;
   }, []);
 
   // get order details
@@ -266,6 +287,8 @@ const OrderDetails = () => {
             ? "orderchat"
             : modalDetail.flag === "reportchat"
             ? "orderchat"
+            : modalDetail.flag === "deletechat"
+            ? "orderchat"
             : ""
         }
         child={
@@ -278,6 +301,13 @@ const OrderDetails = () => {
           ) : modalDetail.flag === "reportchat" ? (
             <ReportchatDropModal
               id={orderDetails?.userId?._id}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "deletechat" ? (
+            <UserDeleteChat
+              allChats={allChats}
+              sender_id={orderDetails?.chefId?._id}
+              sendRoomId={`${orderDetails?.userId?._id}-${orderDetails?.chefId?._id}`}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -346,7 +376,7 @@ const OrderDetails = () => {
                     <li
                       className=" chatdroplabel flexBox"
                       onClick={() => {
-                        handleOpenModal("clearchat");
+                        handleOpenModal("deletechat");
                       }}
                     >
                       <img

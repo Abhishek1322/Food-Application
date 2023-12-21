@@ -29,7 +29,6 @@ import {
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
 import { useAuthSelector } from "../../../../redux/selector/auth.js";
-import { getToken } from "firebase/messaging";
 
 const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const dispatch = useDispatch();
@@ -67,18 +66,61 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     setKey(Math.random());
   };
 
-  // get all messages
+  // get all parnetcollection chats
   useEffect(() => {
-    const allMessageQuery = query(
-      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
-      orderBy("createdAt", "asc")
-    );
-    const unsubscribe = onSnapshot(allMessageQuery, (snap) => {
+    const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
+    const unsubscribe = onSnapshot(parentCollectionChat, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
         return { id, ...doc.data() };
       });
-      const updatedData = messagesList?.map((item, index) => {
+      const getMyChats = messagesList?.filter((item) => {
+        return item?.roomId === ROOM_ID;
+      });
+      getFireStoreData(getMyChats);
+    });
+    return () => unsubscribe();
+  }, [userInfo]);
+
+  // get all messages
+  const getFireStoreData = (allChats) => {
+    let lastDeletedAt;
+    if (
+      allChats &&
+      allChats.length > 0 &&
+      allChats[0].deletedChatUserIds &&
+      allChats[0].deletedChatUserIds.length > 0
+    ) {
+      let lastDeletedAts = allChats[0].deletedChatUserIds.filter(
+        (item) => item.userId == authData?.userInfo?.id
+      );
+      if (lastDeletedAts.length > 0) {
+        lastDeletedAts = lastDeletedAts?.sort(
+          (a, b) => b.deletedAt - a.deletedAt
+        );
+        lastDeletedAt = lastDeletedAts[0].deletedAt;
+      }
+    }
+
+    const allMessageQuery = query(
+      collection(db, PARENTCOLLECTIONNAME, ROOM_ID, CHILDCOLLECTIONNAME),
+      orderBy("createdAt", "asc")
+    );
+
+    onSnapshot(allMessageQuery, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+
+      let filteredMessages = messagesList;
+      if (messagesList && messagesList.length > 0 && lastDeletedAt) {
+        filteredMessages = messagesList?.filter(
+          (val) => val?.createdAt?.seconds > Math.floor(lastDeletedAt / 1000)
+        );
+      }
+
+      const updatedData = filteredMessages?.map((item, index) => {
         if (item?.image_url === "") {
           const { image_url, ...rest } = item;
           return rest;
@@ -87,10 +129,8 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       });
       setMessages(updatedData);
     });
-    return () => unsubscribe();
-  }, [userInfo]);
+  };
 
-  
   // send and update messages
   const handleUpdateMessage = async (e) => {
     if (!msg || msg === "") {
@@ -103,11 +143,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
 
     const receiverName =
       userInfo?.userInfo?.firstName + " " + userInfo?.userInfo?.lastName;
-
     const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
     const roomDocSnapshot = await getDoc(roomDocRef);
     const previousUnseenMessageCount =
       roomDocSnapshot.data()?.unseenMessageCount || 0;
+    const previousDeletedChatUserIds = roomDocSnapshot.data();
     if (roomDocSnapshot.exists()) {
       const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
       await addDoc(messagesCollectionRef, {
@@ -123,7 +163,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         await updateDoc(
           roomDocRef,
           {
-            deletedChatUserIds: [],
+            deletedChatUserIds: previousDeletedChatUserIds?.deletedChatUserIds,
             lastMessage: {
               createdAt: new Date(),
               senderId: authData?.userInfo?.id,

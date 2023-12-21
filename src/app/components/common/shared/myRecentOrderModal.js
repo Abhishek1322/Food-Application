@@ -13,21 +13,27 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import { useChefSelector } from "../../../../redux/selector/chef";
 import ReportchatDropModal from "./reportchatDropModal";
+import UserDeleteChat from "./UserDeleteChat";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
+import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const MyRecentOrderModal = (props) => {
   const { close, singleOrderId, setOrderId, handleGetRecenetOrders } = props;
   const dispatch = useDispatch();
   const chefData = useChefSelector();
+  const authData = useAuthSelector();
   const [key, setKey] = useState(Math.random());
   const [orderDetail, setOrderDetail] = useState([]);
   const [isLoading, setIsLoading] = useState("");
   const [usersData, setUserData] = useState([]);
+  const [allChats, setAllChats] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-  console.log("usersDatausersData", usersData);
+  console.log("authDataauthData", authData);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -50,6 +56,17 @@ const MyRecentOrderModal = (props) => {
 
   // get single order detail
   useEffect(() => {
+    const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
+    onSnapshot(parentCollectionChat, (snap) => {
+      const messagesList = snap.docs.map((doc) => {
+        const id = doc.id;
+        return { id, ...doc.data() };
+      });
+      const getMyChats = messagesList?.filter((item) => {
+        return item?.id?.includes(authData?.userInfo?.id);
+      });
+      setAllChats(getMyChats);
+    });
     handleGetSingleOrder();
   }, []);
 
@@ -260,6 +277,8 @@ const MyRecentOrderModal = (props) => {
             ? "orderchat"
             : modalDetail.flag === "reportchatD"
             ? "orderchat"
+            : modalDetail.flag === "clearchat"
+            ? "orderchat"
             : ""
         }
         child={
@@ -278,6 +297,13 @@ const MyRecentOrderModal = (props) => {
           ) : modalDetail.flag === "reportchatD" ? (
             <ReportchatDropModal
               id={usersData?.id}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "clearchat" ? (
+            <UserDeleteChat
+              sender_id={orderDetail?.chefId?._id}
+              allChats={allChats}
+              sendRoomId={`${orderDetail?.userId?._id}-${orderDetail?.chefId?._id}`}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -323,15 +349,15 @@ const MyRecentOrderModal = (props) => {
                     <img
                       src={Images.modalHeader}
                       className=" img-fluid chatreportIcon_"
-                      alt="modalheader"
+                      alt="modalheaderimg"
                     />
                   </button>
                   <ul
-                    className="dropdown-menu chatmenu_"
+                    className="dropdown-menu chatdrop"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <div
-                      className=" chatnext_ flexBox"
+                    <li
+                      className=" chatdroplabel flexBox"
                       onClick={() => {
                         handleOpenModal("reportchatD");
                       }}
@@ -339,12 +365,36 @@ const MyRecentOrderModal = (props) => {
                       <img
                         src={Images.reportchatIcon}
                         className=" img-fluid reporticon_"
-                        alt="reporticon"
+                        alt="reportchat"
                       />
-                      <p className="reportchattxt_ m-0 ps-2">Report Chat</p>
-                    </div>
+                      <h1 className="reportchat m-0 ps-2">Report Chat</h1>
+                    </li>
+                    <li
+                      className=" chatdroplabel flexBox"
+                      onClick={() => {
+                        handleOpenModal("clearchat");
+                      }}
+                    >
+                      <img
+                        src={Images.ChatModal}
+                        className=" img-fluid reporticon_"
+                        alt="clearchat"
+                      />
+                      <p className="reportchat m-0 ps-2">Clear Chat</p>
+                    </li>
                   </ul>
                 </div>
+              </div>
+            </>
+          ) : modalDetail.flag === "clearchat" ? (
+            <>
+              <div className="Common_header gap-2">
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.backArrowpassword}
+                  alt="arrowpassword"
+                  className="img-fluid  arrowCommon_"
+                />
               </div>
             </>
           ) : modalDetail.flag === "reportchatD" ? (
