@@ -40,6 +40,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const [imageUrl, setImgUrl] = useState("");
   const [userInfo, setUserInfo] = useState([]);
   const [key, setKey] = useState(Math.random());
+  const [isLoading, setIsLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -78,6 +79,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         return item?.roomId === ROOM_ID;
       });
       getFireStoreData(getMyChats);
+      setIsLoading(false);
     });
     return () => unsubscribe();
   }, [userInfo]);
@@ -136,6 +138,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     if (!msg || msg === "") {
       return;
     }
+    setIsLoading(true);
     const senderName =
       authData?.userInfo?.userInfo?.firstName +
       " " +
@@ -159,6 +162,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         recieverId: userInfo?.id,
       });
       try {
+        setIsLoading(true);
         const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
         await updateDoc(
           roomDocRef,
@@ -197,11 +201,13 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         );
       } catch (error) {
         console.error("Error creating room:", error);
+      } finally {
+        setIsLoading(false);
       }
-
       console.log("Message sent to existing room:", ROOM_ID);
     } else {
       handleSendInitialMessage(senderName, receiverName);
+      setIsLoading(false);
     }
   };
 
@@ -466,12 +472,16 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
               {/* <p className="chatSearchere_">
               Your only able to send photos from gallery
             </p> */}
-              <img
-                onClick={handleUpdateMessage}
-                src={Images.chatSendImg}
-                alt="chatsendImg"
-                className=""
-              />
+              {isLoading ? (
+                <span className="spinner-border text-white spinner-border-sm me-1"></span>
+              ) : (
+                <img
+                  onClick={handleUpdateMessage}
+                  src={Images.chatSendImg}
+                  alt="chatsendImg"
+                  className=""
+                />
+              )}
             </div>
           </div>
         </div>

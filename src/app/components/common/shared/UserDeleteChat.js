@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Images from "../../../../utilities/images";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
 import { toast } from "react-toastify";
 
 const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close }) => {
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   // delete room
   const handleDeleteRoom = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     let date = Math.floor(Date.now());
     let filterChatRoom = allChats?.filter((val) => val.roomId == sendRoomId);
     let deletedResult = {
@@ -26,12 +28,15 @@ const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close }) => {
             deletedResult,
           ],
         });
-        toast.success("Chat room deleted successfully");
+        toast.success("Chat deleted successfully");
         close();
       } catch (error) {
         console.error("Error creating room:", error);
+      } finally {
+        setIsLoading(false);
       }
     } else {
+      setIsLoading(false);
     }
   };
 
@@ -53,11 +58,15 @@ const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close }) => {
               Cancel
             </button>
             <button
+              disabled={isLoading}
               onClick={(e) => handleDeleteRoom(e)}
-              className="acceptOrder"
+              className="acceptOrder d-flex align-items-center gap-2"
               type="button"
             >
               Yes,Clear
+              {isLoading && (
+                <span className="spinner-border spinner-border-sm me-1"></span>
+              )}
             </button>
           </div>
         </div>

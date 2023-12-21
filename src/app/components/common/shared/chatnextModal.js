@@ -33,6 +33,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
   const [chefData, setChefData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
   
   // scroll bottom
@@ -58,6 +59,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         return item?.roomId === ROOM_ID;
       });
       getFireStoreData(getMyChats);
+      setIsLoading(false);
     });
     handleGetProfile();
     return () => unsubscribe();
@@ -115,6 +117,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   // send and update messages
   const handleUpdateMessage = async (e) => {
     if (msg || imageUrl) {
+      setIsLoading(true);
       const senderName =
         authData?.userInfo?.userInfo?.firstName +
         " " +
@@ -190,15 +193,19 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           );
         } catch (error) {
           console.error("Error creating room:", error);
+        } finally {
+          setIsLoading(false);
         }
       } else {
         handleSendInitialMessage(senderName, receiverName);
+        setIsLoading(false);
       }
     }
   };
 
   // send initial message
   const handleSendInitialMessage = async (senderName, receiverName) => {
+    setIsLoading(true);
     try {
       const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
       const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
@@ -250,7 +257,11 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         recieverId: chefId,
       });
     } catch (error) {
+      setIsLoading(false);
+      toast.error("Something went wrong");
       console.error("Error creating room:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -461,16 +472,21 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                 />
               </div>
             )}
+
             <div className="chat-send-btn">
               {/* <p className="chatSearchere_">
               Your only able to send photos from gallery
             </p> */}
-              <img
-                onClick={handleUpdateMessage}
-                src={Images.chatSendImg}
-                alt="chatsendImg"
-                className=""
-              />
+              {isLoading ? (
+                <span className="spinner-border text-white spinner-border-sm me-1"></span>
+              ) : (
+                <img
+                  onClick={handleUpdateMessage}
+                  src={Images.chatSendImg}
+                  alt="chatsendImg"
+                  className=""
+                />
+              )}
             </div>
           </div>
         </div>

@@ -6,6 +6,11 @@ const Notifications = () => {
   const [notification, setNotification] = useState({ title: "", body: "" });
   const notify = () => toast(<ToastDisplay />);
 
+  // const notify = () =>
+  // toast(<ToastDisplay />, {
+  //   duration: 10 * 60 * 1000,
+  // });
+
   function ToastDisplay() {
     return (
       <>
