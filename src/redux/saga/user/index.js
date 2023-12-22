@@ -22,9 +22,113 @@ import {
   setGiveRating,
   setGetRating,
   setReportChat,
+  setHireChef,
+  setCancelChefBooking,
+  setGetNotification,
+  setReadNotification,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* readNotification(action) {
+  const deleteParams = { ...action.payload };
+  delete deleteParams.id;
+  try {
+    const resp = yield call(
+      ApiClient.patch,
+      (action.url = `${ApiPath.userApiPath.READ_NOTIFICATION}/${action.payload.id}`),
+      (action.payload = deleteParams)
+    );
+    if (resp.status) {
+      yield put(setReadNotification(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
+
+
+function* getNotification(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.GET_ALL_NOTIFICATION}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetNotification(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* cancelChefBooking(action) {
+  const deleteParams = { ...action.payload };
+  delete deleteParams.id;
+  try {
+    const resp = yield call(
+      ApiClient.patch,
+      (action.url = `${ApiPath.userApiPath.CANCEL_BOOKING}/${action.payload.id}`),
+      (action.payload = deleteParams)
+    );
+    if (resp.status) {
+      yield put(setCancelChefBooking(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
+
+function* hireChef(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.userApiPath.HIRE_CHEF}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setHireChef(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
 
 function* reportChat(action) {
   let deleteParams = { ...action.payload };
@@ -451,6 +555,10 @@ function* userSaga() {
   yield all([takeLatest("user/giveRating", giveRating)]);
   yield all([takeLatest("user/getRating", getRating)]);
   yield all([takeLatest("user/reportChat", reportChat)]);
+  yield all([takeLatest("user/hireChef", hireChef)]);
+  yield all([takeLatest("user/cancelChefBooking", cancelChefBooking)]);
+  yield all([takeLatest("user/getNotification", getNotification)]);
+  yield all([takeLatest("user/readNotification", readNotification)]);
 }
 
 export default userSaga;

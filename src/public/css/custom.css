@@ -80,12 +80,12 @@ textarea:focus-visible {
   border-radius: 7px;
 }
 
-.checkBox:checked + .checkBoxTxt:before {
+.checkBox:checked+.checkBoxTxt:before {
   background: #388e1e;
   border: 2px solid #388e1e;
 }
 
-.checkBox:checked + .checkBoxTxt:after {
+.checkBox:checked+.checkBoxTxt:after {
   content: "";
   display: block;
   position: absolute;
@@ -106,8 +106,8 @@ textarea:focus-visible {
   left: -9999px;
 }
 
-.customRadio:checked + label,
-.customRadio:not(:checked) + label {
+.customRadio:checked+label,
+.customRadio:not(:checked)+label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
@@ -116,8 +116,8 @@ textarea:focus-visible {
   color: #666;
 }
 
-.customRadio:checked + label:before,
-.customRadio:not(:checked) + label:before {
+.customRadio:checked+label:before,
+.customRadio:not(:checked)+label:before {
   content: "";
   position: absolute;
   left: 0;
@@ -129,8 +129,8 @@ textarea:focus-visible {
   background: transparent;
 }
 
-.customRadio:checked + label:after,
-.customRadio:not(:checked) + label:after {
+.customRadio:checked+label:after,
+.customRadio:not(:checked)+label:after {
   content: "";
   width: 10px;
   height: 10px;
@@ -143,13 +143,13 @@ textarea:focus-visible {
   transition: all 0.2s ease;
 }
 
-.customRadio:not(:checked) + label:after {
+.customRadio:not(:checked)+label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
 
-.customRadio:checked + label:after {
+.customRadio:checked+label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -704,6 +704,31 @@ input:-webkit-autofill:active {
   background: #e65c00;
   box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.3);
 }
+
 .react-time-picker__inputGroup__input:invalid {
   background: none !important;
+}
+
+.date-picker-resp .react-datepicker-ignore-onclickoutside,
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 15px 25px;
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid #E9E9E9;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
+  color: #2E3333;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 400;
+}
+.date-picker-outer .react-datepicker-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+.cursor-pointer-notifiy{
+  cursor: pointer;
 }

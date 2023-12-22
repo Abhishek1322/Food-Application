@@ -19,6 +19,10 @@ const User_Navbar = () => {
   const dispatch = useDispatch();
   const { pathname } = location;
   const APIkey = "";
+  const { search } = location;
+  const searchParams = new URLSearchParams(search);
+  const chefId = searchParams.get("id");
+  console.log("chefIdchefId", chefId);
   const authData = useAuthSelector();
   const allUserData = useUserSelector();
   const userId = localStorage.getItem("userId");
@@ -32,7 +36,7 @@ const User_Navbar = () => {
     title: "",
     flag: "",
   });
-  
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -43,7 +47,7 @@ const User_Navbar = () => {
     setKey(Math.random());
   };
   // open modal
-  const handleUserProfile = (flag) => {
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -211,7 +215,7 @@ const User_Navbar = () => {
                           alt="logo"
                           className="img-fluid chatIconImage"
                           onClick={() => {
-                            handleUserProfile("chatmessage");
+                            handleOpenModal("chatmessage");
                           }}
                         />
                       </figure>
@@ -262,7 +266,7 @@ const User_Navbar = () => {
                     <button
                       className="sarahmessagebtn d-none"
                       onClick={() => {
-                        handleUserProfile("bookchef");
+                        handleOpenModal("bookchef");
                       }}
                     >
                       <div className="booknowimg">
@@ -323,7 +327,7 @@ const User_Navbar = () => {
                       <button
                         className="sarahmessagebtn"
                         onClick={() => {
-                          handleUserProfile("bookchef");
+                          handleOpenModal("bookchef");
                         }}
                       >
                         <div className="booknowimg">
@@ -334,7 +338,7 @@ const User_Navbar = () => {
                           />
                         </div>
 
-                        <p className="availableheading">Book Now</p>
+                        <p className="availableheading">Book Nowww</p>
                       </button>
                     </div>
                     <button
@@ -357,7 +361,7 @@ const User_Navbar = () => {
                   {/* <button
                   className="chefRightHeader m-0 text-end"
                   onClick={() => {
-                    handleUserProfile("verifyOrderDetailModal");
+                    handleOpenModal("verifyOrderDetailModal");
                   }}
                 >
                   Order Delivered
@@ -402,7 +406,7 @@ const User_Navbar = () => {
           ) : modalDetail.flag === "cartModal" ? (
             <CartModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "bookchef" ? (
-            <BookNowModal close={() => handleOnCloseModal()} />
+            <BookNowModal chefId={chefId} close={() => handleOnCloseModal()} />
           ) : (
             ""
           )

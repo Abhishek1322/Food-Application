@@ -8,12 +8,39 @@ const initialState = {
   cartData: [],
   cartCount: [],
   allOrders: [],
+  bookingData: [],
+  allnotifications: [],
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    readNotification: (state) => {
+      state.loading = true;
+    },
+    setReadNotification: (state, action) => {
+      state.loading = false;
+    },
+    getNotification: (state) => {
+      state.loading = true;
+    },
+    setGetNotification: (state, action) => {
+      state.loading = false;
+    },
+    cancelChefBooking: (state) => {
+      state.loading = true;
+    },
+    setCancelChefBooking: (state, action) => {
+      state.loading = false;
+    },
+    hireChef: (state) => {
+      state.loading = true;
+    },
+    setHireChef: (state, action) => {
+      state.loading = false;
+      state.bookingData = action.payload;
+    },
     reportChat: (state) => {
       state.loading = true;
     },
@@ -177,6 +204,14 @@ export const {
   setGetRating,
   reportChat,
   setReportChat,
+  hireChef,
+  setHireChef,
+  cancelChefBooking,
+  setCancelChefBooking,
+  getNotification,
+  setGetNotification,
+  readNotification,
+  setReadNotification,
 } = userSilce.actions;
 
 export default userSilce.reducer;

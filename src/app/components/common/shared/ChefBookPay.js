@@ -1,144 +1,259 @@
-import React, { useState } from 'react'
-import * as Images from "../../../../utilities/images"
-import CustomModal from './CustomModal';
-import ChefPaymentDone from './ChefPaymentDone';
+import React, { useState, useRef, useEffect } from "react";
+import * as Images from "../../../../utilities/images";
+import CustomModal from "./CustomModal";
+import ChefPaymentDone from "./ChefPaymentDone";
+import { usePaymentInputs } from "react-payment-inputs";
+import { toast } from "react-toastify";
+import { hireChef, onErrorStopLoad } from "../../../../redux/slices/user";
+import { useDispatch } from "react-redux";
+import moment from "moment";
 
-const ChefBookPay = () => {
-    const [key, setKey] = useState(Math.random());
-    const [modalDetail, setModalDetail] = useState({
-        show: false,
-        title: "",
-        flag: "",
+const ChefBookPay = ({
+  chefData,
+  latitude,
+  longitude,
+  city,
+  selectedTimeSlotes,
+  description,
+  date,
+}) => {
+  const [key, setKey] = useState(Math.random());
+  const toastId = useRef(null);
+  const dispatch = useDispatch();
+  const [orderId, setOrderId] = useState("");
+  const [orderNumber, setOrderNumber] = useState("");
+  const [formData, setFormData] = useState({
+    cardHolderName: "",
+    cardNumber: "",
+    cardExpiry: "",
+    cvv: "",
+  });
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+  console.log(
+    "aaaaaaaaaaaalllll",
+    chefData,
+    latitude,
+    longitude,
+    city,
+    selectedTimeSlotes,
+    description,
+    moment(date).format("DD-MM-YYYY")
+  );
+  const { meta, getExpiryDateProps, getCVCProps } = usePaymentInputs();
+
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  // open Modal
+  const handleOpenModal = (flag) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
+
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
+  // format card number
+  const handleFormatCardNumber = (value) => {
+    const v = value
+      .replace(/\s+/g, "")
+      .replace(/[^0-9]/gi, "")
+      .substr(0, 16);
+    const parts = [];
+
+    for (let i = 0; i < v.length; i += 4) {
+      parts.push(v.substr(i, 4));
+    }
+
+    return parts.length > 1 ? parts.join(" ") : value;
+  };
+
+  //onchange input
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // hire chef
+  const handleHireChef = () => {
+    if (!formData.cardHolderName) {
+      showToast("Please enter cardholder name");
+      return;
+    } else if (!formData.cardNumber) {
+      showToast("Please enter card number");
+      return;
+    } else if (!formData.expiryDate) {
+      showToast("Please enter card expiry date");
+      return;
+    } else if (!formData.cvc) {
+      showToast("Please enter cvv number");
+      return;
+    }
+    const removeSlotId = selectedTimeSlotes?.map((item) => {
+      const { id, ...rest } = item;
+      return rest;
     });
 
-    //closeModal
-    const handleOnCloseModal = () => {
-        setModalDetail({
-            show: false,
-            title: "",
-            flag: "",
-        });
-        setKey(Math.random());
+    let params = {
+      chefId: chefData?._id,
+      date: moment(date).format("DD-MM-YYYY"),
+      slots: removeSlotId,
+      address: city,
+      coordinates: [latitude, longitude],
+      description: description,
+      cardHolderName: formData.cardHolderName,
+      cardNumber: formData.cardNumber,
+      expiresOn: formData.expiryDate,
+      cvv: formData.cvc,
     };
+    dispatch(
+      hireChef({
+        ...params,
+        cb(res) {
+          console.log("checResss", res);
+          if (res.status === 200) {
+            handleOpenModal("chefpaydone");
+            setOrderId(res?.data?.data?._id);
+            setOrderNumber(res?.data?.data?.orderId);
+          }
+        },
+      })
+    );
+  };
 
-    const handleUserProfile = (flag) => {
-
-        setModalDetail({
-            show: true,
-            flag: flag,
-            type: flag,
-        });
-        setKey(Math.random());
-    };
-    return (
-        <>
-            <div className='paymodalsection'>
-                <div className='row m-2'>
-                    <div className='col-lg-12'>
-                        <div className="input-container mt-4">
-                            <input
-                                type="text"
-                                name="city"
-                                className="border-input"
-                                placeholder='Card Holder’s Name'
-                            />
-                            <label className="border-label">Card Holder’s Name</label>
-                        </div>
-                    </div>
-                </div>
-                <div className='paynowinputs'>
-                    <div className='row m-2'>
-                        <div className='col-lg-12'>
-                            <div className="input-container mt-4">
-                                <input
-                                    type="text"
-                                    name="Zip Code"
-                                    className="border-input"
-                                    placeholder='5485 2658 2154 2210'
-                                />
-                                <label className="border-label">Card No</label>
-                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='row m-2'>
-                        <div className='col-lg-6'>
-                            <div className="input-container mt-4">
-                                <input
-                                    type="text"
-                                    name="Zip Code"
-                                    className="border-input"
-                                    placeholder='MM/YY'
-                                />
-                                <label className="border-label">Expires On</label>
-                                <img src={Images.Calendar} alt="InfoIcon" className='InputIcon' />
-                            </div>
-                        </div>
-                        <div className='col-lg-6'>
-                            <div className="input-container mt-4">
-                                <input
-                                    type="text"
-                                    name="Zip Code"
-                                    className="border-input"
-                                    placeholder='123'
-                                />
-                                <label className="border-label">Card No</label>
-                                <img src={Images.ZipCode} alt="InfoIcon" className='InputIcon' />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='modalfooterbtn'>
-                    <div className='addfoodbtn'>
-                        <button className='foodmodalbtn' type='button' onClick={() => {
-                            handleUserProfile("chefpaydone")
-                        }}>
-                            Pay £90.00
-                        </button>
-                    </div>
-                </div>
+  return (
+    <>
+      <div className="paymodalsection">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="input-container mt-4">
+              <input
+                onChange={handleChange}
+                type="text"
+                name="cardHolderName"
+                className="border-input"
+                placeholder="Card Holder’s Name"
+              />
+              <label className="border-label">Card Holder’s Name</label>
             </div>
-            <CustomModal
-                key={key}
-                show={modalDetail.show}
-                backdrop="static"
-                showCloseBtn={false}
-                isRightSideModal={true}
-                mediumWidth={false}
-                className={modalDetail.flag === "chefpaydone" ? "commonWidth customContent" : ""}
-                ids={modalDetail.flag === "chefpaydone" ? "chefpaydonemodal" : ""}
-                child={
-                    modalDetail.flag === "chefpaydone" ? (
-                        <ChefPaymentDone
-                            close={() => handleOnCloseModal()}
-                        />
-                    ) :
-                        ""
-                }
-                header=
+          </div>
+        </div>
+        <div className="paynowinputs">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="input-container mt-4">
+                <input
+                  name="cardNumber"
+                  className="border-input"
+                  maxLength="19"
+                  placeholder="0000 0000 0000 0000"
+                  onChange={handleChange}
+                  value={handleFormatCardNumber(formData.cardNumber)}
+                />
+                <label className="border-label">Card No</label>
+                <img
+                  src={Images.ZipCode}
+                  alt="InfoIcon"
+                  className="InputIcon"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="input-container mt-4">
+                <input
+                  className="border-input"
+                  placeholder="MM/YY"
+                  name="cardExpiry"
+                  {...getExpiryDateProps({ onChange: handleChange })}
+                  value={formData.expiryDate}
+                />
 
-                {modalDetail.flag === "chefpaydone" ?
-                    <>
-                        {/* <div className='editadressheading'>
-                            <img src={Images.backArrowpassword} alt='backarrowimage' className='img-fluid' />
-                            <div className='edithead'>
-                                <h2 className="modal_Heading">
-                                Pay Now
-                                </h2>
-                                <p className='chatUser'>Debit/Credit cards acceptable</p>
-                            </div>
-                        </div>
-              <p onClick={handleOnCloseModal} className='modal_cancel'>
-                <img src={Images.modalCancel} className='ModalCancel' />
-              </p> */}
-                    </>
-                    :
-                    ''
-                }
-                onCloseModal={() => handleOnCloseModal()}
-            />
-        </>
-    )
-}
+                <label className="border-label">Expires On</label>
+                <img
+                  src={Images.Calendar}
+                  alt="InfoIcon"
+                  className="InputIcon"
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="input-container mt-4">
+                <input
+                  name="cvv"
+                  className="border-input"
+                  placeholder="123"
+                  {...getCVCProps({ onChange: handleChange })}
+                  value={formData.cvc}
+                />
 
-export default ChefBookPay
+                <label className="border-label">Cvv</label>
+                <img
+                  src={Images.ZipCode}
+                  alt="InfoIcon"
+                  className="InputIcon"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="modalfooterbtn">
+          <div className="addfoodbtn">
+            <button onClick={handleHireChef} className="foodmodalbtn">
+              Pay £{chefData?.chefInfo?.ratePerHour * selectedTimeSlotes.length}
+              .00
+            </button>
+          </div>
+        </div>
+      </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "chefpaydone" ? "commonWidth customContent" : ""
+        }
+        ids={modalDetail.flag === "chefpaydone" ? "chefpaydonemodal" : ""}
+        child={
+          modalDetail.flag === "chefpaydone" ? (
+            <ChefPaymentDone close={() => handleOnCloseModal()} />
+          ) : (
+            ""
+          )
+        }
+        header={modalDetail.flag === "chefpaydone" ? <></> : ""}
+        onCloseModal={() => handleOnCloseModal()}
+      />
+    </>
+  );
+};
+
+export default ChefBookPay;

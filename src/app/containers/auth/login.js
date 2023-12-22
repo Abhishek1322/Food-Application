@@ -13,7 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
   const toastId = useRef(null);
   const authData = useAuthSelector();
-
   const [isToggleOn, setIsToggleOn] = useState(false);
   const [formData, setFormData] = useState({
     email: "",

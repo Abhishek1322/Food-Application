@@ -351,7 +351,11 @@ const ChefDetails = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "chatModal" ? (
-            <ChatnextModal allChats={allChats} chefId={id} close={() => handleOnCloseModal()} />
+            <ChatnextModal
+              allChats={allChats}
+              chefId={id}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "reportchat" ? (
             <ReportchatDropModal id={id} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "clearchat" ? (

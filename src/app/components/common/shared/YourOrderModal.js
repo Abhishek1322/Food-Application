@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderCancelModal from "./OrderCancelModal";
-import { cancelOrder, onErrorStopLoad } from "../../../../redux/slices/user";
+import {
+  cancelOrder,
+  onErrorStopLoad,
+  cancelChefBooking,
+} from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 
 const YourOrderModal = (props) => {
-  const { close, closeModal, orderId } = props;
+  const { close, closeModal, orderId, flag } = props;
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
@@ -42,20 +46,38 @@ const YourOrderModal = (props) => {
 
   // Cancel Order
   const handleCancelOrder = () => {
-    let params = {
-      status: "cancelled",
-      id: orderId,
-    };
-    dispatch(
-      cancelOrder({
-        ...params,
-        cb(res) {
-          if (res.status === 200) {
-            handleOpenModal("ordercancel");
-          }
-        },
-      })
-    );
+    if (flag === "booking") {
+      alert("check");
+      let params = {
+        status: "cancelled",
+        id: orderId,
+      };
+      dispatch(
+        cancelChefBooking({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              handleOpenModal("ordercancel");
+            }
+          },
+        })
+      );
+    } else {
+      let params = {
+        status: "cancelled",
+        id: orderId,
+      };
+      dispatch(
+        cancelOrder({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              handleOpenModal("ordercancel");
+            }
+          },
+        })
+      );
+    }
   };
 
   return (

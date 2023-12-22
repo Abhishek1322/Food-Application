@@ -40,8 +40,12 @@ const ApiPath = {
     GET_SINGLE_ORDER: "/order/order",
     UPDATE_CART_ITEM: "/cart/update",
     ADD_RATING: "/chefRating",
-    GET_RATING:"/chefRating/rating",
-    REPORT_CHAT:"/report_chat/report"
+    GET_RATING: "/chefRating/rating",
+    REPORT_CHAT: "/report_chat/report",
+    HIRE_CHEF: "/bookings",
+    CANCEL_BOOKING: "/bookings/change-status",
+    GET_ALL_NOTIFICATION: "/notification/notification",
+    READ_NOTIFICATION: "/notification",
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
