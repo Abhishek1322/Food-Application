@@ -33,16 +33,7 @@ const ChefBookPay = ({
     title: "",
     flag: "",
   });
-  console.log(
-    "aaaaaaaaaaaalllll",
-    chefData,
-    latitude,
-    longitude,
-    city,
-    selectedTimeSlotes,
-    description,
-    moment(date).format("DD-MM-YYYY")
-  );
+  
   const { meta, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
   //closeModal

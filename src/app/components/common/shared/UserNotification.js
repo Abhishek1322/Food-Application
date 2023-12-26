@@ -4,13 +4,14 @@ import {
   getNotification,
   onErrorStopLoad,
   readNotification,
+  clearNotification,
 } from "../../../../redux/slices/user";
 import moment from "moment";
 
 const UserNotification = () => {
   const dispatch = useDispatch();
   const [notification, setNotification] = useState([]);
-
+  console.log("notificationnotification", notification);
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -37,37 +38,66 @@ const UserNotification = () => {
   // read notifications
   const handleReadNotification = (id) => {
     let params = {
-        id: id,
-    }
-    dispatch(readNotification({
+      id: id,
+      is_read: true,
+    };
+    dispatch(
+      readNotification({
         ...params,
-        cb(res){
-            
-        }
-    }))
+        cb(res) {
+          if (res.status === 200) {
+            handleGetAllNotifications();
+          }
+        },
+      })
+    );
+  };
+
+  // clear all notifications
+  const handleClearAllNotifications = () => {
+    dispatch(
+      clearNotification({
+        cb(res) {
+          if (res.status === 200) {
+            handleGetAllNotifications();
+          }
+        },
+      })
+    );
   };
 
   return (
     <>
       <div className="notificationsection">
-        <p className="modalclearAll text-end">Clear All </p>
+        <p
+          onClick={handleClearAllNotifications}
+          className="modalclearAll text-end"
+        >
+          Clear All{" "}
+        </p>
         <div className="modalscroll">
-          {notification?.map((item) => (
-            <div
-              onClick={()=>handleReadNotification(item?._id)}
-              key={item?._id}
-              className={
-                item?.is_read
-                  ? "notificationModal unreadmessage"
-                  : "notificationModal reademessage cursor-pointer-notifiy"
-              }
-            >
-              <p className="notificationText">{item?.description}</p>
-              <p className="notificationTime">
-                {moment(item?.createdAt).format("hh:mm A")}
-              </p>
-            </div>
-          ))}
+          {notification && notification.length > 0 ? (
+            <>
+              {notification?.map((item) => (
+                <div
+                  onClick={() => handleReadNotification(item?._id)}
+                  key={item?._id}
+                  className={
+                    item?.is_read
+                      ? "notificationModal unreadmessage"
+                      : "notificationModal reademessage cursor-pointer-notifiy"
+                  }
+                >
+                  <p className="notificationText">{item?.description}</p>
+                  <p className="notificationTime">
+                    {moment(item?.createdAt).format("hh:mm A")}
+                  </p>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>No notification found</p>
+          )}
         </div>
       </div>
     </>

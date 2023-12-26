@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import BellModal from "./shared/bellModal";
-import Notification from "./shared/notification";
 import Myorder from "./shared/myorderModal";
 import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
 import { Link, useLocation } from "react-router-dom";
@@ -15,6 +14,8 @@ import { useChefSelector } from "../../../redux/selector/chef";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
+import UserNotification from "./shared/UserNotification";
+import { getNotification } from "../../../redux/slices/user";
 
 const Chef_Navbar = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const Chef_Navbar = () => {
   const [key, setKey] = useState(Math.random());
   const [allChats, setAllChats] = useState([]);
   const [chefProfileData, setProfileData] = useState([]);
+  const [notification, setNotification] = useState([]);
 
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -100,6 +102,24 @@ const Chef_Navbar = () => {
     });
   };
 
+  // get all notifications
+  const handleGetAllNotifications = () => {
+    dispatch(
+      getNotification({
+        cb(res) {
+          if (res.status === 200) {
+            setNotification(res?.data?.data);
+          }
+        },
+      })
+    );
+  };
+
+  // // get all notifications
+  useEffect(() => {
+    handleGetAllNotifications();
+  }, []);
+
   return (
     <>
       <div className="main_Setting">
@@ -168,7 +188,11 @@ const Chef_Navbar = () => {
                         />
                       </figure>
                     </div>
-                    <div className="headeritem">
+                    <div
+                      className={notification?.some((item) =>
+                        !item.is_read ? "headeritem" : ""
+                      )}
+                    >
                       <figure
                         className="menuBox"
                         onClick={() => {
@@ -274,7 +298,7 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox" ? (
             <BellModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Notification" ? (
-            <Notification close={() => handleOnCloseModal()} />
+            <UserNotification close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Myorder" ? (
             <Myorder close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "verifyOrderDetailModal" ? (

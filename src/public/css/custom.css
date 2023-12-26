@@ -723,12 +723,38 @@ input:-webkit-autofill:active {
   font-size: 14px;
   font-weight: 400;
 }
+
 .date-picker-outer .react-datepicker-wrapper {
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
 }
-.cursor-pointer-notifiy{
+
+.reviewsection,.cursor-pointer-notifiy {
   cursor: pointer;
+}
+
+.StarRating_ {
+  cursor: pointer;
+}
+
+.StarRating_.activeRating {
+  background-color: #2E3333;
+
+}
+
+.StarRating_.activeRating span {
+  color: #fff;
+}
+
+.ratingProgressBarNew .ant-progress-bg {
+  background-color: #FFC107 !important;
+  height: 10px !important;
+}
+.ratingProgressBarNew .ant-progress-inner {
+  margin-top: 21px;
+  background-color: #FFF3CD;
+  border-radius: 50px;
+  height: 10px;
 }

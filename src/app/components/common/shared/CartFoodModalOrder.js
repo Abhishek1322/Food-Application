@@ -138,7 +138,10 @@ const CartFoodModalOrder = (props) => {
               <h6 className="chefName">Rating</h6>
               <div className="chefrating mt-1">
                 <i className="las la-star startIcon"></i>
-                <p className="ratingheading">4.5 (845 Reviews)</p>
+                <p className="ratingheading">
+                  {foodDetails?.averageRating} ({foodDetails?.totalReview}{" "}
+                  Reviews)
+                </p>
               </div>
             </div>
           </div>
@@ -186,7 +189,7 @@ const CartFoodModalOrder = (props) => {
               <p className="price">£{totalPrice}.00</p>
             </div>
             <button
-               disabled={userData?.loading}
+              disabled={userData?.loading}
               className="orderbutton p-0"
               type="button"
               onClick={() => {

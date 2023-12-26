@@ -16,6 +16,24 @@ export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getMenuRating: (state) => {
+      state.loading = true;
+    },
+    setGetMenuRating: (state, action) => {
+      state.loading = false;
+    },
+    menuRating: (state) => {
+      state.loading = true;
+    },
+    setMenuRating: (state, action) => {
+      state.loading = false;
+    },
+    clearNotification: (state) => {
+      state.loading = true;
+    },
+    setClearNotification: (state, action) => {
+      state.loading = false;
+    },
     readNotification: (state) => {
       state.loading = true;
     },
@@ -212,6 +230,12 @@ export const {
   setGetNotification,
   readNotification,
   setReadNotification,
+  clearNotification,
+  setClearNotification,
+  menuRating,
+  setMenuRating,
+  getMenuRating,
+  setGetMenuRating,
 } = userSilce.actions;
 
 export default userSilce.reducer;

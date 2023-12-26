@@ -13,6 +13,7 @@ import CartModal from "./shared/cartModal";
 import { toggleSidebar } from "../../../redux/slices/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
+import { getNotification } from "../../../redux/slices/user";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const User_Navbar = () => {
   const [currentLocation, setCurrentLocation] = useState();
   const [userData, setUserData] = useState([]);
   const [allChats, setAllChats] = useState([]);
+  const [notification, setNotification] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -163,6 +165,24 @@ const User_Navbar = () => {
     });
   };
 
+  // get all notifications
+  const handleGetAllNotifications = () => {
+    dispatch(
+      getNotification({
+        cb(res) {
+          if (res.status === 200) {
+            setNotification(res?.data?.data);
+          }
+        },
+      })
+    );
+  };
+
+  // // get all notifications
+  useEffect(() => {
+    handleGetAllNotifications();
+  }, []);
+
   return (
     <>
       <div className="main_Setting">
@@ -220,7 +240,11 @@ const User_Navbar = () => {
                         />
                       </figure>
                     </div>
-                    <div className="headeritem">
+                    <div
+                      className={notification?.some((item) =>
+                        item.is_read ? "headeritem" : ""
+                      )}
+                    >
                       <figure
                         className="menuBox"
                         onClick={() => {
@@ -338,7 +362,7 @@ const User_Navbar = () => {
                           />
                         </div>
 
-                        <p className="availableheading">Book Nowww</p>
+                        <p className="availableheading">Book Now</p>
                       </button>
                     </div>
                     <button

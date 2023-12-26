@@ -1,7 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
+import {
+  getBookingRequests,
+  onErrorStopLoadChef,
+} from "../../../../redux/slices/chef";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import ReactPaginate from "react-paginate";
 
 const NewBooking = () => {
+  const dispatch = useDispatch();
+  const [bookingRequest, setBookingRequest] = useState([]);
+  const [bookingStatus, setBookingStatus] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState("");
+
+  // get booking request
+  useEffect(() => {
+    let params = {
+      limit: 15,
+      page: currentPage,
+      status: bookingStatus,
+    };
+    dispatch(
+      getBookingRequests({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setBookingRequest(res?.data?.data?.data);
+            setPageCount(res.data.data.total_pages);
+          }
+        },
+      })
+    );
+  }, [bookingStatus, currentPage, pageCount]);
+
+  // stop loading
+  useEffect(() => {
+    dispatch(onErrorStopLoadChef());
+  }, [dispatch]);
+
+  // Page change handler
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected + 1);
+  };
+
   return (
     <>
       <div className="mainchef_">
@@ -14,6 +57,7 @@ const NewBooking = () => {
                 role="tablist"
               >
                 <button
+                  onClick={() => setBookingStatus("")}
                   className="nav-link bookingNavHeader active"
                   id="nav-home-tab"
                   data-bs-toggle="tab"
@@ -26,6 +70,7 @@ const NewBooking = () => {
                   New Bookings{" "}
                 </button>
                 <button
+                  onClick={() => setBookingStatus("accepted")}
                   className="nav-link bookingNavHeader"
                   id="nav-profile-tab"
                   data-bs-toggle="tab"
@@ -41,677 +86,42 @@ const NewBooking = () => {
             </div>
           </nav>
           <div className="tab-content" id="nav-tabContent">
-            <div
-              className="tab-pane fade show  active"
-              id="nav-home"
-              role="tabpanel"
-              aria-labelledby="nav-home-tab"
-            >
+            <div>
               <div className="container-fluid">
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="profileDetail">
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="logo"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className=" profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="profileDetail">
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="profileDetail">
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="tab-pane fade"
-              id="nav-profile"
-              role="tabpanel"
-              aria-labelledby="nav-profile-tab"
-            >
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div className="profileDetail">
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="profileDetail">
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="profileDetail">
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
-                      <div className="homeProfileBox">
-                        <div className="profileInfo">
-                          <img
-                            src={Images.homeProfile}
-                            alt="homeProfileImg"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h4 className="userProfile">John Smith</h4>
-                            <h5 className="userInfo">Jul 20, 2023</h5>
-                          </div>
-                        </div>
-                        <p className="userInfoTxt">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. distracted by the readable
-                          content of a page when looking at its layout. The
-                          point of using
-                          <span className="more"> more...</span>
-                        </p>
-                      </div>
+                      {bookingRequest && bookingRequest.length > 0 ? (
+                        <>
+                          {bookingRequest?.map((item, index) => (
+                            <div key={index} className="homeProfileBox">
+                              <div className="profileInfo">
+                                <img
+                                  src={
+                                    item?.userId?.userInfo?.profilePhoto
+                                      ? item?.userId?.userInfo?.profilePhoto
+                                      : Images.dummyProfile
+                                  }
+                                  alt="profile"
+                                  className="homeprofile"
+                                />
+                                <div className="detailInfo">
+                                  <h3 className="userProfile">
+                                    {item?.userId?.userInfo?.firstName}{" "}
+                                    {item?.userId?.userInfo?.lastName}
+                                  </h3>
+                                  <h4 className="userInfo">
+                                    {moment(item?.createdAt).format("hh:mm A")}
+                                  </h4>
+                                </div>
+                              </div>
+                              <p className="userInfoTxt">{item?.description}</p>
+                            </div>
+                          ))}
+                        </>
+                      ) : (
+                        <p>No data found</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -720,6 +130,18 @@ const NewBooking = () => {
           </div>
         </div>
       </div>
+      {bookingRequest && bookingRequest.length > 0 && (
+        <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          pageCount={pageCount}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={3}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
+      )}
     </>
   );
 };

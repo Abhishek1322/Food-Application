@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  
+
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -283,7 +283,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer AAAAHRQtGIo:APA91bHfwyhY4cv1HeqaG7rSy9cnIQawy96LWye1SyralUJsoct5iT3NjssbzMPlhnncVGLUqLNGuKqdRFL8-FCCA2mrC65uH-3zrExXscs1nc8tBtbC67ZbsOXoeMdYvtYZ_CZW2Yfa`, // Replace with your Firebase Cloud Messaging Server Key
+        Authorization: `key= AAAAHRQtGIo:APA91bHfwyhY4cv1HeqaG7rSy9cnIQawy96LWye1SyralUJsoct5iT3NjssbzMPlhnncVGLUqLNGuKqdRFL8-FCCA2mrC65uH-3zrExXscs1nc8tBtbC67ZbsOXoeMdYvtYZ_CZW2Yfa`, // Replace with your Firebase Cloud Messaging Server Key
       },
       body: JSON.stringify(payload),
     });

@@ -118,6 +118,7 @@ import uploadFileImg from "../public/images/uploadFileImg.svg";
 import logoutImg from "../public/images/logoutImg.svg";
 import otherImg from "../public/images/Other.svg";
 import addressicon from "../public/images/addressicon.png";
+import singleRating from "../public/images/singleRating.svg";
 
 export {
   Logo,
@@ -240,4 +241,5 @@ export {
   logoutImg,
   otherImg,
   addressicon,
+  singleRating
 };

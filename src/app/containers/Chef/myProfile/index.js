@@ -11,17 +11,22 @@ import {
 } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import { getRating } from "../../../../redux/slices/user";
+import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const MyProfile = () => {
   const [key, setKey] = useState(Math.random());
   const dispatch = useDispatch();
+  const authData = useAuthSelector();
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
   const [expertice, setExpertice] = useState([]);
   const [availability, setAvailability] = useState([]);
   const [profileUrl, setProfileUrl] = useState("");
-  
+  const [allRating, setAllRating] = useState([]);
+  const [getActiveRating, setGetActiveRating] = useState("All");
+
   const [slotTime, setSlotTimes] = useState({
     startTime: "",
     endTime: "",
@@ -60,6 +65,12 @@ const MyProfile = () => {
     chefProfileDetails();
   }, []);
 
+  // get chef rating information
+  useEffect(() => {
+    handleGetChefReating();
+  }, [getActiveRating]);
+
+  // get chef details
   const chefProfileDetails = () => {
     let params = {
       userid: userId,
@@ -72,6 +83,24 @@ const MyProfile = () => {
           setExpertice(res?.data?.data?.chefInfo?.expertise);
           setAvailability(res?.data?.data?.chefInfo?.availability);
           setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
+        },
+      })
+    );
+  };
+
+  // get all chef
+  const handleGetChefReating = () => {
+    let params = {
+      chefId: authData?.userInfo?.id,
+      rating: getActiveRating === "All" ? "" : getActiveRating,
+    };
+    dispatch(
+      getRating({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setAllRating(res?.data?.data);
+          }
         },
       })
     );
@@ -161,7 +190,10 @@ const MyProfile = () => {
                     }}
                   >
                     <p className="cheftext p-0">My Ratings & Reviews</p>
-                    <p className="chatheadtext">4.5 (845 Reviews)</p>
+                    <p className="chatheadtext">
+                      {allRating?.averageRating} (
+                      {allRating?.details?.data?.length} Reviews)
+                    </p>
                   </div>
                 </div>
                 {/* chefdata  */}
@@ -297,33 +329,35 @@ const MyProfile = () => {
                   </div>
                   <ul className="myavailability">
                     {week.map((day, index) => (
-                      <>
-                        <li
-                          onClick={() => handleSlotTime(day.day)}
+                      <li
+                        key={index}
+                        onClick={() => handleSlotTime(day.day)}
+                        className={
+                          activeWeekDay === day.day
+                            ? "dayavailability active"
+                            : "dayavailability"
+                        }
+                      >
+                        <p
                           className={
                             activeWeekDay === day.day
-                              ? "dayavailability active"
-                              : "dayavailability"
+                              ? "notificationText text-capitalize text-white"
+                              : "notificationText text-capitalize"
                           }
                         >
-                          <p
-                            className={
-                              activeWeekDay === day.day
-                                ? "notificationText text-capitalize text-white"
-                                : "notificationText text-capitalize"
-                            }
-                          >
-                            {day.day}
-                          </p>
-                        </li>
-                      </>
+                          {day.day}
+                        </p>
+                      </li>
                     ))}
                   </ul>
                   <div className="cheftime">
                     {slotTime.startTime && slotTime.endTime && activeWeekDay ? (
                       <div className="expertisevalue">
                         <p className="expertheading">
-                          {moment(slotTime.startTime, "h:mm A").format("h:mm A")} -{" "}
+                          {moment(slotTime.startTime, "h:mm A").format(
+                            "h:mm A"
+                          )}{" "}
+                          -{" "}
                           {moment(slotTime.endTime, "h:mm A").format("h:mm A")}
                         </p>
                       </div>
@@ -373,7 +407,11 @@ const MyProfile = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "ratingReviewsModal" ? (
-            <RatingReviewsModal close={() => handleOnCloseModal()} />
+            <RatingReviewsModal
+              setGetActiveRating={setGetActiveRating}
+              allRating={allRating}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )
@@ -383,21 +421,33 @@ const MyProfile = () => {
             <>
               <h2 className="modal_Heading">Add Expetise</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel"/>
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancel"
+                />
               </p>
             </>
           ) : modalDetail.flag === "addAvailabilityModal" ? (
             <>
               <h2 className="modal_Heading">My Availability</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel" />
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancel"
+                />
               </p>
             </>
           ) : modalDetail.flag === "ratingReviewsModal" ? (
             <>
               <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img src={Images.modalCancel} className="ModalCancel" alt="modalcancel"/>
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancel"
+                />
               </p>
             </>
           ) : (

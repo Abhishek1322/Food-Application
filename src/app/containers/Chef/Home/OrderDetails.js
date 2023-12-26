@@ -20,8 +20,8 @@ const OrderDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const authData = useAuthSelector()
-  console.log("authDataauthData0",authData);
+  const authData = useAuthSelector();
+  console.log("authDataauthData0", authData);
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");

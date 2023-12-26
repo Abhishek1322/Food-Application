@@ -170,6 +170,9 @@ function* chefLists(action) {
   if (action.payload.address) {
     targetUtl += `address=${action.payload.address}`;
   }
+  if (action.payload.rating) {
+    targetUtl += `rating=${action.payload.rating}`;
+  }
   try {
     const resp = yield call(
       ApiClient.get,

@@ -26,17 +26,90 @@ import {
   setCancelChefBooking,
   setGetNotification,
   setReadNotification,
+  setClearNotification,
+  setMenuRating,
+  setGetMenuRating,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getMenuRating(action) {
+  let targetUrl = `${ApiPath.userApiPath.GET_MENU_RATING}?menuId=${action.payload.menuId}&`;
+  if (action.payload.rating) {
+    targetUrl += `rating=${action.payload.rating}`;
+  }
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = targetUrl),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetMenuRating(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+function* menuRating(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.userApiPath.MENU_RATING}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setMenuRating(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.data[0]) {
+      toast.error(e.response.data.data[0]);
+    } else {
+      toast.error(e.response.data.message);
+    }
+  }
+}
+
+function* clearNotification(action) {
+  try {
+    const resp = yield call(
+      ApiClient.delete,
+      (action.url = `${ApiPath.userApiPath.CLEAR_ALL_NOTIFICATION}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setClearNotification(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* readNotification(action) {
   const deleteParams = { ...action.payload };
   delete deleteParams.id;
   try {
     const resp = yield call(
-      ApiClient.patch,
-      (action.url = `${ApiPath.userApiPath.READ_NOTIFICATION}/${action.payload.id}`),
+      ApiClient.put,
+      (action.url = `${ApiPath.userApiPath.READ_NOTIFICATION}/?id=${action.payload.id}`),
       (action.payload = deleteParams)
     );
     if (resp.status) {
@@ -56,7 +129,6 @@ function* readNotification(action) {
     }
   }
 }
-
 
 function* getNotification(action) {
   try {
@@ -122,11 +194,7 @@ function* hireChef(action) {
   } catch (e) {
     yield put(onErrorStopLoad());
     toast.dismiss();
-    if (e.response.data.data[0]) {
-      toast.error(e.response.data.data[0]);
-    } else {
-      toast.error(e.response.data.message);
-    }
+    toast.error(e.response.data.message);
   }
 }
 
@@ -158,10 +226,15 @@ function* reportChat(action) {
 }
 
 function* getRating(action) {
+  console.log("actionaction", action);
+  let targetUrl = `${ApiPath.userApiPath.GET_RATING}?chefId=${action.payload.chefId}&`;
+  if (action.payload.rating) {
+    targetUrl += `rating=${action.payload.rating}`;
+  }
   try {
     const resp = yield call(
       ApiClient.get,
-      (action.url = `${ApiPath.userApiPath.GET_RATING}?chefId=${action.payload.chefId}`),
+      (action.url = targetUrl),
       (action.payload = action.payload)
     );
     if (resp.status) {
@@ -559,6 +632,8 @@ function* userSaga() {
   yield all([takeLatest("user/cancelChefBooking", cancelChefBooking)]);
   yield all([takeLatest("user/getNotification", getNotification)]);
   yield all([takeLatest("user/readNotification", readNotification)]);
+  yield all([takeLatest("user/clearNotification", clearNotification)]);
+  yield all([takeLatest("user/menuRating", menuRating)]);
+  yield all([takeLatest("user/getMenuRating", getMenuRating)]);
 }
-
 export default userSaga;

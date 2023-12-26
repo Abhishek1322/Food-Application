@@ -9,10 +9,38 @@ import {
   setGetSingleOrderDetail,
   setConfirmOrderOtp,
   setConfirmResendOtp,
+  setGetBookingRequests,
 } from "../../slices/chef";
 
-function* confirmResendOtp(action) {
+function* getBookingRequests(action) {
+  console.log("actionaction", action);
+  let tartgetUrl = `${ApiPath.chefApiPath.GET_BOOKING_REQUESTS}?limit=${action.payload.limit}`;
+  if (action.payload.status) {
+    tartgetUrl += `&status=${action.payload.status}`;
+  }
+  if (action.payload.page) {
+    tartgetUrl += `&page=${action.payload.page}`;
+  }
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = tartgetUrl),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetBookingRequests(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoadChef());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
+function* confirmResendOtp(action) {
   try {
     const resp = yield call(
       ApiClient.post,
@@ -36,7 +64,6 @@ function* confirmResendOtp(action) {
 function* confirmOrderOtp(action) {
   const deleteParams = { ...action.payload };
   delete deleteParams.id;
-
   try {
     const resp = yield call(
       ApiClient.post,
@@ -134,7 +161,7 @@ function* chefSaga() {
   yield all([takeLatest("chef/getSingleOrderDetail", getSingleOrderDetail)]);
   yield all([takeLatest("chef/confirmOrderOtp", confirmOrderOtp)]);
   yield all([takeLatest("chef/confirmResendOtp", confirmResendOtp)]);
-
+  yield all([takeLatest("chef/getBookingRequests", getBookingRequests)]);
 }
 
 export default chefSaga;

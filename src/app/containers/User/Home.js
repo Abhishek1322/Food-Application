@@ -11,17 +11,19 @@ const HomeUser = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
   const [search, setSearch] = useState("");
+  const [filterChefByRating, setFilterChefByRating] = useState("");
 
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, [search]);
+  }, [search, filterChefByRating]);
 
   const getChefList = (page = currentPage) => {
     let params = {
       page: page,
       limit: 12,
       address: search,
+      rating: filterChefByRating,
     };
 
     dispatch(
@@ -41,6 +43,12 @@ const HomeUser = () => {
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected + 1);
     getChefList(selected + 1);
+  };
+
+  // filter chef by rating
+  const handleFilterChefByRating = (e, rating) => {
+    e.preventDefault();
+    setFilterChefByRating(rating);
   };
 
   return (
@@ -70,7 +78,7 @@ const HomeUser = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <span className="filterheading">4</span>
+              <span className="filterheading">{filterChefByRating}</span>
               <img
                 src={Images.RatingStar}
                 alt="starimg"
@@ -80,8 +88,12 @@ const HomeUser = () => {
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <Link className="dropdown-item" to="#">
-                  <span className="filterheading">4</span>
+                <Link
+                  onClick={(e) => handleFilterChefByRating(e, "5")}
+                  className="dropdown-item"
+                  to="#"
+                >
+                  <span className="filterheading">5</span>
                   <img
                     src={Images.RatingStar}
                     alt="starimg"
@@ -91,8 +103,12 @@ const HomeUser = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="#">
-                  <span className="filterheading">5</span>
+                <Link
+                  onClick={(e) => handleFilterChefByRating(e, "4")}
+                  className="dropdown-item"
+                  to="#"
+                >
+                  <span className="filterheading">4</span>
                   <img
                     src={Images.RatingStar}
                     alt="starimg"
@@ -102,7 +118,11 @@ const HomeUser = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="#">
+                <Link
+                  onClick={(e) => handleFilterChefByRating(e, "3")}
+                  className="dropdown-item"
+                  to="#"
+                >
                   <span className="filterheading">3</span>
                   <img
                     src={Images.RatingStar}
@@ -113,8 +133,12 @@ const HomeUser = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="#">
-                  <span className="filterheading">3</span>
+                <Link
+                  onClick={(e) => handleFilterChefByRating(e, "2")}
+                  className="dropdown-item"
+                  to="#"
+                >
+                  <span className="filterheading">2</span>
                   <img
                     src={Images.RatingStar}
                     alt="starimg"
@@ -124,7 +148,11 @@ const HomeUser = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="#">
+                <Link
+                  onClick={(e) => handleFilterChefByRating(e, "1")}
+                  className="dropdown-item"
+                  to="#"
+                >
                   <span className="filterheading">1</span>
                   <img
                     src={Images.RatingStar}

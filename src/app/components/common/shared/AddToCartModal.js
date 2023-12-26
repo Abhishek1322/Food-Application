@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, getAllCart } from "../../../../redux/slices/user";
 import { useUserSelector } from "../../../../redux/selector/user";
+import MenuRating from "./MenuRating";
+import CustomModal from "./CustomModal";
 
 const AddToCartModal = (props) => {
   const { menuId, close } = props;
@@ -12,7 +14,13 @@ const AddToCartModal = (props) => {
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
-
+  const [key, setKey] = useState(Math.random());
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+  console.log("foodDetailsfoodDetails", foodDetails);
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -64,6 +72,26 @@ const AddToCartModal = (props) => {
     );
   };
 
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  // open modal
+  const handleOpenModal = (flag, id) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
+
   return (
     <>
       <div className="cartfoodsection addCartModal">
@@ -99,9 +127,14 @@ const AddToCartModal = (props) => {
             </div>
             <div className="foodrating">
               <h6 className="chefName">Rating</h6>
-              <div className="chefrating mt-1">
+              <div
+                onClick={() => handleOpenModal("ratingmenu")}
+                className="chefrating mt-1"
+              >
                 <i className="las la-star startIcon"></i>
-                <p className="ratingheading">4.5 (845 Reviews)</p>
+                <p className="ratingheading">
+                  {foodDetails?.averageRating} ({foodDetails?.totalReview} Reviews)
+                </p>
               </div>
             </div>
           </div>
@@ -127,11 +160,47 @@ const AddToCartModal = (props) => {
               {userData?.loading && (
                 <span className="spinner-border spinner-border-sm me-1"></span>
               )}
-              Add to cart
+              Add to Cart
             </button>
           </div>
         </div>
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "ratingmenu" ? "commonWidth customContent" : ""
+        }
+        ids={modalDetail.flag === "ratingmenu" ? "availablebtnModal" : ""}
+        child={
+          modalDetail.flag === "ratingmenu" ? (
+            <MenuRating menuId={menuId} close={() => handleOnCloseModal()} />
+          ) : (
+            ""
+          )
+        }
+        header={
+          modalDetail.flag === "ratingmenu" ? (
+            <>
+              <h2 className="modal_Heading">Rating & Reviews</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
+              </p>
+            </>
+          ) : (
+            ""
+          )
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   );
 };

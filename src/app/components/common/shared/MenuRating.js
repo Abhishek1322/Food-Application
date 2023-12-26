@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import * as Images from "../../../../utilities/images";
-import ChefGiveRating from "./ChefGiveRating";
-import CustomModal from "./CustomModal";
-import { getRating, onErrorStopLoad } from "../../../../redux/slices/user";
-import { useDispatch } from "react-redux";
 import ReactStars from "react-rating-stars-component";
+import * as Images from "../../../../utilities/images";
+import CustomModal from "./CustomModal";
+import MenuGiveRating from "./MenuGiveRating";
+import { getMenuRating, onErrorStopLoad } from "../../../../redux/slices/user";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 
-const ChefRating = (props) => {
-  const { chefId, handleGetChefDetails } = props;
+const MenuRating = ({ menuId }) => {
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
-  const [ratingData, setRatingData] = useState([]);
+  const [menuRatingData, setMenuRatingData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-  console.log("ratingDataratingData", ratingData);
+  console.log("menuRatingData", menuRatingData);
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -38,41 +38,41 @@ const ChefRating = (props) => {
     setKey(Math.random());
   };
 
-  // stop loader on page load
+  // get menu rating
   useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
+    handleGetMenuRating();
+  }, []);
 
-  // get all rating
-  const getAllRating = () => {
+  const handleGetMenuRating = () => {
     let params = {
-      chefId: chefId,
+      menuId: menuId,
     };
     dispatch(
-      getRating({
+      getMenuRating({
         ...params,
         cb(res) {
+          console.log("resszzzssz", res);
           if (res.status === 200) {
-            setRatingData(res?.data?.data);
+            setMenuRatingData(res?.data?.data?.data);
           }
         },
       })
     );
   };
 
-  // get all rating
+  // stop loader on page load
   useEffect(() => {
-    getAllRating();
-  }, []);
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
       <div className="chefratingsection">
         <div className="userrate modalscroll">
-          {ratingData?.details?.data.length > 0 ? (
+          {menuRatingData.length > 0 ? (
             <>
-              {ratingData?.details?.data?.map((item, index) => (
-                <div key={index} className="chefrateimg">
+              {menuRatingData?.map((item, index) => (
+                <div className="chefrateimg">
                   <img
                     src={
                       item?.userId?.userInfo?.profilePhoto
@@ -128,7 +128,7 @@ const ChefRating = (props) => {
             className="foodmodalbtn"
             type="button"
             onClick={() => {
-              handleOpenModal("giverate");
+              handleOpenModal("givemenurate");
             }}
           >
             Rate Us
@@ -143,15 +143,14 @@ const ChefRating = (props) => {
         isRightSideModal={true}
         mediumWidth={false}
         className={
-          modalDetail.flag === "giverate" ? "commonWidth customContent" : ""
+          modalDetail.flag === "givemenurate" ? "commonWidth customContent" : ""
         }
-        ids={modalDetail.flag === "giverate" ? "giveratemodal" : ""}
+        ids={modalDetail.flag === "givemenurate" ? "availablebtnModal" : ""}
         child={
-          modalDetail.flag === "giverate" ? (
-            <ChefGiveRating
-              chefId={chefId}
-              handleGetChefDetails={handleGetChefDetails}
-              getAllRating={getAllRating}
+          modalDetail.flag === "givemenurate" ? (
+            <MenuGiveRating
+              menuId={menuId}
+              handleGetMenuRating={handleGetMenuRating}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -159,19 +158,16 @@ const ChefRating = (props) => {
           )
         }
         header={
-          modalDetail.flag === "giverate" ? (
+          modalDetail.flag === "givemenurate" ? (
             <>
-              <div className="editadressheading">
+              <h2 className="modal_Heading">Rating & Reviews</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img
-                  onClick={() => handleOnCloseModal()}
-                  src={Images.backArrowpassword}
-                  alt="backarrowimage"
-                  className="img-fluid arrowCommon_"
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
                 />
-                <div className="edithead">
-                  <h2 className="modal_Heading">Give Rating & Reviews</h2>
-                </div>
-              </div>
+              </p>
             </>
           ) : (
             ""
@@ -183,4 +179,4 @@ const ChefRating = (props) => {
   );
 };
 
-export default ChefRating;
+export default MenuRating;

@@ -4,16 +4,23 @@ const initialState = {
   loading: false,
   allRecentOrder: [],
   latestOrder: false,
+  allBookingRequests: [],
 };
 
 export const chefSilce = createSlice({
   name: "chef",
   initialState,
   reducers: {
-    getLatestOrder: (state,action) => {
+    getBookingRequests: (state) => {
+      state.loading = true;
+    },
+    setGetBookingRequests: (state, action) => {
+      state.loading = false;
+      state.allBookingRequests = action.payload;
+    },
+    getLatestOrder: (state, action) => {
       state.latestOrder = action.payload;
     },
-
     confirmResendOtp: (state) => {
       state.loading = true;
     },
@@ -67,6 +74,8 @@ export const {
   confirmResendOtp,
   setConfirmResendOtp,
   getLatestOrder,
+  getBookingRequests,
+  setGetBookingRequests,
 } = chefSilce.actions;
 
 export default chefSilce.reducer;

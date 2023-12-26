@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import CustomModal from "./CustomModal";
 import CartFoodModalOrder from "./CartFoodModalOrder";
+import MenuRating from "./MenuRating";
 
 const CartFoodModal = (props) => {
-  const { menuId,close } = props;
+  const { menuId, close } = props;
   const [foodDetails, setFoodDetails] = useState([]);
   const [deliverFrom, setDeliverFrom] = useState("");
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const CartFoodModal = (props) => {
   };
 
   // open modal
-  const handleUserProfile = (flag) => {
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -96,9 +97,14 @@ const CartFoodModal = (props) => {
             </div>
             <div className="foodrating">
               <h6 className="chefName">Rating</h6>
-              <div className="chefrating mt-1">
+              <div
+                onClick={() => {
+                  handleOpenModal("ratingmenu");
+                }}
+                className="chefrating mt-1"
+              >
                 <i className="las la-star startIcon"></i>
-                <p className="ratingheading">4.5 (845 Reviews)</p>
+                <p className="ratingheading">{foodDetails?.averageRating} ({foodDetails?.totalReview} Reviews)</p>
               </div>
             </div>
           </div>
@@ -119,7 +125,7 @@ const CartFoodModal = (props) => {
               className="foodmodalbtn"
               type="button"
               onClick={() => {
-                handleUserProfile("CartFoodOrder");
+                handleOpenModal("CartFoodOrder");
               }}
             >
               Buy Now
@@ -137,15 +143,32 @@ const CartFoodModal = (props) => {
         className={
           modalDetail.flag === "CartFoodOrder"
             ? "commonWidth customContent"
+            : modalDetail.flag === "ratingmenu"
+            ? "commonWidth customContent"
             : ""
         }
-        ids={modalDetail.flag === "CartFoodOrder" ? "CartFoodOrderModal" : ""}
+        ids={
+          modalDetail.flag === "CartFoodOrder"
+            ? "CartFoodOrderModal"
+            : "ratingmenu"
+            ? "availablebtnModal"
+            : ""
+        }
         child={
           modalDetail.flag === "CartFoodOrder" ? (
             <CartFoodModalOrder
               menuId={menuId}
-              close={() => {handleOnCloseModal()
-                close()
+              close={() => {
+                handleOnCloseModal();
+                close();
+              }}
+            />
+          ) : modalDetail.flag === "ratingmenu" ? (
+            <MenuRating
+              menuId={menuId}
+              close={() => {
+                handleOnCloseModal();
+                close();
               }}
             />
           ) : (
@@ -155,9 +178,24 @@ const CartFoodModal = (props) => {
         header={
           modalDetail.flag === "CartFoodOrder" ? (
             <>
-              <p onClick={()=>{
-                close()
-                handleOnCloseModal()}} className="modal_cancel">
+              <p
+                onClick={() => {
+                  close();
+                  handleOnCloseModal();
+                }}
+                className="modal_cancel"
+              >
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
+              </p>
+            </>
+          ) : modalDetail.flag === "ratingmenu" ? (
+            <>
+              <h2 className="modal_Heading">Rating & Reviews</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"
