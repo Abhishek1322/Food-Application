@@ -9,7 +9,6 @@ const ReportchatDropModal = ({ id, close }) => {
   const toastId = useRef(null);
   const [chefData, setChefData] = useState([]);
   const [reportReason, setReportReason] = useState("");
-  console.log("chefDatachefData", chefData);
 
   // stop loader on page load
   useEffect(() => {

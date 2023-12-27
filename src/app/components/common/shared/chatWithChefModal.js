@@ -67,7 +67,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     setKey(Math.random());
   };
 
-  // get all parnetcollection chats
+  // get all parent collection chats
   useEffect(() => {
     const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
     const unsubscribe = onSnapshot(parentCollectionChat, (snap) => {

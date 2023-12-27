@@ -37,11 +37,11 @@ import UserEditProfile from "./User/Profile/EditProfile"
 import UserManageAddress from "./User/Setting/ManageAddress"
 import RequestPage from "./Settings/RequestPage"
 import PageNotFound from "../components/errorPage/PageNotFound"
+import ChooseLocation from "./User/ChooseLocation"
 
 
 
 export {
-    
     Login,
     Home, 
     ChooseRoles,
@@ -80,5 +80,6 @@ export {
     UserEditProfile,
     UserManageAddress,
     RequestPage,
+    ChooseLocation,
     PageNotFound
 }

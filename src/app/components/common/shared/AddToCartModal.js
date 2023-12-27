@@ -20,7 +20,7 @@ const AddToCartModal = (props) => {
     title: "",
     flag: "",
   });
-  console.log("foodDetailsfoodDetails", foodDetails);
+
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());

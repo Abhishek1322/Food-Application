@@ -119,7 +119,7 @@ const Chef_Navbar = () => {
   useEffect(() => {
     handleGetAllNotifications();
   }, []);
-
+ 
   return (
     <>
       <div className="main_Setting">
@@ -189,9 +189,11 @@ const Chef_Navbar = () => {
                       </figure>
                     </div>
                     <div
-                      className={notification?.some((item) =>
-                        !item.is_read ? "headeritem" : ""
-                      )}
+                      className={
+                        notification?.some((item) => !item.is_read)
+                          ? "headeritem"
+                          : ""
+                      }
                     >
                       <figure
                         className="menuBox"
@@ -298,7 +300,7 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox" ? (
             <BellModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Notification" ? (
-            <UserNotification close={() => handleOnCloseModal()} />
+            <UserNotification updateNotification={handleGetAllNotifications} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Myorder" ? (
             <Myorder close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "verifyOrderDetailModal" ? (

@@ -16,6 +16,7 @@ const ChefBookPay = ({
   selectedTimeSlotes,
   description,
   date,
+  secondChefBook,
 }) => {
   const [key, setKey] = useState(Math.random());
   const toastId = useRef(null);
@@ -33,7 +34,7 @@ const ChefBookPay = ({
     title: "",
     flag: "",
   });
-  
+
   const { meta, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
   //closeModal
@@ -125,7 +126,6 @@ const ChefBookPay = ({
       hireChef({
         ...params,
         cb(res) {
-          console.log("checResss", res);
           if (res.status === 200) {
             handleOpenModal("chefpaydone");
             setOrderId(res?.data?.data?._id);
@@ -235,7 +235,12 @@ const ChefBookPay = ({
         ids={modalDetail.flag === "chefpaydone" ? "chefpaydonemodal" : ""}
         child={
           modalDetail.flag === "chefpaydone" ? (
-            <ChefPaymentDone close={() => handleOnCloseModal()} />
+            <ChefPaymentDone
+              orderId={orderId}
+              orderNumber={orderNumber}
+              secondChefBook={secondChefBook}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )

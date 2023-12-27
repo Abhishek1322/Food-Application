@@ -8,10 +8,10 @@ import {
 } from "../../../../redux/slices/user";
 import moment from "moment";
 
-const UserNotification = () => {
+const UserNotification = ({updateNotification}) => {
   const dispatch = useDispatch();
   const [notification, setNotification] = useState([]);
-  console.log("notificationnotification", notification);
+
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -47,6 +47,7 @@ const UserNotification = () => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllNotifications();
+            updateNotification()
           }
         },
       })

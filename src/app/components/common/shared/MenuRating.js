@@ -16,7 +16,6 @@ const MenuRating = ({ menuId }) => {
     title: "",
     flag: "",
   });
-  console.log("menuRatingData", menuRatingData);
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -51,7 +50,6 @@ const MenuRating = ({ menuId }) => {
       getMenuRating({
         ...params,
         cb(res) {
-          console.log("resszzzssz", res);
           if (res.status === 200) {
             setMenuRatingData(res?.data?.data?.data);
           }

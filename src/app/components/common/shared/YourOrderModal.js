@@ -47,7 +47,6 @@ const YourOrderModal = (props) => {
   // Cancel Order
   const handleCancelOrder = () => {
     if (flag === "booking") {
-      alert("check");
       let params = {
         status: "cancelled",
         id: orderId,

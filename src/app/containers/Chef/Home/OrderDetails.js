@@ -26,8 +26,8 @@ const OrderDetails = () => {
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
-  const [key, setKey] = useState(Math.random());
   const [allChats, setAllChats] = useState([]);
+  const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",

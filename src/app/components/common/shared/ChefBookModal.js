@@ -12,6 +12,7 @@ const ChefBookModal = ({
   selectedTimeSlotes,
   description,
   date,
+  firstBookNow
 }) => {
   console.log("selectedTimeSlotespp", selectedTimeSlotes);
   const [key, setKey] = useState(Math.random());
@@ -29,6 +30,7 @@ const ChefBookModal = ({
       flag: "",
     });
     setKey(Math.random());
+    firstBookNow()
   };
 
   const handleUserProfile = (flag) => {
@@ -163,6 +165,7 @@ const ChefBookModal = ({
               description={description}
               date={date}
               close={() => handleOnCloseModal()}
+              secondChefBook={() => handleOnCloseModal()}
             />
           ) : (
             ""
@@ -173,6 +176,7 @@ const ChefBookModal = ({
             <>
               <div className="editadressheading">
                 <img
+                  onClick={handleOnCloseModal}
                   src={Images.backArrowpassword}
                   alt="backarrowimage"
                   className="img-fluid arrowCommon_"

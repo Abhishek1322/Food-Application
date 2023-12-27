@@ -3,7 +3,7 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import ChefBookingDone from "./ChefBookingDone";
 
-const ChefPaymentDone = () => {
+const ChefPaymentDone = ({ secondChefBook, orderId, orderNumber }) => {
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -33,7 +33,7 @@ const ChefPaymentDone = () => {
 
   useEffect(() => {
     setTimeout(() => {
-        handleOpenModal("bookingdone");
+      handleOpenModal("bookingdone");
     }, 2500);
   }, []);
 
@@ -47,7 +47,7 @@ const ChefPaymentDone = () => {
         />
         <h1 className="accountDeleted mt-3"> Payment Done</h1>
         <p className="accountdeletetxt mt-2 ">
-          Your payment has been successfully done for order no. #12458
+          Your payment has been successfully done for order no. #{orderNumber}
         </p>
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
@@ -76,7 +76,11 @@ const ChefPaymentDone = () => {
         ids={modalDetail.flag === "bookingdone" ? "bookdonemodal" : ""}
         child={
           modalDetail.flag === "bookingdone" ? (
-            <ChefBookingDone close={() => handleOnCloseModal()} />
+            <ChefBookingDone
+              orderId={orderId}
+              secondChefBook={secondChefBook}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )

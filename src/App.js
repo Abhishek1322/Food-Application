@@ -35,7 +35,7 @@ function App() {
           body,
           icon: Images.Logo,
         });
-        toast(`New message received from ${payload.notification.body}`);
+        // toast(`New message received from ${payload.notification.body}`);
       });
 
       // Send this token  to server ( db)

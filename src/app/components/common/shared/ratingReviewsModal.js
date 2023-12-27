@@ -13,7 +13,7 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
     twoStar: "",
     oneStar: "",
   });
-  console.log("allRatingallRating", allRating);
+
   // rating
   const rating = [
     {

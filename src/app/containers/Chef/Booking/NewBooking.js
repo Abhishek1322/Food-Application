@@ -7,6 +7,7 @@ import {
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
+import { Link } from "react-router-dom";
 
 const NewBooking = () => {
   const dispatch = useDispatch();
@@ -94,29 +95,35 @@ const NewBooking = () => {
                       {bookingRequest && bookingRequest.length > 0 ? (
                         <>
                           {bookingRequest?.map((item, index) => (
-                            <div key={index} className="homeProfileBox">
-                              <div className="profileInfo">
-                                <img
-                                  src={
-                                    item?.userId?.userInfo?.profilePhoto
-                                      ? item?.userId?.userInfo?.profilePhoto
-                                      : Images.dummyProfile
-                                  }
-                                  alt="profile"
-                                  className="homeprofile"
-                                />
-                                <div className="detailInfo">
-                                  <h3 className="userProfile">
-                                    {item?.userId?.userInfo?.firstName}{" "}
-                                    {item?.userId?.userInfo?.lastName}
-                                  </h3>
-                                  <h4 className="userInfo">
-                                    {moment(item?.createdAt).format("hh:mm A")}
-                                  </h4>
+                            <Link to={`/booking-details?id=${item?._id}`}>
+                              <div key={index} className="homeProfileBox">
+                                <div className="profileInfo">
+                                  <img
+                                    src={
+                                      item?.userId?.userInfo?.profilePhoto
+                                        ? item?.userId?.userInfo?.profilePhoto
+                                        : Images.dummyProfile
+                                    }
+                                    alt="profile"
+                                    className="homeprofile"
+                                  />
+                                  <div className="detailInfo">
+                                    <h3 className="userProfile">
+                                      {item?.userId?.userInfo?.firstName}{" "}
+                                      {item?.userId?.userInfo?.lastName}
+                                    </h3>
+                                    <h4 className="userInfo">
+                                      {moment(item?.createdAt).format(
+                                        "hh:mm A"
+                                      )}
+                                    </h4>
+                                  </div>
                                 </div>
+                                <p className="userInfoTxt">
+                                  {item?.description}
+                                </p>
                               </div>
-                              <p className="userInfoTxt">{item?.description}</p>
-                            </div>
+                            </Link>
                           ))}
                         </>
                       ) : (

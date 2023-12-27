@@ -33,7 +33,7 @@ const MyRecentOrderModal = (props) => {
     title: "",
     flag: "",
   });
-  console.log("authDataauthData", authData);
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({

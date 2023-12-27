@@ -4,7 +4,7 @@ import { Progress } from "antd";
 import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
 
-const ChefBookingDone = ({ close }) => {
+const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
   const [key, setKey] = useState(Math.random());
   const [countDown, setCountDown] = useState(60);
   const [barPercentage, setBarPercentage] = useState();
@@ -46,7 +46,7 @@ const ChefBookingDone = ({ close }) => {
   // close existing modal
   useEffect(() => {
     if (countDown === 0) {
-      close();
+      secondChefBook();
     }
   }, [countDown]);
 
@@ -75,7 +75,7 @@ const ChefBookingDone = ({ close }) => {
               className="foodmodalbtn"
               type="button"
               onClick={() => {
-                close();
+                secondChefBook();
               }}
             >
               Okay
@@ -116,8 +116,9 @@ const ChefBookingDone = ({ close }) => {
         child={
           modalDetail.flag === "wantCancelOrder" ? (
             <YourOrderModal
+              orderId={orderId}
               close={() => {
-                close();
+                secondChefBook();
               }}
               flag={"booking"}
               closeModal={() => handleOnCloseModal()}

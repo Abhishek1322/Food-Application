@@ -117,29 +117,32 @@ const HomeRequsest = () => {
                 </div>
                 <div className="profileDetail">
                   {bookingRequest?.slice(0, 5)?.map((item, index) => (
-                    <div key={index} className="homeProfileBox">
-                      <div className="profileInfo">
-                        <img
-                          src={
-                            item?.userId?.userInfo?.profilePhoto
-                              ? item?.userId?.userInfo?.profilePhoto
-                              : Images.dummyProfile
-                          }
-                          alt="profile"
-                          className="homeprofile"
-                        />
-                        <div className="detailInfo">
-                          <h3 className="userProfile">
-                            {item?.userId?.userInfo?.firstName}{" "}
-                            {item?.userId?.userInfo?.lastName}
-                          </h3>
-                          <h4 className="userInfo">
-                            {moment(item?.createdAt).format("hh:mm A")}
-                          </h4>
+                    <Link to={`/booking-details?id=${item?._id}`}>
+                      <div key={index} className="homeProfileBox">
+                        <div className="profileInfo">
+                          {console.log("iteemsssssss", item)}
+                          <img
+                            src={
+                              item?.userId?.userInfo?.profilePhoto
+                                ? item?.userId?.userInfo?.profilePhoto
+                                : Images.dummyProfile
+                            }
+                            alt="profile"
+                            className="homeprofile"
+                          />
+                          <div className="detailInfo">
+                            <h3 className="userProfile">
+                              {item?.userId?.userInfo?.firstName}{" "}
+                              {item?.userId?.userInfo?.lastName}
+                            </h3>
+                            <h4 className="userInfo">
+                              {moment(item?.createdAt).format("hh:mm A")}
+                            </h4>
+                          </div>
                         </div>
+                        <p className="userInfoTxt">{item?.description}</p>
                       </div>
-                      <p className="userInfoTxt">{item?.description}</p>
-                    </div>
+                    </Link>
                   ))}
                 </div>
 

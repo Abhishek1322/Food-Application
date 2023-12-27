@@ -23,7 +23,6 @@ const User_Navbar = () => {
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const chefId = searchParams.get("id");
-  console.log("chefIdchefId", chefId);
   const authData = useAuthSelector();
   const allUserData = useUserSelector();
   const userId = localStorage.getItem("userId");
@@ -60,7 +59,7 @@ const User_Navbar = () => {
 
   // get current location
   function getLocationInfo(latitude, longitude) {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${APIkey}`;
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${"AIzaSyDL9J82iDhcUWdQiuIvBYa0t5asrtz3Swk"}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -208,9 +207,11 @@ const User_Navbar = () => {
                         className="img-fluid"
                         alt="headerlocation"
                       />
+                      <Link to="choose-location">
                       <span className="ordertimeaddress ms-1">
                         New York, 10003, 2nd Street dorm
                       </span>
+                      </Link>
                     </>
                   ) : pathname === "/user-chef-home" ? (
                     <h1 className="chefCommonHeader">Chefs</h1>
@@ -241,9 +242,11 @@ const User_Navbar = () => {
                       </figure>
                     </div>
                     <div
-                      className={notification?.some((item) =>
-                        item.is_read ? "headeritem" : ""
-                      )}
+                      className={
+                        notification?.some((item) => !item.is_read)
+                          ? "headeritem"
+                          : ""
+                      }
                     >
                       <figure
                         className="menuBox"
@@ -426,11 +429,15 @@ const User_Navbar = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "userNotification" ? (
-            <UserNotification close={() => handleOnCloseModal()} />
+            <UserNotification updateNotification={handleGetAllNotifications} close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "cartModal" ? (
             <CartModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "bookchef" ? (
-            <BookNowModal chefId={chefId} close={() => handleOnCloseModal()} />
+            <BookNowModal
+              initClose={() => handleOnCloseModal()}
+              chefId={chefId}
+              close={() => handleOnCloseModal()}
+            />
           ) : (
             ""
           )

@@ -127,7 +127,6 @@ const EditProfile = () => {
       step: "1",
       firstName: firstName,
       lastName: lastName,
-      profilePhoto: profileUrl,
       type: chefType,
       experience: experience,
       address: address,
@@ -137,7 +136,12 @@ const EditProfile = () => {
       phoneNo: phoneNumber,
       dialCode: "+91",
     };
-
+    if (profileUrl) {
+      params = {
+        ...params,
+        profilePhoto: profileUrl,
+      };
+    }
     dispatch(
       updateProfileImage({
         ...params,

@@ -181,7 +181,7 @@ const HomeUser = () => {
                             src={
                               item.userInfo.profilePhoto
                                 ? item.userInfo.profilePhoto
-                                : Images.UserICon
+                                : Images.dummyProfile
                             }
                             alt="UserICon"
                             className="img-fluid UserICon"

@@ -47,8 +47,8 @@ const ApiPath = {
     GET_ALL_NOTIFICATION: "/notification/notification",
     READ_NOTIFICATION: "/notification",
     CLEAR_ALL_NOTIFICATION: "/notification",
-    MENU_RATING:"/menuRating",
-    GET_MENU_RATING:"/menuRating/rating"
+    MENU_RATING: "/menuRating",
+    GET_MENU_RATING: "/menuRating/rating",
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
@@ -56,7 +56,9 @@ const ApiPath = {
     GET_CHEF_SINGLE_ORDER: "/order/order",
     CONFIRM_ORDER_OTP: "/order/deliver",
     RESEND_OTP: "/order/resend",
-    GET_BOOKING_REQUESTS:"/bookings/chef"
+    GET_BOOKING_REQUESTS: "/bookings/chef",
+    GET_BOOKING_DETAIL: "/bookings/booking",
+    ACCEPT_BOOKING:"/bookings/change-status"
   },
 };
 
