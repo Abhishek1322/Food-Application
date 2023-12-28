@@ -49,6 +49,7 @@ const ApiPath = {
     CLEAR_ALL_NOTIFICATION: "/notification",
     MENU_RATING: "/menuRating",
     GET_MENU_RATING: "/menuRating/rating",
+    GET_LOCATION_INFO: "json",
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
@@ -58,7 +59,7 @@ const ApiPath = {
     RESEND_OTP: "/order/resend",
     GET_BOOKING_REQUESTS: "/bookings/chef",
     GET_BOOKING_DETAIL: "/bookings/booking",
-    ACCEPT_BOOKING:"/bookings/change-status"
+    ACCEPT_BOOKING: "/bookings/change-status",
   },
 };
 

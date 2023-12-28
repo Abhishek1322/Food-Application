@@ -13,11 +13,7 @@ import CartModal from "./shared/cartModal";
 import { toggleSidebar } from "../../../redux/slices/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
-import {
-  getCurrentLocation,
-  getNotification,
-} from "../../../redux/slices/user";
-import { GEO_CODING_API_KEY } from "../../../config/config";
+import { getLocationInfo, getNotification } from "../../../redux/slices/user";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -35,13 +31,11 @@ const User_Navbar = () => {
   const [userData, setUserData] = useState([]);
   const [allChats, setAllChats] = useState([]);
   const [notification, setNotification] = useState([]);
-  const [latlng, setLatLng] = useState({ lat: "", lng: "" });
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -62,29 +56,48 @@ const User_Navbar = () => {
     setKey(Math.random());
   };
 
-  // get current location
-  function getLocationInfo(lat = latlng.lat, lng = latlng.lng) {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat},${lng}&key=${GEO_CODING_API_KEY}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status.code === 200) {
-          setCurrentLocation(data.results[0].formatted);
-        } else {
-          console.log("Reverse geolocation request failed.");
-        }
-      })
-      .catch((error) => console.error(error));
-  }
   // get let long
   function success(pos) {
     var crd = pos.coords;
-    getLocationInfo();
-    getCurrentLocation({
-      lat: crd.latitude,
-      lng: crd.longitude,
-    });
+    handleGetLocationInfo(crd.latitude, crd.longitude);
   }
+
+  // call get location function
+  useEffect(() => {
+    if (
+      allUserData?.currentLocation?.lat &&
+      allUserData?.currentLocation?.lng
+    ) {
+      handleGetLocationInfo();
+    }
+  }, [allUserData?.currentLocation?.lat && allUserData?.currentLocation?.lng]);
+
+  // getLocationInfo
+  const handleGetLocationInfo = (lat, lng) => {
+    let params = {
+      lat: lat,
+      lng: lng,
+    };
+    if (
+      allUserData?.currentLocation?.lat &&
+      allUserData?.currentLocation?.lng
+    ) {
+      params = {
+        lat: allUserData?.currentLocation?.lat,
+        lng: allUserData?.currentLocation?.lng,
+      };
+    }
+    dispatch(
+      getLocationInfo({
+        ...params,
+        cb(res) {
+          if (res?.data?.status?.code === 200) {
+            setCurrentLocation(res?.data?.results[0].formatted);
+          }
+        },
+      })
+    );
+  };
 
   // handling error
   function errors(err) {
@@ -117,16 +130,6 @@ const User_Navbar = () => {
       console.log("Geolocation is not supported by this browser.");
     }
   }, []);
-
-  // get loaction
-  useEffect(() => {
-    if (allUserData) {
-      getLocationInfo(
-        allUserData?.currentLocation?.lat,
-        allUserData?.currentLocation?.lng
-      );
-    }
-  }, [allUserData]);
 
   // getting user profile details
   useEffect(() => {

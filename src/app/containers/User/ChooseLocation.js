@@ -38,8 +38,8 @@ const options = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 20.745,
+  lng: 78.523,
 };
 
 const ChooseLocation = () => {

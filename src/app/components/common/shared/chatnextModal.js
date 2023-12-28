@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-
+  
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -62,6 +62,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       setIsLoading(false);
     });
     handleGetProfile();
+    scrollToBottom()
     return () => unsubscribe();
   }, []);
 

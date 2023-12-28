@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderReadyForDeliverModal from "./orderReadyForDeliverModal.js";
@@ -32,6 +32,7 @@ import { useAuthSelector } from "../../../../redux/selector/auth.js";
 
 const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const dispatch = useDispatch();
+  const messagesEndRef = useRef(null);
   const fcmToken = localStorage.getItem("fcmToken");
   const authData = useAuthSelector();
   const [messages, setMessages] = useState([]);
@@ -47,6 +48,18 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     flag: "",
   });
   const ROOM_ID = `${userInfo?.id}-${authData?.userInfo?.id}`;
+
+  // scroll bottom
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current?.scrollIntoView({
+        block: "end",
+        inline: "end",
+        behavior: "smooth",
+      });
+    }
+  };
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -80,6 +93,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       });
       getFireStoreData(getMyChats);
       setIsLoading(false);
+      scrollToBottom()
     });
     return () => unsubscribe();
   }, [userInfo]);
@@ -160,7 +174,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         image_url: imageUrl,
         senderId: authData?.userInfo?.id,
         recieverId: userInfo?.id,
-      });
+      },
+      setMsg(""),
+      setImgUrl(""),
+      handleSendWebPushNotification(senderName));
+      scrollToBottom()
       try {
         setIsLoading(true);
         const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
@@ -249,6 +267,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         },
         setMsg(""),
         setImgUrl(""),
+        scrollToBottom(),
         handleSendWebPushNotification(senderName)
       );
       await addDoc(messagesCollectionRef, {
@@ -311,6 +330,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         return;
       }
       setImg(acceptedFiles[0]);
+      scrollToBottom()
     },
     [img]
   );
@@ -385,6 +405,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       <div className="chat-main-content">
         {messages?.map((message, index) => (
           <div
+            ref={messagesEndRef}
             key={index}
             className={
               userInfo?.id === message?.senderId

@@ -4,7 +4,11 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import { addAddress, onErrorStopLoad } from "../../../../redux/slices/user";
+import {
+  addAddress,
+  getLocationInfo,
+  onErrorStopLoad,
+} from "../../../../redux/slices/user";
 import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
 import { useDispatch } from "react-redux";
@@ -25,6 +29,7 @@ const AddAddressModal = (props) => {
   const [building, setBuilding] = useState("");
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
+  const [isLoading, setIsLoading] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -63,13 +68,13 @@ const AddAddressModal = (props) => {
 
   // select city
   const autoCompleteHandleSelect = (city) => {
-    setCity(city);
     geocodeByAddress(city)
       .then((results) => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
         if (results.length > 0) {
           // Extract the state from the results
+          setCity(results[0].formatted_address);
           const addressComponents = results[0].address_components;
           const stateComponent = addressComponents.find((component) =>
             component.types.includes("administrative_area_level_1")
@@ -119,7 +124,8 @@ const AddAddressModal = (props) => {
   };
 
   // submit addresss
-  const handleSubmitAddess = () => {
+  const handleSubmitAddess = (save) => {
+    setIsLoading(save);
     if (!city) {
       showToast("Please enter your city name");
       return;
@@ -156,6 +162,68 @@ const AddAddressModal = (props) => {
         },
       })
     );
+  };
+
+  // get let long
+  function success(pos) {
+    var crd = pos.coords;
+    handleGetLocationInfo(crd.latitude, crd.longitude);
+  }
+
+  // getLocationInfo
+  const handleGetLocationInfo = (lat, lng) => {
+    let params = {
+      lat: lat,
+      lng: lng,
+    };
+    dispatch(
+      getLocationInfo({
+        ...params,
+        cb(res) {
+          if (res?.data?.status?.code === 200) {
+            autoCompleteHandleSelect(res?.data?.results[0].formatted);
+            // setCurrentLocation(res?.data?.results[0].formatted);
+          }
+        },
+      })
+    );
+  };
+
+  // get current location
+  const handleGetCurrentLocation = (curr) => {
+    setIsLoading(curr);
+    if (navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(function (result) {
+          if (result.state === "granted") {
+            //If granted then you can directly call your function here
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "prompt") {
+            //If prompt then the user will be asked to give permission
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "denied") {
+            //If denied then you have to show instructions to enable location
+          }
+        });
+      setCity("");
+      setState("");
+      setZipCode("");
+      setStreetAddress("");
+      setBuilding("");
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+  // handling error
+  function errors(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  // location options
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
   };
 
   return (
@@ -223,7 +291,16 @@ const AddAddressModal = (props) => {
                   alt="locationtargetimg"
                   className="img-fluid"
                 />
-                <span className="modalclearAll">User Current Location</span>
+                <button
+                  disabled={userData?.loading && isLoading === "save"}
+                  onClick={() => handleGetCurrentLocation("current")}
+                  className="modalclearAll"
+                >
+                  {userData?.loading && isLoading === "current" && (
+                    <span className="spinner-border spinner-border-sm me-1"></span>
+                  )}
+                  User Current Location
+                </button>
               </div>
               <div className="row">
                 <div className="col-lg-12">
@@ -234,11 +311,7 @@ const AddAddressModal = (props) => {
                       value={city}
                       onChange={autoCompleteHandleChange}
                       onSelect={autoCompleteHandleSelect}
-                      searchOptions={{
-                        componentRestrictions: {
-                          country: ["Ind"],
-                        },
-                      }}
+                      searchOptions={{}}
                     >
                       {({
                         getInputProps,
@@ -364,11 +437,11 @@ const AddAddressModal = (props) => {
               <div className="modalfooterbtn">
                 <div className="addfoodbtn">
                   <button
-                    disabled={userData?.loading}
-                    onClick={handleSubmitAddess}
+                    disabled={userData?.loading && isLoading === "save"}
+                    onClick={() => handleSubmitAddess("save")}
                     className="foodmodalbtn"
                   >
-                    {userData?.loading && (
+                    {userData?.loading && isLoading === "save" && (
                       <span className="spinner-border spinner-border-sm me-1"></span>
                     )}
                     Save

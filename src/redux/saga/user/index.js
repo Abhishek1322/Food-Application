@@ -2,6 +2,7 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ApiClient } from "../../../utilities/api";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
+import { GEO_CODING_API_KEY } from "../../../config/config";
 import {
   setAddAddress,
   setGetUserAddress,
@@ -29,9 +30,30 @@ import {
   setClearNotification,
   setMenuRating,
   setGetMenuRating,
+  setGetLocationInfo,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getLocationInfo(action) {
+  try {
+    const resp = yield call(
+      ApiClient.getLocation,
+      (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO}?q=${action.payload.lat},${action.payload.lng}&key=${GEO_CODING_API_KEY}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetLocationInfo(resp));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getMenuRating(action) {
   let targetUrl = `${ApiPath.userApiPath.GET_MENU_RATING}?menuId=${action.payload.menuId}&`;
@@ -635,5 +657,6 @@ function* userSaga() {
   yield all([takeLatest("user/clearNotification", clearNotification)]);
   yield all([takeLatest("user/menuRating", menuRating)]);
   yield all([takeLatest("user/getMenuRating", getMenuRating)]);
+  yield all([takeLatest("user/getLocationInfo", getLocationInfo)]);
 }
 export default userSaga;

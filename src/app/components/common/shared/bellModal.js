@@ -127,9 +127,9 @@ const BellModal = () => {
 
   // search on chats
   const filteredChats = allChats.filter((item) => {
-    const fullName = item?.user1?.full_name.toLowerCase();
-    const text = item?.lastMessage?.text.toLowerCase();
-    const search = searchTerm.toLowerCase();
+    const fullName = item?.user1?.full_name?.toLowerCase();
+    const text = item?.lastMessage?.text?.toLowerCase();
+    const search = searchTerm?.toLowerCase();
     return fullName.includes(search) || text.includes(search);
   });
 

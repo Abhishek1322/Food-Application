@@ -104,58 +104,68 @@ const HomeRequsest = () => {
               <div className="col-lg-12 col-sm-12">
                 <div className="innerhomeheader">
                   <h2 className="headerinnerheading">New Booking Requests</h2>
-                  <div className="seeAll">
-                    <Link to="/new-booking">
-                      <p className="headerinnertxt">See All</p>
-                    </Link>
-                    <img
-                      src={Images.homeArow}
-                      alt="homearrow"
-                      className="seeArrow"
-                    />
-                  </div>
+                  {bookingRequest && bookingRequest.length > 0 && (
+                    <div className="seeAll">
+                      <Link to="/new-booking">
+                        <p className="headerinnertxt">See All</p>
+                      </Link>
+                      <img
+                        src={Images.homeArow}
+                        alt="homearrow"
+                        className="seeArrow"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="profileDetail">
-                  {bookingRequest?.slice(0, 5)?.map((item, index) => (
-                    <Link to={`/booking-details?id=${item?._id}`}>
-                      <div key={index} className="homeProfileBox">
-                        <div className="profileInfo">
-                          {console.log("iteemsssssss", item)}
-                          <img
-                            src={
-                              item?.userId?.userInfo?.profilePhoto
-                                ? item?.userId?.userInfo?.profilePhoto
-                                : Images.dummyProfile
-                            }
-                            alt="profile"
-                            className="homeprofile"
-                          />
-                          <div className="detailInfo">
-                            <h3 className="userProfile">
-                              {item?.userId?.userInfo?.firstName}{" "}
-                              {item?.userId?.userInfo?.lastName}
-                            </h3>
-                            <h4 className="userInfo">
-                              {moment(item?.createdAt).format("hh:mm A")}
-                            </h4>
+                  {bookingRequest && bookingRequest.length > 0 ? (
+                    <>
+                      {bookingRequest?.slice(0, 5)?.map((item, index) => (
+                        <Link to={`/booking-details?id=${item?._id}`}>
+                          <div key={index} className="homeProfileBox">
+                            <div className="profileInfo">
+                              {console.log("iteemsssssss", item)}
+                              <img
+                                src={
+                                  item?.userId?.userInfo?.profilePhoto
+                                    ? item?.userId?.userInfo?.profilePhoto
+                                    : Images.dummyProfile
+                                }
+                                alt="profile"
+                                className="homeprofile"
+                              />
+                              <div className="detailInfo">
+                                <h3 className="userProfile">
+                                  {item?.userId?.userInfo?.firstName}{" "}
+                                  {item?.userId?.userInfo?.lastName}
+                                </h3>
+                                <h4 className="userInfo">
+                                  {moment(item?.createdAt).format("hh:mm A")}
+                                </h4>
+                              </div>
+                            </div>
+                            <p className="userInfoTxt">{item?.description}</p>
                           </div>
-                        </div>
-                        <p className="userInfoTxt">{item?.description}</p>
-                      </div>
-                    </Link>
-                  ))}
+                        </Link>
+                      ))}
+                    </>
+                  ) : (
+                    <p>No data found</p>
+                  )}
                 </div>
 
                 <div className="innerhomeheader">
                   <h3 className="headerinnerheading">Recent Orders</h3>
-                  <div className="seeAll">
-                    <p className="headerinnertxt">See All</p>
-                    <img
-                      src={Images.homeArow}
-                      alt="arrowImg"
-                      className="seeArrow"
-                    />
-                  </div>
+                  {recentOrders && recentOrders.length > 0 && (
+                    <div className="seeAll">
+                      <p className="headerinnertxt">See All</p>
+                      <img
+                        src={Images.homeArow}
+                        alt="arrowImg"
+                        className="seeArrow"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="profileDetail profileDetailNew">
                   {recentOrders && recentOrders.length > 0 ? (

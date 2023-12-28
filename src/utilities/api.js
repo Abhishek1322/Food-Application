@@ -9,6 +9,13 @@ const axiosInstance = axios.create({
   },
 });
 
+const axiosInstanceLocation = axios.create({
+  baseURL: BaseUrl.GEO_CODE_API_URL,
+  headers: {
+    Accept: "application/json",
+  },
+});
+
 //axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
 
 // Set the AUTH token for any request
@@ -41,6 +48,17 @@ axiosInstance.interceptors.response.use(
 
 const axiosGet = (url, params = {}) => {
   return axiosInstance
+    .get(url, params)
+    .then((response) => {
+      return { status: response.status, data: response.data };
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+const axiosGetLocation = (url, params = {}) => {
+  return axiosInstanceLocation
     .get(url, params)
     .then((response) => {
       return { status: response.status, data: response.data };
@@ -157,6 +175,7 @@ const axiosPostFormData = (url, params) => {
 
 export const ApiClient = {
   get: axiosGet,
+  getLocation:axiosGetLocation,
   put: axiosPut,
   post: axiosPost,
   patch: axiosPatch,
