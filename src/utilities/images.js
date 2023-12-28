@@ -119,6 +119,10 @@ import logoutImg from "../public/images/logoutImg.svg";
 import otherImg from "../public/images/Other.svg";
 import addressicon from "../public/images/addressicon.png";
 import singleRating from "../public/images/singleRating.svg";
+import locationIcon from "../public/images/location-icon.svg";
+import targetLocation from "../public/images/location-target.svg";
+import smallSearch from "../public/images/small-search.png";
+import smallLocate from "../public/images/small-locate.svg";
 
 export {
   Logo,
@@ -241,5 +245,9 @@ export {
   logoutImg,
   otherImg,
   addressicon,
-  singleRating
+  singleRating,
+  locationIcon,
+  targetLocation,
+  smallSearch,
+  smallLocate,
 };

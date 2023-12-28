@@ -10,12 +10,17 @@ const initialState = {
   allOrders: [],
   bookingData: [],
   allnotifications: [],
+  currentLocation: {},
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getCurrentLocation: (state, action) => {
+      state.loading = false;
+      state.currentLocation = action.payload;
+    },
     getMenuRating: (state) => {
       state.loading = true;
     },
@@ -236,6 +241,7 @@ export const {
   setMenuRating,
   getMenuRating,
   setGetMenuRating,
+  getCurrentLocation,
 } = userSilce.actions;
 
 export default userSilce.reducer;

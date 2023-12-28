@@ -13,13 +13,16 @@ import CartModal from "./shared/cartModal";
 import { toggleSidebar } from "../../../redux/slices/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
-import { getNotification } from "../../../redux/slices/user";
+import {
+  getCurrentLocation,
+  getNotification,
+} from "../../../redux/slices/user";
+import { GEO_CODING_API_KEY } from "../../../config/config";
 
 const User_Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { pathname } = location;
-  const APIkey = "";
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const chefId = searchParams.get("id");
@@ -28,15 +31,17 @@ const User_Navbar = () => {
   const userId = localStorage.getItem("userId");
   const [key, setKey] = useState(Math.random());
   const [toggle, setToggle] = useState(true);
-  const [currentLocation, setCurrentLocation] = useState();
+  const [currentLocation, setCurrentLocation] = useState("");
   const [userData, setUserData] = useState([]);
   const [allChats, setAllChats] = useState([]);
   const [notification, setNotification] = useState([]);
+  const [latlng, setLatLng] = useState({ lat: "", lng: "" });
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
+
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -58,14 +63,12 @@ const User_Navbar = () => {
   };
 
   // get current location
-  function getLocationInfo(latitude, longitude) {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${"AIzaSyDL9J82iDhcUWdQiuIvBYa0t5asrtz3Swk"}`;
+  function getLocationInfo(lat = latlng.lat, lng = latlng.lng) {
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat},${lng}&key=${GEO_CODING_API_KEY}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.status.code === 200) {
-          console.log("results:", data.results);
           setCurrentLocation(data.results[0].formatted);
         } else {
           console.log("Reverse geolocation request failed.");
@@ -73,16 +76,14 @@ const User_Navbar = () => {
       })
       .catch((error) => console.error(error));
   }
-
   // get let long
   function success(pos) {
     var crd = pos.coords;
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-
-    getLocationInfo(crd.latitude, crd.longitude);
+    getLocationInfo();
+    getCurrentLocation({
+      lat: crd.latitude,
+      lng: crd.longitude,
+    });
   }
 
   // handling error
@@ -102,7 +103,6 @@ const User_Navbar = () => {
       navigator.permissions
         .query({ name: "geolocation" })
         .then(function (result) {
-          console.log(result);
           if (result.state === "granted") {
             //If granted then you can directly call your function here
             navigator.geolocation.getCurrentPosition(success, errors, options);
@@ -117,6 +117,16 @@ const User_Navbar = () => {
       console.log("Geolocation is not supported by this browser.");
     }
   }, []);
+
+  // get loaction
+  useEffect(() => {
+    if (allUserData) {
+      getLocationInfo(
+        allUserData?.currentLocation?.lat,
+        allUserData?.currentLocation?.lng
+      );
+    }
+  }, [allUserData]);
 
   // getting user profile details
   useEffect(() => {
@@ -202,15 +212,15 @@ const User_Navbar = () => {
                           {userData?.userInfo?.firstName} !
                         </span>
                       </h1>
-                      <img
-                        src={Images.HeaderLocation}
-                        className="img-fluid"
-                        alt="headerlocation"
-                      />
                       <Link to="choose-location">
-                      <span className="ordertimeaddress ms-1">
-                        New York, 10003, 2nd Street dorm
-                      </span>
+                        <img
+                          src={Images.HeaderLocation}
+                          className="img-fluid"
+                          alt="headerlocation"
+                        />
+                        <span className="ordertimeaddress ms-1">
+                          {currentLocation}
+                        </span>
                       </Link>
                     </>
                   ) : pathname === "/user-chef-home" ? (
@@ -429,7 +439,10 @@ const User_Navbar = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "userNotification" ? (
-            <UserNotification updateNotification={handleGetAllNotifications} close={() => handleOnCloseModal()} />
+            <UserNotification
+              updateNotification={handleGetAllNotifications}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "cartModal" ? (
             <CartModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "bookchef" ? (
