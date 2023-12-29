@@ -26,7 +26,6 @@ const UserOrderEdit = () => {
     flag: "",
   });
 
-  
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -210,11 +209,7 @@ const UserOrderEdit = () => {
                       value={city}
                       onChange={autoCompleteHandleChange}
                       onSelect={autoCompleteHandleSelect}
-                      searchOptions={{
-                        componentRestrictions: {
-                          country: ["Ind"],
-                        },
-                      }}
+                      searchOptions={{}}
                     >
                       {({
                         getInputProps,

@@ -334,9 +334,7 @@ const EditProfile = () => {
                           onChange={autoCompleteHandleChange}
                           onSelect={autoCompleteHandleSelect}
                           searchOptions={{
-                            componentRestrictions: {
-                              country: ["Ind"],
-                            },
+                          
                           }}
                         >
                           {({

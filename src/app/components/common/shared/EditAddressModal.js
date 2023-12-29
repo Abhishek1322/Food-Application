@@ -267,9 +267,7 @@ const EditAddressModal = (props) => {
                       onChange={autoCompleteHandleChange}
                       onSelect={autoCompleteHandleSelect}
                       searchOptions={{
-                        componentRestrictions: {
-                          country: ["Ind"],
-                        },
+                       
                       }}
                     >
                       {({

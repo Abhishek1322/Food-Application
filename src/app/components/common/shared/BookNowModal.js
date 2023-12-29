@@ -14,7 +14,7 @@ import moment from "moment";
 import { toast } from "react-toastify";
 
 let currentDay = moment(new Date()).format("ddd").toLowerCase();
-const BookNowModal = ({ chefId,initClose }) => {
+const BookNowModal = ({ chefId, initClose }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
@@ -168,11 +168,7 @@ const BookNowModal = ({ chefId,initClose }) => {
                 value={city}
                 onChange={autoCompleteHandleChange}
                 onSelect={autoCompleteHandleSelect}
-                searchOptions={{
-                  componentRestrictions: {
-                    country: ["Ind"],
-                  },
-                }}
+                searchOptions={{}}
               >
                 {({
                   getInputProps,

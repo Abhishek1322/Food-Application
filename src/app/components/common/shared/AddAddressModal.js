@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+
 import {
   addAddress,
   getLocationInfo,
@@ -181,8 +182,10 @@ const AddAddressModal = (props) => {
         ...params,
         cb(res) {
           if (res?.data?.status?.code === 200) {
-            autoCompleteHandleSelect(res?.data?.results[0].formatted);
-            // setCurrentLocation(res?.data?.results[0].formatted);
+            setCity(res?.data?.results[0]?.formatted);
+            setState(res?.data?.results[0]?.components?.state);
+            setZipCode(res?.data?.results[0]?.components?.postcode);
+            setStreetAddress(res?.data?.results[0]?.components?.road);
           }
         },
       })

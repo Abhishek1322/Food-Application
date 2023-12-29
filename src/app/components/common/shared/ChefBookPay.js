@@ -129,7 +129,11 @@ const ChefBookPay = ({
           if (res.status === 200) {
             handleOpenModal("chefpaydone");
             setOrderId(res?.data?.data?._id);
-            setOrderNumber(res?.data?.data?.orderId);
+            setOrderNumber(
+              res?.data?.data?.orderId
+                ? res?.data?.data?.orderId
+                : res?.data?.data?.bookingId
+            );
           }
         },
       })

@@ -595,9 +595,7 @@ const SetupProfile = () => {
                                       onChange={autoCompleteHandleChange}
                                       onSelect={autoCompleteHandleSelect}
                                       searchOptions={{
-                                        componentRestrictions: {
-                                          country: ["Ind"],
-                                        },
+                                        
                                       }}
                                     >
                                       {({
