@@ -59,7 +59,6 @@ const User_Navbar = () => {
   // get let long
   function success(pos) {
     var crd = pos.coords;
-    console.log("tesssssscod", crd.latitude, crd.longitude);
     handleGetLocationInfo(crd.latitude, crd.longitude);
   }
 
