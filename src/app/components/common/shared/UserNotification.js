@@ -48,6 +48,7 @@ const UserNotification = ({ updateNotification }) => {
       readNotification({
         ...params,
         cb(res) {
+          console.log("ackckckd", res);
           if (res.status === 200) {
             handleGetAllNotifications();
             updateNotification();
@@ -94,8 +95,6 @@ const UserNotification = ({ updateNotification }) => {
                       : "notificationModal reademessage cursor-pointer-notifiy"
                   }
                 >
-                  {console.log("noitess", item)}
-
                   <p className="notificationText">{item?.description}</p>
                   <p className="notificationTime">
                     {moment(item?.createdAt).format("hh:mm A")}

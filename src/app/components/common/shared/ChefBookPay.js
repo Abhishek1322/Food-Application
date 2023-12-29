@@ -66,17 +66,12 @@ const ChefBookPay = ({
 
   // format card number
   const handleFormatCardNumber = (value) => {
-    const v = value
-      .replace(/\s+/g, "")
-      .replace(/[^0-9]/gi, "")
-      .substr(0, 16);
-    const parts = [];
-
-    for (let i = 0; i < v.length; i += 4) {
-      parts.push(v.substr(i, 4));
-    }
-
-    return parts.length > 1 ? parts.join(" ") : value;
+    const numericValue = value.replace(/[^0-9]/g, "");
+    const formattedValue = numericValue
+      .substr(0, 16)
+      .replace(/(\d{4})/g, "$1 ")
+      .trim();
+    return formattedValue;
   };
 
   //onchange input

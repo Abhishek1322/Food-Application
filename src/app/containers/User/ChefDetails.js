@@ -102,7 +102,7 @@ const ChefDetails = () => {
                     src={
                       chefData?.userInfo?.profilePhoto
                         ? chefData?.userInfo?.profilePhoto
-                        : Images.UserICon
+                        : Images.dummyProfile
                     }
                     alt="sarahimage"
                     className="sarahImg_"

@@ -9,7 +9,6 @@ const AvailableModal = (props) => {
       <div className="modalContent">
         {chefData?.chefInfo?.availability?.map((item, index) => (
           <div key={index} className="availabledays mb-3">
-            {console.log("itemitem", item)}
             <p className="notificationText text-capitalize">{item?.day}</p>
             <div className="daytimes">
               <img
