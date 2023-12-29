@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  
+
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -62,7 +62,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       setIsLoading(false);
     });
     handleGetProfile();
-    scrollToBottom()
+    scrollToBottom();
     return () => unsubscribe();
   }, []);
 
@@ -105,7 +105,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         }
         const updatedData = filteredMessages?.map((item) => {
           if (item?.image_url === "") {
-            const { image_url, ...rest } = item;
+            const {image_url, ...rest } = item;
             return rest;
           }
           return item;
@@ -363,6 +363,11 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   // convert time in UTC to local time
   const convertTimeFormat = (nanoseconds, seconds) => {
     const timestamp = new Date(seconds * 1000 + nanoseconds / 1000000);
+    const now = new Date();
+    const timeDifferenceInSeconds = Math.floor((now - timestamp) / 1000);
+    if (timeDifferenceInSeconds < 5) {
+      return "just now";
+    }
     const formattedTime = timestamp.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "numeric",
@@ -395,11 +400,11 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
               >
                 <div
                   className={
-                  authData?.userInfo?.id === message?.senderId
-                    ? "chat-box-right py-2"
-                    : "chat-box-left py-2"
-                }
-                 >
+                    authData?.userInfo?.id === message?.senderId
+                      ? "chat-box-right py-2"
+                      : "chat-box-left py-2"
+                  }
+                >
                   <p className="chat-value">{message?.text}</p>
                   <div className="chefchat_detail">
                     {authData?.userInfo?.id === message?.senderId ? (
@@ -440,11 +445,10 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                     </p>
                   </div>
                   <div className="message-img">
-                  {message?.image_url && (
-                    <img alt="upload-img" src={message?.image_url} />
-                  )}
+                    {message?.image_url && (
+                      <img alt="upload-img" src={message?.image_url} />
+                    )}
                   </div>
-                 
                 </div>
               </div>
             ))}

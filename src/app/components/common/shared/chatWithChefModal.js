@@ -93,7 +93,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       });
       getFireStoreData(getMyChats);
       setIsLoading(false);
-      scrollToBottom()
+      scrollToBottom();
     });
     return () => unsubscribe();
   }, [userInfo]);
@@ -167,18 +167,21 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     const previousDeletedChatUserIds = roomDocSnapshot.data();
     if (roomDocSnapshot.exists()) {
       const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
-      await addDoc(messagesCollectionRef, {
-        createdAt: new Date(),
-        text: msg,
-        id: "",
-        image_url: imageUrl,
-        senderId: authData?.userInfo?.id,
-        recieverId: userInfo?.id,
-      },
-      setMsg(""),
-      setImgUrl(""),
-      handleSendWebPushNotification(senderName));
-      scrollToBottom()
+      await addDoc(
+        messagesCollectionRef,
+        {
+          createdAt: new Date(),
+          text: msg,
+          id: "",
+          image_url: imageUrl,
+          senderId: authData?.userInfo?.id,
+          recieverId: userInfo?.id,
+        },
+        setMsg(""),
+        setImgUrl(""),
+        handleSendWebPushNotification(senderName)
+      );
+      scrollToBottom();
       try {
         setIsLoading(true);
         const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
@@ -308,6 +311,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   // convert time in UTC to local time
   const convertTimeFormat = (nanoseconds, seconds) => {
     const timestamp = new Date(seconds * 1000 + nanoseconds / 1000000);
+    const now = new Date();
+    const timeDifferenceInSeconds = Math.floor((now - timestamp) / 1000);
+    if (timeDifferenceInSeconds < 5) {
+      return "just now";
+    }
     const formattedTime = timestamp.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "numeric",
@@ -330,7 +338,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         return;
       }
       setImg(acceptedFiles[0]);
-      scrollToBottom()
+      scrollToBottom();
     },
     [img]
   );
@@ -413,11 +421,13 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                 : "chat-right-section"
             }
           >
-            <div  className={
-              userInfo?.id === message?.senderId
-                ? "chat-box-left py-2"
-                : "chat-box-right py-2"
-            }>
+            <div
+              className={
+                userInfo?.id === message?.senderId
+                  ? "chat-box-left py-2"
+                  : "chat-box-right py-2"
+              }
+            >
               <p className="chat-value">{message?.text}</p>
 
               <div className="chefchat_detail">
@@ -459,9 +469,9 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                 </p>
               </div>
               <div className="message-img">
-              {message?.image_url && (
-                <img alt="upload-img" src={message?.image_url} />
-              )}
+                {message?.image_url && (
+                  <img alt="upload-img" src={message?.image_url} />
+                )}
               </div>
             </div>
           </div>

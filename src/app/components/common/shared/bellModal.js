@@ -299,7 +299,7 @@ const BellModal = () => {
           modalDetail.flag === "reportchatD"
             ? "chatbellSection"
             : modalDetail.flag === "chatBell"
-            ? "chatbellSection"
+            ? "chatBox"
             : modalDetail.flag === "clearchat"
             ? "chatbellSection"
             : ""

@@ -2321,7 +2321,18 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   width: 90%;
   bottom: 20px;
 }
-
+.headerImg_ {
+  width: 46px;
+  height: 46px;
+  margin: 0 10px 0 7px;
+  border-radius: 50px;
+}
+.chatnextImg {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  margin-right: 6px;
+}
 .chat-input textarea {
   border: none;
   outline: none;
