@@ -8,7 +8,7 @@ import {
 } from "../../../../redux/slices/user";
 import moment from "moment";
 
-const UserNotification = ({updateNotification}) => {
+const UserNotification = ({ updateNotification }) => {
   const dispatch = useDispatch();
   const [notification, setNotification] = useState([]);
 
@@ -36,7 +36,10 @@ const UserNotification = ({updateNotification}) => {
   };
 
   // read notifications
-  const handleReadNotification = (id) => {
+  const handleReadNotification = (id, read) => {
+    if (read) {
+      return;
+    }
     let params = {
       id: id,
       is_read: true,
@@ -47,7 +50,7 @@ const UserNotification = ({updateNotification}) => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllNotifications();
-            updateNotification()
+            updateNotification();
           }
         },
       })
@@ -81,7 +84,9 @@ const UserNotification = ({updateNotification}) => {
             <>
               {notification?.map((item) => (
                 <div
-                  onClick={() => handleReadNotification(item?._id)}
+                  onClick={() =>
+                    handleReadNotification(item?._id, item?.is_read)
+                  }
                   key={item?._id}
                   className={
                     item?.is_read
@@ -89,6 +94,8 @@ const UserNotification = ({updateNotification}) => {
                       : "notificationModal reademessage cursor-pointer-notifiy"
                   }
                 >
+                  {console.log("noitess", item)}
+
                   <p className="notificationText">{item?.description}</p>
                   <p className="notificationTime">
                     {moment(item?.createdAt).format("hh:mm A")}
