@@ -16,7 +16,7 @@ const UserChefHome = () => {
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, [search,filterChefByRating]);
+  }, [search, filterChefByRating]);
 
   const getChefList = (page = currentPage) => {
     let params = {
@@ -44,11 +44,11 @@ const UserChefHome = () => {
     getChefList(selected + 1);
   };
 
-// filter chef by rating
-const handleFilterChefByRating = (e, rating) => {
-  e.preventDefault();
-  setFilterChefByRating(rating);
-};
+  // filter chef by rating
+  const handleFilterChefByRating = (e, rating) => {
+    e.preventDefault();
+    setFilterChefByRating(rating);
+  };
 
   return (
     <>

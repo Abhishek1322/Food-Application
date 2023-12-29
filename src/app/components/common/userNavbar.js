@@ -221,9 +221,15 @@ const User_Navbar = () => {
                           className="img-fluid"
                           alt="headerlocation"
                         />
-                        <span className="ordertimeaddress ms-1">
-                          {currentLocation}
-                        </span>
+                        {currentLocation ? (
+                          <span className="ordertimeaddress ms-1">
+                            {currentLocation}
+                          </span>
+                        ) : (
+                          <span className="ordertimeaddress ms-1">
+                            choose your location from map
+                          </span>
+                        )}
                       </Link>
                     </>
                   ) : pathname === "/user-chef-home" ? (
@@ -388,24 +394,6 @@ const User_Navbar = () => {
                       <i className="fas fa-bars"></i>
                     </button>
                   </div>
-
-                  {/* booking Common Header */}
-                  {/* <div className='orderItems_ flexBox '>
-                  <button className='cancelOrder_ me-4' >Reject</button>
-                  <button className='submitOrder_'>Accept</button>
-                </div> */}
-
-                  {/* order Details Header html & order Delivered */}
-                  {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
-                  {/* Order Delivered Html */}
-                  {/* <button
-                  className="chefRightHeader m-0 text-end"
-                  onClick={() => {
-                    handleOpenModal("verifyOrderDetailModal");
-                  }}
-                >
-                  Order Delivered
-                </button> */}
                 </div>
               </div>
             ) : (

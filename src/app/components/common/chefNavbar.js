@@ -132,7 +132,6 @@ const Chef_Navbar = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6">
                   {/* ----Home Page Header html */}
-
                   {pathname === "/home" ? (
                     <h1 className="chefCommonHeader">
                       Hello,{" "}
@@ -149,26 +148,6 @@ const Chef_Navbar = () => {
                   ) : (
                     ""
                   )}
-
-                  {/* ----setting Page Header  
-                {/* <h1 className="chefCommonHeader">Settings</h1> */}
-                  {/* ----Booking Details Page Header html  &  For after booking Details Also */}
-                  {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow" alt="arrowHeaderImg" />
-                  <h1 className="chefCommonHeader ps-2">Booking Details</h1>
-                </div> */}
-
-                  {/* Order Details Header  html */}
-                  {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow"  alt="arrowHeaderImg" />
-                  <h1 className="chefCommonHeader ps-2">Order Details</h1>
-                </div>
-              </div> */}
-                  {/* My Profile Page header css */}
-                  {/* <div className="insideCommonHeader">
-                  <img src={Images.backArrowpassword} className="innerHeaderArrow"  alt="arrowHeaderImg" />
-                  <h1 className="chefCommonHeader ps-2">My Profile</h1>
-                </div> */}
                 </div>
                 <div className="col-lg-6 col-md-6 text-end">
                   <div className="flexBox">
@@ -224,24 +203,6 @@ const Chef_Navbar = () => {
                       </span>
                     </div>
                   </div>
-
-                  {/* booking Common Header */}
-                  {/* <div className='orderItems_ flexBox '>
-                  <button className='cancelOrder_ me-4' >Reject</button>
-                  <button className='submitOrder_'>Accept</button>
-                </div> */}
-
-                  {/* order Details Header html & order Delivered */}
-                  {/* <button className="chefRightHeader m-0 text-end">Order Ready for Delivery</button> */}
-                  {/* Order Delivered Html */}
-                  {/* <button
-                  className="chefRightHeader m-0 text-end"
-                  onClick={() => {
-                    handleOpenModal("verifyOrderDetailModal");
-                  }}
-                >
-                  Order Delivered
-                </button> */}
                 </div>
               </div>
             ) : pathname === "/chef-profile" ||

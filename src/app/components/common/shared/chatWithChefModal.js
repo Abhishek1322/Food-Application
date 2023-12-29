@@ -402,7 +402,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
 
   return (
     <>
-      <div className="chat-main-content">
+      <div className="chat-main-content-chef">
         {messages?.map((message, index) => (
           <div
             ref={messagesEndRef}
@@ -413,7 +413,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                 : "chat-right-section"
             }
           >
-            <div className="chat-box-left py-2">
+            <div  className={
+              userInfo?.id === message?.senderId
+                ? "chat-box-left py-2"
+                : "chat-box-right py-2"
+            }>
               <p className="chat-value">{message?.text}</p>
 
               <div className="chefchat_detail">
@@ -454,14 +458,16 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                   )}
                 </p>
               </div>
+              <div className="message-img">
               {message?.image_url && (
                 <img alt="upload-img" src={message?.image_url} />
               )}
+              </div>
             </div>
           </div>
         ))}
         {imageUrl && (
-          <div>
+          <div className="send-selected-msg">
             <img alt="upload-img" src={imageUrl} />
             <i
               onClick={() => handleRemoveImage(imageUrl)}

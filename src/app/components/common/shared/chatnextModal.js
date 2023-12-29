@@ -393,7 +393,13 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                     : "chat-left-section"
                 }
               >
-                <div className="chat-box-left py-2">
+                <div
+                  className={
+                  authData?.userInfo?.id === message?.senderId
+                    ? "chat-box-right py-2"
+                    : "chat-box-left py-2"
+                }
+                 >
                   <p className="chat-value">{message?.text}</p>
                   <div className="chefchat_detail">
                     {authData?.userInfo?.id === message?.senderId ? (
@@ -433,9 +439,12 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                       )}
                     </p>
                   </div>
+                  <div className="message-img">
                   {message?.image_url && (
                     <img alt="upload-img" src={message?.image_url} />
                   )}
+                  </div>
+                 
                 </div>
               </div>
             ))}
@@ -445,11 +454,11 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         )}
 
         {imageUrl && (
-          <div>
+          <div className="send-selected-msg">
             <img alt="upload-img" src={imageUrl} />
             <i
               onClick={() => handleRemoveImage(imageUrl)}
-              className="fa fa-cross"
+              className="fa fa-times cross-icon"
             ></i>
           </div>
         )}
