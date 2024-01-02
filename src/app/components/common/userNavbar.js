@@ -91,8 +91,8 @@ const User_Navbar = () => {
       getLocationInfo({
         ...params,
         cb(res) {
-          if (res?.data?.status?.code === 200) {
-            setCurrentLocation(res?.data?.results[0].formatted);
+          if (res?.status === 200) {
+            setCurrentLocation(res?.data?.display_name);
           }
         },
       })

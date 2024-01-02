@@ -181,11 +181,11 @@ const AddAddressModal = (props) => {
       getLocationInfo({
         ...params,
         cb(res) {
-          if (res?.data?.status?.code === 200) {
-            setCity(res?.data?.results[0]?.formatted);
-            setState(res?.data?.results[0]?.components?.state);
-            setZipCode(res?.data?.results[0]?.components?.postcode);
-            setStreetAddress(res?.data?.results[0]?.components?.road);
+          if (res?.status === 200) {
+            setCity(res?.data?.display_name);
+            setState(res?.data?.address?.state);
+            setZipCode(res?.data?.address?.postcode);
+            setStreetAddress(res?.data?.address?.village);
           }
         },
       })

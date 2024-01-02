@@ -50,6 +50,7 @@ const ApiPath = {
     MENU_RATING: "/menuRating",
     GET_MENU_RATING: "/menuRating/rating",
     GET_LOCATION_INFO: "json",
+    GET_LOCATION_INFO_FREE:"reverse"
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",

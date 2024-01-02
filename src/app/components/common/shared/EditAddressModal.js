@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import PayNowModal from "./PayNowModal";
@@ -6,6 +6,7 @@ import {
   singleAddress,
   editUserAddress,
   onErrorStopLoad,
+  getLocationInfo,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 import PlacesAutocomplete, {
@@ -29,6 +30,7 @@ const EditAddressModal = (props) => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const [key, setKey] = useState(Math.random());
+  const [isLoading, setIsLoading] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -140,17 +142,16 @@ const EditAddressModal = (props) => {
       .catch((error) => {});
   };
 
- // show only one toast at one time
- const showToast = (msg) => {
-  if (!toast.isActive(toastId.current)) {
-    toastId.current = toast.error(msg);
-  }
-};
-
-
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+  
   // edit address
-  const handleSubmitEditAddess = () => {
-
+  const handleSubmitEditAddess = (save) => {
+    setIsLoading(save);
     if (!city) {
       showToast("Please enter your city name");
       return;
@@ -190,6 +191,73 @@ const EditAddressModal = (props) => {
       })
     );
   };
+
+
+ // get current location
+ const handleGetCurrentLocation = (curr) => {
+  setIsLoading(curr);
+  if (navigator.geolocation) {
+    navigator.permissions
+      .query({ name: "geolocation" })
+      .then(function (result) {
+        if (result.state === "granted") {
+          //If granted then you can directly call your function here
+          navigator.geolocation.getCurrentPosition(success, errors, options);
+        } else if (result.state === "prompt") {
+          //If prompt then the user will be asked to give permission
+          navigator.geolocation.getCurrentPosition(success, errors, options);
+        } else if (result.state === "denied") {
+          //If denied then you have to show instructions to enable location
+        }
+      });
+    setCity("");
+    setState("");
+    setZipCode("");
+    setStreetAddress("");
+    setBuilding("");
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+};
+// handling error
+function errors(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+// location options
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+ // get let long
+ function success(pos) {
+  var crd = pos.coords;
+  handleGetLocationInfo(crd.latitude, crd.longitude);
+}
+
+ // getLocationInfo
+ const handleGetLocationInfo = (lat, lng) => {
+  let params = {
+    lat: lat,
+    lng: lng,
+  };
+  dispatch(
+    getLocationInfo({
+      ...params,
+      cb(res) {
+        if (res?.status === 200) {
+          setCity(res?.data?.display_name);
+          setState(res?.data?.address?.state);
+          setZipCode(res?.data?.address?.postcode);
+          setStreetAddress(res?.data?.address?.village);
+        }
+      },
+    })
+  );
+};
+
+
   return (
     <>
       <div className="editadressection tabsection">
@@ -255,7 +323,16 @@ const EditAddressModal = (props) => {
                   alt="locationtargetimg"
                   className="img-fluid"
                 />
-                <span className="modalclearAll">User Current Location</span>
+                 <button
+                  disabled={userData?.loading && isLoading === "save"}
+                  onClick={() => handleGetCurrentLocation("current")}
+                  className="modalclearAll"
+                >
+                  {userData?.loading && isLoading === "current" && (
+                    <span className="spinner-border spinner-border-sm me-1"></span>
+                  )}
+                  User Current Location
+                </button>
               </div>
               <div className="row">
                 <div className="col-lg-12">
@@ -266,9 +343,7 @@ const EditAddressModal = (props) => {
                       value={city}
                       onChange={autoCompleteHandleChange}
                       onSelect={autoCompleteHandleSelect}
-                      searchOptions={{
-                       
-                      }}
+                      searchOptions={{}}
                     >
                       {({
                         getInputProps,
@@ -394,11 +469,11 @@ const EditAddressModal = (props) => {
               <div className="modalfooterbtn">
                 <div className="addfoodbtn">
                   <button
-                    disabled={userData?.loading}
-                    onClick={handleSubmitEditAddess}
+                    disabled={userData?.loading && isLoading === "save"}
+                    onClick={()=>handleSubmitEditAddess("save")}
                     className="foodmodalbtn"
                   >
-                    {userData?.loading && (
+                    {userData?.loading && isLoading === "save" && (
                       <span className="spinner-border spinner-border-sm me-1"></span>
                     )}
                     Update & Save

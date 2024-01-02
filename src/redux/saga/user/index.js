@@ -39,7 +39,8 @@ function* getLocationInfo(action) {
   try {
     const resp = yield call(
       ApiClient.getLocation,
-      (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO}?q=${action.payload.lat},${action.payload.lng}&key=${GEO_CODING_API_KEY}`),
+      (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO_FREE}?format=json&lat=${action.payload.lat}&lon=${action.payload.lng}`),
+      // (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO}?q=${action.payload.lat},${action.payload.lng}&key=${GEO_CODING_API_KEY}`),
       (action.payload = action.payload)
     );
     if (resp.status) {

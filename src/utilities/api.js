@@ -10,7 +10,8 @@ const axiosInstance = axios.create({
 });
 
 const axiosInstanceLocation = axios.create({
-  baseURL: BaseUrl.GEO_CODE_API_URL,
+  // baseURL: BaseUrl.GEO_CODE_API_URL,
+  baseURL: BaseUrl.GET_LOCATION_API_URL,
   headers: {
     Accept: "application/json",
   },
@@ -175,7 +176,7 @@ const axiosPostFormData = (url, params) => {
 
 export const ApiClient = {
   get: axiosGet,
-  getLocation:axiosGetLocation,
+  getLocation: axiosGetLocation,
   put: axiosPut,
   post: axiosPost,
   patch: axiosPatch,
