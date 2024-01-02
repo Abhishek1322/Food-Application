@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import * as Images from "../../../../utilities/images";
-import CustomModal from "./CustomModal";
-import OrderReadyForDeliverModal from "./orderReadyForDeliverModal.js";
 import {
   CHILDCOLLECTIONNAME,
   db,
-  messaging,
   PARENTCOLLECTIONNAME,
-  VAPID_KEY,
 } from "../../../../config/firebase-config";
 import {
   collection,
@@ -40,15 +36,9 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const [img, setImg] = useState("");
   const [imageUrl, setImgUrl] = useState("");
   const [userInfo, setUserInfo] = useState([]);
-  const [key, setKey] = useState(Math.random());
   const [isLoading, setIsLoading] = useState(false);
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
   const ROOM_ID = `${userInfo?.id}-${authData?.userInfo?.id}`;
-
+  
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -58,26 +48,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         behavior: "smooth",
       });
     }
-  };
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-    close();
-  };
-  // open modal
-  const handleOpenModal = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
   };
 
   // get all parent collection chats
@@ -132,10 +102,9 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       let filteredMessages = messagesList;
       if (messagesList && messagesList.length > 0 && lastDeletedAt) {
         filteredMessages = messagesList?.filter(
-          (val) => val?.createdAt?.seconds > Math.floor(lastDeletedAt / 1000)
+          (val) => val?.createdAt > Math.floor(lastDeletedAt)
         );
       }
-
       const updatedData = filteredMessages?.map((item, index) => {
         if (item?.image_url === "") {
           const { image_url, ...rest } = item;
@@ -170,7 +139,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       await addDoc(
         messagesCollectionRef,
         {
-          createdAt: new Date(),
+          createdAt: Math.floor(Date.now()),
           text: msg,
           id: "",
           image_url: imageUrl,
@@ -190,7 +159,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
           {
             deletedChatUserIds: previousDeletedChatUserIds?.deletedChatUserIds,
             lastMessage: {
-              createdAt: new Date(),
+              createdAt: Math.floor(Date.now()),
               senderId: authData?.userInfo?.id,
               recieverId: userInfo?.id,
               text: msg,
@@ -242,7 +211,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         {
           deletedChatUserIds: [],
           lastMessage: {
-            createdAt: new Date(),
+            createdAt: Math.floor(Date.now()),
             senderId: authData?.userInfo?.id,
             recieverId: userInfo?.id,
             text: msg,
@@ -274,7 +243,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         handleSendWebPushNotification(senderName)
       );
       await addDoc(messagesCollectionRef, {
-        createdAt: new Date(),
+        createdAt: Math.floor(Date.now()),
         text: msg,
         id: "",
         image_url: imageUrl,
@@ -291,6 +260,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     const notificationData = {
       title: "New Message",
       body: `${senderName}: ${msg}`,
+      profile_image: authData?.userInfo?.userInfo?.profilePhoto,
     };
     const payload = {
       notification: notificationData,
@@ -308,19 +278,21 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     });
   };
 
-  // convert time in UTC to local time
-  const convertTimeFormat = (nanoseconds, seconds) => {
-    const timestamp = new Date(seconds * 1000 + nanoseconds / 1000000);
+  // Convert UTC time to local time
+  const convertTimeFormat = (seconds) => {
+    const timestamp = new Date(seconds);
     const now = new Date();
     const timeDifferenceInSeconds = Math.floor((now - timestamp) / 1000);
     if (timeDifferenceInSeconds < 5) {
       return "just now";
     }
-    const formattedTime = timestamp.toLocaleTimeString("en-US", {
+    const options = {
       hour: "numeric",
       minute: "numeric",
       hour12: true,
-    });
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+    const formattedTime = timestamp.toLocaleTimeString("en-US", options);
     return formattedTime;
   };
 
@@ -462,10 +434,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                 )}
 
                 <p className="chatTime_ m-0 pe-2">
-                  {convertTimeFormat(
-                    message?.createdAt?.nanoseconds,
-                    message?.createdAt?.seconds
-                  )}
+                  {convertTimeFormat(message?.createdAt)}
                 </p>
               </div>
               <div className="message-img">
@@ -523,67 +492,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
           </div>
         </div>
       </div>
-
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "orderReadyForDelivery"
-            ? "commonWidth customContent"
-            : ""
-        }
-        ids={
-          modalDetail.flag === "orderReadyForDelivery" ? "readyWithOrder" : ""
-        }
-        child={
-          modalDetail.flag === "orderReadyForDelivery" ? (
-            <OrderReadyForDeliverModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "orderReadyForDelivery" ? (
-            <>
-              <div className="Common_header">
-                <img
-                  onClick={handleOnCloseModal}
-                  src={Images.backArrowpassword}
-                  alt="arrowPswImg"
-                  className="img-fluid  arrowCommon_"
-                />
-                <div className="headerProfile ps-2">
-                  <p className="modal_Heading">Order #12548</p>
-                  <p className="innerhead_ ps-3">In-Progress</p>
-                </div>
-              </div>
-              {/* <p onClick={handleOnCloseModal} className='modal_cancel'>
-                            <img src={Images.modalCancel} className='ModalCancel' />
-                        </p> */}
-            </>
-          ) : modalDetail.flag === "CartFood" ? (
-            <>
-              {/* <h2 className="modal_Heading">
-                                Cart
-                            </h2> */}
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img
-                  src={Images.modalCancel}
-                  className="ModalCancel"
-                  alt="modalCancel"
-                />
-              </p>
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

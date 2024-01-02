@@ -88,17 +88,17 @@ const UserBellModal = ({ id }) => {
         }
         return record;
       });
-
+      
       let dataSortedFilter = sortedRecords?.filter((val) => {
         if (
-          !val?.lastMessage?.createdAt?.seconds ||
+          !val?.lastMessage?.createdAt ||
           !val?.sortedRecords ||
           val.sortedRecords.length <= 0
         ) {
           return val;
         } else if (
-          val?.lastMessage?.createdAt.seconds >
-          val.sortedRecords[0].deletedAt / 1000
+          val?.lastMessage?.createdAt >
+          val.sortedRecords[0].deletedAt
         ) {
           return val;
         } else {
@@ -109,14 +109,21 @@ const UserBellModal = ({ id }) => {
     });
   };
 
-  // convert time in UTC to local time
-  const convertTimeFormat = (nanoseconds, seconds) => {
-    const timestamp = new Date(seconds * 1000 + nanoseconds / 1000000);
-    const formattedTime = timestamp.toLocaleTimeString("en-US", {
+  // Convert UTC time to local time
+  const convertTimeFormat = (seconds) => {
+    const timestamp = new Date(seconds);
+    const now = new Date();
+    const timeDifferenceInSeconds = Math.floor((now - timestamp) / 1000);
+    if (timeDifferenceInSeconds < 5) {
+      return "just now";
+    }
+    const options = {
       hour: "numeric",
       minute: "numeric",
       hour12: true,
-    });
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+    const formattedTime = timestamp.toLocaleTimeString("en-US", options);
     return formattedTime;
   };
 
@@ -222,10 +229,7 @@ const UserBellModal = ({ id }) => {
                       <p className="chefName">{item?.user2?.full_name}</p>
                       <p className="cheftext">{item?.lastMessage?.text}</p>
                       <p className="chatTime">
-                        {convertTimeFormat(
-                          item?.lastMessage?.createdAt?.nanoseconds,
-                          item?.lastMessage?.createdAt?.seconds
-                        )}
+                        {convertTimeFormat(item?.lastMessage?.createdAt)}
                       </p>
                       {sender_id !== item?.lastMessage?.senderId &&
                       item?.unseenMessageCount > 0 ? (

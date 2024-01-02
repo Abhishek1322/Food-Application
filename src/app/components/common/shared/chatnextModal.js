@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-
+  
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -100,12 +100,12 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         let filteredMessages = messagesList;
         if (messagesList && messagesList.length > 0 && lastDeletedAt) {
           filteredMessages = messagesList?.filter(
-            (val) => val?.createdAt?.seconds > Math.floor(lastDeletedAt / 1000)
+            (val) => val?.createdAt > Math.floor(lastDeletedAt)
           );
         }
         const updatedData = filteredMessages?.map((item) => {
           if (item?.image_url === "") {
-            const {image_url, ...rest } = item;
+            const { image_url, ...rest } = item;
             return rest;
           }
           return item;
@@ -140,7 +140,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         await addDoc(
           messagesCollectionRef,
           {
-            createdAt: new Date(),
+            createdAt: Math.floor(Date.now()),
             text: msg,
             id: "",
             image_url: imageUrl,
@@ -160,7 +160,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
               deletedChatUserIds:
                 previousDeletedChatUserIds?.deletedChatUserIds,
               lastMessage: {
-                createdAt: new Date(),
+                createdAt: Math.floor(Date.now()),
                 senderId: authData?.userInfo?.id,
                 text: msg,
                 image_url: imageUrl,
@@ -215,7 +215,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         {
           deletedChatUserIds: [],
           lastMessage: {
-            createdAt: new Date(),
+            createdAt: Math.floor(Date.now()),
             senderId: authData?.userInfo?.id,
             text: msg,
             image_url: imageUrl,
@@ -250,7 +250,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       );
 
       await addDoc(messagesCollectionRef, {
-        createdAt: new Date(),
+        createdAt: Math.floor(Date.now()),
         text: msg,
         id: "",
         image_url: imageUrl,
@@ -278,6 +278,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       notification: notificationData,
       data: notificationData,
       to: chefData?.fcmToken,
+      profile_image: authData?.userInfo?.userInfo?.profilePhoto,
     };
 
     await fetch("https://fcm.googleapis.com/fcm/send", {
@@ -360,19 +361,21 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
     );
   };
 
-  // convert time in UTC to local time
-  const convertTimeFormat = (nanoseconds, seconds) => {
-    const timestamp = new Date(seconds * 1000 + nanoseconds / 1000000);
+  // Convert UTC time to local time
+  const convertTimeFormat = (seconds) => {
+    const timestamp = new Date(seconds);
     const now = new Date();
     const timeDifferenceInSeconds = Math.floor((now - timestamp) / 1000);
     if (timeDifferenceInSeconds < 5) {
       return "just now";
     }
-    const formattedTime = timestamp.toLocaleTimeString("en-US", {
+    const options = {
       hour: "numeric",
       minute: "numeric",
       hour12: true,
-    });
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+    const formattedTime = timestamp.toLocaleTimeString("en-US", options);
     return formattedTime;
   };
 
@@ -438,10 +441,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                     )}
 
                     <p className="chatTime_ m-0 pe-2">
-                      {convertTimeFormat(
-                        message?.createdAt?.nanoseconds,
-                        message?.createdAt?.seconds
-                      )}
+                      {convertTimeFormat(message?.createdAt)}
                     </p>
                   </div>
                   <div className="message-img">

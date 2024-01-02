@@ -17,7 +17,6 @@ import { messaging, VAPID_KEY } from "./config/firebase-config";
 import { getToken, onMessage } from "firebase/messaging";
 import * as Images from "../src/utilities/images";
 
-
 function App() {
   // Get FCM token
   async function requestPermission() {
@@ -30,10 +29,12 @@ function App() {
       localStorage.setItem("fcmToken", token);
       console.log("Token Gen", token);
       onMessage(messaging, (payload) => {
+      console.log("payloadpayload", payload);
+
         const { title, body } = payload.notification;
         new Notification(title, {
           body,
-          icon: Images.Logo,
+          icon: payload?.data?.profile_image ? payload?.data?.profile_image : Images.Logo,
         });
         // toast(`New message received from ${payload.notification.body}`);
       });
