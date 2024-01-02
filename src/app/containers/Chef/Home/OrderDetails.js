@@ -21,7 +21,6 @@ const OrderDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const authData = useAuthSelector();
-  console.log("authDataauthData0", authData);
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
@@ -33,8 +32,6 @@ const OrderDetails = () => {
     title: "",
     flag: "",
   });
-  console.log("orderDetailsorderDetailszzzzzzz", orderDetails);
-  console.log("allChatsallChatszzz", allChats);
 
   // get order details
   useEffect(() => {

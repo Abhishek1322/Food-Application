@@ -48,7 +48,6 @@ const UserNotification = ({ updateNotification }) => {
       readNotification({
         ...params,
         cb(res) {
-          console.log("ackckckd", res);
           if (res.status === 200) {
             handleGetAllNotifications();
             updateNotification();

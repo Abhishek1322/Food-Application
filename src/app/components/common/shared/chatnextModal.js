@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  
+  console.log("chefDatachefData",chefData);
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -179,7 +179,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
               user2: {
                 email: chefData?.email,
                 full_name: receiverName,
-                fcmToken: chefData?.fcmToken,
+                fcmToken: chefData?.fcmToken ? chefData?.fcmToken : "",
                 id: chefData?.id,
                 onlineStatus: 1,
                 profile_image: chefData?.userInfo?.profilePhoto
@@ -234,7 +234,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           user2: {
             email: chefData?.email,
             full_name: receiverName,
-            fcmToken: chefData?.fcmToken,
+            fcmToken: chefData?.fcmToken ? chefData?.fcmToken : "",
             id: chefData?.id,
             onlineStatus: 1,
             profile_image: chefData?.userInfo?.profilePhoto
