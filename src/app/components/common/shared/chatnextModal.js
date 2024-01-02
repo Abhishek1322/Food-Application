@@ -458,12 +458,14 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         )}
 
         {imageUrl && (
+          <div className="select-image-outer">
           <div className="send-selected-msg">
             <img alt="upload-img" src={imageUrl} />
             <i
               onClick={() => handleRemoveImage(imageUrl)}
               className="fa fa-times cross-icon"
             ></i>
+          </div>
           </div>
         )}
 

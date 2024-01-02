@@ -843,3 +843,7 @@ input:-webkit-autofill:active {
   right: 8px;
   top: 25px;
 }
+.select-image-outer {
+  position: absolute;
+  bottom: 81px;
+}

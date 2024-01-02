@@ -38,7 +38,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const [userInfo, setUserInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${userInfo?.id}-${authData?.userInfo?.id}`;
-  
+
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -169,7 +169,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
             unseenMessageCount: previousUnseenMessageCount + 1,
             user1: {
               email: userInfo?.email,
-              fcmToken: userInfo?.fcmToken ? userInfo?.fcmToken : "" ,
+              fcmToken: userInfo?.fcmToken ? userInfo?.fcmToken : "",
               full_name: receiverName,
               id: userInfo?.id,
               onlineStatus: 1,
@@ -221,7 +221,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
           unseenMessageCount: 1,
           user1: {
             email: userInfo?.email,
-            fcmToken: userInfo?.fcmToken ?  userInfo?.fcmToken :"",
+            fcmToken: userInfo?.fcmToken ? userInfo?.fcmToken : "",
             full_name: receiverName,
             id: userInfo?.id,
             onlineStatus: 1,
@@ -446,12 +446,14 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
           </div>
         ))}
         {imageUrl && (
-          <div className="send-selected-msg">
-            <img alt="upload-img" src={imageUrl} />
-            <i
-              onClick={() => handleRemoveImage(imageUrl)}
-              className="fa fa-cross"
-            ></i>
+          <div className="select-image-outer">
+            <div className="send-selected-msg">
+              <img alt="upload-img" src={imageUrl} />
+              <i
+                onClick={() => handleRemoveImage(imageUrl)}
+                className="fa fa-cross"
+              ></i>
+            </div>
           </div>
         )}
 
