@@ -1,5 +1,4 @@
 import Login from "./auth/login"
-import Home from "./home"
 import ChooseRoles from "./auth/chooseRoles"
 import AccountDashboard from "./dashboard"
 import Verification from "./auth/verification"
@@ -17,9 +16,6 @@ import TermAndCondition from "./Settings/TermAndCondition"
 import Contactus from "./Settings/ContactUs"
 import PrivacyPolicy from "./Settings/PrivacyPolicy"
 import SetupProfile from "./SetupProfile"
-import Cart from "../components/Cart"
-import Chat from "../components/Chat"
-import Notification from "../components/Notification"
 import NewBooking from "../containers/Chef/Booking/NewBooking"
 import Menu from "../containers/Chef/menu/Menu"
 import HomeRequsest from "../containers/Chef/Home/Home"
@@ -43,7 +39,6 @@ import ChooseLocation from "./User/ChooseLocation"
 
 export {
     Login,
-    Home, 
     ChooseRoles,
     AccountDashboard,
     Verification,
@@ -61,9 +56,6 @@ export {
     Contactus,
     PrivacyPolicy,
     SetupProfile,
-    Cart,
-    Chat,
-    Notification,
     NewBooking,
     Menu,
     HomeRequsest,

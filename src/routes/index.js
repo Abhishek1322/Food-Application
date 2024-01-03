@@ -29,7 +29,7 @@ const Router = () => {
             path="/user-editprofile"
             element={<Containers.UserEditProfile />}
           />
-           <Route
+          <Route
             path="/choose-location"
             element={<Containers.ChooseLocation />}
           />
@@ -49,9 +49,9 @@ const Router = () => {
           <Route path="/new-booking" element={<Containers.NewBooking />} />
           <Route path="/menu" element={<Containers.Menu />} />
           <Route path="/home" element={<Containers.HomeRequsest />} />
-       
+
           <Route path="/my-profile" element={<Containers.myprofile />} />
-        
+
           <Route path="/order-details" element={<Containers.OrderDetails />} />
           <Route
             path="/anotherorder-detail"
@@ -121,17 +121,11 @@ const Router = () => {
             path="/privacy-policy"
             element={<Containers.PrivacyPolicy />}
           />
-          <Route path="/cart" element={<Containers.Cart />} />
-          <Route path="/chat" element={<Containers.Chat />} />
-          <Route path="/notification" element={<Containers.Notification />} />
           <Route
             path="/user-manageaddress"
             element={<Containers.UserManageAddress />}
           />
-           <Route
-            path="*"
-            element={<Containers.PageNotFound />}
-          />
+          <Route path="*" element={<Containers.PageNotFound />} />
         </Route>
       </Routes>
     </>

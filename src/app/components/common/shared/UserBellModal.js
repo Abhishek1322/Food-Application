@@ -3,8 +3,6 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import UserDeleteChat from "./UserDeleteChat";
 import ChatnextModal from "./chatnextModal";
-import UserReportChat from "./UserReportChat";
-import UserClearChat from "./UserClearChat";
 import {
   collection,
   doc,
