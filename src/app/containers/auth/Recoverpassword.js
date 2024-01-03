@@ -16,9 +16,8 @@ const Recoverpassword = (props) => {
   const [showPassword, setShowPassword] = useState("false");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-
   const userId = localStorage.getItem("userId");
-
+  
   //show hide password
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -44,7 +43,7 @@ const Recoverpassword = (props) => {
     let params = {
       new_password: newPassword,
       confirm_password: confirmNewPassword,
-      user_id: userId,
+      user_id: userId ? userId : authData.userInfo.user_id,
     };
 
     dispatch(

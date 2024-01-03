@@ -2,7 +2,6 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ApiClient } from "../../../utilities/api";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
-import { GEO_CODING_API_KEY } from "../../../config/config";
 import {
   setAddAddress,
   setGetUserAddress,
@@ -249,7 +248,6 @@ function* reportChat(action) {
 }
 
 function* getRating(action) {
-  console.log("actionaction", action);
   let targetUrl = `${ApiPath.userApiPath.GET_RATING}?chefId=${action.payload.chefId}&`;
   if (action.payload.rating) {
     targetUrl += `rating=${action.payload.rating}`;
@@ -405,7 +403,6 @@ function* createOrder(action) {
       throw resp;
     }
   } catch (e) {
-    console.log("erorrorro", e);
     yield put(onErrorStopLoad());
     toast.dismiss();
     // toast.error(e.response.data.message);
