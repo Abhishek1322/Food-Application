@@ -69,7 +69,7 @@ const UserNotification = ({ updateNotification }) => {
       })
     );
   };
-
+  
   return (
     <>
       <div className="notificationsection">
