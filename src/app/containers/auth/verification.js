@@ -12,15 +12,17 @@ import {
 } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import Loading from "../Settings/Loading";
+import { doc, setDoc } from "firebase/firestore";
+import { USERPARENTCOLLECTION, db } from "../../../config/firebase-config";
 
 const Verification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
   const authData = useAuthSelector();
-
-  const [otp, setOtp] = useState("");
+  const fcmToken = localStorage.getItem("fcmToken");
   const userEmail = localStorage.getItem("userEmail");
+  const [otp, setOtp] = useState("");
 
   // show only one toast at one time
   const showToast = (msg) => {
@@ -29,6 +31,7 @@ const Verification = () => {
     }
   };
 
+  // submit data
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!otp) {
@@ -48,6 +51,7 @@ const Verification = () => {
               navigate("/setup-profile");
             } else {
               navigate("/home-user");
+              handleCreateUserCollection(res?.data?.data);
             }
           }
         },
@@ -55,15 +59,35 @@ const Verification = () => {
     );
   };
 
+  // create user cpllection in firebase
+  const handleCreateUserCollection = async (USER_DATA) => {
+    try {
+      const full_name =
+        USER_DATA?.userInfo?.firstName + " " + USER_DATA?.userInfo?.lastName;
+      const roomDocRef = doc(db, USERPARENTCOLLECTION, USER_DATA?.id);
+      await setDoc(roomDocRef, {
+        email: USER_DATA?.email,
+        fcmToken: USER_DATA?.fcmToken ? USER_DATA?.fcmToken : fcmToken,
+        full_name: full_name,
+        id: USER_DATA?.id,
+        onlineStatus: 1,
+        profile_image: USER_DATA?.userInfo?.profilePhoto
+          ? USER_DATA?.userInfo?.profilePhoto
+          : "",
+      });
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error("Error creating room:", error);
+    }
+  };
+
   // function for resend otp
   const handleResendOtp = (e) => {
     e.preventDefault();
-
     let params = {
       type: "verify",
       email: userEmail,
     };
-
     dispatch(
       resendVerifyOtp({
         ...params,

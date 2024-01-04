@@ -157,6 +157,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         await updateDoc(
           roomDocRef,
           {
+            clearChat: false,
             deletedChatUserIds: previousDeletedChatUserIds?.deletedChatUserIds,
             lastMessage: {
               createdAt: Math.floor(Date.now()),
@@ -209,6 +210,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       await setDoc(
         roomDocRef,
         {
+          clearChat: false,
           deletedChatUserIds: [],
           lastMessage: {
             createdAt: Math.floor(Date.now()),

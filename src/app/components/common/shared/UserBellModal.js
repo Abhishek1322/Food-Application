@@ -8,6 +8,7 @@ import {
   doc,
   getDoc,
   onSnapshot,
+  orderBy,
   query,
   updateDoc,
 } from "firebase/firestore";
@@ -86,7 +87,7 @@ const UserBellModal = ({ id }) => {
         }
         return record;
       });
-      
+
       let dataSortedFilter = sortedRecords?.filter((val) => {
         if (
           !val?.lastMessage?.createdAt ||
@@ -95,8 +96,7 @@ const UserBellModal = ({ id }) => {
         ) {
           return val;
         } else if (
-          val?.lastMessage?.createdAt >
-          val.sortedRecords[0].deletedAt
+          val?.lastMessage?.createdAt > val.sortedRecords[0].deletedAt
         ) {
           return val;
         } else {
@@ -270,7 +270,7 @@ const UserBellModal = ({ id }) => {
                           className=" chatnext_ flexBox"
                         >
                           <img
-                            src={Images.ChatModal}
+                            src={Images.cartDelete}
                             className=" img-fluid reporticon_"
                             alt="reportchatImg"
                           />
@@ -323,6 +323,7 @@ const UserBellModal = ({ id }) => {
               sender_id={sender_id}
               allChats={allChats}
               sendRoomId={sendRoomId}
+              flag={modalDetail.flag === "deletechat" ? "deleteChat" : ""}
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "chefchat" ? (

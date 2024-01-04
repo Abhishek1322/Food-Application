@@ -18,6 +18,7 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const messaging = getMessaging(app);
 const PARENTCOLLECTIONNAME = "chats";
+const USERPARENTCOLLECTION = "users";
 const CHILDCOLLECTIONNAME = "messages"
 const VAPID_KEY =
   "BIxgyl370mEcMrx4B1IifDDuKT__Cd8uCcmuXt6CamNftgCF8Gyb-3vSctMXN5kabDBSE4BN1-tmu91D8Qya_GQ";
@@ -30,4 +31,4 @@ const VAPID_KEY =
   //   });
   // });
 
-export { db, storage, app, messaging, PARENTCOLLECTIONNAME,CHILDCOLLECTIONNAME, VAPID_KEY };
+export { db, storage, app, messaging, PARENTCOLLECTIONNAME,USERPARENTCOLLECTION,CHILDCOLLECTIONNAME, VAPID_KEY };

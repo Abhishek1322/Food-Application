@@ -63,7 +63,10 @@ const BellModal = () => {
 
   // get all chats
   const handleGetAllChats = () => {
-    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
+    const allMessageQuery = query(
+      collection(db, PARENTCOLLECTIONNAME)
+      
+    );
     onSnapshot(allMessageQuery, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
@@ -262,7 +265,7 @@ const BellModal = () => {
                         <div
                           onClick={() => {
                             handleOpenModal(
-                              "clearchat",
+                              "deletechat",
                               item?.user1?.id,
                               item?.roomId
                             );
@@ -270,7 +273,7 @@ const BellModal = () => {
                           className=" chatnext_ flexBox"
                         >
                           <img
-                            src={Images.ChatModal}
+                            src={Images.cartDelete}
                             className=" img-fluid reporticon_"
                             alt="reportchatImg"
                           />
@@ -302,7 +305,8 @@ const BellModal = () => {
             ? "chatbellSection"
             : modalDetail.flag === "chatBell"
             ? "chatBox"
-            : modalDetail.flag === "clearchat"
+            : modalDetail.flag === "clearchat" ||
+              modalDetail.flag === "deletechat"
             ? "chatbellSection"
             : ""
         }
@@ -313,11 +317,13 @@ const BellModal = () => {
               handleChefProfle={handleChefProfle}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "clearchat" ? (
+          ) : modalDetail.flag === "clearchat" ||
+            modalDetail.flag === "deletechat" ? (
             <UserDeleteChat
               sender_id={sender_id}
               allChats={allOldChats}
               sendRoomId={sendRoomId}
+              flag={modalDetail.flag === "deletechat" ? "deleteChat" : ""}
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "reportchatD" ? (

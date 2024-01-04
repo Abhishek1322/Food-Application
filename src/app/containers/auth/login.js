@@ -7,18 +7,21 @@ import { useDispatch } from "react-redux";
 import { userLogin, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import Loading from "../Settings/Loading";
+import {  doc, setDoc } from "firebase/firestore";
+import { USERPARENTCOLLECTION, db } from "../../../config/firebase-config";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
   const authData = useAuthSelector();
+  const fcmToken = localStorage.getItem("fcmToken");
   const [isToggleOn, setIsToggleOn] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  console.log("authDataauthData", authData);
   // show only one toast at one time
   const showToast = (msg) => {
     if (!toast.isActive(toastId.current)) {
@@ -63,6 +66,7 @@ const Login = () => {
               if (res.data.data.chefInfo.documentVerified) {
                 toast.success("Successfully logged in");
                 navigate("/home");
+                handleCreateUserCollection(res?.data?.data);
               } else if (
                 !res.data.data.chefInfo.documentVerified &&
                 res.data.data.chefInfo.step === "3"
@@ -80,6 +84,7 @@ const Login = () => {
             } else if (res.data.data.status === "Active") {
               toast.success("Successfully logged in");
               navigate("/home-user");
+              handleCreateUserCollection(res?.data?.data);
             }
           }
         },
@@ -104,6 +109,28 @@ const Login = () => {
   useEffect(() => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
+
+  // create user cpllection in firebase
+  const handleCreateUserCollection = async (USER_DATA) => {
+    try {
+      const full_name =
+        USER_DATA?.userInfo?.firstName + " " + USER_DATA?.userInfo?.lastName;
+      const roomDocRef = doc(db, USERPARENTCOLLECTION, USER_DATA?.id);
+      await setDoc(roomDocRef, {
+        email: USER_DATA?.email,
+        fcmToken: USER_DATA?.fcmToken ? USER_DATA?.fcmToken : fcmToken,
+        full_name: full_name,
+        id: USER_DATA?.id,
+        onlineStatus: 1,
+        profile_image: USER_DATA?.userInfo?.profilePhoto
+          ? USER_DATA?.userInfo?.profilePhoto
+          : "",
+      });
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error("Error creating room:", error);
+    }
+  };
 
   return (
     <>

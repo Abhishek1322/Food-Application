@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  console.log("chefDatachefData",chefData);
+  console.log("messagesmessages", messages);
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -110,7 +110,14 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           }
           return item;
         });
-        setMessages(updatedData);
+        const removeEmptyTextField = updatedData?.map((item) => {
+          if (item?.text === "") {
+            const { text, ...rest } = item;
+            return rest;
+          }
+          return item;
+        });
+        setMessages(removeEmptyTextField);
       });
     }
   };
@@ -157,6 +164,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           await updateDoc(
             roomDocRef,
             {
+              clearChat: false,
               deletedChatUserIds:
                 previousDeletedChatUserIds?.deletedChatUserIds,
               lastMessage: {
@@ -213,6 +221,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       await setDoc(
         roomDocRef,
         {
+          clearChat: false,
           deletedChatUserIds: [],
           lastMessage: {
             createdAt: Math.floor(Date.now()),
@@ -273,7 +282,6 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       title: "New Message",
       body: `${senderName}: ${msg}`,
     };
-
     const payload = {
       notification: notificationData,
       data: notificationData,
@@ -432,7 +440,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                       />
                     )}
                     {authData?.userInfo?.id === message?.senderId ? (
-                      <p className="chatUser m-0 pe-1">you</p>
+                      <p className="chatUser m-0 pe-1">You</p>
                     ) : (
                       <p className="chatUser m-0 pe-1">
                         {chefData?.userInfo?.firstName}{" "}
@@ -459,13 +467,13 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
 
         {imageUrl && (
           <div className="select-image-outer">
-          <div className="send-selected-msg">
-            <img alt="upload-img" src={imageUrl} />
-            <i
-              onClick={() => handleRemoveImage(imageUrl)}
-              className="fa fa-times cross-icon"
-            ></i>
-          </div>
+            <div className="send-selected-msg">
+              <img alt="upload-img" src={imageUrl} />
+              <i
+                onClick={() => handleRemoveImage(imageUrl)}
+                className="fa fa-times cross-icon"
+              ></i>
+            </div>
           </div>
         )}
 
