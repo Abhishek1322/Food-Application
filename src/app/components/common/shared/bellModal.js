@@ -186,19 +186,21 @@ const BellModal = () => {
   return (
     <>
       <div className="modalContent">
-        <div className="searchbar">
-          <input
-            type="search"
-            placeholder="Search chats..."
-            className="searchtext"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <img
-            src={Images.searchbar}
-            className="searchbarImg"
-            alt="searchbar"
-          />
-        </div>
+        {filteredChats && filteredChats.length > 0 && (
+          <div className="searchbar">
+            <input
+              type="search"
+              placeholder="Search chats..."
+              className="searchtext"
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <img
+              src={Images.searchbar}
+              className="searchbarImg"
+              alt="searchbar"
+            />
+          </div>
+        )}
         <div className="modalscroll">
           {filteredChats && filteredChats.length > 0 ? (
             <>
@@ -289,7 +291,16 @@ const BellModal = () => {
               ))}
             </>
           ) : (
-            <p>No Chats Found</p>
+            <div className="noDataFoundImage">
+              <div>
+                <img
+                  className="w-100"
+                  alt="no data found"
+                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                />
+                <p className="no-data-found">No data found</p>
+              </div>
+            </div>
           )}
         </div>
       </div>

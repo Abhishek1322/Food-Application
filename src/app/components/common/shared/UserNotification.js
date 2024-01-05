@@ -69,16 +69,18 @@ const UserNotification = ({ updateNotification }) => {
       })
     );
   };
-  
+
   return (
     <>
       <div className="notificationsection">
-        <p
-          onClick={handleClearAllNotifications}
-          className="modalclearAll text-end"
-        >
-          Clear All{" "}
-        </p>
+        {notification && notification.length > 0 && (
+          <p
+            onClick={handleClearAllNotifications}
+            className="modalclearAll text-end"
+          >
+            Clear All{" "}
+          </p>
+        )}
         <div className="modalscroll">
           {notification && notification.length > 0 ? (
             <>
@@ -102,7 +104,16 @@ const UserNotification = ({ updateNotification }) => {
               ))}
             </>
           ) : (
-            <p>No notification found</p>
+            <div className="noDataFoundImage">
+              <div>
+                <img
+                  className="w-100"
+                  alt="no data found"
+                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                />
+                <p className="no-data-found">No data found</p>
+              </div>
+            </div>
           )}
         </div>
       </div>

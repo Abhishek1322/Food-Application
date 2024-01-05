@@ -273,7 +273,16 @@ const Myorder = (props) => {
                               ))}
                             </>
                           ) : (
-                            <p>No data found</p>
+                            <div className="noDataFoundImage">
+                              <div>
+                                <img
+                                  className="w-100"
+                                  alt="no data found"
+                                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                                />
+                                <p className="no-data-found">No data found</p>
+                              </div>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -331,11 +340,17 @@ const Myorder = (props) => {
                   {orderId?.status === "pending" ? (
                     <p className="innerhead_ ps-3">Recent Order</p>
                   ) : orderId?.status === "accepted" ? (
-                    <p className="ps-3 progress_ position-relative">In-Progress</p>
+                    <p className="ps-3 progress_ position-relative">
+                      In-Progress
+                    </p>
                   ) : orderId?.status === "readyForDelivery" ? (
-                    <p className="readyDeliver position-relative ps-3">Ready for Delivery</p>
+                    <p className="readyDeliver position-relative ps-3">
+                      Ready for Delivery
+                    </p>
                   ) : orderId?.status === "delivered" ? (
-                    <p className="recentOrder deliver ps-3 position-relative">Order Delivered</p>
+                    <p className="recentOrder deliver ps-3 position-relative">
+                      Order Delivered
+                    </p>
                   ) : (
                     ""
                   )}

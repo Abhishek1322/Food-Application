@@ -465,7 +465,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
             ))}
           </>
         ) : (
-          <p>No chat found</p>
+         ""
         )}
 
         {imageUrl && (

@@ -466,7 +466,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
             ))}
           </>
         ) : (
-          <p>No chat found</p>
+          ""
         )}
         {imageUrl && (
           <div className="select-image-outer">

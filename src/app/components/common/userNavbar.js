@@ -418,7 +418,7 @@ const User_Navbar = () => {
             : modalDetail.flag === "userNotification"
             ? "userNotificationModal"
             : modalDetail.flag === "cartModal"
-            ? "usercartmodal"
+            ? "userNotificationModal"
             : modalDetail.flag === "bookchef"
             ? "bookchefmodal"
             : ""
