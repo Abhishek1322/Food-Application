@@ -863,3 +863,8 @@ input:-webkit-autofill:active {
   font-weight: 600;
   padding: 0px 3px 0px 5px;
 }
+.modalscroll-notificaation {
+  height: 641px;
+  overflow-y: auto;
+  margin-top: 19px;
+}

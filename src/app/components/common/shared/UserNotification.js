@@ -29,6 +29,7 @@ const UserNotification = ({ updateNotification }) => {
         cb(res) {
           if (res.status === 200) {
             setNotification(res?.data?.data);
+            updateNotification();
           }
         },
       })
@@ -50,7 +51,6 @@ const UserNotification = ({ updateNotification }) => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllNotifications();
-            updateNotification();
           }
         },
       })
@@ -69,7 +69,7 @@ const UserNotification = ({ updateNotification }) => {
       })
     );
   };
-
+  
   return (
     <>
       <div className="notificationsection">
@@ -81,15 +81,15 @@ const UserNotification = ({ updateNotification }) => {
             Clear All{" "}
           </p>
         )}
-        <div className="modalscroll">
+        <div className="modalscroll-notificaation">
           {notification && notification.length > 0 ? (
             <>
-              {notification?.map((item) => (
+              {notification?.map((item,index) => (
                 <div
                   onClick={() =>
                     handleReadNotification(item?._id, item?.is_read)
                   }
-                  key={item?._id}
+                  key={index}
                   className={
                     item?.is_read
                       ? "notificationModal unreadmessage"

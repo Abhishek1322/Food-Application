@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "../../../components/common/shared/CustomModal";
@@ -18,6 +18,7 @@ const MyProfile = () => {
   const [key, setKey] = useState(Math.random());
   const dispatch = useDispatch();
   const authData = useAuthSelector();
+  const scrollRef = useRef();
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
@@ -142,7 +143,7 @@ const MyProfile = () => {
   const handleSlotTime = (weekDay) => {
     setActiveWeekDay(weekDay);
     const updateSlotTimes = chefProfileData?.chefInfo?.availability?.find(
-      (day, index) => {
+      (day) => {
         return day?.day === weekDay;
       }
     );
@@ -150,6 +151,18 @@ const MyProfile = () => {
       startTime: updateSlotTimes?.startTime,
       endTime: updateSlotTimes?.endTime,
     });
+    scrollToBottom();
+  };
+
+  // scroll bottom
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({
+        block: "nearest",
+        inline: "start",
+        behavior: "smooth",
+      });
+    }
   };
 
   // stop loader on refresh page
@@ -159,7 +172,7 @@ const MyProfile = () => {
 
   return (
     <>
-      <section className="profilesectionChef">
+      <section ref={scrollRef} className="profilesectionChef">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-5 col-md-12">
@@ -315,7 +328,7 @@ const MyProfile = () => {
                     )}
                   </div>
                 </div>
-                <div className="availabilitydetails">
+                <div ref={scrollRef} className="availabilitydetails">
                   <div className="myexpertise">
                     <p className="nameheading">My Availability</p>
                     <button
