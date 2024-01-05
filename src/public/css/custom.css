@@ -565,16 +565,13 @@ input:-webkit-autofill:active {
 .availability .weekDays {
   width: 38px;
 }
-
 .weekDays.active {
   background: #e65c00;
   color: #fff;
 }
-
 .timeSlotBox {
   padding: 20px 30px;
 }
-
 .HeadingsmallText {
   color: #2e3333;
   font-family: Crimson Text;
@@ -831,6 +828,7 @@ input:-webkit-autofill:active {
   padding: 10px 4px;
   /* border-style: dashed; */
 }
+
 .search-current {
   display: inline-flex;
   align-items: center;
@@ -843,7 +841,25 @@ input:-webkit-autofill:active {
   right: 8px;
   top: 25px;
 }
+
 .select-image-outer {
   position: absolute;
   bottom: 81px;
+}
+.all-chat-list{
+  width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+.chat-list-counts{
+  background-color: #e65c00;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 0px 3px 0px 5px;
 }

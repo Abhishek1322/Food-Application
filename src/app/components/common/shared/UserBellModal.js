@@ -225,23 +225,23 @@ const UserBellModal = ({ id }) => {
                       className="userprofile"
                       alt="cartImg"
                     />
-                    <div className="innermodal">
-                      <p className="chefName">{item?.user2?.full_name}</p>
-
-                      <p className="cheftext">{`${
-                        item?.lastMessage?.text
-                          ? item?.lastMessage?.text
-                          : item?.lastMessage?.image_url
-                          ? "sent a photo"
-                          : " "
-                      }`}</p>
-
-                      <p className="chatTime">
-                        {convertTimeFormat(item?.lastMessage?.createdAt)}
-                      </p>
+                    <div className="all-chat-list">
+                      <div>
+                        <p className="chefName">{item?.user2?.full_name}</p>
+                        <p className="cheftext">{`${
+                          item?.lastMessage?.text
+                            ? item?.lastMessage?.text
+                            : item?.lastMessage?.image_url
+                            ? "sent a photo"
+                            : " "
+                        }`}</p>
+                        <p className="chatTime">
+                          {convertTimeFormat(item?.lastMessage?.createdAt)}
+                        </p>
+                      </div>
                       {sender_id !== item?.lastMessage?.senderId &&
                       item?.unseenMessageCount > 0 ? (
-                        <span className="modalChatmsg">
+                        <span className="chat-list-counts">
                           {item?.unseenMessageCount}
                         </span>
                       ) : (

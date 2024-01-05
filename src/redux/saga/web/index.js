@@ -170,6 +170,9 @@ function* chefLists(action) {
   if (action.payload.address) {
     targetUtl += `address=${action.payload.address}`;
   }
+  if (action.payload.search) {
+    targetUtl += `search=${action.payload.search}`;
+  }
   if (action.payload.rating) {
     targetUtl += `rating=${action.payload.rating}`;
   }

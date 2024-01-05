@@ -22,7 +22,7 @@ const UserChefHome = () => {
     let params = {
       page: page,
       limit: 12,
-      address: search,
+      search: search,
       rating: filterChefByRating,
     };
     dispatch(
