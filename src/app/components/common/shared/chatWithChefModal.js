@@ -420,7 +420,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                   {message?.text && (
                     <p className="chat-value">{message?.text}</p>
                   )}
-
+                  <div className="message-img">
+                    {message?.image_url && (
+                      <img alt="upload-img" src={message?.image_url} />
+                    )}
+                  </div>
                   <div className="chefchat_detail">
                     {userInfo?.id === message?.senderId ? (
                       <img
@@ -456,11 +460,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                       {convertTimeFormat(message?.createdAt)}
                     </p>
                   </div>
-                  <div className="message-img">
-                    {message?.image_url && (
-                      <img alt="upload-img" src={message?.image_url} />
-                    )}
-                  </div>
+                
                 </div>
               </div>
             ))}

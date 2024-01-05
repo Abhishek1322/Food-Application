@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  
+
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -420,6 +420,11 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                   {message?.text && (
                     <p className="chat-value">{message?.text}</p>
                   )}
+                  <div className="message-img">
+                    {message?.image_url && (
+                      <img alt="upload-img" src={message?.image_url} />
+                    )}
+                  </div>
                   <div className="chefchat_detail">
                     {authData?.userInfo?.id === message?.senderId ? (
                       <img
@@ -455,19 +460,13 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                       {convertTimeFormat(message?.createdAt)}
                     </p>
                   </div>
-                  <div className="message-img">
-                    {message?.image_url && (
-                      <img alt="upload-img" src={message?.image_url} />
-                    )}
-                  </div>
                 </div>
               </div>
             ))}
           </>
         ) : (
-         ""
+          ""
         )}
-
         {imageUrl && (
           <div className="select-image-outer">
             <div className="send-selected-msg">
