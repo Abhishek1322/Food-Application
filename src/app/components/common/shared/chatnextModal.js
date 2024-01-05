@@ -35,7 +35,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const [chefData, setChefData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ROOM_ID = `${authData?.userInfo?.id}-${chefId}`;
-  console.log("messagesmessages", messages);
+  
   // scroll bottom
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -124,6 +124,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
 
   // send and update messages
   const handleUpdateMessage = async (e) => {
+    e.preventDefault();
     if (msg || imageUrl) {
       setIsLoading(true);
       const senderName =
@@ -280,7 +281,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
     // const recipientToken = await getToken(messaging, { vapidKey: VAPID_KEY });
     const notificationData = {
       title: "New Message",
-      body: `${senderName}: ${msg}`,
+      body: `${senderName}: ${msg ? msg : "sent a photo"}`,
     };
     const payload = {
       notification: notificationData,
@@ -416,7 +417,9 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                       : "chat-box-left py-2"
                   }
                 >
-                  <p className="chat-value">{message?.text}</p>
+                  {message?.text && (
+                    <p className="chat-value">{message?.text}</p>
+                  )}
                   <div className="chefchat_detail">
                     {authData?.userInfo?.id === message?.senderId ? (
                       <img
@@ -478,41 +481,48 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         )}
 
         <div className="chat-input">
-          <textarea
-            className=""
-            type="text"
-            placeholder="Type Something..."
-            value={msg}
-            onChange={(e) => setMsg(e.target.value)}
-          />
-          <div className="d-flex align-items-center justify-content-center gap-2">
-            {!imageUrl && (
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <img
-                  src={Images.chatgalleryImg}
-                  alt="chatGallerImg"
-                  className=""
-                />
-              </div>
-            )}
+          <form
+            onSubmit={handleUpdateMessage}
+            className="d-flex align-items-center justify-space-between"
+          >
+            <input
+              className="chat-input-box"
+              type="text"
+              placeholder="Type Something..."
+              value={msg}
+              onChange={(e) => setMsg(e.target.value)}
+            />
+            <div className="d-flex align-items-center justify-content-center gap-2">
+              {!imageUrl && (
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <img
+                    src={Images.chatgalleryImg}
+                    alt="chatGallerImg"
+                    className=""
+                  />
+                </div>
+              )}
 
-            <div className="chat-send-btn">
-              {/* <p className="chatSearchere_">
+              <div className="chat-send-btn">
+                {/* <p className="chatSearchere_">
               Your only able to send photos from gallery
             </p> */}
-              {isLoading ? (
-                <span className="spinner-border text-white spinner-border-sm me-1"></span>
-              ) : (
-                <img
-                  onClick={handleUpdateMessage}
-                  src={Images.chatSendImg}
-                  alt="chatsendImg"
-                  className=""
-                />
-              )}
+                {isLoading ? (
+                  <span className="spinner-border text-white spinner-border-sm me-1"></span>
+                ) : (
+                  <button type="submit">
+                    <img
+                      onClick={handleUpdateMessage}
+                      src={Images.chatSendImg}
+                      alt="chatsendImg"
+                      className=""
+                    />
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

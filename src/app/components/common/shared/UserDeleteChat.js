@@ -16,9 +16,7 @@ import {
 import { toast } from "react-toastify";
 
 const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close, flag }) => {
-  console.log("flagflag", flag);
   const [isLoading, setIsLoading] = useState(false);
-
   // // delete room
   // const handleDeleteRoom = async (e) => {
   //   e.preventDefault();
@@ -82,7 +80,7 @@ const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close, flag }) => {
           await updateDoc(roomDocRef, {
             lastMessage: {
               createdAt: filterChatRoom[0]?.lastMessage?.createdAt,
-              image_url: filterChatRoom[0]?.lastMessage?.image_url,
+              image_url: "",
               recieverId: filterChatRoom[0]?.lastMessage?.recieverId,
               senderId: filterChatRoom[0]?.lastMessage?.senderId,
               text: "",

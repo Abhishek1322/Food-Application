@@ -63,10 +63,7 @@ const BellModal = () => {
 
   // get all chats
   const handleGetAllChats = () => {
-    const allMessageQuery = query(
-      collection(db, PARENTCOLLECTIONNAME)
-      
-    );
+    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
     onSnapshot(allMessageQuery, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
@@ -228,7 +225,13 @@ const BellModal = () => {
                     />
                     <div className="innermodal">
                       <p className="chefName">{item?.user1?.full_name}</p>
-                      <p className="cheftext">{item?.lastMessage?.text}</p>
+                      <p className="cheftext">{`${
+                        item?.lastMessage?.text
+                          ? item?.lastMessage?.text
+                          : item?.lastMessage?.image_url
+                          ? "sent a photo"
+                          : " "
+                      }`}</p>
                       <p className="chatTime">
                         {convertTimeFormat(item?.lastMessage?.createdAt)}
                       </p>

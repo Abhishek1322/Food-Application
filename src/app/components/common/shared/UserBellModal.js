@@ -225,7 +225,15 @@ const UserBellModal = ({ id }) => {
                     />
                     <div className="innermodal">
                       <p className="chefName">{item?.user2?.full_name}</p>
-                      <p className="cheftext">{item?.lastMessage?.text}</p>
+
+                      <p className="cheftext">{`${
+                        item?.lastMessage?.text
+                          ? item?.lastMessage?.text
+                          : item?.lastMessage?.image_url
+                          ? "sent a photo"
+                          : " "
+                      }`}</p>
+
                       <p className="chatTime">
                         {convertTimeFormat(item?.lastMessage?.createdAt)}
                       </p>

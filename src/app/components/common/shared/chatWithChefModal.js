@@ -112,93 +112,106 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
         }
         return item;
       });
-      setMessages(updatedData);
+
+      const removeEmptyTextField = updatedData?.map((item) => {
+        if (item?.text === "") {
+          const { text, ...rest } = item;
+          return rest;
+        }
+        return item;
+      });
+
+      setMessages(removeEmptyTextField);
     });
   };
 
   // send and update messages
   const handleUpdateMessage = async (e) => {
-    if (!msg || msg === "") {
-      return;
-    }
-    setIsLoading(true);
-    const senderName =
-      authData?.userInfo?.userInfo?.firstName +
-      " " +
-      authData?.userInfo?.userInfo?.lastName;
+    e.preventDefault();
+    if (msg || imageUrl) {
+      setIsLoading(true);
+      const senderName =
+        authData?.userInfo?.userInfo?.firstName +
+        " " +
+        authData?.userInfo?.userInfo?.lastName;
 
-    const receiverName =
-      userInfo?.userInfo?.firstName + " " + userInfo?.userInfo?.lastName;
-    const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
-    const roomDocSnapshot = await getDoc(roomDocRef);
-    const previousUnseenMessageCount =
-      roomDocSnapshot.data()?.unseenMessageCount || 0;
-    const previousDeletedChatUserIds = roomDocSnapshot.data();
-    if (roomDocSnapshot.exists()) {
-      const messagesCollectionRef = collection(roomDocRef, CHILDCOLLECTIONNAME);
-      await addDoc(
-        messagesCollectionRef,
-        {
-          createdAt: Math.floor(Date.now()),
-          text: msg,
-          id: "",
-          image_url: imageUrl,
-          senderId: authData?.userInfo?.id,
-          recieverId: userInfo?.id,
-        },
-        setMsg(""),
-        setImgUrl(""),
-        handleSendWebPushNotification(senderName)
-      );
-      scrollToBottom();
-      try {
-        setIsLoading(true);
-        const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
-        await updateDoc(
+      const receiverName =
+        userInfo?.userInfo?.firstName + " " + userInfo?.userInfo?.lastName;
+      const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+      const roomDocSnapshot = await getDoc(roomDocRef);
+      const previousUnseenMessageCount =
+        roomDocSnapshot.data()?.unseenMessageCount || 0;
+      const previousDeletedChatUserIds = roomDocSnapshot.data();
+      if (roomDocSnapshot.exists()) {
+        const messagesCollectionRef = collection(
           roomDocRef,
+          CHILDCOLLECTIONNAME
+        );
+        await addDoc(
+          messagesCollectionRef,
           {
-            clearChat: false,
-            deletedChatUserIds: previousDeletedChatUserIds?.deletedChatUserIds,
-            lastMessage: {
-              createdAt: Math.floor(Date.now()),
-              senderId: authData?.userInfo?.id,
-              recieverId: userInfo?.id,
-              text: msg,
-              image_url: imageUrl,
-            },
-            roomId: ROOM_ID,
-            unseenMessageCount: previousUnseenMessageCount + 1,
-            user1: {
-              email: userInfo?.email,
-              fcmToken: userInfo?.fcmToken ? userInfo?.fcmToken : "",
-              full_name: receiverName,
-              id: userInfo?.id,
-              onlineStatus: 1,
-              profile_image: userInfo?.userInfo?.profilePhoto,
-            },
-            user2: {
-              email: authData?.userInfo?.email,
-              fcmToken: fcmToken,
-              full_name: senderName,
-              id: authData?.userInfo?.id,
-              onlineStatus: 1,
-              profile_image: authData?.userInfo?.userInfo?.profilePhoto,
-            },
-            users: [authData?.userInfo?.id, userInfo?.id],
+            createdAt: Math.floor(Date.now()),
+            text: msg,
+            id: "",
+            image_url: imageUrl,
+            senderId: authData?.userInfo?.id,
+            recieverId: userInfo?.id,
           },
           setMsg(""),
           setImgUrl(""),
           handleSendWebPushNotification(senderName)
         );
-      } catch (error) {
-        console.error("Error creating room:", error);
-      } finally {
+        scrollToBottom();
+        try {
+          setIsLoading(true);
+          const roomDocRef = doc(db, PARENTCOLLECTIONNAME, ROOM_ID);
+          await updateDoc(
+            roomDocRef,
+            {
+              clearChat: false,
+              deletedChatUserIds:
+                previousDeletedChatUserIds?.deletedChatUserIds,
+              lastMessage: {
+                createdAt: Math.floor(Date.now()),
+                senderId: authData?.userInfo?.id,
+                recieverId: userInfo?.id,
+                text: msg,
+                image_url: imageUrl,
+              },
+              roomId: ROOM_ID,
+              unseenMessageCount: previousUnseenMessageCount + 1,
+              user1: {
+                email: userInfo?.email,
+                fcmToken: userInfo?.fcmToken ? userInfo?.fcmToken : "",
+                full_name: receiverName,
+                id: userInfo?.id,
+                onlineStatus: 1,
+                profile_image: userInfo?.userInfo?.profilePhoto,
+              },
+              user2: {
+                email: authData?.userInfo?.email,
+                fcmToken: fcmToken,
+                full_name: senderName,
+                id: authData?.userInfo?.id,
+                onlineStatus: 1,
+                profile_image: authData?.userInfo?.userInfo?.profilePhoto,
+              },
+              users: [authData?.userInfo?.id, userInfo?.id],
+            },
+            setMsg(""),
+            setImgUrl(""),
+            handleSendWebPushNotification(senderName)
+          );
+        } catch (error) {
+          console.error("Error creating room:", error);
+        } finally {
+          setIsLoading(false);
+        }
+        console.log("Message sent to existing room:", ROOM_ID);
+      } else {
+        handleSendInitialMessage(senderName, receiverName);
         setIsLoading(false);
       }
-      console.log("Message sent to existing room:", ROOM_ID);
-    } else {
-      handleSendInitialMessage(senderName, receiverName);
-      setIsLoading(false);
     }
   };
 
@@ -261,7 +274,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const handleSendWebPushNotification = async (senderName) => {
     const notificationData = {
       title: "New Message",
-      body: `${senderName}: ${msg}`,
+      body: `${senderName}: ${msg ? msg : "sent a photo"}`,
       profile_image: authData?.userInfo?.userInfo?.profilePhoto,
     };
     const payload = {
@@ -385,115 +398,130 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   return (
     <>
       <div className="chat-main-content-chef">
-        {messages?.map((message, index) => (
-          <div
-            ref={messagesEndRef}
-            key={index}
-            className={
-              userInfo?.id === message?.senderId
-                ? "chat-left-section"
-                : "chat-right-section"
-            }
-          >
-            <div
-              className={
-                userInfo?.id === message?.senderId
-                  ? "chat-box-left py-2"
-                  : "chat-box-right py-2"
-              }
-            >
-              <p className="chat-value">{message?.text}</p>
+        {messages && messages.length > 0 ? (
+          <>
+            {messages?.map((message, index) => (
+              <div
+                ref={messagesEndRef}
+                key={index}
+                className={
+                  userInfo?.id === message?.senderId
+                    ? "chat-left-section"
+                    : "chat-right-section"
+                }
+              >
+                <div
+                  className={
+                    userInfo?.id === message?.senderId
+                      ? "chat-box-left py-2"
+                      : "chat-box-right py-2"
+                  }
+                >
+                  {message?.text && (
+                    <p className="chat-value">{message?.text}</p>
+                  )}
 
-              <div className="chefchat_detail">
-                {userInfo?.id === message?.senderId ? (
-                  <img
-                    src={
-                      userInfo?.userInfo?.profilePhoto
-                        ? userInfo?.userInfo?.profilePhoto
-                        : Images.dummyProfile
-                    }
-                    alt="profile"
-                    className="chatnextImg"
-                  />
-                ) : (
-                  <img
-                    src={
-                      authData?.userInfo?.userInfo?.profilePhoto
-                        ? authData?.userInfo?.userInfo?.profilePhoto
-                        : Images.dummyProfile
-                    }
-                    alt="profile"
-                    className="chatnextImg"
-                  />
-                )}
-                {userInfo?.id === message?.senderId ? (
-                  <p className="chatUser m-0 pe-1">
-                    {userInfo?.userInfo?.firstName}{" "}
-                    {userInfo?.userInfo?.lastName}
-                  </p>
-                ) : (
-                  <p className="chatUser m-0 pe-1">You</p>
-                )}
+                  <div className="chefchat_detail">
+                    {userInfo?.id === message?.senderId ? (
+                      <img
+                        src={
+                          userInfo?.userInfo?.profilePhoto
+                            ? userInfo?.userInfo?.profilePhoto
+                            : Images.dummyProfile
+                        }
+                        alt="profile"
+                        className="chatnextImg"
+                      />
+                    ) : (
+                      <img
+                        src={
+                          authData?.userInfo?.userInfo?.profilePhoto
+                            ? authData?.userInfo?.userInfo?.profilePhoto
+                            : Images.dummyProfile
+                        }
+                        alt="profile"
+                        className="chatnextImg"
+                      />
+                    )}
+                    {userInfo?.id === message?.senderId ? (
+                      <p className="chatUser m-0 pe-1">
+                        {userInfo?.userInfo?.firstName}{" "}
+                        {userInfo?.userInfo?.lastName}
+                      </p>
+                    ) : (
+                      <p className="chatUser m-0 pe-1">You</p>
+                    )}
 
-                <p className="chatTime_ m-0 pe-2">
-                  {convertTimeFormat(message?.createdAt)}
-                </p>
+                    <p className="chatTime_ m-0 pe-2">
+                      {convertTimeFormat(message?.createdAt)}
+                    </p>
+                  </div>
+                  <div className="message-img">
+                    {message?.image_url && (
+                      <img alt="upload-img" src={message?.image_url} />
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="message-img">
-                {message?.image_url && (
-                  <img alt="upload-img" src={message?.image_url} />
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
+            ))}
+          </>
+        ) : (
+          <p>No chat found</p>
+        )}
         {imageUrl && (
           <div className="select-image-outer">
             <div className="send-selected-msg">
               <img alt="upload-img" src={imageUrl} />
               <i
                 onClick={() => handleRemoveImage(imageUrl)}
-                className="fa fa-cross"
+                className="fa fa-times cross-icon"
               ></i>
             </div>
           </div>
         )}
 
         <div className="chat-input">
-          <textarea
-            className=""
-            type="text"
-            placeholder="Type Something..."
-            value={msg}
-            onChange={(e) => setMsg(e.target.value)}
-          />
-          <div className="d-flex align-items-center justify-content-center gap-2">
-            {!imageUrl && (
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <img
-                  src={Images.chatgalleryImg}
-                  alt="chatGallerImg"
-                  className=""
-                />
-              </div>
-            )}
-            <div className="chat-send-btn">
-              {/* <p className="chatSearchere_">
+          <form
+            onSubmit={handleUpdateMessage}
+            className="d-flex align-items-center justify-space-between"
+          >
+            <input
+              className="chat-input-box"
+              type="text"
+              placeholder="Type Something..."
+              value={msg}
+              onChange={(e) => setMsg(e.target.value)}
+            />
+            <div className="d-flex align-items-center justify-content-center gap-2">
+              {!imageUrl && (
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <img
+                    src={Images.chatgalleryImg}
+                    alt="chatGallerImg"
+                    className=""
+                  />
+                </div>
+              )}
+              <div className="chat-send-btn">
+                {/* <p className="chatSearchere_">
               Your only able to send photos from gallery
             </p> */}
-              {isLoading ? (
-                <span className="spinner-border text-white spinner-border-sm me-1"></span>
-              ) : (
-                <img
-                  onClick={handleUpdateMessage}
-                  src={Images.chatSendImg}
-                  alt="chatsendImg"
-                  className=""
-                />
-              )}
+                {isLoading ? (
+                  <span className="spinner-border text-white spinner-border-sm me-1"></span>
+                ) : (
+                  <button type="submit">
+                    <img
+                      onClick={handleUpdateMessage}
+                      src={Images.chatSendImg}
+                      alt="chatsendImg"
+                      className=""
+                    />
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>
