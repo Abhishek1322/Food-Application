@@ -25,10 +25,12 @@ import {
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
 import { useAuthSelector } from "../../../../redux/selector/auth.js";
+import { useWebSelector } from "../../../../redux/selector/web.js";
 
 const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
+  const webData = useWebSelector();
   const fcmToken = localStorage.getItem("fcmToken");
   const authData = useAuthSelector();
   const [messages, setMessages] = useState([]);
@@ -273,8 +275,8 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
   // send web push notification
   const handleSendWebPushNotification = async (senderName) => {
     const notificationData = {
-      title: "New Message",
-      body: `${senderName}: ${msg ? msg : "sent a photo"}`,
+      title: senderName,
+      body: `${msg ? msg : "sent a photo"}`,
       profile_image: authData?.userInfo?.userInfo?.profilePhoto,
     };
     const payload = {
@@ -439,8 +441,8 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                     ) : (
                       <img
                         src={
-                          authData?.userInfo?.userInfo?.profilePhoto
-                            ? authData?.userInfo?.userInfo?.profilePhoto
+                          webData?.profileInfo?.profilePhoto
+                            ? webData?.profileInfo?.profilePhoto
                             : Images.dummyProfile
                         }
                         alt="profile"
@@ -460,7 +462,6 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                       {convertTimeFormat(message?.createdAt)}
                     </p>
                   </div>
-                
                 </div>
               </div>
             ))}

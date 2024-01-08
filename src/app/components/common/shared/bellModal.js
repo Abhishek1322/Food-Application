@@ -63,15 +63,17 @@ const BellModal = () => {
 
   // get all chats
   const handleGetAllChats = () => {
-    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
+    const allMessageQuery = query(
+      collection(db, PARENTCOLLECTIONNAME),
+      orderBy("lastMessage.createdAt", "desc")
+    );
     onSnapshot(allMessageQuery, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
         return { id, ...doc.data() };
       });
 
-      const reversedMessagesList = messagesList.slice().reverse();
-      const getMyChats = reversedMessagesList?.filter((item, index) => {
+      const getMyChats = messagesList?.filter((item) => {
         return item?.id?.includes(sender_id);
       });
       setAllOldChats(getMyChats);
@@ -185,7 +187,7 @@ const BellModal = () => {
 
   return (
     <>
-      <div className="modalContent">
+      <div className="chef-bell-section modalContent">
         {filteredChats && filteredChats.length > 0 && (
           <div className="searchbar">
             <input
@@ -298,7 +300,7 @@ const BellModal = () => {
                 <img
                   className="w-100"
                   alt="no data found"
-                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                  src={Images.noChatFound}
                 />
                 <p className="no-data-found">No data found</p>
               </div>

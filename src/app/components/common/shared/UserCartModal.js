@@ -86,30 +86,31 @@ const UserCartModal = (props) => {
     );
   };
 
-// manage cart data e.g. quantity and price
-const handleCartData = (type, menuId, quantity) => {
-  let params = {
-    cartId: cartId,
-    menuItemId: menuId,
-    quantity:
+  // manage cart data e.g. quantity and price
+  const handleCartData = (type, menuId, qty) => {
+    let quantity = Number(qty);
+    quantity =
       type === "increase"
         ? quantity + 1
         : type === "decrease" && quantity > 1
         ? quantity - 1
-        : 1,
+        : 1;
+    let params = {
+      cartId: cartId,
+      menuItemId: menuId,
+      quantity: quantity.toString(),
+    };
+    dispatch(
+      updateCartItem({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleGetAllCart();
+          }
+        },
+      })
+    );
   };
-  dispatch(
-    updateCartItem({
-      ...params,
-      cb(res) {
-        if (res.status === 200) {
-          handleGetAllCart();
-        }
-      },
-    })
-  );
-};
-
 
   // getting user address
   useEffect(() => {

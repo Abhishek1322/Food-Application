@@ -54,7 +54,7 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-
+  console.log("availabilityavailability", availability);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -140,7 +140,7 @@ const SetupProfile = () => {
   const nextPage = (page) => {
     setPage(page);
   };
-  
+
   //form login
   const handleSubmit = (e, flag) => {
     e.preventDefault();
@@ -183,12 +183,21 @@ const SetupProfile = () => {
         })
       );
     } else if (flag == 2) {
+      const checkEmptyAvailability = availability?.some(
+        (item) =>
+          item?.day != "" && item?.startTime != null && item?.endTime != null
+      );
+
+      if (!checkEmptyAvailability) {
+        toast.error("Please add atleast one time slot");
+        return;
+      }
       const updateValue = availability
         .filter(
           (value) =>
             value.day !== "" && value.startTime && value.endTime !== undefined
         )
-        .map((item, index) => {
+        .map((item) => {
           const { _id, timeSlots, ...rest } = item;
           return rest;
         });
@@ -197,6 +206,7 @@ const SetupProfile = () => {
         step: "2",
         availability: updateValue,
       };
+
       dispatch(
         chefSetupProfile({
           ...params,
@@ -594,9 +604,7 @@ const SetupProfile = () => {
                                       value={address}
                                       onChange={autoCompleteHandleChange}
                                       onSelect={autoCompleteHandleSelect}
-                                      searchOptions={{
-                                        
-                                      }}
+                                      searchOptions={{}}
                                     >
                                       {({
                                         getInputProps,

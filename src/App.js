@@ -29,12 +29,14 @@ function App() {
       localStorage.setItem("fcmToken", token);
       console.log("Token Gen", token);
       onMessage(messaging, (payload) => {
-      console.log("payloadpayload", payload);
+        console.log("payloadpayload", payload);
 
         const { title, body } = payload.notification;
         new Notification(title, {
           body,
-          icon: payload?.data?.profile_image ? payload?.data?.profile_image : Images.Logo,
+          icon: payload?.data?.profile_image
+            ? payload?.data?.profile_image
+            : Images.Logo,
         });
         // toast(`New message received from ${payload.notification.body}`);
       });
@@ -49,7 +51,6 @@ function App() {
   useEffect(() => {
     requestPermission();
   }, []);
-  
 
   return (
     <>

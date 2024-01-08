@@ -8,7 +8,8 @@ const initialState = {
   menusList: [],
   imageUrl: [],
   getSingleMenu: [],
-  getSingleChef:[]
+  getSingleChef:[],
+  profileInfo:[],
 };
 
 export const webSlice = createSlice({
@@ -79,7 +80,7 @@ export const webSlice = createSlice({
     updateChefProfile: (state) => {
       state.loading = true;
     },
-    setUpdateChefProfile: (state, action) => {
+    setUpdateChefProfile: (state) => {
       state.loading = false;
     },
     updateProfileImage: (state) => {
@@ -87,6 +88,7 @@ export const webSlice = createSlice({
     },
     setUpdateProfileImage: (state, action) => {
       state.loading = false;
+      state.profileInfo = action.payload;
     },
     getUserProfileDetails: (state) => {
       state.loading = true;

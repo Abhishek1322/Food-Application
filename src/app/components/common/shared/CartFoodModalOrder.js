@@ -87,7 +87,7 @@ const CartFoodModalOrder = (props) => {
   const handleAddCart = () => {
     let params = {
       menuItemId: menuId,
-      quantity: quantity,
+      quantity: quantity.toString(),
     };
     dispatch(
       addToCart({

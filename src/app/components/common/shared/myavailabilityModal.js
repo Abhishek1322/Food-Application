@@ -3,6 +3,7 @@ import * as Images from "../../../../utilities/images";
 import TimePicker from "react-time-picker";
 import { updateChefProfile } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const MyavailabilityModal = (props) => {
   const { availabilityData, close, chefProfileDetails } = props;
@@ -100,9 +101,17 @@ const MyavailabilityModal = (props) => {
       }
     });
   }, [startTime, endTime, activeWeekDay]);
-
+  
   // save availability
   const handleSaveAvailability = () => {
+    const checkEmptyAvailability = availability?.some(
+      (item) =>
+        item?.day != "" && item?.startTime != null && item?.endTime != null
+    );
+    if (!checkEmptyAvailability) {
+      toast.error("Please add atleast one availability");
+      return;
+    }
     const updateValue = availability
       .filter(
         (value) =>

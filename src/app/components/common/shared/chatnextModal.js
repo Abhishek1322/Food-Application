@@ -22,9 +22,11 @@ import { toast } from "react-toastify";
 import { chefProfileDocument } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
+import { useWebSelector } from "../../../../redux/selector/web";
 
 const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const authData = useAuthSelector();
+  const webData = useWebSelector();
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
   const fcmToken = localStorage.getItem("fcmToken");
@@ -280,7 +282,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
   const handleSendWebPushNotification = async (senderName) => {
     // const recipientToken = await getToken(messaging, { vapidKey: VAPID_KEY });
     const notificationData = {
-      title: "New Message",
+      title: senderName,
       body: `${senderName}: ${msg ? msg : "sent a photo"}`,
     };
     const payload = {
@@ -429,8 +431,8 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                     {authData?.userInfo?.id === message?.senderId ? (
                       <img
                         src={
-                          authData?.userInfo?.userInfo?.profilePhoto
-                            ? authData?.userInfo?.userInfo?.profilePhoto
+                          webData?.profileInfo?.profilePhoto
+                            ? webData?.profileInfo?.profilePhoto
                             : Images.dummyProfile
                         }
                         alt="profile"

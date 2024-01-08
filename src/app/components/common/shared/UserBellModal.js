@@ -63,15 +63,19 @@ const UserBellModal = ({ id }) => {
 
   // get all chats
   const handleGetAllChats = () => {
-    const allMessageQuery = query(collection(db, PARENTCOLLECTIONNAME));
+    const allMessageQuery = query(
+      collection(db, PARENTCOLLECTIONNAME),
+      orderBy("lastMessage.createdAt", "desc")
+    );
     onSnapshot(allMessageQuery, (snap) => {
       const messagesList = snap.docs.map((doc) => {
         const id = doc.id;
         return { id, ...doc.data() };
       });
-      const reversedMessagesList = messagesList.slice().reverse();
 
-      const getMyChats = reversedMessagesList?.filter((item, index) => {
+      // const reversedMessagesList = messagesList.slice().reverse();
+
+      const getMyChats = messagesList?.filter((item, index) => {
         return item?.id?.includes(sender_id);
       });
 
@@ -298,7 +302,7 @@ const UserBellModal = ({ id }) => {
                 <img
                   className="w-100"
                   alt="no data found"
-                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                  src={Images.noChatFound}
                 />
                 <p className="no-data-found">No data found</p>
               </div>

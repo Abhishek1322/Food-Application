@@ -10,7 +10,7 @@ const Chef_Sidebar = () => {
 
   useEffect(() => {
     if (webData) {
-      setChefProfile(webData?.chefProfileDetails?.data?.userInfo?.profilePhoto);
+      setChefProfile(webData?.profileInfo?.profilePhoto);
     }
   }, [webData]);
 

@@ -111,7 +111,7 @@ const Myorder = (props) => {
           <div className="searchbar ">
             <input
               onChange={(e) => setSearchOrder(e.target.value)}
-              type="number"
+              type="text"
               placeholder="Search order by order Id"
               className="searchtext"
               value={searchOrder}

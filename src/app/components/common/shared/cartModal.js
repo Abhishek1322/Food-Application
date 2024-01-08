@@ -76,16 +76,18 @@ const CartModal = (props) => {
   };
 
   // manage cart data e.g. quantity and price
-  const handleCartData = (type, menuId, quantity) => {
+  const handleCartData = (type, menuId, qty) => {
+    let quantity = Number(qty);
+    quantity =
+      type === "increase"
+        ? quantity + 1
+        : type === "decrease" && quantity > 1
+        ? quantity - 1
+        : 1;
     let params = {
       cartId: cartId,
       menuItemId: menuId,
-      quantity:
-        type === "increase"
-          ? quantity + 1
-          : type === "decrease" && quantity > 1
-          ? quantity - 1
-          : 1,
+      quantity: quantity.toString(),
     };
     dispatch(
       updateCartItem({

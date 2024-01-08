@@ -123,6 +123,7 @@ import locationIcon from "../public/images/location-icon.svg";
 import targetLocation from "../public/images/location-target.svg";
 import smallSearch from "../public/images/small-search.png";
 import smallLocate from "../public/images/small-locate.svg";
+import noChatFound from "../public/images/noChatFound.svg";
 
 export {
   Logo,
@@ -250,4 +251,5 @@ export {
   targetLocation,
   smallSearch,
   smallLocate,
+  noChatFound,
 };

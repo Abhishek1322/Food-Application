@@ -565,13 +565,16 @@ input:-webkit-autofill:active {
 .availability .weekDays {
   width: 38px;
 }
+
 .weekDays.active {
   background: #e65c00;
   color: #fff;
 }
+
 .timeSlotBox {
   padding: 20px 30px;
 }
+
 .HeadingsmallText {
   color: #2e3333;
   font-family: Crimson Text;
@@ -846,14 +849,16 @@ input:-webkit-autofill:active {
   position: absolute;
   bottom: 81px;
 }
-.all-chat-list{
+
+.all-chat-list {
   width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 10px;
-    margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 20px;
 }
-.chat-list-counts{
+
+.chat-list-counts {
   background-color: #e65c00;
   width: 15px;
   height: 15px;
@@ -863,8 +868,14 @@ input:-webkit-autofill:active {
   font-weight: 600;
   padding: 0px 3px 0px 5px;
 }
+
 .modalscroll-notificaation {
   height: 641px;
   overflow-y: auto;
   margin-top: 19px;
+}
+
+.chef-bell-section .modalscroll,
+.userbellsection .modalscroll {
+  height: 600px !important;
 }

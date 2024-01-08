@@ -5,13 +5,12 @@ import { useWebSelector } from "../../../redux/selector/web";
 
 const User_Sidebar = () => {
   const location = useLocation();
-
   const webData = useWebSelector();
   const [userProfile, setUserProfile] = useState("");
 
   useEffect(() => {
     if (webData) {
-      setUserProfile(webData?.userProfileDetails?.data?.userInfo?.profilePhoto);
+      setUserProfile(webData?.profileInfo?.profilePhoto);
     }
   }, [webData]);
 

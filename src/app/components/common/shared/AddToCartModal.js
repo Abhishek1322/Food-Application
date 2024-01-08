@@ -48,7 +48,7 @@ const AddToCartModal = (props) => {
   const handleAddCart = () => {
     let params = {
       menuItemId: menuId,
-      quantity: 1,
+      quantity: "1",
     };
     dispatch(
       addToCart({
@@ -133,7 +133,8 @@ const AddToCartModal = (props) => {
               >
                 <i className="las la-star startIcon"></i>
                 <p className="ratingheading">
-                  {foodDetails?.averageRating} ({foodDetails?.totalReview} Reviews)
+                  {foodDetails?.averageRating} ({foodDetails?.totalReview}{" "}
+                  Reviews)
                 </p>
               </div>
             </div>

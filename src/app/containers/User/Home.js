@@ -54,13 +54,13 @@ const HomeUser = () => {
   return (
     <>
       <div className="mainBoxOuter">
-        <h6 className="headingSub">Chefs Near You </h6>
+        <h6 className="headingSub">Chefs Near You</h6>
         <div className="cheffilter flexBox">
           <div className="searchbar me-4">
             <input
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Chef near you..."
-              type="search"
+              type="text"
               className="searchtext"
             />
             <img

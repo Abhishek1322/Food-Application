@@ -57,8 +57,8 @@ const UserChefHome = () => {
           <div className="searchbar me-4">
             <input
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search Chef near you..."
-              type="search"
+              placeholder="Search..."
+              type="text"
               className="searchtext"
             />
             <img
