@@ -121,10 +121,9 @@ const HomeRequsest = () => {
                   {bookingRequest && bookingRequest.length > 0 ? (
                     <>
                       {bookingRequest?.slice(0, 5)?.map((item, index) => (
-                        <Link to={`/booking-details?id=${item?._id}`}>
-                          <div key={index} className="homeProfileBox">
+                        <Link key={index} to={`/booking-details?id=${item?._id}`}>
+                          <div  className="homeProfileBox">
                             <div className="profileInfo">
-                              {console.log("iteemsssssss", item)}
                               <img
                                 src={
                                   item?.userId?.userInfo?.profilePhoto

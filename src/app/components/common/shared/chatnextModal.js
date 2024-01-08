@@ -289,7 +289,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       notification: notificationData,
       data: notificationData,
       to: chefData?.fcmToken,
-      profile_image: authData?.userInfo?.userInfo?.profilePhoto,
+      profile_image: webData?.profileInfo?.profilePhoto,
     };
 
     await fetch("https://fcm.googleapis.com/fcm/send", {
