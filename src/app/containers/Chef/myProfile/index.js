@@ -222,7 +222,7 @@ const MyProfile = () => {
                     </div>
                   </Link>
 
-                  <div className="nameprofile">
+                  <div className="name-profile-name">
                     <div className="firstname">
                       <p className="dummyText p-0">First Name</p>
                       <p className="nameheading">
@@ -240,8 +240,8 @@ const MyProfile = () => {
                     <p className="dummyText p-0">Email</p>
                     <p className="nameheading">{chefProfileData?.email}</p>
                   </div>
-                  <div className="experprofile">
-                    <div className="chefname">
+                  <div className="expertise-profile">
+                    <div>
                       <p className="dummyText p-0">Chef Type</p>
                       <div className="restroinfo">
                         <p className="nameheading">

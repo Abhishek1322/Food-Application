@@ -41,11 +41,11 @@ const RequestPage = () => {
                 <img
                   src={Images.accountDeleted}
                   alt="accountDeletedImg"
-                  className="img-fluid innerHeaderArrow "
+                  className="img-fluid innerHeaderArrow"
                 />
               </div>
               <h6 className="accountDeleted mb-3 d-flex  justify-content-center mt-3">
-                Account request has been <br /> summited successfully
+                Account request has been <br /> submitted successfully
               </h6>
               <p className="accountdeletetxt mb-3 d-flex  justify-content-center mt-3">
                 Your Account request is in under process.

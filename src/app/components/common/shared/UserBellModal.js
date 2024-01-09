@@ -190,21 +190,20 @@ const UserBellModal = ({ id }) => {
   return (
     <>
       <div className="userbellsection modalContent">
-        {filteredChats && filteredChats.length > 0 && (
-          <div className="searchbar ">
-            <input
-              type="search"
-              placeholder="Search chats..."
-              className="searchtext"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <img
-              src={Images.searchbar}
-              className="searchbarImg"
-              alt="searchbar"
-            />
-          </div>
-        )}
+        <div className="searchbar ">
+          <input
+            type="text"
+            placeholder="Search chats..."
+            className="searchtext"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <img
+            src={Images.searchbar}
+            className="searchbarImg"
+            alt="searchbar"
+          />
+        </div>
+
         <div className="modalscroll">
           {filteredChats && filteredChats.length > 0 ? (
             <>

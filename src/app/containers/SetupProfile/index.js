@@ -54,7 +54,7 @@ const SetupProfile = () => {
     bio: "",
     rateperhour: "",
   });
-  console.log("availabilityavailability", availability);
+  
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -621,7 +621,7 @@ const SetupProfile = () => {
                                             })}
                                           />
                                           <div className="autocomplete-dropdown-container">
-                                            {loading && <div>Loading...</div>}
+                                            {/* {loading && <div>Loading...</div>} */}
                                             {suggestions.map(
                                               (suggestion, index) => {
                                                 const className =

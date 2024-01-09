@@ -879,3 +879,16 @@ input:-webkit-autofill:active {
 .userbellsection .modalscroll {
   height: 600px !important;
 }
+.expertise-profile, .name-profile-name {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 60%;
+  margin-top: 25px;
+}
+.noDataFoundImageRequestpage{
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

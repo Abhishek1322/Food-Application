@@ -360,7 +360,7 @@ var options = {
                             })}
                           />
                           <div className="autocomplete-dropdown-container">
-                            {loading && <div>Loading...</div>}
+                            {/* {loading && <div>Loading...</div>} */}
                             {suggestions.map((suggestion, index) => {
                               const className = suggestion.active
                                 ? "suggestion-item--active"

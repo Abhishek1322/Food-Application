@@ -91,7 +91,13 @@ const NewBooking = () => {
               <div className="container-fluid">
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="profileDetail">
+                    <div
+                      className={
+                        bookingRequest && bookingRequest.length > 0
+                          ? "profileDetail"
+                          : ""
+                      }
+                    >
                       {bookingRequest && bookingRequest.length > 0 ? (
                         <>
                           {bookingRequest?.map((item, index) => (
@@ -127,7 +133,16 @@ const NewBooking = () => {
                           ))}
                         </>
                       ) : (
-                        <p>No data found</p>
+                        <div className="noDataFoundImage">
+                          <div>
+                            {/* <img
+                                className="w-100"
+                                alt="no data found"
+                                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                /> */}
+                            <p className="no-data-found">No data found</p>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>

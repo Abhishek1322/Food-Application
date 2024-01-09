@@ -117,12 +117,21 @@ const HomeRequsest = () => {
                     </div>
                   )}
                 </div>
-                <div className="profileDetail">
+                <div
+                  className={
+                    bookingRequest && bookingRequest.length > 0
+                      ? "profileDetail"
+                      : ""
+                  }
+                >
                   {bookingRequest && bookingRequest.length > 0 ? (
                     <>
                       {bookingRequest?.slice(0, 5)?.map((item, index) => (
-                        <Link key={index} to={`/booking-details?id=${item?._id}`}>
-                          <div  className="homeProfileBox">
+                        <Link
+                          key={index}
+                          to={`/booking-details?id=${item?._id}`}
+                        >
+                          <div className="homeProfileBox">
                             <div className="profileInfo">
                               <img
                                 src={
@@ -149,7 +158,16 @@ const HomeRequsest = () => {
                       ))}
                     </>
                   ) : (
-                    <p>No data found</p>
+                    <div className="noDataFoundImageRequestpage">
+                      <div>
+                        {/* <img
+                  className="w-100"
+                  alt="no data found"
+                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                /> */}
+                        <p className="no-data-found">No data found</p>
+                      </div>
+                    </div>
                   )}
                 </div>
 
@@ -166,7 +184,13 @@ const HomeRequsest = () => {
                     </div>
                   )}
                 </div>
-                <div className="profileDetail profileDetailNew">
+                <div
+                  className={
+                    recentOrders && recentOrders.length > 0
+                      ? "profileDetail profileDetailNew"
+                      : ""
+                  }
+                >
                   {recentOrders && recentOrders.length > 0 ? (
                     <>
                       {recentOrders?.slice(0, 5)?.map((item, index) => (
@@ -251,7 +275,16 @@ const HomeRequsest = () => {
                       ))}
                     </>
                   ) : (
-                    <p>No order found</p>
+                    <div className="noDataFoundImageRequestpage">
+                      <div>
+                        {/* <img
+                  className="w-100"
+                  alt="no data found"
+                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                /> */}
+                        <p className="no-data-found">No data found</p>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>

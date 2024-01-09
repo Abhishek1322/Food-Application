@@ -188,21 +188,20 @@ const BellModal = () => {
   return (
     <>
       <div className="chef-bell-section modalContent">
-        {filteredChats && filteredChats.length > 0 && (
-          <div className="searchbar">
-            <input
-              type="search"
-              placeholder="Search chats..."
-              className="searchtext"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <img
-              src={Images.searchbar}
-              className="searchbarImg"
-              alt="searchbar"
-            />
-          </div>
-        )}
+        <div className="searchbar">
+          <input
+            type="text"
+            placeholder="Search chats..."
+            className="searchtext"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <img
+            src={Images.searchbar}
+            className="searchbarImg"
+            alt="searchbar"
+          />
+        </div>
+
         <div className="modalscroll">
           {filteredChats && filteredChats.length > 0 ? (
             <>
@@ -316,7 +315,7 @@ const BellModal = () => {
         isRightSideModal={true}
         mediumWidth={false}
         className={
-          modalDetail.flag === "chatBell " ? "commonWidth customContent" : ""
+          modalDetail.flag === "chatBell" ? "commonWidth customContent" : ""
         }
         ids={
           modalDetail.flag === "reportchatD"
@@ -390,7 +389,7 @@ const BellModal = () => {
                   >
                     <img
                       src={Images.modalHeader}
-                      className=" img-fluid chatreportIcon_"
+                      className="img-fluid chatreportIcon_"
                       alt="modalheaderimg"
                     />
                   </button>
@@ -412,14 +411,14 @@ const BellModal = () => {
                       <h1 className="reportchat m-0 ps-2">Report Chat</h1>
                     </li>
                     <li
-                      className=" chatdroplabel flexBox"
+                      className="chatdroplabel flexBox"
                       onClick={() => {
                         handleOpenModal("clearchat");
                       }}
                     >
                       <img
                         src={Images.ChatModal}
-                        className=" img-fluid reporticon_"
+                        className="img-fluid reporticon_"
                         alt="clearchat"
                       />
                       <p className="reportchat m-0 ps-2">Clear Chat</p>
