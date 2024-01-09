@@ -78,7 +78,7 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
   return (
     <>
       <div className="ProfilePageModal">
-        <div className="ratingReviews_ flexBox justify-content-between">
+        <div className="ratingReviews_ rating-review-data">
           <div className="ratingStars">
             <div className="flexBox">
               <p className="ratinghere_">{allRating?.averageRating}</p>
@@ -87,131 +87,146 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
             <p className="overallTxt ps-2">Overall</p>
           </div>
 
-          <div>
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <div>
-              <Progress
-                className="ratingProgressBarNew"
-                showInfo={false}
-                percent={ratingProgress?.fiveStar}
-              />
+          <div className="rating-starts-data">
+            <div className="d-flex">
+              <div className="rating-starsss">
+                <div>
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                </div>
+              </div>
+              <div className="rating-progress-barrr">
+                <Progress
+                  className="ratingProgressBarNew"
+                  showInfo={false}
+                  percent={ratingProgress?.fiveStar}
+                />
+              </div>
             </div>
-          </div>
-
-          <div>
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <div>
-              <Progress
-                className="ratingProgressBarNew"
-                showInfo={false}
-                percent={ratingProgress?.fourStar}
-              />
+            <div className="d-flex">
+              <div className="rating-starsss">
+                <div>
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                </div>
+              </div>
+              <div className="rating-progress-barrr">
+                <Progress
+                  className="ratingProgressBarNew"
+                  showInfo={false}
+                  percent={ratingProgress?.fourStar}
+                />
+              </div>
             </div>
-          </div>
-
-          <div>
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-
-            <div>
-              <Progress
-                className="ratingProgressBarNew"
-                showInfo={false}
-                percent={ratingProgress?.threeStar}
-              />
+            <div className="d-flex">
+              <div className="rating-starsss">
+                <div>
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                </div>
+              </div>
+              <div className="rating-progress-barrr">
+                <Progress
+                  className="ratingProgressBarNew"
+                  showInfo={false}
+                  percent={ratingProgress?.threeStar}
+                />
+              </div>
             </div>
-          </div>
-
-          <div>
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <div>
-              <Progress
-                className="ratingProgressBarNew"
-                showInfo={false}
-                percent={ratingProgress?.twoStar}
-              />
+            <div className="d-flex">
+              <div className="rating-starsss">
+                <div>
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                </div>
+              </div>
+              <div className="rating-progress-barrr">
+                <Progress
+                  className="ratingProgressBarNew"
+                  showInfo={false}
+                  percent={ratingProgress?.twoStar}
+                />
+              </div>
             </div>
-          </div>
-
-          <div>
-            <img
-              src={Images.singleRating}
-              className="RatingImg_"
-              alt="RatingImg"
-            />
-            <div>
-              <Progress
-                className="ratingProgressBarNew"
-                showInfo={false}
-                percent={ratingProgress?.oneStar}
-              />
+            <div className="d-flex">
+              <div className="rating-starsss">
+                <div>
+                  <img
+                    src={Images.singleRating}
+                    className="RatingImg_"
+                    alt="RatingImg"
+                  />
+                </div>
+              </div>
+              <div className="rating-progress-barrr">
+                <Progress
+                  className="ratingProgressBarNew"
+                  showInfo={false}
+                  percent={ratingProgress?.oneStar}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -250,15 +265,17 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
               {allRating?.details?.data?.map((item, index) => (
                 <>
                   <div key={index} className="chefrateimg">
-                    <img
-                      src={
-                        item?.userId?.userInfo?.profilePhoto
-                          ? item?.userId?.userInfo?.profilePhoto
-                          : Images.dummyProfile
-                      }
-                      alt="userrating"
-                      className="img-fluid"
-                    />
+                    <div className="rating-review-user">
+                      <img
+                        src={
+                          item?.userId?.userInfo?.profilePhoto
+                            ? item?.userId?.userInfo?.profilePhoto
+                            : Images.dummyProfile
+                        }
+                        alt="userrating"
+                        className="img-fluid"
+                      />
+                    </div>
                     <div className="reviewrating">
                       <div className="chefreviews">
                         <div className="venuInfo">
@@ -287,10 +304,11 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                         />
                       </div>
                       <div className="userreviews mt-2">
-                        <p className="cheftext ">{item?.review}</p>
-                      </div>
+                    <p className="cheftext ">{item?.review}</p>
+                  </div>
                     </div>
                   </div>
+                  
                 </>
               ))}
             </>

@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useContext, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routes";
@@ -6,7 +6,7 @@ import "./public/css/custom.css";
 import "./public/css/customNew.css";
 import "./public/css/login.css";
 import "./public/css/responsive.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import store from "./redux";
@@ -18,6 +18,7 @@ import { getToken, onMessage } from "firebase/messaging";
 import * as Images from "../src/utilities/images";
 
 function App() {
+
   // Get FCM token
   async function requestPermission() {
     const permission = await Notification.requestPermission();
@@ -30,7 +31,6 @@ function App() {
       console.log("Token Gen", token);
       onMessage(messaging, (payload) => {
         console.log("payloadpayload", payload);
-
         const { title, body } = payload.notification;
         new Notification(title, {
           body,
@@ -38,15 +38,12 @@ function App() {
             ? payload?.data?.profile_image
             : Images.Logo,
         });
-        // toast(`New message received from ${payload.notification.body}`);
       });
-
-      // Send this token  to server ( db)
     } else if (permission === "denied") {
       alert("You denied for the notification");
     }
   }
-
+  
   // Req user for notification permission
   useEffect(() => {
     requestPermission();
@@ -61,7 +58,7 @@ function App() {
           </BrowserRouter>
         </PersistGate>
       </Provider>
-      <ToastContainer />
+      <ToastContainer />  
     </>
   );
 }

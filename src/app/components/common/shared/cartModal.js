@@ -41,8 +41,8 @@ const CartModal = (props) => {
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
             const totalCartPrice = res?.data?.data?.data?.cartItems?.reduce(
-              (previousValue, currentValue, index) =>
-                previousValue + currentValue.itemTotalPrice,
+              (previousValue, currentValue) =>
+                Number(previousValue) + Number(currentValue.itemTotalPrice),
               0
             );
             setTotalPrice(totalCartPrice);

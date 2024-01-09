@@ -13,7 +13,7 @@ const ChefBookModal = ({
   date,
   firstBookNow
 }) => {
-  console.log("selectedTimeSlotespp", selectedTimeSlotes);
+  
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,

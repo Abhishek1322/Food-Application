@@ -21,7 +21,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  console.log("authDataauthData", authData);
+  
   // show only one toast at one time
   const showToast = (msg) => {
     if (!toast.isActive(toastId.current)) {

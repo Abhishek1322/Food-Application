@@ -755,10 +755,12 @@ input:-webkit-autofill:active {
 }
 
 .ratingProgressBarNew .ant-progress-inner {
-  margin-top: 21px;
   background-color: #FFF3CD;
   border-radius: 50px;
   height: 10px;
+}
+.ant-progress.ant-progress-status-normal.ratingProgressBarNew {
+  margin: 0;
 }
 
 .locate.current-locate-btn {
@@ -891,4 +893,39 @@ input:-webkit-autofill:active {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.rating-review-data .ratingStars {
+  width: 30%;
+}
+
+.rating-starts-data {
+  width: 70%;
+}
+
+.ratingReviews_.rating-review-data {
+  display: flex;
+}
+.rating-starsss {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+}
+
+.rating-progress-barrr {
+  width: 50%;
+}
+.rating-starsss div img {
+  height: 15px;
+  width: 15px;
+  margin-right: 6px;
+}
+.rating-review-user {
+  height: 60px;
+  width: 60px;
+  margin-top: 4px;
+}
+
+.rating-review-user img {
+  border-radius: 50px;
 }

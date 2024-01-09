@@ -271,7 +271,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       console.error("Error creating room:", error);
     }
   };
-  console.log("userInfo?.fcmToken", userInfo?.fcmToken);
+  
   // send web push notification
   const handleSendWebPushNotification = async (senderName) => {
     const notificationData = {
