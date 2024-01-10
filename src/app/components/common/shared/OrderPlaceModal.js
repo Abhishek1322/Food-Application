@@ -58,8 +58,6 @@ const OrderPlaceModal = (props) => {
     setBarPercentage(getTotalPercent);
   }, [countDown]);
 
- 
-
   return (
     <>
       <div className="orderplacesection paymentdonesection">
@@ -119,7 +117,8 @@ const OrderPlaceModal = (props) => {
         child={
           modalDetail.flag === "wantCancelOrder" ? (
             <YourOrderModal
-            orderId={orderId}
+              flag={"booking"}
+              orderId={orderId}
               close={() => {
                 close();
               }}

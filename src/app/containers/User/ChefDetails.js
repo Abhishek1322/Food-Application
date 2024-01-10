@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import CustomModal from "../../components/common/shared/CustomModal";
 import AvailableModal from "../../components/common/shared/availableModal";
 import CartFoodModal from "../../components/common/shared/CartFoodModal";
+import CartFoodModalOrder from "../../components/common/shared/CartFoodModalOrder";
 import AddToCartModal from "../../components/common/shared/AddToCartModal";
 import ChefRating from "../../components/common/shared/ChefRating";
 import { useDispatch } from "react-redux";
@@ -79,7 +80,7 @@ const ChefDetails = () => {
   };
 
   // open modal
-  const handleUserProfile = (flag, id) => {
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -145,7 +146,7 @@ const ChefDetails = () => {
                   className="sarahavailablebtn flexBox"
                   type="button"
                   onClick={() => {
-                    handleUserProfile("availabilityModal");
+                    handleOpenModal("availabilityModal");
                   }}
                 >
                   <img
@@ -157,7 +158,7 @@ const ChefDetails = () => {
                 </button>
                 <button
                   onClick={() => {
-                    handleUserProfile("chatModal");
+                    handleOpenModal("chatModal");
                   }}
                   className="sarahmessagebtn flexBox"
                   type="button"
@@ -196,7 +197,7 @@ const ChefDetails = () => {
               <div
                 className="chefrating mt-2"
                 onClick={() => {
-                  handleUserProfile("ratingchef");
+                  handleOpenModal("ratingchef");
                 }}
               >
                 <i className="las la-star startIcon"></i>
@@ -262,7 +263,7 @@ const ChefDetails = () => {
                             />
                             <img
                               onClick={() => {
-                                handleUserProfile("CartFood", val?._id);
+                                handleOpenModal("CartFood", val?._id);
                               }}
                               src={val?.image ? val?.image : Images.SaladImg}
                               alt="logo"
@@ -278,7 +279,7 @@ const ChefDetails = () => {
                           </button>
                           <div
                             onClick={() => {
-                              handleUserProfile("Addtocart", val?._id);
+                              handleOpenModal("alreadyExistCart", val?._id);
                             }}
                             className="sarahbasket"
                           >
@@ -321,8 +322,8 @@ const ChefDetails = () => {
             ? "ratingusermodal"
             : modalDetail.flag === "chefcart"
             ? "usercartmodal"
-            : modalDetail.flag === "Addtocart"
-            ? "usercartmodal"
+            : modalDetail.flag === "alreadyExistCart"
+            ? "CartFoodOrderModal"
             : modalDetail.flag === "chatModal"
             ? "userchatmodal"
             : modalDetail.flag === "reportchat"
@@ -345,8 +346,9 @@ const ChefDetails = () => {
               chefId={id}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "Addtocart" ? (
-            <AddToCartModal
+          ) : modalDetail.flag === "alreadyExistCart" ? (
+            <CartFoodModalOrder
+              cartFlag="addToCart"
               menuId={menuId}
               close={() => handleOnCloseModal()}
             />
@@ -402,7 +404,7 @@ const ChefDetails = () => {
                 />
               </p>
             </>
-          ) : modalDetail.flag === "Addtocart" ? (
+          ) : modalDetail.flag === "alreadyExistCart" ? (
             <>
               <p onClick={handleOnCloseModal} className="modal_cancel">
                 <img
@@ -461,7 +463,7 @@ const ChefDetails = () => {
                     <li
                       className=" chatdroplabel flexBox"
                       onClick={() => {
-                        handleUserProfile("reportchat");
+                        handleOpenModal("reportchat");
                       }}
                     >
                       <img
@@ -474,7 +476,7 @@ const ChefDetails = () => {
                     <li
                       className=" chatdroplabel flexBox"
                       onClick={() => {
-                        handleUserProfile("clearchat");
+                        handleOpenModal("clearchat");
                       }}
                     >
                       <img

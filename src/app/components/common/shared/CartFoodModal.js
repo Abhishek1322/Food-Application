@@ -104,7 +104,10 @@ const CartFoodModal = (props) => {
                 className="chefrating mt-1"
               >
                 <i className="las la-star startIcon"></i>
-                <p className="ratingheading">{foodDetails?.averageRating} ({foodDetails?.totalReview} Reviews)</p>
+                <p className="ratingheading">
+                  {foodDetails?.averageRating} ({foodDetails?.totalReview}{" "}
+                  Reviews)
+                </p>
               </div>
             </div>
           </div>

@@ -929,3 +929,23 @@ input:-webkit-autofill:active {
 .rating-review-user img {
   border-radius: 50px;
 }
+.usercartcheck .outeraddItem-resp {
+  padding: 20px 10px 0px 10px;
+  border-top: 1px dashed rgba(192, 194, 194, 0.5);
+}
+.addcartitem {
+  border-radius: 8px;
+  background: #e65c00;
+  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+  padding: 18px 45px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  width: 92%;
+}
+.modalfooterbtnAddToCart {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 13px;
+}

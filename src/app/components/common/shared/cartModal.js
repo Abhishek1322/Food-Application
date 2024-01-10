@@ -36,6 +36,7 @@ const CartModal = (props) => {
     dispatch(
       getAllCart({
         cb(res) {
+          console.log("ressss10",res);
           if (res.status === 200) {
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
@@ -196,7 +197,7 @@ const CartModal = (props) => {
             ))}
 
             <div className="modalfooterbtn">
-              <div className="outeraddItem">
+              <div className="outeraddItem-resp">
                 <button
                   onClick={() => handleAddMoreItem()}
                   className="addItems"

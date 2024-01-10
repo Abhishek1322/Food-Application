@@ -2,7 +2,7 @@ import React from "react";
 import * as Images from "../../../../utilities/images";
 
 const OrderCancelModal = (props) => {
-    const {close} = props;
+  const { close, flag } = props;
   return (
     <>
       <div className="ordercancelsection paymentdonesection">
@@ -11,7 +11,9 @@ const OrderCancelModal = (props) => {
           alt="accountdeletedimg"
           className="img-fluid"
         />
-        <h1 className="accountDeleted mt-3">Order Canceled</h1>
+        <h1 className="accountDeleted mt-3">
+          {`${flag === "booking"}` ? "Booking" : "Order"} Canceled
+        </h1>
         <p className="accountdeletetxt mt-2 ">
           Your amount will be refund Within 1 hour.
         </p>

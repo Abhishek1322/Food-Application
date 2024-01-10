@@ -60,6 +60,7 @@ const User_Navbar = () => {
   function success(pos) {
     var crd = pos.coords;
     handleGetLocationInfo(crd.latitude, crd.longitude);
+    console.log("crd.latitude",crd.latitude,crd.longitude);
   }
 
   // call get location function

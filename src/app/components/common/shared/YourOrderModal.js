@@ -8,17 +8,19 @@ import {
   cancelChefBooking,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const YourOrderModal = (props) => {
   const { close, closeModal, orderId, flag } = props;
   const dispatch = useDispatch();
+  const userData = useUserSelector();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
+ console.log("flagflagflag",flag);
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -89,7 +91,8 @@ const YourOrderModal = (props) => {
         />
         <h1 className="accountDeleted mt-3">
           {" "}
-          Are You Sure You Want to Cancel Your Order.
+          Are You Sure You Want to Cancel Your{" "}
+          {`${flag === "booking"}` ? "Booking" : "Order"}.
         </h1>
         <p className="accountdeletetxt mt-2 ">Cancellation charges apply.</p>
         <div className="modalfooterbtn">
@@ -108,6 +111,9 @@ const YourOrderModal = (props) => {
                 handleCancelOrder();
               }}
             >
+              {userData?.loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
               Yes, Cancel
             </button>
           </div>
@@ -127,6 +133,7 @@ const YourOrderModal = (props) => {
         child={
           modalDetail.flag === "ordercancel" ? (
             <OrderCancelModal
+            flag={flag}
               close={() => {
                 close();
                 handleOnCloseModal();

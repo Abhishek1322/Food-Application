@@ -65,9 +65,9 @@ const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
           alt="accountdeletedimg"
           className="img-fluid"
         />
-        <h1 className="accountDeleted mt-3"> Order Placed</h1>
+        <h1 className="accountDeleted mt-3">Booking Done</h1>
         <p className="accountdeletetxt mt-2 ">
-          Your order has been successfully placed.
+          Your Booking has been done successfully .
         </p>
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
@@ -94,7 +94,7 @@ const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
             className="itemsQuantity"
             type="button"
           >
-            Cancel Order
+            Cancel Booking
           </button>
         </div>
       </div>

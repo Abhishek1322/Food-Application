@@ -73,7 +73,7 @@ const ChooseLocation = () => {
     mapRef.current = map;
   }, []);
 
-  const panTo = useCallback(({ lat, lng, position, address }) => {
+  const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
     setMarkers((current) => [

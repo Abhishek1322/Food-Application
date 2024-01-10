@@ -1539,6 +1539,7 @@ p {
 
 .usercartcheck .modalfooterbtn {
   max-width: none;
+  left: 0;
 }
 
 .usercartcheck .outeraddItem {

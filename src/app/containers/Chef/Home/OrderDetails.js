@@ -218,7 +218,7 @@ const OrderDetails = () => {
                       className="chatwithjohn"
                     >
                       <div className="chatImg">
-                        <i className="fas fa-comment-dots chatImage chatbg"></i>
+                        <i className="fas fa-comment-dots chatImage"></i>
                       </div>
                       <div className="chatText">
                         <p className="chat">chat</p>
