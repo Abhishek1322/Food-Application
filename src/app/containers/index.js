@@ -1,6 +1,5 @@
 import Login from "./auth/login"
 import ChooseRoles from "./auth/chooseRoles"
-import AccountDashboard from "./dashboard"
 import Verification from "./auth/verification"
 import CreateAccount from "./auth/createAccount"
 import ForgotPassword from "./auth/ForgotPassword"
@@ -40,7 +39,6 @@ import ChooseLocation from "./User/ChooseLocation"
 export {
     Login,
     ChooseRoles,
-    AccountDashboard,
     Verification,
     CreateAccount,
     ForgotPassword,

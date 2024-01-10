@@ -19,11 +19,10 @@ import * as Images from "../src/utilities/images";
 
 function App() {
 
-  // Get FCM token
+  // Get FCM token , Generate Token
   async function requestPermission() {
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
-      // Generate Token
       const token = await getToken(messaging, {
         vapidKey: VAPID_KEY,
       });

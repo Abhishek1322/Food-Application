@@ -105,19 +105,17 @@ const MenuRating = ({ menuId }) => {
                       />
                     </div>
                     <div className="userreviews mt-2">
-                      <p className="cheftext ">{item?.review}</p>
+                      <p className="cheftext">{item?.review}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </>
           ) : (
-            <div>
-              <img
-                className="w-100"
-                alt="no-data-found"
-                src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
-              />
+            <div className="noDataFoundImage">
+              <div>
+                <p className="no-data-found">No data found</p>
+              </div>
             </div>
           )}
         </div>

@@ -82,6 +82,7 @@ const HomeRequsest = () => {
   useEffect(() => {
     let params = {
       limit: 15,
+      status: "pending",
     };
     dispatch(
       getBookingRequests({

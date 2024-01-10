@@ -429,8 +429,8 @@ p {
 }
 
 .chefOrderImg {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 
@@ -1911,11 +1911,9 @@ p {
 }
 
 .orderchefinfo {
-  padding: 15px 20px 20px 10px;
+  padding: 15px 20px 15px 10px;
   border-radius: 13px;
   background: #fff;
-  padding-bottom: 20;
-  flex-wrap: nowrap;
 }
 
 .orderchefname {
@@ -2485,5 +2483,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   border: 0px solid #fff;
 }
 
-
+.order-list-height{
+  height: 70vh;
+}
 /* Abhishek Css end */

@@ -45,7 +45,7 @@ const UserOrderHome = () => {
   // get all orders
   useEffect(() => {
     let params = {
-      limit: 10,
+      limit: 5,
       page: currentPage,
     };
 
@@ -75,6 +75,7 @@ const UserOrderHome = () => {
   return (
     <>
       <div className="userordersection">
+       <div className="order-list-height">
         <div className="row">
           {allOrders && allOrders.length > 0 ? (
             <>
@@ -133,9 +134,12 @@ const UserOrderHome = () => {
                                 {moment(item?.updatedAt).format("hh:mm A")}
                               </h6>
                               <div className="userorderprice">
-                                <h5 className="orderPrice ">
-                                  £{item?.total}.00
+                              {item?.items?.map((value,index)=>(
+                                <h5 key={index} className="orderPrice ">
+                                  £{value?.netPrice}.00
                                 </h5>
+                              ))}
+                              
                               </div>
                             </div>
                           </div>
@@ -158,6 +162,7 @@ const UserOrderHome = () => {
               </div>
             </div>
           )}
+        </div>
         </div>
         {allOrders && allOrders.length > 0 && (
           <ReactPaginate
