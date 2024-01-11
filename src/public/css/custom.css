@@ -759,6 +759,7 @@ input:-webkit-autofill:active {
   border-radius: 50px;
   height: 10px;
 }
+
 .ant-progress.ant-progress-status-normal.ratingProgressBarNew {
   margin: 0;
 }
@@ -881,19 +882,23 @@ input:-webkit-autofill:active {
 .userbellsection .modalscroll {
   height: 600px !important;
 }
-.expertise-profile, .name-profile-name {
+
+.expertise-profile,
+.name-profile-name {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   width: 60%;
   margin-top: 25px;
 }
-.noDataFoundImageRequestpage{
+
+.noDataFoundImageRequestpage {
   height: 35vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .rating-review-data .ratingStars {
   width: 30%;
 }
@@ -905,6 +910,7 @@ input:-webkit-autofill:active {
 .ratingReviews_.rating-review-data {
   display: flex;
 }
+
 .rating-starsss {
   width: 50%;
   display: flex;
@@ -915,11 +921,13 @@ input:-webkit-autofill:active {
 .rating-progress-barrr {
   width: 50%;
 }
+
 .rating-starsss div img {
   height: 15px;
   width: 15px;
   margin-right: 6px;
 }
+
 .rating-review-user {
   height: 60px;
   width: 60px;
@@ -929,10 +937,12 @@ input:-webkit-autofill:active {
 .rating-review-user img {
   border-radius: 50px;
 }
+
 .usercartcheck .outeraddItem-resp {
   padding: 20px 10px 0px 10px;
   border-top: 1px dashed rgba(192, 194, 194, 0.5);
 }
+
 .addcartitem {
   border-radius: 8px;
   background: #e65c00;
@@ -943,9 +953,47 @@ input:-webkit-autofill:active {
   font-weight: 600;
   width: 92%;
 }
+
 .modalfooterbtnAddToCart {
   text-align: center;
   position: absolute;
   width: 100%;
   bottom: 13px;
+}
+
+.noAddressFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 35vh;
+}
+
+.good-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 73vh;
+}
+
+
+.clearChatCancel {
+  color: #e65c00;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #e65c00;
+  background: #fff;
+  padding: 16px 0px;
+  width: 50%;
+}
+.clearChatBtn {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: #e65c00;
+  padding: 16px 0px;
+  width: 50%;
+
 }

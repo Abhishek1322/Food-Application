@@ -118,14 +118,14 @@ const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close, flag }) => {
           this chat?
         </p>
         <div className="modalfooterbtn">
-          <div className="orderItems">
-            <button onClick={close} className="cancelOrder" type="button">
+          <div className="orderItems gap-3">
+            <button onClick={close} className="clearChatCancel" type="button">
               Cancel
             </button>
             <button
               disabled={isLoading}
               onClick={(e) => handleDeleteRoom(e)}
-              className="acceptOrder d-flex align-items-center gap-2"
+              className="clearChatBtn d-flex align-items-center justify-content-center gap-2"
               type="button"
             >
               Yes,{flag === "deleteChat" ? `Delete` : `Clear`}

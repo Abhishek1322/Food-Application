@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
+import FadeLoader from "react-spinners/FadeLoader";
+
 import {
   getAllCart,
-  onErrorStopLoad,
   deleteCartItem,
   updateCartItem,
 } from "../../../../redux/slices/user";
@@ -10,11 +11,13 @@ import { useDispatch } from "react-redux";
 import CustomModal from "./CustomModal";
 import { useNavigate } from "react-router-dom";
 import UserCartModal from "./UserCartModal";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const CartModal = (props) => {
   const { close } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userSelector = useUserSelector();
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const [chefId, setChefId] = useState("");
@@ -25,7 +28,7 @@ const CartModal = (props) => {
     title: "",
     flag: "",
   });
-
+  
   //  get all cart data
   useEffect(() => {
     handleGetAllCart();
@@ -36,7 +39,6 @@ const CartModal = (props) => {
     dispatch(
       getAllCart({
         cb(res) {
-          console.log("ressss10",res);
           if (res.status === 200) {
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
@@ -52,11 +54,6 @@ const CartModal = (props) => {
       })
     );
   };
-
-  // stop loader on page load
-  useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
 
   // delete cart items
   const handleDeleteCartItem = (menuId) => {
@@ -130,6 +127,16 @@ const CartModal = (props) => {
   return (
     <>
       <div className="usercartcheck">
+        {userSelector?.loading && (
+          <div className="good-loader">
+            <FadeLoader
+              color={"#E65C00"}
+              size={150}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        )}
         {allCartItems && allCartItems?.length > 0 ? (
           <>
             {allCartItems?.map((item, index) => (
