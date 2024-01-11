@@ -253,7 +253,12 @@ const ChefDetails = () => {
                 {chefData?.menus?.map((val, i) => {
                   return (
                     <div key={i} className="col-lg-2 col-md-4 col-sm-6">
-                      <div className="listItems_">
+                      <div
+                        onClick={() => {
+                          handleOpenModal("alreadyExistCart", val?._id);
+                        }}
+                        className="listItems_"
+                      >
                         <div className="menu_Items">
                           <div className="innerItems_">
                             <img
@@ -262,9 +267,9 @@ const ChefDetails = () => {
                               className="bgmenuImg_"
                             />
                             <img
-                              onClick={() => {
-                                handleOpenModal("CartFood", val?._id);
-                              }}
+                              // onClick={() => {
+                              //   handleOpenModal("CartFood", val?._id);
+                              // }}
                               src={val?.image ? val?.image : Images.SaladImg}
                               alt="logo"
                               className="menuItem_ cursorPoint"
@@ -277,12 +282,7 @@ const ChefDetails = () => {
                           <button className="itemsPrice_ " type="button">
                             £ {val?.price}
                           </button>
-                          <div
-                            onClick={() => {
-                              handleOpenModal("alreadyExistCart", val?._id);
-                            }}
-                            className="sarahbasket"
-                          >
+                          <div className="sarahbasket">
                             <img
                               src={Images.basketImg}
                               alt="basketimage"
@@ -348,7 +348,6 @@ const ChefDetails = () => {
             />
           ) : modalDetail.flag === "alreadyExistCart" ? (
             <CartFoodModalOrder
-              cartFlag="addToCart"
               menuId={menuId}
               close={() => handleOnCloseModal()}
             />

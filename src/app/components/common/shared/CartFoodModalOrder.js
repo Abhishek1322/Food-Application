@@ -10,21 +10,18 @@ import { useUserSelector } from "../../../../redux/selector/user";
 import MenuRating from "./MenuRating";
 
 const CartFoodModalOrder = (props) => {
-  const { menuId, close, cartFlag } = props;
-  console.log("cartFlagcartFlag", cartFlag);
+  const { menuId, close } = props;
   const userData = useUserSelector();
   const [foodDetails, setFoodDetails] = useState([]);
-  const [deliverFrom, setDeliverFrom] = useState("");
+  const [quantity, setQuantity] = useState([]);
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
-  const [quantity, setQuantity] = useState(1);
-  const [itemPrice, setItemPrice] = useState("");
-  const [totalPrice, setTotalPrice] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
+
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -63,26 +60,23 @@ const CartFoodModalOrder = (props) => {
           console.log("chekckresp", res);
           if (res.status === 200) {
             setFoodDetails(res?.data?.data);
-            setItemPrice(res?.data?.data?.item?.price);
-            setTotalPrice(res?.data?.data?.item?.price);
-            setDeliverFrom(res?.data?.data?.address);
+            setQuantity(
+              res?.data?.data?.item?.quantity === "0"
+                ? 1
+                : res?.data?.data?.item?.quantity
+            );
           }
         },
       })
     );
   }, []);
 
-  // increase item quantity
-  const handleIcreaseQuantity = () => {
-    setQuantity(quantity + 1);
-    setTotalPrice((pre) => Number(pre) + Number(itemPrice));
-  };
-
-  // decrease item quantity
-  const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      setTotalPrice((pre) => Number(pre) - Number(itemPrice));
+  // handle quantity
+  const handleQuantity = (flag) => {
+    if (flag === "increase") {
+      setQuantity((pre) => Number(pre) + 1);
+    } else if (flag === "decrease" && quantity > 1) {
+      setQuantity((pre) => Number(pre) - 1);
     }
   };
 
@@ -103,32 +97,6 @@ const CartFoodModalOrder = (props) => {
       })
     );
   };
-
-  // manage cart data e.g. quantity and price
-  //  const handleCartData = (type, menuId, qty) => {
-  //   let quantity = Number(qty);
-  //   quantity =
-  //     type === "increase"
-  //       ? quantity + 1
-  //       : type === "decrease" && quantity > 1
-  //       ? quantity - 1
-  //       : 1;
-  //   let params = {
-  //     cartId: cartId,
-  //     menuItemId: menuId,
-  //     quantity: quantity.toString(),
-  //   };
-  //   dispatch(
-  //     updateCartItem({
-  //       ...params,
-  //       cb(res) {
-  //         if (res.status === 200) {
-  //           handleGetAllCart();
-  //         }
-  //       },
-  //     })
-  //   );
-  // };
 
   return (
     <>
@@ -189,18 +157,20 @@ const CartFoodModalOrder = (props) => {
           </div>
           <div className="deliverfrom mt-2">
             <h6 className="chefName">Description</h6>
-            <p className="chatSearchere_  mt-1 ">
+            <p className="chatSearchere_  mt-1">
               {foodDetails?.item?.description}
             </p>
           </div>
         </div>
         <div className="orderamount">
-          <h6 className="foodamountmodal">£{totalPrice}.00</h6>
+          <h6 className="foodamountmodal">
+            £{foodDetails?.item?.price * Number(quantity)}.00
+          </h6>
           <div className="quantitymodal">
             <h6 className="notificationText ">Quantity:</h6>
             <div className="quantity">
               <div
-                onClick={() => handleDecreaseQuantity()}
+                onClick={() => handleQuantity("decrease")}
                 className="Quantiycheck"
               >
                 <img
@@ -211,7 +181,7 @@ const CartFoodModalOrder = (props) => {
               </div>
               <span className="number">{quantity}</span>
               <div
-                onClick={() => handleIcreaseQuantity()}
+                onClick={() => handleQuantity("increase")}
                 className="Quantiycheck"
               >
                 <img
@@ -224,26 +194,26 @@ const CartFoodModalOrder = (props) => {
           </div>
         </div>
         <div className="modalfooterbtnAddToCart">
-          {cartFlag === "addToCart" ? (
-            <div className="addToCartBtn">
-              <div className="addfoodbtn">
-                <button
-                  disabled={userData?.loading}
-                  onClick={() => handleAddCart()}
-                  className="addcartitem"
-                  type="button"
-                >
-                  {userData?.loading && (
-                    <span className="spinner-border spinner-border-sm me-1"></span>
-                  )}
-                  Add to Cart
-                </button>
-              </div>
+          {/* {cartFlag === "addToCart" ? ( */}
+          <div className="addToCartBtn">
+            <div className="addfoodbtn">
+              <button
+                disabled={userData?.loading}
+                onClick={() => handleAddCart()}
+                className="addcartitem"
+                type="button"
+              >
+                {userData?.loading && (
+                  <span className="spinner-border spinner-border-sm me-1"></span>
+                )}
+                Add to Cart
+              </button>
             </div>
-          ) : (
+          </div>
+          {/* ) : (
             <div className="orderNow">
               <div className="totalPrice">
-                <p className="price">£{totalPrice}.00</p>
+                <p className="price">£{foodDetails?.item?.price}.00</p>
               </div>
               <button
                 disabled={userData?.loading}
@@ -259,7 +229,7 @@ const CartFoodModalOrder = (props) => {
                 CheckOut
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <CustomModal

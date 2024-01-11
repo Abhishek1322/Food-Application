@@ -426,6 +426,7 @@ p {
 .sarahsmenu .listItems_ {
   margin-top: 35px;
   max-width: 100%;
+  cursor: pointer;
 }
 
 .chefOrderImg {
