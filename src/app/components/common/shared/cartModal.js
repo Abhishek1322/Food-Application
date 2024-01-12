@@ -14,13 +14,14 @@ import UserCartModal from "./UserCartModal";
 import { useUserSelector } from "../../../../redux/selector/user";
 
 const CartModal = (props) => {
-  const { close,updateCartCount } = props;
+  const { close, updateCartCount } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSelector = useUserSelector();
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const [chefId, setChefId] = useState("");
+  const [showLoading, setShowLoading] = useState(true);
   const [key, setKey] = useState(Math.random());
   const [totalPrice, setTotalPrice] = useState([]);
   const [modalDetail, setModalDetail] = useState({
@@ -28,7 +29,7 @@ const CartModal = (props) => {
     title: "",
     flag: "",
   });
-  
+
   //  get all cart data
   useEffect(() => {
     handleGetAllCart();
@@ -67,7 +68,7 @@ const CartModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllCart();
-            updateCartCount()
+            updateCartCount();
           }
         },
       })
@@ -76,6 +77,7 @@ const CartModal = (props) => {
 
   // manage cart data e.g. quantity and price
   const handleCartData = (type, menuId, qty) => {
+    setShowLoading(false)
     let quantity = Number(qty);
     quantity =
       type === "increase"
@@ -128,7 +130,7 @@ const CartModal = (props) => {
   return (
     <>
       <div className="usercartcheck">
-        {userSelector?.loading && (
+        {userSelector?.loading && showLoading && (
           <div className="good-loader">
             <FadeLoader
               color={"#E65C00"}
@@ -233,11 +235,11 @@ const CartModal = (props) => {
         ) : (
           <div className="noDataFoundImage">
             <div>
-            <img
-                  className="w-100"
-                  alt="no data found"
-                  src={Images.nodataFound}
-                />
+              <img
+                className="w-100"
+                alt="no data found"
+                src={Images.nodataFound}
+              />
             </div>
           </div>
         )}
