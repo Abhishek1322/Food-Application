@@ -75,94 +75,94 @@ const UserOrderHome = () => {
   return (
     <>
       <div className="userordersection">
-       <div className="order-list-height">
-        <div className="row">
-          {allOrders && allOrders.length > 0 ? (
-            <>
-              {allOrders?.map((item, index) => {
-                return (
-                  <div key={index} className="col-lg-12">
-                    <div
-                      className={
-                        item?.status === "pending" ||
-                        item?.status === "accepted" ||
-                        item?.status === "readyForDelivery"
-                          ? "orderprocess active mb-3"
-                          : "orderprocess  mb-3"
-                      }
-                      onClick={() => {
-                        handleOpenModal("orderdetail", item?._id);
-                      }}
-                    >
-                      <article className="flexBox justify-content-between">
-                        <h6 className="fooodquantity_">#{item?.orderId}</h6>
-                        {item?.status === "pending" ||
-                        item?.status === "accepted" ||
-                        item?.status === "readyForDelivery" ? (
-                          <h6 className="chatTime_">In-Progress</h6>
-                        ) : (
-                          <h6 className="chatTime_">Delivered</h6>
-                        )}
-                      </article>
-                      <div className="orderchefinfo">
-                        <div className="row">
-                          <div className="col-lg-6 col-md-12">
-                            <div className="flexBox">
-                              <img
-                                src={
-                                  item?.chefId?.userInfo?.profilePhoto
-                                    ? item?.chefId?.userInfo?.profilePhoto
-                                    : Images.OrderChef
-                                }
-                                alt="chefimg"
-                                className="img-fluid chefOrderImg"
-                              />
-                              <div className="orderchefname">
-                                <h6 className="chefName">
-                                  {item?.chefId?.userInfo?.firstName}{" "}
-                                  {item?.chefId?.userInfo?.lastName}
-                                </h6>
-                                <h6 className="orderFrom">Order From</h6>
+        <div className="order-list-height">
+          <div className="row">
+            {allOrders && allOrders.length > 0 ? (
+              <>
+                {allOrders?.map((item, index) => {
+                  return (
+                    <div key={index} className="col-lg-12">
+                      <div
+                        className={
+                          item?.status === "pending" ||
+                          item?.status === "accepted" ||
+                          item?.status === "readyForDelivery"
+                            ? "orderprocess active mb-3"
+                            : "orderprocess  mb-3"
+                        }
+                        onClick={() => {
+                          handleOpenModal("orderdetail", item?._id);
+                        }}
+                      >
+                        <article className="flexBox justify-content-between">
+                          <h6 className="fooodquantity_">#{item?.orderId}</h6>
+                          {item?.status === "pending" ||
+                          item?.status === "accepted" ||
+                          item?.status === "readyForDelivery" ? (
+                            <h6 className="chatTime_">In-Progress</h6>
+                          ) : (
+                            <h6 className="chatTime_">Delivered</h6>
+                          )}
+                        </article>
+                        <div className="orderchefinfo">
+                          <div className="row">
+                            <div className="col-lg-6 col-md-12">
+                              <div className="flexBox">
+                                <img
+                                  src={
+                                    item?.chefId?.userInfo?.profilePhoto
+                                      ? item?.chefId?.userInfo?.profilePhoto
+                                      : Images.OrderChef
+                                  }
+                                  alt="chefimg"
+                                  className="img-fluid chefOrderImg"
+                                />
+                                <div className="orderchefname">
+                                  <h6 className="chefName">
+                                    {item?.chefId?.userInfo?.firstName}{" "}
+                                    {item?.chefId?.userInfo?.lastName}
+                                  </h6>
+                                  <h6 className="orderFrom">Order From</h6>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-lg-6 col-md-12">
-                            <div className="orderstatus">
-                              <h6 className="Items">{item?.itemCount} Items</h6>
-                              <h6 className="timeOrder_">
-                                Order placed on{" "}
-                                {moment(item?.updatedAt).format("hh:mm A")}
-                              </h6>
-                              <div className="userorderprice">
-                              {item?.items?.map((value,index)=>(
-                                <h5 key={index} className="orderPrice ">
-                                  £{value?.netPrice}.00
-                                </h5>
-                              ))}
-                              
+                            <div className="col-lg-6 col-md-12">
+                              <div className="orderstatus">
+                                <h6 className="Items">
+                                  {item?.itemCount} Items
+                                </h6>
+                                <h6 className="timeOrder_">
+                                  Order placed on{" "}
+                                  {moment(item?.updatedAt).format("hh:mm A")}
+                                </h6>
+                                <div className="userorderprice">
+                                  {item?.items?.map((value, index) => (
+                                    <h5 key={index} className="orderPrice ">
+                                      £{value?.netPrice}.00
+                                    </h5>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            <div className="noDataFoundImage">
-              <div>
-                {/* <img
-                  className="w-100"
-                  alt="no data found"
-                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
-                /> */}
-                <p className="no-data-found">No data found</p>
+                  );
+                })}
+              </>
+            ) : (
+              <div className="noDataFoundImage">
+                <div>
+                  <img
+                    className="w-100"
+                    alt="no data found"
+                    src={Images.nodataFound}
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
         </div>
         {allOrders && allOrders.length > 0 && (
           <ReactPaginate

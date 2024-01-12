@@ -327,7 +327,7 @@ const UserBellModal = ({ id }) => {
           modalDetail.flag === "deletechat"
             ? "userchatdelete"
             : modalDetail.flag === "chefchat"
-            ? "userchatmodal"
+            ? "chatmessagemodal"
             : modalDetail.flag === "ratingchef"
             ? "ratingusermodal"
             : modalDetail.flag === "chefcart"

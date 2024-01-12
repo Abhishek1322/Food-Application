@@ -150,9 +150,9 @@ const AddmenuItemModal = (props) => {
 
   return (
     <>
-      <div className="modalscroll">
+      <div className="add-menu-modal">
         <div className="addmenuItemModal">
-          <div className="input-container mt-5">
+          <div className="input-container mt-1">
             <input
               type="text"
               className="menuReport_button inputPlaceholder"
@@ -275,32 +275,34 @@ const AddmenuItemModal = (props) => {
           )}
         </div>
       </div>
-      <button
-        disabled={
-          !formData.itemName ||
-          !formData.price ||
-          !formData.deliveryTime ||
-          !formData.description ||
-          !imageUrl ||
-          !category
-        }
-        className={
-          !formData.itemName ||
-          !formData.price ||
-          !formData.deliveryTime ||
-          !formData.description ||
-          !imageUrl ||
-          !category
-            ? "foodmodalbtn  modalfooterbtn disbale-btn"
-            : "foodmodalbtn  modalfooterbtn"
-        }
-        // className="foodmodalbtn  modalfooterbtn"
-        onClick={() => {
-          handleCreateMenu();
-        }}
-      >
-        Add
-      </button>
+      <div>
+        <button
+          disabled={
+            !formData.itemName ||
+            !formData.price ||
+            !formData.deliveryTime ||
+            !formData.description ||
+            !imageUrl ||
+            !category
+          }
+          className={
+            !formData.itemName ||
+            !formData.price ||
+            !formData.deliveryTime ||
+            !formData.description ||
+            !imageUrl ||
+            !category
+              ? "foodmodalbtn  modalfooterbtn disbale-btn"
+              : "foodmodalbtn  modalfooterbtn"
+          }
+          // className="foodmodalbtn  modalfooterbtn"
+          onClick={() => {
+            handleCreateMenu();
+          }}
+        >
+          Add
+        </button>
+      </div>
     </>
   );
 };

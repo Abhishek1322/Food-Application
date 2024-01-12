@@ -2138,7 +2138,7 @@ p {
 }
 
 .noDataFoundImage {
-  height: 70vh;
+  height: 67vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2345,10 +2345,12 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .no-data-found {
+  color: #2E3333;
   text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  color: #796b6b;
+  font-family: Crimson Text;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .chat-right-section {
@@ -2485,7 +2487,8 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   border: 0px solid #fff;
 }
 
-.order-list-height{
+.order-list-height {
   height: 70vh;
 }
+
 /* Abhishek Css end */

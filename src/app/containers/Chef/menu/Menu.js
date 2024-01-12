@@ -116,7 +116,10 @@ const Menu = () => {
                     </div>
                   </div>
                 </div>
-                <div className={menuList && menuList.length > 0 ? "profileDetail" : ""}
+                <div
+                  className={
+                    menuList && menuList.length > 0 ? "profileDetail" : ""
+                  }
                 >
                   {menuList && menuList.length > 0 ? (
                     <>
@@ -203,16 +206,15 @@ const Menu = () => {
                       ))}
                     </>
                   ) : (
-                  <div className="noDataFoundImage">
-                    <div>
-                      {/* <img
-                  className="w-100"
-                  alt="no data found"
-                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
-                /> */}
-                      <p className="no-data-found">No data found</p>
+                    <div className="noDataFoundImage">
+                      <div>
+                        <img
+                          className="w-100"
+                          alt="no data found"
+                          src={Images.nodataFound}
+                        />
+                      </div>
                     </div>
-                  </div>
                   )}
                 </div>
               </div>

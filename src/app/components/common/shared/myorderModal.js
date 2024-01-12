@@ -106,8 +106,8 @@ const Myorder = (props) => {
 
   return (
     <>
-      <div className="modalContent ">
-        <div className="modalscroll">
+      <div className="modalContent">
+        <div className="order-outer">
           <div className="searchbar ">
             <input
               onChange={(e) => setSearchOrder(e.target.value)}
@@ -168,7 +168,7 @@ const Myorder = (props) => {
                       </li>
                     </ul>
 
-                    <div className="tab-content" id="pills-tabContent">
+                    <div className="tab-content order-inner-list" id="pills-tabContent">
                       <div className="tab-pane fade active show">
                         <div className="Myorders_">
                           {orderDetails && orderDetails.length > 0 ? (
@@ -278,9 +278,8 @@ const Myorder = (props) => {
                                 <img
                                   className="w-100"
                                   alt="no data found"
-                                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                                  src={Images.nodataFound}
                                 />
-                                <p className="no-data-found">No data found</p>
                               </div>
                             </div>
                           )}

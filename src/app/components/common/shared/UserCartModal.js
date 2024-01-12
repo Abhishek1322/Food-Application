@@ -320,11 +320,6 @@ const UserCartModal = (props) => {
                   ) : (
                     <div className="noAddressFound">
                       <div>
-                        {/* <img
-                  className="w-100"
-                  alt="no data found"
-                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
-                /> */}
                         <p className="no-data-found">No address found</p>
                       </div>
                     </div>
@@ -361,11 +356,11 @@ const UserCartModal = (props) => {
           </>
         ) : (
           <div className="noDataFoundImage">
-            <img
-              className="w-100"
-              alt="no data found"
-              src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
-            />
+          <img
+                  className="w-100"
+                  alt="no data found"
+                  src={Images.nodataFound}
+                />
           </div>
         )}
       </div>

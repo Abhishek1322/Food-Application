@@ -7,6 +7,7 @@ import {
   clearNotification,
 } from "../../../../redux/slices/user";
 import moment from "moment";
+import * as Images from "../../../../utilities/images";
 
 const UserNotification = ({ updateNotification }) => {
   const dispatch = useDispatch();
@@ -69,8 +70,7 @@ const UserNotification = ({ updateNotification }) => {
       })
     );
   };
-  
-  
+
   return (
     <>
       <div className="notificationsection">
@@ -85,7 +85,7 @@ const UserNotification = ({ updateNotification }) => {
         <div className="modalscroll-notificaation">
           {notification && notification.length > 0 ? (
             <>
-              {notification?.map((item,index) => (
+              {notification?.map((item, index) => (
                 <div
                   onClick={() =>
                     handleReadNotification(item?._id, item?.is_read)
@@ -110,9 +110,8 @@ const UserNotification = ({ updateNotification }) => {
                 <img
                   className="w-100"
                   alt="no data found"
-                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
+                  src={Images.nodataFound}
                 />
-                <p className="no-data-found">No data found</p>
               </div>
             </div>
           )}

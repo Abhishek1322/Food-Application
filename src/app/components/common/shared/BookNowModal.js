@@ -124,6 +124,9 @@ const BookNowModal = ({ chefId, initClose }) => {
 
   // get date
   const handleGetDay = (day) => {
+    if (day === null || day === undefined) {
+      return;
+    }
     setDate(day);
     const formatDate = moment(day).format("ddd").toLowerCase();
     const getSlotByDate = chefData?.chefInfo?.availability?.find(
@@ -181,7 +184,7 @@ const BookNowModal = ({ chefId, initClose }) => {
                       {...getInputProps({
                         placeholder: "Street Address",
                         className:
-                          "location-search-input customform-control border-input",
+                          "location-search-input customform-control border-input address-border-input",
                       })}
                     />
                     <div className="autocomplete-dropdown-container">
@@ -225,14 +228,23 @@ const BookNowModal = ({ chefId, initClose }) => {
           <div className="col-lg-12">
             <div className="input-container date-picker-outer mt-4">
               <DatePicker
+                showIcon
                 className="border-input date-picker-resp"
                 selected={moment(date).toDate("YYYY-MM-DD")}
                 onChange={(date) => handleGetDay(date)}
                 placeholderText="DD/MM/YYYY"
-                format="DD/MM/YYYY"
+                dateFormat="dd/MM/yyyy"
+                toggleCalendarOnIconClick
+                icon={
+                  <img
+                    src={Images.Calendar}
+                    alt="InfoIcon"
+                    className="InputIcon"
+                  />
+                }
               />
+
               <label className="border-label">Date</label>
-              <img src={Images.Calendar} alt="InfoIcon" className="InputIcon" />
             </div>
           </div>
         </div>
@@ -270,7 +282,7 @@ const BookNowModal = ({ chefId, initClose }) => {
               ))}
             </>
           ) : (
-            <p>No slot found on this day</p>
+            <p className="no-data-found">No slot found on this day</p>
           )}
         </div>
         <div className="row">

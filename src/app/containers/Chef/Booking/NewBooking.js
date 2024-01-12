@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const NewBooking = () => {
   const dispatch = useDispatch();
   const [bookingRequest, setBookingRequest] = useState([]);
-  const [bookingStatus, setBookingStatus] = useState("");
+  const [bookingStatus, setBookingStatus] = useState("pending");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
 
@@ -58,7 +58,7 @@ const NewBooking = () => {
                 role="tablist"
               >
                 <button
-                  onClick={() => setBookingStatus("")}
+                  onClick={() => setBookingStatus("pending")}
                   className="nav-link bookingNavHeader active"
                   id="nav-home-tab"
                   data-bs-toggle="tab"
@@ -135,12 +135,11 @@ const NewBooking = () => {
                       ) : (
                         <div className="noDataFoundImage">
                           <div>
-                            {/* <img
-                                className="w-100"
-                                alt="no data found"
-                                  src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg"
-                /> */}
-                            <p className="no-data-found">No data found</p>
+                            <img
+                              className="w-100"
+                              alt="no data found"
+                              src={Images.nodataFound}
+                            />
                           </div>
                         </div>
                       )}
