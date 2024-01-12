@@ -12,12 +12,22 @@ const initialState = {
   allnotifications: [],
   currentLocation: {},
   locationInfo: [],
+  success: false,
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    resetSuccess: (state) => {
+      state.success = false;
+    },
+    getCartNotificationCount: (state) => {
+      state.loading = true;
+    },
+    setGetCartNotificationCount: (state) => {
+      state.loading = false;
+    },
     getLocationInfo: (state) => {
       state.loading = true;
     },
@@ -144,6 +154,7 @@ export const userSilce = createSlice({
     },
     setAddToCart: (state) => {
       state.loading = false;
+      state.success = true;
     },
     getHelperPages: (state) => {
       state.loading = true;
@@ -252,6 +263,9 @@ export const {
   getCurrentLocation,
   getLocationInfo,
   setGetLocationInfo,
+  getCartNotificationCount,
+  setGetCartNotificationCount,
+  resetSuccess,
 } = userSilce.actions;
 
 export default userSilce.reducer;

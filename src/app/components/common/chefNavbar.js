@@ -15,7 +15,7 @@ import { useAuthSelector } from "../../../redux/selector/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 import UserNotification from "./shared/UserNotification";
-import { getNotification } from "../../../redux/slices/user";
+import { getCartNotificationCount } from "../../../redux/slices/user";
 
 const Chef_Navbar = () => {
   const location = useLocation();
@@ -30,7 +30,7 @@ const Chef_Navbar = () => {
   const [key, setKey] = useState(Math.random());
   const [allChats, setAllChats] = useState([]);
   const [chefProfileData, setProfileData] = useState([]);
-  const [notification, setNotification] = useState([]);
+  const [notificationCart, setNotificationCart] = useState([]);
 
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -105,10 +105,10 @@ const Chef_Navbar = () => {
   // get all notifications
   const handleGetAllNotifications = () => {
     dispatch(
-      getNotification({
+      getCartNotificationCount({
         cb(res) {
           if (res.status === 200) {
-            setNotification(res?.data?.data);
+            setNotificationCart(res?.data?.data);
           }
         },
       })
@@ -119,7 +119,7 @@ const Chef_Navbar = () => {
   useEffect(() => {
     handleGetAllNotifications();
   }, []);
- 
+
   return (
     <>
       <div className="main_Setting">
@@ -169,7 +169,7 @@ const Chef_Navbar = () => {
                     </div>
                     <div
                       className={
-                        notification?.some((item) => !item.is_read)
+                        notificationCart?.notificationCount > 0
                           ? "headeritem"
                           : ""
                       }
@@ -197,9 +197,7 @@ const Chef_Navbar = () => {
                         }}
                       />
                       <span className="cartItems">
-                        {chefData?.allRecentOrder?.total
-                          ? chefData?.allRecentOrder?.total
-                          : 0}
+                        {notificationCart?.orderCount}
                       </span>
                     </div>
                   </div>
@@ -261,9 +259,15 @@ const Chef_Navbar = () => {
           modalDetail.flag === "chatBox" ? (
             <BellModal close={() => handleOnCloseModal()} />
           ) : modalDetail.flag === "Notification" ? (
-            <UserNotification updateNotification={handleGetAllNotifications} close={() => handleOnCloseModal()} />
+            <UserNotification
+              updateNotification={handleGetAllNotifications}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "Myorder" ? (
-            <Myorder close={() => handleOnCloseModal()} />
+            <Myorder
+              updateNotification={handleGetAllNotifications}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "verifyOrderDetailModal" ? (
             <VerifyorderDetailsModal close={() => handleOnCloseModal()} />
           ) : (

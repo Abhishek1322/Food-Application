@@ -15,6 +15,7 @@ import UserDeleteChat from "../../components/common/shared/UserDeleteChat";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 import { collection, onSnapshot, query } from "firebase/firestore";
+import { resetSuccess } from "../../../redux/slices/user";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -88,6 +89,9 @@ const ChefDetails = () => {
     });
     setKey(Math.random());
     setMenuId(id);
+    if (flag === "alreadyExistCart") {
+      dispatch(resetSuccess());
+    }
   };
 
   return (
@@ -243,7 +247,7 @@ const ChefDetails = () => {
         </div>
         {/* chef menu section  */}
         <div className="sarahsmenu">
-          <h2 className="innerDummyHeading ">
+          <h2 className="innerDummyHeading">
             {" "}
             {chefData?.userInfo?.firstName}’s Menu
           </h2>

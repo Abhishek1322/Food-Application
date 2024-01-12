@@ -13,7 +13,10 @@ import CartModal from "./shared/cartModal";
 import { toggleSidebar } from "../../../redux/slices/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
-import { getLocationInfo, getNotification } from "../../../redux/slices/user";
+import {
+  getLocationInfo,
+  getCartNotificationCount,
+} from "../../../redux/slices/user";
 
 const User_Navbar = () => {
   const location = useLocation();
@@ -30,7 +33,7 @@ const User_Navbar = () => {
   const [currentLocation, setCurrentLocation] = useState("");
   const [userData, setUserData] = useState([]);
   const [allChats, setAllChats] = useState([]);
-  const [notification, setNotification] = useState([]);
+  const [notificationCart, setNotificationCart] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -60,7 +63,7 @@ const User_Navbar = () => {
   function success(pos) {
     var crd = pos.coords;
     handleGetLocationInfo(crd.latitude, crd.longitude);
-    console.log("crd.latitude",crd.latitude,crd.longitude);
+    console.log("crd.latitude", crd.latitude, crd.longitude);
   }
 
   // call get location function
@@ -181,10 +184,10 @@ const User_Navbar = () => {
   // get all notifications
   const handleGetAllNotifications = () => {
     dispatch(
-      getNotification({
+      getCartNotificationCount({
         cb(res) {
           if (res.status === 200) {
-            setNotification(res?.data?.data);
+            setNotificationCart(res?.data?.data);
           }
         },
       })
@@ -194,7 +197,7 @@ const User_Navbar = () => {
   // // get all notifications
   useEffect(() => {
     handleGetAllNotifications();
-  }, []);
+  }, [allUserData?.success]);
 
   return (
     <>
@@ -263,7 +266,7 @@ const User_Navbar = () => {
                     </div>
                     <div
                       className={
-                        notification?.some((item) => !item.is_read)
+                        notificationCart?.notificationCount > 0
                           ? "headeritem"
                           : ""
                       }
@@ -298,9 +301,7 @@ const User_Navbar = () => {
                         className="img-fluid basketImg"
                       />
                       <span className="cartItems">
-                        {allUserData?.cartCount?.totalRecords
-                          ? allUserData?.cartCount?.totalRecords
-                          : 0}
+                        {notificationCart?.cartItemCount}
                       </span>
                     </div>
                     <button
@@ -436,7 +437,10 @@ const User_Navbar = () => {
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "cartModal" ? (
-            <CartModal close={() => handleOnCloseModal()} />
+            <CartModal
+              updateCartCount={handleGetAllNotifications}
+              close={() => handleOnCloseModal()}
+            />
           ) : modalDetail.flag === "bookchef" ? (
             <BookNowModal
               initClose={() => handleOnCloseModal()}

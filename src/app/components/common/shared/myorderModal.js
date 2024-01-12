@@ -13,7 +13,7 @@ import moment from "moment";
 import { useChefSelector } from "../../../../redux/selector/chef";
 
 const Myorder = (props) => {
-  const { close } = props;
+  const { close, updateNotification } = props;
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const chefData = useChefSelector();
@@ -73,6 +73,7 @@ const Myorder = (props) => {
           if (res.status === 200) {
             setOrderDetails(res?.data?.data?.data);
             dispatch(getLatestOrder(true));
+            
           }
         },
       })
@@ -96,6 +97,7 @@ const Myorder = (props) => {
               handleOpenModal("myRecentOrder", id);
             } else {
               close();
+              updateNotification();
             }
             dispatch(getLatestOrder(true));
           }
@@ -168,7 +170,10 @@ const Myorder = (props) => {
                       </li>
                     </ul>
 
-                    <div className="tab-content order-inner-list" id="pills-tabContent">
+                    <div
+                      className="tab-content order-inner-list"
+                      id="pills-tabContent"
+                    >
                       <div className="tab-pane fade active show">
                         <div className="Myorders_">
                           {orderDetails && orderDetails.length > 0 ? (

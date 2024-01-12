@@ -2490,5 +2490,10 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 .order-list-height {
   height: 70vh;
 }
-
+.three-dots-icons{
+  background: #99979738;
+  padding: 2px;
+  border-radius: 7px;
+  cursor: pointer;
+}
 /* Abhishek Css end */

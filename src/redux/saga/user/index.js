@@ -30,9 +30,30 @@ import {
   setMenuRating,
   setGetMenuRating,
   setGetLocationInfo,
+  setGetCartNotificationCount,
 } from "../../slices/user";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getCartNotificationCount(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.GET_ALL_CART_NOTIFICATION}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetCartNotificationCount(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getLocationInfo(action) {
   try {
@@ -114,7 +135,7 @@ function* clearNotification(action) {
     if (resp.status) {
       yield put(setClearNotification(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -137,7 +158,7 @@ function* readNotification(action) {
     if (resp.status) {
       yield put(setReadNotification(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -656,5 +677,6 @@ function* userSaga() {
   yield all([takeLatest("user/menuRating", menuRating)]);
   yield all([takeLatest("user/getMenuRating", getMenuRating)]);
   yield all([takeLatest("user/getLocationInfo", getLocationInfo)]);
+  yield all([takeLatest("user/getCartNotificationCount", getCartNotificationCount)]);
 }
 export default userSaga;

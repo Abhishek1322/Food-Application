@@ -46,7 +46,11 @@ const FoodDetailModal = (props) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i className="fas fa-ellipsis-v foodDetailicon"></i>
+                    <img
+                        src={Images.threeDotsDrop}
+                        className="img-fluid three-dots-icons"
+                        alt="editImg"
+                      />
                 </button>
                 <ul
                   className="dropdown-menu menuItems_"

@@ -125,6 +125,8 @@ import smallSearch from "../public/images/small-search.png";
 import smallLocate from "../public/images/small-locate.svg";
 import noChatFound from "../public/images/noChatFound.svg";
 import nodataFound from "../public/images/no-data-found.svg";
+import threeDotsDrop from "../public/images/threeDotsDrop.svg";
+
 
 export {
   Logo,
@@ -253,5 +255,6 @@ export {
   smallSearch,
   smallLocate,
   noChatFound,
-  nodataFound
+  nodataFound,
+  threeDotsDrop,
 };

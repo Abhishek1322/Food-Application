@@ -132,6 +132,7 @@ const Menu = () => {
                                 alt="logo"
                                 className="bgmenuImg_"
                               />
+
                               <img
                                 onClick={() => {
                                   handleUserProfile("foodDetail", item._id);

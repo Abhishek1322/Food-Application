@@ -59,9 +59,6 @@ const Router = () => {
             path="/anotherorder-detail"
             element={<Containers.AnotherOrderdetail />}
           />
-          <Route path="/new-booking" element={<Containers.NewBooking />} />
-          <Route path="/menu" element={<Containers.Menu />} />
-          <Route path="/home" element={<Containers.HomeRequsest />} />
           <Route
             path="/booking-details"
             element={<Containers.BookingDetails />}

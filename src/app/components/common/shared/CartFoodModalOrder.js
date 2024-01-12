@@ -57,7 +57,6 @@ const CartFoodModalOrder = (props) => {
       singleMenu({
         ...params,
         cb(res) {
-          console.log("chekckresp", res);
           if (res.status === 200) {
             setFoodDetails(res?.data?.data);
             setQuantity(

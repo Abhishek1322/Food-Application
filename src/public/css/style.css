@@ -1528,6 +1528,7 @@ body {
   height: 74px;
   border-radius: 74px;
   z-index: 3;
+  cursor: pointer;
 }
 
 .innerItems_ {
@@ -1721,7 +1722,7 @@ body {
   background: #fff;
   padding: 0;
   position: relative;
-  border:none;
+  border: none;
 }
 
 .chatUser {
@@ -2602,8 +2603,7 @@ body {
   font-weight: 600;
 }
 
-.dateBox
-  svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
+.dateBox svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
   display: none;
 }
 
@@ -2682,10 +2682,11 @@ body {
   top: 5px;
   left: -11px;
 }
-.addmenuItemModal
-  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
+
+.addmenuItemModal svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
   left: 11px;
 }
+
 .inputPlaceholder::placeholder {
   color: gray;
   opacity: 1;
@@ -2694,12 +2695,15 @@ body {
 .inputPlaceholder::-ms-input-placeholder {
   color: gray;
 }
+
 .euroImgText {
   right: 13px;
 }
+
 .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.menuReport_button.inputPlaceholderColor {
   color: gray;
 }
+
 .menuPagination {
   position: absolute;
   right: 30px;

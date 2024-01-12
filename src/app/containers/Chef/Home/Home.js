@@ -11,14 +11,41 @@ import {
 import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import { useChefSelector } from "../../../../redux/selector/chef";
+import CustomModal from "../../../components/common/shared/CustomModal";
+import Myorder from "../../../components/common/shared/myorderModal";
 
 const HomeRequsest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const chefData = useChefSelector();
   const [isLoading, setIsloading] = useState("");
+  const [key, setKey] = useState(Math.random());
   const [bookingRequest, setBookingRequest] = useState([]);
   const [recentOrders, setGetRecentOrders] = useState([]);
+  const [modalDetail, setModalDetail] = useState({
+    show: false,
+    title: "",
+    flag: "",
+  });
+
+  //closeModal
+  const handleOnCloseModal = () => {
+    setModalDetail({
+      show: false,
+      title: "",
+      flag: "",
+    });
+    setKey(Math.random());
+  };
+
+  const handleOpenModal = (flag) => {
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+  };
 
   // get recent order
   const handleRecentOrder = () => {
@@ -174,7 +201,12 @@ const HomeRequsest = () => {
                 <div className="innerhomeheader">
                   <h3 className="headerinnerheading">Recent Orders</h3>
                   {recentOrders && recentOrders.length > 0 && (
-                    <div className="seeAll">
+                    <div
+                      onClick={() => {
+                        handleOpenModal("Myorder");
+                      }}
+                      className="seeAll"
+                    >
                       <p className="headerinnertxt">See All</p>
                       <img
                         src={Images.homeArow}
@@ -291,6 +323,54 @@ const HomeRequsest = () => {
           </div>
         </div>
       </div>
+      <CustomModal
+        key={key}
+        show={modalDetail.show}
+        backdrop="static"
+        showCloseBtn={false}
+        isRightSideModal={true}
+        mediumWidth={false}
+        className={
+          modalDetail.flag === "chatBox" ? "commonWidth customContent" : ""
+        }
+        ids={modalDetail.flag === "Myorder" ? "myOrder" : ""}
+        child={
+          modalDetail.flag === "Myorder" ? (
+            <Myorder close={() => handleOnCloseModal()} />
+          ) : (
+            ""
+          )
+        }
+        header={
+          modalDetail.flag === "Myorder" ? (
+            <>
+              <h2 className="modal_Heading">My Order</h2>
+              <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="cancelModal"
+                />
+              </p>
+            </>
+          ) : modalDetail.flag === "verifyOrderDetailModal" ? (
+            <>
+              <div className="cancelCommonHeader">
+                <p onClick={handleOnCloseModal} className="modal_cancel">
+                  <img
+                    src={Images.modalCancel}
+                    className="ModalCancel"
+                    alt="cancelModal"
+                  />
+                </p>
+              </div>
+            </>
+          ) : (
+            ""
+          )
+        }
+        onCloseModal={() => handleOnCloseModal()}
+      />
     </>
   );
 };

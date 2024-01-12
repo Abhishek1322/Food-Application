@@ -14,7 +14,7 @@ import UserCartModal from "./UserCartModal";
 import { useUserSelector } from "../../../../redux/selector/user";
 
 const CartModal = (props) => {
-  const { close } = props;
+  const { close,updateCartCount } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSelector = useUserSelector();
@@ -67,6 +67,7 @@ const CartModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllCart();
+            updateCartCount()
           }
         },
       })
