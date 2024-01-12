@@ -2489,6 +2489,8 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 
 .order-list-height {
   height: 70vh;
+  overflow-y: auto;
+  padding-right: 7px;
 }
 .three-dots-icons{
   background: #99979738;

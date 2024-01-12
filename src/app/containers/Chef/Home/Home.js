@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useChefSelector } from "../../../../redux/selector/chef";
 import CustomModal from "../../../components/common/shared/CustomModal";
 import Myorder from "../../../components/common/shared/myorderModal";
+import { FadeLoader } from "react-spinners";
 
 const HomeRequsest = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const HomeRequsest = () => {
   const [key, setKey] = useState(Math.random());
   const [bookingRequest, setBookingRequest] = useState([]);
   const [recentOrders, setGetRecentOrders] = useState([]);
+  const [showLoading, setShowLoading] = useState(true);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -59,6 +61,7 @@ const HomeRequsest = () => {
           if (res.status === 200) {
             setGetRecentOrders(res?.data?.data?.data);
             dispatch(getLatestOrder(false));
+            setShowLoading(false);
           }
         },
       })
@@ -125,117 +128,51 @@ const HomeRequsest = () => {
 
   return (
     <>
-      <div className="mainchef_">
-        <div className="homePage">
-          <div className="container-fluid p-0">
-            <div className="row">
-              <div className="col-lg-12 col-sm-12">
-                <div className="innerhomeheader">
-                  <h2 className="headerinnerheading">New Booking Requests</h2>
-                  {bookingRequest && bookingRequest.length > 0 && (
-                    <div className="seeAll">
-                      <Link to="/new-booking">
-                        <p className="headerinnertxt">See All</p>
-                      </Link>
-                      <img
-                        src={Images.homeArow}
-                        alt="homearrow"
-                        className="seeArrow"
-                      />
-                    </div>
-                  )}
-                </div>
-                <div
-                  className={
-                    bookingRequest && bookingRequest.length > 0
-                      ? "profileDetail"
-                      : ""
-                  }
-                >
-                  {bookingRequest && bookingRequest.length > 0 ? (
-                    <>
-                      {bookingRequest?.slice(0, 5)?.map((item, index) => (
-                        <Link
-                          key={index}
-                          to={`/booking-details?id=${item?._id}`}
-                        >
-                          <div className="homeProfileBox">
-                            <div className="profileInfo">
-                              <img
-                                src={
-                                  item?.userId?.userInfo?.profilePhoto
-                                    ? item?.userId?.userInfo?.profilePhoto
-                                    : Images.dummyProfile
-                                }
-                                alt="profile"
-                                className="homeprofile"
-                              />
-                              <div className="detailInfo">
-                                <h3 className="userProfile">
-                                  {item?.userId?.userInfo?.firstName}{" "}
-                                  {item?.userId?.userInfo?.lastName}
-                                </h3>
-                                <h4 className="userInfo">
-                                  {moment(item?.createdAt).format("hh:mm A")}
-                                </h4>
-                              </div>
-                            </div>
-                            <p className="userInfoTxt">{item?.description}</p>
-                          </div>
+      {showLoading ? (
+        <div className="good-loader">
+          <FadeLoader
+            color={"#E65C00"}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <div className="mainchef_">
+          <div className="homePage">
+            <div className="container-fluid p-0">
+              <div className="row">
+                <div className="col-lg-12 col-sm-12">
+                  <div className="innerhomeheader">
+                    <h2 className="headerinnerheading">New Booking Requests</h2>
+                    {bookingRequest && bookingRequest.length > 0 && (
+                      <div className="seeAll">
+                        <Link to="/new-booking">
+                          <p className="headerinnertxt">See All</p>
                         </Link>
-                      ))}
-                    </>
-                  ) : (
-                    <div className="noDataFoundImageRequestpage">
-                      <div>
                         <img
-                          className="w-100"
-                          alt="no data found"
-                          src={Images.nodataFound}
+                          src={Images.homeArow}
+                          alt="homearrow"
+                          className="seeArrow"
                         />
                       </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="innerhomeheader">
-                  <h3 className="headerinnerheading">Recent Orders</h3>
-                  {recentOrders && recentOrders.length > 0 && (
-                    <div
-                      onClick={() => {
-                        handleOpenModal("Myorder");
-                      }}
-                      className="seeAll"
-                    >
-                      <p className="headerinnertxt">See All</p>
-                      <img
-                        src={Images.homeArow}
-                        alt="arrowImg"
-                        className="seeArrow"
-                      />
-                    </div>
-                  )}
-                </div>
-                <div
-                  className={
-                    recentOrders && recentOrders.length > 0
-                      ? "profileDetail profileDetailNew"
-                      : ""
-                  }
-                >
-                  {recentOrders && recentOrders.length > 0 ? (
-                    <>
-                      {recentOrders?.slice(0, 5)?.map((item, index) => (
-                        <div
-                          onClick={(e) => handleOpenRecentOder(e, item?._id)}
-                          key={index}
-                          className="orderDetailBox"
-                        >
-                          <div className="orderDetails">
-                            <p className="orderId">#{item?.orderId}</p>
-                          </div>
-                          <div className="userOrderInfo">
-                            <div className="orderRequest">
+                    )}
+                  </div>
+                  <div
+                    className={
+                      bookingRequest && bookingRequest.length > 0
+                        ? "profileDetail"
+                        : ""
+                    }
+                  >
+                    {bookingRequest && bookingRequest.length > 0 ? (
+                      <>
+                        {bookingRequest?.slice(0, 5)?.map((item, index) => (
+                          <Link
+                            key={index}
+                            to={`/booking-details?id=${item?._id}`}
+                          >
+                            <div className="homeProfileBox">
                               <div className="profileInfo">
                                 <img
                                   src={
@@ -251,78 +188,163 @@ const HomeRequsest = () => {
                                     {item?.userId?.userInfo?.firstName}{" "}
                                     {item?.userId?.userInfo?.lastName}
                                   </h3>
-                                  <h4 className="orderFrom">Order From</h4>
+                                  <h4 className="userInfo">
+                                    {moment(item?.createdAt).format("hh:mm A")}
+                                  </h4>
                                 </div>
                               </div>
-                              <div className="orderItems">
-                                {item?.itemCount !== "1" ? (
-                                  <p className="Items">
-                                    {item?.itemCount} items
-                                  </p>
-                                ) : (
-                                  <p className="Items">
-                                    {item?.itemCount} item
-                                  </p>
-                                )}
+                              <p className="userInfoTxt">{item?.description}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </>
+                    ) : (
+                      <div className="noDataFoundImageRequestpage">
+                        <div>
+                          <img
+                            className="w-100"
+                            alt="no data found"
+                            src={Images.nodataFound}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-                                <div className="showOrder">
-                                  <p className="orderPrice">
-                                    £{item?.total}.00
-                                  </p>
+                  <div className="innerhomeheader">
+                    <h3 className="headerinnerheading">Recent Orders</h3>
+                    {recentOrders && recentOrders.length > 0 && (
+                      <div
+                        onClick={() => {
+                          handleOpenModal("Myorder");
+                        }}
+                        className="seeAll"
+                      >
+                        <p className="headerinnertxt">See All</p>
+                        <img
+                          src={Images.homeArow}
+                          alt="arrowImg"
+                          className="seeArrow"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    className={
+                      recentOrders && recentOrders.length > 0
+                        ? "profileDetail profileDetailNew"
+                        : ""
+                    }
+                  >
+                    {recentOrders && recentOrders.length > 0 ? (
+                      <>
+                        {recentOrders?.slice(0, 5)?.map((item, index) => (
+                          <div
+                            onClick={(e) => handleOpenRecentOder(e, item?._id)}
+                            key={index}
+                            className="orderDetailBox"
+                          >
+                            <div className="orderDetails">
+                              <p className="orderId">#{item?.orderId}</p>
+                            </div>
+                            <div className="userOrderInfo">
+                              <div className="orderRequest">
+                                <div className="profileInfo">
+                                  <img
+                                    src={
+                                      item?.userId?.userInfo?.profilePhoto
+                                        ? item?.userId?.userInfo?.profilePhoto
+                                        : Images.dummyProfile
+                                    }
+                                    alt="profile"
+                                    className="homeprofile"
+                                  />
+                                  <div className="detailInfo">
+                                    <h3 className="userProfile">
+                                      {item?.userId?.userInfo?.firstName}{" "}
+                                      {item?.userId?.userInfo?.lastName}
+                                    </h3>
+                                    <h4 className="orderFrom">Order From</h4>
+                                  </div>
                                 </div>
-                              </div>
-                              <p className="orderTime">
-                                Order placed on{" "}
-                                {moment(item?.updatedAt).format("hh:mm A")}
-                              </p>
-                              <div className="ordered_">
-                                <button
-                                  onClick={(e) =>
-                                    handleAcceptOrder(e, item?._id, "cancelled")
-                                  }
-                                  className="cancelOrder d-flex align-items-center gap-2"
-                                >
-                                  {chefData?.laoding &&
-                                    isLoading === "cancelled" && (
-                                      <span className="spinner-border spinner-border-sm"></span>
-                                    )}
-                                  CANCEL
-                                </button>
-                                <button
-                                  onClick={(e) =>
-                                    handleAcceptOrder(e, item?._id, "accepted")
-                                  }
-                                  className="acceptOrder d-flex align-items-center gap-2"
-                                >
-                                  {chefData?.laoding &&
-                                    isLoading === "accepted" && (
-                                      <span className="spinner-border spinner-border-sm"></span>
-                                    )}
-                                  ACCEPT
-                                </button>
+                                <div className="orderItems">
+                                  {item?.itemCount !== "1" ? (
+                                    <p className="Items">
+                                      {item?.itemCount} items
+                                    </p>
+                                  ) : (
+                                    <p className="Items">
+                                      {item?.itemCount} item
+                                    </p>
+                                  )}
+
+                                  <div className="showOrder">
+                                    <p className="orderPrice">
+                                      £{item?.total}.00
+                                    </p>
+                                  </div>
+                                </div>
+                                <p className="orderTime">
+                                  Order placed on{" "}
+                                  {moment(item?.updatedAt).format("hh:mm A")}
+                                </p>
+                                <div className="ordered_">
+                                  <button
+                                    onClick={(e) =>
+                                      handleAcceptOrder(
+                                        e,
+                                        item?._id,
+                                        "cancelled"
+                                      )
+                                    }
+                                    className="cancelOrder d-flex align-items-center gap-2"
+                                  >
+                                    {chefData?.laoding &&
+                                      isLoading === "cancelled" && (
+                                        <span className="spinner-border spinner-border-sm"></span>
+                                      )}
+                                    CANCEL
+                                  </button>
+                                  <button
+                                    onClick={(e) =>
+                                      handleAcceptOrder(
+                                        e,
+                                        item?._id,
+                                        "accepted"
+                                      )
+                                    }
+                                    className="acceptOrder d-flex align-items-center gap-2"
+                                  >
+                                    {chefData?.laoding &&
+                                      isLoading === "accepted" && (
+                                        <span className="spinner-border spinner-border-sm"></span>
+                                      )}
+                                    ACCEPT
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
+                        ))}
+                      </>
+                    ) : (
+                      <div className="noDataFoundImageRequestpage">
+                        <div>
+                          <img
+                            className="w-100"
+                            alt="no data found"
+                            src={Images.nodataFound}
+                          />
                         </div>
-                      ))}
-                    </>
-                  ) : (
-                    <div className="noDataFoundImageRequestpage">
-                      <div>
-                        <img
-                          className="w-100"
-                          alt="no data found"
-                          src={Images.nodataFound}
-                        />
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <CustomModal
         key={key}
         show={modalDetail.show}

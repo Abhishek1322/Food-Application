@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { chefLists } from "../../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
+import { useWebSelector } from "../../../../redux/selector/web";
+import { FadeLoader } from "react-spinners";
 
 const UserChefHome = () => {
   const dispatch = useDispatch();
+  const webSelector = useWebSelector();
   const [chefListData, setChefListData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
@@ -52,6 +55,16 @@ const UserChefHome = () => {
 
   return (
     <>
+      {webSelector?.loading && (
+        <div className="good-loader">
+          <FadeLoader
+            color={"#E65C00"}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
       <div className="mainBoxOuter">
         <div className="cheffilter flexBox">
           <div className="searchbar me-4">
@@ -212,14 +225,14 @@ const UserChefHome = () => {
               </>
             ) : (
               <div className="noDataFoundImage">
-              <div>
-              <img
-                  className="w-100"
-                  alt="no data found"
-                  src={Images.nodataFound}
-                />
+                <div>
+                  <img
+                    className="w-100"
+                    alt="no data found"
+                    src={Images.nodataFound}
+                  />
+                </div>
               </div>
-            </div>
             )}
           </div>
         </div>

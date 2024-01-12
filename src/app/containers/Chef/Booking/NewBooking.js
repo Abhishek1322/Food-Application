@@ -8,13 +8,17 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
+import { useChefSelector } from "../../../../redux/selector/chef";
+import { FadeLoader } from "react-spinners";
 
 const NewBooking = () => {
   const dispatch = useDispatch();
+  const chefSelector = useChefSelector();
   const [bookingRequest, setBookingRequest] = useState([]);
   const [bookingStatus, setBookingStatus] = useState("pending");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
+  const [showLoading, setShowLoading] = useState(true);
 
   // get booking request
   useEffect(() => {
@@ -30,6 +34,7 @@ const NewBooking = () => {
           if (res.status === 200) {
             setBookingRequest(res?.data?.data?.data);
             setPageCount(res.data.data.total_pages);
+            setShowLoading(false);
           }
         },
       })
@@ -133,15 +138,28 @@ const NewBooking = () => {
                           ))}
                         </>
                       ) : (
-                        <div className="noDataFoundImage">
-                          <div>
-                            <img
-                              className="w-100"
-                              alt="no data found"
-                              src={Images.nodataFound}
-                            />
-                          </div>
-                        </div>
+                        <>
+                          {showLoading ? (
+                            <div className="good-loader">
+                              <FadeLoader
+                                color={"#E65C00"}
+                                size={150}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>
+                          ) : (
+                            <div className="noDataFoundImage">
+                              <div>
+                                <img
+                                  className="w-100"
+                                  alt="no data found"
+                                  src={Images.nodataFound}
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>

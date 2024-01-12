@@ -1993,6 +1993,7 @@ body {
   width: 36px;
   height: 36px;
   padding: 3px 9px 0px 9px;
+  cursor: pointer;
 }
 
 .profileInfo {

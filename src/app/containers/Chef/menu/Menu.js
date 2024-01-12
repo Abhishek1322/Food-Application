@@ -8,9 +8,12 @@ import FoodDetailModal from "../../../components/common/shared/foodDetailModal";
 import { getMenusLists, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
+import { useWebSelector } from "../../../../redux/selector/web";
+import { FadeLoader } from "react-spinners";
 
 const Menu = () => {
   const dispatch = useDispatch();
+  const webSelector = useWebSelector();
   const [key, setKey] = useState(Math.random());
   const [menuList, setMenuList] = useState([]);
   const [menuId, setMenuId] = useState("");
@@ -82,159 +85,170 @@ const Menu = () => {
 
   return (
     <>
-      <div className="mainchef_">
-        <div className="menuPage">
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-lg-12">
-                <div className="innerhomeheader">
-                  <h2 className="headerinnerheading">
-                    List of Your Menu Items
-                  </h2>
-                  <div className="d-flex align-items-center">
-                    <div className="searchbar me-4">
-                      <input
-                        onChange={(e) => setSearchMenu(e.target.value)}
-                        placeholder="Search menu items..."
-                        type="text"
-                        className="searchtext"
-                      />
-                      <img
-                        src={Images.searchbar}
-                        className="searchbarImg"
-                        alt="searchbar"
-                      />
-                    </div>
-                    <div
-                      className="menuItems "
-                      onClick={() => {
-                        handleUserProfile("addMenuItemModal");
-                      }}
-                    >
-                      <i className="fas fa-plus plusmenuImg"></i>
-                      <h3 className="innermenuItem">Add Menu Item</h3>
+      {webSelector?.loading ? (
+        <div className="good-loader">
+          <FadeLoader
+            color={"#E65C00"}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <div className="mainchef_">
+          <div className="menuPage">
+            <div className="container-fluid">
+              <div className="row align-items-center">
+                <div className="col-lg-12">
+                  <div className="innerhomeheader">
+                    <h2 className="headerinnerheading">
+                      List of Your Menu Items
+                    </h2>
+                    <div className="d-flex align-items-center">
+                      <div className="searchbar me-4">
+                        <input
+                          onChange={(e) => setSearchMenu(e.target.value)}
+                          placeholder="Search menu items..."
+                          type="text"
+                          className="searchtext"
+                        />
+                        <img
+                          src={Images.searchbar}
+                          className="searchbarImg"
+                          alt="searchbar"
+                        />
+                      </div>
+                      <div
+                        className="menuItems "
+                        onClick={() => {
+                          handleUserProfile("addMenuItemModal");
+                        }}
+                      >
+                        <i className="fas fa-plus plusmenuImg"></i>
+                        <h3 className="innermenuItem">Add Menu Item</h3>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className={
-                    menuList && menuList.length > 0 ? "profileDetail" : ""
-                  }
-                >
-                  {menuList && menuList.length > 0 ? (
-                    <>
-                      {menuList.map((item, index) => (
-                        <div key={index} className="listItems_">
-                          <div className="menu_Items">
-                            <div className="innerItems_">
-                              <img
-                                src={Images.ItemsBgMenu}
-                                alt="logo"
-                                className="bgmenuImg_"
-                              />
+                  <div
+                    className={
+                      menuList && menuList.length > 0 ? "profileDetail" : ""
+                    }
+                  >
+                    {menuList && menuList.length > 0 ? (
+                      <>
+                        {menuList.map((item, index) => (
+                          <div key={index} className="listItems_">
+                            <div className="menu_Items">
+                              <div className="innerItems_">
+                                <img
+                                  src={Images.ItemsBgMenu}
+                                  alt="logo"
+                                  className="bgmenuImg_"
+                                />
 
-                              <img
-                                onClick={() => {
-                                  handleUserProfile("foodDetail", item._id);
-                                }}
-                                src={item.image}
-                                alt="logo"
-                                className="menuItem_"
-                              />
+                                <img
+                                  onClick={() => {
+                                    handleUserProfile("foodDetail", item._id);
+                                  }}
+                                  src={item.image}
+                                  alt="logo"
+                                  className="menuItem_"
+                                />
 
-                              <div className="Dotsheader_">
-                                <div className="dropdown ">
-                                  <button
-                                    className="btn btn-secondary dropdown-toggle modalheaderDot_"
-                                    type="button"
-                                    id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                  >
-                                    <i className="fas fa-ellipsis-v menuBtnIcon"></i>
-                                  </button>
-                                  <ul
-                                    className="dropdown-menu menuItems_"
-                                    aria-labelledby="dropdownMenuButton1 "
-                                  >
-                                    <div className=" menuChat">
-                                      <div
-                                        className="flexBox pb-3 "
-                                        onClick={() => {
-                                          handleUserProfile(
-                                            "editMenuModal",
-                                            item._id
-                                          );
-                                        }}
-                                      >
-                                        <img
-                                          src={Images.EditImg}
-                                          className=" img-fluid reporticon_"
-                                          alt="reportImg"
-                                        />
-                                        <p className="ps-2">Edit</p>
+                                <div className="Dotsheader_">
+                                  <div className="dropdown ">
+                                    <button
+                                      className="btn btn-secondary dropdown-toggle modalheaderDot_"
+                                      type="button"
+                                      id="dropdownMenuButton1"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                    >
+                                      <i className="fas fa-ellipsis-v menuBtnIcon"></i>
+                                    </button>
+                                    <ul
+                                      className="dropdown-menu menuItems_"
+                                      aria-labelledby="dropdownMenuButton1 "
+                                    >
+                                      <div className=" menuChat">
+                                        <div
+                                          className="flexBox pb-3 "
+                                          onClick={() => {
+                                            handleUserProfile(
+                                              "editMenuModal",
+                                              item._id
+                                            );
+                                          }}
+                                        >
+                                          <img
+                                            src={Images.EditImg}
+                                            className=" img-fluid reporticon_"
+                                            alt="reportImg"
+                                          />
+                                          <p className="ps-2">Edit</p>
+                                        </div>
+                                        <div
+                                          className="flexBox"
+                                          onClick={() => {
+                                            handleUserProfile(
+                                              "deleteMenuModal",
+                                              item._id
+                                            );
+                                          }}
+                                        >
+                                          <img
+                                            src={Images.cartDelete}
+                                            className=" img-fluid reporticon_"
+                                            alt="cartDelete"
+                                          />
+                                          <p className="reportchattxt_ m-0 ps-2">
+                                            Delete
+                                          </p>
+                                        </div>
                                       </div>
-                                      <div
-                                        className="flexBox"
-                                        onClick={() => {
-                                          handleUserProfile(
-                                            "deleteMenuModal",
-                                            item._id
-                                          );
-                                        }}
-                                      >
-                                        <img
-                                          src={Images.cartDelete}
-                                          className=" img-fluid reporticon_"
-                                          alt="cartDelete"
-                                        />
-                                        <p className="reportchattxt_ m-0 ps-2">
-                                          Delete
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </ul>
+                                    </ul>
+                                  </div>
                                 </div>
                               </div>
                             </div>
+                            <p className="itemIs_">{item.name}</p>
+                            <p className="category_">{item.category}</p>
+                            <button className="itemsPrice_">
+                              £{item.price}.00
+                            </button>
                           </div>
-                          <p className="itemIs_">{item.name}</p>
-                          <p className="category_">{item.category}</p>
-                          <button className="itemsPrice_">
-                            £{item.price}.00
-                          </button>
+                        ))}
+                      </>
+                    ) : (
+                      <div className="noDataFoundImage">
+                        <div>
+                          <img
+                            className="w-100"
+                            alt="no data found"
+                            src={Images.nodataFound}
+                          />
                         </div>
-                      ))}
-                    </>
-                  ) : (
-                    <div className="noDataFoundImage">
-                      <div>
-                        <img
-                          className="w-100"
-                          alt="no data found"
-                          src={Images.nodataFound}
-                        />
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          {menuList && menuList.length > 0 && (
+            <ReactPaginate
+              previousLabel={"prev"}
+              nextLabel={"next"}
+              pageCount={pageCount}
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={3}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination menuPagination"}
+              activeClassName={"active"}
+            />
+          )}
         </div>
-        {menuList && menuList.length > 0 && (
-          <ReactPaginate
-            previousLabel={"prev"}
-            nextLabel={"next"}
-            pageCount={pageCount}
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={3}
-            onPageChange={handlePageChange}
-            containerClassName={"pagination menuPagination"}
-            activeClassName={"active"}
-          />
-        )}
-      </div>
+      )}
       <CustomModal
         key={key}
         show={modalDetail.show}

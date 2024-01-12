@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { chefLists } from "../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
+import FadeLoader from "react-spinners/FadeLoader";
+import { useWebSelector } from "../../../redux/selector/web";
 
 const HomeUser = () => {
   const dispatch = useDispatch();
+  const webSelector = useWebSelector();
   const [chefListData, setChefListData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
@@ -53,6 +56,16 @@ const HomeUser = () => {
 
   return (
     <>
+      {webSelector?.loading && (
+        <div className="good-loader">
+          <FadeLoader
+            color={"#E65C00"}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
       <div className="mainBoxOuter">
         <h6 className="headingSub">Chefs Near You</h6>
         <div className="cheffilter flexBox">
