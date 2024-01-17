@@ -2528,5 +2528,9 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   overflow-y: auto;
   padding-right: 5px;
 }
-
+.tabbodysection {
+  height: 65vh;
+  overflow-y: auto;
+  padding-right: 5px;
+}
 /* Abhishek Css end */
