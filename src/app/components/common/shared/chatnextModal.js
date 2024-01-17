@@ -422,11 +422,11 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                   {message?.text && (
                     <p className="chat-value">{message?.text}</p>
                   )}
-                  <div className="message-img">
-                    {message?.image_url && (
+                  {message?.image_url && (
+                    <div className="message-img">
                       <img alt="upload-img" src={message?.image_url} />
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div className="chefchat_detail">
                     {authData?.userInfo?.id === message?.senderId ? (
                       <img

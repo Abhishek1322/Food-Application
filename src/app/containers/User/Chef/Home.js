@@ -14,6 +14,7 @@ const UserChefHome = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [filterChefByRating, setFilterChefByRating] = useState("");
 
   // get all chef lists
@@ -35,6 +36,7 @@ const UserChefHome = () => {
           if (res.status === 200) {
             setChefListData(res.data.data.data);
             setPageCount(res.data.data.total_pages);
+            setIsLoading(false);
           }
         },
       })
@@ -55,7 +57,7 @@ const UserChefHome = () => {
 
   return (
     <>
-      {webSelector?.loading && (
+      {webSelector?.loading && isLoading && (
         <div className="good-loader">
           <FadeLoader
             color={"#E65C00"}

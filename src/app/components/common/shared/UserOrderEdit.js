@@ -233,8 +233,12 @@ const UserOrderEdit = () => {
                               // inline style for demonstration purpose
                               const style = suggestion.active
                                 ? {
-                                    backgroundColor: "#41b6e6",
+                                    backgroundColor: "#e65c00",
                                     cursor: "pointer",
+                                    borderRadius: "4px",
+                                    padding: "5px",
+                                    color: "#fff",
+                                    margin: "5px 0",
                                   }
                                 : {
                                     backgroundColor: "#ffffff",

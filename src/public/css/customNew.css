@@ -2420,24 +2420,32 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .send-selected-msg {
-  width: 80%;
-  height: 185px;
+  height: 92px;
   position: relative;
+  width: 136px;
 }
 
 .send-selected-msg img {
   border-radius: 8px;
   width: 100%;
   height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .message-img img {
   border-radius: 8px;
   margin-top: 5px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.message-img {
+  height: 165px;
+  width: 156px;
 }
 
 .chat-main-content-chef {
-  height: 570px;
+  height: 68vh;
   overflow: auto;
   padding-right: 10px;
 }
@@ -2492,10 +2500,33 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   overflow-y: auto;
   padding-right: 7px;
 }
-.three-dots-icons{
+
+.three-dots-icons {
   background: #99979738;
   padding: 2px;
   border-radius: 7px;
   cursor: pointer;
 }
+
+.no-slot-found {
+  color: #2E3333;
+  text-align: center;
+  font-family: Crimson Text;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.bookslots-outer {
+  height: 26vh;
+  overflow-y: auto;
+}
+
+.booknow-modal-outer {
+  height: 70vh;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
 /* Abhishek Css end */

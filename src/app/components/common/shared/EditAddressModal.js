@@ -148,7 +148,7 @@ const EditAddressModal = (props) => {
       toastId.current = toast.error(msg);
     }
   };
-  
+
   // edit address
   const handleSubmitEditAddess = (save) => {
     setIsLoading(save);
@@ -192,71 +192,69 @@ const EditAddressModal = (props) => {
     );
   };
 
-
- // get current location
- const handleGetCurrentLocation = (curr) => {
-  setIsLoading(curr);
-  if (navigator.geolocation) {
-    navigator.permissions
-      .query({ name: "geolocation" })
-      .then(function (result) {
-        if (result.state === "granted") {
-          //If granted then you can directly call your function here
-          navigator.geolocation.getCurrentPosition(success, errors, options);
-        } else if (result.state === "prompt") {
-          //If prompt then the user will be asked to give permission
-          navigator.geolocation.getCurrentPosition(success, errors, options);
-        } else if (result.state === "denied") {
-          //If denied then you have to show instructions to enable location
-        }
-      });
-    setCity("");
-    setState("");
-    setZipCode("");
-    setStreetAddress("");
-    setBuilding("");
-  } else {
-    console.log("Geolocation is not supported by this browser.");
-  }
-};
-// handling error
-function errors(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-// location options
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-
- // get let long
- function success(pos) {
-  var crd = pos.coords;
-  handleGetLocationInfo(crd.latitude, crd.longitude);
-}
-
- // getLocationInfo
- const handleGetLocationInfo = (lat, lng) => {
-  let params = {
-    lat: lat,
-    lng: lng,
+  // get current location
+  const handleGetCurrentLocation = (curr) => {
+    setIsLoading(curr);
+    if (navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(function (result) {
+          if (result.state === "granted") {
+            //If granted then you can directly call your function here
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "prompt") {
+            //If prompt then the user will be asked to give permission
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "denied") {
+            //If denied then you have to show instructions to enable location
+          }
+        });
+      setCity("");
+      setState("");
+      setZipCode("");
+      setStreetAddress("");
+      setBuilding("");
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
   };
-  dispatch(
-    getLocationInfo({
-      ...params,
-      cb(res) {
-        if (res?.status === 200) {
-          setCity(res?.data?.display_name);
-          setState(res?.data?.address?.state);
-          setZipCode(res?.data?.address?.postcode);
-          setStreetAddress(res?.data?.address?.village);
-        }
-      },
-    })
-  );
-};
+  // handling error
+  function errors(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  // location options
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
 
+  // get let long
+  function success(pos) {
+    var crd = pos.coords;
+    handleGetLocationInfo(crd.latitude, crd.longitude);
+  }
+
+  // getLocationInfo
+  const handleGetLocationInfo = (lat, lng) => {
+    let params = {
+      lat: lat,
+      lng: lng,
+    };
+    dispatch(
+      getLocationInfo({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            setCity(res?.data?.display_name);
+            setState(res?.data?.address?.state);
+            setZipCode(res?.data?.address?.postcode);
+            setStreetAddress(res?.data?.address?.village);
+          }
+        },
+      })
+    );
+  };
 
   return (
     <>
@@ -323,7 +321,7 @@ var options = {
                   alt="locationtargetimg"
                   className="img-fluid"
                 />
-                 <button
+                <button
                   disabled={userData?.loading && isLoading === "save"}
                   onClick={() => handleGetCurrentLocation("current")}
                   className="modalclearAll"
@@ -368,8 +366,12 @@ var options = {
                               // inline style for demonstration purpose
                               const style = suggestion.active
                                 ? {
-                                    backgroundColor: "#41b6e6",
+                                    backgroundColor: "#e65c00",
                                     cursor: "pointer",
+                                    borderRadius: "4px",
+                                    padding: "5px",
+                                    color: "#fff",
+                                    margin: "5px 0",
                                   }
                                 : {
                                     backgroundColor: "#ffffff",
@@ -470,7 +472,7 @@ var options = {
                 <div className="addfoodbtn">
                   <button
                     disabled={userData?.loading && isLoading === "save"}
-                    onClick={()=>handleSubmitEditAddess("save")}
+                    onClick={() => handleSubmitEditAddess("save")}
                     className="foodmodalbtn"
                   >
                     {userData?.loading && isLoading === "save" && (

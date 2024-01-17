@@ -271,7 +271,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
       console.error("Error creating room:", error);
     }
   };
-  
+
   // send web push notification
   const handleSendWebPushNotification = async (senderName) => {
     const notificationData = {
@@ -422,11 +422,11 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                   {message?.text && (
                     <p className="chat-value">{message?.text}</p>
                   )}
-                  <div className="message-img">
-                    {message?.image_url && (
+                  {message?.image_url && (
+                    <div className="message-img">
                       <img alt="upload-img" src={message?.image_url} />
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div className="chefchat_detail">
                     {userInfo?.id === message?.senderId ? (
                       <img

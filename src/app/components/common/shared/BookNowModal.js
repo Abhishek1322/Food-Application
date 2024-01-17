@@ -161,7 +161,7 @@ const BookNowModal = ({ chefId, initClose }) => {
 
   return (
     <>
-      <div className="booknowsection">
+      <div className="booknowsection booknow-modal-outer">
         <div className="row">
           <div className="col-lg-12">
             <div className="input-container mt-4">
@@ -187,8 +187,15 @@ const BookNowModal = ({ chefId, initClose }) => {
                           "location-search-input customform-control border-input address-border-input",
                       })}
                     />
-                    <div className="autocomplete-dropdown-container">
+                    <div
+                      className={
+                        suggestions && suggestions.length > 0
+                          ? "suggestion-item-outer"
+                          : "autocomplete-dropdown-container"
+                      }
+                    >
                       {/* {loading && <div>Loading...</div>} */}
+                      {console.log("suggestionssuggestions", suggestions)}
                       {suggestions.map((suggestion, index) => {
                         const className = suggestion.active
                           ? "suggestion-item--active"
@@ -196,8 +203,12 @@ const BookNowModal = ({ chefId, initClose }) => {
                         // inline style for demonstration purpose
                         const style = suggestion.active
                           ? {
-                              backgroundColor: "#41b6e6",
+                              backgroundColor: "#e65c00",
                               cursor: "pointer",
+                              borderRadius: "4px",
+                              padding: "5px",
+                              color: "#fff",
+                              margin: "5px 0",
                             }
                           : {
                               backgroundColor: "#ffffff",
@@ -250,7 +261,7 @@ const BookNowModal = ({ chefId, initClose }) => {
         </div>
         <br />
         <p className="chefName mt-5">Book Time Slot</p>
-        <div className="bookslots mt-2">
+        <div className="bookslots mt-2 bookslots-outer">
           {timeSlotes ? (
             <>
               {timeSlotes?.timeSlots?.map((day, dayIndex) => (
@@ -282,7 +293,7 @@ const BookNowModal = ({ chefId, initClose }) => {
               ))}
             </>
           ) : (
-            <p className="no-data-found">No slot found on this day</p>
+            <p className="no-slot-found">No slot found on this day</p>
           )}
         </div>
         <div className="row">
