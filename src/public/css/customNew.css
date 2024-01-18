@@ -297,6 +297,8 @@ p {
 .restroinfo .johnchatdetail {
   padding: 4px 15px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .cursorPoint {
@@ -2532,5 +2534,42 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   height: 65vh;
   overflow-y: auto;
   padding-right: 5px;
+}
+.booknowimg.booknowimg-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0 !important;
+}
+
+.booknowimg.booknowimg-outer img {
+  height: 23px;
+  width: 23px;
+}
+.dropdown-menu-address{
+  margin-left: 11px !important;
+}
+.usercartcheck-outer .outeraddItem{
+margin-top: 0;
+}
+.cartslists-outer {
+  height: 35vh;
+  overflow-y: auto;
+}
+.expertise-outer-main {
+  height: 65vh;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.expertise-outer-main .input-container {
+  margin-top: 5px;
+}
+.logout-request-page {
+  cursor: pointer;
+}
+.usercartcheck-outer {
+  height: 57vh;
+  overflow-y: auto;
 }
 /* Abhishek Css end */

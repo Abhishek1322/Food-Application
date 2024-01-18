@@ -129,7 +129,7 @@ const CartModal = (props) => {
 
   return (
     <>
-      <div className="usercartcheck">
+      <div className="usercartcheck usercartcheck-outer">
         {userSelector?.loading && showLoading && (
           <div className="good-loader">
             <FadeLoader

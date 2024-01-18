@@ -86,7 +86,7 @@ const AddExpertise = (props) => {
           </button>
         </div>
 
-        <div className="modalscroll">
+        <div className="expertise-outer-main">
           {expertice.map((value, index) => (
             <>
               <div key={index} className="input-container">

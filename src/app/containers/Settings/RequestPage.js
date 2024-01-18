@@ -53,7 +53,7 @@ const RequestPage = () => {
               </p>
               <div className="settingBox d-flex align-items-center justify-content-center">
                 <div
-                  className="settingBox d-flex align-items-center justify-content-center"
+                  className="settingBox logout-request-page d-flex align-items-center justify-content-center"
                   onClick={() => {
                     handleOpenModal("logOutModal");
                   }}

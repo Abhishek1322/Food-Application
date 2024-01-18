@@ -261,7 +261,13 @@ const BookNowModal = ({ chefId, initClose }) => {
         </div>
         <br />
         <p className="chefName mt-5">Book Time Slot</p>
-        <div className="bookslots mt-2 bookslots-outer">
+        <div
+          className={
+            timeSlotes?.timeSlots && timeSlotes?.timeSlots.length > 0
+              ? "bookslots mt-2 bookslots-outer"
+              : "bookslots mt-2"
+          }
+        >
           {timeSlotes ? (
             <>
               {timeSlotes?.timeSlots?.map((day, dayIndex) => (

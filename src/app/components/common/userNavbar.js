@@ -110,7 +110,7 @@ const User_Navbar = () => {
 
   var options = {
     enableHighAccuracy: true,
-    timeout: 5000,
+    timeout: 10000,
     maximumAge: 0,
   };
 
@@ -317,7 +317,7 @@ const User_Navbar = () => {
                         handleOpenModal("bookchef");
                       }}
                     >
-                      <div className="booknowimg">
+                      <div className="booknowimg booknowimg-outer">
                         <img
                           src={Images.lightcap}
                           alt="timesquareimage"
@@ -378,7 +378,7 @@ const User_Navbar = () => {
                           handleOpenModal("bookchef");
                         }}
                       >
-                        <div className="booknowimg">
+                        <div className="booknowimg booknowimg-outer">
                           <img
                             src={Images.lightcap}
                             alt="timesquareimage"

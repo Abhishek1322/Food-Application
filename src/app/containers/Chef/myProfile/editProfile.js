@@ -346,10 +346,16 @@ const EditProfile = () => {
                                 {...getInputProps({
                                   placeholder: "Street Address",
                                   className:
-                                    "location-search-input customform-control border-input",
+                                    "location-search-input customform-control border-input address-border-input",
                                 })}
                               />
-                              <div className="autocomplete-dropdown-container">
+                              <div
+                                className={
+                                  suggestions && suggestions.length > 0
+                                    ? "suggestion-item-outer"
+                                    : "autocomplete-dropdown-container"
+                                }
+                              >
                                 {/* {loading && <div>Loading...</div>} */}
                                 {suggestions.map((suggestion, index) => {
                                   const className = suggestion.active
@@ -358,7 +364,7 @@ const EditProfile = () => {
                                   // inline style for demonstration purpose
                                   const style = suggestion.active
                                     ? {
-                                        backgroundColor: "#e65c00",
+                                        backgroundColor: "#e65c00 !important",
                                         cursor: "pointer",
                                         borderRadius: "4px",
                                         padding: "5px",

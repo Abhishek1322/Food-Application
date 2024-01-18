@@ -175,72 +175,76 @@ const UserCartModal = (props) => {
 
   return (
     <>
-      <div className="usercartcheck userCheckOutModal">
+      <div className="usercartcheck usercartcheck-outer userCheckOutModal">
         {allCartItems && allCartItems?.length > 0 ? (
           <>
-            {allCartItems?.map((item, index) => (
-              <div key={index} className="modalDetail usermodaldetail">
-                <div className="usercartDetail">
-                  <img
-                    src={
-                      item?.menuItemId?.image
-                        ? item?.menuItemId?.image
-                        : Images.FoodIcon
-                    }
-                    className="userprofile"
-                    alt="cartImg"
-                  />
-                  <div className="insideModal">
-                    <h6 className="foodtext">{item?.menuItemId?.category}</h6>
-                    <h5 className="foodItem">{item?.menuItemId?.name}</h5>
-                    <h6 className="foodPrice">£{item?.netPrice}.00</h6>
-                    <div className="quantity">
-                      <div
-                        onClick={() =>
-                          handleCartData(
-                            "decrease",
-                            item?.menuItemId?._id,
-                            item?.quantity
-                          )
-                        }
-                        className="Quantiycheck"
-                      >
-                        <img
-                          src={Images.minusModal}
-                          className="calQuantity"
-                          alt="minusModal"
-                        />
-                      </div>
-                      <span className="number">{item?.quantity}</span>
-                      <div
-                        onClick={() =>
-                          handleCartData(
-                            "increase",
-                            item?.menuItemId?._id,
-                            item?.quantity
-                          )
-                        }
-                        className="Quantiycheck"
-                      >
-                        <img
-                          src={Images.plusModal}
-                          className="calQuantity"
-                          alt="minusModal"
-                        />
+            <div className="cartslists-outer">
+              {allCartItems?.map((item, index) => (
+                <div key={index} className="modalDetail usermodaldetail">
+                  <div className="usercartDetail">
+                    <img
+                      src={
+                        item?.menuItemId?.image
+                          ? item?.menuItemId?.image
+                          : Images.FoodIcon
+                      }
+                      className="userprofile"
+                      alt="cartImg"
+                    />
+                    <div className="insideModal">
+                      <h6 className="foodtext">{item?.menuItemId?.category}</h6>
+                      <h5 className="foodItem">{item?.menuItemId?.name}</h5>
+                      <h6 className="foodPrice">£{item?.netPrice}.00</h6>
+                      <div className="quantity">
+                        <div
+                          onClick={() =>
+                            handleCartData(
+                              "decrease",
+                              item?.menuItemId?._id,
+                              item?.quantity
+                            )
+                          }
+                          className="Quantiycheck"
+                        >
+                          <img
+                            src={Images.minusModal}
+                            className="calQuantity"
+                            alt="minusModal"
+                          />
+                        </div>
+                        <span className="number">{item?.quantity}</span>
+                        <div
+                          onClick={() =>
+                            handleCartData(
+                              "increase",
+                              item?.menuItemId?._id,
+                              item?.quantity
+                            )
+                          }
+                          className="Quantiycheck"
+                        >
+                          <img
+                            src={Images.plusModal}
+                            className="calQuantity"
+                            alt="minusModal"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div className="modalDelete_">
+                    <img
+                      onClick={() =>
+                        handleDeleteCartItem(item?.menuItemId?._id)
+                      }
+                      src={Images.cartDelete}
+                      className="cartDelete_"
+                      alt="cartcancel"
+                    />
+                  </div>
                 </div>
-                <div className="modalDelete_">
-                  <img
-                    onClick={() => handleDeleteCartItem(item?.menuItemId?._id)}
-                    src={Images.cartDelete}
-                    className="cartDelete_"
-                    alt="cartcancel"
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
             {allCartItems && allCartItems?.length > 0 && (
               <div className="cartdelivery">
                 <div className="checkoutdelivery">
@@ -273,7 +277,7 @@ const UserCartModal = (props) => {
                                 alt="cartcancel"
                                 data-bs-toggle="dropdown"
                               />
-                              <ul className="dropdown-menu">
+                              <ul className="dropdown-menu dropdown-menu-address">
                                 <li
                                   onClick={() => {
                                     handleOpenModal("editaddress", item?._id);
@@ -356,11 +360,11 @@ const UserCartModal = (props) => {
           </>
         ) : (
           <div className="noDataFoundImage">
-          <img
-                  className="w-100"
-                  alt="no data found"
-                  src={Images.nodataFound}
-                />
+            <img
+              className="w-100"
+              alt="no data found"
+              src={Images.nodataFound}
+            />
           </div>
         )}
       </div>
