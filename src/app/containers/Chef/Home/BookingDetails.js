@@ -218,7 +218,7 @@ const BookingDetails = () => {
                         />
                       </div>
                       <div className="chatText">
-                        <p className="chat">chat</p>
+                        <p className="chat">Chat</p>
                       </div>
                     </div>
                   </div>
