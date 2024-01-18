@@ -620,11 +620,14 @@ const SetupProfile = () => {
                                                 "location-search-input customform-control border-input inputPlaceholder",
                                             })}
                                           />
-                                          <div  className={
-                              suggestions && suggestions.length > 0
-                                ? "suggestion-item-outer"
-                                : "autocomplete-dropdown-container"
-                            }>
+                                          <div
+                                            className={
+                                              suggestions &&
+                                              suggestions.length > 0
+                                                ? "suggestion-item-outer"
+                                                : "autocomplete-dropdown-container"
+                                            }
+                                          >
                                             {/* {loading && <div>Loading...</div>} */}
                                             {suggestions.map(
                                               (suggestion, index) => {
@@ -636,7 +639,7 @@ const SetupProfile = () => {
                                                 const style = suggestion.active
                                                   ? {
                                                       backgroundColor:
-                                                        "#e65c00 !important",
+                                                        "#e65c00",
                                                       cursor: "pointer",
                                                       borderRadius: "4px",
                                                       padding: "5px",
@@ -662,8 +665,6 @@ const SetupProfile = () => {
                                                     <span>
                                                       {suggestion.description}
                                                     </span>
-                                                    <span>sdfdf</span>{" "}
-                                                    <span>sdf</span>
                                                   </div>
                                                 );
                                               }

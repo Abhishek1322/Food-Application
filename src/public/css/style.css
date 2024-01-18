@@ -2510,22 +2510,6 @@ body {
 /* -------- SETUPPROFILE MODALS css End scrollbar --------- */
 
 /*  ++++++++++++++++    */
-.locationData .suggestion-item--active {
-  background-color: #e9e9e9 !important;
-  border-radius: 6px;
-  padding: 6px 22px 6px;
-  color: #2e3333;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.locationData .suggestion-item {
-  color: #2e3333;
-  font-size: 14px;
-  font-weight: 400;
-  background-color: #f8f7f7 !important;
-  padding: 6px 22px 6px;
-}
 
 /* common header booking details css Start */
 .chefRightHeader {
