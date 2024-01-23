@@ -140,7 +140,6 @@ const User_Navbar = () => {
     let params = {
       userid: userId,
     };
-
     dispatch(
       getUserProfileDetails({
         ...params,
@@ -219,7 +218,7 @@ const User_Navbar = () => {
                           {userData?.userInfo?.firstName} !
                         </span>
                       </h1>
-                      <Link to="choose-location">
+                      {/* <Link to="choose-location">
                         <img
                           src={Images.HeaderLocation}
                           className="img-fluid"
@@ -234,7 +233,7 @@ const User_Navbar = () => {
                             choose your location from map
                           </span>
                         )}
-                      </Link>
+                      </Link> */}
                     </>
                   ) : pathname === "/user-chef-home" ? (
                     <h1 className="chefCommonHeader">Chefs</h1>

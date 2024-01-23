@@ -288,7 +288,7 @@ const AddAddressModal = (props) => {
         <div className="tab-content" id="myTabContent">
           <div role="tabpanel" aria-labelledby="home-tab">
             <div className="tabbodysection">
-              <div className="tabslocation">
+              {/* <div className="tabslocation">
                 <img
                   src={Images.Target}
                   alt="locationtargetimg"
@@ -304,7 +304,7 @@ const AddAddressModal = (props) => {
                   )}
                   User Current Location
                 </button>
-              </div>
+              </div> */}
               <div className="row">
                 <div className="col-lg-12">
                   <div className="input-container mt-4">
