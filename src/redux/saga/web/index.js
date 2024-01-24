@@ -16,7 +16,28 @@ import {
   setSingleMenu,
   setDeleteMenuItem,
   setGetSingleChef,
+  setGetSlotDay,
+  setUserProfileDataGet
 } from "../../slices/web";
+
+function* getSlotDay(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.webApiPath.GET_SLOT_DETAIL}?chefId=${action.payload.chefId}&date=${action.payload.date}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setGetSlotDay(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getSingleChef(action) {
   try {
@@ -272,6 +293,25 @@ function* getUserProfileDetails(action) {
   }
 }
 
+function* userProfileDataGet(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.AuthApiPath.CHEF_PROFILE_DETAILS}/${action.payload.userid}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setUserProfileDataGet(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
+
 function* webSaga() {
   yield all([takeLatest("web/getChefProfileDetails", getChefProfileDetails)]);
   yield all([takeLatest("web/updateChefProfile", updateChefProfile)]);
@@ -285,6 +325,8 @@ function* webSaga() {
   yield all([takeLatest("web/singleMenu", singleMenu)]);
   yield all([takeLatest("web/deleteMenuItem", deleteMenuItem)]);
   yield all([takeLatest("web/getSingleChef", getSingleChef)]);
+  yield all([takeLatest("web/getSlotDay", getSlotDay)]);
+  yield all([takeLatest("web/userProfileDataGet", userProfileDataGet)]);
 }
 
 export default webSaga;

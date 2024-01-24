@@ -6,10 +6,7 @@ import Myorder from "./shared/myorderModal";
 import VerifyorderDetailsModal from "./shared/verifyorderDetailsModal";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  getChefProfileDetails,
-  onErrorStopLoad,
-} from "../../../redux/slices/web";
+import { onErrorStopLoad, userProfileDataGet } from "../../../redux/slices/web";
 import { useChefSelector } from "../../../redux/selector/chef";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
@@ -68,7 +65,7 @@ const Chef_Navbar = () => {
       userid: userId,
     };
     dispatch(
-      getChefProfileDetails({
+      userProfileDataGet({
         ...params,
         cb(res) {
           if (res.status === 200) {

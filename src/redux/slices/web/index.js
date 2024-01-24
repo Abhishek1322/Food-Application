@@ -8,14 +8,28 @@ const initialState = {
   menusList: [],
   imageUrl: [],
   getSingleMenu: [],
-  getSingleChef:[],
-  profileInfo:[],
+  getSingleChef: [],
+  profileInfo: [],
+  userProfileData: [],
 };
 
 export const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
+    userProfileDataGet: (state) => {
+      state.loading = true;
+    },
+    setUserProfileDataGet: (state, action) => {
+      state.loading = false;
+      state.userProfileData = action.payload;
+    },
+    getSlotDay: (state) => {
+      state.loading = true;
+    },
+    setGetSlotDay: (state) => {
+      state.loading = false;
+    },
     getSingleChef: (state) => {
       state.loading = true;
     },
@@ -130,6 +144,10 @@ export const {
   setDeleteMenuItem,
   getSingleChef,
   setGetSingleChef,
+  getSlotDay,
+  setGetSlotDay,
+  userProfileDataGet,
+  setUserProfileDataGet
 } = webSlice.actions;
 
 export default webSlice.reducer;

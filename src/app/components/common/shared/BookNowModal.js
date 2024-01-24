@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import ChefBookModal from "./ChefBookModal";
-import { getSingleChef, onErrorStopLoad } from "../../../../redux/slices/web";
+import { getSlotDay, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { toast } from "react-toastify";
 
-let currentDay = moment(new Date()).format("ddd").toLowerCase();
+// let currentDay = moment(new Date()).format("ddd").toLowerCase();
 const BookNowModal = ({ chefId, initClose }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
@@ -33,30 +33,23 @@ const BookNowModal = ({ chefId, initClose }) => {
     flag: "",
   });
 
-  // get single chef detail
+  // get slote detail
   useEffect(() => {
-    handleGetChefDetails();
-  }, []);
-
-  // get single chef detail
-  const handleGetChefDetails = () => {
     let params = {
-      id: chefId,
+      chefId: chefId,
+      date: moment(date).format("DD-MM-YYYY"),
     };
     dispatch(
-      getSingleChef({
+      getSlotDay({
         ...params,
         cb(res) {
-          setChefData(res?.data?.data);
-          const getSlot = res?.data?.data?.chefInfo?.availability;
-          const checkSlot = getSlot?.find((slot) =>
-            slot?.day?.includes(currentDay)
-          );
-          setTimeSlotes(checkSlot);
+          if (res?.status === 200) {
+            setTimeSlotes(res?.data?.data);
+          }
         },
       })
     );
-  };
+  }, [date]);
 
   // close loader after page load
   useEffect(() => {
@@ -128,15 +121,11 @@ const BookNowModal = ({ chefId, initClose }) => {
       return;
     }
     setDate(day);
-    const formatDate = moment(day).format("ddd").toLowerCase();
-    const getSlotByDate = chefData?.chefInfo?.availability?.find(
-      (item) => item?.day === formatDate
-    );
-    setTimeSlotes(getSlotByDate);
   };
 
   // select time slots
   const handleSelectTimeSlots = (id, from, to) => {
+    console.log("fromfrom",from,to);
     setActiveSlot((prev) => {
       if (prev.includes(id)) {
         return prev.filter((item) => item !== id);
@@ -195,7 +184,6 @@ const BookNowModal = ({ chefId, initClose }) => {
                       }
                     >
                       {/* {loading && <div>Loading...</div>} */}
-                      {console.log("suggestionssuggestions", suggestions)}
                       {suggestions.map((suggestion, index) => {
                         const className = suggestion.active
                           ? "suggestion-item--active"
@@ -240,6 +228,7 @@ const BookNowModal = ({ chefId, initClose }) => {
             <div className="input-container date-picker-outer mt-4">
               <DatePicker
                 showIcon
+                value={date}
                 className="border-input date-picker-resp"
                 selected={moment(date).toDate("YYYY-MM-DD")}
                 onChange={(date) => handleGetDay(date)}
@@ -263,14 +252,14 @@ const BookNowModal = ({ chefId, initClose }) => {
         <p className="chefName mt-5">Book Time Slot</p>
         <div
           className={
-            timeSlotes?.timeSlots && timeSlotes?.timeSlots.length > 0
+            timeSlotes?.slots && timeSlotes?.slots.length > 0
               ? "bookslots mt-2 bookslots-outer"
               : "bookslots mt-2"
           }
         >
           {timeSlotes ? (
             <>
-              {timeSlotes?.timeSlots?.map((day, dayIndex) => (
+              {timeSlotes?.slots?.map((day, dayIndex) => (
                 <div
                   onClick={() =>
                     handleSelectTimeSlots(day?._id, day?.from, day?.to)
@@ -279,6 +268,8 @@ const BookNowModal = ({ chefId, initClose }) => {
                   className={
                     activeSlot?.includes(day?._id)
                       ? "daytimes active"
+                      : !day?.status
+                      ? "disable-slot daytimes"
                       : "daytimes"
                   }
                 >
@@ -342,7 +333,7 @@ const BookNowModal = ({ chefId, initClose }) => {
         child={
           modalDetail.flag === "chefbook" ? (
             <ChefBookModal
-              chefData={chefData}
+              chefId={chefId}
               latitude={latitude}
               longitude={longitude}
               city={city}

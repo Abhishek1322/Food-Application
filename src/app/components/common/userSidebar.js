@@ -10,7 +10,7 @@ const User_Sidebar = () => {
 
   useEffect(() => {
     if (webData) {
-      setUserProfile(webData?.profileInfo?.profilePhoto);
+      setUserProfile(webData?.userProfileData?.data);
     }
   }, [webData]);
 
@@ -82,7 +82,11 @@ const User_Sidebar = () => {
         <div className="sidebarProfile ">
           <Link to="/user-myprofile">
             <img
-              src={userProfile ? userProfile : Images.dummyProfile}
+              src={
+                userProfile?.userInfo?.profilePhoto
+                  ? userProfile?.userInfo?.profilePhoto
+                  : Images.dummyProfile
+              }
               alt="logo"
               className="userprofile"
             />

@@ -21,6 +21,7 @@ const ApiPath = {
     GET_FILES_URL: "/menus/upload-image",
     EDIT_MENU_ITEM: "/menus",
     SINGLE_CHEF_DETAIL: "/users/chefDetail",
+    GET_SLOT_DETAIL: "/bookings/availability",
   },
   userApiPath: {
     ADD_ADDRESS: "/user_delivery_address",

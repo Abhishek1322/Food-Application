@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import ChefBookPay from "./ChefBookPay";
+import { getSingleChef } from "../../../../redux/slices/web";
+import { useDispatch } from "react-redux";
 
 const ChefBookModal = ({
-  chefData,
+  chefId,
   latitude,
   longitude,
   city,
   selectedTimeSlotes,
   description,
   date,
-  firstBookNow
+  firstBookNow,
 }) => {
-  
+  const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
+  const [chefData, setChefData] = useState([]);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -29,10 +32,11 @@ const ChefBookModal = ({
       flag: "",
     });
     setKey(Math.random());
-    firstBookNow()
+    firstBookNow();
   };
 
-  const handleUserProfile = (flag) => {
+  // open modal
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -40,6 +44,22 @@ const ChefBookModal = ({
     });
     setKey(Math.random());
   };
+
+  // get single chef detail
+  useEffect(() => {
+    let params = {
+      id: chefId,
+    };
+    dispatch(
+      getSingleChef({
+        ...params,
+        cb(res) {
+          setChefData(res?.data?.data);
+        },
+      })
+    );
+  }, []);
+
   return (
     <>
       <div className="chefbookmodalsection mt-3">
@@ -47,7 +67,7 @@ const ChefBookModal = ({
         <div className="row align-items-center m-2">
           <div className="col-lg-9">
             <div className="sarahinfo">
-              <div className="sarahimg">
+              <div className="sarahimg hire-chef-profile">
                 <img
                   src={
                     chefData?.userInfo?.profilePhoto
@@ -132,7 +152,7 @@ const ChefBookModal = ({
                   className="orderbutton"
                   type="button"
                   onClick={() => {
-                    handleUserProfile("chefpay");
+                    handleOpenModal("chefpay");
                   }}
                 >
                   Pay Now

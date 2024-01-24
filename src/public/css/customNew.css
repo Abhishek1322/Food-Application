@@ -475,8 +475,9 @@ p {
   align-items: center;
   gap: 6px;
   border-radius: 4px;
-  background: #eaebeb;
+  background: #dadcdc;
   margin-top: 5px;
+  cursor: pointer;
 }
 
 .daytimesheading {
@@ -2571,5 +2572,20 @@ margin-top: 0;
 .usercartcheck-outer {
   height: 57vh;
   overflow-y: auto;
+}
+.disable-slot {
+  opacity: 0.7;
+  pointer-events: none;
+  background: #d0d7d794;
+}
+.hire-chef-profile {
+  height: 84px;
+  width: 110px;
+}
+
+.hire-chef-profile img {
+  border-radius: 100px;
+  height: 100%;
+  width: 100%;
 }
 /* Abhishek Css end */

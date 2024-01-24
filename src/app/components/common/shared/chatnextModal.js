@@ -289,7 +289,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
       notification: notificationData,
       data: notificationData,
       to: chefData?.fcmToken,
-      profile_image: webData?.profileInfo?.profilePhoto,
+      profile_image: webData?.userProfileData?.data?.userInfo?.profilePhoto,
     };
 
     await fetch("https://fcm.googleapis.com/fcm/send", {
@@ -431,8 +431,8 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                     {authData?.userInfo?.id === message?.senderId ? (
                       <img
                         src={
-                          webData?.profileInfo?.profilePhoto
-                            ? webData?.profileInfo?.profilePhoto
+                          webData?.userProfileData?.data?.userInfo?.profilePhoto
+                            ? webData?.userProfileData?.data?.userInfo?.profilePhoto
                             : Images.dummyProfile
                         }
                         alt="profile"

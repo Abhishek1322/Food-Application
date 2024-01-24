@@ -7,7 +7,7 @@ import UserBellModal from "./shared/UserBellModal";
 import UserNotification from "./shared/UserNotification";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import { useDispatch } from "react-redux";
-import { getUserProfileDetails } from "../../../redux/slices/web";
+import { userProfileDataGet } from "../../../redux/slices/web";
 import { useUserSelector } from "../../../redux/selector/user";
 import CartModal from "./shared/cartModal";
 import { toggleSidebar } from "../../../redux/slices/auth";
@@ -63,7 +63,6 @@ const User_Navbar = () => {
   function success(pos) {
     var crd = pos.coords;
     handleGetLocationInfo(crd.latitude, crd.longitude);
-    console.log("crd.latitude", crd.latitude, crd.longitude);
   }
 
   // call get location function
@@ -141,7 +140,7 @@ const User_Navbar = () => {
       userid: userId,
     };
     dispatch(
-      getUserProfileDetails({
+      userProfileDataGet({
         ...params,
         cb(res) {
           if (res.status === 200) {

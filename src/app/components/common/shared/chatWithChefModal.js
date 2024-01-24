@@ -277,7 +277,7 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
     const notificationData = {
       title: senderName,
       body: `${msg ? msg : "sent a photo"}`,
-      profile_image: webData?.profileInfo?.profilePhoto,
+      profile_image: webData?.userProfileData?.data?.userInfo?.profilePhoto,
     };
     const payload = {
       notification: notificationData,
@@ -441,8 +441,9 @@ const ChatWithChefModal = ({ orderDetails, handleChefProfle, close }) => {
                     ) : (
                       <img
                         src={
-                          webData?.profileInfo?.profilePhoto
-                            ? webData?.profileInfo?.profilePhoto
+                          webData?.userProfileData?.data?.userInfo?.profilePhoto
+                            ? webData?.userProfileData?.data?.userInfo
+                                ?.profilePhoto
                             : Images.dummyProfile
                         }
                         alt="profile"

@@ -20,7 +20,7 @@ const YourOrderModal = (props) => {
     title: "",
     flag: "",
   });
- console.log("flagflagflag",flag);
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({

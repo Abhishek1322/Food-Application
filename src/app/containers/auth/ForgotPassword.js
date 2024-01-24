@@ -3,7 +3,7 @@ import * as Images from "../../../utilities/images";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { forgotPassword,onErrorStopLoad } from "../../../redux/slices/auth";
+import { forgotPassword, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import Loading from "../Settings/Loading";
 
@@ -14,7 +14,6 @@ const ForgotPassword = () => {
   const toastId = useRef(null);
   const [email, setEmail] = useState("");
 
-  
   // show only one toast at one time
   const showToast = (msg) => {
     if (!toast.isActive(toastId.current)) {
@@ -25,7 +24,15 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email) {
-      showToast("Please enter your email");
+      showToast("Please enter email");
+      return;
+    } else if (
+      email &&
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+    ) {
+      toastId.current = showToast("Please enter valid email address");
       return;
     }
     let params = {
@@ -43,16 +50,14 @@ const ForgotPassword = () => {
     );
   };
 
-    // stop loader on page refresh
-    useEffect(() => {
-      dispatch(onErrorStopLoad());
-    }, [dispatch]);
-  
-
+  // stop loader on page refresh
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
-     {authData.loading && <Loading />}
+      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">

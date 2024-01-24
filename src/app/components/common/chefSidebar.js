@@ -10,7 +10,7 @@ const Chef_Sidebar = () => {
 
   useEffect(() => {
     if (webData) {
-      setChefProfile(webData?.profileInfo?.profilePhoto);
+      setChefProfile(webData?.userProfileData?.data);
     }
   }, [webData]);
 
@@ -110,7 +110,11 @@ const Chef_Sidebar = () => {
         <div className="sidebarProfile">
           <Link to="/chef-profile">
             <img
-              src={chefProfile ? chefProfile : Images.dummyProfile}
+              src={
+                chefProfile?.userInfo?.profilePhoto
+                  ? chefProfile?.userInfo?.profilePhoto
+                  : Images.dummyProfile
+              }
               alt="logo"
               className="userprofile"
             />
