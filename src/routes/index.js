@@ -4,13 +4,11 @@ import * as Layouts from "../app/layouts";
 import { useAuthSelector } from "../redux/selector/auth";
 
 const Router = () => {
-  
   const authData = useAuthSelector();
 
   return (
     <>
       <Routes>
-
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
           {authData?.userInfo?.role === "user" && (
@@ -71,7 +69,7 @@ const Router = () => {
           />
         </Route>
 
-        {/* PUBLIC_ROUTES */}
+        {/* AUTHENTICATED_ROUTES */}
         <Route element={<Layouts.AuthLayout />}>
           <Route path="/" element={<Containers.Login />} />
           <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
@@ -127,6 +125,11 @@ const Router = () => {
           <Route path="*" element={<Containers.PageNotFound />} />
         </Route>
 
+        {/* PUBLIC ROUTES */}
+
+        <Route element={<Layouts.MainLayout />}>
+          <Route element={<Containers.Dashboard />} path="/dashboard" />
+        </Route>
       </Routes>
     </>
   );

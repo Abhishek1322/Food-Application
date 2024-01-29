@@ -125,7 +125,7 @@ const BookNowModal = ({ chefId, initClose }) => {
 
   // select time slots
   const handleSelectTimeSlots = (id, from, to) => {
-    console.log("fromfrom",from,to);
+    console.log("fromfrom", from, to);
     setActiveSlot((prev) => {
       if (prev.includes(id)) {
         return prev.filter((item) => item !== id);
@@ -229,6 +229,7 @@ const BookNowModal = ({ chefId, initClose }) => {
               <DatePicker
                 showIcon
                 value={date}
+                minDate={new Date()}
                 className="border-input date-picker-resp"
                 selected={moment(date).toDate("YYYY-MM-DD")}
                 onChange={(date) => handleGetDay(date)}

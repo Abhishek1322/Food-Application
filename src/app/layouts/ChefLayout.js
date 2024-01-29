@@ -4,7 +4,7 @@ import Chef_Sidebar from "../components/common/chefSidebar";
 import Chef_Navbar from "../components/common/chefNavbar";
 import { useAuthSelector } from "../../redux/selector/auth";
 
-const Chef_Layout = ({ role, children }) => {
+const Chef_Layout = () => {
   const location = useLocation();
   const { pathname } = location;
   const checkRoutes = ["/chef-profile", "/edit-chef-profile"];

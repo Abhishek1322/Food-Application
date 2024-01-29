@@ -1,38 +1,15 @@
-
-
-import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import Sidebar from '../components/common/Sidebar'
-import MainNav from '../components/common/mainNav'
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
+import { useAuthSelector } from "../../redux/selector/auth";
+import MainNav from "../components/common/MainNav";
+import MainFooter from "../components/common/MainFooter";
 
 const MainLayout = () => {
-  const location = useLocation();
-  const pathName = location.pathname;
-  const authRoutes = ['/',];
-
   return (
     <>
-      {/* <AuthNav /> */}
-      {authRoutes.includes(pathName) ?
-        <>
-          <main className='main'>
-            <Outlet />
-          </main>
-        </>
-        :
-        <>
-          <div className="mainBox">
-            <Sidebar />
-            <main className='main'>
-              <MainNav /> 
-              <Outlet />
-            </main>
-          </div>
-
-          {/* <MainFooter/> */}
-        </>
-      }
-      {/* <AuthFooter /> */}
+      <MainNav />
+      <Outlet />
+      <MainFooter />
     </>
   );
 };

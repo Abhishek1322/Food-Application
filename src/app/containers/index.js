@@ -33,7 +33,7 @@ import UserManageAddress from "./User/Setting/ManageAddress"
 import RequestPage from "./Settings/RequestPage"
 import PageNotFound from "../components/errorPage/PageNotFound"
 import ChooseLocation from "./User/ChooseLocation"
-
+import Dashboard from "./Dashborad/Dashboard"
 
 
 export {
@@ -71,5 +71,6 @@ export {
     UserManageAddress,
     RequestPage,
     ChooseLocation,
+    Dashboard,
     PageNotFound
 }
