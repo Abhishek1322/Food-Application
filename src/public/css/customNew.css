@@ -2522,7 +2522,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .bookslots-outer {
-  height: 26vh;
+  max-height: 26vh;
   overflow-y: auto;
 }
 
@@ -2531,11 +2531,13 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   overflow-y: auto;
   padding-right: 5px;
 }
+
 .tabbodysection {
   height: 65vh;
   overflow-y: auto;
   padding-right: 5px;
 }
+
 .booknowimg.booknowimg-outer {
   display: flex;
   justify-content: center;
@@ -2547,16 +2549,20 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   height: 23px;
   width: 23px;
 }
-.dropdown-menu-address{
+
+.dropdown-menu-address {
   margin-left: 11px !important;
 }
-.usercartcheck-outer .outeraddItem{
-margin-top: 0;
+
+.usercartcheck-outer .outeraddItem {
+  margin-top: 0;
 }
+
 .cartslists-outer {
-  height: 35vh;
+  max-height: 35vh;
   overflow-y: auto;
 }
+
 .expertise-outer-main {
   height: 65vh;
   overflow-y: auto;
@@ -2566,18 +2572,22 @@ margin-top: 0;
 .expertise-outer-main .input-container {
   margin-top: 5px;
 }
+
 .logout-request-page {
   cursor: pointer;
 }
+
 .usercartcheck-outer {
   height: 57vh;
   overflow-y: auto;
 }
+
 .disable-slot {
   opacity: 0.7;
   pointer-events: none;
   background: #d0d7d794;
 }
+
 .hire-chef-profile {
   height: 84px;
   width: 110px;
@@ -2587,5 +2597,37 @@ margin-top: 0;
   border-radius: 100px;
   height: 100%;
   width: 100%;
+}
+
+.order-now-pay-total {
+  border-radius: 8px;
+  background: #2e3333;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.total-price-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.editMenuModal-outer {
+  height: 67vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+.flex-dropdown{
+  cursor: pointer;
+}
+.orderplace-section-outer {
+  text-align: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* Abhishek Css end */

@@ -71,7 +71,7 @@ const Router = () => {
 
         {/* AUTHENTICATED_ROUTES */}
         <Route element={<Layouts.AuthLayout />}>
-          <Route path="/" element={<Containers.Login />} />
+          <Route path="/login" element={<Containers.Login />} />
           <Route path="/choose-roles" element={<Containers.ChooseRoles />} />
           <Route path="/verification" element={<Containers.Verification />} />
           <Route
@@ -126,9 +126,8 @@ const Router = () => {
         </Route>
 
         {/* PUBLIC ROUTES */}
-
         <Route element={<Layouts.MainLayout />}>
-          <Route element={<Containers.Dashboard />} path="/dashboard" />
+          <Route element={<Containers.Dashboard />} path="/" />
         </Route>
       </Routes>
     </>

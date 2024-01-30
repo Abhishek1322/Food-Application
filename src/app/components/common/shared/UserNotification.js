@@ -82,7 +82,7 @@ const UserNotification = ({ updateNotification }) => {
             Clear All{" "}
           </p>
         )}
-        <div className="modalscroll-notificaation">
+        <div className="modalscroll-notificaation user-chef-notification-modal">
           {notification && notification.length > 0 ? (
             <>
               {notification?.map((item, index) => (

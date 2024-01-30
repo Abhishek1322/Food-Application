@@ -99,7 +99,7 @@ const Login = () => {
   // Update the toggle state
   const handleToggleChange = () => {
     setIsToggleOn(!isToggleOn);
-    const routeToNavigate = isToggleOn ? "/" : "/choose-roles";
+    const routeToNavigate = isToggleOn ? "/login" : "/choose-roles";
     setTimeout(() => {
       navigate(routeToNavigate);
     }, 400);
@@ -141,11 +141,13 @@ const Login = () => {
             <div className="col-lg-6">
               <div className="logleft">
                 <figure>
+                <Link to="/">
                   <img
                     src={Images.Logo}
                     alt="logo"
                     className="img-fluid logo"
                   />
+                  </Link>
                 </figure>
                 <figure className="ChefMain">
                   <img

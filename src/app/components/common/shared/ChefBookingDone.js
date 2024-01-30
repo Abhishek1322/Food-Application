@@ -39,7 +39,6 @@ const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
     const timer = setInterval(() => {
       setCountDown((pre) => pre - 1);
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -59,16 +58,18 @@ const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
 
   return (
     <>
-      <div className="orderplacesection paymentdonesection">
-        <img
-          src={Images.accountDeleted}
-          alt="accountdeletedimg"
-          className="img-fluid"
-        />
-        <h1 className="accountDeleted mt-3">Booking Done</h1>
-        <p className="accountdeletetxt mt-2 ">
-          Your Booking has been done successfully .
-        </p>
+      <div className="orderplacesection orderplace-section-outer">
+        <div>
+          <img
+            src={Images.accountDeleted}
+            alt="accountdeletedimg"
+            className="img-fluid"
+          />
+          <h1 className="accountDeleted mt-3">Booking Done</h1>
+          <p className="accountdeletetxt mt-2 ">
+            Your Booking has been done successfully .
+          </p>
+        </div>
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
             <button
@@ -98,6 +99,7 @@ const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
           </button>
         </div>
       </div>
+
       <CustomModal
         key={key}
         show={modalDetail.show}

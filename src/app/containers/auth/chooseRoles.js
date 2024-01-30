@@ -25,7 +25,7 @@ const ChooseRoles = () => {
   // Update the toggle state
   const handleToggleChange = () => {
     setIsToggleOn(!isToggleOn);
-    const routeToNavigate = isToggleOn ? "/choose-roles" : "/";
+    const routeToNavigate = isToggleOn ? "/choose-roles" : "/login";
     setTimeout(() => {
       navigate(routeToNavigate);
     }, 400);
@@ -37,11 +37,13 @@ const ChooseRoles = () => {
         <div className="container-fluid">
           <div className="flexBox justify-content-between pt-4">
             <figure>
+              <Link to="/">
               <img
                 src={Images.Logo}
                 alt="logo"
                 className="img-fluid logo m-0"
               />
+              </Link>
             </figure>
             <div className="flexBox justify-content-end">
               <h3 className="smallSubheading">Already have an a account?</h3>

@@ -224,11 +224,13 @@ const UserOrderEdit = () => {
                                 "location-search-input customform-control border-input",
                             })}
                           />
-                          <div  className={
+                          <div
+                            className={
                               suggestions && suggestions.length > 0
                                 ? "suggestion-item-outer"
                                 : "autocomplete-dropdown-container"
-                            }>
+                            }
+                          >
                             {/* {loading && <div>Loading...</div>} */}
                             {suggestions.map((suggestion, index) => {
                               const className = suggestion.active
@@ -240,9 +242,8 @@ const UserOrderEdit = () => {
                                     backgroundColor: "#e65c00",
                                     cursor: "pointer",
                                     borderRadius: "4px",
-                                    padding: "5px",
+                                    padding: "6px",
                                     color: "#fff",
-                                    margin: "5px 0",
                                   }
                                 : {
                                     backgroundColor: "#ffffff",

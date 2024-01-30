@@ -642,9 +642,8 @@ const SetupProfile = () => {
                                                         "#e65c00",
                                                       cursor: "pointer",
                                                       borderRadius: "4px",
-                                                      padding: "5px",
+                                                      padding: "6px",
                                                       color: "#fff",
-                                                      margin: "5px 0",
                                                     }
                                                   : {
                                                       backgroundColor:

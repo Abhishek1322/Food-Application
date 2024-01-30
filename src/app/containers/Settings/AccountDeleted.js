@@ -7,7 +7,7 @@ const AccountDeleted = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      navigate("/login");
     }, 2500);
   }, []);
 

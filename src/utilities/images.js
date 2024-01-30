@@ -126,7 +126,29 @@ import smallLocate from "../public/images/small-locate.svg";
 import noChatFound from "../public/images/noChatFound.svg";
 import nodataFound from "../public/images/no-data-found.svg";
 import threeDotsDrop from "../public/images/threeDotsDrop.svg";
-
+import PhotoRoom1 from "../public/images/PhotoRoom1.png";
+import PhotoRoom2 from "../public/images/PhotoRoom2.png";
+import LineBg from "../public/images/line-bg.png";
+import AppleIcon from "../public/images/apple-icon.png";
+import PlayStoreIcon from "../public/images/play-store-icon.png";
+import chefImageNew from "../public/images/chef-img-new.png";
+import foodBgOne from "../public/images/foodbgone.svg";
+import foodBgThree from "../public/images/foodbgthree.png";
+import foodBgTwo from "../public/images/food-bg-two.svg";
+import foodBgFour from "../public/images/foodbgfour.png";
+import rightUpArrow from "../public/images/rightup-arrow.svg";
+import aboutImg from "../public/images/about-img.png";
+import pizzaOne from "../public/images/pizzaone.png";
+import burgerOne from "../public/images/burger-one.png";
+import chefGreatLogo from "../public/images/chef-great-logo.png";
+import videoimg from "../public/images/videoimg.png";
+import chefWoman from "../public/images/chefwoman.png";
+import burgerTwo from "../public/images/burgerTwo.png";
+import pizza from "../public/images/pizza.png";
+import mobile from "../public/images/mobile.png";
+import rightArrowBlack from "../public/images/rightArrowBlack.png";
+import orderFood from "../public/images/order-food.svg";
+import helpSupport from "../public/images/help-support.svg";
 
 export {
   Logo,
@@ -257,4 +279,27 @@ export {
   noChatFound,
   nodataFound,
   threeDotsDrop,
+  PhotoRoom1,
+  PhotoRoom2,
+  LineBg,
+  AppleIcon,
+  PlayStoreIcon,
+  chefImageNew,
+  foodBgOne,
+  aboutImg,
+  rightUpArrow,
+  pizzaOne,
+  burgerOne,
+  chefGreatLogo,
+  foodBgTwo,
+  videoimg,
+  foodBgThree,
+  chefWoman,
+  foodBgFour,
+  burgerTwo,
+  pizza,
+  mobile,
+  rightArrowBlack,
+  orderFood,
+  helpSupport,
 };

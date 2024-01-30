@@ -1009,3 +1009,6 @@ input:-webkit-autofill:active {
   height: 67vh;
   padding-right: 6px;
 }
+.user-chef-notification-modal{
+  height: 74vh;
+}

@@ -21,7 +21,13 @@ const UserLayout = () => {
               <Outlet />
             </main>
           ) : (
-            <div className={authData?.showSideBar ? "mainBox activeSidebar" : "mainBox inActiveSidebar"}>
+            <div
+              className={
+                authData?.showSideBar
+                  ? "mainBox activeSidebar"
+                  : "mainBox inActiveSidebar"
+              }
+            >
               <User_Sidebar />
               <main className="usermain">
                 <User_Navbar />

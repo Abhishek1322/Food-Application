@@ -216,8 +216,8 @@ const CartModal = (props) => {
                   + Add More Items
                 </button>
 
-                <div className="orderNow">
-                  <div className="totalPrice">
+                <div className="order-now-pay-total">
+                  <div className="total-price-order">
                     <h6 className="totaltxt">Total</h6>
                     <p className="price">£{totalPrice}.00</p>
                   </div>

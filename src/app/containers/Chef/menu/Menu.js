@@ -172,7 +172,7 @@ const Menu = () => {
                                     >
                                       <div className=" menuChat">
                                         <div
-                                          className="flexBox pb-3 "
+                                          className="flexBox flex-dropdown pb-3 "
                                           onClick={() => {
                                             handleUserProfile(
                                               "editMenuModal",
@@ -188,7 +188,7 @@ const Menu = () => {
                                           <p className="ps-2">Edit</p>
                                         </div>
                                         <div
-                                          className="flexBox"
+                                          className="flexBox flex-dropdown"
                                           onClick={() => {
                                             handleUserProfile(
                                               "deleteMenuModal",

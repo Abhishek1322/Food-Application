@@ -101,7 +101,7 @@ const ForgotPassword = () => {
               <div className="logRight mt-5">
                 <div className="toggleButtonMain">
                   <div className="buttonBox">
-                    <Link to="/">
+                    <Link to="/login">
                       <button type="button" role="button" className="backBtn">
                         <i className="las la-angle-left"></i> Back to Login
                       </button>

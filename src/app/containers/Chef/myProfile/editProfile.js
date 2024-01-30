@@ -367,9 +367,8 @@ const EditProfile = () => {
                                         backgroundColor: "#e65c00 !important",
                                         cursor: "pointer",
                                         borderRadius: "4px",
-                                        padding: "5px",
+                                        padding: "6px",
                                         color: "#fff",
-                                        margin: "5px 0",
                                       }
                                     : {
                                         backgroundColor: "#ffffff",

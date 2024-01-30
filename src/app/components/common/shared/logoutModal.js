@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import * as Images from "../../../../utilities/images";
-import { userLogout,onErrorStopLoad } from "../../../../redux/slices/auth";
+import { userLogout, onErrorStopLoad } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const LogoutModal = (props) => {
   const { close } = props;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // logout handler
   const handleLogout = (_id) => {

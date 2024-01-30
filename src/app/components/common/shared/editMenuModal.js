@@ -143,7 +143,7 @@ const EditMenuModal = (props) => {
 
   return (
     <>
-      <div className="editMenuModal">
+      <div className="editMenuModal editMenuModal-outer">
         <div className="menuModal_">
           <div className="input-container mt-5">
             <input

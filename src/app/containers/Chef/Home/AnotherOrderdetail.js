@@ -220,13 +220,13 @@ const AnotherOrderdetail = () => {
                           className={
                             orderDetails?.status === "accepted" ||
                             orderDetails?.status === "readyForDelivery"
-                              ? "fas fa-comment-dots chatImage chatbg"
-                              : "fas fa-comment-dots chatImage chatbg"
+                              ? "fas fa-comment-dots chatImage"
+                              : "fas fa-comment-dots chatImage"
                           }
                         ></i>
                       </div>
                       <div className="chatText">
-                        <p className="chat">chat</p>
+                        <p className="chat">Chat</p>
                       </div>
                     </div>
                     <div className="deliveryAddress">

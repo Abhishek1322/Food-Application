@@ -125,7 +125,6 @@ const BookNowModal = ({ chefId, initClose }) => {
 
   // select time slots
   const handleSelectTimeSlots = (id, from, to) => {
-    console.log("fromfrom", from, to);
     setActiveSlot((prev) => {
       if (prev.includes(id)) {
         return prev.filter((item) => item !== id);
@@ -194,9 +193,8 @@ const BookNowModal = ({ chefId, initClose }) => {
                               backgroundColor: "#e65c00",
                               cursor: "pointer",
                               borderRadius: "4px",
-                              padding: "5px",
+                              padding: "6px",
                               color: "#fff",
-                              margin: "5px 0",
                             }
                           : {
                               backgroundColor: "#ffffff",

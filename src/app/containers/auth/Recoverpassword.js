@@ -113,7 +113,7 @@ const Recoverpassword = (props) => {
               <div className="logRight mt-5">
                 <div className="toggleButtonMain">
                   <div className="buttonBox">
-                    <Link to="/">
+                    <Link to="/login">
                       <button type="submit" role="button" className="backBtn">
                         <i class="las la-angle-left"></i> Back to Login
                       </button>
