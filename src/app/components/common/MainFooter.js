@@ -1,5 +1,6 @@
 import React from "react";
 import * as Images from "../../../utilities/images";
+import { Link } from "react-router-dom";
 
 const MainFooter = () => {
   return (
@@ -25,14 +26,14 @@ const MainFooter = () => {
                   </a>
                 </li>
                 <li className="navigation">
-                  <a className="footer_ank" href="#">
+                  <Link className="footer_ank" to="/privacy-policy">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li className="navigation">
-                  <a className="footer_ank" href="#">
+                  <Link className="footer_ank" to="/term-condition">
                     Terms and Conditions
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
