@@ -120,7 +120,7 @@ const OrderDetails = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 col-sm-12">
             <div className="insideCommonHeader d-flex">
-              <Link to="/home" className="d-flex">
+              <Link to="/home" className="d-flex align-items-center">
                 <img
                   src={Images.backArrowpassword}
                   className="innerHeaderArrow"
@@ -232,7 +232,7 @@ const OrderDetails = () => {
                     </div>
                   </div>
                 </div>
-                <h3 className="orderId_">Ordered Items</h3>
+                <h3 className="orderId_ mt-3">Ordered Items</h3>
                 <div className="row align-items-center">
                   <div className="col-lg-10">
                     {orderDetails?.items?.map((item, index) => (

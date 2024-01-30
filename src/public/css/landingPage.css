@@ -408,9 +408,11 @@
 .appButtons .primary {
     font-size: 10px;
 }
+
 .landing-page-group .toggle .slider::before {
     background-image: url(../images/rightArrowBlack.png);
 }
+
 .landing-page-group .toggle .slider {
     position: absolute;
     top: 0;
@@ -421,4 +423,9 @@
     background-color: #0C0500;
     transition: all 0.4s ease-in-out;
 }
+
+.footer_ank:hover {
+    color: #fff;
+}
+
 /**End Footer Section CSS**/

@@ -2628,6 +2628,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   height: 60vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
+  flex-direction: column;
 }
 /* Abhishek Css end */

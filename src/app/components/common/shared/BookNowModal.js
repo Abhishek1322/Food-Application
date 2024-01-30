@@ -256,7 +256,7 @@ const BookNowModal = ({ chefId, initClose }) => {
               : "bookslots mt-2"
           }
         >
-          {timeSlotes ? (
+          {timeSlotes?.slots && timeSlotes?.slots.length > 0 ? (
             <>
               {timeSlotes?.slots?.map((day, dayIndex) => (
                 <div

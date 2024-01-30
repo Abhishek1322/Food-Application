@@ -225,7 +225,7 @@ li {
 .chefCommonHeader {
   color: #2e3333;
   font-family: Crimson Text;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
   margin: 0;
 }
@@ -1418,7 +1418,7 @@ body {
   flex-direction: column;
   display: flex;
   /* width: 206px; */
-  height: 199px;
+  height: 145px;
   padding: 18px 38px;
   justify-content: center;
   align-items: center;

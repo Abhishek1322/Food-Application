@@ -4,12 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 const MainNav = () => {
   const [isToggleOn, setIsToggleOn] = useState(false);
+  const [checkToggleOn,setCheckToggleOn] = useState("");
   const navigate = useNavigate();
 
   // Update the toggle state
-  const handleToggleChange = () => {
+  const handleToggleChange = (flag) => {
     setIsToggleOn(!isToggleOn);
-    const routeToNavigate = isToggleOn ? "/" : "/login";
+    setCheckToggleOn(flag)
+    let routeToNavigate;
+    if (flag === "login") {
+      routeToNavigate = isToggleOn ? "/" : "/login";
+    } else {
+      routeToNavigate = isToggleOn ? "/" : "/choose-roles";
+    }
     setTimeout(() => {
       navigate(routeToNavigate);
     }, 400);
@@ -24,8 +31,8 @@ const MainNav = () => {
             <div className="form-group landing-page-group">
               <label className="toggle">
                 <input
-                  onChange={handleToggleChange}
-                  checked={isToggleOn}
+                  onChange={() => handleToggleChange("login")}
+                  checked={checkToggleOn === "login" && isToggleOn}
                   type="checkbox"
                 />
                 <span className="slider"></span>
@@ -39,15 +46,14 @@ const MainNav = () => {
             <div className="form-group">
               <label className="toggle">
                 <input
-                  // onChange={handleToggleChange}
-                  // checked={isToggleOn}
-                  checked={false}
+                  onChange={() => handleToggleChange("choose-role")}
+                  checked={checkToggleOn === "choose-role" && isToggleOn}
                   type="checkbox"
                 />
                 <span className="slider"></span>
                 <span
                   className="labels"
-                  data-on="Login"
+                  data-on="join us"
                   data-off="JOIN US"
                 ></span>
               </label>
