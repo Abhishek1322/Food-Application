@@ -106,8 +106,8 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
           );
         }
         const updatedData = filteredMessages?.map((item) => {
-          if (item?.image_url === "") {
-            const { image_url, ...rest } = item;
+          if (item?.imageUrl === "") {
+            const { imageUrl, ...rest } = item;
             return rest;
           }
           return item;
@@ -153,7 +153,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
             createdAt: Math.floor(Date.now()),
             text: msg,
             id: "",
-            image_url: imageUrl,
+            imageUrl: imageUrl,
             senderId: authData?.userInfo?.id,
             recieverId: chefId,
           },
@@ -174,7 +174,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                 createdAt: Math.floor(Date.now()),
                 senderId: authData?.userInfo?.id,
                 text: msg,
-                image_url: imageUrl,
+                imageUrl: imageUrl,
                 recieverId: chefId,
               },
               roomId: ROOM_ID,
@@ -230,7 +230,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
             createdAt: Math.floor(Date.now()),
             senderId: authData?.userInfo?.id,
             text: msg,
-            image_url: imageUrl,
+            imageUrl: imageUrl,
             recieverId: chefId,
           },
           roomId: ROOM_ID,
@@ -265,7 +265,7 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
         createdAt: Math.floor(Date.now()),
         text: msg,
         id: "",
-        image_url: imageUrl,
+        imageUrl: imageUrl,
         senderId: authData?.userInfo?.id,
         recieverId: chefId,
       });
@@ -422,9 +422,9 @@ const ChatnextModal = ({ chefId, handleChefProfle }) => {
                   {message?.text && (
                     <p className="chat-value">{message?.text}</p>
                   )}
-                  {message?.image_url && (
+                  {message?.imageUrl && (
                     <div className="message-img">
-                      <img alt="upload-img" src={message?.image_url} />
+                      <img alt="upload-img" src={message?.imageUrl} />
                     </div>
                   )}
                   <div className="chefchat_detail">

@@ -81,7 +81,7 @@ const UserDeleteChat = ({ sender_id, allChats, sendRoomId, close, flag }) => {
           await updateDoc(roomDocRef, {
             lastMessage: {
               createdAt: filterChatRoom[0]?.lastMessage?.createdAt,
-              image_url: "",
+              imageUrl: "",
               recieverId: filterChatRoom[0]?.lastMessage?.recieverId,
               senderId: filterChatRoom[0]?.lastMessage?.senderId,
               text: "",

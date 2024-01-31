@@ -158,7 +158,7 @@ const UserBellModal = ({ id }) => {
             senderId: zeroUnseenCount?.lastMessage?.senderId,
             recieverId: zeroUnseenCount?.lastMessage?.recieverId,
             text: zeroUnseenCount?.lastMessage?.text,
-            image_url: zeroUnseenCount?.lastMessage?.image_url,
+            imageUrl: zeroUnseenCount?.lastMessage?.imageUrl,
           },
           roomId: zeroUnseenCount?.roomId,
           unseenMessageCount: 0,
@@ -234,7 +234,7 @@ const UserBellModal = ({ id }) => {
                         <p className="cheftext">{`${
                           item?.lastMessage?.text
                             ? item?.lastMessage?.text
-                            : item?.lastMessage?.image_url
+                            : item?.lastMessage?.imageUrl
                             ? "sent a photo"
                             : " "
                         }`}</p>
