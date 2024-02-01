@@ -2693,3 +2693,7 @@ body {
   right: 30px;
   bottom: 30px;
 }
+
+.rating-review-outer .modalscroll {
+  height: 53vh !important;
+}

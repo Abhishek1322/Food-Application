@@ -77,7 +77,7 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
 
   return (
     <>
-      <div className="ProfilePageModal">
+      <div className="ProfilePageModal rating-review-outer">
         <div className="ratingReviews_ rating-review-data">
           <div className="ratingStars">
             <div className="flexBox">
