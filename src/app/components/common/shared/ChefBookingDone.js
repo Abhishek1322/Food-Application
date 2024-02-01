@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
-import { Progress } from "antd";
+import { Line } from "rc-progress";
 import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
 
@@ -82,11 +82,13 @@ const ChefBookingDone = ({ close, secondChefBook, orderId }) => {
               Okay
             </button>
           </div>
-          <Progress
-            className="cancelProgressBar"
-            showInfo={false}
+          <Line
+            className="cancelProgressBar mt-3"
             percent={barPercentage}
-            status="active"
+            strokeWidth={3}
+            trailWidth={3}
+            strokeColor="#E65C00"
+            trailColor="#F8D5BE"
           />
 
           <p className="progressheading">{countDown} Sec</p>

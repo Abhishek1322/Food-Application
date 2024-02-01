@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
-import { Progress } from "antd";
+import { Line } from "rc-progress";
 
 const OrderPlaceModal = (props) => {
   const { close, orderId } = props;
@@ -82,11 +82,13 @@ const OrderPlaceModal = (props) => {
               Okay
             </button>
           </div>
-          <Progress
-            className="cancelProgressBar"
-            showInfo={false}
+            <Line
+            className="cancelProgressBar mt-3"
             percent={barPercentage}
-            status="active"
+            strokeWidth={3}
+            trailWidth={3}
+            strokeColor="#E65C00"
+            trailColor="#F8D5BE"
           />
 
           <p className="progressheading">{countDown} Sec</p>

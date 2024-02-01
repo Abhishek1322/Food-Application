@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import ReactStars from "react-rating-stars-component";
 import moment from "moment";
-import { Progress } from "antd";
+import { Line } from "rc-progress";
 
 const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
   const [activeRating, setActiveRating] = useState("All");
@@ -119,10 +119,15 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                 </div>
               </div>
               <div className="rating-progress-barrr">
-                <Progress
+                <Line
                   className="ratingProgressBarNew"
-                  showInfo={false}
                   percent={ratingProgress?.fiveStar}
+                  strokeWidth={8}
+                  trailWidth={8}
+                  strokeColor={
+                    ratingProgress?.fiveStar === 0 ? "#FFE083" : "#FFC107"
+                  }
+                  trailColor="#FFE083"
                 />
               </div>
             </div>
@@ -152,10 +157,15 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                 </div>
               </div>
               <div className="rating-progress-barrr">
-                <Progress
+                <Line
                   className="ratingProgressBarNew"
-                  showInfo={false}
                   percent={ratingProgress?.fourStar}
+                  strokeWidth={8}
+                  trailWidth={8}
+                  strokeColor={
+                    ratingProgress?.fourStar === 0 ? "#FFE083" : "#FFC107"
+                  }
+                  trailColor="#FFE083"
                 />
               </div>
             </div>
@@ -180,10 +190,15 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                 </div>
               </div>
               <div className="rating-progress-barrr">
-                <Progress
+                <Line
                   className="ratingProgressBarNew"
-                  showInfo={false}
                   percent={ratingProgress?.threeStar}
+                  strokeWidth={8}
+                  trailWidth={8}
+                  strokeColor={
+                    ratingProgress?.threeStar === 0 ? "#FFE083" : "#FFC107"
+                  }
+                  trailColor="#FFE083"
                 />
               </div>
             </div>
@@ -203,10 +218,15 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                 </div>
               </div>
               <div className="rating-progress-barrr">
-                <Progress
+                <Line
                   className="ratingProgressBarNew"
-                  showInfo={false}
                   percent={ratingProgress?.twoStar}
+                  strokeWidth={8}
+                  trailWidth={8}
+                  strokeColor={
+                    ratingProgress?.twoStar === 0 ? "#FFE083" : "#FFC107"
+                  }
+                  trailColor="#FFE083"
                 />
               </div>
             </div>
@@ -221,10 +241,15 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                 </div>
               </div>
               <div className="rating-progress-barrr">
-                <Progress
+                <Line
                   className="ratingProgressBarNew"
-                  showInfo={false}
                   percent={ratingProgress?.oneStar}
+                  strokeWidth={8}
+                  trailWidth={8}
+                  strokeColor={
+                    ratingProgress?.oneStar === 0 ? "#FFE083" : "#FFC107"
+                  }
+                  trailColor="#FFE083"
                 />
               </div>
             </div>
@@ -304,11 +329,10 @@ const RatingReviewsModal = ({ allRating, setGetActiveRating }) => {
                         />
                       </div>
                       <div className="userreviews mt-2">
-                    <p className="cheftext ">{item?.review}</p>
-                  </div>
+                        <p className="cheftext ">{item?.review}</p>
+                      </div>
                     </div>
                   </div>
-                  
                 </>
               ))}
             </>
