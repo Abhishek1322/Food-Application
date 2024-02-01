@@ -8,8 +8,8 @@ const MainFooter = () => {
       <footer className="footer_sc">
         <div className="container pb-4">
           <div className="row">
-            <div className="col-lg-4">
-              <div className="footer_logo">
+            <div className="col-lg-4 col-md-6">
+              <div className="footer_logo ">
                 <img alt="company-logo" src={Images.Logo} />
                 <p className="primary pt-4">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
@@ -17,7 +17,7 @@ const MainFooter = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-6">
               <ul className="footer_nav">
                 <h5 className="footer_h pb-4">INFORMATION</h5>
                 <li className="navigation">
@@ -39,34 +39,23 @@ const MainFooter = () => {
             </div>
             <div className="col-lg-4">
               <h5 className="footer_h ">Download Our App </h5>
-              <div className="appButtons mt-2">
-                <button className="orngButtons me-3  ">
+              <div className="appButtons mt-3">
+                <a href="#" className="orngButtons me-3  ">
                   <img
                     className="me-3"
                     alt="apple-logo"
-                    src={Images.AppleIcon}
+                    src={Images.appStoreOrange}
                   />
-                  <div
-                    className="btnInner
-                    "
-                  >
-                    <span className="primary">Download on the</span>
-                    <br />
-                    <span className="secondary">App Store</span>
-                  </div>
-                </button>
-                <button className="orngButtons">
+                  
+                </a>
+                <a href="#" className="orngButtons">
                   <img
                     alt="playstoreIcon"
                     className="me-3"
-                    src={Images.PlayStoreIcon}
+                    src={Images.googleStore}
                   />
-                  <div className="btnInner">
-                    <span className="primary">Get it on</span>
-                    <br />
-                    <span className="secondary">Google Play</span>
-                  </div>
-                </button>
+                  
+                </a>
               </div>
             </div>
           </div>

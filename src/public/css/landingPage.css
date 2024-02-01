@@ -43,16 +43,29 @@
 /**Ends Header CSS**/
 /**Starts Banner Section CSS**/
 .banner {
-    background-image: url(../images/backgroundone.png);
+    background-image: url(../images/bannerBg.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     position: relative;
     padding-bottom: 80px;
+    background-size: 100% 19%;
 
 }
-
+.chef {
+    margin-left: -84px;
+}
+.foodImg1{
+    width: 100px;
+}
 .stroke {
     position: absolute;
+    z-index:-1;
+    width: 96%;
+    top:6px;
+}
+.lineImg {
+    width: 100%;
+    height: 320px;
 }
 
 .foodImg1 {
@@ -71,7 +84,7 @@
 .blackHeading {
     color: #2E3333;
     font-family: "Crimson Text";
-    font-size: 60px;
+    font-size: 58px;
     font-weight: 700;
     line-height: 68px;
 }
@@ -79,17 +92,14 @@
 .greyHeading {
     color: #979999;
     font-family: "Open Sans";
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 24px;
 }
 
 .orngButtons {
-    border: none;
-    background-color: #E65C00;
     color: #FFF;
     border-radius: 50px;
-    padding: 10px 30px;
     display: flex;
 }
 
@@ -108,21 +118,25 @@
     line-height: 15px;
 }
 
-.chef {
+/* .chef {
     height: 647px;
-
-}
+    margin-left:-175px;
+} */
 
 .appButtons {
     display: flex;
 }
 
-.foodImg2 {
+/* .foodImg2 {
     position: absolute;
     bottom: 15px;
     right: 0;
+} */
+.foodHalf {
+    position: absolute;
+    top: 14%;
+    right: 0%;
 }
-
 /**Ends Banner Section CSS**/
 /**Starts About Section CSS**/
 .about {
@@ -151,17 +165,22 @@
     font-weight: 700;
     line-height: 68px;
 }
-
-.about .orngButton {
+.primary {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2E3333;
+}
+ .orngButton {
     border: 1px solid #E05B01;
     border-radius: 50px;
     padding: 3px 17px 6px 17px;
+    background: #e05b0114;
 }
 
 .about .secondary {
     color: #979999;
     font-family: "Open Sans";
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
     line-height: 24px;
 }
@@ -210,9 +229,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: 40px;
-    color: #2E3333;
-    font-size: 24px;
-    font-weight: 700;
+    
 }
 
 /**Ends Why Choose Section CSS**/
@@ -231,9 +248,10 @@
 .videoSection .blackHeading {
     color: #2E3333;
     font-family: "Crimson Text";
-    font-size: 60px;
+    font-size: 63px;
     font-weight: 700;
     line-height: 68px;
+    /* padding-left: 17rem; */
 }
 
 .video {
@@ -242,7 +260,9 @@
 }
 
 .mainHeadings {
-    padding-left: 100px;
+ 
+    margin-top: 1rem;
+    padding-left: 16rem;
 }
 
 .videoSection .image2 {
@@ -258,7 +278,12 @@
     position: relative;
     padding: 50px 0;
 }
-
+.burgerSmall {
+    width: 300px;
+}
+.foodHalf {
+    width: 140px;
+}
 .differentButton .primary {
     border-radius: 50px;
     padding: 16px 25px 16px 5px;
@@ -353,6 +378,9 @@
 .mobile {
     text-align: center;
 }
+.playImage {
+    width: 200px;
+}
 
 /**Ends Download App CSS**/
 /**Start Footer Section CSS**/
@@ -397,6 +425,10 @@
 .appButtons .btnInner {
     text-align: left;
     line-height: 15px;
+}
+.comman_p {
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .appButtons .secondary {

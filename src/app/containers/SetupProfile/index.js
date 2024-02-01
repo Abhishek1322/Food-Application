@@ -508,7 +508,7 @@ const SetupProfile = () => {
                           pageone: (
                             <>
                               <div className="row">
-                                <h6 className="Headingsmall">
+                                <h6 className="mall">
                                   Add Personal Details
                                 </h6>
                                 <div className="col-lg-6">

@@ -37,6 +37,34 @@
     /* .main {
         width: calc(100% - 0px) !important;
     } */
+    .foodImg1 {
+        width: 64px;
+    }
+    .blackHeading {
+        font-size: 50px;
+    }
+    .greyHeading {
+        font-size: 14px;
+    }
+    .mainHeadings {
+        padding-left: 0rem;
+    }
+    .videoSection .blackHeading {
+        font-size: 51px;
+    }
+    .black {
+        font-size: 44px;
+        line-height: 51px;
+    }
+  .burgerSmall {
+        width: 300px;
+    }
+    .appButtons .primary {
+        font-size: 7px;
+    }
+    .appButtons .secondary {
+        font-size: 12px;
+    }
 
 }
 
@@ -125,9 +153,69 @@
     .Newbooking_ .profileDetail {
         grid-template-columns: 1fr 1fr 1fr ;
     }
+    .foodImg1 {
+        width: 100px;
+    }
+  
+    .foodHalf {
+        top: 16%;
+    }
+    .mainHeadings {
+        /* margin-top: 52px;
+        margin-bottom: 32px; */
+        margin: 52px 58px 52px 59px;
+    }
+    .videoSection .blackHeading {
+        font-size: 55px;
+        line-height: 51px;
+    }
+    .video {
+        text-align: center;
+    }
+    .videoSection .blackHeading {
+        font-size: 48px;
+    }
+    .orange {
+        font-size: 33px;
+    }
+    .black {
+        font-size: 33px;
+    }
+    .about .secondary {
+        font-size: 12px;
+    }
+    .burgerSmall {
+        width: 100px;
+    }
+    .differentButton .inner {
+        padding: 20px 11px;
+        font-size: 13px;
+    }
+    .banner {
+        background-size: 100% 28%;
+    }
+    .secondary {
+        font-size: 9px;
+    }
+    .pizzaImg {
+        top: -48px;
+        right: 0;
+    }
+    .custom {
+        background-size: 100%;
+    }
+    .whiteHeading {
+        font-size: 40px;
+    }
+    .playImage {
+        width: 130px;
+    }
 }
 
 @media (max-width:767px) {
+    .headings {
+        margin-top: 36px;
+    }
     .Chef {
         right: -7px;
         height: calc(100% - -99px);
@@ -299,7 +387,41 @@
     .Newbooking_ .profileDetail {
         grid-template-columns: 1fr 1fr ;
     }
-
+    .videoSection .image2 {
+        bottom: -161px;
+        right: 683px;
+    }
+    .banner {
+        background-size: 100% 17%;
+    }
+    .foodHalf {
+        top: 13%;
+    }
+    .image2 {
+        width: 110px;
+    }
+    .black {
+        font-size: 45px;
+        line-height: 55px;
+    }
+    .different_ {
+        text-align: center;
+    }
+    .differentButton {
+        text-align: center;
+    }
+    .custom .appButtons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+   .custom .whiteHeading {
+        font-size: 40px;
+        text-align: center;
+    }
+    .custom {
+        background-position: bottom;
+    }
 }
 
 @media (max-width:575px) {
@@ -349,6 +471,31 @@
     .Newbooking_ .profileDetail {
         grid-template-columns: 1fr ;
     }
+    .leftHalf {
+        display: none;
+    }
+    .headings {
+        margin-top: 48px;
+    }
+    .about {
+        position: relative;
+        padding-top: 7rem;
+        padding-bottom: 12rem;
+    }
+    .video {
+        padding-right: 12px;
+    }
+    .custom .whiteHeading {
+        font-size: 43px;
+        text-align: center;
+        line-height: 50px;
+    }
+   .mobileImage {
+        margin-bottom: 40px;
+    }
+    .appStore_ .appButtons.mt-2 {
+        margin-bottom: 15px;
+    }
 
 }
 
@@ -379,6 +526,87 @@
     }
 }
 
+@media (max-width:375px) {
+    .foodHalf {
+        width: 95px;
+        top: 15%;
+    }
+    .banner {
+        background-size: 100% 18%;
+    }
+    .burgerImg {
+        width: 138px;
+    }
+    .image2 {
+        width: 93px;
+    }
+    .blackHeading {
+        font-size: 39px;
+        line-height: 45px;
+    }
+    .greyHeading {
+        font-size: 12px;
+    }
+    .chef {
+         margin-left:0;
+    }
+   
+    .foodHalf {
+        top: 13%;
+    }
+    .banner {
+        background-size: 100% 16%;
+    }
+    .image1 {
+        display: none;
+    }
+    .videoSection .blackHeading {
+        font-size: 35px;
+    }
+    .greyHeading {
+        font-size: 12px;
+    }
+    .mainHeadings {
+        margin: 35px 12px 46px 18px;
+    }
+
+    .black {
+        font-size: 30px;
+    }
+    .orange {
+        font-size: 30px;
+    }
+
+    .differentButton .sub {
+        font-size: 9px;
+    }
+    .burgerSmall {
+        display: none;
+    }
+   .burgerSmall {
+        display: none;
+    }
+    .custom .whiteHeading {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .footer_logo {
+        margin-bottom: 27px;
+    }
+    .differentButton .inner {
+        padding: 13px 11px;
+    }
+    .differentButton .primary {
+        padding: 5px 24px 12px 5px;
+    }
+    .videoSection {
+        padding-top: 0px;
+        padding-bottom: 0px; 
+    }
+    .footer_ank {
+        font-size: 16px;
+    }
+}
 @media (min-width:325px) {
     .chefchatsection .chatnext {
         padding-top: 235px;
@@ -391,6 +619,7 @@
         margin-top: 10px;
     }
 }
+
 
 @media (min-width:325px) and (max-width:1800px) {
     .chatnext {
