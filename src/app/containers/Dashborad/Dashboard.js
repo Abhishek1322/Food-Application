@@ -9,21 +9,23 @@ const Dashboard = () => {
   return (
     <>
       {/* Banner Section Starts*/}
-      <section>
+      <section class="foodDetails">
         <div className="foodImg1">
-          <img alt="food-img" src={Images.PhotoRoom1} />
+          <img alt="food-img" src={Images.PhotoRoom1} className="img-fluid leftHalf" />
         </div>
         <div className="stroke">
-          <img alt="line-bg" src={Images.LineBg} />
+          <img  src={Images.LineBg} alt="line-bg" class="img-fluid lineImg"  />
         </div>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <div className="headings">
-                <h2 className="orangeHeading">Flavorful Delights</h2>
+                <h5 className="orangeHeading">Flavorful Delights</h5>
                 <h2 className="blackHeading">
                   Book a Chef and
-                  <br /> Order Your Culinary
+                  <br />
+                  Order Your Culinary
+                  
                   <br /> Experience Now!
                 </h2>
                 <p className="greyHeading mt-2">
@@ -35,45 +37,36 @@ const Dashboard = () => {
                   amet vestibulum laoreet.
                 </p>
                 <div className="appButtons mt-2">
-                  <button className="orngButtons me-3  ">
+                  <a href="#" className="orngButtons me-3  ">
                     <img
-                      className="me-3"
+                      className="me-2"
                       alt="apple-icon"
-                      src={Images.AppleIcon}
+                      src={Images.appStoreOrange}
                     />
-                    <div className="btnInner">
-                      <span className="primary">Download on the</span>
-                      <br />
-                      <span className="secondary">App Store</span>
-                    </div>
-                  </button>
-                  <button className="orngButtons">
                     <img
-                      className="me-3"
+                      className="me-2 "
                       alt="play-store-icon"
-                      src={Images.PlayStoreIcon}
+                      src={Images.googleStore}
                     />
-                    <div className="btnInner">
-                      <span className="primary">Get it on</span>
-                      <br />
-                      <span className="secondary">Google Play</span>
-                    </div>
-                  </button>
+                  </a>
+                  
                 </div>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
+              <div class="rightImg">
               <img
-                className="chef"
+                className="img-fluid chef"
                 alt="chef-image"
                 src={Images.chefImageNew}
               />
+              </div>
             </div>
           </div>
         </div>
-        <div className="foodImg2">
-          <img alt="plate-food" src={Images.PhotoRoom2} />
-        </div>
+        <div className="foodImg2 position:relative">
+              <img src={Images.PhotoRoom2}  alt="plate-food" className="Img-fluid foodHalf" />
+              </div>
       </section>
       {/*Banner Section Ends*/}
 
@@ -84,25 +77,25 @@ const Dashboard = () => {
         </div>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6">
-              <img alt="about-img" src={Images.aboutImg} />
+            <div className="col-lg-6 col-md-6">
+              <img className="img-fluid aboutImage" alt="about-img" src={Images.aboutImg} />
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <h2 className="orange">
                 About <span className="black">ServeItLocal</span>
               </h2>
               <p className="secondary">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
                 sed hendrerit
-                <br /> justo, pretium auctor est. Duis finibus, diam sit amet
+                 justo, pretium auctor est. Duis finibus, diam sit amet
                 vestibulum laoreet,
-                <br /> velit orci congue turpis, ac ultrices justo turpis
+                 velit orci congue turpis, ac ultrices justo turpis
                 placerat turpis. Pellentesque
-                <br /> fermentum id sem a gravida. Pellentesque maximus felis
-                porttitor purus <br />
+                fermentum id sem a gravida. Pellentesque maximus felis
+                porttitor purus
                 semper porttitor. Proin porttitor enim nisl, a pretium ex
                 gravida nec.
-                <br /> Suspendisse viverra nisi nec urna fermentum euismod.{" "}
+                 Suspendisse viverra nisi nec urna fermentum euismod.{" "}
               </p>{" "}
               <button className="orngButton mt-3">
                 <sapn className="sub me-2">Read More</sapn>
@@ -115,7 +108,7 @@ const Dashboard = () => {
           <img className="image2" alt="pizza-one" src={Images.pizzaOne} />
         </div>
         <div className="image3">
-          <img alt="burger-img" src={Images.burgerOne} />
+          <img className="burgerImg" alt="burger-img" src={Images.burgerOne} />
         </div>
       </section>
       {/*Ends About Section*/}
@@ -132,22 +125,22 @@ const Dashboard = () => {
             </p>
           </div>
           <div className="row mt-4">
-            <div className="col-lg-4">
+            <div className="col-lg-4 ">
               <div className="choose">
-                <img alt="chef-logo" src={Images.chefGreatLogo} />
-                <h2 className="primary mt-4 pb-2">You Can Book chef</h2>
+                <img alt="chef-logo" src={Images.chefGreatLogo} className="img-fluid" />
+                <h2 className="primary mt-4 pb-4">You Can Book chef</h2>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 ">
               <div className="choose">
-                <img alt="food-order-logo" src={Images.orderFood} />
-                <h2 className="primary mt-4 pb-2">You Can Order Food</h2>
+                <img alt="food-order-logo" src={Images.orderFood} className="img-fluid" />
+                <h2 className="primary mt-4 pb-4">You Can Order Food</h2>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 ">
               <div className="choose">
-                <img alt="help-support-logo" src={Images.helpSupport} />
-                <h2 className="primary mt-4 pb-2">Easy Help Support</h2>
+                <img alt="help-support-logo" className="img-fluid" src={Images.helpSupport} />
+                <h2 className="primary mt-4 pb-4">Easy Help Support</h2>
               </div>
             </div>
           </div>
@@ -162,7 +155,7 @@ const Dashboard = () => {
         </div>
         <div className="container-fluid">
           <div className="row align-items-center">
-            <div className="col-lg-4">
+            <div className="col-lg-5 col-md-6">
               <div className="mainHeadings">
                 <h2 className="blackHeading">
                   Lorem ipsum dolor sit amet ServeItLocal{" "}
@@ -175,9 +168,9 @@ const Dashboard = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-8 pe-0">
+            <div className="col-lg-7 col-md-6 pe-0">
               <div className="video">
-                <img alt="video-img" src={Images.videoimg} />
+                <img class="img-fluid" src={Images.videoimg}   alt="video-img"/>
               </div>
             </div>
           </div>
@@ -190,12 +183,13 @@ const Dashboard = () => {
       <section className="whatDifferent ">
         <div className="container-fluid">
           <div className="row align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <div className="text-center">
-                <img alt="chef-woman" src={Images.chefWoman} />
+                <img alt="chef-woman" src={Images.chefWoman} class="img-fluid chefImages" />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
+              <div class="different_">
               <h2 className="black">
                 What Different to
                 <br /> ServeItLocal form
@@ -207,7 +201,7 @@ const Dashboard = () => {
                 diam sit
                 <br />
                 amet vestibulum laoreet, velit orci congue turpis,.
-              </p>
+              </p></div>
               <div className="differentButton">
                 <button className="primary me-3 mt-3">
                   <span className="inner me-3">2k+</span>
@@ -222,7 +216,7 @@ const Dashboard = () => {
           </div>
         </div>
         <img alt="food-bg" className="image2" src={Images.foodBgFour} />
-        <img alt="burger-img" className="image3" src={Images.burgerTwo} />
+        <img alt="burger-img" className="image3 burgerSmall " src={Images.burgerTwo} />
       </section>
       {/*Ends Different Section*/}
 
@@ -232,47 +226,25 @@ const Dashboard = () => {
           <div className="custom">
             <div className="pizzaImg ">
               {" "}
-              <img alt="pizza-img" src={Images.pizza} />
+              <img alt="pizza-img" className="pizzaImage" src={Images.pizza} />
             </div>
             <div className="row align-items-center">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-6">
                 <div className="mobile">
-                  <img alt="mobile-logo" src={Images.mobile} />
+                  <img alt="mobile-logo" src={Images.mobile} className="img-fluid mobileImage" />
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-6">
+                <div className="appStore_">
                 <h2 className="whiteHeading">
                   Download
                   <br /> Our Mobile App
                 </h2>
                 <div className="appButtons mt-2">
-                  <button className="blackButtons me-3 ">
-                    <img
-                      className="me-3"
-                      alt="apple-icon"
-                      src={Images.AppleIcon}
-                    />
-                    <div
-                      className="btnInner
-                     "
-                    >
-                      <span className="primary">Download on the</span>
-                      <br />
-                      <span className="secondary">App Store</span>
-                    </div>
-                  </button>
-                  <button className="blackButtons">
-                    <img
-                      className="me-3"
-                      alt="play-store"
-                      src={Images.PlayStoreIcon}
-                    />
-                    <div className="btnInner">
-                      <span className="primary">Get it on</span>
-                      <br />
-                      <span className="secondary">Google Play</span>
-                    </div>
-                  </button>
+                   <img alt="mobile-logo" src={Images.playStore} className="img-fluid playImage me-1  " />
+                   <img alt="mobile-logo" src={Images.appStore} className="img-fluid playImage me-1 " />
+                 
+                </div>
                 </div>
               </div>
             </div>

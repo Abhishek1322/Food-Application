@@ -131,7 +131,7 @@ import PhotoRoom2 from "../public/images/PhotoRoom2.png";
 import LineBg from "../public/images/line-bg.png";
 import AppleIcon from "../public/images/apple-icon.png";
 import PlayStoreIcon from "../public/images/play-store-icon.png";
-import chefImageNew from "../public/images/chef-img-new.png";
+// import chefImageNew from "../public/images/chef-img-new.png";
 import foodBgOne from "../public/images/foodbgone.svg";
 import foodBgThree from "../public/images/foodbgthree.png";
 import foodBgTwo from "../public/images/food-bg-two.svg";
@@ -149,8 +149,18 @@ import mobile from "../public/images/mobile.png";
 import rightArrowBlack from "../public/images/rightArrowBlack.png";
 import orderFood from "../public/images/order-food.svg";
 import helpSupport from "../public/images/help-support.svg";
+import playStore from "../public/images/playStore.svg";
+import appStore from "../public/images/appStore.svg";
+import appStoreOrange from "../public/images/appStoreOrange.svg";
+import googleStore from "../public/images/googleStore.svg";
+import chefImageNew from "../public/images/chefImageNew.png";
 
 export {
+  chefImageNew,
+  appStoreOrange,
+  googleStore,
+  playStore,
+  appStore,
   Logo,
   Chef,
   logFoodone,
@@ -284,7 +294,7 @@ export {
   LineBg,
   AppleIcon,
   PlayStoreIcon,
-  chefImageNew,
+  // chefImageNew,
   foodBgOne,
   aboutImg,
   rightUpArrow,
