@@ -303,6 +303,19 @@
 }
 
 @media (max-width:767px) {
+    .mobileImage {
+width: 201px;
+    }
+    .downloadApp {
+        background-size: 100% 98%;
+    }
+    .pizzaImg {
+        top: -2px;
+        right: 0;
+    }
+    .pizzaImage {
+    width:166px;
+    }
     .headings {
         margin-top: 36px;
     }
