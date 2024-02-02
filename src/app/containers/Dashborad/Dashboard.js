@@ -39,12 +39,12 @@ const Dashboard = () => {
                 <div className="appButtons mt-2">
                   <a href="#" className="orngButtons me-3  ">
                     <img
-                      className="me-2"
+                      className="appImages  me-2 "
                       alt="apple-icon"
                       src={Images.appStoreOrange}
                     />
                     <img
-                      className="me-2 "
+                      className="appImages  me-2 "
                       alt="play-store-icon"
                       src={Images.googleStore}
                     />

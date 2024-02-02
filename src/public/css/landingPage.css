@@ -394,11 +394,11 @@
     font-size: 16px;
     font-weight: 400;
 }
-
 .footer_h {
     color: #fff;
+    font-size: 18px;
+    font-weight: 500;
 }
-
 .navigation {
     list-style: none;
     padding: 8px 0;
@@ -430,7 +430,9 @@
     font-size: 14px;
     font-weight: 400;
 }
-
+.appImages{
+    width: 150px;
+}
 .appButtons .secondary {
     font-size: 14px;
     font-weight: 600;

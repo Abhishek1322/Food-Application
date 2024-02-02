@@ -37,8 +37,27 @@
     /* .main {
         width: calc(100% - 0px) !important;
     } */
+    .videoSection .image2 {
+        bottom: -73px;
+        /* right: 752px; */
+        z-index: -1;
+    }
+    .pizzaImg {
+        right: -19px;
+    }
+    .about {
+        padding-top: 168px;
+        padding-bottom: 70px;
+    }
+    .image1 {
+        width: 136px;
+    }
+    .about .image1 {
+        right: 0;
+        top: 86px;
+    }
     .foodImg1 {
-        width: 64px;
+        width: 46px;
     }
     .blackHeading {
         font-size: 50px;
@@ -56,14 +75,17 @@
         font-size: 44px;
         line-height: 51px;
     }
-  .burgerSmall {
-        width: 300px;
+    .whatDifferent .burgerSmall {
+        width: 130px;
     }
     .appButtons .primary {
         font-size: 7px;
     }
     .appButtons .secondary {
         font-size: 12px;
+    }
+    .whatDifferent .image2 {
+        width: 165px;
     }
 
 }
@@ -496,6 +518,35 @@
     .appStore_ .appButtons.mt-2 {
         margin-bottom: 15px;
     }
+    .whatDifferent .image2 {
+      
+        bottom: 1px;
+    }
+    .about .image1 {
+        top: 0;
+    }
+    .pizzaImage {
+        width: 150px;
+    }
+    .pizzaImage {
+        width: 120px;
+    }
+    .pizzaImg {
+        top: -16px;
+       
+    }
+    .burgerSmall {
+        width: 65px;
+    }
+    .chef {
+     margin-left:0; 
+    }
+    .foodHalf {
+        width: 60px;
+    }
+    .foodHalf {
+        top: 15%;
+    }
 
 }
 
@@ -541,7 +592,7 @@
         width: 93px;
     }
     .blackHeading {
-        font-size: 39px;
+        font-size: 38px;
         line-height: 45px;
     }
     .greyHeading {
@@ -605,6 +656,13 @@
     }
     .footer_ank {
         font-size: 16px;
+    }
+    .pizzaImg {
+        top: -12px;
+        right: 1px;
+    }
+    .pizzaImage {
+        width: 100px;
     }
 }
 @media (min-width:325px) {

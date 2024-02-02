@@ -42,7 +42,7 @@ const MainFooter = () => {
               <div className="appButtons mt-3">
                 <a href="#" className="orngButtons me-3  ">
                   <img
-                    className="me-3"
+                    className="appImages me-3"
                     alt="apple-logo"
                     src={Images.appStoreOrange}
                   />
@@ -51,7 +51,7 @@ const MainFooter = () => {
                 <a href="#" className="orngButtons">
                   <img
                     alt="playstoreIcon"
-                    className="me-3"
+                    className="appImages me-3"
                     src={Images.googleStore}
                   />
                   
