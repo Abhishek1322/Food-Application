@@ -101,6 +101,11 @@
 }
 
 @media (max-width:991px) {
+    .videoSection .image2 {
+        bottom: 49px;
+        width: 70px;
+        left: 49%;
+    }
     .greyHeading {
         font-size: 11px;
     }
@@ -284,10 +289,10 @@
     .main .mainLayout{
        width: calc(100% - 3px); 
     }
-    .videoSection .image2 {
+    /* .videoSection .image2 {
         bottom: -108px;
         left: 0;
-    }
+    } */
     .footer_sc {
         padding-top: 40px;
     }
@@ -473,8 +478,8 @@
         grid-template-columns: 1fr 1fr ;
     }
     .videoSection .image2 {
-        bottom: -161px;
-        right: 683px;
+        bottom: 49px;
+        left: 2%;
     }
     .banner {
         background-size: 100% 17%;
