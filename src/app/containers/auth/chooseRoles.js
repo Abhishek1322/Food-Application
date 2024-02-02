@@ -65,7 +65,7 @@ const ChooseRoles = () => {
             </div>
           </div>
           <div className="chooseroleBox">
-            <div className={role === "user" ? "roleBox active" : "roleBox"}>
+            <div className={role === "user" ? "roleBox active" : "roleBox mb-3"}>
               <figure>
                 <img
                   src={Images.RoleUser}
@@ -83,7 +83,7 @@ const ChooseRoles = () => {
                 />
               </figure>
             </div>
-            <div className={role === "chef" ? "roleBox active" : "roleBox"}>
+            <div className={role === "chef" ? "roleBox active" : "roleBox mb-3" }>
               <figure>
                 <img
                   src={Images.RoleChef}

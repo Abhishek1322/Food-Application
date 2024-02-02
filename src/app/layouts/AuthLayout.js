@@ -15,7 +15,7 @@ const AuthLayout = () => {
       ) : isAuthenticated && authData?.userInfo?.role === "user" ? (
         <Navigate to="/home-user" />
       ) : (
-        <main className="main" id="main">
+        <main className="main commnLayout" id="main">
           <Outlet />
         </main>
       )}

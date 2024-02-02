@@ -151,9 +151,9 @@ li {
 }
 
 /* Header Section Css Start */
-.main {
+/* .main {
   width: calc(100% - 100px);
-}
+} */
 
 .headersection {
   display: flex;

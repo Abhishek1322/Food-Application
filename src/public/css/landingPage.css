@@ -274,9 +274,13 @@
 
 /**Ends Video Section CSS**/
 /**Starts What Different Section CSS**/
-.whatDifferent {
+/* .whatDifferent {
     position: relative;
     padding: 50px 0;
+} */
+.whatDifferent {
+    position: relative;
+    padding: 70px 0 142px 0px;
 }
 .burgerSmall {
     width: 300px;
