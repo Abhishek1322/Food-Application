@@ -91,6 +91,29 @@
 }
 
 @media (max-width:991px) {
+    .logleft:before {
+        left: 84%;
+        top: 9%;
+    }
+    .foodBox .logFood:first-child { 
+        height: 120px;
+        width: 120px;
+    }
+    .foodBox .logFood:nth-child(2) {
+        height: 120px;
+        width: 120px;
+        left:115px;
+    }
+    .foodBox .logFood:nth-child(3) {
+        height: 120px;
+        width: 120px;
+        left:226px;
+    }
+    .foodBox .logFood:nth-child(4) {
+        height: 120px;
+        width: 120px;
+        left:343px;
+    }
     .logRight {
         position: relative;
     }
@@ -231,6 +254,12 @@
     }
     .playImage {
         width: 130px;
+    }
+    /* .logleft:before {
+         left:0; 
+    } */
+    .main .mainLayout{
+       width: calc(100% - 3px); 
     }
 }
 
@@ -444,6 +473,9 @@
     .custom {
         background-position: bottom;
     }
+    .forgotIcon:before {
+        display:none;
+    }
 }
 
 @media (max-width:575px) {
@@ -546,6 +578,9 @@
     }
     .foodHalf {
         top: 15%;
+    }
+    .chooseroleBox .roleHeading {
+        font-size: 12px;
     }
 
 }
@@ -664,6 +699,19 @@
     .pizzaImage {
         width: 100px;
     }
+    .roleBox {
+        margin: 0 34px;
+    }
+    .chooseroleBox {
+        flex-wrap: wrap;
+    }
+    .Login .smallSubheading {
+        font-size: 9px;
+    }
+    .chooseroleBox .roleHeading {
+        font-size: 12px; 
+    }
+
 }
 @media (min-width:325px) {
     .chefchatsection .chatnext {

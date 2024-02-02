@@ -78,8 +78,8 @@ const EnterOtp = (props) => {
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="logleft forgotIcon">
+            <div className="col-lg-6 col-md-6 pe-0">
+              <div className="logleft forgotIcon Enterlock">
                 <figure>
                   <img
                     src={Images.Logo}
@@ -114,7 +114,7 @@ const EnterOtp = (props) => {
                 </figure>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <div className="logRight mt-5">
                 <div className="toggleButtonMain">
                   <div className="buttonBox">

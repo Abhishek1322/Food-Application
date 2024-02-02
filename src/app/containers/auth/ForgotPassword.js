@@ -60,8 +60,8 @@ const ForgotPassword = () => {
       {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
+          <div className="row align-items-center pe-0">
+            <div className="col-lg-6 col-md-6">
               <div className="logleft forgotIcon">
                 <figure>
                   <img
@@ -97,7 +97,7 @@ const ForgotPassword = () => {
                 </figure>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <div className="logRight mt-5">
                 <div className="toggleButtonMain">
                   <div className="buttonBox">

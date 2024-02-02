@@ -154,8 +154,12 @@ import appStore from "../public/images/appStore.svg";
 import appStoreOrange from "../public/images/appStoreOrange.svg";
 import googleStore from "../public/images/googleStore.svg";
 import chefImageNew from "../public/images/chefImageNew.png";
+import  recoverLock from "../public/images/recoverLock.svg";
+import  lockImg from "../public/images/lockImg.svg";
 
 export {
+  lockImg,
+  recoverLock,
   chefImageNew,
   appStoreOrange,
   googleStore,

@@ -124,7 +124,7 @@ const CreateAccount = () => {
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <div className="logleft createAccount">
                 <figure>
                  <Link to="/">
@@ -162,7 +162,7 @@ const CreateAccount = () => {
                 </figure>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-6">
               <div className="logRight userRightimg mt-5">
                 <div className="flexBox toggleButtonMain">
                   <h3 className="smallSubheading">
@@ -190,7 +190,7 @@ const CreateAccount = () => {
 
                   <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="topInputfields">
-                      <div className="container p-0">
+                      {/* <div className="container p-0"> */}
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="input-container mt-5">
@@ -216,7 +216,7 @@ const CreateAccount = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      {/* </div>t */}
                     </div>
 
                     <div className="row">
