@@ -34,6 +34,9 @@
 }
 
 @media (max-width: 1200px) {
+    .setButtons{
+        margin-bottom: 13px;
+    }
     /* .main {
         width: calc(100% - 0px) !important;
     } */
@@ -101,6 +104,16 @@
 }
 
 @media (max-width:991px) {
+    .setButtons{
+        margin-bottom: 13px;
+    }
+    .detailEnd {
+        text-align: center;
+        margin-top: 12px;
+    }
+    .profileSet {
+        margin-top: 27rem ;
+    }
     .videoSection .image2 {
         bottom: 49px;
         width: 70px;
@@ -300,11 +313,28 @@
         font-size: 44px;
         line-height: 39px;
     }
+    .availability_Box .innerBoxText {
+        font-size: 10px;
+        padding: 23px 6px;
+    }
 }
 
 @media (max-width:767px) {
+    .DeleteIcon {
+        top: 8px;
+        left: 89px;
+    }
+    .myavailability {
+        display: block;
+    }
+    .setButtons {
+        margin-bottom: 30px;
+    }
+    .detailEnd {
+        text-align: center;
+    }
     .mobileImage {
-width: 201px;
+      width: 201px;
     }
     .downloadApp {
         background-size: 100% 98%;
@@ -528,9 +558,15 @@ width: 201px;
     .forgotIcon:before {
         display:none;
     }
+    .profileSet {
+        margin-top: 30rem;
+    }
 }
 
 @media (max-width:575px) {
+    .detailEnd {
+        text-align: center;
+    }
     .logForm {
         width: 100%;
     }
@@ -670,10 +706,24 @@ width: 201px;
         font-size: 21px;
         line-height: 21px;
     }
+    .profileSet {
+        margin-top: 30rem;
+    }
+    .Chef {
+        bottom: -166px;
+    }
 
 }
 
 @media (max-width:375px) {
+    .DeleteIcon {
+        top: 7px;
+        left: 92px;
+    }
+    .detailEnd {
+        text-align: center;
+        margin-top: 12px;
+    }
     .foodHalf {
         width: 95px;
         top: 15%;
@@ -777,6 +827,9 @@ width: 201px;
     }
     .footer_sc {
         padding-top: 30px;
+    }
+    .Chef {
+        bottom: -144px;
     }
 }
 @media (max-width:360px){

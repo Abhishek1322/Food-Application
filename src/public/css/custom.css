@@ -252,9 +252,9 @@ input:-webkit-autofill:active {
 }
 
 /*---- End Common Css ----*/
-.mainBox {
+/* .mainBox {
   display: flex;
-}
+} */
 
 /* Start setup profile page */
 .logoMain {
@@ -288,7 +288,13 @@ input:-webkit-autofill:active {
   color: #2e3333;
   font-size: 14px;
   font-weight: 400;
-  padding: 10px;
+  padding: 7px;
+}
+.profileSet{
+  margin-top:10px;
+} 
+.detailEnd {
+  text-align: end;
 }
 
 .PersonalDetails {

@@ -225,7 +225,7 @@ li {
 .chefCommonHeader {
   color: #2e3333;
   font-family: Crimson Text;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
   margin: 0;
 }
@@ -233,8 +233,8 @@ li {
 .cart {
   position: relative;
   background: #e65c00;
-  width: 70px;
-  height: 70px;
+  width: 67px;
+  height: 67px;
   border-radius: 20px;
   text-align: center;
   cursor: pointer;
@@ -1129,13 +1129,12 @@ body {
   display: flex;
   align-items: center;
   border-radius: 12px;
-  padding: 10px 22px;
+  padding: 9px 22px;
   max-width: 132px;
-  height: 61px;
+  height: 56px;
   width: 100%;
   margin-left: auto;
 }
-
 .chatDates {
   color: #e65c00;
   font-size: 14px;

@@ -474,6 +474,7 @@ const SetupProfile = () => {
                   className="img-fluid logoMain"
                 />
               </figure>
+              <div class="profileSet">
               <div className="row justify-content-center">
                 <div className="col-lg-5">
                   <div className="login_details">
@@ -481,25 +482,33 @@ const SetupProfile = () => {
                     <div className="stepProgress mt-4">
                       <div className="progressBox">
                         <div className="row">
-                          <div className="col-lg-6">
+                          <div className="col-lg-6 col-md-12">
                             <MultiStepProgressBar page={page} />
                           </div>
-                          <div className="col-lg-6 text-end">
+                          <div className="col-lg-6 col-md-12">
+                          
                             {page === "pageone" ? (
-                              <button className="PersonalDetails" type="button">
+                              <div className="detailEnd">
+                              <button className="PersonalDetails " type="button">
                                 Personal Details
                               </button>
+                              </div>
                             ) : page === "pagetwo" ? (
+                              <div className="detailEnd">
                               <button className="PersonalDetails" type="button">
                                 Availability
                               </button>
+                              </div>
                             ) : page === "pagethree" ? (
+                              <div className="detailEnd">
                               <button className="PersonalDetails" type="button">
                                 Documents
                               </button>
+                              </div>
                             ) : (
                               ""
                             )}
+                           
                           </div>
                         </div>
                       </div>
@@ -719,7 +728,7 @@ const SetupProfile = () => {
                                   </h6>
                                   <button
                                     type="button"
-                                    className="addButton"
+                                    className="addButton "
                                     onClick={() => {
                                       setModalDetail({
                                         show: true,
@@ -744,11 +753,11 @@ const SetupProfile = () => {
                                 </div>
                               </div>
                               <button
-                                className="submit_btn w-100 mt-5"
+                                className="submit_btn w-100 mt-4 mb-5"
                                 onClick={(e) => handleSubmit(e, "1")}
                                 type="submit"
                               >
-                                <span className="smallBtn">Next</span>
+                                <span className="smallBtn ">Next</span>
                               </button>
                             </>
                           ),
@@ -786,7 +795,7 @@ const SetupProfile = () => {
                                   {showTimeSlot && (
                                     <>
                                       <div className="row">
-                                        <div className="col-lg-5">
+                                        <div className="col-lg-5 col-md-4">
                                           <div className="input-container mt-2">
                                             <div className="myavailability mt-4">
                                               <div className="availability_Box ">
@@ -815,10 +824,10 @@ const SetupProfile = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div className="col-lg-5">
+                                        <div className="col-lg-5 col-md-4">
                                           <div className="input-container mt-2">
                                             <div className="myavailability mt-4 ">
-                                              <div className="availability_Box  ms-3">
+                                              <div className="availability_Box">
                                                 <p className="innerBoxText">
                                                   To
                                                 </p>
@@ -844,8 +853,8 @@ const SetupProfile = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div className="col-lg-2 text-center">
-                                          <div className="deleteBox">
+                                        <div className="col-lg-2 col-md-4  text-center">
+                                          <div className="deleteBox ">
                                             <img
                                               onClick={() =>
                                                 handleCloseTimeSlot()
@@ -873,7 +882,7 @@ const SetupProfile = () => {
                                   )}
                                 </div>
                               </div>
-                              <div className="flexBox justify-content-center">
+                              <div className="setButtons flexBox justify-content-center">
                                 <button
                                   onClick={(e) => handleBack(e, "pageoneback")}
                                   className="submit_btn"
@@ -886,7 +895,7 @@ const SetupProfile = () => {
                                   onClick={(e) => handleSubmit(e, "2")}
                                   className="submit_btn"
                                 >
-                                  <span className="smallBtn">Continue</span>
+                                  <span className="smallBtn ">Continue</span>
                                 </button>
                               </div>
                             </>
@@ -984,6 +993,7 @@ const SetupProfile = () => {
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
