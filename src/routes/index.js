@@ -79,7 +79,6 @@ const Router = () => {
             path="/create-account/:role"
             element={<Containers.CreateAccount />}
           />
-
           <Route path="/setup-profile" element={<Containers.SetupProfile />} />
           <Route path="/request" element={<Containers.RequestPage />} />
 
