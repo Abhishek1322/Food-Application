@@ -449,7 +449,7 @@ body {
 .termAndCond {
   display: flex;
   flex-direction: column;
-  margin: 132px 98px 0 98px;
+  margin: 106px 98px 0 98px;
 }
 
 .termcond {
@@ -1087,6 +1087,7 @@ body {
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
   padding: 24px 30px;
 }
+
 
 .johnExplorer {
   color: #2e3333;
@@ -2695,4 +2696,10 @@ body {
 
 .rating-review-outer .modalscroll {
   height: 53vh !important;
+}
+.termcondDummy p {
+  font-size: 16px;
+  line-height: 34px;
+  color: #2E3333;
+  font-family: "Open Sans";
 }

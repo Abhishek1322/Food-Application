@@ -34,9 +34,11 @@ import RequestPage from "./Settings/RequestPage"
 import PageNotFound from "../components/errorPage/PageNotFound"
 import ChooseLocation from "./User/ChooseLocation"
 import Dashboard from "./Dashborad/Dashboard"
+import aboutUs from "./Settings/aboutUs"
 
 
 export {
+    aboutUs,
     Login,
     ChooseRoles,
     Verification,

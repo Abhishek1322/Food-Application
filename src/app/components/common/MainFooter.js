@@ -27,7 +27,7 @@ const MainFooter = () => {
                 </li>
                 <li className="navigation">
                   <Link className="footer_ank" to="/privacy-policy">
-                    Privacy Policy
+                    Privacy Policy 
                   </Link>
                 </li>
                 <li className="navigation">
@@ -40,9 +40,9 @@ const MainFooter = () => {
             <div className="col-lg-4">
               <h5 className="footer_h ">Download Our App </h5>
               <div className="appButtons mt-3">
-                <a href="#" className="orngButtons me-3  ">
+                <a href="#" className="orngButtons me-2  ">
                   <img
-                    className="appImages me-3"
+                    className="appImages me-1"
                     alt="apple-logo"
                     src={Images.appStoreOrange}
                   />
@@ -51,7 +51,7 @@ const MainFooter = () => {
                 <a href="#" className="orngButtons">
                   <img
                     alt="playstoreIcon"
-                    className="appImages me-3"
+                    className="appImages "
                     src={Images.googleStore}
                   />
                   
