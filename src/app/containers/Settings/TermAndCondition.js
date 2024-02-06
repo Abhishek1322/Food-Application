@@ -7,6 +7,7 @@ import { getHelperPages, onErrorStopLoad } from "../../../redux/slices/user";
 const TermAndCondition = () => {
   const dispatch = useDispatch();
   const [content, setContent] = useState([]);
+  const authToken = localStorage.getItem("authToken")
 
   //get privacy policy content
   useEffect(() => {
@@ -37,7 +38,7 @@ const TermAndCondition = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3">
-                <Link to="/setting">
+                <Link to={!authToken ? "/" : "/setting"}>
                   <img
                     src={Images.backArrowpassword}
                     alt="arrowImg"
@@ -49,10 +50,16 @@ const TermAndCondition = () => {
                 </h1>
               </div>
               <div className="termAndCond">
-                <div
-                  dangerouslySetInnerHTML={{ __html: content.content }}
-                  className="termcondDummy"
-                ></div>
+              {!content.active ? (
+                  <div className="inactive-content">
+                    <p>Admin Make This Content Is In-Active</p>
+                  </div>
+                ) : (
+                  <div
+                    dangerouslySetInnerHTML={{ __html: content.content }}
+                    className="termcondDummy"
+                  ></div>
+                )}
               </div>
             </div>
           </div>

@@ -21,9 +21,9 @@ const MainFooter = () => {
               <ul className="footer_nav">
                 <h5 className="footer_h pb-4">INFORMATION</h5>
                 <li className="navigation">
-                  <a className="footer_ank" href="#">
+                  <Link className="footer_ank" to="/about-us">
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="navigation">
                   <Link className="footer_ank" to="/privacy-policy">

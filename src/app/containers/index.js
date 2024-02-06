@@ -12,6 +12,7 @@ import Loading from "./Settings/Loading"
 import Loadingpage from "./Settings/LoadingPage"
 import AccountDeleted from "./Settings/AccountDeleted"
 import TermAndCondition from "./Settings/TermAndCondition"
+import AboutUs from "./Settings/AboutUs"
 import Contactus from "./Settings/ContactUs"
 import PrivacyPolicy from "./Settings/PrivacyPolicy"
 import SetupProfile from "./SetupProfile"
@@ -72,5 +73,6 @@ export {
     RequestPage,
     ChooseLocation,
     Dashboard,
-    PageNotFound
+    PageNotFound,
+    AboutUs
 }

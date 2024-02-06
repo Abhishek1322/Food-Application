@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getHelperPages, onErrorStopLoad } from "../../../redux/slices/user";
 
-const PrivacyPolicy = () => {
+const AboutUs = () => {
   const dispatch = useDispatch();
   const [content, setContent] = useState([]);
   const authToken = localStorage.getItem("authToken");
@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
   //get privacy policy content
   useEffect(() => {
     let params = {
-      slug: "privacy_policy",
+      slug: "about_us",
     };
     dispatch(
       getHelperPages({
@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
                   />
                 </Link>
                 <h1 className="settingMainHeading text-align-center ">
-                  {content.title}
+                  {content?.title}
                 </h1>
               </div>
               <div className="termAndCond">
@@ -69,4 +69,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default AboutUs;
