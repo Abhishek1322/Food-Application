@@ -1018,3 +1018,15 @@ input:-webkit-autofill:active {
 .user-chef-notification-modal{
   height: 74vh;
 }
+.inactive-content {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inactive-content p {
+  font-size: 25px;
+  color: #7b7777e8;
+  font-weight: 600;
+}
