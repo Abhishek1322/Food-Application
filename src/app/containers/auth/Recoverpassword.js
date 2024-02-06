@@ -52,9 +52,9 @@ const Recoverpassword = (props) => {
         cb(res) {
           if (res.status === 200) {
             if (res.data.data.role === "chef") {
-              navigate("/setup-profile");
+              navigate("/login");
             } else {
-              navigate("/home-user");
+              navigate("/login");
             }
           }
         },

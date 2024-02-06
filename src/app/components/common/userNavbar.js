@@ -16,6 +16,7 @@ import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 import {
   getLocationInfo,
   getCartNotificationCount,
+  getCurrentLocation,
 } from "../../../redux/slices/user";
 
 const User_Navbar = () => {
@@ -63,6 +64,12 @@ const User_Navbar = () => {
   function success(pos) {
     var crd = pos.coords;
     handleGetLocationInfo(crd.latitude, crd.longitude);
+    dispatch(
+      getCurrentLocation({
+        lat: crd.latitude,
+        lng: crd.longitude,
+      })
+    );
   }
 
   // call get location function
@@ -217,7 +224,7 @@ const User_Navbar = () => {
                           {userData?.userInfo?.firstName} !
                         </span>
                       </h1>
-                      {/* <Link to="choose-location">
+                      <Link to="choose-location">
                         <img
                           src={Images.HeaderLocation}
                           className="img-fluid"
@@ -232,7 +239,7 @@ const User_Navbar = () => {
                             choose your location from map
                           </span>
                         )}
-                      </Link> */}
+                      </Link>
                     </>
                   ) : pathname === "/user-chef-home" ? (
                     <h1 className="chefCommonHeader">Chefs</h1>

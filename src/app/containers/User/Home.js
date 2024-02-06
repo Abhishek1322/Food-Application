@@ -6,10 +6,14 @@ import { chefLists } from "../../../redux/slices/web";
 import ReactPaginate from "react-paginate";
 import FadeLoader from "react-spinners/FadeLoader";
 import { useWebSelector } from "../../../redux/selector/web";
+import { useUserSelector } from "../../../redux/selector/user";
+
 
 const HomeUser = () => {
   const dispatch = useDispatch();
   const webSelector = useWebSelector();
+  const userSelector = useUserSelector();
+  const { currentLocation } = userSelector;
   const [chefListData, setChefListData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
@@ -20,7 +24,7 @@ const HomeUser = () => {
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, [search, filterChefByRating]);
+  }, [search, filterChefByRating,currentLocation]);
 
   const getChefList = (page = currentPage) => {
     let params = {
@@ -28,6 +32,8 @@ const HomeUser = () => {
       limit: 12,
       address: search,
       rating: filterChefByRating,
+      lat: currentLocation?.lat,
+      long: currentLocation?.lng,
     };
 
     dispatch(
@@ -58,7 +64,7 @@ const HomeUser = () => {
 
   return (
     <>
-      {webSelector?.loading && isLoading && (
+      {webSelector?.loading && isLoading ? (
         <div className="good-loader">
           <FadeLoader
             color={"#E65C00"}
@@ -67,191 +73,196 @@ const HomeUser = () => {
             data-testid="loader"
           />
         </div>
-      )}
-      <div className="mainBoxOuter">
-        <h6 className="headingSub">Chefs Near You</h6>
-        <div className="cheffilter flexBox">
-          <div className="searchbar me-4">
-            <input
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search Chef near you..."
-              type="text"
-              className="searchtext"
-            />
-            <img
-              src={Images.searchbar}
-              className="searchbarImg"
-              alt="searchbar"
-            />
-          </div>
-          <div className="dropdown">
-            <span className="chefName">Filter By:</span>
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span className="filterheading">{filterChefByRating}</span>
-              <img
-                src={Images.RatingStar}
-                alt="starimg"
-                className="img-fluid ms-1 me-1"
+      ) : (
+        <div className="mainBoxOuter">
+          <h6 className="headingSub">Chefs Near You</h6>
+          <div className="cheffilter flexBox">
+            <div className="searchbar me-4">
+              <input
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search Chef near you..."
+                type="text"
+                className="searchtext"
               />
-              <span className="filterheading">Above Rating</span>
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <Link
-                  onClick={(e) => handleFilterChefByRating(e, "5")}
-                  className="dropdown-item"
-                  to="#"
-                >
-                  <span className="filterheading">5</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={(e) => handleFilterChefByRating(e, "4")}
-                  className="dropdown-item"
-                  to="#"
-                >
-                  <span className="filterheading">4</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Rating</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={(e) => handleFilterChefByRating(e, "3")}
-                  className="dropdown-item"
-                  to="#"
-                >
-                  <span className="filterheading">3</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={(e) => handleFilterChefByRating(e, "2")}
-                  className="dropdown-item"
-                  to="#"
-                >
-                  <span className="filterheading">2</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={(e) => handleFilterChefByRating(e, "1")}
-                  className="dropdown-item"
-                  to="#"
-                >
-                  <span className="filterheading">1</span>
-                  <img
-                    src={Images.RatingStar}
-                    alt="starimg"
-                    className="img-fluid ms-1 me-1"
-                  />
-                  <span className="filterheading">Above Rating</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="container-fluid">
-          <div className="row">
-            {chefListData && chefListData.length > 0 ? (
-              <>
-                {chefListData?.map((item, index) => (
-                  <div
-                    key={index}
-                    className="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"
+              <img
+                src={Images.searchbar}
+                className="searchbarImg"
+                alt="searchbar"
+              />
+            </div>
+            <div className="dropdown">
+              <span className="chefName">Filter By:</span>
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span className="filterheading">{filterChefByRating}</span>
+                <img
+                  src={Images.RatingStar}
+                  alt="starimg"
+                  className="img-fluid ms-1 me-1"
+                />
+                <span className="filterheading">Above Rating</span>
+              </button>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li>
+                  <Link
+                    onClick={(e) => handleFilterChefByRating(e, "5")}
+                    className="dropdown-item"
+                    to="#"
                   >
-                    <div className="outerBox text-center">
-                      <figure className="chefDetails mb-3">
-                        <Link to={`/chef-details?id=${item._id}`}>
-                          <img
-                            src={
-                              item.userInfo.profilePhoto
-                                ? item.userInfo.profilePhoto
-                                : Images.dummyProfile
-                            }
-                            alt="UserICon"
-                            className="img-fluid UserICon"
-                          />
-                        </Link>
-                      </figure>
-                      <h6 className="smallHeading">
-                        {item.userInfo.firstName} {item.userInfo.lastName}
-                      </h6>
-                      <button className="expBtn" type="button">
-                        {item.chefInfo.experience} Year Exp.
-                      </button>
-                      <div className="flexBox justify-content-between mt-3">
-                        <article className="ratingBox">
-                          <span className="coloredText">
-                            <i className="las la-star startIcon"></i>
-                            {item?.averageRating}
-                          </span>
-                        </article>
-                        <article>
-                          <span className="uploadText">
-                            {item?.reviewCount} reviews
-                          </span>
-                        </article>
+                    <span className="filterheading">5</span>
+                    <img
+                      src={Images.RatingStar}
+                      alt="starimg"
+                      className="img-fluid ms-1 me-1"
+                    />
+                    <span className="filterheading">Above Rating</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={(e) => handleFilterChefByRating(e, "4")}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <span className="filterheading">4</span>
+                    <img
+                      src={Images.RatingStar}
+                      alt="starimg"
+                      className="img-fluid ms-1 me-1"
+                    />
+                    <span className="filterheading">Rating</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={(e) => handleFilterChefByRating(e, "3")}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <span className="filterheading">3</span>
+                    <img
+                      src={Images.RatingStar}
+                      alt="starimg"
+                      className="img-fluid ms-1 me-1"
+                    />
+                    <span className="filterheading">Above Rating</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={(e) => handleFilterChefByRating(e, "2")}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <span className="filterheading">2</span>
+                    <img
+                      src={Images.RatingStar}
+                      alt="starimg"
+                      className="img-fluid ms-1 me-1"
+                    />
+                    <span className="filterheading">Above Rating</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={(e) => handleFilterChefByRating(e, "1")}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <span className="filterheading">1</span>
+                    <img
+                      src={Images.RatingStar}
+                      alt="starimg"
+                      className="img-fluid ms-1 me-1"
+                    />
+                    <span className="filterheading">Above Rating</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="container-fluid">
+            <div className="row">
+              {chefListData && chefListData.length > 0 ? (
+                <>
+                  {chefListData?.map((item, index) => (
+                    <div
+                      key={index}
+                      className="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"
+                    >
+                      <div className="outerBox text-center">
+                        <figure className="chefDetails mb-3">
+                          <Link to={`/chef-details?id=${item._id}`}>
+                            <img
+                              src={
+                                item.userInfo.profilePhoto
+                                  ? item.userInfo.profilePhoto
+                                  : Images.dummyProfile
+                              }
+                              alt="UserICon"
+                              className="img-fluid UserICon"
+                            />
+                          </Link>
+                        </figure>
+                        <h6 className="smallHeading">
+                          {item.userInfo.firstName} {item.userInfo.lastName}
+                        </h6>
+                        <button className="expBtn" type="button">
+                          {item.chefInfo.experience} Year Exp.
+                        </button>
+                        <div className="flexBox justify-content-between mt-3">
+                          <article className="ratingBox">
+                            <span className="coloredText">
+                              <i className="las la-star startIcon"></i>
+                              {item?.averageRating}
+                            </span>
+                          </article>
+                          <article>
+                            <span className="uploadText">
+                              {item?.reviewCount} reviews
+                            </span>
+                          </article>
+                        </div>
                       </div>
                     </div>
+                  ))}
+                </>
+              ) : (
+                <div className="noDataFoundImage">
+                  <div>
+                    <img
+                      className="w-100"
+                      alt="no data found"
+                      src={Images.nocheffound}
+                    />
+                    <p className="no-chef-found-near">No Chef Found Near You</p>
                   </div>
-                ))}
-              </>
-            ) : (
-              <div className="noDataFoundImage">
-                <div>
-                  <img
-                    className="w-100"
-                    alt="no data found"
-                    src={Images.nodataFound}
-                  />
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
+          {chefListData && chefListData.length > 0 && (
+            <ReactPaginate
+              previousLabel={"prev"}
+              nextLabel={"next"}
+              pageCount={pageCount}
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={3}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+            />
+          )}
         </div>
-        {chefListData && chefListData.length > 0 && (
-          <ReactPaginate
-            previousLabel={"prev"}
-            nextLabel={"next"}
-            pageCount={pageCount}
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={3}
-            onPageChange={handlePageChange}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-          />
-        )}
-      </div>
+      )}
     </>
   );
 };

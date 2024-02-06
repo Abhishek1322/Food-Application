@@ -189,13 +189,19 @@ function* getMenusLists(action) {
 function* chefLists(action) {
   let targetUtl = `${ApiPath.webApiPath.CHEF_LIST}?page=${action.payload.page}&limit=${action.payload.limit}&`;
   if (action.payload.address) {
-    targetUtl += `address=${action.payload.address}`;
+    targetUtl += `address=${action.payload.address}&`;
   }
   if (action.payload.search) {
-    targetUtl += `search=${action.payload.search}`;
+    targetUtl += `search=${action.payload.search}&`;
   }
   if (action.payload.rating) {
-    targetUtl += `rating=${action.payload.rating}`;
+    targetUtl += `rating=${action.payload.rating}&`;
+  }
+  if (action.payload.lat) {
+    targetUtl += `lat=${action.payload.lat}&`;
+  }
+  if (action.payload.long) {
+    targetUtl += `long=${action.payload.long}`;
   }
   try {
     const resp = yield call(

@@ -290,9 +290,11 @@ input:-webkit-autofill:active {
   font-weight: 400;
   padding: 7px;
 }
-.profileSet{
-  margin-top:10px;
-} 
+
+.profileSet {
+  margin-top: 10px;
+}
+
 .detailEnd {
   text-align: end;
 }
@@ -1005,19 +1007,23 @@ input:-webkit-autofill:active {
 #deleteMenu .add-menu-modal {
   height: 67vh;
   overflow-y: auto;
-  padding-right: 6px; 
+  padding-right: 6px;
 }
-.address-border-input{
+
+.address-border-input {
   padding: 15px 33px 15px 25px !important;
 }
+
 .order-inner-list {
   overflow-y: auto;
   height: 67vh;
   padding-right: 6px;
 }
-.user-chef-notification-modal{
+
+.user-chef-notification-modal {
   height: 74vh;
 }
+
 .inactive-content {
   height: 70vh;
   display: flex;
@@ -1028,5 +1034,13 @@ input:-webkit-autofill:active {
 .inactive-content p {
   font-size: 25px;
   color: #7b7777e8;
+  font-weight: 600;
+}
+
+.no-chef-found-near {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 23px;
+  font-family: 'Font Awesome 5 Free';
   font-weight: 600;
 }

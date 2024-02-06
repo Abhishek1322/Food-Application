@@ -2620,9 +2620,11 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   overflow-y: auto;
   padding-right: 6px;
 }
-.flex-dropdown{
+
+.flex-dropdown {
   cursor: pointer;
 }
+
 .orderplace-section-outer {
   text-align: center;
   height: 60vh;
@@ -2631,4 +2633,5 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   justify-content: end;
   flex-direction: column;
 }
+
 /* Abhishek Css end */
