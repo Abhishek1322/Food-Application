@@ -11,10 +11,10 @@ const MainFooter = () => {
             <div className="col-lg-4 col-md-6">
               <div className="footer_logo ">
                 <img alt="company-logo" src={Images.Logo} />
-                <p className="primary pt-4">
+                {/* <p className="primary pt-4">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
                   laoreet nisl nibh, nec convallis tortor condimentum vitae.{" "}
-                </p>
+                </p> */}
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
@@ -62,7 +62,7 @@ const MainFooter = () => {
         </div>
         <div className="copyright">
           <h5 className="comman_p text-center">
-            © copyright 2023. All rights reserved
+            © copyright 2024. All rights reserved
           </h5>
         </div>
       </footer>
