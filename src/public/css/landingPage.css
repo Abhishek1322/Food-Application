@@ -249,12 +249,11 @@
 }
 
 .videoSection .blackHeading {
-    color: #2E3333;
-    font-family: "Crimson Text";
-    font-size: 63px;
+    color: #2e3333;
+    font-family: Crimson Text;
+    font-size: 48px;
     font-weight: 700;
-    line-height: 68px;
-    /* padding-left: 17rem; */
+    line-height: 47px;
 }
 
 .video {
@@ -265,7 +264,7 @@
 .mainHeadings {
  
     margin-top: 1rem;
-    padding-left: 16rem;
+    padding-left: 14rem;
 }
 
 .videoSection .image2 {
@@ -329,9 +328,7 @@
 .different_ .greyHeading {
     padding: 0 154px 0 0;
 }
-.diffSec {
-    padding: 0 146px 0 0;
-}
+
 
 /**Ends What Different Section CSS**/
 /**Starts Download App CSS**/
