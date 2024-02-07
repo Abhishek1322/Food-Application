@@ -8,16 +8,16 @@ const MainFooter = () => {
       <footer className="footer_sc">
         <div className="container pb-4">
           <div className="row">
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-4">
               <div className="footer_logo ">
                 <img alt="company-logo" src={Images.Logo} />
-                <p className="primary pt-4">
+                {/* <p className="primary pt-4">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
                   laoreet nisl nibh, nec convallis tortor condimentum vitae.{" "}
-                </p>
+                </p> */}
               </div>
             </div>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-4">
               <ul className="footer_nav">
                 <h5 className="footer_h pb-4">INFORMATION</h5>
                 <li className="navigation">
@@ -37,7 +37,7 @@ const MainFooter = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-4">
               <h5 className="footer_h ">Download Our App </h5>
               <div className="appButtons mt-3">
                 <a href="#" className="orngButtons me-2  ">
@@ -62,7 +62,7 @@ const MainFooter = () => {
         </div>
         <div className="copyright">
           <h5 className="comman_p text-center">
-            © copyright 2023. All rights reserved
+            © copyright 2024. All rights reserved
           </h5>
         </div>
       </footer>

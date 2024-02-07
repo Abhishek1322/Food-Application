@@ -158,14 +158,14 @@ const Dashboard = () => {
       {/*Starts Video Section*/}
       <section className="videoSection">
         <div className="image1">
-          <img alt="food-bg" src={Images.foodBgTwo} />
+          <img alt="food-bg" class="foodImage" src={Images.foodBgTwo} />
         </div>
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-lg-5 col-md-6">
               <div className="mainHeadings">
                 <h2 className="blackHeading">
-                  Write up for Video:{" "}
+                "Embark on a Culinary Journey with ServeItLocal: Explore, Savor, Connect!" {" "}
                 </h2>
                 <p className="greyHeading">
                   Discover a world of flavors with ServeItLocal! Book a chef, explore diverse cuisines, and
@@ -193,7 +193,7 @@ const Dashboard = () => {
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
               <div className="text-center">
-                <img alt="chef-woman" src={Images.chefWoman} class="img-fluid chefImages" />
+                <img alt="chef-woman" src={Images.chefWoman} class=" chefImages img-fluid" />
               </div>
             </div>
 

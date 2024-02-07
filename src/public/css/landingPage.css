@@ -198,6 +198,7 @@
 .about .image2 {
     position: absolute;
     bottom: 15px;
+    
 }
 
 .about .image3 {
@@ -251,10 +252,13 @@
 .videoSection .blackHeading {
     color: #2e3333;
     font-family: Crimson Text;
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 700;
     line-height: 47px;
 }
+/* .chefImages {
+    width: 100%;
+} */
 
 .video {
     text-align: right;
@@ -262,9 +266,8 @@
 }
 
 .mainHeadings {
- 
     margin-top: 1rem;
-    padding-left: 14rem;
+    padding-left: 9rem;
 }
 
 .videoSection .image2 {
