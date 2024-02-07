@@ -198,6 +198,7 @@
 .about .image2 {
     position: absolute;
     bottom: 15px;
+    
 }
 
 .about .image3 {
@@ -255,6 +256,9 @@
     font-weight: 700;
     line-height: 47px;
 }
+/* .chefImages {
+    width: 100%;
+} */
 
 .video {
     text-align: right;

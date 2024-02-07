@@ -38,7 +38,12 @@
         left: 42%;
         width: 70px;
       }
-    
+      .different_ .greyHeading {
+        padding: 0 12px 0 0;
+    }
+  .foodImage {
+        width: 100px;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -79,7 +84,7 @@
         padding-left: 0rem;
     }
     .videoSection .blackHeading {
-        font-size: 51px;
+        font-size: 40px;
     }
     .black {
         font-size: 44px;
@@ -113,12 +118,21 @@
         left: 43%;
         width: 50px;
     }
-   
+    .black {
+        font-size: 38px;
+        line-height: 40px;
+    }
    
 
 }
 
 @media (max-width:991px) {
+    .about .image2 {
+        width: 100px;
+    }
+    .different_ .greyHeading {
+        padding: 0;
+    }
     .videoSection .image2 {
         bottom: 63px;
         width: 139px;
@@ -283,12 +297,14 @@
     .orange {
         font-size: 33px;
     }
-    .black {
-        font-size: 33px;
-    }
+   
     .about .secondary {
         font-size: 12px;
     }
+    .whyChoose .secondary {
+        padding: 0;
+    }
+
     .burgerSmall {
         width: 100px;
     }
@@ -332,8 +348,8 @@
         padding-top: 40px;
     }
     .videoSection .blackHeading {
-        font-size: 44px;
-        line-height: 39px;
+        font-size:30px;
+        line-height: 35px;
     }
     .availability_Box .innerBoxText {
         font-size: 10px;
@@ -341,6 +357,10 @@
     }
    .leftHalf {
         width: 50px;
+    }
+    .footer_logo {
+        
+        margin-bottom: 26px;
     }
 }
 
@@ -825,6 +845,7 @@
     .footer_logo {
         margin-bottom: 27px;
     }
+    
     .differentButton .inner {
         padding: 13px 11px;
     }
