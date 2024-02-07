@@ -3,14 +3,17 @@ import * as Images from "../../../utilities/images";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getHelperPages, onErrorStopLoad } from "../../../redux/slices/user";
+import { FadeLoader } from "react-spinners";
 
 const AboutUs = () => {
   const dispatch = useDispatch();
   const [content, setContent] = useState([]);
   const authToken = localStorage.getItem("authToken");
+  const [loader, setLoader] = useState(false);
 
   //get privacy policy content
   useEffect(() => {
+    setLoader(true);
     let params = {
       slug: "about_us",
     };
@@ -19,6 +22,7 @@ const AboutUs = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
+            setLoader(false);
             setContent(res.data.data);
           }
         },
@@ -52,7 +56,15 @@ const AboutUs = () => {
               <div className="termAndCond">
                 {!content.active ? (
                   <div className="inactive-content">
-                    <p>Admin Make This Content Is In-Active</p>
+                    {loader ? (
+                      <FadeLoader
+                        color={"#E65C00"}
+                        size={150}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"/>
+                    ) : (
+                      <p>Admin Make This Content Is In-Active</p>
+                    )}
                   </div>
                 ) : (
                   <div
