@@ -210,10 +210,10 @@ const Dashboard = () => {
                   authenticity, transparency, and a culinary movement:
 
                 </p>
-                <p class="greyHeading">Envisioning a world where every journey is a feast, ServeItLocal allows travelers to immerse
-                    themselves in the heart of a community through its flavors. This visionary approach sees food
-                    as a universal language that unites people, creating memorable experiences that go beyond
-                    just the culinary aspect. </p></div>
+                <p class="greyHeading">ServeItLocal goes beyond transactional interactions, serving as a curator of extraordinary
+                    culinary experiences. The platform meticulously selects local chefs who are both masters of
+                    their craft and cultural storytellers, ensuring that each culinary encounter is a carefully crafted
+                    journey, telling a story, and celebrating local traditions.</p></div>
               <div className="differentButton">
                 <button className="primary me-3 mt-3">
                   <span className="inner me-3">2k+</span>
@@ -229,14 +229,11 @@ const Dashboard = () => {
               <div className="row">
                 <div className="col-lg-12">
                  <div className="diffSec">
-                  <p class="greyHeading">ServeItLocal goes beyond transactional interactions, serving as a curator of extraordinary
-                    culinary experiences. The platform meticulously selects local chefs who are both masters of
-                    their craft and cultural storytellers, ensuring that each culinary encounter is a carefully crafted
-                    journey, telling a story, and celebrating local traditions.</p>
+                  
                   <p class="greyHeading">Fostering a global community that transcends borders, ServeItLocal connects travelers with
                     passionate local chefs worldwide, providing a unique global culinary passport. This emphasis
                     on community building and cultural exchange distinguishes ServeItLocal as more than just a
-                    service but as a movement bringing people together through the universal language of food.</p><br />
+                    service but as a movement bringing people together through the universal language of food.</p>
                   <p class="greyHeading">Envisioning a world where every journey is a feast, ServeItLocal allows travelers to immerse
                     themselves in the heart of a community through its flavors. This visionary approach sees food
                     as a universal language that unites people, creating memorable experiences that go beyond
@@ -251,14 +248,14 @@ const Dashboard = () => {
                     lasting memories.</p>
                   <p class="greyHeading">ServeItLocal believes in transparency, providing clear pricing breakdowns for both chefs and
                     travelers. This commitment to openness extends to the quality of experiences, community
-                    integrity, and the authenticity of shared flavors, building trust at the core of the platform.</p><br />
+                    integrity, and the authenticity of shared flavors, building trust at the core of the platform.</p>
 
                   <p class="greyHeading">ServeItLocal is not just a platform; it's a movement that aims to bring people together through
                     the universal language of food. Whether you are a chef looking to showcase talents or a
                     traveler seeking authentic experiences, ServeItLocal invites you to join this culinary journey
                     to explore, savor, and celebrate the diverse tapestry of global flavors. In essence, while
                     acknowledging the absence of direct competitors, these distinguishing features solidify
-                    ServeItLocal's unique and unparalleled position in the culinary exploration space.</p><br />
+                    ServeItLocal's unique and unparalleled position in the culinary exploration space.</p>
                 </div>
                 </div>
               </div>
