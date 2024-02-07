@@ -10,7 +10,7 @@ const MainFooter = () => {
           <div className="row">
             <div className="col-lg-4 col-md-4">
               <div className="footer_logo ">
-                <img alt="company-logo" src={Images.Logo} />
+                <img alt="company-logo" src={Images.Logo} className="logosil" />
                 {/* <p className="primary pt-4">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
                   laoreet nisl nibh, nec convallis tortor condimentum vitae.{" "}
