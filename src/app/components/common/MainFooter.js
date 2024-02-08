@@ -26,7 +26,7 @@ const MainFooter = () => {
                   </Link>
                 </li>
                 <li className="navigation">
-                  <Link className="footer_ank" to="/contact-us">
+                  <Link className="footer_ank" to="/user-contact-us">
                     Contact Us
                   </Link>
                 </li>

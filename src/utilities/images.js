@@ -167,6 +167,7 @@ import tiktok from "../public/images/tiktok.svg";
 import snapchat from "../public/images/snapchat.svg";
 import youtube from "../public/images/youtube.svg";
 
+import callImg from "../public/images/callImg.svg";
 
 
               
@@ -178,6 +179,7 @@ import youtube from "../public/images/youtube.svg";
               
 
 export {
+  callImg,
   linkdin,
   twitter,
   instagram,

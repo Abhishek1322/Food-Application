@@ -35,6 +35,7 @@ import RequestPage from "./Settings/RequestPage"
 import PageNotFound from "../components/errorPage/PageNotFound"
 import ChooseLocation from "./User/ChooseLocation"
 import Dashboard from "./Dashborad/Dashboard"
+import UserContactUs from "./Settings/UserContactUs"
 
 
 
@@ -75,5 +76,6 @@ export {
     ChooseLocation,
     Dashboard,
     PageNotFound,
-    AboutUs
+    AboutUs,
+    UserContactUs,
 }
