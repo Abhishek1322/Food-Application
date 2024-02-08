@@ -422,7 +422,10 @@
     font-size: 18px;
     color: #fff;
 }
-
+.logosil {
+    width: 100%;
+    max-width: 140px;
+}
 .footer_logo {
     padding-right: 15px;
 }
@@ -444,7 +447,7 @@
     font-weight: 400;
 }
 .appImages{
-    width: 150px;
+    width: 200px;
 }
 .appButtons .secondary {
     font-size: 14px;
@@ -473,6 +476,9 @@
 
 .footer_ank:hover {
     color: #fff;
+}
+.socialImg {
+    margin-right: 22px;
 }
 
 /**End Footer Section CSS**/

@@ -158,7 +158,34 @@ import recoverLock from "../public/images/recoverLock.svg";
 import lockImg from "../public/images/lockImg.svg";
 import nocheffound from "../public/images/nocheffound.svg";
 
+import linkdin from "../public/images/linkdin.svg";
+import twitter from "../public/images/twitter.svg";
+import instagram from "../public/images/instagram.svg";
+import facebook from "../public/images/facebook.svg";
+import pinterest from "../public/images/pinterest.svg";
+import tiktok from "../public/images/tiktok.svg";
+import snapchat from "../public/images/snapchat.svg";
+import youtube from "../public/images/youtube.svg";
+
+
+
+              
+              
+             
+            
+              
+              
+              
+
 export {
+  linkdin,
+  twitter,
+  instagram,
+  facebook,
+  pinterest,
+  tiktok,
+  snapchat,
+  youtube,
   lockImg,
   recoverLock,
   chefImageNew,

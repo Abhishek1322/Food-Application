@@ -165,7 +165,7 @@ const Dashboard = () => {
             <div className="col-lg-5 col-md-6">
               <div className="mainHeadings">
                 <h2 className="blackHeading">
-                "Embark on a Culinary Journey with ServeItLocal: Explore, Savor, Connect!" {" "}
+                Embark on a Culinary Journey with ServeItLocal: Explore, Savor, Connect! {" "}
                 </h2>
                 <p className="greyHeading">
                   Discover a world of flavors with ServeItLocal! Book a chef, explore diverse cuisines, and
