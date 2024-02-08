@@ -113,10 +113,7 @@ const Router = () => {
             path="/term-condition"
             element={<Containers.TermAndCondition />}
           />
-            <Route
-            path="/about-us"
-            element={<Containers.AboutUs />}
-          />
+          <Route path="/about-us" element={<Containers.AboutUs />} />
           <Route path="/contact-us" element={<Containers.Contactus />} />
           <Route
             path="/privacy-policy"
@@ -131,6 +128,10 @@ const Router = () => {
 
         {/* PUBLIC ROUTES */}
         <Route element={<Layouts.MainLayout />}>
+          <Route
+            path="/user-contact-us"
+            element={<Containers.UserContactUs />}
+          />
           <Route element={<Containers.Dashboard />} path="/" />
         </Route>
       </Routes>

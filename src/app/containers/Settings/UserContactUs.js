@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../utilities/images";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   onErrorStopLoad,
@@ -8,13 +7,12 @@ import {
 } from "../../../redux/slices/user";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../redux/selector/user";
-import Loading from "./Loading";
-import { getUserProfileDetails } from "../../../redux/slices/web";
 
-const ContactUs = () => {
+
+const UserContactUs = () => {
   const dispatch = useDispatch();
+  const toastId = useRef(null);
   const userSelector = useUserSelector();
-  const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -33,17 +31,24 @@ const ContactUs = () => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // submit contact details
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.firstName) {
-      toast.error("Please enter first name");
+      showToast("Please enter first name");
       return;
     } else if (!formData.lastName) {
-      toast.error("Please enter last name");
+      showToast("Please enter last name");
       return;
     } else if (!formData.email) {
-      toast.error("Please enter email");
+      showToast("Please enter email");
       return;
     } else if (
       formData.email &&
@@ -51,10 +56,10 @@ const ContactUs = () => {
         formData.email
       )
     ) {
-      toast.error("Please enter valid email address");
+      showToast("Please enter valid email address");
       return;
     } else if (!formData.message) {
-      toast.error("Please enter your message");
+      showToast("Please enter your message");
       return;
     }
 
@@ -71,6 +76,9 @@ const ContactUs = () => {
         cb(res) {
           if (res.status === 200) {
             setFormData({
+              firstName: "",
+              lastName: "",
+              email: "",
               message: "",
             });
           }
@@ -79,54 +87,23 @@ const ContactUs = () => {
     );
   };
 
-  // getting user profile details
-  useEffect(() => {
-    let params = {
-      userid: userId,
-    };
-    dispatch(
-      getUserProfileDetails({
-        ...params,
-        cb(res) {
-          if (res.status === 200) {
-            setFormData({
-              firstName: res?.data?.data?.userInfo?.firstName,
-              lastName: res?.data?.data?.userInfo?.lastName,
-              email: res?.data?.data?.email,
-              message: "",
-            });
-          }
-        },
-      })
-    );
-  }, []);
 
   return (
     <>
-      {userSelector.loading && <Loading />}
       <div className="contactUs">
         <div className="container-fluid">
-          <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3">
-            <Link to={"/setting"}>
-              <img
-                src={Images.backArrowpassword}
-                alt="arrowImg"
-                className="img-fluid  innerHeaderArrow"
-              />
-            </Link>
-            <h1 className="settingMainHeading text-align-center ">
-              Contact Us
-            </h1>
-          </div>
           <div className="changepassword">
+            <h1 className="settingMainHeading text-align-center ">
+              Contact Us!
+            </h1>
             <div className="logRight mt-5">
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="changepasswordForm">
                   <div className="changepasswordImg d-flex justify-content-center">
                     <img
-                      src={Images.contactUs}
+                      src={Images.callImg}
                       alt="contactUs"
-                      className="img-fluid  contactusImg"
+                      className="img-fluid"
                     />
                   </div>
                   <h2 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
@@ -139,10 +116,9 @@ const ContactUs = () => {
                         <div className="col-lg-6 col-md-6">
                           <div className="input-container mt-5">
                             <input
-                              readOnly
                               type="text"
                               className="border-input"
-                              placeholder="Enter your first name"
+                              placeholder="First Name"
                               name="firstName"
                               value={formData.firstName}
                               onChange={(e) => handleChange(e)}
@@ -153,10 +129,9 @@ const ContactUs = () => {
                         <div className="col-lg-6 col-md-6">
                           <div className="input-container mt-5">
                             <input
-                              readOnly
                               type="text"
                               className="border-input"
-                              placeholder="Enter your last name"
+                              placeholder="Last Name"
                               name="lastName"
                               value={formData.lastName}
                               onChange={(e) => handleChange(e)}
@@ -170,10 +145,9 @@ const ContactUs = () => {
                   <div className="col-lg-12">
                     <div className="input-container mt-5">
                       <input
-                        readOnly
                         type="text"
                         className="border-input"
-                        placeholder="Enter your last email address"
+                        placeholder="Email Address"
                         name="email"
                         value={formData.email}
                         onChange={(e) => handleChange(e)}
@@ -196,8 +170,16 @@ const ContactUs = () => {
                     </div>
                   </div>
                   <div className="buttonBox mt-5 d-flex  justify-content-center">
-                    <button type="submit" role="button" className="smallBtn">
-                      submit
+                    <button
+                      disabled={userSelector?.loading}
+                      type="submit"
+                      role="button"
+                      className="smallBtn"
+                    >
+                      {userSelector?.loading && (
+                        <span className="spinner-border spinner-border-sm me-1"></span>
+                      )}
+                      SUBMIT
                     </button>
                   </div>
                 </div>
@@ -210,4 +192,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default UserContactUs;

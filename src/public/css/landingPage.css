@@ -480,5 +480,7 @@
 .socialImg {
     margin-right: 30px;
 }
-
+.banner-contact {
+    background-size: 100% 32%;
+}
 /**End Footer Section CSS**/
