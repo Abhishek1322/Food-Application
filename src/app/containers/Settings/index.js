@@ -125,7 +125,7 @@ const SettingMain = () => {
               </Link>
             </div>
             <div className="col-lg-6 ">
-              <Link to="/contactu-us">
+              <Link to="/contact-us">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center">
                     <img

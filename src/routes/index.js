@@ -116,7 +116,7 @@ const Router = () => {
             path="/about-us"
             element={<Containers.AboutUs />}
           />
-          <Route path="/contactu-us" element={<Containers.Contactus />} />
+          <Route path="/contact-us" element={<Containers.Contactus />} />
           <Route
             path="/privacy-policy"
             element={<Containers.PrivacyPolicy />}

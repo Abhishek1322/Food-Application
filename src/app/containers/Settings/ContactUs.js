@@ -14,6 +14,7 @@ import { getUserProfileDetails } from "../../../redux/slices/web";
 const ContactUs = () => {
   const dispatch = useDispatch();
   const userSelector = useUserSelector();
+  const authToken = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -70,9 +71,18 @@ const ContactUs = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setFormData({
-              message: "",
-            });
+            if (!authToken) {
+              setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                message: "",
+              });
+            } else {
+              setFormData({
+                message: "",
+              });
+            }
           }
         },
       })
@@ -81,24 +91,26 @@ const ContactUs = () => {
 
   // getting user profile details
   useEffect(() => {
-    let params = {
-      userid: userId,
-    };
-    dispatch(
-      getUserProfileDetails({
-        ...params,
-        cb(res) {
-          if (res.status === 200) {
-            setFormData({
-              firstName: res?.data?.data?.userInfo?.firstName,
-              lastName: res?.data?.data?.userInfo?.lastName,
-              email: res?.data?.data?.email,
-              message: "",
-            });
-          }
-        },
-      })
-    );
+    if (authToken) {
+      let params = {
+        userid: userId,
+      };
+      dispatch(
+        getUserProfileDetails({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              setFormData({
+                firstName: res?.data?.data?.userInfo?.firstName,
+                lastName: res?.data?.data?.userInfo?.lastName,
+                email: res?.data?.data?.email,
+                message: "",
+              });
+            }
+          },
+        })
+      );
+    }
   }, []);
 
   return (
@@ -107,7 +119,7 @@ const ContactUs = () => {
       <div className="contactUs">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3">
-            <Link to="/setting">
+            <Link to={!authToken ? "/" : "/setting"}>
               <img
                 src={Images.backArrowpassword}
                 alt="arrowImg"
@@ -139,7 +151,7 @@ const ContactUs = () => {
                         <div className="col-lg-6 col-md-6">
                           <div className="input-container mt-5">
                             <input
-                              readOnly
+                              readOnly={authToken}
                               type="text"
                               className="border-input"
                               placeholder="Enter your first name"
@@ -153,7 +165,7 @@ const ContactUs = () => {
                         <div className="col-lg-6 col-md-6">
                           <div className="input-container mt-5">
                             <input
-                              readOnly
+                              readOnly={authToken}
                               type="text"
                               className="border-input"
                               placeholder="Enter your last name"
@@ -170,7 +182,7 @@ const ContactUs = () => {
                   <div className="col-lg-12">
                     <div className="input-container mt-5">
                       <input
-                        readOnly
+                        readOnly={authToken}
                         type="text"
                         className="border-input"
                         placeholder="Enter your last email address"
