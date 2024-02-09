@@ -2706,11 +2706,12 @@ body {
 .changepasswordbox_ {
   width: 100%;
   max-width: 450px;
-  margin: 57px auto 70px;
+  margin: 70px auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
 }
 .banner-contact .buttonBox {
   margin-top: 32px;

@@ -919,8 +919,11 @@
 
     .socialImg {
         margin-bottom: 10px;
+    } 
+    .termAndCond {
+        margin: 164px 0 0 0;
+        text-align: justify;
     }
-
 }
 
 @media (min-width:425px) {
