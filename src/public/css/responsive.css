@@ -190,9 +190,17 @@
     .banner-contact .contactUs {
         margin-top: 355px;
     }
+    .banner-contact .changepassword {
+        height: 90vh;
+        
+    }
+  
 }
 
 @media (max-width:991px) {
+    .banner-contact .changepassword {
+        height: 133vh;
+    }
     .banner-contact .contactUs {
         margin-top: 45px;
     }
@@ -315,6 +323,8 @@
         height: 90px;
         border-radius: 50%;
     }
+
+
 
     .restroinfo .johnchatdetail {
         padding: 4px 8px;
