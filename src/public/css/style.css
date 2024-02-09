@@ -2703,3 +2703,15 @@ body {
   color: #2E3333;
   font-family: "Open Sans";
 }
+.changepasswordbox_ {
+  width: 100%;
+  max-width: 450px;
+  margin: 57px auto 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.banner-contact .buttonBox {
+  margin-top: 32px;
+}

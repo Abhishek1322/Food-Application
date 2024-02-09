@@ -92,7 +92,7 @@ const UserContactUs = () => {
     <>
       <div className="contactUs">
         <div className="container-fluid">
-          <div className="changepassword">
+          <div className="changepasswordbox_">
             <h1 className="settingMainHeading text-align-center ">
               Contact Us!
             </h1>
@@ -169,7 +169,7 @@ const UserContactUs = () => {
                       <label className="border-label">Your Message</label>
                     </div>
                   </div>
-                  <div className="buttonBox mt-5 d-flex  justify-content-center">
+                  <div className="buttonBox  d-flex  justify-content-center">
                     <button
                       disabled={userSelector?.loading}
                       type="submit"
