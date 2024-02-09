@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import * as Images from "../../../utilities/images";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MainNav = () => {
   const [isToggleOn, setIsToggleOn] = useState(false);
-  const [checkToggleOn,setCheckToggleOn] = useState("");
+  const [checkToggleOn, setCheckToggleOn] = useState("");
   const navigate = useNavigate();
 
   // Update the toggle state
   const handleToggleChange = (flag) => {
     setIsToggleOn(!isToggleOn);
-    setCheckToggleOn(flag)
+    setCheckToggleOn(flag);
     let routeToNavigate;
     if (flag === "login") {
       routeToNavigate = isToggleOn ? "/" : "/login";
@@ -26,7 +26,9 @@ const MainNav = () => {
     <>
       <div className="container">
         <div className="header ">
-          <img alt="company-logo" src={Images.Logo} />
+          <Link to="/">
+            <img alt="company-logo" src={Images.Logo} />
+          </Link>
           <div className="logButtons ms-auto d-flex gap-3">
             <div className="form-group landing-page-group">
               <label className="toggle">
