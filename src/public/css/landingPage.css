@@ -483,4 +483,7 @@
 .banner-contact {
     background-size: 100% 32%;
 }
+.socialLinks{
+    text-align: end;
+}
 /**End Footer Section CSS**/

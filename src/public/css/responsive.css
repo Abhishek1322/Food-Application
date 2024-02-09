@@ -30,6 +30,12 @@
     .Newbooking_ .profileDetail {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+    .banner-contact .buttonBox {
+        margin-bottom: 16rem !important;
+    }
+    .banner-contact .contactUs {
+        margin-top: 204px;
+    }
 
 }
 @media only screen and  (min-width: 1080px) and (max-width: 1200px){
@@ -44,9 +50,19 @@
   .foodImage {
         width: 100px;
     }
+    .appImages {
+        width: 130px;
+    }
+    .banner-contact {
+        background-size: 100% 41%;
+    }
+    
 }
 
 @media (max-width: 1200px) {
+    .banner-contact .contactUs {
+        margin-top: 203px;
+    }
     .setButtons{
         margin-bottom: 13px;
     }
@@ -122,11 +138,30 @@
         font-size: 38px;
         line-height: 40px;
     }
-   
-
+    .appImages {
+        width: 130px;
+    }
+    .socialImg {
+        margin-bottom: 10px;
+    } 
+    .socialImg {
+        margin-bottom: 10px;
+    } 
+    .banner-contact {
+        background-size: 100% 33%;
+    }
+    .banner-contact .contactUs {
+        margin-top: 225px;
+    }
+    .banner-contact .buttonBox {
+        margin-bottom: 6rem !important;
+    }
 }
 
 @media (max-width:991px) {
+    .banner-contact .contactUs {
+        margin-top: 45px;
+    }
     .about .image2 {
         width: 100px;
     }
@@ -362,9 +397,24 @@
         
         margin-bottom: 26px;
     }
+    .socialLinks{
+        text-align: start;
+    } 
+    .socialImg {
+        margin-bottom: 10px;
+    } 
 }
 
 @media (max-width:767px) {
+    .banner-contact .contactUs {
+        margin-top: 85px;
+    }
+    .banner-contact{
+        background-size: 100% 26% !important;
+    }
+    .banner {
+        background-size: 100% 36%;
+    }
     .leftHalf {
         width: 50px;
     }
@@ -613,9 +663,15 @@
     .whyChoose .secondary {
         padding: 0;
    }
+   .socialImg {
+    margin-bottom: 10px;
+} 
 }
 
 @media (max-width:575px) {
+    .socialImg {
+        margin-right: 25px;
+    }
     .whyChoose .secondary {
          padding: 0;
     }
@@ -725,6 +781,9 @@
     .chooseroleBox .roleHeading {
         font-size: 12px;
     }
+    .socialImg {
+        margin-bottom: 10px;
+    } 
 
 }
 
@@ -887,6 +946,9 @@
     .Chef {
         bottom: -144px;
     }
+    .socialImg {
+        margin-bottom: 10px;
+    } 
 }
 @media (max-width:360px){
     .downloadApp {
