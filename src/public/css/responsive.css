@@ -30,9 +30,9 @@
     .Newbooking_ .profileDetail {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    .banner-contact .buttonBox {
+    /* .banner-contact .buttonBox {
         margin-bottom: 16rem !important;
-    }
+    } */
     .banner-contact .contactUs {
         margin-top: 204px;
     }
@@ -153,9 +153,9 @@
     .banner-contact .contactUs {
         margin-top: 225px;
     }
-    .banner-contact .buttonBox {
+    /* .banner-contact .buttonBox {
         margin-bottom: 6rem !important;
-    }
+    } */
     .banner-contact .changepassword {
         height: 90vh;
         
