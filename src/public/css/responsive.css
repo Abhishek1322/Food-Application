@@ -156,9 +156,17 @@
     .banner-contact .buttonBox {
         margin-bottom: 6rem !important;
     }
+    .banner-contact .changepassword {
+        height: 90vh;
+        
+    }
+  
 }
 
 @media (max-width:991px) {
+    .banner-contact .changepassword {
+        height: 133vh;
+    }
     .banner-contact .contactUs {
         margin-top: 45px;
     }
