@@ -90,8 +90,6 @@ const UserContactUs = () => {
 
   return (
     <>
-      <div className="contactUs">
-        <div className="container-fluid">
           <div className="changepasswordbox_">
             <h1 className="settingMainHeading text-align-center ">
               Contact Us!
@@ -186,8 +184,8 @@ const UserContactUs = () => {
               </form>
             </div>
           </div>
-        </div>
-      </div>
+ 
+   
     </>
   );
 };
