@@ -96,7 +96,7 @@ const UserContactUs = () => {
             <h1 className="settingMainHeading text-align-center ">
               Contact Us!
             </h1>
-            <div className="logRight mt-5">
+            <div className="logRight mt-4">
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="changepasswordForm">
                   <div className="changepasswordImg d-flex justify-content-center">

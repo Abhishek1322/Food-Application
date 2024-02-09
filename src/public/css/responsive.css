@@ -170,9 +170,8 @@
         font-size: 38px;
         line-height: 40px;
     }
-
-    .appImages {
-        width: 130px;
+     .appImages {
+        width: 100px !important;
     }
 
     .socialImg {
@@ -194,12 +193,14 @@
         height: 90vh;
         
     }
+   
+
   
 }
 
 @media (max-width:991px) {
     .banner-contact .changepassword {
-        height: 133vh;
+        height: 113vh;
     }
     .banner-contact .contactUs {
         margin-top: 45px;
@@ -479,14 +480,11 @@
 
         margin-bottom: 26px;
     }
-
-    .socialLinks {
-        text-align: start;
-    }
-
+    
     .socialImg {
         margin-bottom: 10px;
-    }
+    } 
+  
 }
 
 @media (max-width:767px) {
@@ -781,8 +779,11 @@
 }
 
 @media (max-width:575px) {
+    .socialLinks {
+        text-align: start;
+    }
     .socialImg {
-        margin-right: 25px;
+        margin-right: 23px;
     }
 
     .whyChoose .secondary {
@@ -963,10 +964,16 @@
     .Chef {
         bottom: -166px;
     }
+    .socialLinks{
+        text-align: start;
+    }
 
 }
 
 @media (max-width:375px) {
+    .banner-contact .changepassword {
+        height: 132vh;
+    }
     .DeleteIcon {
         top: 7px;
         left: 92px;
@@ -1116,6 +1123,9 @@
 
     .socialImg {
         margin-bottom: 10px;
+    } 
+    .socialLinks{
+        text-align: start;
     }
 }
 

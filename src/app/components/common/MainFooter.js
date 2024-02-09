@@ -74,7 +74,7 @@ const MainFooter = () => {
                 </div>
               </div>
               <div className="col-lg-6">
-                <div className="socialLinks ">
+                <div className="socialLinks">
                   <a href="#">
                     <img
                       alt="twitter"
