@@ -167,7 +167,7 @@ const UserContactUs = () => {
                       <label className="border-label">Your Message</label>
                     </div>
                   </div>
-                  <div className="buttonBox  d-flex  justify-content-center">
+                  <div className="buttonBox  d-flex  justify-content-center mb-0">
                     <button
                       disabled={userSelector?.loading}
                       type="submit"
