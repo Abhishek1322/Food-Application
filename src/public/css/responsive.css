@@ -489,18 +489,18 @@
 }
 
 @media (max-width:767px) {
+    /* .socialLinks {
+        text-align: start;
+    } */
     .banner-contact .contactUs {
         margin-top: 85px;
     }
-
-    .banner-contact {
+    /* .banner-contact{
         background-size: 100% 26% !important;
-    }
-
-    .banner {
+    } */
+    /* .banner {
         background-size: 100% 36%;
-    }
-
+    } */
     .leftHalf {
         width: 50px;
     }
