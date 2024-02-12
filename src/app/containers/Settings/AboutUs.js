@@ -37,7 +37,7 @@ const AboutUs = () => {
 
   return (
     <>
-      <div className="main-div">
+      <div className="main-div commonpages">
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">

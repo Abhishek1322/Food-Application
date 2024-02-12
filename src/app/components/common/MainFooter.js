@@ -75,49 +75,54 @@ const MainFooter = () => {
               </div>
               <div className="col-lg-6">
                 <div className="socialLinks">
-                  <a href="#">
+                  <a href="https://twitter.com/ServeItLocal/">
                     <img
                       alt="twitter"
                       className="socialImg"
                       src={Images.twitter}
                     />
                   </a>
-                  <a href="#">
+                  <a href="https://www.instagram.com/serveitlocal/">
                     <img
                       alt="instaIcon"
                       className="socialImg"
                       src={Images.instagram}
                     />
                   </a>
-                  <a href="#">
+                  <a href="
+https://www.facebook.com/serveitlocal/">
                     <img
                       alt="faceBookIcon"
                       className="socialImg"
                       src={Images.facebook}
                     />
                   </a>
-                  <a href="#">
+                  <a href="
+https://www.linkedin.com/company/serveitlocal/">
                     <img
                       alt="linkdin"
                       className="socialImg"
                       src={Images.linkdin}
                     />
                   </a>
-                  <a href="#">
+                  <a href="https://www.pinterest.co.uk/serveitlocal/">
                     <img
                       alt="pintIcon"
                       className="socialImg"
                       src={Images.pinterest}
                     />
                   </a>
-                  <a href="#">
+                  <a href="Snapchat:
+
+https://www.snapchat.com/add/serveitlocal">
                     <img
                       alt=" tiktokIcon"
                       className="socialImg"
                       src={Images.snapchat}
                     />
                   </a>
-                  <a href="#">
+                  <a href="
+https://www.youtube.com/@serveitlocal/">
                     <img
                       alt="youtubeIcon"
                       className="socialImg"
@@ -135,3 +140,4 @@ const MainFooter = () => {
 };
 
 export default MainFooter;
+

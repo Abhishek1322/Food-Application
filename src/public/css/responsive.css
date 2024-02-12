@@ -924,6 +924,9 @@
         margin: 164px 0 0 0;
         text-align: justify;
     }
+    .commonpages .termAndCond {
+        margin: 107px 45px 0 86px;
+    }
 }
 
 @media (min-width:425px) {
@@ -971,6 +974,8 @@
     .socialLinks{
         text-align: start;
     }
+    
+   
 
 }
 
@@ -1131,6 +1136,20 @@
     .socialLinks{
         text-align: start;
     }
+    .changepasswordbox_ {
+        padding: 10px;
+    }
+    .commonpages .termAndCond {
+        margin: 90px 0px 0 0px;
+    }
+    
+    .commonpages .settingMainHeading {
+        font-size: 25px;
+    }
+    .commonpages .commonInnerHeader {
+        left: 10px;
+    }
+   
 }
 
 @media (max-width:360px) {
