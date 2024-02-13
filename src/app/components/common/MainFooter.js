@@ -82,7 +82,7 @@ const MainFooter = () => {
                       src={Images.twitter}
                     />
                   </a>
-                  <a href="https://twitter.com/ServeItLocal/">
+                  <a href="https://www.instagram.com/serveitlocal/">
                     <img
                       alt="instaIcon"
                       className="socialImg"
