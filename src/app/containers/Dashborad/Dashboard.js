@@ -20,7 +20,7 @@ const Dashboard = () => {
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
               <div className="headings">
-                <h5 className="orangeHeading">Flavorful Delights</h5>
+                {/* <h5 className="orangeHeading">Flavorful Delights</h5> */}
                 <h2 className="blackHeading">
                   Book a Chef and
                   <br />
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
                   <br /> Experience Now!
                 </h2>
-                <p className="greyHeading mt-2">
+                <p className="greyHeading mt-2 mb-2">
                   Embark on a global culinary adventure with ServeItLocal, your ultimate gateway to the rich
                   tapestry of local flavors worldwide! Book a skilled chef now and immerse yourself in a
                   unique culinary journey that transcends borders. Our platform is not just a service; it's a
@@ -36,9 +36,10 @@ const Dashboard = () => {
                   Connect with passionate local chefs who are not only masters of their craft but also
                   storytellers of their culture through food. Join us in exploring, savoring, and connecting with
                   ServeItLocal, where every booking and adventure becomes an opportunity to celebrate the
-                  diverse and authentic global flavors.<strong>ServeItLocal: Explore. Savor. Connect.</strong>
+                  diverse and authentic global flavors.<br />
+                  <strong>ServeItLocal: Explore. Savor. Connect.</strong>
                 </p>
-                <div className="appButtons mt-2">
+                <div className="appButtons mt-3">
                   <a href="#" className="orngButtons me-3  ">
                     <img
                       className="appImages  me-2 "
@@ -94,10 +95,10 @@ const Dashboard = () => {
                 food serves as a universal language, bringing people together, and seek to create memorable
                 experiences beyond just the culinary aspect.{" "}
               </p>{" "}
-              <button className="orngButton mt-3">
+              {/* <button className="orngButton mt-3">
                 <sapn className="sub me-2">Read More</sapn>
                 <img alt="right-arrow" src={Images.rightUpArrow} />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -172,7 +173,7 @@ const Dashboard = () => {
                   create lasting memories through shared meals. Our platform is a global celebration of local
                   culinary experiences, connecting you with passionate chefs who are also cultural storytellers.
                   Join us in redefining travel through exploration, savoring, and connecting with ServeItLocal –
-                  where each booking is an opportunity to celebrate the rich tapestry of global flavors. <strong>ServeItLocal: Explore. Savor. Connect.</strong>
+                  where each booking is an opportunity to celebrate the rich tapestry of global flavors.<br/> <strong>ServeItLocal: Explore. Savor. Connect.</strong>
                 </p>
               </div>
             </div>
@@ -200,9 +201,9 @@ const Dashboard = () => {
             <div className="col-lg-6 col-md-6">
               <div class="different_">
                 <h2 className="black">
-                  What Different to
-                  <br /> ServeItLocal form<br />
-                  Others.
+                  What Makes ServeItLocal
+                  <br /> Different<br />
+                 
                 </h2>
                 <p className="greyHeading">
                   ServeItLocal stands as a unique culinary platform, seamlessly blending curated culinary
@@ -230,27 +231,27 @@ const Dashboard = () => {
                 <div className="col-lg-12">
                  <div className="diffSec">
                   
-                  <p class="greyHeading">Fostering a global community that transcends borders, ServeItLocal connects travelers with
+                  <p class="greyHeading mb-2">Fostering a global community that transcends borders, ServeItLocal connects travelers with
                     passionate local chefs worldwide, providing a unique global culinary passport. This emphasis
                     on community building and cultural exchange distinguishes ServeItLocal as more than just a
                     service but as a movement bringing people together through the universal language of food.</p>
-                  <p class="greyHeading">Envisioning a world where every journey is a feast, ServeItLocal allows travelers to immerse
+                  <p class="greyHeading mb-2">Envisioning a world where every journey is a feast, ServeItLocal allows travelers to immerse
                     themselves in the heart of a community through its flavors. This visionary approach sees food
                     as a universal language that unites people, creating memorable experiences that go beyond
                     just the culinary aspect.</p>
-                  <p class="greyHeading">Beyond being a booking platform, ServeItLocal empowers chefs globally, transforming
+                  <p class="greyHeading mb-2">Beyond being a booking platform, ServeItLocal empowers chefs globally, transforming
                     kitchens into cultural hubs. From personalized culinary experiences to connecting with
                     travelers passionate about local flavors, ServeItLocal supports local talent, contributing to the
                     global culinary landscape.</p>
-                  <p class="greyHeading">As the gateway to authentic culinary experiences for travelers, ServeItLocal goes beyond the
+                  <p class="greyHeading mb-2">As the gateway to authentic culinary experiences for travelers, ServeItLocal goes beyond the
                     typical tourist experience. It allows users to discover hidden gems, learn from local chefs, and
                     immerse themselves in the flavors of a destination, fostering genuine cultural exchange and
                     lasting memories.</p>
-                  <p class="greyHeading">ServeItLocal believes in transparency, providing clear pricing breakdowns for both chefs and
+                  <p class="greyHeading mb-2">ServeItLocal believes in transparency, providing clear pricing breakdowns for both chefs and
                     travelers. This commitment to openness extends to the quality of experiences, community
                     integrity, and the authenticity of shared flavors, building trust at the core of the platform.</p>
 
-                  <p class="greyHeading">ServeItLocal is not just a platform; it's a movement that aims to bring people together through
+                  <p class="greyHeading mb-2">ServeItLocal is not just a platform; it's a movement that aims to bring people together through
                     the universal language of food. Whether you are a chef looking to showcase talents or a
                     traveler seeking authentic experiences, ServeItLocal invites you to join this culinary journey
                     to explore, savor, and celebrate the diverse tapestry of global flavors. In essence, while

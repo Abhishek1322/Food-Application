@@ -109,9 +109,9 @@ const UserContactUs = () => {
                   </h2>
 
                   <div className="topInputfields">
-                    <div className="container p-0">
+                    <div className="container-fluid p-0">
                       <div className="row">
-                        <div className="col-lg-6 col-md-6">
+                        <div className="col-lg-4 col-md-4">
                           <div className="input-container mt-5">
                             <input
                               type="text"
@@ -124,7 +124,7 @@ const UserContactUs = () => {
                             <label className="border-label">First Name</label>
                           </div>
                         </div>
-                        <div className="col-lg-6 col-md-6">
+                        <div className="col-lg-4 col-md-4">
                           <div className="input-container mt-5">
                             <input
                               type="text"
@@ -137,10 +137,7 @@ const UserContactUs = () => {
                             <label className="border-label">Last Name</label>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
+                        <div className="col-lg-4 col-md-4">
                     <div className="input-container mt-5">
                       <input
                         type="text"
@@ -153,6 +150,10 @@ const UserContactUs = () => {
                       <label className="border-label">Email</label>
                     </div>
                   </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                   <div className="col-lg-12">
                     <div className="input-container mt-5">
                       <textarea

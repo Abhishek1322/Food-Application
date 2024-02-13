@@ -89,16 +89,20 @@ const MainFooter = () => {
                       src={Images.instagram}
                     />
                   </a>
-                  <a href="
-https://www.facebook.com/serveitlocal/">
+                  <a
+                    href="
+https://www.facebook.com/serveitlocal/"
+                  >
                     <img
                       alt="faceBookIcon"
                       className="socialImg"
                       src={Images.facebook}
                     />
                   </a>
-                  <a href="
-https://www.linkedin.com/company/serveitlocal/">
+                  <a
+                    href="
+https://www.linkedin.com/company/serveitlocal/"
+                  >
                     <img
                       alt="linkdin"
                       className="socialImg"
@@ -112,17 +116,34 @@ https://www.linkedin.com/company/serveitlocal/">
                       src={Images.pinterest}
                     />
                   </a>
-                  <a href="Snapchat:
 
-https://www.snapchat.com/add/serveitlocal">
+                  <a
+                    href="
+https://www.tiktok.com/@serveitlocal/
+
+"
+                  >
                     <img
-                      alt=" tiktokIcon"
+                      alt="tiktok"
+                      className="socialImg"
+                      src={Images.tiktok}
+                    />
+                  </a>
+                  <a
+                    href="Snapchat:
+
+https://www.snapchat.com/add/serveitlocal"
+                  >
+                    <img
+                      alt=" snapchat"
                       className="socialImg"
                       src={Images.snapchat}
                     />
                   </a>
-                  <a href="
-https://www.youtube.com/@serveitlocal/">
+                  <a
+                    href="
+https://www.youtube.com/@serveitlocal/"
+                  >
                     <img
                       alt="youtubeIcon"
                       className="socialImg"
@@ -140,4 +161,3 @@ https://www.youtube.com/@serveitlocal/">
 };
 
 export default MainFooter;
-
