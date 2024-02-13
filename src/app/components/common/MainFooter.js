@@ -82,13 +82,14 @@ const MainFooter = () => {
                       src={Images.twitter}
                     />
                   </a>
-                  <a href="https://www.instagram.com/serveitlocal/">
+                  <a href="https://twitter.com/ServeItLocal/">
                     <img
                       alt="instaIcon"
                       className="socialImg"
                       src={Images.instagram}
                     />
                   </a>
+               
                   <a
                     href="
 https://www.facebook.com/serveitlocal/"
@@ -130,9 +131,9 @@ https://www.tiktok.com/@serveitlocal/
                     />
                   </a>
                   <a
-                    href="Snapchat:
+                    href="
 
-https://www.snapchat.com/add/serveitlocal"
+                    https://www.snapchat.com/add/serveitlocal"
                   >
                     <img
                       alt=" snapchat"
