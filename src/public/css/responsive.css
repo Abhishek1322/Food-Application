@@ -30,6 +30,7 @@
     .Newbooking_ .profileDetail {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+
     /* .banner-contact .buttonBox {
         margin-bottom: 16rem !important;
     } */
@@ -168,7 +169,8 @@
         font-size: 38px;
         line-height: 40px;
     }
-     .appImages {
+
+    .appImages {
         width: 100px !important;
     }
 
@@ -187,22 +189,24 @@
     .banner-contact .contactUs {
         margin-top: 225px;
     }
+
     /* .banner-contact .buttonBox {
         margin-bottom: 6rem !important;
     } */
     .banner-contact .changepassword {
         height: 90vh;
-        
-    }
-   
 
-  
+    }
+
+
+
 }
 
 @media (max-width:991px) {
     .banner-contact .changepassword {
         height: 113vh;
     }
+
     .banner-contact .contactUs {
         margin-top: 45px;
     }
@@ -481,20 +485,22 @@
 
         margin-bottom: 26px;
     }
-    
+
     .socialImg {
         margin-bottom: 10px;
-    } 
-  
+    }
+
 }
 
 @media (max-width:767px) {
+
     /* .socialLinks {
         text-align: start;
     } */
     .banner-contact .contactUs {
         margin-top: 85px;
     }
+
     /* .banner-contact{
         background-size: 100% 26% !important;
     } */
@@ -783,6 +789,7 @@
     .socialLinks {
         text-align: start;
     }
+
     .socialImg {
         margin-right: 23px;
     }
@@ -919,13 +926,21 @@
 
     .socialImg {
         margin-bottom: 10px;
-    } 
+    }
+
     .termAndCond {
         margin: 164px 0 0 0;
         text-align: justify;
     }
+
     .commonpages .termAndCond {
         margin: 107px 45px 0 86px;
+    }
+}
+
+@media (max-width:480px) {
+    .Chef {
+        bottom: -50px !important;
     }
 }
 
@@ -971,11 +986,12 @@
     .Chef {
         bottom: -166px;
     }
-    .socialLinks{
+
+    .socialLinks {
         text-align: start;
     }
-    
-   
+
+
 
 }
 
@@ -983,6 +999,7 @@
     .banner-contact .changepassword {
         height: 132vh;
     }
+
     .DeleteIcon {
         top: 7px;
         left: 92px;
@@ -1132,24 +1149,28 @@
 
     .socialImg {
         margin-bottom: 10px;
-    } 
-    .socialLinks{
+    }
+
+    .socialLinks {
         text-align: start;
     }
+
     .changepasswordbox_ {
         padding: 10px;
     }
+
     .commonpages .termAndCond {
         margin: 90px 0px 0 0px;
     }
-    
+
     .commonpages .settingMainHeading {
         font-size: 25px;
     }
+
     .commonpages .commonInnerHeader {
         left: 10px;
     }
-   
+
 }
 
 @media (max-width:360px) {
