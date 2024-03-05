@@ -6,19 +6,23 @@ const initialState = {
   chefDocumentUrl: {},
   userInfo: [],
   userEmail: {},
-  showSideBar:false
+  showSideBar: false,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-
+    getExpertise: (state) => {
+      state.loading = false;
+    },
+    setGetExpertise: (state) => {
+      state.loading = false;
+    },
     toggleSidebar: (state, action) => {
       state.loading = false;
       state.showSideBar = action.payload;
     },
-
     chefProfileDocument: (state) => {
       state.loading = true;
     },
@@ -145,6 +149,8 @@ export const {
   chefProfileDocument,
   setChefProfileDocument,
   toggleSidebar,
+  getExpertise,
+  setGetExpertise,
 } = authSlice.actions;
 
 export default authSlice.reducer;

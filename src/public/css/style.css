@@ -2136,9 +2136,7 @@ body {
   filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.04));
   flex-shrink: 0;
   position: relative;
-  max-width: 310px;
   flex-shrink: 0;
-  max-width: 136px;
   height: 56px;
 }
 

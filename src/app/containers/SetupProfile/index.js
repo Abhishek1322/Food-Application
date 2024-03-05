@@ -52,7 +52,6 @@ const SetupProfile = () => {
   const [formData, setFormData] = useState({
     experience: "",
     bio: "",
-    rateperhour: "",
   });
 
   const [modalDetail, setModalDetail] = useState({
@@ -154,22 +153,16 @@ const SetupProfile = () => {
       } else if (!formData.bio) {
         showToast("Please add your bio");
         return;
-      } else if (!formData.rateperhour) {
-        showToast("Please add your rate per hour");
-        return;
       }
-      const updateExperticeValues = experticeValue?.filter((value) => {
-        return value != "";
-      });
+
       let params = {
         step: "1",
         type: activeTab,
         experience: formData.experience,
         address: address,
         bio: formData.bio,
-        expertise: updateExperticeValues,
-        ratePerHour: formData.rateperhour,
-        coordinates: [latitude, longitude],
+        expertise: experticeValue,
+        coordinates: { type: "Point", lat: latitude, long: longitude },
       };
       dispatch(
         chefSetupProfile({
@@ -410,11 +403,10 @@ const SetupProfile = () => {
             setFormData({
               experience: res.data.data.chefInfo.experience,
               bio: res.data.data.chefInfo.bio,
-              rateperhour: res.data.data.chefInfo.ratePerHour,
             });
             setAddress(res.data.data.chefInfo.address);
-            setLatitude(res.data.data.chefInfo.coordinates[0]);
-            setLongitude(res.data.data.chefInfo.coordinates[1]);
+            setLatitude(res.data.data.chefInfo.coordinates.coordinates[0]);
+            setLongitude(res.data.data.chefInfo.coordinates.coordinates[1]);
             const removeId = res.data.data.chefInfo.availability?.map(
               (item, index) => {
                 const { _id, ...rest } = item;
@@ -474,526 +466,523 @@ const SetupProfile = () => {
                   className="img-fluid logoMain"
                 />
               </figure>
-              <div class="profileSet">
-              <div className="row justify-content-center">
-                <div className="col-lg-5">
-                  <div className="login_details">
-                    <h1 className="setUpHeading">Setup Profile</h1>
-                    <div className="stepProgress mt-4">
-                      <div className="progressBox">
-                        <div className="row">
-                          <div className="col-lg-6 col-md-12">
-                            <MultiStepProgressBar page={page} />
-                          </div>
-                          <div className="col-lg-6 col-md-12">
-                          
-                            {page === "pageone" ? (
-                              <div className="detailEnd">
-                              <button className="PersonalDetails " type="button">
-                                Personal Details
-                              </button>
-                              </div>
-                            ) : page === "pagetwo" ? (
-                              <div className="detailEnd">
-                              <button className="PersonalDetails" type="button">
-                                Availability
-                              </button>
-                              </div>
-                            ) : page === "pagethree" ? (
-                              <div className="detailEnd">
-                              <button className="PersonalDetails" type="button">
-                                Documents
-                              </button>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                           
-                          </div>
-                        </div>
-                      </div>
-                      {
-                        {
-                          pageone: (
-                            <>
-                              <div className="row">
-                                <h6 className="mall">
-                                  Add Personal Details
-                                </h6>
-                                <div className="col-lg-6">
-                                  <div className="input-container mt-3">
-                                    <label className="border-label">
-                                      Chef Type
-                                    </label>
-                                    <ul className="border-input cheftypeBox">
-                                      <li
-                                        className={`chefType gap-2 ${
-                                          activeTab === "restaurant"
-                                            ? "active"
-                                            : path == "/restaurant"
-                                            ? "active"
-                                            : ""
-                                        }`}
-                                        onClick={() =>
-                                          setActiveTab("restaurant")
-                                        }
-                                      >
-                                        Restaurant
-                                        <img
-                                          src={Images.chefType}
-                                          alt="InfoIcon"
-                                          className="InfoIcon"
-                                          id="Restaurant"
-                                        />
-                                        <img
-                                          src={Images.chefTypeActive}
-                                          alt="InfoIcon"
-                                          className="InfoIconActive img-fluid d-none"
-                                        />
-                                      </li>
-                                      <li
-                                        className={`chefType ${
-                                          activeTab === "home"
-                                            ? "active"
-                                            : path == "/home"
-                                            ? "active"
-                                            : ""
-                                        }`}
-                                        onClick={() => setActiveTab("home")}
-                                      >
-                                        Home
-                                        <img
-                                          src={Images.chefType}
-                                          alt="InfoIcon"
-                                          className="InfoIcon"
-                                          id="Home"
-                                        />
-                                        <img
-                                          src={Images.chefTypeActive}
-                                          alt="InfoIcon"
-                                          className="InfoIconActive img-fluid d-none"
-                                        />
-                                      </li>
-                                    </ul>
-                                    <Tooltip
-                                      anchorSelect="#Restaurant"
-                                      content="The chef will prepare exquisite dishes at the restaurant and deliver them to the customer's location."
-                                    />
-                                    <Tooltip
-                                      anchorSelect="#Home"
-                                      content="The chef will prepare and deliver delectable dishes from either their own kitchen or the customer's kitchen."
-                                    />
-                                  </div>
-                                </div>
-                                <div className="col-lg-6">
-                                  <div className="input-container mt-3">
-                                    <input
-                                      onChange={(e) => handleChange(e)}
-                                      type="number"
-                                      name="experience"
-                                      className="border-input inputPlaceholder"
-                                      placeholder="Add your experience"
-                                      value={formData.experience}
-                                    />
-                                    <img
-                                      src={Images.Experience}
-                                      alt="InfoIcon"
-                                      className="InputIcon"
-                                    />
-                                    <label className="border-label">
-                                      Experience (In Years)
-                                    </label>
-                                  </div>
-                                </div>
-                                <div className="col-lg-12">
-                                  <div className="input-container locationData mt-5">
-                                    <PlacesAutocomplete
-                                      className=""
-                                      autoComplete="off"
-                                      value={address}
-                                      onChange={autoCompleteHandleChange}
-                                      onSelect={autoCompleteHandleSelect}
-                                      searchOptions={{}}
-                                    >
-                                      {({
-                                        getInputProps,
-                                        suggestions,
-                                        getSuggestionItemProps,
-                                        loading,
-                                      }) => (
-                                        <div>
-                                          <input
-                                            {...getInputProps({
-                                              placeholder: "Street Address",
-                                              className:
-                                                "location-search-input customform-control border-input inputPlaceholder",
-                                            })}
-                                          />
-                                          <div
-                                            className={
-                                              suggestions &&
-                                              suggestions.length > 0
-                                                ? "suggestion-item-outer"
-                                                : "autocomplete-dropdown-container"
-                                            }
-                                          >
-                                            {/* {loading && <div>Loading...</div>} */}
-                                            {suggestions.map(
-                                              (suggestion, index) => {
-                                                const className =
-                                                  suggestion.active
-                                                    ? "suggestion-item--active"
-                                                    : "suggestion-item";
-                                                // inline style for demonstration purpose
-                                                const style = suggestion.active
-                                                  ? {
-                                                      backgroundColor:
-                                                        "#e65c00",
-                                                      cursor: "pointer",
-                                                      borderRadius: "4px",
-                                                      padding: "6px",
-                                                      color: "#fff",
-                                                    }
-                                                  : {
-                                                      backgroundColor:
-                                                        "#ffffff",
-                                                      cursor: "pointer",
-                                                    };
-                                                return (
-                                                  <div
-                                                    {...getSuggestionItemProps(
-                                                      suggestion,
-                                                      {
-                                                        className,
-                                                        style,
-                                                      }
-                                                    )}
-                                                    key={index}
-                                                  >
-                                                    <span>
-                                                      {suggestion.description}
-                                                    </span>
-                                                  </div>
-                                                );
-                                              }
-                                            )}
-                                          </div>
-                                          <img
-                                            src={Images.Location}
-                                            alt="InfoIcon"
-                                            className="InputIcon"
-                                          />
-                                        </div>
-                                      )}
-                                    </PlacesAutocomplete>
-                                  </div>
-                                </div>
-                                <div className="col-lg-12">
-                                  <div className="input-container mt-5">
-                                    <textarea
-                                      onChange={(e) => handleChange(e)}
-                                      name="bio"
-                                      className="border-input inputPlaceholder "
-                                      placeholder="Add your bio"
-                                      value={formData.bio}
-                                    ></textarea>
-                                    <label className="border-label">Bio</label>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-12">
-                                  <div className="input-container mt-5">
-                                    <input
-                                      onChange={(e) => handleChange(e)}
-                                      type="number"
-                                      name="rateperhour"
-                                      className="border-input inputPlaceholder"
-                                      placeholder="Rate per hour"
-                                      value={formData.rateperhour}
-                                    />
-                                    <label className="border-label">
-                                      Rate Per Hour
-                                    </label>
-                                    <img
-                                      src={Images.ratePerHourImg}
-                                      alt="InfoIcon"
-                                      className="InputIcon"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div className="flexBox justify-content-between mt-5">
-                                  <h6 className="Headingsmall m-0">
-                                    Add Expertise
-                                  </h6>
+              <div className="profileSet">
+                <div className="row justify-content-center">
+                  <div className="col-lg-5">
+                    <div className="login_details">
+                      <h1 className="setUpHeading">Setup Profile</h1>
+                      <div className="stepProgress mt-4">
+                        <div className="progressBox">
+                          <div className="row">
+                            <div className="col-lg-6 col-md-12">
+                              <MultiStepProgressBar page={page} />
+                            </div>
+                            <div className="col-lg-6 col-md-12">
+                              {page === "pageone" ? (
+                                <div className="detailEnd">
                                   <button
+                                    className="PersonalDetails "
                                     type="button"
-                                    className="addButton "
-                                    onClick={() => {
-                                      setModalDetail({
-                                        show: true,
-                                        flag: "AddExpertise",
-                                      });
-                                      setKey(Math.random());
-                                    }}
                                   >
-                                    <i class="las la-plus"></i>Add
+                                    Personal Details
                                   </button>
                                 </div>
-                                <div className="expertiseAdded mt-3">
-                                  <ul>
-                                    {experticeValue
-                                      ?.filter((value) => value !== "")
-                                      ?.map((value, index) => (
-                                        <li className="expertiseList">
-                                          {value}
-                                        </li>
-                                      ))}
-                                  </ul>
+                              ) : page === "pagetwo" ? (
+                                <div className="detailEnd">
+                                  <button
+                                    className="PersonalDetails"
+                                    type="button"
+                                  >
+                                    Availability
+                                  </button>
                                 </div>
-                              </div>
-                              <button
-                                className="submit_btn w-100 mt-4 mb-5"
-                                onClick={(e) => handleSubmit(e, "1")}
-                                type="submit"
-                              >
-                                <span className="smallBtn ">Next</span>
-                              </button>
-                            </>
-                          ),
-                          pagetwo: (
-                            <>
-                              <h6 className="Headingsmall">Set Availability</h6>
-                              <p className="subHeadingSmall mb-4">
-                                Add your available time slots.
-                              </p>
-                              <div className="availability mt-3 mb-5">
-                                <ul className="weekBox">
-                                  {week.map((day, index) => (
-                                    <>
-                                      <li
-                                        onClick={(e) =>
-                                          handleWeekDay(e, day.day)
-                                        }
-                                        className={
-                                          activeWeekDay === day.day
-                                            ? "weekDays active text-capitalize"
-                                            : "weekDays text-capitalize"
-                                        }
-                                      >
-                                        {day.day}
-                                      </li>
-                                    </>
-                                  ))}
-                                </ul>
-                                <div className="timeSlotBox pb-5">
-                                  <h6 className="HeadingsmallText">
-                                    Availability{" "}
-                                  </h6>
-                                  <hr className="borderBottom"></hr>
-
-                                  {showTimeSlot && (
-                                    <>
-                                      <div className="row">
-                                        <div className="col-lg-5 col-md-4">
-                                          <div className="input-container mt-2">
-                                            <div className="myavailability mt-4">
-                                              <div className="availability_Box ">
-                                                <p className="innerBoxText">
-                                                  From
-                                                </p>
-                                                <div className="availableTime flexBox ">
-                                                  <img
-                                                    src={
-                                                      Images.availabilityClock
-                                                    }
-                                                    className="clockImg pe-1"
-                                                    alt="clockImg"
-                                                  />
-                                                  <TimePicker
-                                                    disableClock
-                                                    clearIcon=""
-                                                    onChange={handleStartTime}
-                                                    value={startTime}
-                                                    format="h:mm a"
-                                                    amPmAriaLabel="Select AM/PM"
-                                                    className="custom-time-picker customPicker"
-                                                  />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div className="col-lg-5 col-md-4">
-                                          <div className="input-container mt-2">
-                                            <div className="myavailability mt-4 ">
-                                              <div className="availability_Box">
-                                                <p className="innerBoxText">
-                                                  To
-                                                </p>
-                                                <div className="availableTime flexBox ">
-                                                  <img
-                                                    src={
-                                                      Images.availabilityClock
-                                                    }
-                                                    className="clockImg pe-1"
-                                                    alt="clockImg"
-                                                  />
-                                                  <TimePicker
-                                                    disableClock
-                                                    clearIcon=""
-                                                    onChange={handleEndTime}
-                                                    value={endTime}
-                                                    format="h:mm a"
-                                                    amPmAriaLabel="Select AM/PM"
-                                                    className="custom-time-picker customPicker"
-                                                  />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div className="col-lg-2 col-md-4  text-center">
-                                          <div className="deleteBox ">
-                                            <img
-                                              onClick={() =>
-                                                handleCloseTimeSlot()
-                                              }
-                                              src={Images.DeleteIcon}
-                                              alt="ClockIcon"
-                                              className="DeleteIcon"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </>
-                                  )}
-                                  {!showTimeSlot && (
-                                    <div className="flexBox mt-2">
-                                      <button
-                                        onClick={() => handleShowSlot()}
-                                        type="button"
-                                        className="addButton"
-                                      >
-                                        <i className="las la-plus"></i>Add Time
-                                        Slot{" "}
-                                      </button>
-                                    </div>
-                                  )}
+                              ) : page === "pagethree" ? (
+                                <div className="detailEnd">
+                                  <button
+                                    className="PersonalDetails"
+                                    type="button"
+                                  >
+                                    Documents
+                                  </button>
                                 </div>
-                              </div>
-                              <div className="setButtons flexBox justify-content-center">
-                                <button
-                                  onClick={(e) => handleBack(e, "pageoneback")}
-                                  className="submit_btn"
-                                >
-                                  <span className="addMore me-3">
-                                    <i className="las la-angle-left"></i> Back
-                                  </span>
-                                </button>
-                                <button
-                                  onClick={(e) => handleSubmit(e, "2")}
-                                  className="submit_btn"
-                                >
-                                  <span className="smallBtn ">Continue</span>
-                                </button>
-                              </div>
-                            </>
-                          ),
-                          pagethree: (
-                            <>
-                              <h6 className="Headingsmall">Upload Documents</h6>
-                              <p className="subHeadingSmall mb-4">
-                                Upload your passport or certificate for the
-                                verifications.
-                              </p>
-                              <div className="form-group col-md-12 mb-3">
-                                <div className="uploadImgebox">
-                                  {pdfFiles ? (
-                                    <div className="innerUploadImgBox">
-                                      <div className="flexBox ms-4">
-                                        <div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        {
+                          {
+                            pageone: (
+                              <>
+                                <div className="row">
+                                  <h6 className="mall">Add Personal Details</h6>
+                                  <div className="col-lg-6">
+                                    <div className="input-container mt-3">
+                                      <label className="border-label">
+                                        Chef Type
+                                      </label>
+                                      <ul className="border-input cheftypeBox">
+                                        <li
+                                          className={`chefType gap-2 ${
+                                            activeTab === "restaurant"
+                                              ? "active"
+                                              : path == "/restaurant"
+                                              ? "active"
+                                              : ""
+                                          }`}
+                                          onClick={() =>
+                                            setActiveTab("restaurant")
+                                          }
+                                        >
+                                          Restaurant
                                           <img
-                                            src={Images.uploadFileImg}
-                                            className="uploadFileIcon"
-                                            alt="uploadFileIcon"
+                                            src={Images.chefType}
+                                            alt="InfoIcon"
+                                            className="InfoIcon"
+                                            id="Restaurant"
                                           />
-                                        </div>
-                                        <div className="fileDetail">
-                                          <p
-                                            className="uploadFileDetail ms-3 mb-0"
-                                            placeholder="File Name. pdf"
-                                          >
-                                            {pdfFiles.name}
-                                          </p>
-                                          <span className="timeOrder_ mb-0">
-                                            {formatBytes(pdfFiles.size)}
-                                          </span>
-                                        </div>
-                                      </div>
-                                      <p
-                                        className=" cancelUploadFile me-3"
-                                        onClick={() =>
-                                          handleRemoveDocument(pdfFiles.name)
-                                        }
-                                      >
-                                        <i className="fas fa-times uploadcancelIcon "></i>
-                                      </p>
+                                          <img
+                                            src={Images.chefTypeActive}
+                                            alt="InfoIcon"
+                                            className="InfoIconActive img-fluid d-none"
+                                          />
+                                        </li>
+                                        <li
+                                          className={`chefType ${
+                                            activeTab === "home"
+                                              ? "active"
+                                              : path == "/home"
+                                              ? "active"
+                                              : ""
+                                          }`}
+                                          onClick={() => setActiveTab("home")}
+                                        >
+                                          Home
+                                          <img
+                                            src={Images.chefType}
+                                            alt="InfoIcon"
+                                            className="InfoIcon"
+                                            id="Home"
+                                          />
+                                          <img
+                                            src={Images.chefTypeActive}
+                                            alt="InfoIcon"
+                                            className="InfoIconActive img-fluid d-none"
+                                          />
+                                        </li>
+                                      </ul>
+                                      <Tooltip
+                                        anchorSelect="#Restaurant"
+                                        content="The chef will prepare exquisite dishes at the restaurant and deliver them to the customer's location."
+                                      />
+                                      <Tooltip
+                                        anchorSelect="#Home"
+                                        content="The chef will prepare and deliver delectable dishes from either their own kitchen or the customer's kitchen."
+                                      />
                                     </div>
-                                  ) : (
-                                    <div
-                                      {...getRootProps({
-                                        className: "dropzone",
-                                      })}
-                                    >
+                                  </div>
+                                  <div className="col-lg-6">
+                                    <div className="input-container mt-3">
                                       <input
-                                        type="file"
-                                        accept="image/png, image/jpeg"
-                                        {...getInputProps()}
+                                        onChange={(e) => handleChange(e)}
+                                        type="number"
+                                        name="experience"
+                                        className="border-input inputPlaceholder"
+                                        placeholder="Add your experience"
+                                        value={formData.experience}
                                       />
                                       <img
-                                        src={Images.Uploadicon}
-                                        alt="Uploadicon"
-                                        className="Uploadicon"
+                                        src={Images.Experience}
+                                        alt="InfoIcon"
+                                        className="InputIcon"
                                       />
-                                      <p className="uploadbtnn">Choose File</p>
-
-                                      <p className="HeadingSmall">
-                                        Drag and drop or Upload File Here
-                                      </p>
-                                      <p className="uploadText mt-2">
-                                        5 mb max file size
-                                      </p>
+                                      <label className="border-label">
+                                        Experience (In Years)
+                                      </label>
                                     </div>
-                                  )}
+                                  </div>
+                                  <div className="col-lg-12">
+                                    <div className="input-container locationData mt-5">
+                                      <PlacesAutocomplete
+                                        className=""
+                                        autoComplete="off"
+                                        value={address}
+                                        onChange={autoCompleteHandleChange}
+                                        onSelect={autoCompleteHandleSelect}
+                                        searchOptions={{}}
+                                      >
+                                        {({
+                                          getInputProps,
+                                          suggestions,
+                                          getSuggestionItemProps,
+                                          loading,
+                                        }) => (
+                                          <div>
+                                            <input
+                                              {...getInputProps({
+                                                placeholder: "Street Address",
+                                                className:
+                                                  "location-search-input customform-control border-input inputPlaceholder",
+                                              })}
+                                            />
+                                            <div
+                                              className={
+                                                suggestions &&
+                                                suggestions.length > 0
+                                                  ? "suggestion-item-outer"
+                                                  : "autocomplete-dropdown-container"
+                                              }
+                                            >
+                                              {/* {loading && <div>Loading...</div>} */}
+                                              {suggestions.map(
+                                                (suggestion, index) => {
+                                                  const className =
+                                                    suggestion.active
+                                                      ? "suggestion-item--active"
+                                                      : "suggestion-item";
+                                                  // inline style for demonstration purpose
+                                                  const style =
+                                                    suggestion.active
+                                                      ? {
+                                                          backgroundColor:
+                                                            "#e65c00",
+                                                          cursor: "pointer",
+                                                          borderRadius: "4px",
+                                                          padding: "6px",
+                                                          color: "#fff",
+                                                        }
+                                                      : {
+                                                          backgroundColor:
+                                                            "#ffffff",
+                                                          cursor: "pointer",
+                                                        };
+                                                  return (
+                                                    <div
+                                                      {...getSuggestionItemProps(
+                                                        suggestion,
+                                                        {
+                                                          className,
+                                                          style,
+                                                        }
+                                                      )}
+                                                      key={index}
+                                                    >
+                                                      <span>
+                                                        {suggestion.description}
+                                                      </span>
+                                                    </div>
+                                                  );
+                                                }
+                                              )}
+                                            </div>
+                                            <img
+                                              src={Images.Location}
+                                              alt="InfoIcon"
+                                              className="InputIcon"
+                                            />
+                                          </div>
+                                        )}
+                                      </PlacesAutocomplete>
+                                    </div>
+                                  </div>
+                                  <div className="col-lg-12">
+                                    <div className="input-container mt-5">
+                                      <textarea
+                                        onChange={(e) => handleChange(e)}
+                                        name="bio"
+                                        className="border-input inputPlaceholder "
+                                        placeholder="Add your bio"
+                                        value={formData.bio}
+                                      ></textarea>
+                                      <label className="border-label">
+                                        Bio
+                                      </label>
+                                    </div>
+                                  </div>
+
+                                  <div className="flexBox justify-content-between mt-5">
+                                    <h6 className="Headingsmall m-0">
+                                      Add Expertise
+                                    </h6>
+                                    <button
+                                      type="button"
+                                      className="addButton "
+                                      onClick={() => {
+                                        setModalDetail({
+                                          show: true,
+                                          flag: "AddExpertise",
+                                        });
+                                        setKey(Math.random());
+                                      }}
+                                    >
+                                      <i className="las la-plus"></i>Add
+                                    </button>
+                                  </div>
+                                  <div className="expertiseAdded mt-3">
+                                    <ul>
+                                      {experticeValue
+                                        ?.filter((value) => value !== "")
+                                        ?.map((value, index) => (
+                                          <li className="expertiseList">
+                                            {value}
+                                          </li>
+                                        ))}
+                                    </ul>
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="flexBox justify-content-center uploadFileButton ">
                                 <button
-                                  onClick={(e) => handleBack(e, "pagetwoback")}
-                                  className="submit_btn"
+                                  className="submit_btn w-100 mt-4 mb-5"
+                                  onClick={(e) => handleSubmit(e, "1")}
                                   type="submit"
                                 >
-                                  <span className="addMore me-4">
-                                    <i className="las la-angle-left"></i> Back
-                                  </span>
+                                  <span className="smallBtn ">Next</span>
                                 </button>
-                                <button
-                                  onClick={(e) => handleSubmit(e, "3")}
-                                  className="submit_btn"
-                                  type="submit"
-                                >
-                                  <span className="smallBtn">Save</span>
-                                </button>
-                              </div>
-                            </>
-                          ),
-                        }[page]
-                      }
+                              </>
+                            ),
+                            pagetwo: (
+                              <>
+                                <h6 className="Headingsmall">
+                                  Set Availability
+                                </h6>
+                                <p className="subHeadingSmall mb-4">
+                                  Add your available time slots.
+                                </p>
+                                <div className="availability mt-3 mb-5">
+                                  <ul className="weekBox">
+                                    {week.map((day, index) => (
+                                      <>
+                                        <li
+                                          onClick={(e) =>
+                                            handleWeekDay(e, day.day)
+                                          }
+                                          className={
+                                            activeWeekDay === day.day
+                                              ? "weekDays active text-capitalize"
+                                              : "weekDays text-capitalize"
+                                          }
+                                        >
+                                          {day.day}
+                                        </li>
+                                      </>
+                                    ))}
+                                  </ul>
+                                  <div className="timeSlotBox pb-5">
+                                    <h6 className="HeadingsmallText">
+                                      Availability{" "}
+                                    </h6>
+                                    <hr className="borderBottom"></hr>
+
+                                    {showTimeSlot && (
+                                      <>
+                                        <div className="row">
+                                          <div className="col-lg-5 col-md-4">
+                                            <div className="input-container mt-2">
+                                              <div className="myavailability mt-4">
+                                                <div className="availability_Box ">
+                                                  <p className="innerBoxText">
+                                                    From
+                                                  </p>
+                                                  <div className="availableTime flexBox ">
+                                                    <img
+                                                      src={
+                                                        Images.availabilityClock
+                                                      }
+                                                      className="clockImg pe-1"
+                                                      alt="clockImg"
+                                                    />
+                                                    <TimePicker
+                                                      disableClock
+                                                      clearIcon=""
+                                                      onChange={handleStartTime}
+                                                      value={startTime}
+                                                      format="h:mm a"
+                                                      amPmAriaLabel="Select AM/PM"
+                                                      className="custom-time-picker customPicker"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="col-lg-5 col-md-4">
+                                            <div className="input-container mt-2">
+                                              <div className="myavailability mt-4 ">
+                                                <div className="availability_Box">
+                                                  <p className="innerBoxText">
+                                                    To
+                                                  </p>
+                                                  <div className="availableTime flexBox ">
+                                                    <img
+                                                      src={
+                                                        Images.availabilityClock
+                                                      }
+                                                      className="clockImg pe-1"
+                                                      alt="clockImg"
+                                                    />
+                                                    <TimePicker
+                                                      disableClock
+                                                      clearIcon=""
+                                                      onChange={handleEndTime}
+                                                      value={endTime}
+                                                      format="h:mm a"
+                                                      amPmAriaLabel="Select AM/PM"
+                                                      className="custom-time-picker customPicker"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="col-lg-2 col-md-4  text-center">
+                                            <div className="deleteBox ">
+                                              <img
+                                                onClick={() =>
+                                                  handleCloseTimeSlot()
+                                                }
+                                                src={Images.DeleteIcon}
+                                                alt="ClockIcon"
+                                                className="DeleteIcon"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </>
+                                    )}
+                                    {!showTimeSlot && (
+                                      <div className="flexBox mt-2">
+                                        <button
+                                          onClick={() => handleShowSlot()}
+                                          type="button"
+                                          className="addButton"
+                                        >
+                                          <i className="las la-plus"></i>Add
+                                          Time Slot{" "}
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="setButtons flexBox justify-content-center">
+                                  <button
+                                    onClick={(e) =>
+                                      handleBack(e, "pageoneback")
+                                    }
+                                    className="submit_btn"
+                                  >
+                                    <span className="addMore me-3">
+                                      <i className="las la-angle-left"></i> Back
+                                    </span>
+                                  </button>
+                                  <button
+                                    onClick={(e) => handleSubmit(e, "2")}
+                                    className="submit_btn"
+                                  >
+                                    <span className="smallBtn ">Continue</span>
+                                  </button>
+                                </div>
+                              </>
+                            ),
+                            pagethree: (
+                              <>
+                                <h6 className="Headingsmall">
+                                  Upload Documents
+                                </h6>
+                                <p className="subHeadingSmall mb-4">
+                                  Upload your passport or certificate for the
+                                  verifications.
+                                </p>
+                                <div className="form-group col-md-12 mb-3">
+                                  <div className="uploadImgebox">
+                                    {pdfFiles ? (
+                                      <div className="innerUploadImgBox">
+                                        <div className="flexBox ms-4">
+                                          <div>
+                                            <img
+                                              src={Images.uploadFileImg}
+                                              className="uploadFileIcon"
+                                              alt="uploadFileIcon"
+                                            />
+                                          </div>
+                                          <div className="fileDetail">
+                                            <p
+                                              className="uploadFileDetail ms-3 mb-0"
+                                              placeholder="File Name. pdf"
+                                            >
+                                              {pdfFiles.name}
+                                            </p>
+                                            <span className="timeOrder_ mb-0">
+                                              {formatBytes(pdfFiles.size)}
+                                            </span>
+                                          </div>
+                                        </div>
+                                        <p
+                                          className=" cancelUploadFile me-3"
+                                          onClick={() =>
+                                            handleRemoveDocument(pdfFiles.name)
+                                          }
+                                        >
+                                          <i className="fas fa-times uploadcancelIcon "></i>
+                                        </p>
+                                      </div>
+                                    ) : (
+                                      <div
+                                        {...getRootProps({
+                                          className: "dropzone",
+                                        })}
+                                      >
+                                        <input
+                                          type="file"
+                                          accept="image/png, image/jpeg"
+                                          {...getInputProps()}
+                                        />
+                                        <img
+                                          src={Images.Uploadicon}
+                                          alt="Uploadicon"
+                                          className="Uploadicon"
+                                        />
+                                        <p className="uploadbtnn">
+                                          Choose File
+                                        </p>
+
+                                        <p className="HeadingSmall">
+                                          Drag and drop or Upload File Here
+                                        </p>
+                                        <p className="uploadText mt-2">
+                                          5 mb max file size
+                                        </p>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="flexBox justify-content-center uploadFileButton ">
+                                  <button
+                                    onClick={(e) =>
+                                      handleBack(e, "pagetwoback")
+                                    }
+                                    className="submit_btn"
+                                    type="submit"
+                                  >
+                                    <span className="addMore me-4">
+                                      <i className="las la-angle-left"></i> Back
+                                    </span>
+                                  </button>
+                                  <button
+                                    onClick={(e) => handleSubmit(e, "3")}
+                                    className="submit_btn"
+                                    type="submit"
+                                  >
+                                    <span className="smallBtn">Save</span>
+                                  </button>
+                                </div>
+                              </>
+                            ),
+                          }[page]
+                        }
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>

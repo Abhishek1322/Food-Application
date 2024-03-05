@@ -10,25 +10,22 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
+import { useWebSelector } from "../../../../redux/selector/web";
 
-const AddmenuItemModal = (props) => {
-  const { close, menuListAll } = props;
+const AddmenuItemModal = ({ close, menuListAll }) => {
+  const webSelector = useWebSelector();
+  const { loading } = webSelector;
   const toastId = useRef(null);
   const dispatch = useDispatch();
-  const [key, setKey] = useState(Math.random());
   const [category, setCategory] = useState("");
   const [itemImage, setItemImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
   const [formData, setFormData] = useState({
     itemName: "",
     price: "",
     deliveryTime: "",
     description: "",
+    chefBookingPrice: "",
   });
 
   //onchange input
@@ -60,6 +57,12 @@ const AddmenuItemModal = (props) => {
     } else if (!formData.price) {
       showToast("Please add item price");
       return;
+    } else if (!formData.chefBookingPrice) {
+      showToast("Please add chef booking price");
+      return;
+    } else if (formData.price >= formData.chefBookingPrice) {
+      showToast("Chef booking price should be greater then menu price");
+      return;
     } else if (!formData.deliveryTime) {
       showToast("Please add item delivery time");
       return;
@@ -75,6 +78,7 @@ const AddmenuItemModal = (props) => {
       name: formData.itemName,
       category: category,
       price: formData.price,
+      bookingPriceForItem: formData.chefBookingPrice,
       deliveryTime: formData.deliveryTime,
       description: formData.description,
       image: imageUrl,
@@ -193,7 +197,7 @@ const AddmenuItemModal = (props) => {
             />
             <label className="border-label">Category</label>
           </div>
-          <div className="flexBox justify-content-between editMenuFields_ ">
+          <div className="flexBox justify-content-between editMenuFields_  gap-2">
             <div className="input-container mt-5">
               <input
                 type="number"
@@ -209,23 +213,35 @@ const AddmenuItemModal = (props) => {
               />
               <label className="border-label">Price</label>
             </div>
-            <div className="input-container mt-5 pe-3 flexBox">
+            <div className="input-container mt-5 flexBox">
               <input
                 type="number"
-                className="menuEditbuttom inputPlaceholder"
-                name="deliveryTime"
+                className="menuEditbuttom inputPlaceholder inputPlaceholder-booking"
+                name="chefBookingPrice"
                 onChange={(e) => handleChange(e)}
-                placeholder="e.g. 45"
+                placeholder="e.g. 30"
               />
-              <p className="inneredittxt">MIN</p>
               <img
-                src={Images.clockImg}
-                className="cateofyImg_"
-                alt="clockimg"
+                src={Images.euroImg}
+                className="cateofyImg_ euroImgText"
+                alt="euroImg"
               />
-              <label className="border-label">Delivery Time</label>
+              <label className="border-label">Chef Booking Price</label>
             </div>
           </div>
+        </div>
+
+        <div className="input-container mt-4">
+          <input
+            type="number"
+            className="menuEditbuttom inputPlaceholder"
+            name="deliveryTime"
+            onChange={(e) => handleChange(e)}
+            placeholder="e.g. 45"
+          />
+          <p className="inneredittxt">MIN</p>
+          <img src={Images.clockImg} className="cateofyImg_" alt="clockimg" />
+          <label className="border-label">Delivery Time</label>
         </div>
         <div className="input-container mt-4">
           <textarea
@@ -254,7 +270,7 @@ const AddmenuItemModal = (props) => {
               <div className="postAd_upload_icon">
                 <div {...getRootProps()} className="inputfile-box active">
                   <input {...getInputProps()} />
-                  <label for="file">
+                  <label htmlFor="file">
                     <span id="file-name" className="file-box d-none">
                       No File Chosen
                     </span>
@@ -277,30 +293,15 @@ const AddmenuItemModal = (props) => {
       </div>
       <div>
         <button
-          disabled={
-            !formData.itemName ||
-            !formData.price ||
-            !formData.deliveryTime ||
-            !formData.description ||
-            !imageUrl ||
-            !category
-          }
-          className={
-            !formData.itemName ||
-            !formData.price ||
-            !formData.deliveryTime ||
-            !formData.description ||
-            !imageUrl ||
-            !category
-              ? "foodmodalbtn  modalfooterbtn disbale-btn"
-              : "foodmodalbtn  modalfooterbtn"
-          }
-          // className="foodmodalbtn  modalfooterbtn"
+          className="foodmodalbtn  modalfooterbtn"
           onClick={() => {
             handleCreateMenu();
           }}
         >
           Add
+          {loading &&
+          <span className="spinner-border spinner-border-sm ms-2"></span>
+          }
         </button>
       </div>
     </>

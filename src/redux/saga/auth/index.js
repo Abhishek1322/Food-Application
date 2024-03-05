@@ -15,11 +15,33 @@ import {
   setDeleteAccount,
   setChefSetupProfile,
   setChefProfileDocument,
+  setGetExpertise,
 } from "../../slices/auth";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getExpertise(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = ApiPath.AuthApiPath.GET_EXPERTISE),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetExpertise(resp.data.data));
+      yield call(action.payload.cb, resp);
+      // toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* chefProfileDocument(action) {
   try {
@@ -346,6 +368,7 @@ function* authSaga() {
     takeLatest("auth/deleteAccount", deleteAccount),
     takeLatest("auth/chefSetupProfile", chefSetupProfile),
     takeLatest("auth/chefProfileDocument", chefProfileDocument),
+    takeLatest("auth/getExpertise", getExpertise),
   ]);
 }
 

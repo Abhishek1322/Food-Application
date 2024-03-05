@@ -85,50 +85,50 @@ const Menu = () => {
 
   return (
     <>
-      {webSelector?.loading ? (
-        <div className="good-loader">
-          <FadeLoader
-            color={"#E65C00"}
-            size={150}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : (
-        <div className="mainchef_">
-          <div className="menuPage">
-            <div className="container-fluid">
-              <div className="row align-items-center">
-                <div className="col-lg-12">
-                  <div className="innerhomeheader">
-                    <h2 className="headerinnerheading">
-                      List of Your Menu Items
-                    </h2>
-                    <div className="d-flex align-items-center">
-                      <div className="searchbar me-4">
-                        <input
-                          onChange={(e) => setSearchMenu(e.target.value)}
-                          placeholder="Search menu items..."
-                          type="text"
-                          className="searchtext"
-                        />
-                        <img
-                          src={Images.searchbar}
-                          className="searchbarImg"
-                          alt="searchbar"
-                        />
-                      </div>
-                      <div
-                        className="menuItems "
-                        onClick={() => {
-                          handleUserProfile("addMenuItemModal");
-                        }}
-                      >
-                        <i className="fas fa-plus plusmenuImg"></i>
-                        <h3 className="innermenuItem">Add Menu Item</h3>
-                      </div>
+      <div className="mainchef_">
+        <div className="menuPage">
+          <div className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-lg-12">
+                <div className="innerhomeheader">
+                  <h2 className="headerinnerheading">
+                    List of Your Menu Items
+                  </h2>
+                  <div className="d-flex align-items-center">
+                    <div className="searchbar me-4">
+                      <input
+                        onChange={(e) => setSearchMenu(e.target.value)}
+                        placeholder="Search menu items..."
+                        type="text"
+                        className="searchtext"
+                      />
+                      <img
+                        src={Images.searchbar}
+                        className="searchbarImg"
+                        alt="searchbar"
+                      />
+                    </div>
+                    <div
+                      className="menuItems "
+                      onClick={() => {
+                        handleUserProfile("addMenuItemModal");
+                      }}
+                    >
+                      <i className="fas fa-plus plusmenuImg"></i>
+                      <h3 className="innermenuItem">Add Menu Item</h3>
                     </div>
                   </div>
+                </div>
+                {webSelector?.loading && !modalDetail.show ? (
+                  <div className="good-loader">
+                    <FadeLoader
+                      color={"#E65C00"}
+                      size={150}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </div>
+                ) : (
                   <div
                     className={
                       menuList && menuList.length > 0 ? "profileDetail" : ""
@@ -231,24 +231,24 @@ const Menu = () => {
                       </div>
                     )}
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
-          {menuList && menuList.length > 0 && (
-            <ReactPaginate
-              previousLabel={"prev"}
-              nextLabel={"next"}
-              pageCount={pageCount}
-              pageRangeDisplayed={2}
-              marginPagesDisplayed={3}
-              onPageChange={handlePageChange}
-              containerClassName={"pagination menuPagination"}
-              activeClassName={"active"}
-            />
-          )}
         </div>
-      )}
+        {menuList && menuList.length > 0 && (
+          <ReactPaginate
+            previousLabel={"prev"}
+            nextLabel={"next"}
+            pageCount={pageCount}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={3}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination menuPagination"}
+            activeClassName={"active"}
+          />
+        )}
+      </div>
       <CustomModal
         key={key}
         show={modalDetail.show}

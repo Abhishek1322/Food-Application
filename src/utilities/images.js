@@ -157,7 +157,6 @@ import chefImageNew from "../public/images/chefImageNew.png";
 import recoverLock from "../public/images/recoverLock.svg";
 import lockImg from "../public/images/lockImg.svg";
 import nocheffound from "../public/images/nocheffound.svg";
-
 import linkdin from "../public/images/linkdin.svg";
 import twitter from "../public/images/twitter.svg";
 import instagram from "../public/images/instagram.svg";
@@ -166,19 +165,13 @@ import pinterest from "../public/images/pinterest.svg";
 import tiktok from "../public/images/tiktok.svg";
 import snapchat from "../public/images/snapchat.svg";
 import youtube from "../public/images/youtube.svg";
-
 import callImg from "../public/images/callImg.svg";
-
-
-              
-              
-             
-            
-              
-              
-              
+import checked from "../public/images/checked.svg";
+import unchecked from "../public/images/unchecked.svg";
 
 export {
+  checked,
+  unchecked,
   callImg,
   linkdin,
   twitter,
@@ -346,5 +339,5 @@ export {
   rightArrowBlack,
   orderFood,
   helpSupport,
-  nocheffound
+  nocheffound,
 };

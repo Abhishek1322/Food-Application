@@ -1044,3 +1044,20 @@ input:-webkit-autofill:active {
   font-family: 'Font Awesome 5 Free';
   font-weight: 600;
 }
+.label-select-expertise {
+  color: #ABADAD;
+  font-family: serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.select-expertise-outer .MuiChip-deleteIcon {
+  color: #fff !important;
+}
+.select-expertise-outer .MuiButtonBase-root.MuiChip-root.MuiChip-filled.MuiChip-sizeMedium {
+  background: #E65C00;
+  color: #fff;
+}
+.select-expertise-outer .MuiChip-deleteIcon:hover {
+  color: #fff !important;
+}

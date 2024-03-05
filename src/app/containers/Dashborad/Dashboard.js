@@ -9,12 +9,12 @@ const Dashboard = () => {
   return (
     <>
       {/* Banner Section Starts*/}
-      <section class="foodDetails">
+      <section className="foodDetails">
         <div className="foodImg1">
           <img alt="food-img" src={Images.PhotoRoom1} className="img-fluid leftHalf" />
         </div>
         <div className="stroke">
-          <img src={Images.LineBg} alt="line-bg" class="img-fluid lineImg" />
+          <img src={Images.LineBg} alt="line-bg" className="img-fluid lineImg" />
         </div>
         <div className="container">
           <div className="row align-items-center">
@@ -56,7 +56,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="col-lg-6 col-md-6">
-              <div class="rightImg">
+              <div className="rightImg">
                 <img
                   className="img-fluid chef"
                   alt="chef-image"
@@ -159,7 +159,7 @@ const Dashboard = () => {
       {/*Starts Video Section*/}
       <section className="videoSection">
         <div className="image1">
-          <img alt="food-bg" class="foodImage" src={Images.foodBgTwo} />
+          <img alt="food-bg" className="foodImage" src={Images.foodBgTwo} />
         </div>
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -179,7 +179,7 @@ const Dashboard = () => {
             </div>
             <div className="col-lg-7 col-md-6 pe-0">
               <div className="video">
-                <img class="img-fluid" src={Images.videoimg} alt="video-img" />
+                <img className="img-fluid" src={Images.videoimg} alt="video-img" />
               </div>
             </div>
           </div>
@@ -194,12 +194,12 @@ const Dashboard = () => {
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
               <div className="text-center">
-                <img alt="chef-woman" src={Images.chefWoman} class=" chefImages img-fluid" />
+                <img alt="chef-woman" src={Images.chefWoman} className=" chefImages img-fluid" />
               </div>
             </div>
 
             <div className="col-lg-6 col-md-6">
-              <div class="different_">
+              <div className="different_">
                 <h2 className="black">
                   What Makes ServeItLocal
                   <br /> Different<br />
@@ -211,7 +211,7 @@ const Dashboard = () => {
                   authenticity, transparency, and a culinary movement:
 
                 </p>
-                <p class="greyHeading">ServeItLocal goes beyond transactional interactions, serving as a curator of extraordinary
+                <p className="greyHeading">ServeItLocal goes beyond transactional interactions, serving as a curator of extraordinary
                     culinary experiences. The platform meticulously selects local chefs who are both masters of
                     their craft and cultural storytellers, ensuring that each culinary encounter is a carefully crafted
                     journey, telling a story, and celebrating local traditions.</p></div>
@@ -231,27 +231,27 @@ const Dashboard = () => {
                 <div className="col-lg-12">
                  <div className="diffSec">
                   
-                  <p class="greyHeading mb-2">Fostering a global community that transcends borders, ServeItLocal connects travelers with
+                  <p className="greyHeading mb-2">Fostering a global community that transcends borders, ServeItLocal connects travelers with
                     passionate local chefs worldwide, providing a unique global culinary passport. This emphasis
                     on community building and cultural exchange distinguishes ServeItLocal as more than just a
                     service but as a movement bringing people together through the universal language of food.</p>
-                  <p class="greyHeading mb-2">Envisioning a world where every journey is a feast, ServeItLocal allows travelers to immerse
+                  <p className="greyHeading mb-2">Envisioning a world where every journey is a feast, ServeItLocal allows travelers to immerse
                     themselves in the heart of a community through its flavors. This visionary approach sees food
                     as a universal language that unites people, creating memorable experiences that go beyond
                     just the culinary aspect.</p>
-                  <p class="greyHeading mb-2">Beyond being a booking platform, ServeItLocal empowers chefs globally, transforming
+                  <p className="greyHeading mb-2">Beyond being a booking platform, ServeItLocal empowers chefs globally, transforming
                     kitchens into cultural hubs. From personalized culinary experiences to connecting with
                     travelers passionate about local flavors, ServeItLocal supports local talent, contributing to the
                     global culinary landscape.</p>
-                  <p class="greyHeading mb-2">As the gateway to authentic culinary experiences for travelers, ServeItLocal goes beyond the
+                  <p className="greyHeading mb-2">As the gateway to authentic culinary experiences for travelers, ServeItLocal goes beyond the
                     typical tourist experience. It allows users to discover hidden gems, learn from local chefs, and
                     immerse themselves in the flavors of a destination, fostering genuine cultural exchange and
                     lasting memories.</p>
-                  <p class="greyHeading mb-2">ServeItLocal believes in transparency, providing clear pricing breakdowns for both chefs and
+                  <p className="greyHeading mb-2">ServeItLocal believes in transparency, providing clear pricing breakdowns for both chefs and
                     travelers. This commitment to openness extends to the quality of experiences, community
                     integrity, and the authenticity of shared flavors, building trust at the core of the platform.</p>
 
-                  <p class="greyHeading mb-2">ServeItLocal is not just a platform; it's a movement that aims to bring people together through
+                  <p className="greyHeading mb-2">ServeItLocal is not just a platform; it's a movement that aims to bring people together through
                     the universal language of food. Whether you are a chef looking to showcase talents or a
                     traveler seeking authentic experiences, ServeItLocal invites you to join this culinary journey
                     to explore, savor, and celebrate the diverse tapestry of global flavors. In essence, while

@@ -14,6 +14,7 @@ const ApiPath = {
     CHEF_SETUP_PROFILE_DOCUMENT: "/users/upload-file",
     CHEF_PROFILE_DETAILS: "/users",
     UPDATE_CHEF_PROFILE: "/users",
+    GET_EXPERTISE: "/expertise/all",
   },
   webApiPath: {
     CHEF_LIST: "/users/chefs",

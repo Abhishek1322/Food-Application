@@ -1,77 +1,43 @@
 import React, { useState, useRef, useEffect } from "react";
-import * as Images from "../../../../utilities/images";
 import { toast } from "react-toastify";
-import { updateChefProfile } from "../../../../redux/slices/web";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { getExpertise } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
+import {
+  updateChefProfile,
+  onErrorStopLoad,
+} from "../../../../redux/slices/web";
+import { useWebSelector } from "../../../../redux/selector/web";
 
-const AddExpertiseModal = (props) => {
-  const { close, experticeValue, chefProfileDetails } = props;
-  const emailRef = useRef(null);
+const AddExpertiseModal = ({ close, experticeValue, chefProfileDetails }) => {
   const toastId = useRef(null);
   const dispatch = useDispatch();
-  const [expertice, setExpertice] = useState([""]);
-  const [newInputIndex, setNewInputIndex] = useState(null);
+  const webSelector = useWebSelector();
+  const { loading } = webSelector;
+  const [expertice, setExpertice] = useState([]);
+  const [experticeList, setExperticeList] = useState([]);
 
-  // add new input
-  const handleAddInput = (e) => {
-    e.preventDefault();
-    const checkEmptyInput = expertice[expertice.length - 1] === "";
-    if (checkEmptyInput) {
-      toast.dismiss();
-      toast.error("Please fill current field");
-      return;
-    }
-    setExpertice([...expertice, ""]);
-    setNewInputIndex(expertice.length);
-  };
-
-  // Remove input field
-  const handleRemoveInput = (index) => {
-    const newValues = [...expertice];
-    newValues.splice(index, 1);
-    setExpertice(newValues);
-  };
-
-  // get values of input field
-  const handleChangeInput = (index, value) => {
-    const newValues = [...expertice];
-    newValues[index] = value;
-    setExpertice(newValues);
-  };
-
-  // Focus on added new input field
-  useEffect(() => {
-    if (
-      newInputIndex !== null &&
-      emailRef.current &&
-      newInputIndex === expertice.length - 1
-    ) {
-      emailRef.current.focus();
-      setNewInputIndex(null); // Reset the new input index
-    }
-  }, [expertice, newInputIndex]);
-
-  // show only one toast at one time
-  const showToast = (msg) => {
-    if (!toast.isActive(toastId.current)) {
-      toastId.current = toast.error(msg);
-    }
-  };
+  const icon = <RadioButtonUncheckedIcon fontSize="small" />;
+  const checkedIcon = (
+    <CheckCircleIcon style={{ color: "#E65C00" }} fontSize="small" />
+  );
 
   // submit expertice values
   const handleSubmitExpertice = () => {
-    const checkSameExpertice = new Set(expertice).size !== expertice.length;
-    if (checkSameExpertice) {
-      showToast("Some expertice name is same please choose a different one");
+    if (!expertice?.length) {
+      showToast("Please select at least one expertise");
       return;
     }
-    const updateExperticeValues = expertice.filter((value) => value !== "");
+    const getTitles = expertice?.map((value) => value.title);
 
     let params = {
       step: "2",
-      expertise: updateExperticeValues,
+      expertise: getTitles,
     };
-
     dispatch(
       updateChefProfile({
         ...params,
@@ -85,57 +51,74 @@ const AddExpertiseModal = (props) => {
     );
   };
 
-  // updating expertise values
-  useEffect(() => {
-    if (experticeValue && experticeValue.length > 0) {
-      const updateExperticeValues = experticeValue.filter((value) => {
-        return value !== "";
-      });
-      setExpertice((prevExpertice) => [
-        ...prevExpertice.filter((value) => value !== ""),
-        ...updateExperticeValues,
-      ]);
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
     }
-  }, [experticeValue]);
+  };
+
+  // get expertice values
+  useEffect(() => {
+    dispatch(
+      getExpertise({
+        cb(res) {
+          if (res?.status === 200) {
+            const findRestValue = res?.data?.data?.data?.filter((value) =>
+              experticeValue.includes(value.title)
+            );
+            setExperticeList(res?.data?.data?.data);
+            setExpertice(findRestValue);
+          }
+        },
+      })
+    );
+  }, []);
+
+  // get value of expertice
+  const handleAutocompleteChange = (event, values) => {
+    setExpertice(values);
+  };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
-      <form onSubmit={(e) => handleAddInput(e)}>
-        <div className="text-end mt-4">
-          <button type="submit" className="addMore d-inline-block">
-            <i className="las la-plus"></i>Add More
-          </button>
-        </div>
-
-        <div className="modalscroll">
-          {expertice.map((value, index) => (
-            <>
-              <div className="input-container  mt-3">
-                <input
-                  ref={index === expertice.length - 1 ? emailRef : null}
-                  onChange={(e) => handleChangeInput(index, e.target.value)}
-                  type="text"
-                  className="border-input"
-                  placeholder="Experty"
-                  value={value}
-                />
-
-                {expertice && expertice.length > 1 && (
-                  <img
-                    onClick={() => handleRemoveInput(index)}
-                    src={Images.DeleteIcon}
-                    alt="InfoIcon"
-                    className="InputIcon"
-                  />
-                )}
-              </div>
-            </>
-          ))}
-        </div>
-      </form>
+      <div className="select-expertise-outer">
+        <p className="label-select-expertise">Select Expertise</p>
+        <Autocomplete
+          multiple
+          id="checkboxes-tags-demo"
+          options={experticeList}
+          disableCloseOnSelect
+          value={expertice}
+          onChange={handleAutocompleteChange}
+          getOptionLabel={(option) => option?.title}
+          renderOption={(props, option, { selected }) => (
+            <li {...props}>
+              <Checkbox
+                icon={icon}
+                checkedIcon={checkedIcon}
+                style={{ marginRight: 8 }}
+                checked={selected}
+              />
+              {option.title}
+            </li>
+          )}
+          renderInput={(params) => (
+            <TextField {...params} placeholder="Search and Select" />
+          )}
+        />
+      </div>
       <div className="buttomBtn text-center modalfooterbtn">
         <button onClick={handleSubmitExpertice} className="smallBtn w-100">
           Done
+          {loading && (
+            <span className="spinner-border spinner-border-sm ms-2"></span>
+          )}
         </button>
       </div>
     </>

@@ -1,74 +1,35 @@
 import React, { useState, useRef, useEffect } from "react";
-import * as Images from "../../../../utilities/images";
 import { toast } from "react-toastify";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { getExpertise } from "../../../../redux/slices/auth";
+import { useDispatch } from "react-redux";
 
 const AddExpertise = (props) => {
   const { setExperticeValue, close, experticeValue } = props;
-  const emailRef = useRef(null);
   const toastId = useRef(null);
-  const [expertice, setExpertice] = useState([""]);
-  const [newInputIndex, setNewInputIndex] = useState(null);
+  const dispatch = useDispatch();
+  const [expertice, setExpertice] = useState([]);
+  const [experticeList, setExperticeList] = useState([]);
 
-  // add new input
-  const handleAddInput = (e) => {
-    e.preventDefault();
-    const checkEmptyInput = expertice[expertice.length - 1] === "";
-    if (checkEmptyInput) {
-      showToast("Please fill current field");
-      return;
-    }
-    setExpertice([...expertice, ""]);
-    setNewInputIndex(expertice.length);
-  };
-
-  // Remove input field
-  const handleRemoveInput = (index) => {
-    const newValues = [...expertice];
-    newValues.splice(index, 1);
-    setExpertice(newValues);
-  };
-
-  // get values of input field
-  const handleChangeInput = (index, value) => {
-    const newValues = [...expertice];
-    newValues[index] = value;
-    setExpertice(newValues);
-  };
-
-  // Focus on added new input field
-  useEffect(() => {
-    if (
-      newInputIndex !== null &&
-      emailRef.current &&
-      newInputIndex === expertice.length - 1
-    ) {
-      emailRef.current.focus();
-      setNewInputIndex(null); // Reset the new input index
-    }
-  }, [expertice, newInputIndex]);
+  const icon = <RadioButtonUncheckedIcon fontSize="small" />;
+  const checkedIcon = (
+    <CheckCircleIcon style={{ color: "#E65C00" }} fontSize="small" />
+  );
 
   // submit expertice values
   const handleSubmitExpertice = () => {
-    const checkSameExpertice = new Set(expertice).size !== expertice.length;
-    if (checkSameExpertice) {
-      showToast("Some expertice name is same please choose a different one");
+    if (!expertice?.length) {
+      showToast("Please select at least one expertise");
       return;
     }
-    setExperticeValue(expertice);
+    const getTitles = expertice?.map((value) => value.title);
+    setExperticeValue(getTitles);
     close();
   };
-
-  useEffect(() => {
-    if (experticeValue && experticeValue.length > 0) {
-      const updateExperticeValues = experticeValue.filter((value) => {
-        return value !== "";
-      });
-      setExpertice((prevExpertice) => [
-        ...prevExpertice.filter((value) => value !== ""),
-        ...updateExperticeValues,
-      ]);
-    }
-  }, [experticeValue]);
 
   // show only one toast at one time
   const showToast = (msg) => {
@@ -77,41 +38,56 @@ const AddExpertise = (props) => {
     }
   };
 
+  // get expertice values
+  useEffect(() => {
+    dispatch(
+      getExpertise({
+        cb(res) {
+          if (res?.status === 200) {
+            const findRestValue = res?.data?.data?.data?.filter((value) =>
+              experticeValue.includes(value.title)
+            );
+            setExperticeList(res?.data?.data?.data);
+            setExpertice(findRestValue);
+          }
+        },
+      })
+    );
+  }, []);
+
+  // get value of expertice
+  const handleAutocompleteChange = (event, values) => {
+    setExpertice(values);
+  };
+
   return (
     <>
-      <form onSubmit={(e) => handleAddInput(e)}>
-        <div className="text-end mt-2">
-          <button type="submit" className="addMore d-inline-block">
-            <i className="las la-plus"></i>Add More
-          </button>
-        </div>
-
-        <div className="expertise-outer-main">
-          {expertice.map((value, index) => (
-            <>
-              <div key={index} className="input-container">
-                <input
-                  ref={index === expertice.length - 1 ? emailRef : null}
-                  onChange={(e) => handleChangeInput(index, e.target.value)}
-                  type="text"
-                  className="border-input inputPlaceholder"
-                  placeholder="Experty"
-                  value={value}
-                />
-
-                {expertice && expertice.length > 1 && (
-                  <img
-                    onClick={() => handleRemoveInput(index)}
-                    src={Images.DeleteIcon}
-                    alt="InfoIcon"
-                    className="InputIcon"
-                  />
-                )}
-              </div>
-            </>
-          ))}
-        </div>
-      </form>
+      <div className="select-expertise-outer">
+        <p className="label-select-expertise">Select Expertise</p>
+        <Autocomplete
+          multiple
+          id="checkboxes-tags-demo"
+          options={experticeList}
+          disableCloseOnSelect
+          value={expertice}
+          onChange={handleAutocompleteChange}
+          getOptionLabel={(option) => option?.title}
+          renderOption={(props, option, { selected }) => (
+            <li {...props}>
+              <Checkbox
+                icon={icon}
+                checkedIcon={checkedIcon}
+                style={{ marginRight: 8 }}
+                checked={selected}
+              />
+              {option.title}
+            </li>
+          )}
+          renderInput={(params) => (
+            <TextField {...params} placeholder="Search and Select" />
+          )}
+        />
+      </div>
       <div className="buttomBtn text-center modalfooterbtn">
         <button onClick={handleSubmitExpertice} className="smallBtn w-100">
           Done

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import { useDispatch } from "react-redux";
 import {
@@ -11,11 +11,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
+import { useWebSelector } from "../../../../redux/selector/web";
 
-const EditMenuModal = (props) => {
-  const { menuId, close, menuListAll } = props;
-
+const EditMenuModal = ({ menuId, close, menuListAll }) => {
   const dispatch = useDispatch();
+  const webSelector = useWebSelector();
+  const { loading } = webSelector;
+  const toastId = useRef(null);
   const [category, setCategory] = useState("veg");
   const [itemImage, setItemImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -24,6 +26,7 @@ const EditMenuModal = (props) => {
     price: "",
     deliveryTime: "",
     description: "",
+    chefBookingPrice: "",
   });
 
   //onchange input
@@ -46,12 +49,14 @@ const EditMenuModal = (props) => {
       singleMenu({
         ...params,
         cb(res) {
+          console.log("ressss", res);
           if (res.status === 200) {
             setFormData({
               itemName: res?.data?.data?.item?.name,
               price: res?.data?.data?.item?.price,
               deliveryTime: res?.data?.data?.item?.deliveryTime,
               description: res?.data?.data?.item?.description,
+              chefBookingPrice: res?.data?.data?.item?.bookingPriceForItem,
             });
             setCategory(res?.data?.data?.item?.category);
             setImageUrl(res?.data?.data?.item?.image);
@@ -117,8 +122,41 @@ const EditMenuModal = (props) => {
     }
   };
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // update menu items
   const handleUpdateMenu = () => {
+    if (!formData.itemName) {
+      showToast("Please add item name");
+      return;
+    } else if (!category) {
+      showToast("Please select category");
+      return;
+    } else if (!formData.price) {
+      showToast("Please add item price");
+      return;
+    } else if (!formData.chefBookingPrice) {
+      showToast("Please add chef booking price");
+      return;
+    } else if (formData.price >= formData.chefBookingPrice) {
+      showToast("Chef booking price should be greater then menu price");
+      return;
+    } else if (!formData.deliveryTime) {
+      showToast("Please add item delivery time");
+      return;
+    } else if (!formData.description) {
+      showToast("Please add item description");
+      return;
+    } else if (!imageUrl) {
+      showToast("Please add item image");
+      return;
+    }
+
     let params = {
       id: menuId,
       name: formData.itemName,
@@ -126,6 +164,7 @@ const EditMenuModal = (props) => {
       price: formData.price,
       deliveryTime: formData.deliveryTime,
       description: formData.description,
+      bookingPriceForItem: formData.chefBookingPrice,
       image: imageUrl,
     };
     dispatch(
@@ -179,7 +218,7 @@ const EditMenuModal = (props) => {
             />
             <label className="border-label">Category</label>
           </div>
-          <div className="flexBox justify-content-between editMenuFields_ ">
+          <div className="flexBox justify-content-between editMenuFields_  gap-2">
             <div className="input-container mt-5">
               <input
                 type="number"
@@ -192,23 +231,35 @@ const EditMenuModal = (props) => {
               <img src={Images.euroImg} className="cateofyImg_" alt="euroImg" />
               <label className="border-label">Price</label>
             </div>
-            <div className="input-container mt-5 pe-3 flexBox">
+            <div className="input-container mt-5 flexBox">
               <input
                 type="number"
-                className="menuEditbuttom"
-                name="deliveryTime"
+                className="menuEditbuttom inputPlaceholder inputPlaceholder-booking"
+                name="chefBookingPrice"
                 onChange={(e) => handleChange(e)}
-                placeholder="e.g. 45"
-                value={formData.deliveryTime}
+                placeholder="e.g. 30"
+                value={formData.chefBookingPrice}
               />
-              <p className="inneredittxt">MIN</p>
               <img
-                src={Images.clockImg}
-                className="cateofyImg_"
-                alt="clockImg"
+                src={Images.euroImg}
+                className="cateofyImg_ euroImgText"
+                alt="euroImg"
               />
-              <label className="border-label">Delivery Time</label>
+              <label className="border-label">Chef Booking Price</label>
             </div>
+          </div>
+          <div className="input-container mt-5 pe-3 flexBox">
+            <input
+              type="number"
+              className="menuEditbuttom"
+              name="deliveryTime"
+              onChange={(e) => handleChange(e)}
+              placeholder="e.g. 45"
+              value={formData.deliveryTime}
+            />
+            <p className="inneredittxt">MIN</p>
+            <img src={Images.clockImg} className="cateofyImg_" alt="clockImg" />
+            <label className="border-label">Delivery Time</label>
           </div>
         </div>
         <div className="input-container mt-4">
@@ -264,6 +315,9 @@ const EditMenuModal = (props) => {
           className="foodmodalbtn  modalfooterbtn"
         >
           Save Changes
+          {loading &&
+          <span className="spinner-border spinner-border-sm ms-2"></span>
+          }
         </button>
       </div>
     </>
