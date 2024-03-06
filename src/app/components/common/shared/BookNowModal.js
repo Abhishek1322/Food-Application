@@ -4,24 +4,18 @@ import CustomModal from "./CustomModal";
 import ChefBookModal from "./ChefBookModal";
 import { getSlotDay, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { toast } from "react-toastify";
+import UserCartModal from "./UserCartModal";
+import { addToCart } from "../../../../redux/slices/user";
 
 // let currentDay = moment(new Date()).format("ddd").toLowerCase();
-const BookNowModal = ({ chefId, initClose }) => {
+const BookNowModal = ({ menuId, chefId, initClose }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
-  const [chefData, setChefData] = useState([]);
-  const [city, setCity] = useState("");
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
   const [timeSlotes, setTimeSlotes] = useState([]);
   const [date, setDate] = useState(new Date());
   const [activeSlot, setActiveSlot] = useState([]);
@@ -75,10 +69,7 @@ const BookNowModal = ({ chefId, initClose }) => {
 
   // open modal
   const handleOpenModal = (flag) => {
-    if (!city) {
-      showToast("Please select address");
-      return;
-    } else if (selectedTimeSlotes.length === 0) {
+    if (selectedTimeSlotes.length === 0) {
       showToast("Please select atlest one time slot");
       return;
     } else if (!description) {
@@ -91,28 +82,6 @@ const BookNowModal = ({ chefId, initClose }) => {
       type: flag,
     });
     setKey(Math.random());
-  };
-
-  // handle change city
-  const autoCompleteHandleChange = (city) => {
-    setCity(city);
-    geocodeByAddress(city)
-      .then((results) => {
-        setLatitude(results[0].geometry.location.lat());
-        setLongitude(results[0].geometry.location.lng());
-      })
-      .catch((error) => {});
-  };
-
-  // select city
-  const autoCompleteHandleSelect = (city) => {
-    setCity(city);
-    geocodeByAddress(city)
-      .then((results) => {
-        setLatitude(results[0].geometry.location.lat());
-        setLongitude(results[0].geometry.location.lng());
-      })
-      .catch((error) => {});
   };
 
   // get date
@@ -147,80 +116,32 @@ const BookNowModal = ({ chefId, initClose }) => {
     });
   };
 
+  // hire cheff
+  const handleAddCart = () => {
+    let params = {
+      menuItemId: menuId,
+      type: "booking",
+      quantity: "1",
+      description: description,
+      date: moment(date).format("DD-MM-YYYY"),
+      slots: selectedTimeSlotes,
+    };
+    dispatch(
+      addToCart({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            handleOpenModal("allCart");
+          }
+        },
+      })
+    );
+  };
+
   return (
     <>
       <div className="booknowsection booknow-modal-outer">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="input-container mt-4">
-              <PlacesAutocomplete
-                className=""
-                autoComplete="off"
-                value={city}
-                onChange={autoCompleteHandleChange}
-                onSelect={autoCompleteHandleSelect}
-                searchOptions={{}}
-              >
-                {({
-                  getInputProps,
-                  suggestions,
-                  getSuggestionItemProps,
-                  loading,
-                }) => (
-                  <div>
-                    <input
-                      {...getInputProps({
-                        placeholder: "Street Address",
-                        className:
-                          "location-search-input customform-control border-input address-border-input",
-                      })}
-                    />
-                    <div
-                      className={
-                        suggestions && suggestions.length > 0
-                          ? "suggestion-item-outer"
-                          : "autocomplete-dropdown-container"
-                      }
-                    >
-                      {/* {loading && <div>Loading...</div>} */}
-                      {suggestions.map((suggestion, index) => {
-                        const className = suggestion.active
-                          ? "suggestion-item--active"
-                          : "suggestion-item";
-                        // inline style for demonstration purpose
-                        const style = suggestion.active
-                          ? {
-                              backgroundColor: "#e65c00",
-                              cursor: "pointer",
-                              borderRadius: "4px",
-                              padding: "6px",
-                              color: "#fff",
-                            }
-                          : {
-                              backgroundColor: "#ffffff",
-                              cursor: "pointer",
-                            };
-                        return (
-                          <div
-                            {...getSuggestionItemProps(suggestion, {
-                              className,
-                              style,
-                            })}
-                            key={index}
-                          >
-                            <span>{suggestion.description}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </PlacesAutocomplete>
-              <label className="border-label">Address</label>
-              <img src={Images.Location} alt="InfoIcon" className="InputIcon" />
-            </div>
-          </div>
-        </div>
+        <div className="row"></div>
         <div className="row">
           <div className="col-lg-12">
             <div className="input-container date-picker-outer mt-4">
@@ -311,7 +232,7 @@ const BookNowModal = ({ chefId, initClose }) => {
             className="foodmodalbtn"
             type="submit"
             onClick={() => {
-              handleOpenModal("chefbook");
+              handleAddCart();
             }}
           >
             Book Now
@@ -328,19 +249,28 @@ const BookNowModal = ({ chefId, initClose }) => {
         className={
           modalDetail.flag === "chefbook" ? "commonWidth customContent" : ""
         }
-        ids={modalDetail.flag === "chefbook" ? "chefbookmodal" : ""}
+        ids={
+          modalDetail.flag === "chefbook"
+            ? "chefbookmodal"
+            : modalDetail.flag === "allCart"
+            ? "CartModal"
+            : ""
+        }
         child={
           modalDetail.flag === "chefbook" ? (
             <ChefBookModal
               chefId={chefId}
-              latitude={latitude}
-              longitude={longitude}
-              city={city}
               selectedTimeSlotes={selectedTimeSlotes}
               description={description}
               date={date}
               close={() => handleOnCloseModal()}
               firstBookNow={() => initClose()}
+            />
+          ) : modalDetail.flag === "allCart" ? (
+            <UserCartModal
+              close={() => {
+                handleOnCloseModal();
+              }}
             />
           ) : (
             ""
@@ -351,6 +281,22 @@ const BookNowModal = ({ chefId, initClose }) => {
             <>
               <h2 className="modal_Heading">Check Out</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">
+                <img
+                  src={Images.modalCancel}
+                  className="ModalCancel"
+                  alt="modalcancelimg"
+                />
+              </p>
+            </>
+          ) : modalDetail.flag === "allCart" ? (
+            <>
+              <h2 className="modal_Heading">CheckOut</h2>
+              <p
+                onClick={() => {
+                  handleOnCloseModal();
+                }}
+                className="modal_cancel"
+              >
                 <img
                   src={Images.modalCancel}
                   className="ModalCancel"

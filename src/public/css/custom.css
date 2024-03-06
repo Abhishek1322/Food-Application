@@ -80,12 +80,12 @@ textarea:focus-visible {
   border-radius: 7px;
 }
 
-.checkBox:checked+.checkBoxTxt:before {
+.checkBox:checked + .checkBoxTxt:before {
   background: #388e1e;
   border: 2px solid #388e1e;
 }
 
-.checkBox:checked+.checkBoxTxt:after {
+.checkBox:checked + .checkBoxTxt:after {
   content: "";
   display: block;
   position: absolute;
@@ -106,8 +106,8 @@ textarea:focus-visible {
   left: -9999px;
 }
 
-.customRadio:checked+label,
-.customRadio:not(:checked)+label {
+.customRadio:checked + label,
+.customRadio:not(:checked) + label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
@@ -116,8 +116,8 @@ textarea:focus-visible {
   color: #666;
 }
 
-.customRadio:checked+label:before,
-.customRadio:not(:checked)+label:before {
+.customRadio:checked + label:before,
+.customRadio:not(:checked) + label:before {
   content: "";
   position: absolute;
   left: 0;
@@ -129,8 +129,8 @@ textarea:focus-visible {
   background: transparent;
 }
 
-.customRadio:checked+label:after,
-.customRadio:not(:checked)+label:after {
+.customRadio:checked + label:after,
+.customRadio:not(:checked) + label:after {
   content: "";
   width: 10px;
   height: 10px;
@@ -143,13 +143,13 @@ textarea:focus-visible {
   transition: all 0.2s ease;
 }
 
-.customRadio:not(:checked)+label:after {
+.customRadio:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
 
-.customRadio:checked+label:after {
+.customRadio:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -606,7 +606,9 @@ input:-webkit-autofill:active {
   width: 75%;
 }
 
-.date-picker-outer .react-datepicker__input-container .react-datepicker__calendar-icon {
+.date-picker-outer
+  .react-datepicker__input-container
+  .react-datepicker__calendar-icon {
   position: absolute;
   padding: 0;
   cursor: pointer;
@@ -721,10 +723,10 @@ input:-webkit-autofill:active {
   padding: 15px 25px;
   outline: none;
   border-radius: 8px;
-  border: 1px solid #E9E9E9;
-  background: #FFF;
+  border: 1px solid #e9e9e9;
+  background: #fff;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.04);
-  color: #2E3333;
+  color: #2e3333;
   font-family: Open Sans;
   font-size: 14px;
   font-weight: 400;
@@ -747,8 +749,7 @@ input:-webkit-autofill:active {
 }
 
 .StarRating_.activeRating {
-  background-color: #2E3333;
-
+  background-color: #2e3333;
 }
 
 .StarRating_.activeRating span {
@@ -756,12 +757,12 @@ input:-webkit-autofill:active {
 }
 
 .ratingProgressBarNew .ant-progress-bg {
-  background-color: #FFC107 !important;
+  background-color: #ffc107 !important;
   height: 10px !important;
 }
 
 .ratingProgressBarNew .ant-progress-inner {
-  background-color: #FFF3CD;
+  background-color: #fff3cd;
   border-radius: 50px;
   height: 10px;
 }
@@ -772,10 +773,10 @@ input:-webkit-autofill:active {
 
 .locate.current-locate-btn {
   border-radius: 8px;
-  border: 2px solid #E65C00;
-  background: #FFF;
-  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.10);
-  color: #E65C00;
+  border: 2px solid #e65c00;
+  background: #fff;
+  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.1);
+  color: #e65c00;
   font-family: Open Sans;
   font-size: 18px;
   font-style: normal;
@@ -792,13 +793,13 @@ input:-webkit-autofill:active {
 }
 
 .search-location-input {
-  fill: #FFF;
+  fill: #fff;
   stroke-width: 1px;
   stroke: rgba(230, 92, 0, 0.15);
   filter: drop-shadow(0px 9px 19px rgba(230, 92, 0, 0.03));
   border: none;
   padding: 14px 5px 14px 36px;
-  color: #ABADAD;
+  color: #abadad;
   font-family: Open Sans;
   font-size: 16px;
   border-radius: 8px;
@@ -815,7 +816,7 @@ input:-webkit-autofill:active {
   position: absolute;
   right: -20px;
   top: 22px;
-  background: #E65C00;
+  background: #e65c00;
   padding: 8px;
   border-radius: 8px;
 }
@@ -832,11 +833,11 @@ input:-webkit-autofill:active {
 }
 
 .locate-options {
-  color: #2E3333;
+  color: #2e3333;
   font-family: Open Sans;
   font-size: 14px;
   font-style: normal;
-  border-bottom: 1px solid rgba(192, 194, 194, 0.50);
+  border-bottom: 1px solid rgba(192, 194, 194, 0.5);
   padding: 10px 4px;
   /* border-style: dashed; */
 }
@@ -982,7 +983,6 @@ input:-webkit-autofill:active {
   height: 73vh;
 }
 
-
 .clearChatCancel {
   color: #e65c00;
   font-size: 18px;
@@ -1041,11 +1041,11 @@ input:-webkit-autofill:active {
   text-align: center;
   margin-top: 10px;
   font-size: 23px;
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 600;
 }
 .label-select-expertise {
-  color: #ABADAD;
+  color: #abadad;
   font-family: serif;
   font-size: 16px;
   font-weight: 500;
@@ -1054,10 +1054,168 @@ input:-webkit-autofill:active {
 .select-expertise-outer .MuiChip-deleteIcon {
   color: #fff !important;
 }
-.select-expertise-outer .MuiButtonBase-root.MuiChip-root.MuiChip-filled.MuiChip-sizeMedium {
-  background: #E65C00;
+.select-expertise-outer
+  .MuiButtonBase-root.MuiChip-root.MuiChip-filled.MuiChip-sizeMedium {
+  background: #e65c00;
   color: #fff;
 }
 .select-expertise-outer .MuiChip-deleteIcon:hover {
   color: #fff !important;
+}
+.menu-list {
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  /* width: calc(20% - 85px); */
+  margin-right: 21px;
+  margin-bottom: 20px;
+}
+
+.sarahsmenu .menu-list .itemsPrice_ {
+  padding: 8px 25px !important;
+  width: 100%;
+  color: #35b539;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0;
+  border-radius: 10px;
+  background-color: rgb(53 181 57 / 20%);
+}
+.menu-list .menuItem_ {
+  width: 80px;
+  height: 80px;
+}
+.menu-list .itemIs_ {
+  font-size: 18px !important;
+  text-transform: capitalize;
+}
+.menu-list .category_ {
+  font-size: 12px !important;
+  text-transform: capitalize;
+}
+.food-by-chef span {
+  color: #abadad;
+  font-family: "Open Sans";
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.food-by-chef {
+  color: #2e3333;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.chefs-lists .cheffilter .searchtext {
+  padding: 15px 54px 15px 8px;
+  width: 310px;
+}
+.menu-list .bgmenuImg_ {
+  left: 29px;
+  top: -16px;
+  width: 100px;
+  height: 90px;
+}
+.hire-chef-btn {
+  border-radius: 8px;
+  background: #2e3333;
+  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+  padding: 18px 45px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  width: 92%;
+}
+.chef-details-modal {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 16px 20px rgba(0, 0, 0, 0.05);
+  margin: 12px;
+}
+.chef-detail-wrappper {
+  position: relative;
+}
+
+.chef-detail-bg {
+  height: 50px;
+  width: 50px;
+}
+
+.chef-detail-image {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  left: 15px;
+  border-radius: 50px;
+  top: 8px;
+}
+.chef-detail-wrapper {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.chef-detail-name {
+  color: #2e3333;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.detail-exp-tag {
+  border-radius: 4px;
+  background: #e65c00;
+  padding: 6px 8px;
+  color: #fff;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 10px;
+  font-weight: 600;
+}
+.detail-review-count {
+  color: #abadad;
+  font-family: "Open Sans";
+  font-size: 15px;
+  font-weight: 400;
+}
+.scroll-food-detail {
+  height: 64vh;
+  overflow: auto;
+}
+.rating-review-detail {
+  width: 30%;
+  text-align: right;
+}
+.recipe-lists.select-expertise-outer {
+  width: 230px;
+}
+/* Add this CSS to your stylesheet or in your style tag */
+.recipe-lists .MuiAutocomplete-root .MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(230, 92, 0, 0.08);
+}
+
+.recipe-lists .MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 6px !important;
+}
+
+.recipe-lists
+  .MuiAutocomplete-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline,
+.recipe-lists .MuiAutocomplete-root:hover .MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(230, 92, 0, 0.08);
 }

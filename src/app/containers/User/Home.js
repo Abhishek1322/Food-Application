@@ -7,7 +7,12 @@ import ReactPaginate from "react-paginate";
 import FadeLoader from "react-spinners/FadeLoader";
 import { useWebSelector } from "../../../redux/selector/web";
 import { useUserSelector } from "../../../redux/selector/user";
-
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { getExpertise } from "../../../redux/slices/auth";
 
 const HomeUser = () => {
   const dispatch = useDispatch();
@@ -18,13 +23,20 @@ const HomeUser = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
   const [search, setSearch] = useState("");
+  const [experticeList, setExperticeList] = useState([]);
+  const [expertice, setExpertice] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filterChefByRating, setFilterChefByRating] = useState("");
+
+  const icon = <RadioButtonUncheckedIcon fontSize="small" />;
+  const checkedIcon = (
+    <CheckCircleIcon style={{ color: "#E65C00" }} fontSize="small" />
+  );
 
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, [search, filterChefByRating,currentLocation]);
+  }, [search, filterChefByRating, currentLocation, expertice]);
 
   const getChefList = (page = currentPage) => {
     let params = {
@@ -34,6 +46,7 @@ const HomeUser = () => {
       rating: filterChefByRating,
       lat: currentLocation?.lat,
       long: currentLocation?.lng,
+      foodType: expertice,
     };
 
     dispatch(
@@ -41,14 +54,27 @@ const HomeUser = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setChefListData(res.data.data.data);
-            setPageCount(res.data.data.total_pages);
+            setChefListData(res.data.data.userList.data);
+            setPageCount(res.data.data.userList.total_pages);
             setIsLoading(false);
           }
         },
       })
     );
   };
+
+  // get expertice values
+  useEffect(() => {
+    dispatch(
+      getExpertise({
+        cb(res) {
+          if (res?.status === 200) {
+            setExperticeList(res?.data?.data?.data);
+          }
+        },
+      })
+    );
+  }, []);
 
   // Page change handler
   const handlePageChange = ({ selected }) => {
@@ -61,7 +87,11 @@ const HomeUser = () => {
     e.preventDefault();
     setFilterChefByRating(rating);
   };
-
+  // get value of expertice
+  const handleAutocompleteChange = (event, values) => {
+    const getTitle = values?.map((item) => item.title);
+    setExpertice(getTitle);
+  };
   return (
     <>
       {webSelector?.loading && isLoading ? (
@@ -187,6 +217,36 @@ const HomeUser = () => {
                   </Link>
                 </li>
               </ul>
+            </div>
+            <div className="recipe-lists select-expertise-outer">
+              <Autocomplete
+                multiple
+                id="checkboxes-tags-demo"
+                options={experticeList}
+                disableCloseOnSelect
+                // value={null}
+                onChange={handleAutocompleteChange}
+                getOptionLabel={(option) => option?.title}
+                renderOption={(props, option, { selected }) => (
+                  <li {...props}>
+                    <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{ marginRight: 8 }}
+                      checked={selected}
+                    />
+                    {option.title}
+                  </li>
+                )}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder={
+                      expertice?.length > 0 ? "" : "Search Using Menu"
+                    }
+                  />
+                )}
+              />
             </div>
           </div>
           <div className="container-fluid">

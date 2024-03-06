@@ -168,6 +168,8 @@ import youtube from "../public/images/youtube.svg";
 import callImg from "../public/images/callImg.svg";
 import checked from "../public/images/checked.svg";
 import unchecked from "../public/images/unchecked.svg";
+import sidebarLight from "../public/images/sidebar-light.svg";
+
 
 export {
   checked,
@@ -340,4 +342,5 @@ export {
   orderFood,
   helpSupport,
   nocheffound,
+  sidebarLight
 };

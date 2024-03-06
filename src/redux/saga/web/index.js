@@ -201,7 +201,10 @@ function* chefLists(action) {
     targetUtl += `lat=${action.payload.lat}&`;
   }
   if (action.payload.long) {
-    targetUtl += `long=${action.payload.long}`;
+    targetUtl += `long=${action.payload.long}&`;
+  }
+  if (action.payload.foodType.length > 0) {
+    targetUtl += `foodType=${action.payload.foodType}`;
   }
   try {
     const resp = yield call(

@@ -16,6 +16,7 @@ const Router = () => {
           )}
           <Route path="/home-user" element={<Containers.HomeUser />} />
           <Route path="/chef-details" element={<Containers.ChefDetails />} />
+          <Route path="/menu-details" element={<Containers.MenuDetails />} />
           <Route path="/user-chef-home" element={<Containers.UserChefHome />} />
           <Route
             path="/user-order-home"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as Images from "../../../utilities/images";
 import CustomModal from "./shared/CustomModal";
 import BookNowModal from "./shared/BookNowModal";
@@ -21,6 +21,7 @@ import {
 
 const User_Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = location;
   const { search } = location;
@@ -212,6 +213,7 @@ const User_Navbar = () => {
             {pathname === "/home-user" ||
             pathname === "/user-chef-home" ||
             pathname === "/user-order-home" ||
+            pathname === "/menu-details" ||
             pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6 col-sm-12">
@@ -247,6 +249,8 @@ const User_Navbar = () => {
                     <h1 className="chefCommonHeader">My Orders</h1>
                   ) : pathname === "/setting" ? (
                     <h1 className="chefCommonHeader">Settings</h1>
+                  ) : pathname === "/menu-details" ? (
+                    <h1 className="chefCommonHeader">Menu Details</h1>
                   ) : (
                     ""
                   )}
@@ -365,18 +369,18 @@ const User_Navbar = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6 col-6">
                   <div className="insideCommonHeader">
-                    <Link to="/user-chef-home">
+                    <button onClick={() => navigate(-1)}>
                       <img
                         src={Images.backArrowpassword}
                         className="innerHeaderArrow"
                       />
-                    </Link>
+                    </button>
                     <h1 className="chefCommonHeader ps-2">Chef Details</h1>
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-6 col-6 text-end">
                   <div className="flexBox">
-                    <div className="headerBook">
+                    {/* <div className="headerBook">
                       <button
                         className="sarahmessagebtn"
                         onClick={() => {
@@ -393,7 +397,7 @@ const User_Navbar = () => {
 
                         <p className="availableheading">Book Now</p>
                       </button>
-                    </div>
+                    </div> */}
                     <button
                       onClick={() => setToggle(!toggle)}
                       className="toggleSideBtn"

@@ -181,22 +181,13 @@ const ChefDetails = () => {
         {/* chef experience section  */}
         <div className="sarahdata">
           <div className="row">
-            <div className="col-lg-3 col-md-6 col-sm-12 d-flex justify-content-start">
-              <h6 className="chatSearchere_">
-                {" "}
-                <span className="sarahtime">
-                  £ {chefData?.chefInfo?.ratePerHour}
-                </span>
-                /hour
-              </h6>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="col-lg-4 col-md-6 col-sm-12">
               <h6 className="chefName">Experience</h6>
               <h6 className="chatSearchere_ mt-2">
                 {chefData?.chefInfo?.experience} + Years Exp.
               </h6>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="col-lg-4 col-md-6 col-sm-12">
               <h6 className="chefName">Rating</h6>
               <div
                 className="chefrating mt-2"
@@ -210,7 +201,7 @@ const ChefDetails = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="col-lg-4 col-md-6 col-sm-12">
               <h6 className="chefName">Address</h6>
               <p className="chatSearchere_ mt-2">
                 {chefData?.chefInfo?.address}

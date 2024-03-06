@@ -352,11 +352,9 @@ p {
 .chefrating {
   border-radius: 4px;
   background: hsl(122 55% 95% / 1);
-  display: flex;
   padding: 6px;
-  max-width: 155px;
-  justify-content: space-around;
   cursor: pointer;
+  display: inline-flex;
 }
 
 .ratingheading {
