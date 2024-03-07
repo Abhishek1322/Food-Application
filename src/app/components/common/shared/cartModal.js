@@ -20,7 +20,7 @@ const CartModal = ({ close, updateCartCount }) => {
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const [chefId, setChefId] = useState("");
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
   const [key, setKey] = useState(Math.random());
   const [totalPrice, setTotalPrice] = useState([]);
   const [modalDetail, setModalDetail] = useState({
@@ -36,10 +36,12 @@ const CartModal = ({ close, updateCartCount }) => {
 
   //  get all cart data
   const handleGetAllCart = () => {
+    setShowLoading(true);
     dispatch(
       getAllCart({
         cb(res) {
           if (res.status === 200) {
+            setShowLoading(false);
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);

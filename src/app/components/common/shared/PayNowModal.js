@@ -2,13 +2,25 @@ import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import PaymentDoneModal from "./PaymentDoneModal";
-import { createOrder, onErrorStopLoad } from "../../../../redux/slices/user";
+import {
+  createOrder,
+  onErrorStopLoad,
+  hireChef,
+} from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 import { usePaymentInputs } from "react-payment-inputs";
 import { toast } from "react-toastify";
 
-const PayNowModal = (props) => {
-  const { close, cartId, selectedAddress, orderPrice } = props;
+const PayNowModal = ({
+  close,
+  cartId,
+  selectedAddress,
+  orderPrice,
+  orderType,
+  bookingData,
+  bookingAddress,
+}) => {
+
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
@@ -66,6 +78,7 @@ const PayNowModal = (props) => {
       toastId.current = toast.error(msg);
     }
   };
+  console.log("bookingDatabookingData", bookingData);
 
   // create order
   const handleCreateOrder = () => {
@@ -82,28 +95,54 @@ const PayNowModal = (props) => {
       showToast("Please enter cvv number");
       return;
     }
-
-    let params = {
-      cartId: cartId,
-      addressId: selectedAddress,
-      cardHolderName: formData.cardHolderName,
-      cardNumber: formData.cardNumber,
-      expiresOn: formData.expiryDate,
-      cvv: formData.cvc,
-    };
-
-    dispatch(
-      createOrder({
-        ...params,
-        cb(res) {
-          if (res.status === 200) {
-            handleOpenModal("paydone");
-            setOrderId(res?.data?.data?._id);
-            setOrderNumber(res?.data?.data?.orderId);
-          }
-        },
-      })
-    );
+    if (orderType === "order") {
+      let params = {
+        cartId: cartId,
+        addressId: selectedAddress,
+        cardHolderName: formData.cardHolderName,
+        cardNumber: formData.cardNumber,
+        expiresOn: formData.expiryDate,
+        cvv: formData.cvc,
+      };
+      dispatch(
+        createOrder({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              handleOpenModal("paydone");
+              setOrderId(res?.data?.data?._id);
+              setOrderNumber(res?.data?.data?.orderId);
+            }
+          },
+        })
+      );
+    } else {
+      let params = {
+        cartId: cartId,
+        cardHolderName: formData.cardHolderName,
+        cardNumber: formData.cardNumber,
+        expiresOn: formData.expiryDate,
+        cvv: formData.cvc,
+        chefId: bookingData?.chefId,
+        date: bookingData?.date,
+        slots: bookingData?.slots,
+        coordinates: bookingAddress?.coordinates?.coordinates,
+        address: bookingAddress?.streetAddress,
+        description:bookingData?.description
+      };
+      dispatch(
+        hireChef({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              handleOpenModal("paydone");
+              setOrderId(res?.data?.data?._id);
+              setOrderNumber(res?.data?.data?.bookingId);
+            }
+          },
+        })
+      );
+    }
   };
 
   // format card number
@@ -228,6 +267,7 @@ const PayNowModal = (props) => {
               }}
               orderNumber={orderNumber}
               orderId={orderId}
+              orderType={orderType}
             />
           ) : (
             ""

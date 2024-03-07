@@ -123,9 +123,11 @@ export const userSilce = createSlice({
 
     cancelOrder: (state) => {
       state.loading = true;
+      state.success = false;
     },
     setCancelOrder: (state, action) => {
       state.loading = false;
+      state.success = true;
     },
     createOrder: (state) => {
       state.loading = true;
@@ -151,7 +153,7 @@ export const userSilce = createSlice({
     },
     addToCart: (state) => {
       state.loading = true;
-      state.success = false
+      state.success = false;
     },
     setAddToCart: (state) => {
       state.loading = false;

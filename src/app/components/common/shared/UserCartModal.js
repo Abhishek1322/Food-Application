@@ -16,8 +16,7 @@ import { useNavigate } from "react-router-dom";
 import PayNowModal from "./PayNowModal";
 import { toast } from "react-toastify";
 
-const UserCartModal = (props) => {
-  const { close } = props;
+const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [allCartItems, setAllCartItems] = useState([]);
@@ -25,8 +24,11 @@ const UserCartModal = (props) => {
   const toastId = useRef(null);
   const [chefId, setChefId] = useState("");
   const [key, setKey] = useState(Math.random());
+  const [orderType, setOrderType] = useState("");
   const [totalPrice, setTotalPrice] = useState([]);
   const [address, setAddress] = useState([]);
+  const [bookingAddress, setBookingAddress] = useState([]);
+  const [bookingData, setBookingData] = useState([]);
   const latestAddress =
     address && address.length > 0 ? [...address].reverse() : [];
   const [addressId, setAddressId] = useState([]);
@@ -48,6 +50,7 @@ const UserCartModal = (props) => {
       getAllCart({
         cb(res) {
           if (res.status === 200) {
+            setBookingData(res?.data?.data?.data);
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
@@ -56,6 +59,7 @@ const UserCartModal = (props) => {
                 Number(previousValue) + Number(currentValue.itemTotalPrice),
               0
             );
+            setOrderType(res?.data?.data?.data?.type);
             setTotalPrice(totalCartPrice);
           }
         },
@@ -148,7 +152,7 @@ const UserCartModal = (props) => {
   };
 
   // open modal
-  const handleOpenModal = (flag, id) => {
+  const handleOpenModal = (flag, id, book) => {
     if (flag === "payNow" && !selectedAddress) {
       showToast("Please select delivery address");
       return;
@@ -163,8 +167,9 @@ const UserCartModal = (props) => {
   };
 
   // select address
-  const handleSelectAddress = (e, id) => {
+  const handleSelectAddress = (e, id, book) => {
     setSelectedAddress(id);
+    setBookingAddress(book);
   };
 
   // add more items
@@ -309,7 +314,9 @@ const UserCartModal = (props) => {
                           <p className="cheftext mt-2">{item?.streetAddress}</p>
                           <div className="round roundSelect">
                             <input
-                              onClick={(e) => handleSelectAddress(e, item?._id)}
+                              onClick={(e) =>
+                                handleSelectAddress(e, item?._id, item)
+                              }
                               id=""
                               name=""
                               type="checkbox"
@@ -419,6 +426,9 @@ const UserCartModal = (props) => {
               cartId={cartId}
               selectedAddress={selectedAddress}
               orderPrice={totalPrice}
+              orderType={orderType}
+              bookingData={bookingData}
+              bookingAddress={bookingAddress}
             />
           ) : (
             ""

@@ -4,8 +4,7 @@ import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
 import { Line } from "rc-progress";
 
-const OrderPlaceModal = (props) => {
-  const { close, orderId } = props;
+const OrderPlaceModal = ({ close, orderId, orderType }) => {
   const [key, setKey] = useState(Math.random());
   const [countDown, setCountDown] = useState(60);
   const [barPercentage, setBarPercentage] = useState();
@@ -66,9 +65,13 @@ const OrderPlaceModal = (props) => {
           alt="accountdeletedimg"
           className="img-fluid"
         />
-        <h1 className="accountDeleted mt-3"> Order Placed</h1>
+        <h1 className="accountDeleted mt-3">
+          {orderType === "order" ? "Order Placed" : "Booking Done"}
+        </h1>
         <p className="accountdeletetxt mt-2 ">
-          Your order has been successfully placed.
+          {orderType === "order"
+            ? "Your order has been successfully placed."
+            : "Your Booking has been done successfully ."}
         </p>
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
@@ -82,7 +85,7 @@ const OrderPlaceModal = (props) => {
               Okay
             </button>
           </div>
-            <Line
+          <Line
             className="cancelProgressBar mt-3"
             percent={barPercentage}
             strokeWidth={3}
@@ -97,7 +100,7 @@ const OrderPlaceModal = (props) => {
             className="itemsQuantity"
             type="button"
           >
-            Cancel Order
+            {orderType === "order" ? "Cancel Order" : "Cancel Booking"}
           </button>
         </div>
       </div>
@@ -119,7 +122,7 @@ const OrderPlaceModal = (props) => {
         child={
           modalDetail.flag === "wantCancelOrder" ? (
             <YourOrderModal
-              flag={"booking"}
+              orderType={orderType}
               orderId={orderId}
               close={() => {
                 close();

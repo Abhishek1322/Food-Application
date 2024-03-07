@@ -488,11 +488,7 @@ function* addToCart(action) {
   } catch (e) {
     yield put(onErrorStopLoad());
     toast.dismiss();
-    if (e.response.data.data[0]) {
-      toast.error(e.response.data.data[0]);
-    } else {
-      toast.error(e.response.data.message);
-    }
+    toast.error(e.response.data.message);
   }
 }
 
@@ -677,6 +673,8 @@ function* userSaga() {
   yield all([takeLatest("user/menuRating", menuRating)]);
   yield all([takeLatest("user/getMenuRating", getMenuRating)]);
   yield all([takeLatest("user/getLocationInfo", getLocationInfo)]);
-  yield all([takeLatest("user/getCartNotificationCount", getCartNotificationCount)]);
+  yield all([
+    takeLatest("user/getCartNotificationCount", getCartNotificationCount),
+  ]);
 }
 export default userSaga;

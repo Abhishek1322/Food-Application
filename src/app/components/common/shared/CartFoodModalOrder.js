@@ -282,9 +282,9 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                 className="mt-2 hire-chef-btn"
                 type="button"
               >
-                {userData?.loading && (
+                {/* {userData?.loading && (
                   <span className="spinner-border spinner-border-sm me-1"></span>
-                )}
+                )} */}
                 Hire Chef at £ {foodDetails?.item?.bookingPriceForItem}
               </button>
             </div>
@@ -358,7 +358,10 @@ const CartFoodModalOrder = ({ menuId, close }) => {
             <BookNowModal
               menuId={menuId}
               chefId={foodDetails?.item?.userId?._id}
-              close={() => handleOnCloseModal()}
+              close={() => {
+                handleOnCloseModal();
+                close();
+              }}
             />
           ) : (
             ""
@@ -382,7 +385,8 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                 />
               </p>
             </>
-          ) : modalDetail.flag === ("ratingmenu" || "ratingchef") ? (
+          ) : modalDetail.flag === "ratingmenu" ||
+            modalDetail.flag === "ratingchef" ? (
             <>
               <h2 className="modal_Heading">Rating & Reviews</h2>
               <p onClick={handleOnCloseModal} className="modal_cancel">

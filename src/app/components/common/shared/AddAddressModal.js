@@ -168,6 +168,8 @@ const AddAddressModal = (props) => {
   // get let long
   function success(pos) {
     var crd = pos.coords;
+    setLatitude(crd.latitude)
+    setLongitude(crd.longitude)
     handleGetLocationInfo(crd.latitude, crd.longitude);
   }
 

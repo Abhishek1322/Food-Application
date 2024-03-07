@@ -12,7 +12,7 @@ import UserCartModal from "./UserCartModal";
 import { addToCart } from "../../../../redux/slices/user";
 
 // let currentDay = moment(new Date()).format("ddd").toLowerCase();
-const BookNowModal = ({ menuId, chefId, initClose }) => {
+const BookNowModal = ({ menuId, chefId, close }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
@@ -263,13 +263,16 @@ const BookNowModal = ({ menuId, chefId, initClose }) => {
               selectedTimeSlotes={selectedTimeSlotes}
               description={description}
               date={date}
-              close={() => handleOnCloseModal()}
-              firstBookNow={() => initClose()}
+              close={() => {
+                handleOnCloseModal();
+                close();
+              }}
             />
           ) : modalDetail.flag === "allCart" ? (
             <UserCartModal
               close={() => {
                 handleOnCloseModal();
+                close();
               }}
             />
           ) : (

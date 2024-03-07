@@ -10,8 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useUserSelector } from "../../../../redux/selector/user";
 
-const YourOrderModal = (props) => {
-  const { close, closeModal, orderId, flag } = props;
+const YourOrderModal = ({ close, closeModal, orderId, orderType }) => {
   const dispatch = useDispatch();
   const userData = useUserSelector();
   const [key, setKey] = useState(Math.random());
@@ -48,13 +47,13 @@ const YourOrderModal = (props) => {
 
   // Cancel Order
   const handleCancelOrder = () => {
-    if (flag === "booking") {
+    if (orderType === "order") {
       let params = {
         status: "cancelled",
         id: orderId,
       };
       dispatch(
-        cancelChefBooking({
+        cancelOrder({
           ...params,
           cb(res) {
             if (res.status === 200) {
@@ -69,7 +68,7 @@ const YourOrderModal = (props) => {
         id: orderId,
       };
       dispatch(
-        cancelOrder({
+        cancelChefBooking({
           ...params,
           cb(res) {
             if (res.status === 200) {
@@ -92,7 +91,7 @@ const YourOrderModal = (props) => {
         <h1 className="accountDeleted mt-3">
           {" "}
           Are You Sure You Want to Cancel Your{" "}
-          {`${flag === "booking"}` ? "Booking" : "Order"}.
+          {`${orderType === "order"}` ? "Order" : "Booking"}.
         </h1>
         <p className="accountdeletetxt mt-2 ">Cancellation charges apply.</p>
         <div className="modalfooterbtn">
@@ -133,7 +132,7 @@ const YourOrderModal = (props) => {
         child={
           modalDetail.flag === "ordercancel" ? (
             <OrderCancelModal
-            flag={flag}
+              orderType={orderType}
               close={() => {
                 close();
                 handleOnCloseModal();
