@@ -20,6 +20,7 @@ const CartModal = ({ close, updateCartCount }) => {
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const [chefId, setChefId] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
   const [key, setKey] = useState(Math.random());
   const [totalPrice, setTotalPrice] = useState([]);
@@ -42,6 +43,7 @@ const CartModal = ({ close, updateCartCount }) => {
         cb(res) {
           if (res.status === 200) {
             setShowLoading(false);
+            setIsLoading(false)
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
@@ -78,7 +80,10 @@ const CartModal = ({ close, updateCartCount }) => {
 
   // manage cart data e.g. quantity and price
   const handleCartData = (type, menuId, qty) => {
-    setShowLoading(false);
+    setIsLoading(false);
+    if (type === "decrease" && qty === "1") {
+      return;
+    }
     let quantity = Number(qty);
     quantity =
       type === "increase"
@@ -131,7 +136,7 @@ const CartModal = ({ close, updateCartCount }) => {
   return (
     <>
       <div className="usercartcheck usercartcheck-outer">
-        {userSelector?.loading && showLoading ? (
+        {userSelector?.loading && showLoading && isLoading ? (
           <div className="good-loader">
             <FadeLoader
               color={"#E65C00"}

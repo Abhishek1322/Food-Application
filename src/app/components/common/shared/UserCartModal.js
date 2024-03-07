@@ -92,6 +92,9 @@ const UserCartModal = ({ close }) => {
 
   // manage cart data e.g. quantity and price
   const handleCartData = (type, menuId, qty) => {
+    if (type === "decrease" && qty === "1") {
+      return;
+    }
     let quantity = Number(qty);
     quantity =
       type === "increase"
