@@ -7,7 +7,7 @@ import { getMenuRating, onErrorStopLoad } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 
-const MenuRating = ({ menuId }) => {
+const MenuRating = ({ menuId,handleGetChefDetails }) => {
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const [menuRatingData, setMenuRatingData] = useState([]);
@@ -51,6 +51,7 @@ const MenuRating = ({ menuId }) => {
         ...params,
         cb(res) {
           if (res.status === 200) {
+            handleGetChefDetails()
             setMenuRatingData(res?.data?.data?.data);
           }
         },

@@ -342,6 +342,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
             />
           ) : modalDetail.flag === "ratingmenu" ? (
             <MenuRating
+            handleGetChefDetails={handleGetMenuDetails}
               menuId={menuId}
               close={() => {
                 handleOnCloseModal();

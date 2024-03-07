@@ -31,7 +31,6 @@ const EditProfile = () => {
   const [chefProfile, setChefProfile] = useState("");
   const [profileUrl, setProfileUrl] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [ratePerHour, setRatePerHour] = useState("");
 
   const onDrop = useCallback(
     (acceptedFiles, rejectedFiles) => {
@@ -70,8 +69,8 @@ const EditProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
+          console.log("resssssssee", res);
           setFirstName(res?.data?.data?.userInfo.firstName);
-          setRatePerHour(res?.data?.data?.chefInfo?.ratePerHour);
           setLastName(res?.data?.data?.userInfo.lastName);
           setEmail(res?.data?.data?.email);
           setPhoneNumber(res?.data?.data?.phoneNo);
@@ -79,8 +78,8 @@ const EditProfile = () => {
           setAddress(res?.data?.data?.chefInfo.address);
           setExperience(res?.data?.data?.chefInfo?.experience);
           setBio(res?.data?.data?.chefInfo?.bio);
-          setLatitude(res?.data?.data?.chefInfo?.coordinates[0]);
-          setLongitude(res?.data?.data?.chefInfo?.coordinates[1]);
+          setLatitude(res?.data?.data?.chefInfo?.coordinates?.coordinates[0]);
+          setLongitude(res?.data?.data?.chefInfo?.coordinates?.coordinates[1]);
           setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
         },
       })
@@ -130,9 +129,8 @@ const EditProfile = () => {
       type: chefType,
       experience: experience,
       address: address,
-      coordinates: [latitude, longitude],
+      coordinates: { lat: latitude, long: longitude },
       bio: bio,
-      ratePerHour: ratePerHour,
       phoneNo: phoneNumber,
       dialCode: "+91",
     };
@@ -223,25 +221,6 @@ const EditProfile = () => {
                         <label className="border-label">Last Name</label>
                       </div>
                     </div>
-
-                    <div className="col-lg-6">
-                      <div className="input-container mt-5">
-                        <input
-                          type="text"
-                          className="border-input"
-                          placeholder="Rate per hour"
-                          value={ratePerHour}
-                          onChange={(e) => setRatePerHour(e.target.value)}
-                        />
-                        <label className="border-label">Rate Per Hour</label>
-                        <img
-                          src={Images.ratePerHourImg}
-                          alt="InfoIcon"
-                          className="InputIcon"
-                        />
-                      </div>
-                    </div>
-
                     <div className="col-lg-6">
                       <div className="input-container mt-5">
                         <input
@@ -260,9 +239,8 @@ const EditProfile = () => {
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-12">
+
+                    <div className="col-lg-6">
                       <div className="input-container mt-5">
                         <input
                           type="text"
@@ -275,6 +253,20 @@ const EditProfile = () => {
                       </div>
                     </div>
                   </div>
+                  {/* <div className="row">
+                    <div className="col-lg-6">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          value={email}
+                          className="border-input"
+                          placeholder="enter your email address"
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label className="border-label">Email</label>
+                      </div>
+                    </div>
+                  </div> */}
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="input-container mt-5">
