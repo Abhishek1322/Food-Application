@@ -12,19 +12,19 @@ import ChefRating from "./ChefRating";
 import BookNowModal from "./BookNowModal";
 
 const CartFoodModalOrder = ({ menuId, close }) => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const { pathname } = location;
   const userData = useUserSelector();
   const [foodDetails, setFoodDetails] = useState([]);
   const [quantity, setQuantity] = useState([]);
-  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState("");
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-  console.log("foodDetailsfoodDetails", foodDetails);
 
   //closeModal
   const handleOnCloseModal = () => {
@@ -88,7 +88,8 @@ const CartFoodModalOrder = ({ menuId, close }) => {
   };
 
   // add menu item in cart
-  const handleAddCart = () => {
+  const handleAddCart = (type) => {
+    setIsLoading(type);
     let params = {
       menuItemId: menuId,
       type: "order",
@@ -266,11 +267,11 @@ const CartFoodModalOrder = ({ menuId, close }) => {
             <div className="addfoodbtn">
               <button
                 disabled={userData?.loading}
-                onClick={() => handleAddCart()}
+                onClick={() => handleAddCart("order")}
                 className="addcartitem"
                 type="button"
               >
-                {userData?.loading && (
+                {userData?.loading && isLoading === "order" && (
                   <span className="spinner-border spinner-border-sm me-1"></span>
                 )}
                 Order Now

@@ -147,7 +147,8 @@ export const {
   getSlotDay,
   setGetSlotDay,
   userProfileDataGet,
-  setUserProfileDataGet
+  setUserProfileDataGet,
+  setMenuLists,
 } = webSlice.actions;
 
 export default webSlice.reducer;

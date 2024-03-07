@@ -2631,5 +2631,10 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   justify-content: end;
   flex-direction: column;
 }
-
+.noDataFoundImageCart {
+  height: 57vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Abhishek Css end */

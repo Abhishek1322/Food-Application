@@ -7,7 +7,6 @@ import ReactPaginate from "react-paginate";
 import CartFoodModalOrder from "../../components/common/shared/CartFoodModalOrder";
 import CustomModal from "../../components/common/shared/CustomModal";
 import { FadeLoader } from "react-spinners";
-import { MenuItem, Select } from "@mui/material";
 
 const MenuDetails = () => {
   const dispatch = useDispatch();
@@ -17,7 +16,7 @@ const MenuDetails = () => {
   const [pageCount, setPageCount] = useState("");
   const [key, setKey] = useState(Math.random());
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -26,6 +25,7 @@ const MenuDetails = () => {
 
   // get the menu list
   useEffect(() => {
+    setIsLoading(true)
     let params = {
       page: currentPage,
       limit: 12,

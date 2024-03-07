@@ -17,7 +17,7 @@ import {
   setDeleteMenuItem,
   setGetSingleChef,
   setGetSlotDay,
-  setUserProfileDataGet
+  setUserProfileDataGet,
 } from "../../slices/web";
 
 function* getSlotDay(action) {
@@ -203,7 +203,7 @@ function* chefLists(action) {
   if (action.payload.long) {
     targetUtl += `long=${action.payload.long}&`;
   }
-  if (action.payload.foodType.length > 0) {
+  if (action.payload.foodType && action.payload?.foodType?.length > 0) {
     targetUtl += `foodType=${action.payload.foodType}`;
   }
   try {

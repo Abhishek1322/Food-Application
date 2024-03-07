@@ -13,8 +13,7 @@ import { useNavigate } from "react-router-dom";
 import UserCartModal from "./UserCartModal";
 import { useUserSelector } from "../../../../redux/selector/user";
 
-const CartModal = (props) => {
-  const { close, updateCartCount } = props;
+const CartModal = ({ close, updateCartCount }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSelector = useUserSelector();
@@ -77,7 +76,7 @@ const CartModal = (props) => {
 
   // manage cart data e.g. quantity and price
   const handleCartData = (type, menuId, qty) => {
-    setShowLoading(false)
+    setShowLoading(false);
     let quantity = Number(qty);
     quantity =
       type === "increase"
@@ -130,7 +129,7 @@ const CartModal = (props) => {
   return (
     <>
       <div className="usercartcheck usercartcheck-outer">
-        {userSelector?.loading && showLoading && (
+        {userSelector?.loading && showLoading ? (
           <div className="good-loader">
             <FadeLoader
               color={"#E65C00"}
@@ -139,109 +138,116 @@ const CartModal = (props) => {
               data-testid="loader"
             />
           </div>
-        )}
-        {allCartItems && allCartItems?.length > 0 ? (
+        ) : (
           <>
-            {allCartItems?.map((item, index) => (
-              <div key={index} className="modalDetail usermodaldetail">
-                <div className="usercartDetail">
-                  <img
-                    src={
-                      item?.menuItemId?.image
-                        ? item?.menuItemId?.image
-                        : Images.FoodIcon
-                    }
-                    className="userprofile"
-                    alt="cartImg"
-                  />
-                  <div className="insideModal">
-                    <h6 className="foodtext">{item?.menuItemId?.category}</h6>
-                    <h5 className="foodItem">{item?.menuItemId?.name}</h5>
-                    <h6 className="foodPrice">£{item?.netPrice}.00</h6>
-                    <div className="quantity">
-                      <div
-                        onClick={() =>
-                          handleCartData(
-                            "decrease",
-                            item?.menuItemId?._id,
-                            item?.quantity
-                          )
+            {allCartItems && allCartItems?.length > 0 ? (
+              <>
+                {allCartItems?.map((item, index) => (
+                  <div key={index} className="modalDetail usermodaldetail">
+                    <div className="usercartDetail">
+                      <img
+                        src={
+                          item?.menuItemId?.image
+                            ? item?.menuItemId?.image
+                            : Images.FoodIcon
                         }
-                        className="Quantiycheck"
-                      >
-                        <img
-                          src={Images.minusModal}
-                          className="calQuantity"
-                          alt="minusModal"
-                        />
+                        className="userprofile"
+                        alt="cartImg"
+                      />
+                      <div className="insideModal">
+                        <h6 className="foodtext">
+                          {item?.menuItemId?.category}
+                        </h6>
+                        <h5 className="foodItem">{item?.menuItemId?.name}</h5>
+                        <h6 className="foodPrice">£{item?.netPrice}.00</h6>
+                        <div className="quantity">
+                          <div
+                            onClick={() =>
+                              handleCartData(
+                                "decrease",
+                                item?.menuItemId?._id,
+                                item?.quantity
+                              )
+                            }
+                            className="Quantiycheck"
+                          >
+                            <img
+                              src={Images.minusModal}
+                              className="calQuantity"
+                              alt="minusModal"
+                            />
+                          </div>
+                          <span className="number">{item?.quantity}</span>
+                          <div
+                            onClick={() =>
+                              handleCartData(
+                                "increase",
+                                item?.menuItemId?._id,
+                                item?.quantity
+                              )
+                            }
+                            className="Quantiycheck"
+                          >
+                            <img
+                              src={Images.plusModal}
+                              className="calQuantity"
+                              alt="minusModal"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <span className="number">{item?.quantity}</span>
-                      <div
+                    </div>
+                    <div className="modalDelete_">
+                      <img
                         onClick={() =>
-                          handleCartData(
-                            "increase",
-                            item?.menuItemId?._id,
-                            item?.quantity
-                          )
+                          handleDeleteCartItem(item?.menuItemId?._id)
                         }
-                        className="Quantiycheck"
-                      >
-                        <img
-                          src={Images.plusModal}
-                          className="calQuantity"
-                          alt="minusModal"
-                        />
+                        src={Images.cartDelete}
+                        className="cartDelete_"
+                        alt="cartcancel"
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                <div className="modalfooterbtn">
+                  <div className="outeraddItem-resp">
+                    <button
+                      onClick={() => handleAddMoreItem()}
+                      className="addItems"
+                      type="button"
+                    >
+                      + Add More Items
+                    </button>
+
+                    <div className="order-now-pay-total">
+                      <div className="total-price-order">
+                        <h6 className="totaltxt">Total</h6>
+                        <p className="price">£{totalPrice}.00</p>
                       </div>
+                      <button
+                        onClick={() => handleOpenModal("checkOutModal")}
+                        className="orderbutton"
+                        type="button"
+                      >
+                        CheckOut
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div className="modalDelete_">
+              </>
+            ) : (
+              <div className="noDataFoundImageCart">
+                <div>
                   <img
-                    onClick={() => handleDeleteCartItem(item?.menuItemId?._id)}
-                    src={Images.cartDelete}
-                    className="cartDelete_"
-                    alt="cartcancel"
+                    className="w-100"
+                    alt="no data found"
+                    src={Images.nodataFound}
                   />
                 </div>
               </div>
-            ))}
-
-            <div className="modalfooterbtn">
-              <div className="outeraddItem-resp">
-                <button
-                  onClick={() => handleAddMoreItem()}
-                  className="addItems"
-                  type="button"
-                >
-                  + Add More Items
-                </button>
-
-                <div className="order-now-pay-total">
-                  <div className="total-price-order">
-                    <h6 className="totaltxt">Total</h6>
-                    <p className="price">£{totalPrice}.00</p>
-                  </div>
-                  <button
-                    onClick={() => handleOpenModal("checkOutModal")}
-                    className="orderbutton"
-                    type="button"
-                  >
-                    CheckOut
-                  </button>
-                </div>
-              </div>
-            </div>
+            )}
           </>
-        ) : (
-          <div className="noDataFoundImage">
-            <div>
-              <img
-                className="w-100"
-                alt="no data found"
-                src={Images.nodataFound}
-              />
-            </div>
-          </div>
         )}
       </div>
 

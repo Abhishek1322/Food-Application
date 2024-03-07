@@ -151,6 +151,7 @@ export const userSilce = createSlice({
     },
     addToCart: (state) => {
       state.loading = true;
+      state.success = false
     },
     setAddToCart: (state) => {
       state.loading = false;
