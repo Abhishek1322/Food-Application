@@ -29,7 +29,6 @@ function App() {
       localStorage.setItem("fcmToken", token);
       console.log("Token Gen", token);
       onMessage(messaging, (payload) => {
-        console.log("payloadpayload", payload);
         const { title, body } = payload.notification;
         new Notification(title, {
           body,

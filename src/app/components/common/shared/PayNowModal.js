@@ -78,7 +78,6 @@ const PayNowModal = ({
       toastId.current = toast.error(msg);
     }
   };
-  console.log("bookingDatabookingData", bookingData);
 
   // create order
   const handleCreateOrder = () => {

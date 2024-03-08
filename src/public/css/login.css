@@ -210,7 +210,7 @@
 
 .border-input {
     width: 100%;
-    padding: 15px 30px 15px 12px;
+    padding: 15px 12px 15px 12px;
     outline: none;
     border-radius: 8px;
     border: 1px solid #E9E9E9;
@@ -241,8 +241,11 @@
     font-family: Open Sans;
     font-size: 12px;
     font-weight: 600;
+    z-index: 1111;
 }
-
+.phone-input-dropdown .border-input {
+   padding: 9px 12px 9px 0px !important;
+}
 .border-input:focus+.border-label,
 .border-input:valid+.border-label {
     top: -8px;
@@ -488,3 +491,29 @@ input[type=number] {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.react-tel-input .form-control {
+    position: relative;
+    font-size: 14px;
+    letter-spacing: .01rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-left: 40px;
+    margin-left: 0;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    line-height: none;
+    height: none;
+    width: 100%;
+    outline: none;
+}
+.react-tel-input .flag-dropdown {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    background-color:#fff!important;
+    border: none;
+    border-radius: 3px 0 0 3px;
+} 

@@ -106,7 +106,6 @@ const MenuDetails = () => {
                   <>
                     {menuList?.map((item, index) => (
                       <div key={index} className="col-lg-2 col-md-4 col-sm-6">
-                        {console.log("itemitem", item)}
                         <div
                           onClick={() => {
                             handleOpenModal("orderModal", item?._id);

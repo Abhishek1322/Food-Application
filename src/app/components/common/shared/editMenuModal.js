@@ -49,7 +49,6 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
       singleMenu({
         ...params,
         cb(res) {
-          console.log("ressss", res);
           if (res.status === 200) {
             setFormData({
               itemName: res?.data?.data?.item?.name,

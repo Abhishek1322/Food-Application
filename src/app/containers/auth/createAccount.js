@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../utilities/images";
-import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import PhoneInput from "react-phone-input-2";
 import { userSignUp, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import Loading from "../Settings/Loading";
@@ -10,7 +11,8 @@ import Loading from "../Settings/Loading";
 const CreateAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  const [dialCode, setDialCode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [isToggleOn, setIsToggleOn] = useState(false);
   const { role } = useParams();
   const toastId = useRef(null);
@@ -55,6 +57,7 @@ const CreateAccount = () => {
     // }
     else if (!formData.lastName) {
       showToast("Please enter last name");
+      return
     } else if (!formData.email) {
       showToast("Please enter email");
       return;
@@ -66,7 +69,7 @@ const CreateAccount = () => {
     ) {
       toastId.current = showToast("Please enter valid email address");
       return;
-    } else if (!formData.phone && role === "chef") {
+    } else if (!phoneNumber && role === "chef") {
       showToast("Please enter phone number");
       return;
     } else if (!formData.password) {
@@ -88,8 +91,8 @@ const CreateAccount = () => {
       password: formData.password,
       email: formData.email.trim(),
       role: role,
-      dialCode: "+91",
-      phoneNo: formData.phone ? formData.phone : 0,
+      dialCode: dialCode,
+      phoneNo: phoneNumber,
     };
     dispatch(
       userSignUp({
@@ -118,6 +121,12 @@ const CreateAccount = () => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  const onChangePhoneNumber = (value, data) => {
+    setDialCode(data.dialCode);
+    let validNumber = value.slice(data.dialCode.length);
+    setPhoneNumber(validNumber);
+  };
+
   return (
     <>
       {authData.loading && <Loading />}
@@ -127,12 +136,12 @@ const CreateAccount = () => {
             <div className="col-lg-6 col-md-6">
               <div className="logleft createAccount">
                 <figure>
-                 <Link to="/">
-                  <img
-                    src={Images.Logo}
-                    alt="logo"
-                    className="img-fluid logo"
-                  />
+                  <Link to="/">
+                    <img
+                      src={Images.Logo}
+                      alt="logo"
+                      className="img-fluid logo"
+                    />
                   </Link>
                 </figure>
                 <figure className="ChefMain">
@@ -191,31 +200,31 @@ const CreateAccount = () => {
                   <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="topInputfields">
                       {/* <div className="container p-0"> */}
-                        <div className="row">
-                          <div className="col-lg-6">
-                            <div className="input-container mt-5">
-                              <input
-                                type="text"
-                                className="border-input"
-                                placeholder=""
-                                name="firstName"
-                                onChange={(e) => handleChange(e)}
-                              />
-                              <label className="border-label">First Name</label>
-                            </div>
-                          </div>
-                          <div className="col-lg-6">
-                            <div className="input-container mt-5">
-                              <input
-                                onChange={(e) => handleChange(e)}
-                                type="text"
-                                name="lastName"
-                                className="border-input"
-                              />
-                              <label className="border-label">Last Name</label>
-                            </div>
+                      <div className="row">
+                        <div className="col-lg-6">
+                          <div className="input-container mt-5">
+                            <input
+                              type="text"
+                              className="border-input"
+                              placeholder=""
+                              name="firstName"
+                              onChange={(e) => handleChange(e)}
+                            />
+                            <label className="border-label">First Name</label>
                           </div>
                         </div>
+                        <div className="col-lg-6">
+                          <div className="input-container mt-5">
+                            <input
+                              onChange={(e) => handleChange(e)}
+                              type="text"
+                              name="lastName"
+                              className="border-input"
+                            />
+                            <label className="border-label">Last Name</label>
+                          </div>
+                        </div>
+                      </div>
                       {/* </div>t */}
                     </div>
 
@@ -236,14 +245,20 @@ const CreateAccount = () => {
 
                       {role === "chef" && (
                         <div className="col-lg-6">
-                          <div className="input-container mt-5">
-                            <input
-                              onChange={(e) => handleChange(e)}
-                              type="number"
-                              name="phone"
-                              className="border-input"
-                            />
+                          <div className="input-container mt-5 phone-input-dropdown">
                             <label className="border-label">Phone</label>
+                            <PhoneInput
+                              className="border-input"
+                              country={"us"}
+                              onChange={(value, data, event, formattedValue) =>
+                                onChangePhoneNumber(
+                                  value,
+                                  data,
+                                  event,
+                                  formattedValue
+                                )
+                              }
+                            />
                           </div>
                         </div>
                       )}

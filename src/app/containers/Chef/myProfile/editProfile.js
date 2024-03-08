@@ -14,10 +14,14 @@ import PlacesAutocomplete, {
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
+import PhoneInput from "react-phone-input-2";
+import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authSelector = useAuthSelector();
+  const { loading } = authSelector;
   const userId = localStorage.getItem("userId");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,6 +35,7 @@ const EditProfile = () => {
   const [chefProfile, setChefProfile] = useState("");
   const [profileUrl, setProfileUrl] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [dialCode, setDialCode] = useState("");
 
   const onDrop = useCallback(
     (acceptedFiles, rejectedFiles) => {
@@ -69,7 +74,6 @@ const EditProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          console.log("resssssssee", res);
           setFirstName(res?.data?.data?.userInfo.firstName);
           setLastName(res?.data?.data?.userInfo.lastName);
           setEmail(res?.data?.data?.email);
@@ -81,6 +85,7 @@ const EditProfile = () => {
           setLatitude(res?.data?.data?.chefInfo?.coordinates?.coordinates[0]);
           setLongitude(res?.data?.data?.chefInfo?.coordinates?.coordinates[1]);
           setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
+          setDialCode(res?.data?.data?.dialCode);
         },
       })
     );
@@ -132,7 +137,7 @@ const EditProfile = () => {
       coordinates: { lat: latitude, long: longitude },
       bio: bio,
       phoneNo: phoneNumber,
-      dialCode: "+91",
+      dialCode: dialCode,
     };
     if (profileUrl) {
       params = {
@@ -171,9 +176,15 @@ const EditProfile = () => {
     }
   }, [chefProfile]);
 
+  const onChangePhoneNumber = (value, data) => {
+    setDialCode(data.dialCode);
+    let validNumber = value.slice(data.dialCode.length);
+    setPhoneNumber(validNumber);
+  };
+
   return (
     <>
-      <section className="editsection profilesectionChef">
+      <section className="editsection profilesectionChef border-label-update-profile">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-5 col-md-12">
@@ -222,21 +233,30 @@ const EditProfile = () => {
                       </div>
                     </div>
                     <div className="col-lg-6">
-                      <div className="input-container mt-5">
-                        <input
+                      <div className="input-container mt-5 phone-input-dropdown">
+                        {/* <input
                           type="number"
                           name="rateperhour"
                           className="border-input"
                           placeholder="enter your phone number"
                           value={phoneNumber}
                           onChange={(e) => setPhoneNumber(e.target.value)}
+                        /> */}
+                        <PhoneInput
+                          className="border-input"
+                          country={"us"}
+                          // phoneNo
+                          value={dialCode + phoneNumber}
+                          onChange={(value, data, event, formattedValue) =>
+                            onChangePhoneNumber(
+                              value,
+                              data,
+                              event,
+                              formattedValue
+                            )
+                          }
                         />
                         <label className="border-label">Phone</label>
-                        <img
-                          src={Images.ratePerHourImg}
-                          alt="InfoIcon"
-                          className="InputIcon"
-                        />
                       </div>
                     </div>
 
@@ -253,20 +273,6 @@ const EditProfile = () => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="row">
-                    <div className="col-lg-6">
-                      <div className="input-container mt-5">
-                        <input
-                          type="text"
-                          value={email}
-                          className="border-input"
-                          placeholder="enter your email address"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <label className="border-label">Email</label>
-                      </div>
-                    </div>
-                  </div> */}
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="input-container mt-5">
@@ -407,6 +413,9 @@ const EditProfile = () => {
                     >
                       {" "}
                       Update
+                      {loading && (
+                        <span className="spinner-border spinner-border-sm ms-1"></span>
+                      )}
                     </button>
                   </div>
                 </div>

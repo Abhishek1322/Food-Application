@@ -1219,3 +1219,21 @@ input:-webkit-autofill:active {
 .recipe-lists .MuiAutocomplete-root:hover .MuiOutlinedInput-notchedOutline {
   border: 1px solid rgba(230, 92, 0, 0.08);
 }
+.border-label-update-profile .chefType.active {
+  z-index: 0;
+}
+/* .border-label-update-profile .border-label {
+  z-index: 1;
+} */
+.border-label-update-profile .react-tel-input .flag-dropdown.open {
+  z-index: 2222222;
+}
+.border-label-update-profile .react-tel-input .flag-dropdown {
+  background-color: unset !important;
+}
+.border-label-update-profile .react-tel-input .flag-dropdown.open .selected-flag {
+  background: unset !important;
+}
+.border-label-update-profile.selected-flag:hover, .react-tel-input .selected-flag:focus {
+  background-color: #fff;
+}
