@@ -11,14 +11,13 @@ import {
   onErrorStopLoad,
 } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import Loading from "../Settings/Loading";
 
 const EnterOtp = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
   const authData = useAuthSelector();
-
+  const [isLoading, setIsLoading] = useState("");
   const [otp, setOtp] = useState("");
 
   // show only one toast at one time
@@ -29,12 +28,13 @@ const EnterOtp = (props) => {
   };
 
   // submit form data
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, flag) => {
     e.preventDefault();
     if (!otp) {
       showToast("Please enter OTP");
       return;
     }
+    setIsLoading(flag);
     let params = {
       otp: otp,
     };
@@ -51,9 +51,9 @@ const EnterOtp = (props) => {
   };
 
   // function for resend otp
-  const handleResendOtp = (e) => {
+  const handleResendOtp = (e, flag) => {
     e.preventDefault();
-
+    setIsLoading(flag);
     let params = {
       type: "forgot",
       email: authData?.userEmail?.email,
@@ -74,7 +74,6 @@ const EnterOtp = (props) => {
 
   return (
     <>
-      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -130,7 +129,7 @@ const EnterOtp = (props) => {
                     address.
                   </p>
 
-                  <form onSubmit={(e) => handleSubmit(e)}>
+                  <form onSubmit={(e) => handleSubmit(e, "submit")}>
                     <OTPInput
                       value={otp}
                       onChange={setOtp}
@@ -142,18 +141,29 @@ const EnterOtp = (props) => {
 
                     <p className="mb-3 mt-3">
                       Don’t Received{" "}
-                      <Link
-                        onClick={(e) => handleResendOtp(e)}
-                        className="Link"
-                        href="/auth/otp"
-                      >
-                        Resend
-                      </Link>{" "}
+                      {authData.loading && isLoading === "resend" ? (
+                        <span className="spinner-border spinner-border-sm ms-2"></span>
+                      ) : (
+                        <Link
+                          onClick={(e) => handleResendOtp(e, "resend")}
+                          className="Link"
+                          href="/auth/otp"
+                        >
+                          Resend
+                        </Link>
+                      )}
                     </p>
 
                     <div className="buttonBox mt-5">
-                      <button type="submit" className="smallBtn">
+                      <button
+                        disabled={authData.loading}
+                        type="submit"
+                        className="smallBtn"
+                      >
                         Submit
+                        {authData.loading && isLoading === "submit" && (
+                          <span className="spinner-border spinner-border-sm ms-2"></span>
+                        )}
                       </button>
                     </div>
                   </form>

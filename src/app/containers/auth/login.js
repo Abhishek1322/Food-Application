@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { userLogin, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import Loading from "../Settings/Loading";
 import {  doc, setDoc } from "firebase/firestore";
 import { USERPARENTCOLLECTION, db } from "../../../config/firebase-config";
 
@@ -134,7 +133,6 @@ const Login = () => {
 
   return (
     <>
-      {authData.loading && <Loading />}
       <div className="Login mainPage">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -242,9 +240,12 @@ const Login = () => {
                       </Link>
                     </div>
                     <div className="buttonBox mt-5">
-                      <button type="submit" className="smallBtn">
+                      <button disabled={authData.loading} type="submit" className="smallBtn">
                         {" "}
                         Login
+                        {authData.loading &&
+                        <span className="spinner-border spinner-border-sm ms-2"></span>
+                        }
                       </button>
                     </div>
                   </form>

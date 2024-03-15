@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import PhoneInput from "react-phone-input-2";
 import { userSignUp, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import Loading from "../Settings/Loading";
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
@@ -44,10 +43,9 @@ const CreateAccount = () => {
     if (!formData.firstName) {
       showToast("Please enter first name");
       return;
-    }
-    else if (!formData.lastName) {
+    } else if (!formData.lastName) {
       showToast("Please enter last name");
-      return
+      return;
     } else if (!formData.email) {
       showToast("Please enter email");
       return;
@@ -85,9 +83,9 @@ const CreateAccount = () => {
       dialCode: dialCode,
       phoneNo: phoneNumber,
     };
-    if(role === "user"){
-       delete params.dialCode;
-       delete params.phoneNo;
+    if (role === "user") {
+      delete params.dialCode;
+      delete params.phoneNo;
     }
 
     dispatch(
@@ -125,7 +123,6 @@ const CreateAccount = () => {
 
   return (
     <>
-      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -272,9 +269,16 @@ const CreateAccount = () => {
                       </div>
                     </div>
                     <div className="buttonBox mt-5">
-                      <button type="submit" className="smallBtn">
+                      <button
+                        disabled={authData.loading}
+                        type="submit"
+                        className="smallBtn"
+                      >
                         {" "}
                         Sign Up
+                        {authData.loading && (
+                          <span className="spinner-border spinner-border-sm ms-2"></span>
+                        )}
                       </button>
                     </div>
                   </form>

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { resetPassword, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import Loading from "../Settings/Loading";
 
 const Recoverpassword = (props) => {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Recoverpassword = (props) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const userId = localStorage.getItem("userId");
-  
+
   //show hide password
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -69,7 +68,6 @@ const Recoverpassword = (props) => {
 
   return (
     <>
-      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center pe-0">
@@ -152,6 +150,9 @@ const Recoverpassword = (props) => {
                     <div className="buttonBox mt-5">
                       <button type="submit" className="smallBtn">
                         Reset Password
+                        {authData.loading && (
+                          <span className="spinner-border spinner-border-sm ms-2"></span>
+                        )}
                       </button>
                     </div>
                   </form>

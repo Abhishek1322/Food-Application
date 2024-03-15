@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { forgotPassword, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import Loading from "../Settings/Loading";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -57,7 +56,6 @@ const ForgotPassword = () => {
 
   return (
     <>
-      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center pe-0">
@@ -126,8 +124,15 @@ const ForgotPassword = () => {
                       <label className="border-label">Email</label>
                     </div>
                     <div className="buttonBox mt-5">
-                      <button type="submit" className="smallBtn">
+                      <button
+                        disabled={authData.loading}
+                        type="submit"
+                        className="smallBtn"
+                      >
                         Continue
+                        {authData.loading && (
+                          <span className="spinner-border spinner-border-sm ms-2"></span>
+                        )}
                       </button>
                     </div>
                   </form>
