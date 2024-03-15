@@ -69,13 +69,6 @@ const BookNowModal = ({ menuId, chefId, close }) => {
 
   // open modal
   const handleOpenModal = (flag) => {
-    if (selectedTimeSlotes.length === 0) {
-      showToast("Please select atlest one time slot");
-      return;
-    } else if (!description) {
-      showToast("Please add description");
-      return;
-    }
     setModalDetail({
       show: true,
       flag: flag,
@@ -118,6 +111,13 @@ const BookNowModal = ({ menuId, chefId, close }) => {
 
   // hire cheff
   const handleAddCart = () => {
+    if (selectedTimeSlotes.length === 0) {
+      showToast("Please select atlest one time slot");
+      return;
+    } else if (!description) {
+      showToast("Please add description");
+      return;
+    }
     let params = {
       menuItemId: menuId,
       type: "booking",

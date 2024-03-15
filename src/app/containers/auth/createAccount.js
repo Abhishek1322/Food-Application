@@ -41,20 +41,10 @@ const CreateAccount = () => {
   // submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    let letterVal = /^[a-zA-Z\s]*$/;
     if (!formData.firstName) {
       showToast("Please enter first name");
       return;
     }
-    //  else if (formData.userName.length <= 2) {
-    //   showToast("User Name should be maximum 3 character");
-    //   return;
-    // }
-    //  else if (!formData.userName.match(letterVal)) {
-    //   showToast("Please enter alphabet and characters only for user name");
-    //   return;
-    // }
     else if (!formData.lastName) {
       showToast("Please enter last name");
       return
@@ -85,6 +75,7 @@ const CreateAccount = () => {
       );
       return;
     }
+
     let params = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -94,6 +85,11 @@ const CreateAccount = () => {
       dialCode: dialCode,
       phoneNo: phoneNumber,
     };
+    if(role === "user"){
+       delete params.dialCode;
+       delete params.phoneNo;
+    }
+
     dispatch(
       userSignUp({
         ...params,
