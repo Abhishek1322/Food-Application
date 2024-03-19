@@ -2094,7 +2094,7 @@ body {
 /* ------------- MEnu  ModaL-- Edit  PAge Css Start   */
 .menuReport_button {
   width: 100%;
-  padding: 15px 30px 15px 25px;
+  padding: 15px 55px 15px 25px;
   outline: none;
   border-radius: 8px;
   border: 1px solid #e9e9e9;
@@ -2116,6 +2116,9 @@ body {
 
 .menuReport_button::placeholder {
   color: #2e3333;
+}
+.menuModal_ .menuEditbuttom{
+  padding: 15px 55px 15px 25px;
 }
 
 .menuEditbuttom {
@@ -2146,8 +2149,8 @@ body {
 
 .cateofyImg_ {
   position: absolute;
-  right: 30px;
-  top: 16px;
+  right: 32px;
+  top: 18px;
 }
 
 /* ------------- MEnu  ModaL-- Edit  PAge Css End   */

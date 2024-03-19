@@ -227,7 +227,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
                 placeholder="e.g. 22.00"
                 value={formData.price}
               />
-              <img src={Images.euroImg} className="cateofyImg_" alt="euroImg" />
+              <img src={Images.euroImg} className="cateofyImg_ euroImgText" alt="euroImg" />
               <label className="border-label">Price</label>
             </div>
             <div className="input-container mt-5 flexBox">
