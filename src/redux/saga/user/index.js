@@ -32,6 +32,7 @@ import {
   setGetLocationInfo,
   setGetCartNotificationCount,
 } from "../../slices/user";
+import { GOOLE_MAPS_API_KEY } from "../../../config/config";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
 
@@ -59,7 +60,7 @@ function* getLocationInfo(action) {
   try {
     const resp = yield call(
       ApiClient.getLocation,
-      (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO_FREE}?format=json&lat=${action.payload.lat}&lon=${action.payload.lng}`),
+      (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO_GOOGLE_MAP}?latlng=${action.payload.lat},${action.payload.lng}&key=${GOOLE_MAPS_API_KEY}`),
       // (action.url = `${ApiPath.userApiPath.GET_LOCATION_INFO}?q=${action.payload.lat},${action.payload.lng}&key=${GEO_CODING_API_KEY}`),
       (action.payload = action.payload)
     );

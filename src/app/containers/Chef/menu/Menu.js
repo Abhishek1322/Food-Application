@@ -59,7 +59,7 @@ const Menu = () => {
   // get all menu lists
   const menuListAll = (page = currentPage) => {
     let params = {
-      limit: 14,
+      limit: 1,
       page: page,
       search: searchMenu,
     };

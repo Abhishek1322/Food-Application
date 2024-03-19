@@ -53,6 +53,7 @@ const ApiPath = {
     GET_MENU_RATING: "/menuRating/rating",
     GET_LOCATION_INFO: "json",
     GET_LOCATION_INFO_FREE: "reverse",
+    GET_LOCATION_INFO_GOOGLE_MAP: "/maps/api/geocode/json",
     GET_ALL_CART_NOTIFICATION: "/users/home",
   },
   chefApiPath: {

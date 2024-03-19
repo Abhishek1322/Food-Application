@@ -18,6 +18,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
   const webSelector = useWebSelector();
   const { loading } = webSelector;
   const toastId = useRef(null);
+  const [isLoading, setIsLoading] = useState("");
   const [category, setCategory] = useState("veg");
   const [itemImage, setItemImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -129,7 +130,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
   };
 
   // update menu items
-  const handleUpdateMenu = () => {
+  const handleUpdateMenu = (flag) => {
     if (!formData.itemName) {
       showToast("Please add item name");
       return;
@@ -143,7 +144,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
       showToast("Please add chef booking price");
       return;
     } else if (formData.price >= formData.chefBookingPrice) {
-      showToast("Chef booking price should be greater then menu price");
+      showToast("Chef booking price should be greater than menu price");
       return;
     } else if (!formData.deliveryTime) {
       showToast("Please add item delivery time");
@@ -155,7 +156,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
       showToast("Please add item image");
       return;
     }
-
+    setIsLoading(flag);
     let params = {
       id: menuId,
       name: formData.itemName,
@@ -181,7 +182,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
 
   return (
     <>
-      <div className="editMenuModal editMenuModal-outer">
+      <div className="editMenuModal editMenuModal-outer edit-menu-modal">
         <div className="menuModal_">
           <div className="input-container mt-5">
             <input
@@ -277,11 +278,11 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
           {imageUrl ? (
             <>
               <img src={imageUrl} className="editFoodImg" alt="editFoodImg" />
-              <span className="cancelEditImg">
-                <i
-                  onClick={() => handleRemoveImage(imageUrl)}
-                  className="fas fa-times cancelEdit"
-                ></i>
+              <span
+                onClick={() => handleRemoveImage(imageUrl)}
+                className="cancelEditImg"
+              >
+                <i className="fas fa-times cancelEdit"></i>
               </span>
             </>
           ) : (
@@ -310,13 +311,13 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
           )}
         </div>
         <button
-          onClick={handleUpdateMenu}
+          onClick={() => handleUpdateMenu("submit")}
           className="foodmodalbtn  modalfooterbtn"
         >
           Save Changes
-          {loading &&
-          <span className="spinner-border spinner-border-sm ms-2"></span>
-          }
+          {loading && isLoading === "submit" && (
+            <span className="spinner-border spinner-border-sm ms-2"></span>
+          )}
         </button>
       </div>
     </>

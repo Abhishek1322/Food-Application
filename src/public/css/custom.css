@@ -1218,6 +1218,7 @@ input:-webkit-autofill:active {
 }
 
 /* Add this CSS to your stylesheet or in your style tag */
+
 .recipe-lists .MuiAutocomplete-root .MuiOutlinedInput-notchedOutline {
   border: 1px solid rgba(230, 92, 0, 0.08);
 }
@@ -1249,4 +1250,10 @@ input:-webkit-autofill:active {
 }
 .border-label-update-profile.selected-flag:hover, .react-tel-input .selected-flag:focus {
   background-color: #fff;
+}
+li.next.disabled a {
+  cursor: not-allowed;
+}
+li.previous.disabled a {
+  cursor: not-allowed;
 }

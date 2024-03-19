@@ -2637,4 +2637,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   align-items: center;
   justify-content: center;
 }
+.noDataFoundImage-checkout {
+  height: 57vh;
+}
 /* Abhishek Css end */
