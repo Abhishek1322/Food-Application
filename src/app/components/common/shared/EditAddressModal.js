@@ -97,15 +97,15 @@ const EditAddressModal = (props) => {
       .catch((error) => {});
   };
 
-  // select city
-  const autoCompleteHandleSelect = (city) => {
-    setCity(city);
-    geocodeByAddress(city)
+ // handle get location common function
+ const getLocationFields = (city) => {
+  geocodeByAddress(city)
       .then((results) => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
         if (results.length > 0) {
           // Extract the state from the results
+          setCity(results[0].formatted_address);
           const addressComponents = results[0].address_components;
           const stateComponent = addressComponents.find((component) =>
             component.types.includes("administrative_area_level_1")
@@ -140,6 +140,11 @@ const EditAddressModal = (props) => {
         }
       })
       .catch((error) => {});
+ }
+
+  // select city
+  const autoCompleteHandleSelect = (city) => {
+    getLocationFields(city)
   };
 
   // show only one toast at one time
@@ -246,10 +251,7 @@ const EditAddressModal = (props) => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            setCity(res?.data?.display_name);
-            setState(res?.data?.address?.state);
-            setZipCode(res?.data?.address?.postcode);
-            setStreetAddress(res?.data?.address?.village);
+            getLocationFields(res?.data?.results?.[0]?.formatted_address);
           }
         },
       })

@@ -1495,6 +1495,7 @@ body {
 .menuItems {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .inneredittxt {
@@ -2665,7 +2666,7 @@ body {
   left: -11px;
 }
 
-.addmenuItemModal svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
+.edit-menu-modal svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined,.addmenuItemModal svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
   left: 11px;
 }
 
@@ -2713,4 +2714,29 @@ body {
 }
 .banner-contact .buttonBox {
   margin-top: 32px;
+}
+.add-menu-modal .cateofyImg_ {
+  position: absolute;
+  right: 12px;
+  top: 16px;
+}
+.add-menu-modal .inneredittxt {
+  color: #979999;
+  font-size: 10px;
+  font-weight: 600;
+  position: absolute;
+  right: 36px;
+  bottom: 21px;
+}
+.add-menu-modal .menuReport_button {
+  padding: 15px 38px 15px 25px;
+}
+.add-menu-modal .menuEditbuttom {
+  padding: 15px 36px 18px 23px;
+}
+.add-menu-modal .menuEditbuttom-delivery {
+  padding: 15px 61px 18px 23px;
+}
+.add-menu-modal .menuReport_button-des {
+  padding: 15px 15px 15px 25px;
 }

@@ -64,29 +64,34 @@ const AddExpertise = (props) => {
     <>
       <div className="select-expertise-outer">
         <p className="label-select-expertise">Select Expertise</p>
-        <Autocomplete
-          multiple
-          id="checkboxes-tags-demo"
-          options={experticeList}
-          disableCloseOnSelect
-          value={expertice}
-          onChange={handleAutocompleteChange}
-          getOptionLabel={(option) => option?.title}
-          renderOption={(props, option, { selected }) => (
-            <li {...props}>
-              <Checkbox
-                icon={icon}
-                checkedIcon={checkedIcon}
-                style={{ marginRight: 8 }}
-                checked={selected}
+        <div className="recipe-lists">
+          <Autocomplete
+            multiple
+            id="checkboxes-tags-demo"
+            options={experticeList}
+            disableCloseOnSelect
+            value={expertice}
+            onChange={handleAutocompleteChange}
+            getOptionLabel={(option) => option?.title}
+            renderOption={(props, option, { selected }) => (
+              <li {...props}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{ marginRight: 8 }}
+                  checked={selected}
+                />
+                {option.title}
+              </li>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder={!expertice?.length > 0 && "Search and Select"}
               />
-              {option.title}
-            </li>
-          )}
-          renderInput={(params) => (
-            <TextField {...params} placeholder="Search and Select" />
-          )}
-        />
+            )}
+          />
+        </div>
       </div>
       <div className="buttomBtn text-center modalfooterbtn">
         <button onClick={handleSubmitExpertice} className="smallBtn w-100">

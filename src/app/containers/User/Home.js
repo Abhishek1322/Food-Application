@@ -241,9 +241,7 @@ const HomeUser = () => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    placeholder={
-                      expertice?.length > 0 ? "" : "Search Using Menu"
-                    }
+                    placeholder={!expertice?.length > 0 && "Search and Select"}
                   />
                 )}
               />

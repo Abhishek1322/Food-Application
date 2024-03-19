@@ -11,7 +11,6 @@ import {
   resendVerifyOtp,
 } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import Loading from "../Settings/Loading";
 import { doc, setDoc } from "firebase/firestore";
 import { USERPARENTCOLLECTION, db } from "../../../config/firebase-config";
 
@@ -20,6 +19,7 @@ const Verification = () => {
   const navigate = useNavigate();
   const toastId = useRef(null);
   const authData = useAuthSelector();
+  const [isLoading, setIsLoading] = useState("");
   const fcmToken = localStorage.getItem("fcmToken");
   const userEmail = localStorage.getItem("userEmail");
   const [otp, setOtp] = useState("");
@@ -32,12 +32,13 @@ const Verification = () => {
   };
 
   // submit data
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, flag) => {
     e.preventDefault();
     if (!otp) {
       showToast("Please enter verify OTP");
       return;
     }
+    setIsLoading(flag);
     let params = {
       email: userEmail,
       otp: otp,
@@ -82,12 +83,13 @@ const Verification = () => {
   };
 
   // function for resend otp
-  const handleResendOtp = (e) => {
+  const handleResendOtp = (e, flag) => {
     e.preventDefault();
     let params = {
       type: "verify",
       email: userEmail,
     };
+    setIsLoading(flag);
     dispatch(
       resendVerifyOtp({
         ...params,
@@ -102,7 +104,6 @@ const Verification = () => {
 
   return (
     <>
-      {authData.loading && <Loading />}
       <div className="Login">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -160,7 +161,7 @@ const Verification = () => {
                     email address.
                   </p>
 
-                  <form onSubmit={(e) => handleSubmit(e)}>
+                  <form onSubmit={(e) => handleSubmit(e, "submit")}>
                     <OtpInput
                       value={otp}
                       onChange={setOtp}
@@ -172,19 +173,30 @@ const Verification = () => {
 
                     <p className="mb-3 mt-3">
                       Don’t Received{" "}
-                      <a
-                        onClick={(e) => handleResendOtp(e)}
-                        className="resendLink"
-                        href="/auth/otp"
-                      >
-                        Resend
-                      </a>{" "}
+                      {authData.loading && isLoading === "resend" ? (
+                        <span className="spinner-border spinner-border-sm ms-2"></span>
+                      ) : (
+                        <a
+                          onClick={(e) => handleResendOtp(e, "resend")}
+                          className="resendLink"
+                          href="/auth/otp"
+                        >
+                          Resend
+                        </a>
+                      )}
                     </p>
 
                     <div className="buttonBox mt-2 m-0">
-                      <button type="submit" className="smallBtn">
+                      <button
+                        disabled={authData.loading && isLoading === "submit"}
+                        type="submit"
+                        className="smallBtn"
+                      >
                         {" "}
                         Verify
+                        {authData.loading && isLoading === "submit" && (
+                          <span className="spinner-border spinner-border-sm ms-2"></span>
+                        )}
                       </button>
                     </div>
                   </form>

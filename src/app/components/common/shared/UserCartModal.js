@@ -369,9 +369,9 @@ const UserCartModal = ({ close }) => {
             </div>
           </>
         ) : (
-          <div className="noDataFoundImage">
+          <div className="noDataFoundImage noDataFoundImage-checkout">
             <img
-              className="w-100"
+              className="w-100 p-5"
               alt="no data found"
               src={Images.nodataFound}
             />

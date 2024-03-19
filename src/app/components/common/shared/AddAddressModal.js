@@ -67,8 +67,8 @@ const AddAddressModal = (props) => {
       .catch((error) => {});
   };
 
-  // select city
-  const autoCompleteHandleSelect = (city) => {
+  // handle get location common function
+  const getLocationFields = (city) => {
     geocodeByAddress(city)
       .then((results) => {
         setLatitude(results[0].geometry.location.lat());
@@ -110,6 +110,11 @@ const AddAddressModal = (props) => {
         }
       })
       .catch((error) => {});
+  };
+
+  // select city
+  const autoCompleteHandleSelect = (city) => {
+    getLocationFields(city);
   };
 
   // stop loader on page load
@@ -168,8 +173,8 @@ const AddAddressModal = (props) => {
   // get let long
   function success(pos) {
     var crd = pos.coords;
-    setLatitude(crd.latitude)
-    setLongitude(crd.longitude)
+    setLatitude(crd.latitude);
+    setLongitude(crd.longitude);
     handleGetLocationInfo(crd.latitude, crd.longitude);
   }
 
@@ -184,10 +189,7 @@ const AddAddressModal = (props) => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            setCity(res?.data?.display_name);
-            setState(res?.data?.address?.state);
-            setZipCode(res?.data?.address?.postcode);
-            setStreetAddress(res?.data?.address?.village);
+            getLocationFields(res?.data?.results?.[0]?.formatted_address);
           }
         },
       })

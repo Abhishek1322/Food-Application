@@ -48,31 +48,31 @@ export const userSilce = createSlice({
     menuRating: (state) => {
       state.loading = true;
     },
-    setMenuRating: (state, action) => {
+    setMenuRating: (state) => {
       state.loading = false;
     },
     clearNotification: (state) => {
       state.loading = true;
     },
-    setClearNotification: (state, action) => {
+    setClearNotification: (state) => {
       state.loading = false;
     },
     readNotification: (state) => {
       state.loading = true;
     },
-    setReadNotification: (state, action) => {
+    setReadNotification: (state) => {
       state.loading = false;
     },
     getNotification: (state) => {
       state.loading = true;
     },
-    setGetNotification: (state, action) => {
+    setGetNotification: (state) => {
       state.loading = false;
     },
     cancelChefBooking: (state) => {
       state.loading = true;
     },
-    setCancelChefBooking: (state, action) => {
+    setCancelChefBooking: (state) => {
       state.loading = false;
     },
     hireChef: (state) => {
@@ -138,10 +138,12 @@ export const userSilce = createSlice({
 
     deleteCartItem: (state) => {
       state.loading = true;
+      state.success = false;
     },
     setDeleteCartItem: (state, action) => {
       state.loading = false;
       state.cartData = action.payload;
+      state.success = true;
     },
     getAllCart: (state) => {
       state.loading = true;

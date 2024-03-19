@@ -16,6 +16,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
   const webSelector = useWebSelector();
   const { loading } = webSelector;
   const toastId = useRef(null);
+  const [isLoading, setIsLoading] = useState("");
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
   const [itemImage, setItemImage] = useState("");
@@ -47,7 +48,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
   };
 
   // create new menu
-  const handleCreateMenu = () => {
+  const handleCreateMenu = (flag) => {
     if (!formData.itemName) {
       showToast("Please add item name");
       return;
@@ -61,7 +62,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
       showToast("Please add chef booking price");
       return;
     } else if (formData.price >= formData.chefBookingPrice) {
-      showToast("Chef booking price should be greater then menu price");
+      showToast("Chef booking price should be greater than menu price");
       return;
     } else if (!formData.deliveryTime) {
       showToast("Please add item delivery time");
@@ -73,7 +74,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
       showToast("Please add item image");
       return;
     }
-
+    setIsLoading(flag);
     let params = {
       name: formData.itemName,
       category: category,
@@ -234,7 +235,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
         <div className="input-container mt-4">
           <input
             type="number"
-            className="menuEditbuttom inputPlaceholder"
+            className="menuEditbuttom menuEditbuttom-delivery inputPlaceholder"
             name="deliveryTime"
             onChange={(e) => handleChange(e)}
             placeholder="e.g. 45"
@@ -248,7 +249,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
             type="text"
             name="description"
             onChange={(e) => handleChange(e)}
-            className=" menuReport_button  menuDescrition_ inputPlaceholder"
+            className=" menuReport_button menuReport_button-des menuDescrition_ inputPlaceholder"
             placeholder="Type here..."
           />
           <label className="border-label">Description</label>
@@ -258,11 +259,11 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
           {imageUrl ? (
             <>
               <img src={imageUrl} className="editFoodImg" alt="editFood" />
-              <span className="cancelEditImg">
-                <i
-                  onClick={() => handleRemoveImage(imageUrl)}
-                  className="fas fa-times cancelEdit"
-                ></i>
+              <span
+                onClick={() => handleRemoveImage(imageUrl)}
+                className="cancelEditImg"
+              >
+                <i className="fas fa-times cancelEdit"></i>
               </span>
             </>
           ) : (
@@ -295,13 +296,13 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
         <button
           className="foodmodalbtn  modalfooterbtn"
           onClick={() => {
-            handleCreateMenu();
+            handleCreateMenu("submit");
           }}
         >
           Add
-          {loading &&
-          <span className="spinner-border spinner-border-sm ms-2"></span>
-          }
+          {loading && isLoading === "submit" && (
+            <span className="spinner-border spinner-border-sm ms-2"></span>
+          )}
         </button>
       </div>
     </>

@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 
 const axiosInstanceLocation = axios.create({
   // baseURL: BaseUrl.GEO_CODE_API_URL,
-  baseURL: BaseUrl.GET_LOCATION_API_URL,
+  baseURL: BaseUrl.GET_LOCATION_API_URL_GOOGLE_MAPS,
   headers: {
     Accept: "application/json",
   },

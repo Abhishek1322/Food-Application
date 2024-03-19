@@ -130,7 +130,7 @@ function* createImageUrl(action) {
     if (resp.status) {
       yield put(setCreateImageUrl(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }

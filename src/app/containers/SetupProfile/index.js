@@ -519,7 +519,7 @@ const SetupProfile = () => {
                                   <h6 className="mall">Add Personal Details</h6>
                                   <div className="col-lg-6">
                                     <div className="input-container mt-3">
-                                      <label className="border-label">
+                                      <label className="border-label-fields">
                                         Chef Type
                                       </label>
                                       <ul className="border-input cheftypeBox">
@@ -588,6 +588,15 @@ const SetupProfile = () => {
                                         onChange={(e) => handleChange(e)}
                                         type="number"
                                         name="experience"
+                                        onFocus={(e) =>
+                                          e.target.addEventListener(
+                                            "wheel",
+                                            function (e) {
+                                              e.preventDefault();
+                                            },
+                                            { passive: false }
+                                          )
+                                        }
                                         className="border-input inputPlaceholder"
                                         placeholder="Add your experience"
                                         value={formData.experience}
@@ -597,7 +606,7 @@ const SetupProfile = () => {
                                         alt="InfoIcon"
                                         className="InputIcon"
                                       />
-                                      <label className="border-label">
+                                      <label className="border-label-fields">
                                         Experience (In Years)
                                       </label>
                                     </div>
@@ -695,7 +704,7 @@ const SetupProfile = () => {
                                         placeholder="Add your bio"
                                         value={formData.bio}
                                       ></textarea>
-                                      <label className="border-label">
+                                      <label className="border-label-fields">
                                         Bio
                                       </label>
                                     </div>

@@ -103,7 +103,7 @@ const User_Navbar = () => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            setCurrentLocation(res?.data?.display_name);
+            setCurrentLocation(res?.data?.results?.[0]?.formatted_address);
           }
         },
       })
