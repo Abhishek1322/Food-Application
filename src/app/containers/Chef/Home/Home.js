@@ -98,7 +98,7 @@ const HomeRequsest = () => {
         cb(res) {
           if (res.status === 200) {
             if (status === "accepted") {
-              navigate(`/anotherorder-detail?recent-order=${id}`);
+              navigate(`/order-details?recent-order=${id}`);
             } else {
               handleRecentOrder();
             }
@@ -299,11 +299,12 @@ const HomeRequsest = () => {
                                     }
                                     className="cancelOrder d-flex align-items-center gap-2"
                                   >
+                                   
+                                    CANCEL
                                     {chefData?.laoding &&
                                       isLoading === "cancelled" && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                       )}
-                                    CANCEL
                                   </button>
                                   <button
                                     onClick={(e) =>
@@ -315,11 +316,12 @@ const HomeRequsest = () => {
                                     }
                                     className="acceptOrder d-flex align-items-center gap-2"
                                   >
+                                    
+                                    ACCEPT
                                     {chefData?.laoding &&
                                       isLoading === "accepted" && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                       )}
-                                    ACCEPT
                                   </button>
                                 </div>
                               </div>

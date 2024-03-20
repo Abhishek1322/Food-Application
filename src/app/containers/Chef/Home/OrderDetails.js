@@ -15,24 +15,29 @@ import UserDeleteChat from "../../../components/common/shared/UserDeleteChat";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
+import { useChefSelector } from "../../../../redux/selector/chef";
+import VerifyorderDetailsModal from "../../../components/common/shared/verifyorderDetailsModal";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const authData = useAuthSelector();
+  const chefData = useChefSelector();
+  const { loading } = chefData;
   const { search } = location;
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
   const [allChats, setAllChats] = useState([]);
   const [key, setKey] = useState(Math.random());
+  const [isLoading, setIsLoading] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
+  console.log("orderDetailsorderDetails", orderDetails);
   // get order details
   useEffect(() => {
     const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
@@ -74,19 +79,21 @@ const OrderDetails = () => {
 
   //accept and reject order
   const handleAcceptOrder = (e, status) => {
+    e.preventDefault();
     let params = {
       id: recentOrderId,
       status: status,
     };
+    setIsLoading(status);
     dispatch(
       acceptOrder({
         ...params,
         cb(res) {
           if (res.status === 200) {
-            if (status === "accepted") {
-              navigate(`/anotherorder-detail?recent-order=${recentOrderId}`);
-            } else {
+            if (status === "cancelled") {
               navigate(`/home`);
+            } else {
+              handleGetOrderDetails();
             }
           }
         },
@@ -105,13 +112,81 @@ const OrderDetails = () => {
   };
 
   // open modal
-  const handleOpenModal = (flag, id) => {
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
       type: flag,
     });
     setKey(Math.random());
+  };
+
+  // check order status
+  const getOrderStatus = () => {
+    switch (orderDetails?.status) {
+      case "pending":
+        return <p className="recentOrder recentOrder">Recent Order</p>;
+      case "accepted":
+        return <p className="recentOrder progress_">In-Progress</p>;
+      case "readyForDelivery":
+        <p className="recentOrder deliver">Ready for Delivery</p>;
+      default:
+        <p className="recentOrder recentOrder">Recent Order</p>;
+    }
+  };
+
+  // handle order buttons
+  const handleOrderButtons = () => {
+    switch (orderDetails?.status) {
+      case "pending":
+        return (
+          <>
+            <button
+              onClick={(e) => handleAcceptOrder(e, "cancelled")}
+              className="cancelOrder_ me-4"
+            >
+              Reject
+              {loading && isLoading === "cancelled" && (
+                <span className="spinner-border spinner-border-sm ms-1"></span>
+              )}
+            </button>
+            <button
+              onClick={(e) => handleAcceptOrder(e, "accepted")}
+              className="submitOrder_"
+            >
+              Accept
+              {loading && isLoading === "accepted" && (
+                <span className="spinner-border spinner-border-sm ms-1"></span>
+              )}
+            </button>
+          </>
+        );
+      case "accepted":
+        return (
+          <button
+            onClick={(e) => handleAcceptOrder(e, "readyForDelivery")}
+            className="chefRightHeader m-0 text-end d-flex align-items-center gap-2"
+          >
+            Order Ready for Delivery
+            {loading && isLoading === "readyForDelivery" && (
+              <span className="spinner-border spinner-border-sm"></span>
+            )}
+          </button>
+        );
+      case "readyForDelivery":
+        return (
+          <button
+            onClick={() => handleOpenModal("verifyOrder")}
+            className="chefRightHeader m-0 text-end"
+          >
+            Order Delivered
+          </button>
+        );
+      case "delivered":
+        return "";
+      default:
+        return "";
+    }
   };
 
   return (
@@ -132,18 +207,27 @@ const OrderDetails = () => {
           </div>
           <div className="col-lg-6 col-sm-12 d-flex justify-content-end">
             <div className="orderItems_ flexBox ">
-              <button
-                onClick={(e) => handleAcceptOrder(e, "cancelled")}
-                className="cancelOrder_ me-4"
-              >
-                Reject
-              </button>
-              <button
-                onClick={(e) => handleAcceptOrder(e, "accepted")}
-                className="submitOrder_"
-              >
-                Accept
-              </button>
+              {/* {orderDetails?.status === "accepted" ? (
+                <button
+                  onClick={() => handleAcceptOrder("readyForDelivery")}
+                  className="chefRightHeader m-0 text-end d-flex align-items-center gap-2"
+                >
+                  {chefData?.loading && (
+                    <span className="spinner-border spinner-border-sm"></span>
+                  )}
+                  Order Ready for Delivery
+                </button>
+              ) : orderDetails?.status === "delivered" ? (
+                ""
+              ) : (
+                <button
+                  onClick={() => handleOpenModal("verifyOrder")}
+                  className="chefRightHeader m-0 text-end"
+                >
+                  Order Delivered
+                </button>
+              )} */}
+              {handleOrderButtons()}
             </div>
           </div>
         </div>
@@ -151,16 +235,7 @@ const OrderDetails = () => {
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-12">
-                <div className="orderIdDetail">
-                  <p className="orderId_">Order #{orderDetails?.orderId}</p>
-                  {orderDetails?.status === "accepted" ? (
-                    <p className="recentOrder progress_">In-Progress</p>
-                  ) : orderDetails?.status === "readyForDelivery" ? (
-                    <p className="recentOrder deliver">Ready for Delivery</p>
-                  ) : (
-                    <p className="recentOrder recentOrder">Recent Order</p>
-                  )}
-                </div>
+                <div className="orderIdDetail">{getOrderStatus()}</div>
                 <div className="chefJohn">
                   <div className="chatWithChef">
                     <div className="chefjohnDetail">
@@ -194,15 +269,13 @@ const OrderDetails = () => {
                             </p>
                           </div>
                         </div>
-                        {orderDetails?.itemCount === "1" ? (
-                          <p className="itemsQuantity">
-                            {orderDetails?.itemCount} Item
-                          </p>
-                        ) : (
-                          <p className="itemsQuantity">
-                            {orderDetails?.itemCount} Items
-                          </p>
-                        )}
+                        <p className="itemsQuantity">
+                          {parseInt(orderDetails?.itemCount)}{" "}
+                          {parseInt(orderDetails?.itemCount) === 1
+                            ? "Item"
+                            : "Items"}
+                        </p>
+
                         <p className="ordertimeaddress">
                           Order placed on{" "}
                           {moment(orderDetails?.updatedAt).format("hh:mm A")}
@@ -215,9 +288,19 @@ const OrderDetails = () => {
                       onClick={() => {
                         handleOpenModal("chatAboutOrder");
                       }}
-                      className="chatwithjohn"
+                      className={
+                        orderDetails?.status === "delivered"
+                          ? "chatwithjohn order-delivered-chat"
+                          : "chatwithjohn"
+                      }
                     >
-                      <div className="chatImg">
+                      <div
+                        className={
+                          orderDetails?.status === "delivered"
+                            ? "chatImg chatImg-delivered"
+                            : "chatImg"
+                        }
+                      >
                         <i className="fas fa-comment-dots chatImage"></i>
                       </div>
                       <div className="chatText">
@@ -254,7 +337,13 @@ const OrderDetails = () => {
                     ))}
                   </div>
                   <div className="col-lg-2">
-                    <div className="paidAmmount">
+                    <div
+                      className={
+                        orderDetails?.status === "delivered"
+                          ? "paidAmmount paidAmmount-delivered"
+                          : "paidAmmount"
+                      }
+                    >
                       <p className="totalPaid">Total paid</p>
                       <p className="foodBill"> £{orderDetails?.total}.00</p>
                     </div>
@@ -284,7 +373,8 @@ const OrderDetails = () => {
             ? "orderchat"
             : modalDetail.flag === "reportchat"
             ? "orderchat"
-            : modalDetail.flag === "deletechat"
+            : modalDetail.flag === "deletechat" ||
+              modalDetail.flag === "verifyOrder"
             ? "orderchat"
             : ""
         }
@@ -305,6 +395,12 @@ const OrderDetails = () => {
               allChats={allChats}
               sender_id={orderDetails?.chefId?._id}
               sendRoomId={`${orderDetails?.userId?._id}-${orderDetails?.chefId?._id}`}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "verifyOrder" ? (
+            <VerifyorderDetailsModal
+              handleGetOrderDetails={handleGetOrderDetails}
+              recentOrderId={recentOrderId}
               close={() => handleOnCloseModal()}
             />
           ) : (

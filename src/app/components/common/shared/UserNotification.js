@@ -8,11 +8,17 @@ import {
 } from "../../../../redux/slices/user";
 import moment from "moment";
 import * as Images from "../../../../utilities/images";
+import { useAuthSelector } from "../../../../redux/selector/auth";
+import { useNavigate } from "react-router-dom";
 
 const UserNotification = ({ updateNotification }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const authData = useAuthSelector();
+  const { userInfo } = authData;
+  const { role } = userInfo;
   const [notification, setNotification] = useState([]);
-
+  
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -38,7 +44,7 @@ const UserNotification = ({ updateNotification }) => {
   };
 
   // read notifications
-  const handleReadNotification = (id, read) => {
+  const handleReadNotification = (id, read, type, userId) => {
     if (read) {
       return;
     }
@@ -52,6 +58,9 @@ const UserNotification = ({ updateNotification }) => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllNotifications();
+            // if (role === "chef" && type === "order-food") {
+            //   navigate(`/order-details?recent-order=${userId}`);
+            // }
           }
         },
       })
@@ -88,7 +97,12 @@ const UserNotification = ({ updateNotification }) => {
               {notification?.map((item, index) => (
                 <div
                   onClick={() =>
-                    handleReadNotification(item?._id, item?.is_read)
+                    handleReadNotification(
+                      item?._id,
+                      item?.is_read,
+                      item?.type,
+                      item?.userId
+                    )
                   }
                   key={index}
                   className={

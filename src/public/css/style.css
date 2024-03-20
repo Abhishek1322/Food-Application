@@ -1130,11 +1130,12 @@ body {
   display: flex;
   align-items: center;
   border-radius: 12px;
-  padding: 9px 22px;
+  padding: 9px 9px;
   max-width: 132px;
   height: 56px;
   width: 100%;
   margin-left: auto;
+  cursor: pointer;
 }
 .chatDates {
   color: #e65c00;
@@ -2742,4 +2743,14 @@ body {
 }
 .add-menu-modal .menuReport_button-des {
   padding: 15px 15px 15px 25px;
+}
+.order-delivered-chat {
+  background: #2E3333;
+}
+
+.chatImg-delivered {
+  background: #a9a2a2;
+}
+.paidAmmount-delivered {
+  background: #2E3333;
 }

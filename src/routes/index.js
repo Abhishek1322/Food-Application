@@ -54,19 +54,10 @@ const Router = () => {
           <Route path="/my-profile" element={<Containers.myprofile />} />
 
           <Route path="/order-details" element={<Containers.OrderDetails />} />
-          <Route
-            path="/anotherorder-detail"
-            element={<Containers.AnotherOrderdetail />}
-          />
+         
           <Route
             path="/booking-details"
             element={<Containers.BookingDetails />}
-          />
-
-          <Route path="/order-details" element={<Containers.OrderDetails />} />
-          <Route
-            path="/anotherorder-detail"
-            element={<Containers.AnotherOrderdetail />}
           />
         </Route>
 

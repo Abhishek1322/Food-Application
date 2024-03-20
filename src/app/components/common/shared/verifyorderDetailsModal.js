@@ -11,9 +11,11 @@ import {
 } from "../../../../redux/slices/chef";
 import { useChefSelector } from "../../../../redux/selector/chef";
 
-const VerifyorderDetailsModal = (props) => {
-  const { close, recentOrderId, handleGetOrderDetails } =
-    props;
+const VerifyorderDetailsModal = ({
+  close,
+  recentOrderId,
+  handleGetOrderDetails,
+}) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const chefData = useChefSelector();
@@ -90,18 +92,17 @@ const VerifyorderDetailsModal = (props) => {
           />
           <p className="mb-3 mt-4 inner_Text">
             Customer not received the OTP?{" "}
-            <Link
-              onClick={(e) => handleResendOtp(e, "resend")}
-              className="resendLink"
-              href=""
-            >
-              <span className="insideText">
-                {chefData?.loading && isLoading === "resend" && (
-                  <span className="spinner-border spinner-border-sm me-1"></span>
-                )}
-                Resend
-              </span>
-            </Link>{" "}
+            {chefData?.loading && isLoading === "resend" ? (
+              <span className="spinner-border spinner-border-sm me-1"></span>
+            ) : (
+              <Link
+                onClick={(e) => handleResendOtp(e, "resend")}
+                className="resendLink"
+                href=""
+              >
+                <span className="insideText">Resend</span>
+              </Link>
+            )}
           </p>
           <div className="modalfooterbtn mb-4">
             <div className="orderItems_ flexBox ">
@@ -113,10 +114,10 @@ const VerifyorderDetailsModal = (props) => {
                 Cancel
               </button>
               <button type="submit" className="submitOrder_">
+                Verify
                 {chefData?.loading && isLoading === "verify" && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
-                Verify
               </button>
             </div>
           </div>

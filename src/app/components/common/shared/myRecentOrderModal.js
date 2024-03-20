@@ -18,8 +18,12 @@ import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 
-const MyRecentOrderModal = (props) => {
-  const { close, singleOrderId, setOrderId, handleGetRecenetOrders } = props;
+const MyRecentOrderModal = ({
+  close,
+  singleOrderId,
+  setOrderId,
+  handleGetRecenetOrders,
+}) => {
   const dispatch = useDispatch();
   const chefData = useChefSelector();
   const authData = useAuthSelector();
@@ -124,7 +128,7 @@ const MyRecentOrderModal = (props) => {
   return (
     <>
       <div className="myrecentOrders_ orderModalBtn">
-        <div className="modalscroll">
+        <div className="modalscroll-order">
           <div className="orderProfile">
             <div className="ordermenuProfile">
               <div className="orderprofile_ ">
@@ -195,7 +199,7 @@ const MyRecentOrderModal = (props) => {
             ))}
           </div>
         </div>
-        <div className="modalfooterbtn">
+        <div className="modalfooterbtn-order">
           <div
             className={
               orderDetail?.status === "delivered"
@@ -212,19 +216,19 @@ const MyRecentOrderModal = (props) => {
                 onClick={() => handleOrderReady("cancelled")}
                 className="cancelOrder_"
               >
+                Reject
                 {chefData?.loading && isLoading === "cancelled" && (
                   <span className="spinner-border spinner-border-sm me-1"></span>
                 )}
-                Reject
               </button>
               <button
                 onClick={() => handleOrderReady("accepted")}
                 className="submitOrder_"
               >
+                Accept
                 {chefData?.loading && isLoading === "accepted" && (
                   <span className="spinner-border spinner-border-sm me-1"></span>
                 )}
-                Accept
               </button>
             </div>
           ) : orderDetail?.status === "accepted" ? (
@@ -233,10 +237,10 @@ const MyRecentOrderModal = (props) => {
                 onClick={() => handleOrderReady("readyForDelivery")}
                 className="cancelOrder_  w-100"
               >
+                Order Ready for Delivery
                 {chefData?.loading && isLoading === "readyForDelivery" && (
                   <span className="spinner-border spinner-border-sm me-1"></span>
                 )}
-                Order Ready for Delivery
               </button>
             </div>
           ) : orderDetail?.status === "readyForDelivery" ? (

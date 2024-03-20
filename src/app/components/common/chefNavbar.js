@@ -20,10 +20,7 @@ const Chef_Navbar = () => {
   const authData = useAuthSelector();
   const { pathname } = location;
   const { search } = location;
-  const searchParams = new URLSearchParams(search);
-  const recentOrderId = searchParams.get("recent-order");
   const userId = localStorage.getItem("userId");
-  const chefData = useChefSelector();
   const [key, setKey] = useState(Math.random());
   const [allChats, setAllChats] = useState([]);
   const [chefProfileData, setProfileData] = useState([]);

@@ -73,7 +73,6 @@ const Myorder = (props) => {
           if (res.status === 200) {
             setOrderDetails(res?.data?.data?.data);
             dispatch(getLatestOrder(true));
-            
           }
         },
       })
@@ -108,7 +107,7 @@ const Myorder = (props) => {
 
   return (
     <>
-      <div className="modalContent">
+      <div className="modalContent list-all-orders">
         <div className="order-outer">
           <div className="searchbar ">
             <input
@@ -248,11 +247,11 @@ const Myorder = (props) => {
                                             }
                                             className="cancelOrder"
                                           >
+                                            CANCEL
                                             {chefData?.laoding &&
                                               isLoading === "cancelled" && (
                                                 <span className="spinner-border spinner-border-sm"></span>
                                               )}
-                                            CANCEL
                                           </button>
                                           <button
                                             onClick={(e) =>
@@ -264,11 +263,11 @@ const Myorder = (props) => {
                                             }
                                             className="acceptOrder"
                                           >
+                                            ACCEPT
                                             {chefData?.laoding &&
                                               isLoading === "accepted" && (
                                                 <span className="spinner-border spinner-border-sm"></span>
                                               )}
-                                            ACCEPT
                                           </button>
                                         </div>
                                       )}

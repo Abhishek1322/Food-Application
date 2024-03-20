@@ -1016,7 +1016,7 @@ input:-webkit-autofill:active {
 
 .order-inner-list {
   overflow-y: auto;
-  height: 67vh;
+  height: 60vh;
   padding-right: 6px;
 }
 
@@ -1256,4 +1256,10 @@ li.next.disabled a {
 }
 li.previous.disabled a {
   cursor: not-allowed;
+}
+.myrecentOrders_.orderModalBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 77vh;
 }

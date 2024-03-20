@@ -143,20 +143,20 @@ const BookingDetails = () => {
                   onClick={(e) => handleAcceptOrderBookings(e, "cancelled")}
                   className="cancelOrder_ me-4 w-0"
                 >
-                  {chefReducer?.loading && isLoading === "cancelled" && (
-                    <span className="spinner-border spinner-border-sm me-1"></span>
-                  )}
                   Reject
+                  {chefReducer?.loading && isLoading === "cancelled" && (
+                    <span className="spinner-border spinner-border-sm ms-1"></span>
+                  )}
                 </button>
                 <button
                   onClick={(e) => handleAcceptOrderBookings(e, "accepted")}
                   className="submitOrder_"
                 >
                   {" "}
-                  {chefReducer?.loading && isLoading === "accepted" && (
-                    <span className="spinner-border spinner-border-sm me-1"></span>
-                  )}
                   Accept
+                  {chefReducer?.loading && isLoading === "accepted" && (
+                    <span className="spinner-border spinner-border-sm ms-1"></span>
+                  )}
                 </button>
               </div>
             )}
