@@ -382,7 +382,7 @@ const UserCartModal = ({ close }) => {
       <CustomModal
         key={key}
         show={modalDetail.show}
-        backdrop="static"
+        // backdrop="static"
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}

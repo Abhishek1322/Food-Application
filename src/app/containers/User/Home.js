@@ -38,6 +38,7 @@ const HomeUser = () => {
     getChefList();
   }, [search, filterChefByRating, currentLocation, expertice]);
 
+  // get all chef lists
   const getChefList = (page = currentPage) => {
     let params = {
       page: page,
@@ -92,6 +93,8 @@ const HomeUser = () => {
     const getTitle = values?.map((item) => item.title);
     setExpertice(getTitle);
   };
+
+  console.log("home");
 
   return (
     <>

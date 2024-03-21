@@ -3,8 +3,10 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import YourOrderModal from "./YourOrderModal";
 import { Line } from "rc-progress";
+import { useNavigate } from "react-router-dom";
 
 const OrderPlaceModal = ({ close, orderId, orderType }) => {
+  const navigate = useNavigate();
   const [key, setKey] = useState(Math.random());
   const [countDown, setCountDown] = useState(60);
   const [barPercentage, setBarPercentage] = useState();
@@ -57,6 +59,19 @@ const OrderPlaceModal = ({ close, orderId, orderType }) => {
     setBarPercentage(getTotalPercent);
   }, [countDown]);
 
+  // redirect to detail page
+  const handleRedirect = () => {
+    if (orderType === "order") {
+      close();
+      navigate("/user-order-home");
+    } else if (orderType === "booking") {
+      close();
+      navigate("/home-user");
+    } else {
+      close();
+    }
+  };
+
   return (
     <>
       <div className="orderplacesection paymentdonesection">
@@ -79,7 +94,7 @@ const OrderPlaceModal = ({ close, orderId, orderType }) => {
               className="foodmodalbtn"
               type="button"
               onClick={() => {
-                close();
+                handleRedirect();
               }}
             >
               Okay
@@ -107,7 +122,7 @@ const OrderPlaceModal = ({ close, orderId, orderType }) => {
       <CustomModal
         key={key}
         show={modalDetail.show}
-        backdrop="static"
+        // backdrop="static"
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}

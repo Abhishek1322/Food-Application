@@ -121,7 +121,7 @@ const YourOrderModal = ({ close, closeModal, orderId, orderType }) => {
       <CustomModal
         key={key}
         show={modalDetail.show}
-        backdrop="static"
+        // backdrop="static"
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}
