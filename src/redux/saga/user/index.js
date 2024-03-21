@@ -414,7 +414,7 @@ function* createOrder(action) {
   try {
     const resp = yield call(
       ApiClient.post,
-      (action.url = ApiPath.userApiPath.MENU_ORDER),
+      (action.url = ApiPath.userApiPath.CREATE_BOOKING_ORDER),
       (action.payload = action.payload)
     );
     if (resp.status) {

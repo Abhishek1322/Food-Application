@@ -11,14 +11,14 @@ import * as Images from "../../../../utilities/images";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 import { useNavigate } from "react-router-dom";
 
-const UserNotification = ({ updateNotification }) => {
+const UserNotification = ({ updateNotification, close }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authData = useAuthSelector();
   const { userInfo } = authData;
   const { role } = userInfo;
   const [notification, setNotification] = useState([]);
-  
+
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -44,7 +44,7 @@ const UserNotification = ({ updateNotification }) => {
   };
 
   // read notifications
-  const handleReadNotification = (id, read, type, userId) => {
+  const handleReadNotification = (id, read, type, bookingId) => {
     if (read) {
       return;
     }
@@ -58,9 +58,21 @@ const UserNotification = ({ updateNotification }) => {
         cb(res) {
           if (res.status === 200) {
             handleGetAllNotifications();
-            // if (role === "chef" && type === "order-food") {
-            //   navigate(`/order-details?recent-order=${userId}`);
-            // }
+            if (
+              (role === "user" && type === "order-ready-for-delivery") ||
+              type === "order-delivered" ||
+              type === "order-accepted"
+            ) {
+              navigate(`/user-order-home`);
+              close();
+            } else if (
+              (role === "user" && type === "bookings") ||
+              type === "booking-accepted" ||
+              type === "booking-cancelled"
+            ) {
+              navigate(`/chef-details?id=${bookingId}`);
+              close();
+            }
           }
         },
       })
@@ -101,7 +113,7 @@ const UserNotification = ({ updateNotification }) => {
                       item?._id,
                       item?.is_read,
                       item?.type,
-                      item?.userId
+                      item?.bookingId
                     )
                   }
                   key={index}
