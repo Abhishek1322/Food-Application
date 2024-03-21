@@ -1118,7 +1118,7 @@ input:-webkit-autofill:active {
 }
 .chefs-lists .cheffilter .searchtext {
   padding: 15px 54px 15px 8px;
-  width: 310px;
+  /* width: 310px; */
 }
 .menu-list .bgmenuImg_ {
   left: 29px;
