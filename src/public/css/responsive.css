@@ -1302,7 +1302,6 @@
   .leftbox .settingIcon {
     padding: 7px 9px;
 }
-
 /* changes password responsive CSS */
 .changePaasword_ .settingMainHeading {
     font-size: 25px;
@@ -1319,6 +1318,8 @@
     width: 95%;
     margin: auto;
 }
+
+
 .paymentdonesection {
     text-align: center;
     padding-top: 100px;
