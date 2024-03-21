@@ -1,1210 +1,1326 @@
-@media (min-width:1800px) {
-    .chefratingsection .modalscroll {
-        height: 100%;
-        max-height: 700px !important;
-    }
+@media (min-width: 1800px) {
+  .chefratingsection .modalscroll {
+    height: 100%;
+    max-height: 700px !important;
+  }
 
-    .chefchatsection .chatnext {
-        padding-top: 410px !important;
-    }
+  .chefchatsection .chatnext {
+    padding-top: 410px !important;
+  }
 }
 
-@media (max-width:1800px) {}
-
-@media (min-width:1366px) {
-    .chefratingsection .modalscroll {
-        height: 100%;
-        max-height: 592px;
-    }
+@media (max-width: 1800px) {
 }
 
-@media (max-width:1365px) {
-    .menuPage .profileDetail {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
+@media (min-width: 1366px) {
+  .chefratingsection .modalscroll {
+    height: 100%;
+    max-height: 592px;
+  }
+}
 
-    .homePage .profileDetail {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+@media (max-width: 1365px) {
+  .menuPage .profileDetail {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 
-    .Newbooking_ .profileDetail {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+  .homePage .profileDetail {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 
-    /* .banner-contact .buttonBox {
+  .Newbooking_ .profileDetail {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  /* .banner-contact .buttonBox {
         margin-bottom: 16rem !important;
     } */
-    .banner-contact .contactUs {
-        margin-top: 204px;
-    }
-
+  .banner-contact .contactUs {
+    margin-top: 204px;
+  }
 }
 
 @media only screen and (min-width: 1080px) and (max-width: 1200px) {
-    .videoSection .image2 {
-        bottom: 48px;
-        left: 42%;
-        width: 70px;
-    }
+  .videoSection .image2 {
+    bottom: 48px;
+    left: 42%;
+    width: 70px;
+  }
 
-    .different_ .greyHeading {
-        padding: 0 12px 0 0;
-    }
+  .different_ .greyHeading {
+    padding: 0 12px 0 0;
+  }
 
-    .foodImage {
-        width: 100px;
-    }
+  .foodImage {
+    width: 100px;
+  }
 
-    .appImages {
-        width: 130px;
-    }
+  .appImages {
+    width: 130px;
+  }
 
-    .banner-contact {
-        background-size: 100% 41%;
-    }
-
+  .banner-contact {
+    background-size: 100% 41%;
+  }
 }
 
 @media (max-width: 1200px) {
+  .banner-contact .buttonBox {
+    margin-bottom: 21rem !important;
+  }
 
-    .banner-contact .buttonBox {
-        margin-bottom: 21rem !important;
-    }
+  .banner-contact .contactUs {
+    margin-top: 203px;
+  }
 
-    .banner-contact .contactUs {
-        margin-top: 203px;
-    }
+  .setButtons {
+    margin-bottom: 13px;
+  }
 
-    .setButtons {
-        margin-bottom: 13px;
-    }
-
-    /* .main {
+  /* .main {
         width: calc(100% - 0px) !important;
     } */
-    .videoSection .image2 {
-        bottom: -73px;
-        z-index: -1;
-    }
+  .videoSection .image2 {
+    bottom: -73px;
+    z-index: -1;
+  }
 
-    .pizzaImg {
-        right: -19px;
-    }
+  .pizzaImg {
+    right: -19px;
+  }
 
-    .about {
-        padding-top: 168px;
-        padding-bottom: 70px;
-    }
+  .about {
+    padding-top: 168px;
+    padding-bottom: 70px;
+  }
 
-    .image1 {
-        width: 136px;
-    }
+  .image1 {
+    width: 136px;
+  }
 
-    .about .image1 {
-        right: 0;
-        top: 86px;
-    }
+  .about .image1 {
+    right: 0;
+    top: 86px;
+  }
 
-    .foodImg1 {
-        width: 46px;
-    }
+  .foodImg1 {
+    width: 46px;
+  }
 
-    .blackHeading {
-        font-size: 50px;
-    }
+  .blackHeading {
+    font-size: 50px;
+  }
 
-    .greyHeading {
-        font-size: 14px;
-    }
+  .greyHeading {
+    font-size: 14px;
+  }
 
-    .mainHeadings {
-        padding-left: 0rem;
-    }
+  .mainHeadings {
+    padding-left: 0rem;
+  }
 
-    .videoSection .blackHeading {
-        font-size: 40px;
-    }
+  .videoSection .blackHeading {
+    font-size: 40px;
+  }
 
-    .black {
-        font-size: 44px;
-        line-height: 51px;
-    }
+  .black {
+    font-size: 44px;
+    line-height: 51px;
+  }
 
-    .whatDifferent .burgerSmall {
-        width: 130px;
-    }
+  .whatDifferent .burgerSmall {
+    width: 130px;
+  }
 
-    .appButtons .primary {
-        font-size: 7px;
-    }
+  .appButtons .primary {
+    font-size: 7px;
+  }
 
-    .appButtons .secondary {
-        font-size: 12px;
-    }
+  .appButtons .secondary {
+    font-size: 12px;
+  }
 
-    .whatDifferent .image2 {
-        width: 165px;
-    }
+  .whatDifferent .image2 {
+    width: 165px;
+  }
 
-    .downloadApp {
-        background-size: 100% 64%;
-    }
+  .downloadApp {
+    background-size: 100% 64%;
+  }
 
-    .differentButton .primary {
-        padding: 8px 12px 8px 5px;
-    }
+  .differentButton .primary {
+    padding: 8px 12px 8px 5px;
+  }
 
-    .differentButton .inner {
-        padding: 10px 3px;
-        font-size: 16px;
-    }
+  .differentButton .inner {
+    padding: 10px 3px;
+    font-size: 16px;
+  }
 
-    .videoSection .image2 {
-        bottom: 54px;
-        left: 43%;
-        width: 50px;
-    }
+  .videoSection .image2 {
+    bottom: 54px;
+    left: 43%;
+    width: 50px;
+  }
 
-    .black {
-        font-size: 38px;
-        line-height: 40px;
-    }
+  .black {
+    font-size: 38px;
+    line-height: 40px;
+  }
 
-    .appImages {
-        width: 100px !important;
-    }
+  .appImages {
+    width: 100px !important;
+  }
 
-    .socialImg {
-        margin-bottom: 10px;
-    }
+  .socialImg {
+    margin-bottom: 10px;
+  }
 
-    .socialImg {
-        margin-bottom: 10px;
-    }
+  .socialImg {
+    margin-bottom: 10px;
+  }
 
-    .banner-contact {
-        background-size: 100% 33%;
-    }
+  .banner-contact {
+    background-size: 100% 33%;
+  }
 
-    .banner-contact .contactUs {
-        margin-top: 225px;
-    }
+  .banner-contact .contactUs {
+    margin-top: 225px;
+  }
 
-    /* .banner-contact .buttonBox {
+  /* .banner-contact .buttonBox {
         margin-bottom: 6rem !important;
     } */
-    .banner-contact .changepassword {
-        height: 90vh;
-
-    }
-
-
-
+  .banner-contact .changepassword {
+    height: 90vh;
+  }
 }
 
-@media (max-width:991px) {
-    .banner-contact .changepassword {
-        height: 113vh;
-    }
+@media (max-width: 991px) {
+  .banner-contact .changepassword {
+    height: 113vh;
+  }
 
-    .banner-contact .contactUs {
-        margin-top: 45px;
-    }
+  .banner-contact .contactUs {
+    margin-top: 45px;
+  }
 
-    .about .image2 {
-        width: 100px;
-    }
+  .about .image2 {
+    width: 100px;
+  }
 
-    .different_ .greyHeading {
-        padding: 0;
-    }
+  .different_ .greyHeading {
+    padding: 0;
+  }
 
-    .videoSection .image2 {
-        bottom: 63px;
-        width: 139px;
-        left: 47%;
-    }
+  .videoSection .image2 {
+    bottom: 63px;
+    width: 139px;
+    left: 47%;
+  }
 
-    .foodHalf {
-        width: 100px;
-    }
+  .foodHalf {
+    width: 100px;
+  }
 
-    .burgerImg {
-        width: 100px;
-    }
+  .burgerImg {
+    width: 100px;
+  }
 
-    .setButtons {
-        margin-bottom: 13px;
-    }
+  .setButtons {
+    margin-bottom: 13px;
+  }
 
-    .detailEnd {
-        text-align: center;
-        margin-top: 12px;
-    }
+  .detailEnd {
+    text-align: center;
+    margin-top: 12px;
+  }
 
-    .profileSet {
-        margin-top: 27rem;
-    }
+  .profileSet {
+    margin-top: 27rem;
+  }
 
-    .greyHeading {
-        font-size: 11px;
-    }
+  .greyHeading {
+    font-size: 11px;
+  }
 
-    .chef {
-        margin-left: 0
-    }
+  .chef {
+    margin-left: 0;
+  }
 
-    .blackHeading {
-        font-size: 29px;
-        line-height: 36px;
-    }
+  .blackHeading {
+    font-size: 29px;
+    line-height: 36px;
+  }
 
-    .logleft:before {
-        left: 84%;
-        top: 9%;
-    }
+  .logleft:before {
+    left: 84%;
+    top: 9%;
+  }
 
-    .foodBox .logFood:first-child {
-        height: 120px;
-        width: 120px;
-    }
+  .foodBox .logFood:first-child {
+    height: 120px;
+    width: 120px;
+  }
 
-    .foodBox .logFood:nth-child(2) {
-        height: 120px;
-        width: 120px;
-        left: 115px;
-    }
+  .foodBox .logFood:nth-child(2) {
+    height: 120px;
+    width: 120px;
+    left: 115px;
+  }
 
-    .foodBox .logFood:nth-child(3) {
-        height: 120px;
-        width: 120px;
-        left: 226px;
-    }
+  .foodBox .logFood:nth-child(3) {
+    height: 120px;
+    width: 120px;
+    left: 226px;
+  }
 
-    .foodBox .logFood:nth-child(4) {
-        height: 120px;
-        width: 120px;
-        left: 343px;
-    }
+  .foodBox .logFood:nth-child(4) {
+    height: 120px;
+    width: 120px;
+    left: 343px;
+  }
 
-    .logRight {
-        position: relative;
-    }
+  .logRight {
+    position: relative;
+  }
 
-    .logForm {
-        width: 90%;
-        margin: 5rem auto;
-    }
+  .logForm {
+    width: 90%;
+    margin: 5rem auto;
+  }
 
-    .toggleButtonMain {
-        top: -50px;
-    }
+  .toggleButtonMain {
+    top: -50px;
+  }
 
-    .Chef {
-        right: 0px;
-    }
+  .Chef {
+    right: 0px;
+  }
 
-    .sarahavailablebtn {
-        margin-right: 5px;
-        padding: 10px 18px 10px 10px;
-    }
+  .sarahavailablebtn {
+    margin-right: 5px;
+    padding: 10px 18px 10px 10px;
+  }
 
-    .sarahmessagebtn {
-        padding: 10px 18px 10px 10px;
-    }
+  .sarahmessagebtn {
+    padding: 10px 18px 10px 10px;
+  }
 
-    .availableimg {
-        padding: 7px;
-        width: 100%;
-        max-width: 35px;
-    }
+  .availableimg {
+    padding: 7px;
+    width: 100%;
+    max-width: 35px;
+  }
 
-    .availableheading {
-        font-size: 12px;
-        margin-left: 8px;
-    }
+  .availableheading {
+    font-size: 12px;
+    margin-left: 8px;
+  }
 
-    .sarahImg_ {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-    }
+  .sarahImg_ {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
 
+  .restroinfo .johnchatdetail {
+    padding: 4px 8px;
+    cursor: pointer;
+  }
 
+  .chefdetailsection .johnExplorer {
+    color: #2e3333;
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-transform: capitalize;
+  }
 
-    .restroinfo .johnchatdetail {
-        padding: 4px 8px;
-        cursor: pointer;
-    }
+  .profileleft {
+    display: flex;
+    justify-content: center;
+  }
 
-    .chefdetailsection .johnExplorer {
-        color: #2e3333;
-        font-size: 27px;
-        font-weight: 600;
-        margin-bottom: 0;
-        text-transform: capitalize;
-    }
+  .editleft {
+    display: flex;
+    justify-content: center;
+  }
 
-    .profileleft {
-        display: flex;
-        justify-content: center;
-    }
+  .myprofileLink {
+    margin-top: 20px;
+  }
 
-    .editleft {
-        display: flex;
-        justify-content: center;
-    }
+  .orderstatus {
+    margin-top: 10px;
+  }
 
-    .myprofileLink {
-        margin-top: 20px;
-    }
+  .menuPage .profileDetail {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-    .orderstatus {
-        margin-top: 10px;
-    }
+  .homePage .profileDetail {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-    .menuPage .profileDetail {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+  .Newbooking_ .profileDetail {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-    .homePage .profileDetail {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+  .foodImg1 {
+    width: 100px;
+  }
 
-    .Newbooking_ .profileDetail {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+  .foodHalf {
+    top: 16%;
+  }
 
-    .foodImg1 {
-        width: 100px;
-    }
-
-    .foodHalf {
-        top: 16%;
-    }
-
-    .mainHeadings {
-        /* margin-top: 52px;
+  .mainHeadings {
+    /* margin-top: 52px;
         margin-bottom: 32px; */
-        margin: 52px 58px 52px 59px;
-    }
+    margin: 52px 58px 52px 59px;
+  }
 
-    .videoSection .blackHeading {
-        font-size: 55px;
-        line-height: 51px;
-    }
+  .videoSection .blackHeading {
+    font-size: 55px;
+    line-height: 51px;
+  }
 
-    .video {
-        text-align: center;
-    }
+  .video {
+    text-align: center;
+  }
 
-    .videoSection .blackHeading {
-        font-size: 48px;
-    }
+  .videoSection .blackHeading {
+    font-size: 48px;
+  }
 
-    .orange {
-        font-size: 33px;
-    }
+  .orange {
+    font-size: 33px;
+  }
 
-    .about .secondary {
-        font-size: 12px;
-    }
+  .about .secondary {
+    font-size: 12px;
+  }
 
-    .whyChoose .secondary {
-        padding: 0;
-    }
+  .whyChoose .secondary {
+    padding: 0;
+  }
 
-    .burgerSmall {
-        width: 100px;
-    }
+  .burgerSmall {
+    width: 100px;
+  }
 
-    .differentButton .inner {
-        padding: 16px 11px;
-        font-size: 13px;
-    }
+  .differentButton .inner {
+    padding: 16px 11px;
+    font-size: 13px;
+  }
 
-    .differentButton .primary {
-        padding: 9px 25px 16px 5px;
-    }
+  .differentButton .primary {
+    padding: 9px 25px 16px 5px;
+  }
 
-    .banner {
-        background-size: 100% 28%;
-    }
+  .banner {
+    background-size: 100% 28%;
+  }
 
-    .secondary {
-        font-size: 9px;
-    }
+  .secondary {
+    font-size: 9px;
+  }
 
-    .pizzaImg {
-        top: -48px;
-        right: 0;
-    }
+  .pizzaImg {
+    top: -48px;
+    right: 0;
+  }
 
-    .custom {
-        background-size: 100%;
-    }
+  .custom {
+    background-size: 100%;
+  }
 
-    .whiteHeading {
-        font-size: 40px;
-    }
+  .whiteHeading {
+    font-size: 40px;
+  }
 
-    .playImage {
-        width: 130px;
-    }
+  .playImage {
+    width: 130px;
+  }
 
-    /* .logleft:before {
+  /* .logleft:before {
          left:0; 
     } */
-    .main .mainLayout {
-        width: calc(100% - 3px);
-    }
+  .main .mainLayout {
+    width: calc(100% - 3px);
+  }
 
-    /* .videoSection .image2 {
+  /* .videoSection .image2 {
         bottom: -108px;
         left: 0;
     } */
-    .footer_sc {
-        padding-top: 40px;
-    }
+  .footer_sc {
+    padding-top: 40px;
+  }
 
-    .videoSection .blackHeading {
-        font-size: 30px;
-        line-height: 35px;
-    }
+  .videoSection .blackHeading {
+    font-size: 30px;
+    line-height: 35px;
+  }
 
-    .availability_Box .innerBoxText {
-        font-size: 10px;
-        padding: 23px 6px;
-    }
+  .availability_Box .innerBoxText {
+    font-size: 10px;
+    padding: 23px 6px;
+  }
 
-    .leftHalf {
-        width: 50px;
-    }
+  .leftHalf {
+    width: 50px;
+  }
 
-    .footer_logo {
+  .footer_logo {
+    margin-bottom: 26px;
+  }
 
-        margin-bottom: 26px;
-    }
-
-    .socialImg {
-        margin-bottom: 10px;
-    }
-
+  .socialImg {
+    margin-bottom: 10px;
+  }
 }
 
-@media (max-width:767px) {
-
-    /* .socialLinks {
+@media (max-width: 767px) {
+  /* .socialLinks {
         text-align: start;
     } */
-    .banner-contact .contactUs {
-        margin-top: 85px;
-    }
+  .banner-contact .contactUs {
+    margin-top: 85px;
+  }
 
-    /* .banner-contact{
+  /* .banner-contact{
         background-size: 100% 26% !important;
     } */
-    /* .banner {
+  /* .banner {
         background-size: 100% 36%;
     } */
-    .leftHalf {
-        width: 50px;
-    }
+  .leftHalf {
+    width: 50px;
+  }
 
-    .DeleteIcon {
-        top: 8px;
-        left: 89px;
-    }
+  .DeleteIcon {
+    top: 8px;
+    left: 89px;
+  }
 
-    .myavailability {
-        display: block;
-    }
+  .myavailability {
+    display: block;
+  }
 
-    .setButtons {
-        margin-bottom: 30px;
-    }
+  .setButtons {
+    margin-bottom: 30px;
+  }
 
-    .detailEnd {
-        text-align: center;
-    }
+  .detailEnd {
+    text-align: center;
+  }
 
-    .mobileImage {
-        width: 201px;
-    }
+  .mobileImage {
+    width: 201px;
+  }
 
-    .downloadApp {
-        background-size: 100% 98%;
-    }
+  .downloadApp {
+    background-size: 100% 98%;
+  }
 
-    .pizzaImg {
-        top: -2px;
-        right: 0;
-    }
+  .pizzaImg {
+    top: -2px;
+    right: 0;
+  }
 
-    .pizzaImage {
-        width: 166px;
-    }
+  .pizzaImage {
+    width: 166px;
+  }
 
-    .headings {
-        margin-top: 36px;
-    }
+  .headings {
+    margin-top: 36px;
+  }
 
-    .Chef {
-        right: -7px;
-        height: calc(100% - -99px);
-        object-fit: contain;
-    }
+  .Chef {
+    right: -7px;
+    height: calc(100% - -99px);
+    object-fit: contain;
+  }
 
-    .logFood {
-        width: 80px !important;
-        height: 80px !important;
-    }
+  .logFood {
+    width: 80px !important;
+    height: 80px !important;
+  }
 
-    .foodBox .logFood:nth-child(2) {
-        left: 60px;
-    }
+  .foodBox .logFood:nth-child(2) {
+    left: 60px;
+  }
 
-    .foodBox .logFood:nth-child(3) {
-        left: 120px;
-    }
+  .foodBox .logFood:nth-child(3) {
+    left: 120px;
+  }
 
-    .foodBox .logFood:last-child {
-        left: 185px;
-    }
+  .foodBox .logFood:last-child {
+    left: 185px;
+  }
 
-    .logleft::before {
-        opacity: 0;
-        display: none;
-    }
+  .logleft::before {
+    opacity: 0;
+    display: none;
+  }
 
-    .logleft {
-        position: static;
-    }
+  .logleft {
+    position: static;
+  }
 
-    .foodBox {
-        display: none;
-    }
+  .foodBox {
+    display: none;
+  }
 
-    .cheffilter {
-        margin-bottom: 20px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+  .cheffilter {
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
 
-    .cheffilter .btn-secondary {
-        padding: 0;
-    }
+  .cheffilter .btn-secondary {
+    padding: 0;
+  }
 
-    .dropdown,
-    .dropend,
-    .dropstart,
-    .dropup {
-        position: relative;
-        margin: 12px;
-    }
+  .dropdown,
+  .dropend,
+  .dropstart,
+  .dropup {
+    position: relative;
+    margin: 12px;
+  }
 
-    .sarahinfo {
-        display: flex;
-        align-items: center;
-        width: auto;
-        margin: 0 auto;
-        justify-content: center;
-    }
+  .sarahinfo {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin: 0 auto;
+    justify-content: center;
+  }
 
-    .contentLast {
-        justify-content: center !important;
-        margin-top: 15px;
-    }
+  .contentLast {
+    justify-content: center !important;
+    margin-top: 15px;
+  }
 
-    .contentCenter {
-        display: flex;
-    }
+  .contentCenter {
+    display: flex;
+  }
 
-    .chefCommonHeader {
-        font-size: 28px !important;
-    }
+  .chefCommonHeader {
+    font-size: 28px !important;
+  }
 
-    .navMain .flexBox {
-        justify-content: end !important;
-    }
+  .navMain .flexBox {
+    justify-content: end !important;
+  }
 
-    .innerHeaderArrow {
-        cursor: pointer;
-        width: 34px;
-        height: 34px;
-    }
+  .innerHeaderArrow {
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+  }
 
-    .sarahinformation {
-        left: 0;
-    }
+  .sarahinformation {
+    left: 0;
+  }
 
-    .main_Setting .sarahmessagebtn {
-        padding: 10px 20px;
-    }
+  .main_Setting .sarahmessagebtn {
+    padding: 10px 20px;
+  }
 
-    /* .mainBox.inActiveSidebar .usermain {
+  /* .mainBox.inActiveSidebar .usermain {
      margin: 0;
      width: 100%;
      
    }  */
 
-    .toggleSideBtn {
-        display: block;
-    }
+  .toggleSideBtn {
+    display: block;
+  }
 
-    .mainBox.inActiveSidebar .userSidebar {
-        position: absolute;
-        left: -100px;
-        transition: all 0.5s;
-        z-index: 2;
+  .mainBox.inActiveSidebar .userSidebar {
+    position: absolute;
+    left: -100px;
+    transition: all 0.5s;
+    z-index: 2;
+  }
 
-    }
+  .mainBox.activeSidebar .userSidebar {
+    position: absolute;
+    left: 0px;
+    z-index: 2;
+    transition: all 0.5s;
+  }
 
-    .mainBox.activeSidebar .userSidebar {
-        position: absolute;
-        left: 0px;
-        z-index: 2;
-        transition: all 0.5s;
-    }
+  .usermain {
+    width: calc(100% - 0px);
+    margin-left: 0;
+  }
 
-    .usermain {
-        width: calc(100% - 0px);
-        margin-left: 0;
-    }
+  .settingMain {
+    height: 79vh;
+    overflow: scroll;
+  }
 
-    .settingMain {
-        height: 79vh;
-        overflow: scroll;
-    }
+  .mainBoxOuter {
+    padding: 10px 31px;
+    height: 78vh;
+    overflow: scroll;
+  }
 
-    .mainBoxOuter {
-        padding: 10px 31px;
-        height: 78vh;
-        overflow: scroll;
-    }
+  .chefdetailsection {
+    height: 80vh;
+    overflow: scroll;
+  }
 
-    .chefdetailsection {
-        height: 80vh;
-        overflow: scroll;
-    }
+  .userordersection {
+    padding: 10px 31px;
+    height: 80vh;
+    overflow: scroll;
+  }
 
-    .userordersection {
-        padding: 10px 31px;
-        height: 80vh;
-        overflow: scroll;
-    }
+  .chatIconImage {
+    padding: 15px 16px !important;
+  }
 
-    .chatIconImage {
-        padding: 15px 16px !important;
-    }
+  .cart {
+    width: 60px !important;
+    height: 60px !important;
+  }
 
-    .cart {
-        width: 60px !important;
-        height: 60px !important;
-    }
+  .basketImg {
+    left: 16px !important;
+    top: 12px !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
 
-    .basketImg {
-        left: 16px !important;
-        top: 12px !important;
-        width: 30px !important;
-        height: 30px !important;
-    }
+  .menuPage .profileDetail {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .menuPage .profileDetail {
-        grid-template-columns: 1fr 1fr;
-    }
+  .homePage .profileDetail {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .homePage .profileDetail {
-        grid-template-columns: 1fr 1fr;
-    }
+  .Newbooking_ .profileDetail {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .Newbooking_ .profileDetail {
-        grid-template-columns: 1fr 1fr;
-    }
+  .videoSection .image2 {
+    bottom: 49px;
+    left: 2%;
+  }
 
-    .videoSection .image2 {
-        bottom: 49px;
-        left: 2%;
-    }
+  .banner {
+    background-size: 100% 17%;
+  }
 
-    .banner {
-        background-size: 100% 17%;
-    }
+  .foodHalf {
+    top: 13%;
+  }
 
-    .foodHalf {
-        top: 13%;
-    }
+  .image2 {
+    width: 110px;
+  }
 
-    .image2 {
-        width: 110px;
-    }
+  .black {
+    font-size: 45px;
+    line-height: 55px;
+  }
 
-    .black {
-        font-size: 45px;
-        line-height: 55px;
-    }
+  .different_ {
+    text-align: center;
+  }
 
-    .different_ {
-        text-align: center;
-    }
+  .differentButton {
+    text-align: center;
+  }
 
-    .differentButton {
-        text-align: center;
-    }
+  .custom .appButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
 
-    .custom .appButtons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
-    }
+  .custom .whiteHeading {
+    font-size: 40px;
+    text-align: center;
+  }
 
-    .custom .whiteHeading {
-        font-size: 40px;
-        text-align: center;
-    }
+  .custom {
+    background-position: bottom;
+  }
 
-    .custom {
-        background-position: bottom;
-    }
+  .forgotIcon:before {
+    display: none;
+  }
 
-    .forgotIcon:before {
-        display: none;
-    }
+  .profileSet {
+    margin-top: 30rem;
+  }
 
-    .profileSet {
-        margin-top: 30rem;
-    }
+  .whyChoose .secondary {
+    padding: 0;
+  }
 
-    .whyChoose .secondary {
-        padding: 0;
-    }
-
-    .socialImg {
-        margin-bottom: 10px;
-    }
+  .socialImg {
+    margin-bottom: 10px;
+  }
 }
 
-@media (max-width:575px) {
-    .socialLinks {
-        text-align: start;
-    }
+@media (max-width: 575px) {
+  .socialLinks {
+    text-align: start;
+  }
 
-    .socialImg {
-        margin-right: 23px;
-    }
+  .socialImg {
+    margin-right: 23px;
+  }
 
-    .whyChoose .secondary {
-        padding: 0;
-    }
+  .whyChoose .secondary {
+    padding: 0;
+  }
 
-    .detailEnd {
-        text-align: center;
-    }
+  .detailEnd {
+    text-align: center;
+  }
 
-    .logForm {
-        width: 100%;
-    }
+  .logForm {
+    width: 100%;
+  }
 
-    .toggleButtonMain {
-        right: 23px;
-    }
+  .toggleButtonMain {
+    right: 23px;
+  }
 
-    .cheffilter .searchtext {
-        padding: 15px 90px 15px 24px;
-    }
+  .cheffilter .searchtext {
+    padding: 15px 90px 15px 24px;
+  }
 
-    .innerHeaderArrow {
-        width: 35px !important;
-        height: 35px !important;
-    }
+  .innerHeaderArrow {
+    width: 35px !important;
+    height: 35px !important;
+  }
 
-    .chefCommonHeader {
-        font-size: 24px !important;
-    }
+  .chefCommonHeader {
+    font-size: 24px !important;
+  }
 
-    .main_Setting .sarahmessagebtn {
-        margin: 0;
-        padding: 10px;
-    }
+  .main_Setting .sarahmessagebtn {
+    margin: 0;
+    padding: 10px;
+  }
 
-    .main_Setting .booknowimg {
-        margin-right: 0px;
-    }
+  .main_Setting .booknowimg {
+    margin-right: 0px;
+  }
 
-    .availableimg {
-        padding: 7px;
-        width: 100%;
-        max-width: 30px;
-    }
+  .availableimg {
+    padding: 7px;
+    width: 100%;
+    max-width: 30px;
+  }
 
-    .menuPage .profileDetail {
-        grid-template-columns: 1fr;
-    }
+  .menuPage .profileDetail {
+    grid-template-columns: 1fr;
+  }
 
-    .homePage .profileDetail {
-        grid-template-columns: 1fr;
-    }
+  .homePage .profileDetail {
+    grid-template-columns: 1fr;
+  }
 
-    .Newbooking_ .profileDetail {
-        grid-template-columns: 1fr;
-    }
+  .Newbooking_ .profileDetail {
+    grid-template-columns: 1fr;
+  }
 
-    .leftHalf {
-        display: none;
-    }
+  .leftHalf {
+    display: none;
+  }
 
-    .headings {
-        margin-top: 48px;
-    }
+  .headings {
+    margin-top: 48px;
+  }
 
-    .about {
-        position: relative;
-        padding-top: 7rem;
-        padding-bottom: 12rem;
-    }
+  .about {
+    position: relative;
+    padding-top: 7rem;
+    padding-bottom: 12rem;
+  }
 
-    .video {
-        padding-right: 12px;
-    }
+  .video {
+    padding-right: 12px;
+  }
 
-    .custom .whiteHeading {
-        font-size: 43px;
-        text-align: center;
-        line-height: 50px;
-    }
+  .custom .whiteHeading {
+    font-size: 43px;
+    text-align: center;
+    line-height: 50px;
+  }
 
-    .mobileImage {
-        margin-bottom: 40px;
-    }
+  .mobileImage {
+    margin-bottom: 40px;
+  }
 
-    .appStore_ .appButtons.mt-2 {
-        margin-bottom: 15px;
-    }
+  .appStore_ .appButtons.mt-2 {
+    margin-bottom: 15px;
+  }
 
-    .whatDifferent .image2 {
+  .whatDifferent .image2 {
+    bottom: 1px;
+  }
 
-        bottom: 1px;
-    }
+  .about .image1 {
+    top: 0;
+  }
 
-    .about .image1 {
-        top: 0;
-    }
+  .pizzaImage {
+    width: 150px;
+  }
 
-    .pizzaImage {
-        width: 150px;
-    }
+  .pizzaImage {
+    width: 120px;
+  }
 
-    .pizzaImage {
-        width: 120px;
-    }
+  .pizzaImg {
+    top: -16px;
+  }
 
-    .pizzaImg {
-        top: -16px;
+  .burgerSmall {
+    width: 65px;
+  }
 
-    }
+  .chef {
+    margin-left: 0;
+  }
 
-    .burgerSmall {
-        width: 65px;
-    }
+  .foodHalf {
+    width: 60px;
+  }
 
-    .chef {
-        margin-left: 0;
-    }
+  .foodHalf {
+    top: 15%;
+  }
 
-    .foodHalf {
-        width: 60px;
-    }
+  .chooseroleBox .roleHeading {
+    font-size: 12px;
+  }
 
-    .foodHalf {
-        top: 15%;
-    }
+  .socialImg {
+    margin-bottom: 10px;
+  }
 
-    .chooseroleBox .roleHeading {
-        font-size: 12px;
-    }
+  .termAndCond {
+    margin: 164px 0 0 0;
+    text-align: justify;
+  }
 
-    .socialImg {
-        margin-bottom: 10px;
-    }
-
-    .termAndCond {
-        margin: 164px 0 0 0;
-        text-align: justify;
-    }
-
-    .commonpages .termAndCond {
-        margin: 107px 45px 0 86px;
-    }
+  .commonpages .termAndCond {
+    margin: 107px 45px 0 86px;
+  }
 }
 
-@media (max-width:480px) {
-    .Chef {
-        bottom: -16px !important;
-    }
+@media (max-width: 480px) {
+  .Chef {
+    bottom: -16px !important;
+  }
 }
 
-@media (min-width:425px) {
-    .chefratingsection .modalscroll {
-        height: 100%;
-        max-height: 600px;
-    }
+@media (min-width: 425px) {
+  .chefratingsection .modalscroll {
+    height: 100%;
+    max-height: 600px;
+  }
 
-    .custom .whiteHeading {
-        font-size: 25px;
-        line-height: 29px;
-    }
+  .custom .whiteHeading {
+    font-size: 25px;
+    line-height: 29px;
+  }
 }
 
-@media (max-width:425px) {
-    .sideBar {
-        height: 100%;
-    }
+@media (max-width: 425px) {
+  .sideBar {
+    height: 100%;
+  }
 
-    .uploadEditImg {
-        max-width: 40px;
-        max-height: 40px;
-    }
+  .uploadEditImg {
+    max-width: 40px;
+    max-height: 40px;
+  }
 
-    .userprofilesection .profileright {
-        padding: 0px;
-    }
+  .userprofilesection .profileright {
+    padding: 0px;
+  }
 
-    .pagination {
-        justify-content: center;
-    }
+  .pagination {
+    justify-content: center;
+  }
 
-    .custom .whiteHeading {
-        font-size: 21px;
-        line-height: 21px;
-    }
+  .custom .whiteHeading {
+    font-size: 21px;
+    line-height: 21px;
+  }
 
-    .profileSet {
-        margin-top: 30rem;
-    }
+  .profileSet {
+    margin-top: 30rem;
+  }
 
-    .Chef {
-        bottom: -166px;
-    }
+  .Chef {
+    bottom: -166px;
+  }
 
-    .socialLinks {
-        text-align: start;
-    }
-
-
-
+  .socialLinks {
+    text-align: start;
+  }
 }
 
-@media (max-width:375px) {
-    .banner-contact .changepassword {
-        height: 132vh;
-    }
+@media (max-width: 375px) {
+  .banner-contact .changepassword {
+    height: 132vh;
+  }
 
-    .DeleteIcon {
-        top: 7px;
-        left: 92px;
-    }
+  .DeleteIcon {
+    top: 7px;
+    left: 92px;
+  }
 
-    .detailEnd {
-        text-align: center;
-        margin-top: 12px;
-    }
+  .detailEnd {
+    text-align: center;
+    margin-top: 12px;
+  }
 
-    .foodHalf {
-        width: 95px;
-        top: 15%;
-    }
+  .foodHalf {
+    width: 95px;
+    top: 15%;
+  }
 
-    .banner {
-        background-size: 100% 18%;
-    }
+  .banner {
+    background-size: 100% 18%;
+  }
 
-    .burgerImg {
-        width: 138px;
-    }
+  .burgerImg {
+    width: 138px;
+  }
 
-    .image2 {
-        width: 93px;
-    }
+  .image2 {
+    width: 93px;
+  }
 
-    .blackHeading {
-        font-size: 38px;
-        line-height: 45px;
-    }
+  .blackHeading {
+    font-size: 38px;
+    line-height: 45px;
+  }
 
-    .greyHeading {
-        font-size: 12px;
-    }
+  .greyHeading {
+    font-size: 12px;
+  }
 
-    .chef {
-        margin-left: 0;
-    }
+  .chef {
+    margin-left: 0;
+  }
 
-    .foodHalf {
-        top: 13%;
-    }
+  .foodHalf {
+    top: 13%;
+  }
 
-    .banner {
-        background-size: 100% 16%;
-    }
+  .banner {
+    background-size: 100% 16%;
+  }
 
-    .image1 {
-        display: none;
-    }
+  .image1 {
+    display: none;
+  }
 
-    .videoSection .blackHeading {
-        font-size: 35px;
-    }
+  .videoSection .blackHeading {
+    font-size: 35px;
+  }
 
-    .greyHeading {
-        font-size: 12px;
-    }
+  .greyHeading {
+    font-size: 12px;
+  }
 
-    .mainHeadings {
-        margin: 35px 12px 46px 18px;
-    }
+  .mainHeadings {
+    margin: 35px 12px 46px 18px;
+  }
 
-    .black {
-        font-size: 30px;
-    }
+  .black {
+    font-size: 30px;
+  }
 
-    .orange {
-        font-size: 30px;
-    }
+  .orange {
+    font-size: 30px;
+  }
 
-    .differentButton .sub {
-        font-size: 9px;
-    }
+  .differentButton .sub {
+    font-size: 9px;
+  }
 
-    .burgerSmall {
-        display: none;
-    }
+  .burgerSmall {
+    display: none;
+  }
 
-    .burgerSmall {
-        display: none;
-    }
+  .burgerSmall {
+    display: none;
+  }
 
-    .custom .whiteHeading {
-        font-size: 14px;
-        line-height: 18px;
-    }
+  .custom .whiteHeading {
+    font-size: 14px;
+    line-height: 18px;
+  }
 
-    .footer_logo {
-        margin-bottom: 27px;
-    }
+  .footer_logo {
+    margin-bottom: 27px;
+  }
 
-    .differentButton .inner {
-        padding: 13px 11px;
-    }
+  .differentButton .inner {
+    padding: 13px 11px;
+  }
 
-    .differentButton .primary {
-        padding: 5px 24px 12px 5px;
-    }
+  .differentButton .primary {
+    padding: 5px 24px 12px 5px;
+  }
 
-    .videoSection {
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
+  .videoSection {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 
-    .footer_ank {
-        font-size: 16px;
-    }
+  .footer_ank {
+    font-size: 16px;
+  }
 
-    .pizzaImg {
-        top: -12px;
-        right: 1px;
-    }
+  .pizzaImg {
+    top: -12px;
+    right: 1px;
+  }
 
-    .pizzaImage {
-        width: 100px;
-    }
+  .pizzaImage {
+    width: 100px;
+  }
 
-    .roleBox {
-        margin: 0 34px;
-    }
+  .roleBox {
+    margin: 0 34px;
+  }
 
-    .chooseroleBox {
-        flex-wrap: wrap;
-    }
+  .chooseroleBox {
+    flex-wrap: wrap;
+  }
 
-    .Login .smallSubheading {
-        font-size: 9px;
-    }
+  .Login .smallSubheading {
+    font-size: 9px;
+  }
 
-    .chooseroleBox .roleHeading {
-        font-size: 12px;
-    }
+  .chooseroleBox .roleHeading {
+    font-size: 12px;
+  }
 
-    .footer_sc {
-        padding-top: 50px;
-    }
+  .footer_sc {
+    padding-top: 50px;
+  }
 
-    .footer_sc {
-        padding-top: 30px;
-    }
+  .footer_sc {
+    padding-top: 30px;
+  }
 
-    .Chef {
-        bottom: -144px;
-    }
+  .Chef {
+    bottom: -144px;
+  }
 
-    .socialImg {
-        margin-bottom: 10px;
-    }
+  .socialImg {
+    margin-bottom: 10px;
+  }
 
-    .socialLinks {
-        text-align: start;
-    }
+  .socialLinks {
+    text-align: start;
+  }
 
-    .changepasswordbox_ {
-        padding: 10px;
-    }
+  .changepasswordbox_ {
+    padding: 10px;
+  }
 
-    .commonpages .termAndCond {
-        margin: 90px 0px 0 0px;
-    }
+  .commonpages .termAndCond {
+    margin: 90px 0px 0 0px;
+  }
 
-    .commonpages .settingMainHeading {
-        font-size: 25px;
-    }
+  .commonpages .settingMainHeading {
+    font-size: 25px;
+  }
 
-    .commonpages .commonInnerHeader {
-        left: 10px;
-    }
-
+  .commonpages .commonInnerHeader {
+    left: 10px;
+  }
 }
 
-@media (max-width:360px) {
-    .downloadApp {
-        position: relative;
-        padding: 76px 0px 30px 0px;
-    }
+@media (max-width: 360px) {
+  .downloadApp {
+    position: relative;
+    padding: 76px 0px 30px 0px;
+  }
 }
 
-@media (min-width:325px) {
-    .chefchatsection .chatnext {
-        padding-top: 235px;
-    }
-
+@media (min-width: 325px) {
+  .chefchatsection .chatnext {
+    padding-top: 235px;
+  }
 }
 
-@media (max-width:372px) {
-    .userorderprice {
-        margin-top: 10px;
-    }
+@media (max-width: 372px) {
+  .userorderprice {
+    margin-top: 10px;
+  }
 
-    .differentButton .sub {
-        font-size: 11px;
-    }
+  .differentButton .sub {
+    font-size: 11px;
+  }
 
-    .videoSection .blackHeading {
-        font-size: 43px;
-    }
+  .videoSection .blackHeading {
+    font-size: 43px;
+  }
 }
 
+@media (min-width: 325px) and (max-width: 1800px) {
+  .chatnext {
+    padding-top: 255px !important;
+  }
+}
 
-@media (min-width:325px) and (max-width:1800px) {
-    .chatnext {
-        padding-top: 255px !important;
-    }
+/* auth pages responsive */
+@media (max-width: 768px) {
+  .ChefMain {
+    display: none;
+  }
+  .foodBox {
+    display: none;
+  }
+  .logleft:after {
+    display: none;
+  }
+  .logleft:before {
+    display: none;
+  }
+  .logForm {
+    text-align: center;
+  }
+  .logForm div {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  button.smallBtn {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
 
+  /* user side mainBoxOuter responsive CSS */
+
+  .cheffilter .searchtext {
+    padding: 13px 40px 15px 10px;
+  }
+  .cheffilter .searchbarImg {
+    padding: 10px;
+  }
+  .recipe-lists.select-expertise-outer {
+    width: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cheffilter {
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .searchbar.me-4 {
+    width: 100%;
+    margin: 0 !important;
+  }
+  .dropdown {
+    width: 100%;
+    padding: 10px;
+  }
+  .recipe-lists.select-expertise-outer {
+    width: 100%;
+  }
+  .chatIconImage {
+    padding: 10px 10px !important;
+  }
+  .cart {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .basketImg {
+    left: 12px !important;
+    top: 10px !important;
+    width: 20px !important;
+    height: 25px !important;
+  }
+  .nameprofile {
+    display: block;
+  }
+  .profilesection {
+    margin: 94px 40px;
+  }
+  .sidelist .sidebarItems {
+    margin-bottom: 15px;
+  }
+  .pagination li a {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  .Logoutfooterbtn {
+    position: absolute;
+    right: 0;
+    left: 0;
+  }
+  .flexBox {
+    justify-content: center;
+  }
+  .orderItems_.flexBox.justify_content-center .cancelOrder_ {
+    font-size: 14px;
+    padding: 15px 35px;
+  }
+  .orderItems_.flexBox.justify_content-center .submitOrder_ {
+    font-size: 14px;
+    padding: 15px 25px;
+  }
+
+  /* Setting side responsive CSS */
+  .leftbox .settingBoxtxt.ms-3.mb-0 {
+    font-size: 14px;
+  }
+  .leftbox {
+    padding: 30px !important;
+  }
+  .leftbox .nextIcon {
+    padding: 7px;
+    width: 30px;
+    height: 30px;
+  }
+  .leftbox .settingIcon {
+    padding: 7px 9px;
+}
+
+/* changes password responsive CSS */
+.changePaasword_ .settingMainHeading {
+    font-size: 25px;
+}
+.changePaasword_  .settingMainText{
+    font-size: 21px;
+}
+.changepassword .settingsheader.d-flex.justify-content-center {
+    margin-top: 30px;
+}
+
+/* modal CSS */
+.modal-content {
+    width: 95%;
+    margin: auto;
+}
+.paymentdonesection {
+    text-align: center;
+    padding-top: 100px;
+}
 }
