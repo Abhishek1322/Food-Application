@@ -23,7 +23,7 @@ const HomeRequsest = () => {
   const [key, setKey] = useState(Math.random());
   const [bookingRequest, setBookingRequest] = useState([]);
   const [recentOrders, setGetRecentOrders] = useState([]);
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -70,6 +70,7 @@ const HomeRequsest = () => {
 
   // get recent order
   useEffect(() => {
+    setShowLoading(true)
     handleRecentOrder();
   }, [chefData?.latestOrder]);
 

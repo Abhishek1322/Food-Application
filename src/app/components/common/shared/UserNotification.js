@@ -18,7 +18,7 @@ const UserNotification = ({ updateNotification, close }) => {
   const { userInfo } = authData;
   const { role } = userInfo;
   const [notification, setNotification] = useState([]);
-
+  
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -44,7 +44,7 @@ const UserNotification = ({ updateNotification, close }) => {
   };
 
   // read notifications
-  const handleReadNotification = (id, read, type, bookingId) => {
+  const handleReadNotification = (id, read, type, bookingId, orderId) => {
     if (read) {
       return;
     }
@@ -66,11 +66,19 @@ const UserNotification = ({ updateNotification, close }) => {
               navigate(`/user-order-home`);
               close();
             } else if (
-              (role === "user" && type === "bookings") ||
+              (role === "chef" && type === "bookings") ||
               type === "booking-accepted" ||
               type === "booking-cancelled"
             ) {
-              navigate(`/chef-details?id=${bookingId}`);
+              navigate(`/booking-details?id=${bookingId}`);
+              close();
+            } else if (
+              (role === "chef" && type === "order-food") ||
+              type === "order-ready-for-delivery" ||
+              type === "order-accepted" ||
+              type === "order-delivered"
+            ) {
+              navigate(`/order-details?recent-order=${orderId}`);
               close();
             }
           }
@@ -113,7 +121,8 @@ const UserNotification = ({ updateNotification, close }) => {
                       item?._id,
                       item?.is_read,
                       item?.type,
-                      item?.bookingId
+                      item?.bookingId,
+                      item?.orderId
                     )
                   }
                   key={index}

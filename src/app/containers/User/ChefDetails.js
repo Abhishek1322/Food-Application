@@ -126,7 +126,7 @@ const ChefDetails = () => {
                         className="img-fluid cursorPoint"
                       />
                       <div className="johnchatdetail">
-                        <p className="chatDates">{chefData?.chefInfo?.type}</p>
+                        <p className="chatDates textUpperHome">{chefData?.chefInfo?.type}</p>
                       </div>
                     </div>
                     <img

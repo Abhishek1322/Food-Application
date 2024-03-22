@@ -115,7 +115,7 @@ p {
   display: inline;
 }
 
-.infoimg:hover+.information {
+.infoimg:hover + .information {
   display: block;
 }
 
@@ -290,7 +290,7 @@ p {
   left: 150px;
 }
 
-.infoimg:hover+.sarahinformation {
+.infoimg:hover + .sarahinformation {
   display: block;
 }
 
@@ -1712,11 +1712,11 @@ p {
 }
 
 .orderbutton {
-  color: #FFF;
+  color: #fff;
   font-size: 18px;
   font-weight: 600;
   border-radius: 10px;
-  background: #E65C00;
+  background: #e65c00;
   box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
   display: flex;
   width: 156px;
@@ -2093,7 +2093,6 @@ p {
 .managescroll {
   height: 250px;
   overflow-y: scroll;
-
 }
 
 .settingmanagesection .modalscroll {
@@ -2173,11 +2172,11 @@ p {
   left: 12px;
 }
 
-.modalheaderDot .btn-check:active+.btn-secondary:focus,
-.btn-check:checked+.btn-secondary:focus,
+.modalheaderDot .btn-check:active + .btn-secondary:focus,
+.btn-check:checked + .btn-secondary:focus,
 .btn-secondary.active:focus,
 .btn-secondary:active:focus,
-.show>.btn-secondary.dropdown-toggle:focus {
+.show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: none;
 }
 
@@ -2298,8 +2297,8 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 
 .chat-send-btn {
   border-radius: 10px;
-  background: #E65C00;
-  box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.30);
+  background: #e65c00;
+  box-shadow: 0px 10px 15px 0px rgba(230, 92, 0, 0.3);
   width: 42px;
   height: 42px;
   display: flex;
@@ -2308,11 +2307,11 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-input {
-  fill: #FFF;
+  fill: #fff;
   stroke-width: 1px;
   stroke: rgba(230, 92, 0, 0.08);
   filter: drop-shadow(0px 9px 19px rgba(230, 92, 0, 0.03));
-  border: 1px solid #ABADAD;
+  border: 1px solid #abadad;
   border-radius: 12px;
   padding: 6px;
   position: absolute;
@@ -2346,7 +2345,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .no-data-found {
-  color: #2E3333;
+  color: #2e3333;
   text-align: center;
   font-family: Crimson Text;
   font-size: 28px;
@@ -2370,7 +2369,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-right-section .chat-value {
-  background-color: #E65C00;
+  background-color: #e65c00;
   padding: 15px;
   border-radius: 20px 20px 0px 20px;
   color: #fff;
@@ -2381,7 +2380,6 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   line-height: normal;
   min-width: 75px;
   word-break: break-word;
-
 }
 
 .chat-box-right {
@@ -2401,7 +2399,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-value {
-  background-color: #EAEBEB;
+  background-color: #eaebeb;
   padding: 15px;
   border-radius: 20px 20px 20px 0px;
   color: #979999;
@@ -2452,7 +2450,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .send-selected-msg .cross-icon {
-  background: #E65C00;
+  background: #e65c00;
   position: absolute;
   right: 8px;
   top: 8px;
@@ -2510,7 +2508,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .no-slot-found {
-  color: #2E3333;
+  color: #2e3333;
   text-align: center;
   font-family: Crimson Text;
   font-size: 20px;
@@ -2639,5 +2637,11 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 .noDataFoundImage-checkout {
   height: 57vh;
+}
+.none-of-these {
+  color: #abadad;
+}
+.textUpperHome{
+  text-transform: capitalize;
 }
 /* Abhishek Css end */

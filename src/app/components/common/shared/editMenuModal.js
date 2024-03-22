@@ -183,8 +183,8 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
   return (
     <>
       <div className="editMenuModal editMenuModal-outer edit-menu-modal">
-        <div className="menuModal_">
-          <div className="input-container mt-5">
+        <div className="menuModal_ mt-1">
+          <div className="input-container">
             <input
               type="text"
               className=" menuReport_button"

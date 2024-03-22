@@ -203,25 +203,20 @@ const BookingDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <div
-                    onClick={() => {
-                      handleOpenModal("chatAboutOrder");
-                    }}
-                    className="chefChat"
-                  >
-                    <div className="chatwithjohn">
-                      <div className="chatImg">
-                        <img
-                          src={Images.ChefChat}
-                          className="chatImage"
-                          alt="chatImage"
-                        />
-                      </div>
-                      <div className="chatText">
-                        <p className="chat">Chat</p>
-                      </div>
-                    </div>
-                  </div>
+                  <button
+                  onClick={() => {
+                    handleOpenModal("chatAboutOrder");
+                  }}
+                  className="sarahmessagebtn flexBox"
+                  type="button"
+                >
+                  <img
+                    src={Images.ChefChat}
+                    alt="timesquareimage"
+                    className="availableimg"
+                  />
+                  <span className="availableheading">Chat</span>
+                </button>
                 </div>
                 <div className="venuDetail">
                   <div className="venuHere">

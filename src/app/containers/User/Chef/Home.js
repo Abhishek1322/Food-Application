@@ -57,6 +57,9 @@ const UserChefHome = () => {
       rating: filterChefByRating,
       foodType: expertice,
     };
+    if (filterChefByRating === "All") {
+      delete params.rating;
+    }
     dispatch(
       chefLists({
         ...params,
@@ -139,7 +142,7 @@ const UserChefHome = () => {
                   alt="starimg"
                   className="img-fluid ms-1 me-1"
                 />
-                <span className="filterheading">Above Rating</span>
+                <span className="filterheading">Above rating</span>
               </button>
               <ul
                 className="dropdown-menu"
@@ -157,7 +160,7 @@ const UserChefHome = () => {
                       alt="starimg"
                       className="img-fluid ms-1 me-1"
                     />
-                    <span className="filterheading">Above Rating</span>
+                    <span className="filterheading">Above rating</span>
                   </Link>
                 </li>
                 <li>
@@ -172,7 +175,7 @@ const UserChefHome = () => {
                       alt="starimg"
                       className="img-fluid ms-1 me-1"
                     />
-                    <span className="filterheading">Rating</span>
+                    <span className="filterheading">Above rating</span>
                   </Link>
                 </li>
                 <li>
@@ -187,7 +190,7 @@ const UserChefHome = () => {
                       alt="starimg"
                       className="img-fluid ms-1 me-1"
                     />
-                    <span className="filterheading">Above Rating</span>
+                    <span className="filterheading">Above rating</span>
                   </Link>
                 </li>
                 <li>
@@ -202,7 +205,7 @@ const UserChefHome = () => {
                       alt="starimg"
                       className="img-fluid ms-1 me-1"
                     />
-                    <span className="filterheading">Above Rating</span>
+                    <span className="filterheading">Above rating</span>
                   </Link>
                 </li>
                 <li>
@@ -217,7 +220,17 @@ const UserChefHome = () => {
                       alt="starimg"
                       className="img-fluid ms-1 me-1"
                     />
-                    <span className="filterheading">Above Rating</span>
+                    <span className="filterheading">Above rating</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={(e) => handleFilterChefByRating(e, "")}
+                    className="dropdown-item text-center d-flex align-items-center gap-2"
+                    to="#"
+                  >
+                    <i className="fa fa-ban none-of-these"></i>
+                    <span className="filterheading">None of these</span>
                   </Link>
                 </li>
               </ul>
