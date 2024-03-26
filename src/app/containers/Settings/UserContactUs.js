@@ -8,7 +8,6 @@ import {
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../redux/selector/user";
 
-
 const UserContactUs = () => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
@@ -87,106 +86,101 @@ const UserContactUs = () => {
     );
   };
 
-
   return (
     <>
-          <div className="changepasswordbox_">
-            <h1 className="settingMainHeading text-align-center ">
-              Contact Us!
-            </h1>
-            <div className="logRight mt-4">
-              <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="changepasswordForm">
-                  <div className="changepasswordImg d-flex justify-content-center">
-                    <img
-                      src={Images.callImg}
-                      alt="contactUs"
-                      className="img-fluid"
-                    />
-                  </div>
-                  <h2 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
-                    We will answer your questions & problems
-                  </h2>
+      <div className="changepasswordbox_">
+        <h1 className="settingMainHeading text-align-center ">Contact Us!</h1>
+        <div className="logRight mt-4">
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="changepasswordForm">
+              <div className="changepasswordImg d-flex justify-content-center">
+                <img
+                  src={Images.callImg}
+                  alt="contactUs"
+                  className="img-fluid"
+                />
+              </div>
+              <h2 className="settingMainText mb-3 d-flex  justify-content-center mt-3">
+                We will answer your questions & problems
+              </h2>
 
-                  <div className="topInputfields">
-                    <div className="container-fluid p-0">
-                      <div className="row">
-                        <div className="col-lg-4 col-md-4">
-                          <div className="input-container mt-5">
-                            <input
-                              type="text"
-                              className="border-input"
-                              placeholder="First Name"
-                              name="firstName"
-                              value={formData.firstName}
-                              onChange={(e) => handleChange(e)}
-                            />
-                            <label className="border-label">First Name</label>
-                          </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4">
-                          <div className="input-container mt-5">
-                            <input
-                              type="text"
-                              className="border-input"
-                              placeholder="Last Name"
-                              name="lastName"
-                              value={formData.lastName}
-                              onChange={(e) => handleChange(e)}
-                            />
-                            <label className="border-label">Last Name</label>
-                          </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4">
-                    <div className="input-container mt-5">
-                      <input
-                        type="text"
-                        className="border-input"
-                        placeholder="Email Address"
-                        name="email"
-                        value={formData.email}
-                        onChange={(e) => handleChange(e)}
-                      />
-                      <label className="border-label">Email</label>
+              <div className="topInputfields">
+                <div className="container-fluid p-0">
+                  <div className="row">
+                    <div className="col-lg-4 col-md-4">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          className="border-input"
+                          placeholder="First Name"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={(e) => handleChange(e)}
+                        />
+                        <label className="border-label">First Name</label>
+                      </div>
                     </div>
-                  </div>
+                    <div className="col-lg-4 col-md-4">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          className="border-input"
+                          placeholder="Last Name"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={(e) => handleChange(e)}
+                        />
+                        <label className="border-label">Last Name</label>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-4">
+                      <div className="input-container mt-5">
+                        <input
+                          type="text"
+                          className="border-input"
+                          placeholder="Email Address"
+                          name="email"
+                          value={formData.email}
+                          onChange={(e) => handleChange(e)}
+                        />
+                        <label className="border-label">Email</label>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="col-lg-12">
-                    <div className="input-container mt-5">
-                      <textarea
-                        rows="3"
-                        placeholder="Write message..."
-                        name="message"
-                        onChange={(e) => handleChange(e)}
-                        type="text"
-                        value={formData.message}
-                        className="border-input"
-                      />
-                      <label className="border-label">Your Message</label>
-                    </div>
-                  </div>
-                  <div className="d-flex  justify-content-center mb-0 mt-4">
-                    <button
-                      disabled={userSelector?.loading}
-                      type="submit"
-                      role="button"
-                      className="smallBtn"
-                    >
-                      {userSelector?.loading && (
-                        <span className="spinner-border spinner-border-sm me-1"></span>
-                      )}
-                      SUBMIT
-                    </button>
-                  </div>
                 </div>
-              </form>
+              </div>
+
+              <div className="col-lg-12">
+                <div className="input-container mt-5">
+                  <textarea
+                    rows="3"
+                    placeholder="Write message..."
+                    name="message"
+                    onChange={(e) => handleChange(e)}
+                    type="text"
+                    value={formData.message}
+                    className="border-input"
+                  />
+                  <label className="border-label">Your Message</label>
+                </div>
+              </div>
+              <div className="d-flex  justify-content-center mb-0 mt-4">
+                <button
+                  disabled={userSelector?.loading}
+                  type="submit"
+                  role="button"
+                  className="smallBtn"
+                >
+                  SUBMIT
+                  {userSelector?.loading && (
+                    <span className="spinner-border spinner-border-sm me-1"></span>
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
- 
-   
+          </form>
+        </div>
+      </div>
     </>
   );
 };

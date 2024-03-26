@@ -288,9 +288,9 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                   type="button"
                 >
                   Order Now
-                  {userData?.loading && isLoading === "order" && (
-                    <span className="spinner-border spinner-border-sm me-1"></span>
-                  )}
+                  {/* {userData?.loading && isLoading === "order" && ( */}
+                    <span className="spinner-border spinner-border-sm ms-1"></span>
+                  {/* )} */}
                 </button>
                 <button
                   disabled={userData?.loading}

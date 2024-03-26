@@ -158,10 +158,10 @@ const AddToCartModal = (props) => {
               className="foodmodalbtn"
               type="button"
             >
+              Add to Cart
               {userData?.loading && (
                 <span className="spinner-border spinner-border-sm me-1"></span>
               )}
-              Add to Cart
             </button>
           </div>
         </div>

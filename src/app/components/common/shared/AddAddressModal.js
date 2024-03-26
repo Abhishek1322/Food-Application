@@ -303,10 +303,10 @@ const AddAddressModal = (props) => {
                   onClick={() => handleGetCurrentLocation("current")}
                   className="modalclearAll"
                 >
+                  User Current Location
                   {userData?.loading && isLoading === "current" && (
                     <span className="spinner-border spinner-border-sm me-1"></span>
                   )}
-                  User Current Location
                 </button>
               </div>
               <div className="row">
@@ -457,10 +457,10 @@ const AddAddressModal = (props) => {
                     onClick={() => handleSubmitAddess("save")}
                     className="foodmodalbtn"
                   >
+                    Save
                     {userData?.loading && isLoading === "save" && (
                       <span className="spinner-border spinner-border-sm me-1"></span>
                     )}
-                    Save
                   </button>
                 </div>
               </div>
