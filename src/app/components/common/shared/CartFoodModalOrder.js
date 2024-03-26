@@ -287,10 +287,10 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                   className="addcartitem"
                   type="button"
                 >
+                  Order Now
                   {userData?.loading && isLoading === "order" && (
                     <span className="spinner-border spinner-border-sm me-1"></span>
                   )}
-                  Order Now
                 </button>
                 <button
                   disabled={userData?.loading}
