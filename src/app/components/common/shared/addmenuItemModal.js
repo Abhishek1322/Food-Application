@@ -46,7 +46,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
       toastId.current = toast.error(msg);
     }
   };
-
+  console.log("testt", formData.price , formData.chefBookingPrice);
   // create new menu
   const handleCreateMenu = (flag) => {
     if (!formData.itemName) {
@@ -61,7 +61,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
     } else if (!formData.chefBookingPrice) {
       showToast("Please add chef booking price");
       return;
-    } else if (formData.price >= formData.chefBookingPrice) {
+    } else if (Number(formData.price) >= Number(formData.chefBookingPrice)) {
       showToast("Chef booking price should be greater than menu price");
       return;
     } else if (!formData.deliveryTime) {
@@ -171,7 +171,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
               alt="categoryImg"
               _
             />
-            <label className="border-label">Item Name</label>
+            <label className="border-label border-label-menu">Item Name</label>
           </div>
           <div className="input-container mt-4">
             <Select
@@ -196,7 +196,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
               alt="menuDishImg"
               _
             />
-            <label className="border-label">Category</label>
+            <label className="border-label border-label-menu">Category</label>
           </div>
           <div className="flexBox justify-content-between editMenuFields_  gap-2">
             <div className="input-container mt-5">
@@ -212,7 +212,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
                 className="cateofyImg_ euroImgText"
                 alt="euroImg"
               />
-              <label className="border-label">Price</label>
+              <label className="border-label border-label-menu">Price</label>
             </div>
             <div className="input-container mt-5 flexBox">
               <input
@@ -227,7 +227,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
                 className="cateofyImg_ euroImgText"
                 alt="euroImg"
               />
-              <label className="border-label">Chef Booking Price</label>
+              <label className="border-label border-label-menu">Chef Booking Price</label>
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
           />
           <p className="inneredittxt">MIN</p>
           <img src={Images.clockImg} className="cateofyImg_" alt="clockimg" />
-          <label className="border-label">Delivery Time</label>
+          <label className="border-label border-label-menu">Delivery Time</label>
         </div>
         <div className="input-container mt-4">
           <textarea
@@ -252,7 +252,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
             className=" menuReport_button menuReport_button-des menuDescrition_ inputPlaceholder"
             placeholder="Type here..."
           />
-          <label className="border-label">Description</label>
+          <label className="border-label border-label-menu">Description</label>
         </div>
         <div className="editImgBox_">
           <p className="chefName mt-4 pb-3">Upload Image </p>

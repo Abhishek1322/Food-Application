@@ -48,7 +48,7 @@ const HomeRequsest = () => {
     });
     setKey(Math.random());
   };
-
+  console.log("chef-home");
   // get recent order
   const handleRecentOrder = () => {
     let params = {

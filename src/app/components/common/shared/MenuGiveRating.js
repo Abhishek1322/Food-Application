@@ -97,10 +97,10 @@ const MenuGiveRating = (props) => {
               className="acceptOrder"
               type="submit"
             >
+              Submit
               {userData?.loading && (
                 <span className="spinner-border spinner-border-sm me-2"></span>
               )}
-              Submit
             </button>
           </div>
         </div>

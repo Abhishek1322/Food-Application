@@ -20,6 +20,7 @@ const Menu = () => {
   const [searchMenu, setSearchMenu] = useState("");
   const [pageCount, setPageCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -59,7 +60,7 @@ const Menu = () => {
   // get all menu lists
   const menuListAll = (page = currentPage) => {
     let params = {
-      limit: 1,
+      limit: 10,
       page: page,
       search: searchMenu,
     };
@@ -69,6 +70,7 @@ const Menu = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
+            setIsLoading(false);
             setMenuList(res.data.data.data);
             setPageCount(res.data.data.total_pages);
           }
@@ -119,7 +121,7 @@ const Menu = () => {
                     </div>
                   </div>
                 </div>
-                {webSelector?.loading && !modalDetail.show ? (
+                {isLoading && !modalDetail.show ? (
                   <div className="good-loader">
                     <FadeLoader
                       color={"#E65C00"}

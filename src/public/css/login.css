@@ -532,3 +532,13 @@ input[type="number"] {
 .locationData .border-input {
   padding: 15px 35px 15px 12px;
 }
+.border-label-menu{
+  z-index: 0;
+}
+.cartfoodsection-outer {
+  height: 85vh;
+  overflow-y: auto;
+}
+.remove-cursor{
+  cursor: auto !important;
+}

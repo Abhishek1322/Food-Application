@@ -25,7 +25,7 @@ const FoodDetailModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             setFoodDetails(res.data.data.item);
-            setDeliverFrom(res.data.data.address)
+            setDeliverFrom(res.data.data.address);
           }
         },
       })
@@ -36,6 +36,7 @@ const FoodDetailModal = (props) => {
     <>
       <div className="foodDetailModal_">
         <div className="cartfoodsection">
+        
           <div className="topFoodmenu">
             <div className="Dotsheader_ d-flex align-items-center justify-content-between">
               <div className="dropdown">
@@ -46,11 +47,11 @@ const FoodDetailModal = (props) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                    <img
-                        src={Images.threeDotsDrop}
-                        className="img-fluid three-dots-icons"
-                        alt="editImg"
-                      />
+                  <img
+                    src={Images.threeDotsDrop}
+                    className="img-fluid three-dots-icons"
+                    alt="editImg"
+                  />
                 </button>
                 <ul
                   className="dropdown-menu menuItems_"
@@ -95,6 +96,7 @@ const FoodDetailModal = (props) => {
               </p>
             </div>
           </div>
+          <div className="cartfoodsection-outer">
           <div className="foodmodal">
             <img
               src={foodDetails?.image}
@@ -123,9 +125,12 @@ const FoodDetailModal = (props) => {
               </div>
               <div className="foodrating">
                 <p className="chefName">Rating</p>
-                <div className="chefrating mt-1">
+                <div className="chefrating mt-1 remove-cursor">
                   <i className="las la-star startIcon"></i>
-                  <p className="ratingheading">4.5 (845 Reviews)</p>
+                  <p className="ratingheading">
+                    {foodDetails?.averageRating} ({foodDetails?.menuReview}{" "}
+                    Review)
+                  </p>
                 </div>
               </div>
             </div>
@@ -139,6 +144,8 @@ const FoodDetailModal = (props) => {
           </div>
           <p className="foodamountmodal">£ {foodDetails?.price}.00</p>
         </div>
+        </div>
+
       </div>
     </>
   );

@@ -45,9 +45,9 @@ const UserNotification = ({ updateNotification, close }) => {
 
   // read notifications
   const handleReadNotification = (id, read, type, bookingId, orderId) => {
-    if (read) {
-      return;
-    }
+    // if (read) {
+    //   return;
+    // }
     let params = {
       id: id,
       is_read: true,
@@ -128,7 +128,7 @@ const UserNotification = ({ updateNotification, close }) => {
                   key={index}
                   className={
                     item?.is_read
-                      ? "notificationModal unreadmessage"
+                      ? "notificationModal unreadmessage cursor-pointer-notifiy"
                       : "notificationModal reademessage cursor-pointer-notifiy"
                   }
                 >
