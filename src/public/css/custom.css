@@ -1263,3 +1263,10 @@ li.previous.disabled a {
   gap: 10px;
   height: 77vh;
 }
+input.searchtext.search-chef-menu {
+  width: 300px;
+}
+input.searchtext.search-only-chef {
+  padding: 15px 53px 15px 24px !important;
+  width: 300px;
+}

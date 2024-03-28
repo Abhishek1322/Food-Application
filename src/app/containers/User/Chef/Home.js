@@ -116,7 +116,7 @@ const UserChefHome = () => {
                 // onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search dish or chef name here..."
                 type="text"
-                className="searchtext"
+                className="searchtext search-chef-menu"
                 onPointerDown={handleGoMenuDetailsPage}
                 // onClick={navigate("/menu-details")}
               />

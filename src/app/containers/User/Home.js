@@ -114,7 +114,7 @@ const HomeUser = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search Chef near you..."
                 type="text"
-                className="searchtext"
+                className="searchtext search-only-chef"
               />
               <img
                 src={Images.searchbar}

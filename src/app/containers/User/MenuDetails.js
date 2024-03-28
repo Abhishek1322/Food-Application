@@ -25,7 +25,7 @@ const MenuDetails = () => {
 
   // get the menu list
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     let params = {
       page: currentPage,
       limit: 12,
@@ -80,7 +80,7 @@ const MenuDetails = () => {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
               type="text"
-              className="searchtext"
+              className="searchtext search-only-chef"
             />
             <img
               src={Images.searchbar}
