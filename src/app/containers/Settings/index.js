@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CustomModal from "../../components/common/shared/CustomModal";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import LogoutModal from "../../components/common/shared/logoutModal";
@@ -11,6 +11,7 @@ const SettingMain = () => {
   const dispatch = useDispatch();
   const authData = useAuthSelector();
   const location = useLocation();
+  const navigate = useNavigate();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -49,7 +50,7 @@ const SettingMain = () => {
       addBankDetails({
         cb(res) {
           if (res?.status === 200) {
-            location.href(`/${res?.data?.data?.url}`);
+            window.location.href = res?.data?.data?.url;
           }
         },
       })
@@ -195,7 +196,7 @@ const SettingMain = () => {
               </div>
             )}
 
-            {/* {authData?.userInfo?.role === "chef" && (
+            {authData?.userInfo?.role === "chef" && (
               <div className="col-lg-6">
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center ">
@@ -217,7 +218,7 @@ const SettingMain = () => {
                   </div>
                 </div>
               </div>
-            )} */}
+            )}
 
             <div
               className="settingBox d-flex align-items-center justify-content-center cursorPoint"
