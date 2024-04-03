@@ -8,7 +8,6 @@ const Router = () => {
 
   return (
     <>
-    
       <Routes>
         {/* USER_ROUTES */}
         <Route element={<Layouts.UserLayout />}>
@@ -26,6 +25,10 @@ const Router = () => {
           <Route
             path="/user-myprofile"
             element={<Containers.UserMyProfile />}
+          />
+          <Route
+            path="/user-manageaddress"
+            element={<Containers.UserManageAddress />}
           />
           <Route
             path="/user-editprofile"
@@ -55,7 +58,7 @@ const Router = () => {
           <Route path="/my-profile" element={<Containers.myprofile />} />
 
           <Route path="/order-details" element={<Containers.OrderDetails />} />
-         
+
           <Route
             path="/booking-details"
             element={<Containers.BookingDetails />}
@@ -87,20 +90,8 @@ const Router = () => {
 
         {/* COMMON_ROUTES */}
         <Route element={<Layouts.CommonLayout />}>
-          <Route
-            path="/change-password"
-            element={<Containers.ChangePassword />}
-          />
-          <Route
-            path="/delete-account"
-            element={<Containers.DeleteAccount />}
-          />
           <Route path="/loading" element={<Containers.Loading />} />
           <Route path="/loading-page" element={<Containers.Loadingpage />} />
-          <Route
-            path="/account-deleted"
-            element={<Containers.AccountDeleted />}
-          />
           <Route
             path="/term-condition"
             element={<Containers.TermAndCondition />}
@@ -111,11 +102,24 @@ const Router = () => {
             path="/privacy-policy"
             element={<Containers.PrivacyPolicy />}
           />
-          <Route
-            path="/user-manageaddress"
-            element={<Containers.UserManageAddress />}
-          />
           <Route path="*" element={<Containers.PageNotFound />} />
+        </Route>
+
+        {/* COMMON_ROUTES PROTECTED */}
+
+        <Route element={<Layouts.CommonProtectLayout />}>
+          <Route
+            path="/change-password"
+            element={<Containers.ChangePassword />}
+          />
+          <Route
+            path="/delete-account"
+            element={<Containers.DeleteAccount />}
+          />
+          <Route
+            path="/account-deleted"
+            element={<Containers.AccountDeleted />}
+          />
         </Route>
 
         {/* PUBLIC ROUTES */}

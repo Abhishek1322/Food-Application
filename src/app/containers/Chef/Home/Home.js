@@ -19,6 +19,7 @@ const HomeRequsest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const chefData = useChefSelector();
+  const { loading } = chefData;
   const [isLoading, setIsloading] = useState("");
   const [key, setKey] = useState(Math.random());
   const [bookingRequest, setBookingRequest] = useState([]);
@@ -48,9 +49,10 @@ const HomeRequsest = () => {
     });
     setKey(Math.random());
   };
-  console.log("chef-home");
+
   // get recent order
   const handleRecentOrder = () => {
+    setShowLoading(true);
     let params = {
       status: "pending",
     };
@@ -60,7 +62,7 @@ const HomeRequsest = () => {
         cb(res) {
           if (res.status === 200) {
             setGetRecentOrders(res?.data?.data?.data);
-            dispatch(getLatestOrder(false));
+            // dispatch(getLatestOrder(false));
             setShowLoading(false);
           }
         },
@@ -70,9 +72,8 @@ const HomeRequsest = () => {
 
   // get recent order
   useEffect(() => {
-    setShowLoading(true)
     handleRecentOrder();
-  }, [chefData?.latestOrder]);
+  }, [chefData?.success]);
 
   // stop loader on page load
   useEffect(() => {
@@ -300,7 +301,6 @@ const HomeRequsest = () => {
                                     }
                                     className="cancelOrder d-flex align-items-center gap-2"
                                   >
-                                   
                                     CANCEL
                                     {chefData?.laoding &&
                                       isLoading === "cancelled" && (
@@ -317,7 +317,6 @@ const HomeRequsest = () => {
                                     }
                                     className="acceptOrder d-flex align-items-center gap-2"
                                   >
-                                    
                                     ACCEPT
                                     {chefData?.laoding &&
                                       isLoading === "accepted" && (

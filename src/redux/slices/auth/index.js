@@ -13,6 +13,12 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    addBankDetails: (state) => {
+      state.loading = false;
+    },
+    setAddBankDetails: (state) => {
+      state.loading = false;
+    },
     getExpertise: (state) => {
       state.loading = false;
     },
@@ -33,47 +39,47 @@ export const authSlice = createSlice({
     chefSetupProfile: (state) => {
       state.loading = true;
     },
-    setChefSetupProfile: (state, action) => {
+    setChefSetupProfile: (state) => {
       state.loading = false;
     },
 
     deleteAccount: (state) => {
       state.loading = true;
     },
-    setDeleteAccount: (state, action) => {
+    setDeleteAccount: (state) => {
       state.loading = false;
     },
     resendResetPasswordOtp: (state) => {
       state.loading = true;
     },
-    setResendResetPasswordOtp: (state, action) => {
+    setResendResetPasswordOtp: (state) => {
       state.loading = false;
     },
     resendVerifyOtp: (state) => {
       state.loading = true;
     },
-    setResendVerifyOtp: (state, action) => {
+    setResendVerifyOtp: (state) => {
       state.loading = false;
     },
 
     userLogout: (state) => {
       state.loading = true;
     },
-    setUserLogout: (state, action) => {
+    setUserLogout: (state) => {
       state.loading = false;
     },
 
     createNewPassword: (state) => {
       state.loading = true;
     },
-    setCreateNewPassword: (state, action) => {
+    setCreateNewPassword: (state) => {
       state.loading = false;
     },
 
     resetPassword: (state) => {
       state.loading = true;
     },
-    setResetPassword: (state, action) => {
+    setResetPassword: (state) => {
       state.loading = false;
     },
     resetPasswordOtp: (state) => {
@@ -151,6 +157,8 @@ export const {
   toggleSidebar,
   getExpertise,
   setGetExpertise,
+  addBankDetails,
+  setAddBankDetails,
 } = authSlice.actions;
 
 export default authSlice.reducer;

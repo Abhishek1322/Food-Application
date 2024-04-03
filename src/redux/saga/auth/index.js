@@ -16,11 +16,33 @@ import {
   setChefSetupProfile,
   setChefProfileDocument,
   setGetExpertise,
+  setAddBankDetails,
 } from "../../slices/auth";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* addBankDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.AuthApiPath.ADD_BANK_DETAILS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setAddBankDetails(resp.data.data));
+      yield call(action.payload.cb, resp);
+      // toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getExpertise(action) {
   try {
@@ -150,6 +172,7 @@ function* resendVerifyOtp(action) {
     toast.error(e.response.data.message);
   }
 }
+
 function* createNewPassword(action) {
   try {
     const resp = yield call(
@@ -369,6 +392,7 @@ function* authSaga() {
     takeLatest("auth/chefSetupProfile", chefSetupProfile),
     takeLatest("auth/chefProfileDocument", chefProfileDocument),
     takeLatest("auth/getExpertise", getExpertise),
+    takeLatest("auth/addBankDetails", addBankDetails),
   ]);
 }
 
