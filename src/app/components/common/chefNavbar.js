@@ -18,6 +18,8 @@ const Chef_Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const authData = useAuthSelector();
+  const chefSelector = useChefSelector();
+  const { success } = chefSelector;
   const { pathname } = location;
   const { search } = location;
   const userId = localStorage.getItem("userId");
@@ -112,7 +114,7 @@ const Chef_Navbar = () => {
   // // get all notifications
   useEffect(() => {
     handleGetAllNotifications();
-  }, []);
+  }, [success]);
 
   return (
     <>

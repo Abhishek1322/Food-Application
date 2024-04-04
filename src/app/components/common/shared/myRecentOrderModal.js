@@ -5,7 +5,6 @@ import ChatWithChefModal from "./chatWithChefModal";
 import VerifyorderDetailsModal from "./verifyorderDetailsModal";
 import {
   acceptOrder,
-  getLatestOrder,
   getSingleOrderDetail,
   onErrorStopLoadChef,
 } from "../../../../redux/slices/chef";

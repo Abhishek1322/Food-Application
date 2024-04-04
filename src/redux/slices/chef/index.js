@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   allRecentOrder: [],
-  latestOrder: false,
+  success: false,
   allBookingRequests: [],
 };
 
@@ -30,9 +30,6 @@ export const chefSilce = createSlice({
       state.loading = false;
       state.allBookingRequests = action.payload;
     },
-    getLatestOrder: (state, action) => {
-      state.latestOrder = action.payload;
-    },
     confirmResendOtp: (state) => {
       state.loading = true;
     },
@@ -55,11 +52,14 @@ export const chefSilce = createSlice({
     },
     acceptOrder: (state) => {
       state.loading = true;
+      state.success = false;
     },
     setAcceptOrder: (state, action) => {
       state.loading = false;
+      state.success = true;
     },
-    getRecentOrder: (state) => {
+    getRecentOrder: (state, action) => {
+      console.log("actionactionss", action);
       state.loading = true;
     },
     setGetRecentOrder: (state, action) => {
@@ -85,7 +85,6 @@ export const {
   setConfirmOrderOtp,
   confirmResendOtp,
   setConfirmResendOtp,
-  getLatestOrder,
   getBookingRequests,
   setGetBookingRequests,
   getBookingDetail,

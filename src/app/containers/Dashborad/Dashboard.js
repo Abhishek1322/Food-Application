@@ -6,6 +6,9 @@ const Dashboard = () => {
     window.scrollTo(0, 0);
   }, []);
 
+
+  console.log("landingPage");
+
   return (
     <>
       {/* Banner Section Starts*/}

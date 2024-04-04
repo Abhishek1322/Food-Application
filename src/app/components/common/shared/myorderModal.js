@@ -5,15 +5,13 @@ import MyRecentOrderModal from "./myRecentOrderModal";
 import {
   acceptOrder,
   getRecentOrder,
-  getLatestOrder,
   onErrorStopLoadChef,
 } from "../../../../redux/slices/chef";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { useChefSelector } from "../../../../redux/selector/chef";
 
-const Myorder = (props) => {
-  const { close, updateNotification } = props;
+const Myorder = ({ close, updateNotification }) => {
   const dispatch = useDispatch();
   const [key, setKey] = useState(Math.random());
   const chefData = useChefSelector();
@@ -72,7 +70,6 @@ const Myorder = (props) => {
         cb(res) {
           if (res.status === 200) {
             setOrderDetails(res?.data?.data?.data);
-            dispatch(getLatestOrder(true));
           }
         },
       })
@@ -98,7 +95,7 @@ const Myorder = (props) => {
               close();
               updateNotification();
             }
-            dispatch(getLatestOrder(true));
+            // dispatch(getLatestOrder(true));
           }
         },
       })

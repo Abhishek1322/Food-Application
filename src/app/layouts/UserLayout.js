@@ -7,7 +7,11 @@ import { useAuthSelector } from "../../redux/selector/auth";
 const UserLayout = () => {
   const location = useLocation();
   const { pathname } = location;
-  const checkRoutes = ["/user-myprofile", "/user-editprofile"];
+  const checkRoutes = [
+    "/user-myprofile",
+    "/user-editprofile",
+    "/user-manageaddress",
+  ];
   const authData = useAuthSelector();
   const isAuthenticated = localStorage.getItem("authToken");
 
