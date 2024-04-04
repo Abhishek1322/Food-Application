@@ -17,9 +17,15 @@
     height: 100%;
     max-height: 592px;
   }
+
+
 }
 
 @media (max-width: 1365px) {
+  .blackHeading {
+    font-size: 48px;
+  
+}
   .menuPage .profileDetail {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -40,6 +46,12 @@
   }
 }
 
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
+.foodImg1 {
+
+  left: -47px;
+}
+}
 @media only screen and (min-width: 1080px) and (max-width: 1200px) {
   .videoSection .image2 {
     bottom: 48px;
@@ -63,7 +75,11 @@
     background-size: 100% 41%;
   }
 }
-
+@media (max-width: 1275px) {
+.foodImg1 {
+  left: -53px;
+}
+}
 @media (max-width: 1200px) {
   .banner-contact .buttonBox {
     margin-bottom: 21rem !important;

@@ -90,7 +90,7 @@
 }
 
 .greyHeading {
-    color: #979999;
+    color: #2e3333;
     font-family: "Open Sans";
     font-size: 15px;
     font-weight: 400;
@@ -138,6 +138,9 @@
     top: 14%;
     right: 0%;
 }
+.rightImg .chef {
+    width: 100%;
+}
 /**Ends Banner Section CSS**/
 /**Starts About Section CSS**/
 .about {
@@ -179,7 +182,7 @@
 }
 
 .about .secondary {
-    color: #979999;
+    color: #2e3333;
     font-family: "Open Sans";
     font-size: 17px;
     font-weight: 400;
@@ -217,11 +220,11 @@
 }
 
 .whyChoose .secondary {
-    color: #979999;
+    color: #2e3333;
     font-family: "Open Sans";
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 25px;
     padding: 0 68px 0px 83px;
     text-align: justify;
 }
@@ -279,6 +282,11 @@
 
 /**Ends Video Section CSS**/
 /**Starts What Different Section CSS**/
+.diffSec {
+    display: inline-block;
+    width: 100%;
+    margin-top: 15px;
+}
 /* .whatDifferent {
     position: relative;
     padding: 50px 0;
@@ -419,7 +427,7 @@
 
 .footer_ank {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
 }
 .logosil {
