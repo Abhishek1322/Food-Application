@@ -125,7 +125,7 @@ const NewBooking = () => {
                                     </h3>
                                     <h4 className="userInfo">
                                       {moment(item?.createdAt).format(
-                                        "hh:mm A"
+                                        "MMM D, YYYY"
                                       )}
                                     </h4>
                                   </div>

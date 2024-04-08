@@ -244,7 +244,7 @@ const MyProfile = () => {
                     <div>
                       <p className="dummyText p-0">Chef Type</p>
                       <div className="restroinfo">
-                        <p className="nameheading">
+                        <p className="nameheading text-capitalize ">
                           {chefProfileData?.chefInfo?.type}
                         </p>
                         <img

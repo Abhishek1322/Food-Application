@@ -191,7 +191,7 @@ const HomeRequsest = () => {
                                     {item?.userId?.userInfo?.lastName}
                                   </h3>
                                   <h4 className="userInfo">
-                                    {moment(item?.createdAt).format("hh:mm A")}
+                                    {moment(item?.createdAt).format("MMM D, YYYY")}
                                   </h4>
                                 </div>
                               </div>
@@ -288,7 +288,7 @@ const HomeRequsest = () => {
                                 </div>
                                 <p className="orderTime">
                                   Order placed on{" "}
-                                  {moment(item?.updatedAt).format("hh:mm A")}
+                                  {moment(item?.updatedAt).format("MMM D, YYYY")}
                                 </p>
                                 <div className="ordered_">
                                   <button

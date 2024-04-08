@@ -36,6 +36,7 @@ import ChooseLocation from "./User/ChooseLocation";
 import Dashboard from "./Dashborad/Dashboard";
 import UserContactUs from "./Settings/UserContactUs";
 import MenuDetails from "./User/MenuDetails";
+import ThankYou from "./Thank-you";
 
 export {
   Login,
@@ -76,4 +77,5 @@ export {
   AboutUs,
   UserContactUs,
   MenuDetails,
+  ThankYou,
 };

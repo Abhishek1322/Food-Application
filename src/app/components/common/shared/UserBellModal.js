@@ -137,8 +137,8 @@ const UserBellModal = ({ id }) => {
   // search on chats
   const filteredChats = allChats.filter((item) => {
     const fullName = item?.user2?.full_name.toLowerCase();
-    const text = item?.lastMessage?.text.toLowerCase();
-    const search = searchTerm.toLowerCase();
+    const text = item?.lastMessage?.text?.toLowerCase();
+    const search = searchTerm?.toLowerCase();
     return fullName.includes(search) || text.includes(search);
   });
 

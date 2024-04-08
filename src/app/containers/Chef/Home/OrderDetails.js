@@ -253,7 +253,7 @@ const OrderDetails = () => {
                           {orderDetails?.userId?.userInfo?.firstName}{" "}
                           {orderDetails?.userId?.userInfo?.lastName}
                         </h2>
-                        <div className="johnChatTime">
+                        <div className="johnChatTime mt-3">
                           <div className="chefInfo">
                             <img
                               src={Images.chefLocationImg}
@@ -263,9 +263,10 @@ const OrderDetails = () => {
                           </div>
                           <div className="johnchatdetail">
                             <p className="chatDates">
-                              {moment(orderDetails?.updatedAt).format(
+                              {/* {moment(orderDetails?.updatedAt).format(
                                 "MMM D, YYYY"
-                              )}
+                              )} */}
+                              Order From
                             </p>
                           </div>
                         </div>

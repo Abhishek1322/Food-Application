@@ -93,7 +93,7 @@ const YourOrderModal = ({ close, closeModal, orderId, orderType }) => {
           Are You Sure You Want to Cancel Your{" "}
           {`${orderType === "order"}` ? "Order" : "Booking"}.
         </h1>
-        <p className="accountdeletetxt mt-2 ">Cancellation charges apply.</p>
+        {/* <p className="accountdeletetxt mt-2 ">Cancellation charges apply.</p> */}
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
             <button

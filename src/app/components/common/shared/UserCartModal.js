@@ -7,7 +7,10 @@ import {
   updateCartItem,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
-import { getUserAddress } from "../../../../redux/slices/user";
+import {
+  getUserAddress,
+  createPaymentIntent,
+} from "../../../../redux/slices/user";
 import CustomModal from "./CustomModal";
 import AddAddressModal from "./AddAddressModal";
 import EditAddressModal from "./EditAddressModal";
@@ -15,10 +18,13 @@ import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
 import PayNowModal from "./PayNowModal";
 import { toast } from "react-toastify";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userSelector = useUserSelector();
+  const { loading } = userSelector;
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const toastId = useRef(null);
@@ -156,10 +162,6 @@ const UserCartModal = ({ close }) => {
 
   // open modal
   const handleOpenModal = (flag, id, book) => {
-    if (flag === "payNow" && !selectedAddress) {
-      showToast("Please select delivery address");
-      return;
-    }
     setModalDetail({
       show: true,
       flag: flag,
@@ -179,6 +181,28 @@ const UserCartModal = ({ close }) => {
   const handleAddMoreItem = () => {
     close();
     navigate(`/chef-details?id=${chefId}`);
+  };
+
+  // create payment details
+  const handleCreatePaymentIntent = () => {
+    if (!selectedAddress) {
+      showToast("Please select delivery address");
+      return;
+    }
+    let params = {
+      amount: totalPrice?.toString(),
+      orderId: cartId,
+    };
+    dispatch(
+      createPaymentIntent({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            handleOpenModal("payNow");
+          }
+        },
+      })
+    );
   };
 
   return (
@@ -358,11 +382,15 @@ const UserCartModal = ({ close }) => {
                     <p className="price">£{totalPrice}.00</p>
                   </div>
                   <button
-                    onClick={() => handleOpenModal("payNow")}
-                    className="orderbutton"
+                    onClick={handleCreatePaymentIntent}
+                    className="orderbutton w-auto"
                     type="button"
+                    disabled={loading}
                   >
                     Pay Now
+                    {loading && (
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                    )}
                   </button>
                 </div>
               </div>

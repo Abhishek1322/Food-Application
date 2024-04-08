@@ -183,7 +183,7 @@ function* createNewPassword(action) {
     if (resp.status) {
       yield put(setCreateNewPassword(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -204,7 +204,7 @@ function* resetPassword(action) {
     if (resp.status) {
       yield put(setResetPassword(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -250,7 +250,7 @@ function* forgotPassword(action) {
       //   resp.data.data.email ? resp.data.data.email : ""
       // );
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -275,7 +275,7 @@ function* verifyOtp(action) {
       );
       yield put(setVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -309,7 +309,7 @@ function* userSignUp(action) {
 
       yield put(setUserSignup(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -343,7 +343,7 @@ function* userLogin(action) {
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
       if (resp.data.data.isActive === false) {
-        toast.error(resp.data.message);
+        // toast.error(resp.data.message);
       }
     } else {
       throw resp;
@@ -366,7 +366,7 @@ function* userLogout(action) {
       yield call(action.payload.cb, (action.res = resp));
       localStorage.removeItem("authToken");
       localStorage.removeItem("persist:root");
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
       yield put(setUserLogout());
     } else {
       throw resp;

@@ -38,6 +38,7 @@ const Router = () => {
             path="/choose-location"
             element={<Containers.ChooseLocation />}
           />
+          <Route path="/thank-you" element={<Containers.ThankYou />} />
         </Route>
 
         {/* CHEF_ROUTES */}

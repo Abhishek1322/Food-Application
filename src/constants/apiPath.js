@@ -57,6 +57,7 @@ const ApiPath = {
     GET_LOCATION_INFO_GOOGLE_MAP: "/maps/api/geocode/json",
     GET_ALL_CART_NOTIFICATION: "/users/home",
     CREATE_BOOKING_ORDER: "/order/checkout",
+    CREATE_PAYMENT_INTENT:"/transactions/create-intent"
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
