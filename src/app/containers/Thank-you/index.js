@@ -11,7 +11,6 @@ const ThankYou = () => {
   const cartId = searchParams.get("cartId");
   const addressId = searchParams.get("addressId");
   const orderType = searchParams.get("orderType");
-  console.log("orderNumberorderNumber", orderType);
 
   const navigate = useNavigate();
   const [key, setKey] = useState(Math.random());
