@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import CustomModal from "./CustomModal";
 import PaymentDoneModal from "./PaymentDoneModal";
 import {
@@ -7,31 +7,26 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 
 const PayNowModal = ({
-  close,
   cartId,
   selectedAddress,
   orderPrice,
   orderType,
-  bookingData,
-  bookingAddress,
+  orderNumber,
+  orderId
 }) => {
-  const dispatch = useDispatch();
+ 
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [key, setKey] = useState(Math.random());
-  const [orderId, setOrderId] = useState("");
-  const [orderNumber, setOrderNumber] = useState("");
-
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-  console.log(process.env.REACT_APP_THANK_YOU_PAGE, "location");
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -62,7 +57,7 @@ const PayNowModal = ({
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${process.env.REACT_APP_THANK_YOU_PAGE}?cartId=${cartId}&addressId=${selectedAddress}&orderType=${orderType}`,
+        return_url: `${process.env.REACT_APP_THANK_YOU_PAGE}?cartId=${cartId}&addressId=${selectedAddress}&orderType=${orderType}&orderNumber=${orderNumber}&orderId=${orderId}`,
       },
     });
 
@@ -78,7 +73,7 @@ const PayNowModal = ({
   return (
     <>
       <div className="paymodalsection">
-        <form onSubmit={handleSubmit}>
+        <form className="p-3" onSubmit={handleSubmit}>
           <PaymentElement />
           <div className="modalfooterbtn">
             <div className="addfoodbtn">
@@ -110,13 +105,13 @@ const PayNowModal = ({
         child={
           modalDetail.flag === "paydone" ? (
             <PaymentDoneModal
-              close={() => {
-                close();
-                handleOnCloseModal();
-              }}
-              orderNumber={orderNumber}
-              orderId={orderId}
-              orderType={orderType}
+              // close={() => {
+              //   close();
+              //   handleOnCloseModal();
+              // }}
+              // orderNumber={orderNumber}
+              // orderId={orderId}
+              // orderType={orderType}
             />
           ) : (
             ""

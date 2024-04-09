@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import CustomModal from "../../components/common/shared/CustomModal";
-import YourOrderModal from "../../components/common/shared/YourOrderModal";
-import { useSearchParams } from "react-router-dom";
-import { Line } from "rc-progress";
-import { useNavigate } from "react-router-dom";
 import * as Images from "../../../utilities/images";
+import CustomModal from "../../components/common/shared/CustomModal";
+import OrderPlaceModal from "../../components/common/shared/OrderPlaceModal";
+import { useSearchParams } from "react-router-dom";
+import OrderAlertModal from "../../components/common/shared/OrderAlertModal";
 
-const ThankYou = () => {
+const PaymentDoneModal = () => {
   const [searchParams] = useSearchParams();
   const cartId = searchParams.get("cartId");
   const addressId = searchParams.get("addressId");
   const orderType = searchParams.get("orderType");
-
-  const navigate = useNavigate();
+  const orderNumber = searchParams.get("orderNumber");
+  const orderId = searchParams.get("orderId");
   const [key, setKey] = useState(Math.random());
-  const [countDown, setCountDown] = useState(60);
-  const [barPercentage, setBarPercentage] = useState();
+  const [showAlert, setShowAlert] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -33,7 +31,7 @@ const ThankYou = () => {
   };
 
   // open modal
-  const handleOpenModal = (flag) => {
+  const handleOpneModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -42,87 +40,26 @@ const ThankYou = () => {
     setKey(Math.random());
   };
 
-  // run timer
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCountDown((pre) => pre - 1);
-    }, 1000);
-    return () => clearInterval(timer);
+    setTimeout(() => {
+      handleOpneModal("orderplace");
+    }, 2500);
   }, []);
 
-  // close existing modal
-  useEffect(() => {
-    // if (countDown === 0) {
-    //   if (orderType === "order") {
-    //     navigate("/user-order-home");
-    //   } else if (orderType === "booking") {
-    //     navigate("/home-user");
-    //   }
-    // }
-  }, [countDown]);
-
-  // set percentage
-  useEffect(() => {
-    const getPercent = (countDown / 60) * 100;
-    const getTotalPercent = 100 - getPercent;
-    setBarPercentage(getTotalPercent);
-  }, [countDown]);
-
-  // redirect to detail page
-  const handleRedirect = () => {
-    if (orderType === "order") {
-      navigate("/user-order-home");
-    } else if (orderType === "booking") {
-      navigate("/home-user");
-    }
-  };
 
   return (
     <>
-      <div className="orderplacesection paymentdonesection">
+      <div className="paymentdonesection">
         <img
           src={Images.accountDeleted}
           alt="accountdeletedimg"
           className="img-fluid"
         />
-        <h1 className="accountDeleted mt-3">
-          {orderType === "order" ? "Order Placed" : "Booking Done"}
-        </h1>
+        <h1 className="accountDeleted mt-3"> Payment Done</h1>
         <p className="accountdeletetxt mt-2 ">
-          {orderType === "order"
-            ? "Your order has been successfully placed."
-            : "Your Booking has been done successfully ."}
+          Your payment has been successfully done for{" "}
+          {orderType === "order" ? "order" : "booking"} no. #{orderNumber}
         </p>
-        <div className="modalfooterbtn">
-          <div className="addfoodbtn">
-            <button
-              className="foodmodalbtn"
-              type="button"
-              onClick={() => {
-                handleRedirect();
-              }}
-            >
-              Okay
-            </button>
-          </div>
-          <Line
-            className="cancelProgressBar mt-3"
-            percent={barPercentage}
-            strokeWidth={3}
-            trailWidth={3}
-            strokeColor="#E65C00"
-            trailColor="#F8D5BE"
-          />
-
-          <p className="progressheading">{countDown} Sec</p>
-          <button
-            onClick={() => handleOpenModal("wantCancelOrder")}
-            className="itemsQuantity"
-            type="button"
-          >
-            {orderType === "order" ? "Cancel Order" : "Cancel Booking"}
-          </button>
-        </div>
       </div>
       <CustomModal
         key={key}
@@ -132,20 +69,29 @@ const ThankYou = () => {
         isRightSideModal={true}
         mediumWidth={false}
         className={
-          modalDetail.flag === "wantCancelOrder"
-            ? "commonWidth customContent"
-            : ""
+          modalDetail.flag === "orderplace" ? "commonWidth customContent" : ""
         }
         ids={
-          modalDetail.flag === "wantCancelOrder" ? "yourordermodalplace" : ""
+          modalDetail.flag === "orderplace"
+            ? "ordermodalplace"
+            : modalDetail.flag === "orderalert"
+            ? "logout"
+            : ""
         }
         child={
-          modalDetail.flag === "wantCancelOrder" ? (
-            <YourOrderModal
+          modalDetail.flag === "orderplace" ? (
+            <OrderPlaceModal
+              orderId={orderId}
               orderType={orderType}
-              //   orderId={orderId}
-              closeModal={() => handleOnCloseModal()}
+              addressId={addressId}
+              cartId={cartId}
+
+              close={() => {
+                handleOnCloseModal();
+              }}
             />
+          ) : modalDetail.flag === "orderalert" ? (
+            <OrderAlertModal orderType={orderType} setShowAlert={setShowAlert} />
           ) : (
             ""
           )
@@ -156,4 +102,4 @@ const ThankYou = () => {
   );
 };
 
-export default ThankYou;
+export default PaymentDoneModal;

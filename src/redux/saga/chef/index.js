@@ -172,7 +172,6 @@ function* getRecentOrder(action) {
   } catch (e) {
     yield put(onErrorStopLoadChef());
     toast.dismiss();
-    console.log("eeeeeeeeeeee",e);
     toast.error(e.response.data.message);
   }
 }

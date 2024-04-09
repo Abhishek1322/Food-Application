@@ -141,10 +141,12 @@ export const userSilce = createSlice({
     createOrder: (state) => {
       state.loading = true;
       state.success = false;
+      state.paymentIntent = null;
     },
     setCreateOrder: (state, action) => {
       state.loading = false;
       state.success = true;
+      state.paymentIntent = action.payload;
     },
 
     deleteCartItem: (state) => {

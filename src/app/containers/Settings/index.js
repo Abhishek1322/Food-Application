@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CustomModal from "../../components/common/shared/CustomModal";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import LogoutModal from "../../components/common/shared/logoutModal";
@@ -10,8 +10,6 @@ import { useDispatch } from "react-redux";
 const SettingMain = () => {
   const dispatch = useDispatch();
   const authData = useAuthSelector();
-  const location = useLocation();
-  const navigate = useNavigate();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -201,12 +199,12 @@ const SettingMain = () => {
                 <div className="leftbox">
                   <div className="settingBox d-flex align-items-center ">
                     <img
-                      src={Images.addressicon}
+                      src={Images.bankDetailLogo}
                       alt="logout"
                       className="img-fluid settingIcon"
                     />
 
-                    <h2 className="settingBoxtxt ms-3 mb-0">Add Bank</h2>
+                    <h2 className="settingBoxtxt ms-3 mb-0">Bank Details</h2>
                   </div>
                   <div className="iconImg">
                     <img

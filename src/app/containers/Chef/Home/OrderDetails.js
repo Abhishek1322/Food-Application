@@ -37,7 +37,7 @@ const OrderDetails = () => {
     title: "",
     flag: "",
   });
-  console.log("orderDetailsorderDetails", orderDetails);
+  
   // get order details
   useEffect(() => {
     const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));

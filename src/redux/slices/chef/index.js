@@ -59,7 +59,6 @@ export const chefSilce = createSlice({
       state.success = true;
     },
     getRecentOrder: (state, action) => {
-      console.log("actionactionss", action);
       state.loading = true;
     },
     setGetRecentOrder: (state, action) => {

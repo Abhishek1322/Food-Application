@@ -24,6 +24,7 @@ const ApiPath = {
     EDIT_MENU_ITEM: "/menus",
     SINGLE_CHEF_DETAIL: "/users/chefDetail",
     GET_SLOT_DETAIL: "/bookings/availability",
+    TOGGLE_AVAILABILTY: "/users/verify-hire",
   },
   userApiPath: {
     ADD_ADDRESS: "/user_delivery_address",
@@ -57,7 +58,7 @@ const ApiPath = {
     GET_LOCATION_INFO_GOOGLE_MAP: "/maps/api/geocode/json",
     GET_ALL_CART_NOTIFICATION: "/users/home",
     CREATE_BOOKING_ORDER: "/order/checkout",
-    CREATE_PAYMENT_INTENT:"/transactions/create-intent"
+    CREATE_PAYMENT_INTENT: "/transactions/create-intent",
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",

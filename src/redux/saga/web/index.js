@@ -17,8 +17,28 @@ import {
   setDeleteMenuItem,
   setGetSingleChef,
   setGetSlotDay,
+  setToggleAvailabilty,
   setUserProfileDataGet,
 } from "../../slices/web";
+
+function* toggleAvailabilty(action) {
+  try {
+    const resp = yield call(
+      ApiClient.put,
+      (action.url = `${ApiPath.webApiPath.TOGGLE_AVAILABILTY}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield call(action.payload.cb, (action.res = resp));
+      yield put(setToggleAvailabilty(resp.data));
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getSlotDay(action) {
   try {
@@ -336,6 +356,7 @@ function* webSaga() {
   yield all([takeLatest("web/getSingleChef", getSingleChef)]);
   yield all([takeLatest("web/getSlotDay", getSlotDay)]);
   yield all([takeLatest("web/userProfileDataGet", userProfileDataGet)]);
+  yield all([takeLatest("web/toggleAvailabilty", toggleAvailabilty)]);
 }
 
 export default webSaga;

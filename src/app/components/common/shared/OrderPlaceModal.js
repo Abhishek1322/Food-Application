@@ -41,14 +41,21 @@ const OrderPlaceModal = ({ close, orderId, orderType }) => {
     const timer = setInterval(() => {
       setCountDown((pre) => pre - 1);
     }, 1000);
-
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   // close existing modal
   useEffect(() => {
     if (countDown === 0) {
-      close();
+      if (orderType === "order") {
+        close();
+        navigate("/user-order-home");
+      } else if (orderType === "booking") {
+        close();
+        navigate("/home-user");
+      }
     }
   }, [countDown]);
 

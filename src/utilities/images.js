@@ -169,9 +169,12 @@ import callImg from "../public/images/callImg.svg";
 import checked from "../public/images/checked.svg";
 import unchecked from "../public/images/unchecked.svg";
 import sidebarLight from "../public/images/sidebar-light.svg";
+import bankDetailLogo from "../public/images/bankDetailImg.svg";
+
 
 
 export {
+  bankDetailLogo,
   checked,
   unchecked,
   callImg,

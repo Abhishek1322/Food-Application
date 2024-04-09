@@ -8,6 +8,7 @@ import RatingReviewsModal from "../../../components/common/shared/ratingReviewsM
 import {
   getChefProfileDetails,
   onErrorStopLoad,
+  toggleAvailabilty,
 } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import moment from "moment";
@@ -26,8 +27,8 @@ const MyProfile = () => {
   const [availability, setAvailability] = useState([]);
   const [profileUrl, setProfileUrl] = useState("");
   const [allRating, setAllRating] = useState([]);
+  const [chefAvailability, setChefAvailability] = useState("");
   const [getActiveRating, setGetActiveRating] = useState("All");
-
   const [slotTime, setSlotTimes] = useState({
     startTime: "",
     endTime: "",
@@ -80,10 +81,13 @@ const MyProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          setProfileData(res?.data?.data);
-          setExpertice(res?.data?.data?.chefInfo?.expertise);
-          setAvailability(res?.data?.data?.chefInfo?.availability);
-          setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
+          if (res?.status === 200) {
+            setProfileData(res?.data?.data);
+            setExpertice(res?.data?.data?.chefInfo?.expertise);
+            setAvailability(res?.data?.data?.chefInfo?.availability);
+            setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
+            setChefAvailability(res?.data?.data?.chefInfo?.isAvailable);
+          }
         },
       })
     );
@@ -170,6 +174,24 @@ const MyProfile = () => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // toggle availability
+  const handleToggleAvailabilty = (e) => {
+    const { checked } = e.target;
+    let params = {
+      isAvailable: checked,
+    };
+    dispatch(
+      toggleAvailabilty({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            chefProfileDetails();
+          }
+        },
+      })
+    );
+  };
+
   return (
     <>
       <section ref={scrollRef} className="profilesectionChef">
@@ -188,25 +210,40 @@ const MyProfile = () => {
             <div className="col-lg-7 col-md-12">
               {/* right section  */}
               <div className="profileright">
-                <div className="reviewsection">
-                  <div className="stars">
-                    <img
-                      src={Images.star}
-                      alt="starimg"
-                      className="img-fluid"
-                    />
+                <div className="d-flex align-items-center justify-content-between ">
+                  <div className="reviewsection reviewsection-chef">
+                    <div className="stars">
+                      <img
+                        src={Images.star}
+                        alt="starimg"
+                        className="img-fluid"
+                      />
+                    </div>
+                    <div
+                      className="reviews"
+                      onClick={() => {
+                        handleUserProfile("ratingReviewsModal");
+                      }}
+                    >
+                      <p className="cheftext p-0">My Ratings & Reviews</p>
+                      <p className="chatheadtext">
+                        {allRating?.averageRating} (
+                        {allRating?.details?.data?.length} Reviews)
+                      </p>
+                    </div>
                   </div>
-                  <div
-                    className="reviews"
-                    onClick={() => {
-                      handleUserProfile("ratingReviewsModal");
-                    }}
-                  >
-                    <p className="cheftext p-0">My Ratings & Reviews</p>
-                    <p className="chatheadtext">
-                      {allRating?.averageRating} (
-                      {allRating?.details?.data?.length} Reviews)
-                    </p>
+                  <div className="d-flex align-items-center">
+                    <span className="dummyText p-0 me-2">
+                      Availability For Booking
+                    </span>
+                    <label className="switch-outer-chef">
+                      <input
+                        checked={chefAvailability}
+                        onChange={handleToggleAvailabilty}
+                        type="checkbox"
+                      />
+                      <span className="slider-chef round-chef"></span>
+                    </label>
                   </div>
                 </div>
                 {/* chefdata  */}

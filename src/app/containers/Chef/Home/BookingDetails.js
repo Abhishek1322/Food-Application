@@ -50,9 +50,7 @@ const BookingDetails = () => {
       getBookingDetail({
         ...params,
         cb(res) {
-
           if (res.status === 200) {
-            console.log("resssss",res);
             setBookingDetails(res?.data?.data);
           }
         },
