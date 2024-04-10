@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import * as Images from "../../../utilities/images";
 import CustomModal from "../../components/common/shared/CustomModal";
 import OrderPlaceModal from "../../components/common/shared/OrderPlaceModal";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const PaymentDoneModal = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const cartId = searchParams.get("cartId");
   const addressId = searchParams.get("addressId");
   const orderType = searchParams.get("orderType");
@@ -38,10 +39,18 @@ const PaymentDoneModal = () => {
     setKey(Math.random());
   };
 
+  // open cancel modal
   useEffect(() => {
     setTimeout(() => {
       handleOpneModal("orderplace");
     }, 2500);
+  }, []);
+
+  // redirect on home page if user wants to acces this page without payment
+  useEffect(() => {
+    if (searchParams?.size === 0) {
+      navigate("/home-user");
+    }
   }, []);
 
   return (
