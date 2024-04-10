@@ -22,7 +22,7 @@ const BankDetails = () => {
     currency: "",
     routingNumber: "",
   });
-
+  
   // add bank details
   const handleAddBankDetails = (flag) => {
     setIsLoading(flag);
@@ -56,15 +56,17 @@ const BankDetails = () => {
 
   // get bank detials
   useEffect(() => {
-    setFormData({
-      accountNumber: bankInfo?.data[0]?.last4,
-      accountHolder: bankInfo?.data[0]?.account_holder_name,
-      bankName: bankInfo?.data[0]?.bank_name,
-      country: bankInfo?.data[0]?.country,
-      currency: bankInfo?.data[0]?.currency,
-      routingNumber: bankInfo?.data[0]?.routing_number,
-    });
-  }, []);
+    if (bankInfo && bankInfo?.data?.length) {
+      setFormData({
+        accountNumber: bankInfo?.data[0]?.last4,
+        accountHolder: bankInfo?.data[0]?.account_holder_name,
+        bankName: bankInfo?.data[0]?.bank_name,
+        country: bankInfo?.data[0]?.country,
+        currency: bankInfo?.data[0]?.currency,
+        routingNumber: bankInfo?.data[0]?.routing_number,
+      });
+    }
+  }, [bankInfo]);
 
   // stop loader on page load
   useEffect(() => {
