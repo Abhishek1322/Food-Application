@@ -13,6 +13,7 @@ import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 import UserNotification from "./shared/UserNotification";
 import { getCartNotificationCount } from "../../../redux/slices/user";
+import { getBankDetails } from "../../../redux/slices/auth";
 
 const Chef_Navbar = () => {
   const location = useLocation();
@@ -27,7 +28,6 @@ const Chef_Navbar = () => {
   const [allChats, setAllChats] = useState([]);
   const [chefProfileData, setProfileData] = useState([]);
   const [notificationCart, setNotificationCart] = useState([]);
-
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -115,6 +115,11 @@ const Chef_Navbar = () => {
   useEffect(() => {
     handleGetAllNotifications();
   }, [success]);
+
+  // get bank details
+  useEffect(() => {
+    dispatch(getBankDetails());
+  }, []);
 
   return (
     <>

@@ -17,11 +17,55 @@ import {
   setChefProfileDocument,
   setGetExpertise,
   setAddBankDetails,
+  setGetBankDetails,
+  setUpdateBankDetails,
 } from "../../slices/auth";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* updateBankDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.AuthApiPath.UPDATE_BANK_DETAILS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setUpdateBankDetails(resp.data.data));
+      yield call(action.payload.cb, resp);
+      // toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+
+function* getBankDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = ApiPath.AuthApiPath.GET_BANK_DETAILS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetBankDetails(resp.data.data));
+      // toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* addBankDetails(action) {
   try {
@@ -393,6 +437,8 @@ function* authSaga() {
     takeLatest("auth/chefProfileDocument", chefProfileDocument),
     takeLatest("auth/getExpertise", getExpertise),
     takeLatest("auth/addBankDetails", addBankDetails),
+    takeLatest("auth/getBankDetails", getBankDetails),
+    takeLatest("auth/updateBankDetails", updateBankDetails),
   ]);
 }
 

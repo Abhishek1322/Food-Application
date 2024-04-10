@@ -46,7 +46,7 @@ const Router = () => {
           {authData?.userInfo?.role === "chef" && (
             <Route path="/setting" element={<Containers.SettingMain />} />
           )}
-
+          <Route path="/bank-details" element={<Containers.BankDetails />} />
           <Route path="/chef-profile" element={<Containers.myprofile />} />
           <Route
             path="/edit-chef-profile"

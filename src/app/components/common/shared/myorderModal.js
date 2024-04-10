@@ -21,6 +21,7 @@ const Myorder = ({ close, updateNotification }) => {
   const [singleOrderId, setSingleOrderId] = useState("");
   const [orderId, setOrderId] = useState("");
   const [isLoading, setIsloading] = useState("");
+  const [orderLoadingId, setOrderLoadingId] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -80,6 +81,7 @@ const Myorder = ({ close, updateNotification }) => {
   const handleAcceptOrder = (e, id, status) => {
     e.stopPropagation();
     setIsloading(status);
+    setOrderLoadingId(id);
     let params = {
       id: id,
       status: status,
@@ -245,7 +247,8 @@ const Myorder = ({ close, updateNotification }) => {
                                             className="cancelOrder"
                                           >
                                             CANCEL
-                                            {chefData?.laoding &&
+                                            {chefData?.loading &&
+                                              orderLoadingId === item?._id &&
                                               isLoading === "cancelled" && (
                                                 <span className="spinner-border spinner-border-sm"></span>
                                               )}
@@ -261,7 +264,8 @@ const Myorder = ({ close, updateNotification }) => {
                                             className="acceptOrder"
                                           >
                                             ACCEPT
-                                            {chefData?.laoding &&
+                                            {chefData?.loading &&
+                                              orderLoadingId === item?._id &&
                                               isLoading === "accepted" && (
                                                 <span className="spinner-border spinner-border-sm"></span>
                                               )}

@@ -3,7 +3,6 @@ import * as Images from "../../../utilities/images";
 import CustomModal from "../../components/common/shared/CustomModal";
 import OrderPlaceModal from "../../components/common/shared/OrderPlaceModal";
 import { useSearchParams } from "react-router-dom";
-import OrderAlertModal from "../../components/common/shared/OrderAlertModal";
 
 const PaymentDoneModal = () => {
   const [searchParams] = useSearchParams();
@@ -13,7 +12,6 @@ const PaymentDoneModal = () => {
   const orderNumber = searchParams.get("orderNumber");
   const orderId = searchParams.get("orderId");
   const [key, setKey] = useState(Math.random());
-  const [showAlert, setShowAlert] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -45,7 +43,6 @@ const PaymentDoneModal = () => {
       handleOpneModal("orderplace");
     }, 2500);
   }, []);
-
 
   return (
     <>
@@ -85,13 +82,10 @@ const PaymentDoneModal = () => {
               orderType={orderType}
               addressId={addressId}
               cartId={cartId}
-
               close={() => {
                 handleOnCloseModal();
               }}
             />
-          ) : modalDetail.flag === "orderalert" ? (
-            <OrderAlertModal orderType={orderType} setShowAlert={setShowAlert} />
           ) : (
             ""
           )

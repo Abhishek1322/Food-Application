@@ -221,15 +221,21 @@ const BookingDetails = () => {
                 <div className="venuDetail">
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Date</h4>
-                    <p className="venushedule">{moment(bookingDetails?.date)?.format("MMM D, YYYY")}</p>
+                    <p className="venushedule">
+                    {moment(bookingDetails?.date, "DD-MM-YYYY")?.format("MMM DD, YYYY")}
+                    </p>
                   </div>
                   <div className="venuHere venuThere">
                     <h4 className="venuInfo">Venue Time</h4>
-                    {bookingDetails?.slots?.map((item, index) => (
-                      <p key={index} className="venushedule">
-                        {item?.from} to {item?.to}
-                      </p>
-                    ))}
+                    {bookingDetails?.slots
+                      ?.sort((value) => value?.from - value?.from)
+                      ?.map((item, index) => (
+                        <>
+                          <p key={index} className="venushedule">
+                            {item?.from} to {item?.to}
+                          </p>
+                        </>
+                      ))}
                   </div>
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Address</h4>

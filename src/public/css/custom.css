@@ -1279,6 +1279,9 @@ input.searchtext.search-only-chef {
 .label-hire-chef {
   z-index: 0 !important;
 }
-.orderprocess{
+.orderprocess {
   cursor: pointer;
+}
+.no-bank-found {
+  height: 55vh;
 }

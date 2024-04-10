@@ -367,7 +367,7 @@ body {
 }
 
 .changepassword {
-  height: 100vh;
+  height: 96vh;
   width: 100%;
   max-width: 450px;
   margin: 0 auto;
@@ -1087,7 +1087,6 @@ body {
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
   padding: 24px 30px;
 }
-
 
 .johnExplorer {
   color: #2e3333;
@@ -1872,11 +1871,22 @@ body {
   border: 1px solid #e65c00;
   background: #fff;
   display: flex;
-  padding: 18px 45px;
+  padding: 11px 45px;
   justify-content: center;
   align-items: center;
 }
-
+.bank-logo-setting{
+  height: 120px
+}
+.nobankgeading {
+  color: #2e3333;
+  text-align: center;
+  font-family: Crimson Text;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 5px;
+  line-height: 30px;
+}
 .submitOrder_ {
   color: #fff;
   font-size: 18px;
@@ -1886,7 +1896,7 @@ body {
   box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
   display: flex;
   width: 150px;
-  padding: 18px 18px;
+  padding: 13px 18px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -2119,7 +2129,7 @@ body {
 .menuReport_button::placeholder {
   color: #2e3333;
 }
-.menuModal_ .menuEditbuttom{
+.menuModal_ .menuEditbuttom {
   padding: 15px 55px 15px 25px;
 }
 
@@ -2590,7 +2600,8 @@ body {
   font-weight: 600;
 }
 
-.dateBox svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
+.dateBox
+  svg.react-time-picker__clear-button__icon.react-time-picker__button__icon {
   display: none;
 }
 
@@ -2670,7 +2681,10 @@ body {
   left: -11px;
 }
 
-.edit-menu-modal svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined,.addmenuItemModal svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
+.edit-menu-modal
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined,
+.addmenuItemModal
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined {
   left: 11px;
 }
 
@@ -2703,7 +2717,7 @@ body {
 .termcondDummy p {
   font-size: 16px;
   line-height: 34px;
-  color: #2E3333;
+  color: #2e3333;
   font-family: "Open Sans";
 }
 .changepasswordbox_ {
@@ -2745,12 +2759,12 @@ body {
   padding: 15px 15px 15px 25px;
 }
 .order-delivered-chat {
-  background: #2E3333;
+  background: #2e3333;
 }
 
 .chatImg-delivered {
   background: #a9a2a2;
 }
 .paidAmmount-delivered {
-  background: #2E3333;
+  background: #2e3333;
 }

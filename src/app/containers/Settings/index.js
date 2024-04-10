@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import * as Images from "../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "../../components/common/shared/CustomModal";
 import { useAuthSelector } from "../../../redux/selector/auth";
 import LogoutModal from "../../components/common/shared/logoutModal";
-import { addBankDetails, onErrorStopLoad } from "../../../redux/slices/auth";
-import { useDispatch } from "react-redux";
 
 const SettingMain = () => {
-  const dispatch = useDispatch();
   const authData = useAuthSelector();
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
@@ -35,24 +32,6 @@ const SettingMain = () => {
       type: flag,
     });
     setKey(Math.random());
-  };
-
-  // stop loader on page load
-  useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
-
-  // add bank details
-  const handleAddBankDetails = () => {
-    dispatch(
-      addBankDetails({
-        cb(res) {
-          if (res?.status === 200) {
-            window.location.href = res?.data?.data?.url;
-          }
-        },
-      })
-    );
   };
 
   return (
@@ -196,25 +175,27 @@ const SettingMain = () => {
 
             {authData?.userInfo?.role === "chef" && (
               <div className="col-lg-6">
-                <div className="leftbox">
-                  <div className="settingBox d-flex align-items-center ">
-                    <img
-                      src={Images.bankDetailLogo}
-                      alt="logout"
-                      className="img-fluid settingIcon"
-                    />
+                <Link to="/bank-details">
+                  <div className="leftbox">
+                    <div className="settingBox d-flex align-items-center ">
+                      <img
+                        src={Images.bankDetailLogo}
+                        alt="logout"
+                        className="img-fluid settingIcon"
+                      />
 
-                    <h2 className="settingBoxtxt ms-3 mb-0">Bank Details</h2>
+                      <h2 className="settingBoxtxt ms-3 mb-0">Bank Details</h2>
+                    </div>
+                    <div className="iconImg">
+                      <img
+                        // onClick={handleAddBankDetails}
+                        src={Images.nextIcon}
+                        alt="nextIcon"
+                        className="img-fluid nextIcon"
+                      />
+                    </div>
                   </div>
-                  <div className="iconImg">
-                    <img
-                      onClick={handleAddBankDetails}
-                      src={Images.nextIcon}
-                      alt="nextIcon"
-                      className="img-fluid nextIcon"
-                    />
-                  </div>
-                </div>
+                </Link>
               </div>
             )}
 
