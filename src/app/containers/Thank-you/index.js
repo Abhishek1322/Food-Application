@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import * as Images from "../../../../utilities/images";
-import CustomModal from "./CustomModal";
-import OrderPlaceModal from "./OrderPlaceModal";
+import * as Images from "../../../utilities/images";
+import CustomModal from "../../components/common/shared/CustomModal";
+import OrderPlaceModal from "../../components/common/shared/OrderPlaceModal";
+import { useSearchParams } from "react-router-dom";
 
-const PaymentDoneModal = ({ close, orderId, orderNumber, orderType }) => {
+const PaymentDoneModal = () => {
+  const [searchParams] = useSearchParams();
+  const cartId = searchParams.get("cartId");
+  const addressId = searchParams.get("addressId");
+  const orderType = searchParams.get("orderType");
+  const orderNumber = searchParams.get("orderNumber");
+  const orderId = searchParams.get("orderId");
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -54,22 +61,29 @@ const PaymentDoneModal = ({ close, orderId, orderNumber, orderType }) => {
       <CustomModal
         key={key}
         show={modalDetail.show}
-        // backdrop="static"
+        backdrop="static"
         showCloseBtn={false}
         isRightSideModal={true}
         mediumWidth={false}
         className={
           modalDetail.flag === "orderplace" ? "commonWidth customContent" : ""
         }
-        ids={modalDetail.flag === "orderplace" ? "ordermodalplace" : ""}
+        ids={
+          modalDetail.flag === "orderplace"
+            ? "ordermodalplace"
+            : modalDetail.flag === "orderalert"
+            ? "logout"
+            : ""
+        }
         child={
           modalDetail.flag === "orderplace" ? (
             <OrderPlaceModal
               orderId={orderId}
               orderType={orderType}
+              addressId={addressId}
+              cartId={cartId}
               close={() => {
                 handleOnCloseModal();
-                close();
               }}
             />
           ) : (

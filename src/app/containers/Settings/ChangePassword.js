@@ -129,7 +129,7 @@ const ChangePassword = () => {
                   />
                   <label className="border-label">Confirm Password</label>
                 </div>
-                <div className="buttonBox mt-5 d-flex  justify-content-center">
+                <div className="buttonBox mt-3 d-flex  justify-content-center">
                   <button type="submit" className="smallBtn">
                     Save changes
                   </button>

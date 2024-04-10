@@ -63,7 +63,7 @@ const Login = () => {
           if (res.status === 200) {
             if (res.data.data.role === "chef") {
               if (res.data.data.chefInfo.documentVerified) {
-                toast.success("Successfully logged in");
+                // toast.success("Successfully logged in");
                 navigate("/home");
                 handleCreateUserCollection(res?.data?.data);
               } else if (
@@ -77,11 +77,11 @@ const Login = () => {
                 !res.data.data.chefInfo.documentVerified &&
                 res.data.data.chefInfo.step !== "3"
               ) {
-                toast.success("Successfully logged in");
+                // toast.success("Successfully logged in");
                 navigate("/setup-profile");
               }
             } else if (res.data.data.status === "Active") {
-              toast.success("Successfully logged in");
+              // toast.success("Successfully logged in");
               navigate("/home-user");
               handleCreateUserCollection(res?.data?.data);
             }

@@ -36,9 +36,12 @@ import ChooseLocation from "./User/ChooseLocation";
 import Dashboard from "./Dashborad/Dashboard";
 import UserContactUs from "./Settings/UserContactUs";
 import MenuDetails from "./User/MenuDetails";
+import ThankYou from "./Thank-you";
+import BankDetails from "./Chef/BankDetails";
 
 export {
   Login,
+  BankDetails,
   ChooseRoles,
   Verification,
   CreateAccount,
@@ -76,4 +79,5 @@ export {
   AboutUs,
   UserContactUs,
   MenuDetails,
+  ThankYou,
 };

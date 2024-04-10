@@ -1,8 +1,23 @@
 import React from "react";
 import * as Images from "../../../../utilities/images";
+import { useNavigate } from "react-router-dom";
 
 const OrderCancelModal = ({ close, orderType }) => {
-  
+  const navigate = useNavigate();
+
+  // navigate previous order page
+  const handleGoBack = () => {
+    if (orderType === "order") {
+      close();
+      navigate("/user-order-home");
+    } else if (orderType === "booking") {
+      close();
+      navigate("/home-user");
+    } else {
+      close();
+    }
+  };
+
   return (
     <>
       <div className="ordercancelsection paymentdonesection">
@@ -19,7 +34,11 @@ const OrderCancelModal = ({ close, orderType }) => {
         </p>
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
-            <button onClick={close} className="foodmodalbtn" type="button">
+            <button
+              onClick={handleGoBack}
+              className="foodmodalbtn"
+              type="button"
+            >
               Okay
             </button>
           </div>

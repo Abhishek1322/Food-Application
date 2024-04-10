@@ -17,11 +17,55 @@ import {
   setChefProfileDocument,
   setGetExpertise,
   setAddBankDetails,
+  setGetBankDetails,
+  setUpdateBankDetails,
 } from "../../slices/auth";
 import ApiPath from "../../../constants/apiPath";
 import { toast } from "react-toastify";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* updateBankDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.AuthApiPath.UPDATE_BANK_DETAILS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setUpdateBankDetails(resp.data.data));
+      yield call(action.payload.cb, resp);
+      // toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+
+function* getBankDetails(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = ApiPath.AuthApiPath.GET_BANK_DETAILS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetBankDetails(resp.data.data));
+      // toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* addBankDetails(action) {
   try {
@@ -183,7 +227,7 @@ function* createNewPassword(action) {
     if (resp.status) {
       yield put(setCreateNewPassword(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -204,7 +248,7 @@ function* resetPassword(action) {
     if (resp.status) {
       yield put(setResetPassword(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -250,7 +294,7 @@ function* forgotPassword(action) {
       //   resp.data.data.email ? resp.data.data.email : ""
       // );
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -275,7 +319,7 @@ function* verifyOtp(action) {
       );
       yield put(setVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -309,7 +353,7 @@ function* userSignUp(action) {
 
       yield put(setUserSignup(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -343,7 +387,7 @@ function* userLogin(action) {
       yield put(setUserLogin(resp.data.data));
       yield call(action.payload.cb, (action.res = resp));
       if (resp.data.data.isActive === false) {
-        toast.error(resp.data.message);
+        // toast.error(resp.data.message);
       }
     } else {
       throw resp;
@@ -366,7 +410,7 @@ function* userLogout(action) {
       yield call(action.payload.cb, (action.res = resp));
       localStorage.removeItem("authToken");
       localStorage.removeItem("persist:root");
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
       yield put(setUserLogout());
     } else {
       throw resp;
@@ -393,6 +437,8 @@ function* authSaga() {
     takeLatest("auth/chefProfileDocument", chefProfileDocument),
     takeLatest("auth/getExpertise", getExpertise),
     takeLatest("auth/addBankDetails", addBankDetails),
+    takeLatest("auth/getBankDetails", getBankDetails),
+    takeLatest("auth/updateBankDetails", updateBankDetails),
   ]);
 }
 

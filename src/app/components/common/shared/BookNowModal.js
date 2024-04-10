@@ -164,7 +164,7 @@ const BookNowModal = ({ menuId, chefId, close }) => {
                 }
               />
 
-              <label className="border-label">Date</label>
+              <label className="border-label label-hire-chef">Date</label>
             </div>
           </div>
         </div>
@@ -223,7 +223,9 @@ const BookNowModal = ({ menuId, chefId, close }) => {
                 onChange={(e) => setDescription(e.target.value)}
                 rows={4}
               />
-              <label className="border-label">Description</label>
+              <label className="border-label label-hire-chef">
+                Description
+              </label>
             </div>
           </div>
         </div>

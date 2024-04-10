@@ -173,7 +173,7 @@ const UserManageAddress = () => {
                   </Link>
                 </>
               ) : (
-                <div className="buttonBox mt-5 d-flex  justify-content-center">
+                <div className="buttonBox mt-3 d-flex  justify-content-center">
                   <button
                     onClick={() => {
                       handleUserProfile("ordereditmodal");

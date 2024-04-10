@@ -46,7 +46,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
       toastId.current = toast.error(msg);
     }
   };
-  console.log("testt", formData.price , formData.chefBookingPrice);
+  
   // create new menu
   const handleCreateMenu = (flag) => {
     if (!formData.itemName) {

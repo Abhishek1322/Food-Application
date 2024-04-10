@@ -1204,16 +1204,18 @@ input:-webkit-autofill:active {
 .recipe-lists.select-expertise-outer {
   width: 230px;
 }
-.recipe-lists .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary{
+.recipe-lists
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary {
   overflow: auto;
   height: 100%;
   max-height: 85px;
 }
 
-.recipe-lists.select-expertise-outer .MuiAutocomplete-endAdornment{
+.recipe-lists.select-expertise-outer .MuiAutocomplete-endAdornment {
   top: 25px;
 }
-.recipe-lists button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.MuiAutocomplete-clearIndicator{
+.recipe-lists
+  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.MuiAutocomplete-clearIndicator {
   display: none;
 }
 
@@ -1245,10 +1247,14 @@ input:-webkit-autofill:active {
 .border-label-update-profile .react-tel-input .flag-dropdown {
   background-color: unset !important;
 }
-.border-label-update-profile .react-tel-input .flag-dropdown.open .selected-flag {
+.border-label-update-profile
+  .react-tel-input
+  .flag-dropdown.open
+  .selected-flag {
   background: unset !important;
 }
-.border-label-update-profile.selected-flag:hover, .react-tel-input .selected-flag:focus {
+.border-label-update-profile.selected-flag:hover,
+.react-tel-input .selected-flag:focus {
   background-color: #fff;
 }
 li.next.disabled a {
@@ -1269,4 +1275,13 @@ input.searchtext.search-chef-menu {
 input.searchtext.search-only-chef {
   padding: 15px 53px 15px 24px !important;
   width: 300px;
+}
+.label-hire-chef {
+  z-index: 0 !important;
+}
+.orderprocess {
+  cursor: pointer;
+}
+.no-bank-found {
+  height: 55vh;
 }

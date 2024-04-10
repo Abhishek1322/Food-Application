@@ -183,7 +183,7 @@ const BookingDetails = () => {
                           {bookingDetails?.userId?.userInfo?.firstName}{" "}
                           {bookingDetails?.userId?.userInfo?.lastName}
                         </h2>
-                        <div className="johnChatTime">
+                        <div className="johnChatTime mt-3">
                           <div className="chefInfo">
                             <img
                               src={Images.chefCalender}
@@ -204,32 +204,38 @@ const BookingDetails = () => {
                     </div>
                   </div>
                   <button
-                  onClick={() => {
-                    handleOpenModal("chatAboutOrder");
-                  }}
-                  className="sarahmessagebtn flexBox"
-                  type="button"
-                >
-                  <img
-                    src={Images.ChefChat}
-                    alt="timesquareimage"
-                    className="availableimg"
-                  />
-                  <span className="availableheading">Chat</span>
-                </button>
+                    onClick={() => {
+                      handleOpenModal("chatAboutOrder");
+                    }}
+                    className="sarahmessagebtn flexBox"
+                    type="button"
+                  >
+                    <img
+                      src={Images.ChefChat}
+                      alt="timesquareimage"
+                      className="availableimg"
+                    />
+                    <span className="availableheading">Chat</span>
+                  </button>
                 </div>
                 <div className="venuDetail">
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Date</h4>
-                    <p className="venushedule">{bookingDetails?.date}</p>
+                    <p className="venushedule">
+                    {moment(bookingDetails?.date, "DD-MM-YYYY")?.format("MMM DD, YYYY")}
+                    </p>
                   </div>
                   <div className="venuHere venuThere">
                     <h4 className="venuInfo">Venue Time</h4>
-                    {bookingDetails?.slots?.map((item, index) => (
-                      <p key={index} className="venushedule">
-                        {item?.from} to {item?.to}
-                      </p>
-                    ))}
+                    {bookingDetails?.slots
+                      ?.sort((value) => value?.from - value?.from)
+                      ?.map((item, index) => (
+                        <>
+                          <p key={index} className="venushedule">
+                            {item?.from} to {item?.to}
+                          </p>
+                        </>
+                      ))}
                   </div>
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Address</h4>

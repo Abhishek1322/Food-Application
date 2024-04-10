@@ -33,7 +33,7 @@ const ChefDetails = () => {
     title: "",
     flag: "",
   });
-
+  
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());

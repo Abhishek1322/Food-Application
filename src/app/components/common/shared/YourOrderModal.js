@@ -19,7 +19,7 @@ const YourOrderModal = ({ close, closeModal, orderId, orderType }) => {
     title: "",
     flag: "",
   });
-
+  
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -91,9 +91,9 @@ const YourOrderModal = ({ close, closeModal, orderId, orderType }) => {
         <h1 className="accountDeleted mt-3">
           {" "}
           Are You Sure You Want to Cancel Your{" "}
-          {`${orderType === "order"}` ? "Order" : "Booking"}.
+          {orderType === "order" ? "Order" : "Booking"}.
         </h1>
-        <p className="accountdeletetxt mt-2 ">Cancellation charges apply.</p>
+        {/* <p className="accountdeletetxt mt-2 ">Cancellation charges apply.</p> */}
         <div className="modalfooterbtn">
           <div className="addfoodbtn">
             <button
@@ -110,10 +110,10 @@ const YourOrderModal = ({ close, closeModal, orderId, orderType }) => {
                 handleCancelOrder();
               }}
             >
-              {userData?.loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
               Yes, Cancel
+              {userData?.loading && (
+                <span className="spinner-border spinner-border-sm ms-2"></span>
+              )}
             </button>
           </div>
         </div>

@@ -2271,9 +2271,13 @@ p {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
 }
-
+.all-bookings-height {
+  min-height: 200px;
+  max-height: 100%;
+}
 .homePage .profileDetail .homeProfileBox {
   width: 100%;
+  cursor: pointer;
 }
 
 .Newbooking_ .profileDetail {
@@ -2641,7 +2645,66 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 .none-of-these {
   color: #abadad;
 }
-.textUpperHome{
+.textUpperHome {
   text-transform: capitalize;
+}
+.reviewsection-chef {
+  width: unset;
+  display: inline-flex;
+}
+.switch-outer-chef {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch-outer-chef input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-chef {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider-chef:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider-chef {
+  background-color: #e65c00;
+}
+
+input:checked + .slider-chef:before {
+  transform: translateX(26px);
+}
+
+.slider-chef.round-chef {
+  border-radius: 34px;
+}
+
+.slider-chef.round-chef:before {
+  border-radius: 50%;
+}
+.read-more-desp {
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
 }
 /* Abhishek Css end */

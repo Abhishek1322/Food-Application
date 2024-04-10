@@ -169,9 +169,12 @@ import callImg from "../public/images/callImg.svg";
 import checked from "../public/images/checked.svg";
 import unchecked from "../public/images/unchecked.svg";
 import sidebarLight from "../public/images/sidebar-light.svg";
-
+import bankDetailLogo from "../public/images/bankDetailImg.svg";
+import noBank from "../public/images/nobank.svg";
 
 export {
+  noBank,
+  bankDetailLogo,
   checked,
   unchecked,
   callImg,
@@ -342,5 +345,5 @@ export {
   orderFood,
   helpSupport,
   nocheffound,
-  sidebarLight
+  sidebarLight,
 };

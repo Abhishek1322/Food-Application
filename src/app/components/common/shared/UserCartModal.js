@@ -5,9 +5,10 @@ import {
   onErrorStopLoad,
   deleteCartItem,
   updateCartItem,
+  createOrder,
+  getUserAddress,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
-import { getUserAddress } from "../../../../redux/slices/user";
 import CustomModal from "./CustomModal";
 import AddAddressModal from "./AddAddressModal";
 import EditAddressModal from "./EditAddressModal";
@@ -15,10 +16,13 @@ import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
 import PayNowModal from "./PayNowModal";
 import { toast } from "react-toastify";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userSelector = useUserSelector();
+  const { loading } = userSelector;
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const toastId = useRef(null);
@@ -33,6 +37,9 @@ const UserCartModal = ({ close }) => {
     address && address.length > 0 ? [...address].reverse() : [];
   const [addressId, setAddressId] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [orderNumber, setOrderNumber] = useState("");
+  const [orderId, setOrderId] = useState("");
+  const [isLoading, setIsLoading] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -156,10 +163,6 @@ const UserCartModal = ({ close }) => {
 
   // open modal
   const handleOpenModal = (flag, id, book) => {
-    if (flag === "payNow" && !selectedAddress) {
-      showToast("Please select delivery address");
-      return;
-    }
     setModalDetail({
       show: true,
       flag: flag,
@@ -179,6 +182,35 @@ const UserCartModal = ({ close }) => {
   const handleAddMoreItem = () => {
     close();
     navigate(`/chef-details?id=${chefId}`);
+  };
+
+  // create payment details
+  const handleCreatePaymentIntent = (flag) => {
+    if (!selectedAddress) {
+      showToast("Please select delivery address");
+      return;
+    }
+    setIsLoading(flag);
+    let params = {
+      cartId: cartId,
+      addressId: selectedAddress,
+    };
+    dispatch(
+      createOrder({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            setOrderNumber(
+              res?.data?.data?.orderId
+                ? res?.data?.data?.orderId
+                : res?.data?.data?.bookingId
+            );
+            setOrderId(res?.data?.data?._id);
+            handleOpenModal("payNow");
+          }
+        },
+      })
+    );
   };
 
   return (
@@ -358,11 +390,15 @@ const UserCartModal = ({ close }) => {
                     <p className="price">£{totalPrice}.00</p>
                   </div>
                   <button
-                    onClick={() => handleOpenModal("payNow")}
-                    className="orderbutton"
+                    onClick={() => handleCreatePaymentIntent("pay")}
+                    className="orderbutton w-auto"
                     type="button"
+                    disabled={loading}
                   >
                     Pay Now
+                    {loading && isLoading === "pay" && (
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                    )}
                   </button>
                 </div>
               </div>
@@ -432,6 +468,8 @@ const UserCartModal = ({ close }) => {
               orderType={orderType}
               bookingData={bookingData}
               bookingAddress={bookingAddress}
+              orderNumber={orderNumber}
+              orderId={orderId}
             />
           ) : (
             ""
