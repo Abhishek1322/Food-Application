@@ -22,11 +22,9 @@ export const userSilce = createSlice({
   reducers: {
     createPaymentIntent: (state) => {
       state.loading = true;
-      state.paymentIntent = null;
     },
-    setCreatePaymentIntent: (state, action) => {
+    setCreatePaymentIntent: (state) => {
       state.loading = false;
-      state.paymentIntent = action.payload;
     },
     resetSuccess: (state) => {
       state.success = false;

@@ -339,7 +339,7 @@ const MyProfile = () => {
                 {/* chef expertise  */}
                 <div className="expertise">
                   <div className="myexpertise">
-                    <p className="nameheading">My Expertise</p>
+                    <p className="nameheading">Type of Food You Have Offer</p>
                     <button
                       className="modalclearAll"
                       onClick={() => {

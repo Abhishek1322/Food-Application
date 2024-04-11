@@ -29,6 +29,7 @@ const UserLayout = () => {
   const options = {
     clientSecret: paymentIntent?.client_secret,
   };
+
   return (
     <>
       {isAuthenticated && authData?.userInfo?.role === "user" ? (
