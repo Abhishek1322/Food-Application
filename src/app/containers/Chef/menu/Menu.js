@@ -24,7 +24,7 @@ const Menu = () => {
   const [searchMenu, setSearchMenu] = useState("");
   const [pageCount, setPageCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -63,6 +63,7 @@ const Menu = () => {
 
   // get all menu lists
   const menuListAll = (page = currentPage) => {
+    setIsLoading(true);
     let params = {
       limit: 10,
       page: page,
@@ -277,11 +278,10 @@ const Menu = () => {
             : ""
         }
         ids={
-          modalDetail.flag === "editMenuModal"
-            ? "editMenu"
-            : modalDetail.flag === "deleteMenuModal"
-            ? "deleteMenu"
-            : modalDetail.flag === "addMenuItemModal"
+          modalDetail.flag === "editMenuModal" ||
+          modalDetail.flag === "deleteMenuModal" ||
+          modalDetail.flag === "addMenuItemModal" || 
+          modalDetail.flag === "foodDetail"
             ? "deleteMenu"
             : modalDetail.flag === "checkAccountStatus"
             ? "logout"

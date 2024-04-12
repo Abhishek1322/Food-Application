@@ -310,7 +310,7 @@ const User_Navbar = () => {
                         className="img-fluid basketImg"
                       />
                       <span className="cartItems">
-                        {notificationCart?.cartItemCount}
+                        {notificationCart?.cartItemCount || 0}
                       </span>
                     </div>
                     <button

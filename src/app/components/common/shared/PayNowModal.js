@@ -1,6 +1,4 @@
-import React, {  useState } from "react";
-import CustomModal from "./CustomModal";
-import PaymentDoneModal from "./PaymentDoneModal";
+import React, { useState } from "react";
 import {
   useStripe,
   useElements,
@@ -14,38 +12,11 @@ const PayNowModal = ({
   orderPrice,
   orderType,
   orderNumber,
-  orderId
+  orderId,
 }) => {
- 
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-  const [key, setKey] = useState(Math.random());
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-
-  // open modal
-  const handleOpenModal = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
 
   // submit payment
   const handleSubmit = async (event) => {
@@ -91,34 +62,6 @@ const PayNowModal = ({
           </div>
         </form>
       </div>
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        // backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "paydone" ? "commonWidth customContent" : ""
-        }
-        ids={modalDetail.flag === "paydone" ? "paydonemodal" : ""}
-        child={
-          modalDetail.flag === "paydone" ? (
-            <PaymentDoneModal
-              // close={() => {
-              //   close();
-              //   handleOnCloseModal();
-              // }}
-              // orderNumber={orderNumber}
-              // orderId={orderId}
-              // orderType={orderType}
-            />
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

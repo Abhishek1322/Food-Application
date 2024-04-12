@@ -16,6 +16,7 @@ import "./public/css/style.css";
 import { messaging, VAPID_KEY } from "./config/firebase-config";
 import { getToken, onMessage } from "firebase/messaging";
 import * as Images from "../src/utilities/images";
+import { toast } from "react-toastify";
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
         });
       });
     } else if (permission === "denied") {
-      alert("You denied for the notification");
+      toast.error("You denied for the notification");
     }
   }
   

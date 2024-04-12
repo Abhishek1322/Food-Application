@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import * as Images from "../../../../utilities/images";
 import {
   getAllCart,
@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import PayNowModal from "./PayNowModal";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../../redux/selector/user";
+import CheckOutForm from "./CheckOutForm";
 
 const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const UserCartModal = ({ close }) => {
   const [orderNumber, setOrderNumber] = useState("");
   const [orderId, setOrderId] = useState("");
   const [isLoading, setIsLoading] = useState("");
+  const [client,setClient] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -200,13 +202,14 @@ const UserCartModal = ({ close }) => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
+            setClient(res?.data?.data?.client_secret)
             setOrderNumber(
               res?.data?.data?.orderId
                 ? res?.data?.data?.orderId
                 : res?.data?.data?.bookingId
             );
             setOrderId(res?.data?.data?._id);
-            handleOpenModal("payNow");
+            handleOpenModal("checkOutForm");
           }
         },
       })
@@ -434,7 +437,7 @@ const UserCartModal = ({ close }) => {
             ? "ordereditaddress"
             : modalDetail.flag === "deleteaddress"
             ? "ordereditaddress"
-            : modalDetail.flag === "payNow"
+            : modalDetail.flag === "checkOutForm"
             ? "ordereditaddress"
             : ""
         }
@@ -456,8 +459,8 @@ const UserCartModal = ({ close }) => {
               handleGetUserAddress={handleGetUserAddress}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "payNow" ? (
-            <PayNowModal
+          ) : modalDetail.flag === "checkOutForm" ? (
+            <CheckOutForm
               close={() => {
                 close();
                 handleOnCloseModal();
@@ -470,6 +473,7 @@ const UserCartModal = ({ close }) => {
               bookingAddress={bookingAddress}
               orderNumber={orderNumber}
               orderId={orderId}
+              client={client}
             />
           ) : (
             ""
@@ -520,7 +524,7 @@ const UserCartModal = ({ close }) => {
                 </div>
               </div>
             </>
-          ) : modalDetail.flag === "payNow" ? (
+          ) : modalDetail.flag === "checkOutForm" ? (
             <>
               <div className="editadressheading">
                 <img
