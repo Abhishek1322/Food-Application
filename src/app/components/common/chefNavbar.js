@@ -198,7 +198,7 @@ const Chef_Navbar = () => {
                         }}
                       />
                       <span className="cartItems">
-                        {notificationCart?.orderCount}
+                        {notificationCart?.orderCount || 0}
                       </span>
                     </div>
                   </div>

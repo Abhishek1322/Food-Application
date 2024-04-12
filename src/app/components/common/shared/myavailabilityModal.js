@@ -4,10 +4,17 @@ import TimePicker from "react-time-picker";
 import { updateChefProfile } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { useWebSelector } from "../../../../redux/selector/web";
 
-const MyavailabilityModal = (props) => {
-  const { availabilityData, close, chefProfileDetails } = props;
+const MyavailabilityModal = ({
+  availabilityData,
+  close,
+  chefProfileDetails,
+  handleSelectAvailabilityByDay,
+}) => {
   const dispatch = useDispatch();
+  const webSelector = useWebSelector();
+  const { loading } = webSelector;
   const [activeWeekDay, setActiveWeekDay] = useState("");
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
@@ -46,7 +53,19 @@ const MyavailabilityModal = (props) => {
     },
   ];
 
-  const handleWeekDay = (e, day) => {
+  // select availability by day
+  useEffect(() => {
+    const weekDay = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+    const todayDate = new Date();
+    let day = weekDay[todayDate.getDay()];
+    handleWeekDay(day);
+
+    return () => {
+      handleSelectAvailabilityByDay();
+    };
+  }, []);
+
+  const handleWeekDay = (day) => {
     setActiveWeekDay(day);
     const getPreviousFromTime = availability?.find((item, index) => {
       return item?.day === day;
@@ -101,7 +120,7 @@ const MyavailabilityModal = (props) => {
       }
     });
   }, [startTime, endTime, activeWeekDay]);
-  
+
   // save availability
   const handleSaveAvailability = () => {
     const checkEmptyAvailability = availability?.some(
@@ -133,6 +152,7 @@ const MyavailabilityModal = (props) => {
           if (res.status === 200) {
             close();
             chefProfileDetails();
+            handleSelectAvailabilityByDay();
           }
         },
       })
@@ -156,7 +176,7 @@ const MyavailabilityModal = (props) => {
             {week.map((day, index) => (
               <>
                 <li
-                  onClick={(e) => handleWeekDay(e, day.day)}
+                  onClick={() => handleWeekDay(day.day)}
                   className={
                     activeWeekDay === day.day
                       ? "availabilityDays active text-capitalize"
@@ -234,22 +254,15 @@ const MyavailabilityModal = (props) => {
               </div>
             </div>
           )}
-
-          {/* My availability time Slot Modal HTML START */}
-          {/* <div className="timeSlotbutton flexBox justify-content-center mt-4">
-            <button className="slotButton">
-              <i className="fas fa-plus addmore"></i>
-              Add Time Slot{" "}
-            </button>
-          </div> */}
-
-          {/* My availability time Slot Modal HTML END */}
         </div>
         <button
           onClick={handleSaveAvailability}
           className="foodmodalbtn  modalfooterbtn"
         >
           Update
+          {loading && (
+            <span className="spinner-border spinner-border-sm ms-1"></span>
+          )}
         </button>
       </div>
     </>

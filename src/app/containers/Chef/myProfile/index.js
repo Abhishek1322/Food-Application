@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "../../../components/common/shared/CustomModal";
@@ -19,7 +19,6 @@ const MyProfile = () => {
   const [key, setKey] = useState(Math.random());
   const dispatch = useDispatch();
   const authData = useAuthSelector();
-  const scrollRef = useRef();
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
@@ -33,7 +32,6 @@ const MyProfile = () => {
     startTime: "",
     endTime: "",
   });
-
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -50,7 +48,8 @@ const MyProfile = () => {
     setKey(Math.random());
   };
 
-  const handleUserProfile = (flag) => {
+  // open modal
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -65,7 +64,16 @@ const MyProfile = () => {
   // getting chef profile information
   useEffect(() => {
     chefProfileDetails();
+    handleSelectAvailabilityByDay();
   }, []);
+
+  // select availability by day
+  const handleSelectAvailabilityByDay = () => {
+    const weekDay = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+    const todayDate = new Date();
+    let day = weekDay[todayDate.getDay()];
+    handleSlotTime(day);
+  };
 
   // get chef rating information
   useEffect(() => {
@@ -155,18 +163,6 @@ const MyProfile = () => {
       startTime: updateSlotTimes?.startTime,
       endTime: updateSlotTimes?.endTime,
     });
-    scrollToBottom();
-  };
-
-  // scroll bottom
-  const scrollToBottom = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({
-        block: "nearest",
-        inline: "start",
-        behavior: "smooth",
-      });
-    }
   };
 
   // stop loader on refresh page
@@ -194,7 +190,7 @@ const MyProfile = () => {
 
   return (
     <>
-      <section ref={scrollRef} className="profilesectionChef">
+      <section className="profilesectionChef">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-5 col-md-12">
@@ -222,7 +218,7 @@ const MyProfile = () => {
                     <div
                       className="reviews"
                       onClick={() => {
-                        handleUserProfile("ratingReviewsModal");
+                        handleOpenModal("ratingReviewsModal");
                       }}
                     >
                       <p className="cheftext p-0">My Ratings & Reviews</p>
@@ -343,7 +339,7 @@ const MyProfile = () => {
                     <button
                       className="modalclearAll"
                       onClick={() => {
-                        handleUserProfile("addExpertiseModal");
+                        handleOpenModal("addExpertiseModal");
                       }}
                     >
                       + Add
@@ -365,13 +361,13 @@ const MyProfile = () => {
                     )}
                   </div>
                 </div>
-                <div ref={scrollRef} className="availabilitydetails">
+                <div className="availabilitydetails">
                   <div className="myexpertise">
                     <p className="nameheading">My Availability</p>
                     <button
                       className="modalclearAll"
                       onClick={() => {
-                        handleUserProfile("addAvailabilityModal");
+                        handleOpenModal("addAvailabilityModal");
                       }}
                     >
                       + Add
@@ -454,6 +450,7 @@ const MyProfile = () => {
             <MyavailabilityModal
               chefProfileDetails={chefProfileDetails}
               availabilityData={availability}
+              handleSelectAvailabilityByDay={handleSelectAvailabilityByDay}
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "ratingReviewsModal" ? (
