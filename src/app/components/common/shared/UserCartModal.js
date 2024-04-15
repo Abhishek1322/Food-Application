@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import {
   getAllCart,
@@ -7,6 +7,7 @@ import {
   updateCartItem,
   createOrder,
   getUserAddress,
+  getSelectedAddress,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
 import CustomModal from "./CustomModal";
@@ -23,7 +24,8 @@ const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSelector = useUserSelector();
-  const { loading } = userSelector;
+  const { loading, previousSelectedAddress } = userSelector;
+  console.log("preeeeeeeeeeee", previousSelectedAddress);
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const toastId = useRef(null);
@@ -41,7 +43,7 @@ const UserCartModal = ({ close }) => {
   const [orderNumber, setOrderNumber] = useState("");
   const [orderId, setOrderId] = useState("");
   const [isLoading, setIsLoading] = useState("");
-  const [client,setClient] = useState("");
+  const [client, setClient] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -63,13 +65,8 @@ const UserCartModal = ({ close }) => {
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
-            const totalCartPrice = res?.data?.data?.data?.cartItems?.reduce(
-              (previousValue, currentValue) =>
-                Number(previousValue) + Number(currentValue.itemTotalPrice),
-              0
-            );
             setOrderType(res?.data?.data?.data?.type);
-            setTotalPrice(totalCartPrice);
+            setTotalPrice(res?.data?.data?.data?.subTotal);
           }
         },
       })
@@ -164,7 +161,7 @@ const UserCartModal = ({ close }) => {
   };
 
   // open modal
-  const handleOpenModal = (flag, id, book) => {
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -177,6 +174,7 @@ const UserCartModal = ({ close }) => {
   // select address
   const handleSelectAddress = (e, id, book) => {
     setSelectedAddress(id);
+    dispatch(getSelectedAddress(id));
     setBookingAddress(book);
   };
 
@@ -202,7 +200,7 @@ const UserCartModal = ({ close }) => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            setClient(res?.data?.data?.client_secret)
+            setClient(res?.data?.data?.client_secret);
             setOrderNumber(
               res?.data?.data?.orderId
                 ? res?.data?.data?.orderId
@@ -215,6 +213,13 @@ const UserCartModal = ({ close }) => {
       })
     );
   };
+
+  // get selected addresss
+  useEffect(() => {
+    if (previousSelectedAddress) {
+      setSelectedAddress(previousSelectedAddress);
+    }
+  }, [previousSelectedAddress]);
 
   return (
     <>
@@ -307,7 +312,7 @@ const UserCartModal = ({ close }) => {
                 </div>
 
                 <div className="checkouthomeoffice mt-3">
-                  {latestAddress && latestAddress.length > 0 ? (
+                  {latestAddress && latestAddress?.length > 0 ? (
                     <>
                       {latestAddress?.slice(0, 2)?.map((item, index) => (
                         <div key={index} className="checkouthome">

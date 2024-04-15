@@ -14,12 +14,16 @@ const initialState = {
   locationInfo: [],
   success: false,
   paymentIntent: null,
+  previousSelectedAddress: null,
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getSelectedAddress: (state, action) => {
+      state.previousSelectedAddress = action.payload;
+    },
     createPaymentIntent: (state) => {
       state.loading = true;
     },
@@ -284,6 +288,7 @@ export const {
   resetSuccess,
   createPaymentIntent,
   setCreatePaymentIntent,
+  getSelectedAddress
 } = userSilce.actions;
 
 export default userSilce.reducer;

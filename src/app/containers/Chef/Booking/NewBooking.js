@@ -63,7 +63,7 @@ const NewBooking = () => {
 
   // open booking detail page
   const handleOpenDetailPage = (id) => {
-    navigate(`/booking-details?id=${id}`);
+    navigate(`/booking-details?id=${id}`, { state: "/new-booking" });
   };
 
   return (
@@ -103,6 +103,20 @@ const NewBooking = () => {
                 >
                   Accepted
                 </button>
+
+                <button
+                  onClick={() => setBookingStatus("completed")}
+                  className="nav-link bookingNavHeader"
+                  id="nav-profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-profile"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-profile"
+                  aria-selected="false"
+                >
+                  Completed
+                </button>
               </div>
             </div>
           </nav>
@@ -124,7 +138,7 @@ const NewBooking = () => {
                             <div
                               key={index}
                               onClick={() => handleOpenDetailPage(item?._id)}
-                              className="homeProfileBox all-bookings-height"
+                              className="homeProfileBox all-bookings-height cursor-booking"
                             >
                               <div className="profileInfo">
                                 <img

@@ -128,17 +128,19 @@ const MenuDetails = () => {
                               />
                             </div>
                           </div>
-                          <h6 className="itemIs_">
+                          <h6 className="itemIs_ text-capitalize">
                             {item?.name.slice(0, 13)}{" "}
                             {item?.name.length > 13 && <span>...</span>}
                           </h6>
-                          <h6 className="category_">{item?.category}</h6>
+                          <h6 className="category_ text-capitalize">
+                            {item?.category}
+                          </h6>
                           <div className="sarahmenuprice">
                             <button className="itemsPrice_ " type="button">
                               £ {item?.price}
                             </button>
                           </div>
-                          <h1 className="food-by-chef">
+                          <h1 className="food-by-chef text-capitalize">
                             <span>By: </span>
                             {item?.userId?.userInfo?.firstName}{" "}
                             {item?.userId?.userInfo?.lastName.slice(0, 8)}

@@ -716,7 +716,7 @@ const SetupProfile = () => {
 
                                   <div className="flexBox justify-content-between mt-5">
                                     <h6 className="Headingsmall m-0">
-                                      Type of Food You Have Offer
+                                    Add Expertise
                                     </h6>
                                     <button
                                       type="button"

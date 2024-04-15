@@ -141,7 +141,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                 />
 
                 <div className="johnchatdetail">
-                  <h6 className="chatDates">{foodDetails?.item?.category}</h6>
+                  <h6 className="chatDates text-capitalize">{foodDetails?.item?.category}</h6>
                 </div>
               </div>
             </div>

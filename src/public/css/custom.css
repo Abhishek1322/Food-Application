@@ -1285,3 +1285,6 @@ input.searchtext.search-only-chef {
 .no-bank-found {
   height: 55vh;
 }
+.cursor-booking{
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import * as Images from "../../../../utilities/images";
 import { useDispatch } from "react-redux";
-import { deleteAddress, onErrorStopLoad } from "../../../../redux/slices/user";
+import { deleteAddress, getSelectedAddress, onErrorStopLoad } from "../../../../redux/slices/user";
 
 const DeleteAddressModal = (props) => {
   const { close, addressId, handleGetUserAddress } = props;
@@ -19,6 +19,7 @@ const DeleteAddressModal = (props) => {
           if (res.status === 200) {
             handleGetUserAddress();
             close();
+            dispatch(getSelectedAddress(null));
           }
         },
       })

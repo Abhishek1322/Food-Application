@@ -68,9 +68,11 @@ const ApiPath = {
     GET_CHEF_SINGLE_ORDER: "/order/order",
     CONFIRM_ORDER_OTP: "/order/deliver",
     RESEND_OTP: "/order/resend",
+    RESEND_BOOKING_OTP:"/bookings/resend",
     GET_BOOKING_REQUESTS: "/bookings/chef",
     GET_BOOKING_DETAIL: "/bookings/booking",
     ACCEPT_BOOKING: "/bookings/change-status",
+    CONFIRM_BOOKING_OTP: "/bookings/verify",
   },
 };
 
