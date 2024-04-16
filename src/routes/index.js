@@ -64,6 +64,7 @@ const Router = () => {
             path="/booking-details"
             element={<Containers.BookingDetails />}
           />
+          <Route path="/recent-orders" element={<Containers.RecentOrders />} />
         </Route>
 
         {/* AUTHENTICATED_ROUTES */}

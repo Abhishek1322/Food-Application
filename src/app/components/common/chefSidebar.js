@@ -86,6 +86,28 @@ const Chef_Sidebar = () => {
 
             <li
               className={
+                location.pathname === "/recent-orders"
+                  ? "sidebarLinks active"
+                  : "sidebarLinks"
+              }
+            >
+              <Link to="/recent-orders" className="sidebarItems">
+                <img
+                  src={Images.myordersideOranges}
+                  className="imgHide"
+                  alt="BookingImg"
+                />
+                <img
+                  src={Images.myorderside}
+                  className="imgShow"
+                  alt="BookingImg"
+                />
+                <span className="d-block">My Orders</span>
+              </Link>
+            </li>
+
+            <li
+              className={
                 location.pathname === "/setting"
                   ? "sidebarLinks active"
                   : "sidebarLinks"

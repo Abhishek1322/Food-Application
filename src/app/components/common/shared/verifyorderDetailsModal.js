@@ -8,6 +8,8 @@ import {
   confirmResendOtp,
   confirmOrderOtp,
   onErrorStopLoadChef,
+  confirmBookingOtp,
+  confirmBookingResendOtp,
 } from "../../../../redux/slices/chef";
 import { useChefSelector } from "../../../../redux/selector/chef";
 
@@ -15,6 +17,9 @@ const VerifyorderDetailsModal = ({
   close,
   recentOrderId,
   handleGetOrderDetails,
+  bookingId,
+  handleGetBookingDetails,
+  type,
 }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
@@ -28,7 +33,7 @@ const VerifyorderDetailsModal = ({
       toastId.current = toast.error(msg);
     }
   };
-
+  
   // submit otp
   const handleSubmitOtp = (e, status) => {
     e.preventDefault();
@@ -38,20 +43,36 @@ const VerifyorderDetailsModal = ({
       return;
     }
     let params = {
-      id: recentOrderId,
+      id:
+        type === "order" ? recentOrderId : type === "booking" ? bookingId : "",
       otp: otp,
     };
-    dispatch(
-      confirmOrderOtp({
-        ...params,
-        cb(res) {
-          if (res.status === 200) {
-            close();
-            handleGetOrderDetails();
-          }
-        },
-      })
-    );
+
+    if (type === "order") {
+      dispatch(
+        confirmOrderOtp({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              close();
+              handleGetOrderDetails();
+            }
+          },
+        })
+      );
+    } else {
+      dispatch(
+        confirmBookingOtp({
+          ...params,
+          cb(res) {
+            if (res.status === 200) {
+              close();
+              handleGetBookingDetails();
+            }
+          },
+        })
+      );
+    }
   };
 
   // stop loader on page refresh
@@ -64,21 +85,35 @@ const VerifyorderDetailsModal = ({
     e.preventDefault();
     setIsLoading(status);
     let params = {
-      id: recentOrderId,
+      id:
+        type === "order" ? recentOrderId : type === "booking" ? bookingId : "",
     };
-    dispatch(
-      confirmResendOtp({
-        ...params,
-        cb(res) {},
-      })
-    );
+    if (type === "order") {
+      dispatch(
+        confirmResendOtp({
+          ...params,
+          cb(res) {},
+        })
+      );
+    } else {
+      dispatch(
+        confirmBookingResendOtp({
+          ...params,
+          cb(res) {},
+        })
+      );
+    }
   };
 
   return (
     <>
       <div className="verifyOrderDetailModal mt-4">
         <img src={Images.verifyDeliveredImg} className="img-fluid" />
-        <p className="accountDeleted mt-5">Verify Order Delivery</p>
+        <p className="accountDeleted mt-5">
+          {type === "order"
+            ? "Verify Order Delivery"
+            : "Verify Booking Complete"}
+        </p>
         <p className="accountdeletetxt ms-5 me-5 mb-4">
           Enter the OTP that we sent on customer’s email.
         </p>

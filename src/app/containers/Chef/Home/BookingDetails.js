@@ -16,6 +16,7 @@ import UserDeleteChat from "../../../components/common/shared/UserDeleteChat";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
+import VerifyorderDetailsModal from "../../../components/common/shared/verifyorderDetailsModal";
 
 const BookingDetails = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const BookingDetails = () => {
   const location = useLocation();
   const authData = useAuthSelector();
   const chefReducer = useChefSelector();
-  const { search } = location;
+  const { search, state } = location;
   const searchParams = new URLSearchParams(search);
   const id = searchParams.get("id");
   const [bookingDetails, setBookingDetails] = useState([]);
@@ -87,11 +88,7 @@ const BookingDetails = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            if (status === "accepted") {
-              handleGetBookingDetails();
-            } else {
-              navigate(`/home`);
-            }
+            handleGetBookingDetails();
           }
         },
       })
@@ -124,7 +121,7 @@ const BookingDetails = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 col-sm-12">
             <div className="insideCommonHeader d-flex">
-              <Link to="/home" className="d-flex">
+              <Link to={state || "/home"} className="d-flex">
                 <img
                   src={Images.backArrowpassword}
                   className="innerHeaderArrow"
@@ -135,9 +132,7 @@ const BookingDetails = () => {
             </div>
           </div>
           <div className="col-lg-6 col-sm-12 d-flex justify-content-end">
-            {bookingDetails?.status === "accepted" ? (
-              ""
-            ) : (
+            {bookingDetails?.status === "pending" ? (
               <div className="orderItems_ flexBox ">
                 <button
                   onClick={(e) => handleAcceptOrderBookings(e, "cancelled")}
@@ -159,6 +154,28 @@ const BookingDetails = () => {
                   )}
                 </button>
               </div>
+            ) : bookingDetails?.status === "accepted" ? (
+              <button
+                onClick={(e) => handleAcceptOrderBookings(e, "reached")}
+                className="cancelOrder_ me-4 w-0"
+              >
+                Chef Reached
+                {chefReducer?.loading && isLoading === "reached" && (
+                  <span className="spinner-border spinner-border-sm ms-1"></span>
+                )}
+              </button>
+            ) : bookingDetails?.status === "reached" ? (
+              <button
+                onClick={() => handleOpenModal("bookingVerify")}
+                className="cancelOrder_ me-4 w-0"
+              >
+                Booking Complete
+                {chefReducer?.loading && isLoading === "completed" && (
+                  <span className="spinner-border spinner-border-sm ms-1"></span>
+                )}
+              </button>
+            ) : (
+              ""
             )}
           </div>
         </div>
@@ -203,7 +220,7 @@ const BookingDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <button
+                  {/* <button
                     onClick={() => {
                       handleOpenModal("chatAboutOrder");
                     }}
@@ -216,13 +233,15 @@ const BookingDetails = () => {
                       className="availableimg"
                     />
                     <span className="availableheading">Chat</span>
-                  </button>
+                  </button> */}
                 </div>
                 <div className="venuDetail">
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Date</h4>
                     <p className="venushedule">
-                    {moment(bookingDetails?.date, "DD-MM-YYYY")?.format("MMM DD, YYYY")}
+                      {moment(bookingDetails?.date, "DD-MM-YYYY")?.format(
+                        "MMM DD, YYYY"
+                      )}
                     </p>
                   </div>
                   <div className="venuHere venuThere">
@@ -269,11 +288,10 @@ const BookingDetails = () => {
             : "commonWidth customContent"
         }
         ids={
-          modalDetail.flag === "chatAboutOrder"
-            ? "orderchat"
-            : modalDetail.flag === "reportchat"
-            ? "orderchat"
-            : modalDetail.flag === "deletechat"
+          modalDetail.flag === "chatAboutOrder" ||
+          modalDetail.flag === "reportchat" ||
+          modalDetail.flag === "deletechat" ||
+          modalDetail.flag === "bookingVerify"
             ? "orderchat"
             : ""
         }
@@ -294,6 +312,13 @@ const BookingDetails = () => {
               allChats={allChats}
               sender_id={bookingDetails?.chefId?._id}
               sendRoomId={`${bookingDetails?.userId?._id}-${bookingDetails?.chefId?._id}`}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "bookingVerify" ? (
+            <VerifyorderDetailsModal
+              type="booking"
+              bookingId={id}
+              handleGetBookingDetails={handleGetBookingDetails}
               close={() => handleOnCloseModal()}
             />
           ) : (

@@ -65,12 +65,12 @@ const User_Navbar = () => {
   function success(pos) {
     var crd = pos.coords;
     handleGetLocationInfo(crd.latitude, crd.longitude);
-    dispatch(
-      getCurrentLocation({
-        lat: crd.latitude,
-        lng: crd.longitude,
-      })
-    );
+    // dispatch(
+    //   getCurrentLocation({
+    //     lat: crd.latitude,
+    //     lng: crd.longitude,
+    //   })
+    // );
   }
 
   // call get location function
@@ -81,7 +81,7 @@ const User_Navbar = () => {
     ) {
       handleGetLocationInfo();
     }
-  }, [allUserData?.currentLocation?.lat && allUserData?.currentLocation?.lng]);
+  }, [allUserData?.currentLocation?.lat, allUserData?.currentLocation?.lng]);
 
   // getLocationInfo
   const handleGetLocationInfo = (lat, lng) => {

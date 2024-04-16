@@ -129,6 +129,7 @@ const Chef_Navbar = () => {
             {pathname === "/home" ||
             pathname === "/menu" ||
             pathname === "/new-booking" ||
+            pathname === "/recent-orders" ||
             pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6">
@@ -146,6 +147,8 @@ const Chef_Navbar = () => {
                     <h1 className="chefCommonHeader">My Bookings</h1>
                   ) : pathname === "/setting" ? (
                     <h1 className="chefCommonHeader">Setting</h1>
+                  ) : pathname === "/recent-orders" ? (
+                    <h1 className="chefCommonHeader">Recent Orders</h1>
                   ) : (
                     ""
                   )}

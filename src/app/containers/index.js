@@ -38,6 +38,7 @@ import UserContactUs from "./Settings/UserContactUs";
 import MenuDetails from "./User/MenuDetails";
 import ThankYou from "./Thank-you";
 import BankDetails from "./Chef/BankDetails";
+import RecentOrders from "./Chef/RecentOrders.js";
 
 export {
   Login,
@@ -80,4 +81,5 @@ export {
   UserContactUs,
   MenuDetails,
   ThankYou,
+  RecentOrders,
 };

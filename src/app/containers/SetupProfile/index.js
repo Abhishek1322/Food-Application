@@ -399,7 +399,7 @@ const SetupProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          if (res.status === 200) {
+          if (res?.status === 200) {
             setActiveTab(res?.data?.data?.chefInfo?.type);
             setExperticeValue(res?.data?.data?.chefInfo?.expertise);
             setFormData({
@@ -407,9 +407,11 @@ const SetupProfile = () => {
               bio: res?.data?.data?.chefInfo?.bio,
             });
             setAddress(res?.data?.data?.chefInfo?.address);
-            setLatitude(res?.data?.data?.chefInfo?.coordinates?.coordinates[0]);
+            setLatitude(
+              res?.data?.data?.chefInfo?.coordinates?.coordinates?.[0]
+            );
             setLongitude(
-              res?.data?.data?.chefInfo?.coordinates?.coordinates[1]
+              res?.data?.data?.chefInfo?.coordinates?.coordinates?.[1]
             );
             const removeId = res?.data?.data?.chefInfo?.availability?.map(
               (item, index) => {
@@ -716,7 +718,7 @@ const SetupProfile = () => {
 
                                   <div className="flexBox justify-content-between mt-5">
                                     <h6 className="Headingsmall m-0">
-                                      Type of Food You Have Offer
+                                      Add Expertise
                                     </h6>
                                     <button
                                       type="button"

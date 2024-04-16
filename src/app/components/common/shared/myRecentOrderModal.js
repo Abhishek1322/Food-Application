@@ -148,7 +148,7 @@ const MyRecentOrderModal = ({
                   <p className="userInfo">Order From</p>
                 </div>
               </div>
-              <div className="chat_">
+              {/* <div className="chat_">
                 <img
                   src={Images.orderMsgImg}
                   className="orderchat"
@@ -156,7 +156,7 @@ const MyRecentOrderModal = ({
                     handleOpenModal("chatAboutOrder");
                   }}
                 />
-              </div>
+              </div> */}
             </div>
             <p className="notificationText pt-3">Delivery Address</p>
             <p className="timeOrder_">{orderDetail?.address?.city}</p>
@@ -187,7 +187,7 @@ const MyRecentOrderModal = ({
                       className="homeprofile"
                     />
                     <div className="detailInfo">
-                      <p className="userInfo">{item?.category}</p>
+                      <p className="userInfo text-capitalize">{item?.category}</p>
                       <p className="userProfile">{item?.name}</p>
                       <p className="orderPrice">£{item?.netPrice}.00</p>
                     </div>

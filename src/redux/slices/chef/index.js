@@ -11,6 +11,18 @@ export const chefSilce = createSlice({
   name: "chef",
   initialState,
   reducers: {
+    confirmBookingResendOtp: (state) => {
+      state.loading = true;
+    },
+    setConfirmBookingResendOtp: (state) => {
+      state.loading = false;
+    },
+    confirmBookingOtp: (state) => {
+      state.loading = true;
+    },
+    setConfirmBookingOtp: (state) => {
+      state.loading = false;
+    },
     acceptBooking: (state) => {
       state.loading = true;
     },
@@ -36,14 +48,12 @@ export const chefSilce = createSlice({
     setConfirmResendOtp: (state, action) => {
       state.loading = false;
     },
-
     confirmOrderOtp: (state) => {
       state.loading = true;
     },
     setConfirmOrderOtp: (state, action) => {
       state.loading = false;
     },
-
     getSingleOrderDetail: (state) => {
       state.loading = true;
     },
@@ -90,6 +100,10 @@ export const {
   setGetBookingDetail,
   acceptBooking,
   setAcceptBooking,
+  confirmBookingOtp,
+  setConfirmBookingOtp,
+  confirmBookingResendOtp,
+  setConfirmBookingResendOtp,
 } = chefSilce.actions;
 
 export default chefSilce.reducer;

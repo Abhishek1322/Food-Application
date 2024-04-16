@@ -3,6 +3,7 @@ import * as Images from "../../../../utilities/images";
 import { userLogout, onErrorStopLoad } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getSelectedAddress } from "../../../../redux/slices/user";
 
 const LogoutModal = (props) => {
   const { close } = props;
@@ -16,6 +17,7 @@ const LogoutModal = (props) => {
         cb(res) {
           if (res.status === 200) {
             navigate("/");
+            dispatch(getSelectedAddress(null));
           }
         },
       })

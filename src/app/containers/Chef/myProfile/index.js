@@ -65,7 +65,7 @@ const MyProfile = () => {
   useEffect(() => {
     chefProfileDetails();
     handleSelectAvailabilityByDay();
-  }, []);
+  }, [userId]);
 
   // select availability by day
   const handleSelectAvailabilityByDay = () => {
@@ -335,7 +335,7 @@ const MyProfile = () => {
                 {/* chef expertise  */}
                 <div className="expertise">
                   <div className="myexpertise">
-                    <p className="nameheading">Type of Food You Have Offer</p>
+                    <p className="nameheading">Add Expertise</p>
                     <button
                       className="modalclearAll"
                       onClick={() => {
