@@ -18,7 +18,7 @@ const UserNotification = ({ updateNotification, close }) => {
   const { userInfo } = authData;
   const { role } = userInfo;
   const [notification, setNotification] = useState([]);
-  
+
   // stop loader on page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -68,7 +68,8 @@ const UserNotification = ({ updateNotification, close }) => {
             } else if (
               (role === "chef" && type === "bookings") ||
               type === "booking-accepted" ||
-              type === "booking-cancelled"
+              type === "booking-cancelled" ||
+              type === "booking-reached"
             ) {
               navigate(`/booking-details?id=${bookingId}`);
               close();
