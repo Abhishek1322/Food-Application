@@ -103,7 +103,6 @@ const NewBooking = () => {
                 >
                   Accepted
                 </button>
-
                 <button
                   onClick={() => setBookingStatus("completed")}
                   className="nav-link bookingNavHeader"
@@ -175,7 +174,7 @@ const NewBooking = () => {
                                     className="read-more-desp"
                                   >
                                     {isReadMore && readMoreId === item?._id
-                                      ? "Less More..."
+                                      ? "Less..."
                                       : "More..."}
                                   </span>
                                 )}

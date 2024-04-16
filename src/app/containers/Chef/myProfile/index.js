@@ -65,7 +65,7 @@ const MyProfile = () => {
   useEffect(() => {
     chefProfileDetails();
     handleSelectAvailabilityByDay();
-  }, []);
+  }, [userId]);
 
   // select availability by day
   const handleSelectAvailabilityByDay = () => {

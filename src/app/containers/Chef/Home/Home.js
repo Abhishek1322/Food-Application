@@ -195,7 +195,7 @@ const HomeRequsest = () => {
                                   className="read-more-desp"
                                 >
                                   {isReadMore && readMoreId === item?._id
-                                    ? "Less More..."
+                                    ? "Less..."
                                     : "More..."}
                                 </span>
                               )}

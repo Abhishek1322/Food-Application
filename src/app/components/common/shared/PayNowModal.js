@@ -53,7 +53,7 @@ const PayNowModal = ({
                 type="submit"
                 disabled={!stripe || loading}
               >
-                Pay £{orderPrice}.00
+                Pay £{orderPrice?.toFixed(2)}
                 {loading && (
                   <span className="spinner-border spinner-border-sm ms-1"></span>
                 )}

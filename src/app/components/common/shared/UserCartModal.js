@@ -25,7 +25,6 @@ const UserCartModal = ({ close }) => {
   const navigate = useNavigate();
   const userSelector = useUserSelector();
   const { loading, previousSelectedAddress } = userSelector;
-  console.log("preeeeeeeeeeee", previousSelectedAddress);
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const toastId = useRef(null);
@@ -44,6 +43,7 @@ const UserCartModal = ({ close }) => {
   const [orderId, setOrderId] = useState("");
   const [isLoading, setIsLoading] = useState("");
   const [client, setClient] = useState("");
+  const [serviceCharges, setServiceCharges] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -66,7 +66,14 @@ const UserCartModal = ({ close }) => {
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
             setOrderType(res?.data?.data?.data?.type);
-            setTotalPrice(res?.data?.data?.data?.subTotal);
+            const serviceCharges =
+              (res?.data?.data?.additionalChargesInPercent /
+                res?.data?.data?.data?.subTotal) *
+              100;
+            setTotalPrice(
+              Number(res?.data?.data?.data?.subTotal) + serviceCharges
+            );
+            setServiceCharges(serviceCharges);
           }
         },
       })
@@ -395,7 +402,7 @@ const UserCartModal = ({ close }) => {
                 <div className="order-now-pay-total">
                   <div className="total-price-order">
                     <h6 className="totaltxt">Total</h6>
-                    <p className="price">£{totalPrice}.00</p>
+                    <p className="price">£{totalPrice.toFixed(2)}</p>
                   </div>
                   <button
                     onClick={() => handleCreatePaymentIntent("pay")}

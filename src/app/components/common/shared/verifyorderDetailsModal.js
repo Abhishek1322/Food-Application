@@ -33,7 +33,7 @@ const VerifyorderDetailsModal = ({
       toastId.current = toast.error(msg);
     }
   };
-  console.log("typetypetype", type);
+  
   // submit otp
   const handleSubmitOtp = (e, status) => {
     e.preventDefault();

@@ -159,7 +159,7 @@ const BookingDetails = () => {
                 onClick={(e) => handleAcceptOrderBookings(e, "reached")}
                 className="cancelOrder_ me-4 w-0"
               >
-                Booking Complete
+                Chef Reached
                 {chefReducer?.loading && isLoading === "reached" && (
                   <span className="spinner-border spinner-border-sm ms-1"></span>
                 )}
@@ -169,7 +169,7 @@ const BookingDetails = () => {
                 onClick={() => handleOpenModal("bookingVerify")}
                 className="cancelOrder_ me-4 w-0"
               >
-                Booking Verify
+                Booking Complete
                 {chefReducer?.loading && isLoading === "completed" && (
                   <span className="spinner-border spinner-border-sm ms-1"></span>
                 )}
