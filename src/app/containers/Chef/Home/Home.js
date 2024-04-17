@@ -303,7 +303,7 @@ const HomeRequsest = () => {
                                     }
                                     className="cancelOrder d-flex align-items-center gap-2"
                                   >
-                                    CANCEL
+                                    REJECT
                                     {chefData?.loading &&
                                       orderLoadingId === item?._id &&
                                       isLoading === "cancelled" && (

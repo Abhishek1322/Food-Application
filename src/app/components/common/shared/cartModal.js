@@ -157,7 +157,7 @@ const CartModal = ({ close, updateCartCount }) => {
                         alt="cartImg"
                       />
                       <div className="insideModal">
-                        <h6 className="foodtext">
+                        <h6 className="foodtext text-capitalize">
                           {item?.menuItemId?.category}
                         </h6>
                         <h5 className="foodItem">{item?.menuItemId?.name}</h5>

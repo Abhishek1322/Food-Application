@@ -739,7 +739,7 @@ const SetupProfile = () => {
                                       {experticeValue
                                         ?.filter((value) => value !== "")
                                         ?.map((value, index) => (
-                                          <li className="expertiseList">
+                                          <li key={index} className="expertiseList">
                                             {value}
                                           </li>
                                         ))}

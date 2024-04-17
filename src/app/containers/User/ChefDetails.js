@@ -35,7 +35,7 @@ const ChefDetails = () => {
     title: "",
     flag: "",
   });
-
+  
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -52,7 +52,7 @@ const ChefDetails = () => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            setChefData(res.data.data);
+            setChefData(res?.data?.data);
             setIsLoading(false);
           }
         },
@@ -165,20 +165,23 @@ const ChefDetails = () => {
               </div>
               <div className="col-lg-7 col-md-6 col-12 ">
                 <div className="flexBox justify-content-end contentLast">
-                  <button
-                    className="sarahavailablebtn flexBox"
-                    type="button"
-                    onClick={() => {
-                      handleOpenModal("availabilityModal");
-                    }}
-                  >
-                    <img
-                      src={Images.TimeSquare}
-                      alt="timesquareimage"
-                      className="availableimg"
-                    />
-                    <span className="availableheading">Availability</span>
-                  </button>
+                  {chefData?.chefInfo?.isAvailable && (
+                    <button
+                      className="sarahavailablebtn flexBox"
+                      type="button"
+                      onClick={() => {
+                        handleOpenModal("availabilityModal");
+                      }}
+                    >
+                      <img
+                        src={Images.TimeSquare}
+                        alt="timesquareimage"
+                        className="availableimg"
+                      />
+                      <span className="availableheading">Availability</span>
+                    </button>
+                  )}
+
                   <button
                     onClick={() => {
                       handleOpenModal("chatModal");
@@ -257,7 +260,7 @@ const ChefDetails = () => {
           </div>
           {/* chef menu section  */}
           <div className="sarahsmenu">
-            <h2 className="innerDummyHeading">
+            <h2 className="innerDummyHeading text-capitalize">
               {" "}
               {chefData?.userInfo?.firstName}’s Menu
             </h2>
@@ -291,10 +294,12 @@ const ChefDetails = () => {
                             </div>
                           </div>
                           <h6 className="itemIs_">{val?.name}</h6>
-                          <h6 className="category_">{val?.category}</h6>
+                          <h6 className="category_ text-capitalize">
+                            {val?.category}
+                          </h6>
                           <div className="sarahmenuprice">
                             <button className="itemsPrice_ " type="button">
-                              £ {val?.price}
+                              £ {val?.price}.00
                             </button>
                             <div className="sarahbasket">
                               <img

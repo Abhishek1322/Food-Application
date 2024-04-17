@@ -18,7 +18,7 @@ const Dashboard = () => {
         </div>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6 col-md-6">
+            <div className="col-lg-5 col-md-5">
               <div className="headings">
                 {/* <h5 className="orangeHeading">Flavorful Delights</h5> */}
                 <h2 className="blackHeading">
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
                   <br /> Experience Now!
                 </h2>
-                <p className="greyHeading mt-2 mb-2">
+                <p className="greyHeading mt-3 mb-2">
                   Embark on a global culinary adventure with ServeItLocal, your ultimate gateway to the rich
                   tapestry of local flavors worldwide! Book a skilled chef now and immerse yourself in a
                   unique culinary journey that transcends borders. Our platform is not just a service; it's a
@@ -39,7 +39,7 @@ const Dashboard = () => {
                   diverse and authentic global flavors.<br />
                   <strong>ServeItLocal: Explore. Savor. Connect.</strong>
                 </p>
-                <div className="appButtons mt-3">
+                <div className="appButtons mt-4">
                   <a href="#" className="orngButtons me-3  ">
                     <img
                       className="appImages  me-2 "
@@ -55,7 +55,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6 col-md-6">
+            <div className="col-lg-7 col-md-7">
               <div className="rightImg">
                 <img
                   className="img-fluid chef"

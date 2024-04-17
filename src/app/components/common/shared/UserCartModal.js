@@ -67,8 +67,8 @@ const UserCartModal = ({ close }) => {
             setChefId(res?.data?.data?.data?.chefId);
             setOrderType(res?.data?.data?.data?.type);
             const serviceCharges =
-              (res?.data?.data?.additionalChargesInPercent /
-                res?.data?.data?.data?.subTotal) *
+              (Number(res?.data?.data?.additionalChargesInPercent) *
+                Number(res?.data?.data?.data?.subTotal)) /
               100;
             setTotalPrice(
               Number(res?.data?.data?.data?.subTotal) + serviceCharges
@@ -247,7 +247,9 @@ const UserCartModal = ({ close }) => {
                       alt="cartImg"
                     />
                     <div className="insideModal">
-                      <h6 className="foodtext">{item?.menuItemId?.category}</h6>
+                      <h6 className="foodtext text-capitalize">
+                        {item?.menuItemId?.category}
+                      </h6>
                       <h5 className="foodItem">{item?.menuItemId?.name}</h5>
                       <h6 className="foodPrice">£{item?.netPrice}.00</h6>
                       <div className="quantity">
@@ -318,10 +320,10 @@ const UserCartModal = ({ close }) => {
                   </div>
                 </div>
 
-                <div className="checkouthomeoffice mt-3">
+                <div className="checkouthomeoffice mt-3 all-address-checkout">
                   {latestAddress && latestAddress?.length > 0 ? (
                     <>
-                      {latestAddress?.slice(0, 2)?.map((item, index) => (
+                      {latestAddress?.slice(0, 3)?.map((item, index) => (
                         <div key={index} className="checkouthome">
                           <div className="homedropdown mt-2">
                             <h6 className="notificationText">{item?.type}</h6>
@@ -398,7 +400,6 @@ const UserCartModal = ({ close }) => {
                 >
                   + Add More Items
                 </button>
-
                 <div className="order-now-pay-total">
                   <div className="total-price-order">
                     <h6 className="totaltxt">Total</h6>

@@ -235,7 +235,8 @@ const UserChefHome = () => {
                 </li>
               </ul>
             </div>
-            <div className="recipe-lists select-expertise-outer">
+            <div className="recipe-lists select-expertise-outer hometype_">
+            <span className="chefName">Food type :</span>
               <Autocomplete
                 multiple
                 id="checkboxes-tags-demo"
@@ -259,7 +260,7 @@ const UserChefHome = () => {
                   <TextField
                     {...params}
                     placeholder={
-                      expertice?.length > 0 ? "" : "Search Using Menu"
+                      expertice?.length > 0 ? "" : "Food type"
                     }
                   />
                 )}
