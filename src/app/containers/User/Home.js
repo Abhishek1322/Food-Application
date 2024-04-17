@@ -232,6 +232,7 @@ const HomeUser = () => {
               </ul>
             </div>
             <div className="recipe-lists select-expertise-outer">
+            <span className="chefName">Food type :</span>
               <Autocomplete
                 multiple
                 id="checkboxes-tags-demo"
@@ -254,7 +255,7 @@ const HomeUser = () => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    placeholder={!expertice?.length > 0 && "Search and Select"}
+                    placeholder={!expertice?.length > 0 && "Select type"}
                   />
                 )}
               />

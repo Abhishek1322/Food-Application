@@ -2754,3 +2754,39 @@ body {
 .paidAmmount-delivered {
   background: #2E3333;
 }
+.Userordersection {
+  max-height: 695px;
+  overflow-y: scroll;
+}
+.managedrop .dropdown-menu li {
+  cursor: pointer;
+}
+.recipe-lists.select-expertise-outer {
+  width: 260px;
+  display: flex;
+  align-items: center;
+}
+.recipe-lists.select-expertise-outer .chefName {
+  margin-right: 6px;
+}
+.recipe-lists.select-expertise-outer .css-1h51icj-MuiAutocomplete-root {
+  max-width: 157px;
+  width: 100%;
+}
+.recipe-lists.select-expertise-outer .css-1h51icj-MuiAutocomplete-root fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+.recipe-lists.select-expertise-outer .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline:after {
+  content: "";
+  background: #ffffff;
+  border: none;
+  display: inline-block;
+  padding: 0px 0px 8px 16px;
+  background-image: url(../images/downArrow.svg);  background-repeat: no-repeat;
+  color: #abadad;
+  font-size: 8px;
+  margin-left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}

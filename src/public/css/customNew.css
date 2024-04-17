@@ -2010,6 +2010,7 @@ p {
 
 .Userordersection .modalfooddelivery {
   align-items: center;
+  border-radius: 15px;
 }
 
 #userorderdeliver .modal-body {
@@ -2200,6 +2201,7 @@ p {
 
 .foodmodalbtnDeliver {
   background-color: #2e3333;
+  border-radius: 15px;
 }
 
 /* .mainBox.inActiveSidebar 
@@ -2554,10 +2556,6 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   margin-top: 0;
 }
 
-.cartslists-outer {
-  max-height: 35vh;
-  overflow-y: auto;
-}
 
 .expertise-outer-main {
   height: 65vh;
@@ -2574,10 +2572,13 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .usercartcheck-outer {
-  height: 57vh;
+  overflow-y: auto;
+  height: calc(100vh - 308px);
+}
+.cartslists-outer {
+  height: calc(100vh - 480px);
   overflow-y: auto;
 }
-
 .disable-slot {
   opacity: 0.7;
   pointer-events: none;
