@@ -1,4 +1,3 @@
-import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import User_Sidebar from "../components/common/userSidebar";
 import User_Navbar from "../components/common/userNavbar";
@@ -11,9 +10,11 @@ const UserLayout = () => {
     "/user-myprofile",
     "/user-editprofile",
     "/user-manageaddress",
+    "/thank-you",
   ];
   const authData = useAuthSelector();
   const isAuthenticated = localStorage.getItem("authToken");
+
 
   return (
     <>

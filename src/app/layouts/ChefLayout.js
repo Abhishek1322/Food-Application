@@ -7,7 +7,7 @@ import { useAuthSelector } from "../../redux/selector/auth";
 const Chef_Layout = () => {
   const location = useLocation();
   const { pathname } = location;
-  const checkRoutes = ["/chef-profile", "/edit-chef-profile"];
+  const checkRoutes = ["/chef-profile", "/edit-chef-profile", "/bank-details"];
   const authData = useAuthSelector();
   const isAuthenticated = localStorage.getItem("authToken");
 

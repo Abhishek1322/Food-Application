@@ -7,14 +7,28 @@ const initialState = {
   userInfo: [],
   userEmail: {},
   showSideBar: false,
+  bankInfo: null,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    addBankDetails: (state) => {
+    updateBankDetails: (state) => {
+      state.loading = true;
+    },
+    setUpdateBankDetails: (state) => {
       state.loading = false;
+    },
+    getBankDetails: (state) => {
+      state.loading = false;
+    },
+    setGetBankDetails: (state, action) => {
+      state.loading = false;
+      state.bankInfo = action.payload;
+    },
+    addBankDetails: (state) => {
+      state.loading = true;
     },
     setAddBankDetails: (state) => {
       state.loading = false;
@@ -159,6 +173,10 @@ export const {
   setGetExpertise,
   addBankDetails,
   setAddBankDetails,
+  getBankDetails,
+  setGetBankDetails,
+  updateBankDetails,
+  setUpdateBankDetails,
 } = authSlice.actions;
 
 export default authSlice.reducer;

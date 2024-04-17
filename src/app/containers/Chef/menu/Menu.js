@@ -5,22 +5,26 @@ import EditMenuModal from "../../../components/common/shared/editMenuModal";
 import DeleteMenuModal from "../../../components/common/shared/DeleteMenuModal";
 import AddmenuItemModal from "../../../components/common/shared/addmenuItemModal";
 import FoodDetailModal from "../../../components/common/shared/foodDetailModal";
+import CheckBankAccount from "../../../components/common/shared/CheckBankAccount";
 import { getMenusLists, onErrorStopLoad } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { useWebSelector } from "../../../../redux/selector/web";
 import { FadeLoader } from "react-spinners";
+import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const webSelector = useWebSelector();
+  const authSelector = useAuthSelector();
+  const { bankInfo } = authSelector;
   const [key, setKey] = useState(Math.random());
   const [menuList, setMenuList] = useState([]);
   const [menuId, setMenuId] = useState("");
   const [searchMenu, setSearchMenu] = useState("");
   const [pageCount, setPageCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -37,7 +41,7 @@ const Menu = () => {
     setKey(Math.random());
   };
   // open modal
-  const handleUserProfile = (flag, id) => {
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -59,6 +63,7 @@ const Menu = () => {
 
   // get all menu lists
   const menuListAll = (page = currentPage) => {
+    setIsLoading(true);
     let params = {
       limit: 10,
       page: page,
@@ -83,6 +88,15 @@ const Menu = () => {
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected + 1);
     menuListAll(selected + 1);
+  };
+
+  // check account status
+  const handleCheckAccountStatus = () => {
+    if (bankInfo && bankInfo?.data?.length > 0) {
+      handleOpenModal("addMenuItemModal");
+    } else {
+      handleOpenModal("checkAccountStatus");
+    }
   };
 
   return (
@@ -113,7 +127,7 @@ const Menu = () => {
                     <div
                       className="menuItems "
                       onClick={() => {
-                        handleUserProfile("addMenuItemModal");
+                        handleCheckAccountStatus();
                       }}
                     >
                       <i className="fas fa-plus plusmenuImg"></i>
@@ -150,7 +164,7 @@ const Menu = () => {
 
                                 <img
                                   onClick={() => {
-                                    handleUserProfile("foodDetail", item._id);
+                                    handleOpenModal("foodDetail", item._id);
                                   }}
                                   src={item.image}
                                   alt="logo"
@@ -176,7 +190,7 @@ const Menu = () => {
                                         <div
                                           className="flexBox flex-dropdown pb-3 "
                                           onClick={() => {
-                                            handleUserProfile(
+                                            handleOpenModal(
                                               "editMenuModal",
                                               item._id
                                             );
@@ -192,7 +206,7 @@ const Menu = () => {
                                         <div
                                           className="flexBox flex-dropdown"
                                           onClick={() => {
-                                            handleUserProfile(
+                                            handleOpenModal(
                                               "deleteMenuModal",
                                               item._id
                                             );
@@ -264,12 +278,13 @@ const Menu = () => {
             : ""
         }
         ids={
-          modalDetail.flag === "editMenuModal"
-            ? "editMenu"
-            : "deleteMenuModal"
+          modalDetail.flag === "editMenuModal" ||
+          modalDetail.flag === "deleteMenuModal" ||
+          modalDetail.flag === "addMenuItemModal" || 
+          modalDetail.flag === "foodDetail"
             ? "deleteMenu"
-            : "addMenuItemModal"
-            ? "addMenuItem"
+            : modalDetail.flag === "checkAccountStatus"
+            ? "logout"
             : ""
         }
         child={
@@ -294,9 +309,11 @@ const Menu = () => {
             <FoodDetailModal
               menuId={menuId}
               menuListAll={menuListAll}
-              handleOpenInnerModal={(flag, id) => handleUserProfile(flag, id)}
+              handleOpenInnerModal={(flag, id) => handleOpenModal(flag, id)}
               close={() => handleOnCloseModal()}
             />
+          ) : modalDetail.flag === "checkAccountStatus" ? (
+            <CheckBankAccount close={() => handleOnCloseModal()} />
           ) : (
             ""
           )

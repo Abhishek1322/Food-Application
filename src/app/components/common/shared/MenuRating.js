@@ -71,7 +71,7 @@ const MenuRating = ({ menuId,handleGetChefDetails }) => {
           {menuRatingData.length > 0 ? (
             <>
               {menuRatingData?.map((item, index) => (
-                <div className="chefrateimg">
+                <div key={index} className="chefrateimg">
                   <img
                     src={
                       item?.userId?.userInfo?.profilePhoto

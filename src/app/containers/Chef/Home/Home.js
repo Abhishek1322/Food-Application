@@ -4,51 +4,25 @@ import { useDispatch } from "react-redux";
 import {
   getRecentOrder,
   acceptOrder,
-  getLatestOrder,
   onErrorStopLoadChef,
   getBookingRequests,
 } from "../../../../redux/slices/chef";
 import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import { useChefSelector } from "../../../../redux/selector/chef";
-import CustomModal from "../../../components/common/shared/CustomModal";
-import Myorder from "../../../components/common/shared/myorderModal";
 import { FadeLoader } from "react-spinners";
 
 const HomeRequsest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const chefData = useChefSelector();
-  const { loading } = chefData;
   const [isLoading, setIsloading] = useState("");
-  const [key, setKey] = useState(Math.random());
   const [bookingRequest, setBookingRequest] = useState([]);
   const [recentOrders, setGetRecentOrders] = useState([]);
   const [showLoading, setShowLoading] = useState(false);
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-
-  const handleOpenModal = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
+  const [isReadMore, setIsReadMore] = useState(false);
+  const [readMoreId, setReadMoreId] = useState("");
+  const [orderLoadingId, setOrderLoadingId] = useState("");
 
   // get recent order
   const handleRecentOrder = () => {
@@ -83,12 +57,13 @@ const HomeRequsest = () => {
   // navigate on recent order page
   const handleOpenRecentOder = (e, id) => {
     e.preventDefault();
-    navigate(`/order-details?recent-order=${id}`);
+    navigate(`/order-details?recent-order=${id}`, { state: "/home" });
   };
 
   //accept and reject order
   const handleAcceptOrder = (e, id, status) => {
     e.stopPropagation();
+    setOrderLoadingId(id);
     setIsloading(status);
     let params = {
       id: id,
@@ -100,7 +75,7 @@ const HomeRequsest = () => {
         cb(res) {
           if (res.status === 200) {
             if (status === "accepted") {
-              navigate(`/order-details?recent-order=${id}`);
+              navigate(`/order-details?recent-order=${id}`, { state: "/home" });
             } else {
               handleRecentOrder();
             }
@@ -127,6 +102,18 @@ const HomeRequsest = () => {
       })
     );
   }, []);
+
+  // toggle read more
+  const handleReadMore = (e, id) => {
+    e.stopPropagation();
+    setIsReadMore(!isReadMore);
+    setReadMoreId(id);
+  };
+
+  // open booking detail page
+  const handleOpenDetailPage = (id) => {
+    navigate(`/booking-details?id=${id}`, { state: "/home" });
+  };
 
   return (
     <>
@@ -170,34 +157,50 @@ const HomeRequsest = () => {
                     {bookingRequest && bookingRequest.length > 0 ? (
                       <>
                         {bookingRequest?.slice(0, 5)?.map((item, index) => (
-                          <Link
+                          <div
                             key={index}
-                            to={`/booking-details?id=${item?._id}`}
+                            onClick={() => handleOpenDetailPage(item?._id)}
+                            className="homeProfileBox all-bookings-height"
                           >
-                            <div className="homeProfileBox">
-                              <div className="profileInfo">
-                                <img
-                                  src={
-                                    item?.userId?.userInfo?.profilePhoto
-                                      ? item?.userId?.userInfo?.profilePhoto
-                                      : Images.dummyProfile
-                                  }
-                                  alt="profile"
-                                  className="homeprofile"
-                                />
-                                <div className="detailInfo">
-                                  <h3 className="userProfile">
-                                    {item?.userId?.userInfo?.firstName}{" "}
-                                    {item?.userId?.userInfo?.lastName}
-                                  </h3>
-                                  <h4 className="userInfo">
-                                    {moment(item?.createdAt).format("hh:mm A")}
-                                  </h4>
-                                </div>
+                            <div className="profileInfo">
+                              <img
+                                src={
+                                  item?.userId?.userInfo?.profilePhoto
+                                    ? item?.userId?.userInfo?.profilePhoto
+                                    : Images.dummyProfile
+                                }
+                                alt="profile"
+                                className="homeprofile"
+                              />
+                              <div className="detailInfo">
+                                <h3 className="userProfile">
+                                  {item?.userId?.userInfo?.firstName}{" "}
+                                  {item?.userId?.userInfo?.lastName}
+                                </h3>
+                                <h4 className="userInfo">
+                                  {moment(item?.createdAt).format(
+                                    "MMM D, YYYY"
+                                  )}
+                                </h4>
                               </div>
-                              <p className="userInfoTxt">{item?.description}</p>
                             </div>
-                          </Link>
+                            <p className="userInfoTxt">
+                              {isReadMore && readMoreId === item?._id
+                                ? item?.description
+                                : item?.description?.slice(0, 200)}
+                              &nbsp;
+                              {item?.description?.length > 200 && (
+                                <span
+                                  onClick={(e) => handleReadMore(e, item?._id)}
+                                  className="read-more-desp"
+                                >
+                                  {isReadMore && readMoreId === item?._id
+                                    ? "Less..."
+                                    : "More..."}
+                                </span>
+                              )}
+                            </p>
+                          </div>
                         ))}
                       </>
                     ) : (
@@ -216,19 +219,16 @@ const HomeRequsest = () => {
                   <div className="innerhomeheader">
                     <h3 className="headerinnerheading">Recent Orders</h3>
                     {recentOrders && recentOrders.length > 0 && (
-                      <div
-                        onClick={() => {
-                          handleOpenModal("Myorder");
-                        }}
-                        className="seeAll"
-                      >
-                        <p className="headerinnertxt">See All</p>
-                        <img
-                          src={Images.homeArow}
-                          alt="arrowImg"
-                          className="seeArrow"
-                        />
-                      </div>
+                      <Link to="/recent-orders">
+                        <div className="seeAll">
+                          <p className="headerinnertxt">See All</p>
+                          <img
+                            src={Images.homeArow}
+                            alt="arrowImg"
+                            className="seeArrow"
+                          />
+                        </div>
+                      </Link>
                     )}
                   </div>
                   <div
@@ -288,7 +288,9 @@ const HomeRequsest = () => {
                                 </div>
                                 <p className="orderTime">
                                   Order placed on{" "}
-                                  {moment(item?.updatedAt).format("hh:mm A")}
+                                  {moment(item?.updatedAt).format(
+                                    "MMM D, YYYY"
+                                  )}
                                 </p>
                                 <div className="ordered_">
                                   <button
@@ -301,8 +303,9 @@ const HomeRequsest = () => {
                                     }
                                     className="cancelOrder d-flex align-items-center gap-2"
                                   >
-                                    CANCEL
-                                    {chefData?.laoding &&
+                                    REJECT
+                                    {chefData?.loading &&
+                                      orderLoadingId === item?._id &&
                                       isLoading === "cancelled" && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                       )}
@@ -318,7 +321,8 @@ const HomeRequsest = () => {
                                     className="acceptOrder d-flex align-items-center gap-2"
                                   >
                                     ACCEPT
-                                    {chefData?.laoding &&
+                                    {chefData?.loading &&
+                                      orderLoadingId === item?._id &&
                                       isLoading === "accepted" && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                       )}
@@ -347,54 +351,6 @@ const HomeRequsest = () => {
           </div>
         </div>
       )}
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "chatBox" ? "commonWidth customContent" : ""
-        }
-        ids={modalDetail.flag === "Myorder" ? "myOrder" : ""}
-        child={
-          modalDetail.flag === "Myorder" ? (
-            <Myorder close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "Myorder" ? (
-            <>
-              <h2 className="modal_Heading">My Order</h2>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img
-                  src={Images.modalCancel}
-                  className="ModalCancel"
-                  alt="cancelModal"
-                />
-              </p>
-            </>
-          ) : modalDetail.flag === "verifyOrderDetailModal" ? (
-            <>
-              <div className="cancelCommonHeader">
-                <p onClick={handleOnCloseModal} className="modal_cancel">
-                  <img
-                    src={Images.modalCancel}
-                    className="ModalCancel"
-                    alt="cancelModal"
-                  />
-                </p>
-              </div>
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

@@ -17,6 +17,12 @@ export const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
+    toggleAvailabilty: (state) => {
+      state.loading = true;
+    },
+    setToggleAvailabilty: (state) => {
+      state.loading = false;
+    },
     userProfileDataGet: (state) => {
       state.loading = true;
     },
@@ -149,6 +155,8 @@ export const {
   userProfileDataGet,
   setUserProfileDataGet,
   setMenuLists,
+  toggleAvailabilty,
+  setToggleAvailabilty
 } = webSlice.actions;
 
 export default webSlice.reducer;

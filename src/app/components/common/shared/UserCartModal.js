@@ -5,9 +5,11 @@ import {
   onErrorStopLoad,
   deleteCartItem,
   updateCartItem,
+  createOrder,
+  getUserAddress,
+  getSelectedAddress,
 } from "../../../../redux/slices/user";
 import { useDispatch } from "react-redux";
-import { getUserAddress } from "../../../../redux/slices/user";
 import CustomModal from "./CustomModal";
 import AddAddressModal from "./AddAddressModal";
 import EditAddressModal from "./EditAddressModal";
@@ -15,10 +17,14 @@ import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
 import PayNowModal from "./PayNowModal";
 import { toast } from "react-toastify";
+import { useUserSelector } from "../../../../redux/selector/user";
+import CheckOutForm from "./CheckOutForm";
 
 const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userSelector = useUserSelector();
+  const { loading, previousSelectedAddress } = userSelector;
   const [allCartItems, setAllCartItems] = useState([]);
   const [cartId, setCartId] = useState("");
   const toastId = useRef(null);
@@ -33,6 +39,11 @@ const UserCartModal = ({ close }) => {
     address && address.length > 0 ? [...address].reverse() : [];
   const [addressId, setAddressId] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [orderNumber, setOrderNumber] = useState("");
+  const [orderId, setOrderId] = useState("");
+  const [isLoading, setIsLoading] = useState("");
+  const [client, setClient] = useState("");
+  const [serviceCharges, setServiceCharges] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -54,13 +65,15 @@ const UserCartModal = ({ close }) => {
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
-            const totalCartPrice = res?.data?.data?.data?.cartItems?.reduce(
-              (previousValue, currentValue) =>
-                Number(previousValue) + Number(currentValue.itemTotalPrice),
-              0
-            );
             setOrderType(res?.data?.data?.data?.type);
-            setTotalPrice(totalCartPrice);
+            const serviceCharges =
+              (Number(res?.data?.data?.additionalChargesInPercent) *
+                Number(res?.data?.data?.data?.subTotal)) /
+              100;
+            setTotalPrice(
+              Number(res?.data?.data?.data?.subTotal) + serviceCharges
+            );
+            setServiceCharges(serviceCharges);
           }
         },
       })
@@ -155,11 +168,7 @@ const UserCartModal = ({ close }) => {
   };
 
   // open modal
-  const handleOpenModal = (flag, id, book) => {
-    if (flag === "payNow" && !selectedAddress) {
-      showToast("Please select delivery address");
-      return;
-    }
+  const handleOpenModal = (flag, id) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -172,6 +181,7 @@ const UserCartModal = ({ close }) => {
   // select address
   const handleSelectAddress = (e, id, book) => {
     setSelectedAddress(id);
+    dispatch(getSelectedAddress(id));
     setBookingAddress(book);
   };
 
@@ -180,6 +190,43 @@ const UserCartModal = ({ close }) => {
     close();
     navigate(`/chef-details?id=${chefId}`);
   };
+
+  // create payment details
+  const handleCreatePaymentIntent = (flag) => {
+    if (!selectedAddress) {
+      showToast("Please select delivery address");
+      return;
+    }
+    setIsLoading(flag);
+    let params = {
+      cartId: cartId,
+      addressId: selectedAddress,
+    };
+    dispatch(
+      createOrder({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            setClient(res?.data?.data?.client_secret);
+            setOrderNumber(
+              res?.data?.data?.orderId
+                ? res?.data?.data?.orderId
+                : res?.data?.data?.bookingId
+            );
+            setOrderId(res?.data?.data?._id);
+            handleOpenModal("checkOutForm");
+          }
+        },
+      })
+    );
+  };
+
+  // get selected addresss
+  useEffect(() => {
+    if (previousSelectedAddress) {
+      setSelectedAddress(previousSelectedAddress);
+    }
+  }, [previousSelectedAddress]);
 
   return (
     <>
@@ -200,7 +247,9 @@ const UserCartModal = ({ close }) => {
                       alt="cartImg"
                     />
                     <div className="insideModal">
-                      <h6 className="foodtext">{item?.menuItemId?.category}</h6>
+                      <h6 className="foodtext text-capitalize">
+                        {item?.menuItemId?.category}
+                      </h6>
                       <h5 className="foodItem">{item?.menuItemId?.name}</h5>
                       <h6 className="foodPrice">£{item?.netPrice}.00</h6>
                       <div className="quantity">
@@ -271,10 +320,10 @@ const UserCartModal = ({ close }) => {
                   </div>
                 </div>
 
-                <div className="checkouthomeoffice mt-3">
-                  {latestAddress && latestAddress.length > 0 ? (
+                <div className="checkouthomeoffice mt-3 all-address-checkout">
+                  {latestAddress && latestAddress?.length > 0 ? (
                     <>
-                      {latestAddress?.slice(0, 2)?.map((item, index) => (
+                      {latestAddress?.slice(0, 3)?.map((item, index) => (
                         <div key={index} className="checkouthome">
                           <div className="homedropdown mt-2">
                             <h6 className="notificationText">{item?.type}</h6>
@@ -351,18 +400,21 @@ const UserCartModal = ({ close }) => {
                 >
                   + Add More Items
                 </button>
-
                 <div className="order-now-pay-total">
                   <div className="total-price-order">
                     <h6 className="totaltxt">Total</h6>
-                    <p className="price">£{totalPrice}.00</p>
+                    <p className="price">£{totalPrice.toFixed(2)}</p>
                   </div>
                   <button
-                    onClick={() => handleOpenModal("payNow")}
-                    className="orderbutton"
+                    onClick={() => handleCreatePaymentIntent("pay")}
+                    className="orderbutton w-auto"
                     type="button"
+                    disabled={loading}
                   >
                     Pay Now
+                    {loading && isLoading === "pay" && (
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                    )}
                   </button>
                 </div>
               </div>
@@ -398,7 +450,7 @@ const UserCartModal = ({ close }) => {
             ? "ordereditaddress"
             : modalDetail.flag === "deleteaddress"
             ? "ordereditaddress"
-            : modalDetail.flag === "payNow"
+            : modalDetail.flag === "checkOutForm"
             ? "ordereditaddress"
             : ""
         }
@@ -420,8 +472,8 @@ const UserCartModal = ({ close }) => {
               handleGetUserAddress={handleGetUserAddress}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "payNow" ? (
-            <PayNowModal
+          ) : modalDetail.flag === "checkOutForm" ? (
+            <CheckOutForm
               close={() => {
                 close();
                 handleOnCloseModal();
@@ -432,6 +484,9 @@ const UserCartModal = ({ close }) => {
               orderType={orderType}
               bookingData={bookingData}
               bookingAddress={bookingAddress}
+              orderNumber={orderNumber}
+              orderId={orderId}
+              client={client}
             />
           ) : (
             ""
@@ -482,7 +537,7 @@ const UserCartModal = ({ close }) => {
                 </div>
               </div>
             </>
-          ) : modalDetail.flag === "payNow" ? (
+          ) : modalDetail.flag === "checkOutForm" ? (
             <>
               <div className="editadressheading">
                 <img

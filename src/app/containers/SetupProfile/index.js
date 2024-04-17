@@ -153,8 +153,10 @@ const SetupProfile = () => {
       } else if (!formData.bio) {
         showToast("Please add your bio");
         return;
+      } else if (!experticeValue?.length) {
+        showToast("Please select at least one expertise");
+        return;
       }
-
       let params = {
         step: "1",
         type: activeTab,
@@ -182,7 +184,7 @@ const SetupProfile = () => {
       );
 
       if (!checkEmptyAvailability) {
-        toast.error("Please add atleast one time slot");
+        showToast("Please add atleast one time slot");
         return;
       }
       const updateValue = availability
@@ -397,17 +399,21 @@ const SetupProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          if (res.status === 200) {
-            setActiveTab(res.data.data.chefInfo.type);
+          if (res?.status === 200) {
+            setActiveTab(res?.data?.data?.chefInfo?.type);
             setExperticeValue(res?.data?.data?.chefInfo?.expertise);
             setFormData({
-              experience: res.data.data.chefInfo.experience,
-              bio: res.data.data.chefInfo.bio,
+              experience: res?.data?.data?.chefInfo?.experience,
+              bio: res?.data?.data?.chefInfo?.bio,
             });
-            setAddress(res.data.data.chefInfo.address);
-            setLatitude(res.data.data.chefInfo.coordinates.coordinates[0]);
-            setLongitude(res.data.data.chefInfo.coordinates.coordinates[1]);
-            const removeId = res.data.data.chefInfo.availability?.map(
+            setAddress(res?.data?.data?.chefInfo?.address);
+            setLatitude(
+              res?.data?.data?.chefInfo?.coordinates?.coordinates?.[0]
+            );
+            setLongitude(
+              res?.data?.data?.chefInfo?.coordinates?.coordinates?.[1]
+            );
+            const removeId = res?.data?.data?.chefInfo?.availability?.map(
               (item, index) => {
                 const { _id, ...rest } = item;
                 return item;
@@ -733,7 +739,7 @@ const SetupProfile = () => {
                                       {experticeValue
                                         ?.filter((value) => value !== "")
                                         ?.map((value, index) => (
-                                          <li className="expertiseList">
+                                          <li key={index} className="expertiseList">
                                             {value}
                                           </li>
                                         ))}
@@ -762,6 +768,7 @@ const SetupProfile = () => {
                                     {week.map((day, index) => (
                                       <>
                                         <li
+                                          key={index}
                                           onClick={(e) =>
                                             handleWeekDay(e, day.day)
                                           }

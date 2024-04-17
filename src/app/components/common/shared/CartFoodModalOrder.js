@@ -18,7 +18,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
   const { pathname } = location;
   const userData = useUserSelector();
   const [foodDetails, setFoodDetails] = useState([]);
-  const [quantity, setQuantity] = useState([]);
+  const [quantity, setQuantity] = useState("");
   const [isLoading, setIsLoading] = useState("");
   const [key, setKey] = useState(Math.random());
   const [showLoading, setShowLoading] = useState(true);
@@ -70,11 +70,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
           if (res.status === 200) {
             setShowLoading(false);
             setFoodDetails(res?.data?.data);
-            setQuantity(
-              res?.data?.data?.item?.quantity === "0"
-                ? 1
-                : res?.data?.data?.item?.quantity
-            );
+            setQuantity(res?.data?.data?.item?.quantity);
           }
         },
       })
@@ -96,7 +92,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
     let params = {
       menuItemId: menuId,
       type: "order",
-      quantity: "1",
+      quantity: quantity === "0" ? "1" : Number(quantity) + 1 + "",
     };
     dispatch(
       addToCart({
@@ -138,17 +134,14 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                 {foodDetails?.item?.name}
               </h2>
               <div className="restroinfo">
-                <Link to="#">
-                  <img
-                    src={Images.sarahcap}
-                    alt="sarahcapimage"
-                    className="img-fluid"
-                  />
-                </Link>
+                <img
+                  src={Images.sarahcap}
+                  alt="sarahcapimage"
+                  className="img-fluid"
+                />
+
                 <div className="johnchatdetail">
-                  <Link to="#">
-                    <h6 className="chatDates">{foodDetails?.item?.category}</h6>
-                  </Link>
+                  <h6 className="chatDates text-capitalize">{foodDetails?.item?.category}</h6>
                 </div>
               </div>
             </div>
@@ -292,17 +285,19 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                     <span className="spinner-border spinner-border-sm ms-1"></span>
                   )}
                 </button>
-                <button
-                  disabled={userData?.loading}
-                  onClick={() => handleOpenModal("bookchef")}
-                  className="mt-2 hire-chef-btn"
-                  type="button"
-                >
-                  {/* {userData?.loading && (
+                {foodDetails?.item?.userId?.chefInfo?.isAvailable && (
+                  <button
+                    disabled={userData?.loading}
+                    onClick={() => handleOpenModal("bookchef")}
+                    className="mt-2 hire-chef-btn"
+                    type="button"
+                  >
+                    Hire Chef at £ {foodDetails?.item?.bookingPriceForItem}
+                    {/* {userData?.loading && (
                   <span className="spinner-border spinner-border-sm me-1"></span>
                 )} */}
-                  Hire Chef at £ {foodDetails?.item?.bookingPriceForItem}
-                </button>
+                  </button>
+                )}
               </div>
             </div>
             {/* ) : (

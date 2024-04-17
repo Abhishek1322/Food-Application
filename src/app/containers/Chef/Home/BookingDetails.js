@@ -16,6 +16,7 @@ import UserDeleteChat from "../../../components/common/shared/UserDeleteChat";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../../config/firebase-config";
 import { useAuthSelector } from "../../../../redux/selector/auth";
+import VerifyorderDetailsModal from "../../../components/common/shared/verifyorderDetailsModal";
 
 const BookingDetails = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const BookingDetails = () => {
   const location = useLocation();
   const authData = useAuthSelector();
   const chefReducer = useChefSelector();
-  const { search } = location;
+  const { search, state } = location;
   const searchParams = new URLSearchParams(search);
   const id = searchParams.get("id");
   const [bookingDetails, setBookingDetails] = useState([]);
@@ -87,11 +88,7 @@ const BookingDetails = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            if (status === "accepted") {
-              handleGetBookingDetails();
-            } else {
-              navigate(`/home`);
-            }
+            handleGetBookingDetails();
           }
         },
       })
@@ -124,7 +121,7 @@ const BookingDetails = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 col-sm-12">
             <div className="insideCommonHeader d-flex">
-              <Link to="/home" className="d-flex">
+              <Link to={state || "/home"} className="d-flex">
                 <img
                   src={Images.backArrowpassword}
                   className="innerHeaderArrow"
@@ -135,9 +132,7 @@ const BookingDetails = () => {
             </div>
           </div>
           <div className="col-lg-6 col-sm-12 d-flex justify-content-end">
-            {bookingDetails?.status === "accepted" ? (
-              ""
-            ) : (
+            {bookingDetails?.status === "pending" ? (
               <div className="orderItems_ flexBox ">
                 <button
                   onClick={(e) => handleAcceptOrderBookings(e, "cancelled")}
@@ -159,6 +154,28 @@ const BookingDetails = () => {
                   )}
                 </button>
               </div>
+            ) : bookingDetails?.status === "accepted" ? (
+              <button
+                onClick={(e) => handleAcceptOrderBookings(e, "reached")}
+                className="cancelOrder_ me-4 w-0"
+              >
+                Chef Reached
+                {chefReducer?.loading && isLoading === "reached" && (
+                  <span className="spinner-border spinner-border-sm ms-1"></span>
+                )}
+              </button>
+            ) : bookingDetails?.status === "reached" ? (
+              <button
+                onClick={() => handleOpenModal("bookingVerify")}
+                className="cancelOrder_ me-4 w-0"
+              >
+                Booking Complete
+                {chefReducer?.loading && isLoading === "completed" && (
+                  <span className="spinner-border spinner-border-sm ms-1"></span>
+                )}
+              </button>
+            ) : (
+              ""
             )}
           </div>
         </div>
@@ -183,7 +200,7 @@ const BookingDetails = () => {
                           {bookingDetails?.userId?.userInfo?.firstName}{" "}
                           {bookingDetails?.userId?.userInfo?.lastName}
                         </h2>
-                        <div className="johnChatTime">
+                        <div className="johnChatTime mt-3">
                           <div className="chefInfo">
                             <img
                               src={Images.chefCalender}
@@ -203,33 +220,41 @@ const BookingDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <button
-                  onClick={() => {
-                    handleOpenModal("chatAboutOrder");
-                  }}
-                  className="sarahmessagebtn flexBox"
-                  type="button"
-                >
-                  <img
-                    src={Images.ChefChat}
-                    alt="timesquareimage"
-                    className="availableimg"
-                  />
-                  <span className="availableheading">Chat</span>
-                </button>
+                  {/* <button
+                    onClick={() => {
+                      handleOpenModal("chatAboutOrder");
+                    }}
+                    className="sarahmessagebtn flexBox"
+                    type="button"
+                  >
+                    <img
+                      src={Images.ChefChat}
+                      alt="timesquareimage"
+                      className="availableimg"
+                    />
+                    <span className="availableheading">Chat</span>
+                  </button> */}
                 </div>
                 <div className="venuDetail">
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Date</h4>
-                    <p className="venushedule">{bookingDetails?.date}</p>
+                    <p className="venushedule">
+                      {moment(bookingDetails?.date, "DD-MM-YYYY")?.format(
+                        "MMM DD, YYYY"
+                      )}
+                    </p>
                   </div>
                   <div className="venuHere venuThere">
                     <h4 className="venuInfo">Venue Time</h4>
-                    {bookingDetails?.slots?.map((item, index) => (
-                      <p key={index} className="venushedule">
-                        {item?.from} to {item?.to}
-                      </p>
-                    ))}
+                    {bookingDetails?.slots
+                      ?.sort((value) => value?.from - value?.from)
+                      ?.map((item, index) => (
+                        <>
+                          <p key={index} className="venushedule">
+                            {item?.from} to {item?.to}
+                          </p>
+                        </>
+                      ))}
                   </div>
                   <div className="venuHere">
                     <h4 className="venuInfo">Venue Address</h4>
@@ -241,6 +266,40 @@ const BookingDetails = () => {
                   <p className="descriptiontxt">
                     {bookingDetails?.description}
                   </p>
+                </div>
+                <h3 className="orderId_ mt-3">Booking Items</h3>
+                <div className="row align-items-center">
+                  <div className="col-lg-10">
+                    {bookingDetails?.items?.map((item, index) => (
+                      <div key={index} className="orderedFoodItems">
+                        <div className="foodCategory flexBox">
+                          <img
+                            src={item?.image}
+                            alt="foodItemsImg"
+                            className="foodItemImg"
+                          />
+                          <div className="categoryinfo">
+                            <h4 className="foodcategory_ text-capitalize">{item?.category}</h4>
+                            <h5 className="innerfood">{item?.name}</h5>
+                            <p className="innePrice">£{item?.itemTotalPrice}.00</p>
+                          </div>
+                        </div>
+                        <p className="fooodquantity_">{item?.quantity}X</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="col-lg-2">
+                    <div
+                      className={
+                        bookingDetails?.status === "delivered"
+                          ? "paidAmmount paidAmmount-delivered"
+                          : "paidAmmount"
+                      }
+                    >
+                      <p className="totalPaid">Total paid</p>
+                      <p className="foodBill"> £{bookingDetails?.totalPrice}.00</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -263,11 +322,10 @@ const BookingDetails = () => {
             : "commonWidth customContent"
         }
         ids={
-          modalDetail.flag === "chatAboutOrder"
-            ? "orderchat"
-            : modalDetail.flag === "reportchat"
-            ? "orderchat"
-            : modalDetail.flag === "deletechat"
+          modalDetail.flag === "chatAboutOrder" ||
+          modalDetail.flag === "reportchat" ||
+          modalDetail.flag === "deletechat" ||
+          modalDetail.flag === "bookingVerify"
             ? "orderchat"
             : ""
         }
@@ -288,6 +346,13 @@ const BookingDetails = () => {
               allChats={allChats}
               sender_id={bookingDetails?.chefId?._id}
               sendRoomId={`${bookingDetails?.userId?._id}-${bookingDetails?.chefId?._id}`}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "bookingVerify" ? (
+            <VerifyorderDetailsModal
+              type="booking"
+              bookingId={id}
+              handleGetBookingDetails={handleGetBookingDetails}
               close={() => handleOnCloseModal()}
             />
           ) : (

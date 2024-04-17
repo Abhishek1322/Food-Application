@@ -38,6 +38,7 @@ const Router = () => {
             path="/choose-location"
             element={<Containers.ChooseLocation />}
           />
+          <Route path="/thank-you" element={<Containers.ThankYou />} />
         </Route>
 
         {/* CHEF_ROUTES */}
@@ -45,7 +46,7 @@ const Router = () => {
           {authData?.userInfo?.role === "chef" && (
             <Route path="/setting" element={<Containers.SettingMain />} />
           )}
-
+          <Route path="/bank-details" element={<Containers.BankDetails />} />
           <Route path="/chef-profile" element={<Containers.myprofile />} />
           <Route
             path="/edit-chef-profile"
@@ -63,6 +64,7 @@ const Router = () => {
             path="/booking-details"
             element={<Containers.BookingDetails />}
           />
+          <Route path="/recent-orders" element={<Containers.RecentOrders />} />
         </Route>
 
         {/* AUTHENTICATED_ROUTES */}

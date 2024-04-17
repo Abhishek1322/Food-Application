@@ -23,7 +23,7 @@ const CartModal = ({ close, updateCartCount }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
   const [key, setKey] = useState(Math.random());
-  const [totalPrice, setTotalPrice] = useState([]);
+  const [totalPrice, setTotalPrice] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -43,16 +43,11 @@ const CartModal = ({ close, updateCartCount }) => {
         cb(res) {
           if (res.status === 200) {
             setShowLoading(false);
-            setIsLoading(false)
+            setIsLoading(false);
             setAllCartItems(res?.data?.data?.data?.cartItems);
             setCartId(res?.data?.data?.data?._id);
             setChefId(res?.data?.data?.data?.chefId);
-            const totalCartPrice = res?.data?.data?.data?.cartItems?.reduce(
-              (previousValue, currentValue) =>
-                Number(previousValue) + Number(currentValue.itemTotalPrice),
-              0
-            );
-            setTotalPrice(totalCartPrice);
+            setTotalPrice(res?.data?.data?.data?.subTotal);
           }
         },
       })
@@ -162,7 +157,7 @@ const CartModal = ({ close, updateCartCount }) => {
                         alt="cartImg"
                       />
                       <div className="insideModal">
-                        <h6 className="foodtext">
+                        <h6 className="foodtext text-capitalize">
                           {item?.menuItemId?.category}
                         </h6>
                         <h5 className="foodItem">{item?.menuItemId?.name}</h5>

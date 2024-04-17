@@ -16,6 +16,8 @@ const ApiPath = {
     UPDATE_CHEF_PROFILE: "/users",
     GET_EXPERTISE: "/expertise/all",
     ADD_BANK_DETAILS: "/transactions/add-account",
+    GET_BANK_DETAILS: "/transactions/bank-details",
+    UPDATE_BANK_DETAILS: "/transactions/account-links",
   },
   webApiPath: {
     CHEF_LIST: "/users/chefs",
@@ -24,6 +26,7 @@ const ApiPath = {
     EDIT_MENU_ITEM: "/menus",
     SINGLE_CHEF_DETAIL: "/users/chefDetail",
     GET_SLOT_DETAIL: "/bookings/availability",
+    TOGGLE_AVAILABILTY: "/users/verify-hire",
   },
   userApiPath: {
     ADD_ADDRESS: "/user_delivery_address",
@@ -57,6 +60,7 @@ const ApiPath = {
     GET_LOCATION_INFO_GOOGLE_MAP: "/maps/api/geocode/json",
     GET_ALL_CART_NOTIFICATION: "/users/home",
     CREATE_BOOKING_ORDER: "/order/checkout",
+    CREATE_PAYMENT_INTENT: "/transactions/create-intent",
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
@@ -64,9 +68,11 @@ const ApiPath = {
     GET_CHEF_SINGLE_ORDER: "/order/order",
     CONFIRM_ORDER_OTP: "/order/deliver",
     RESEND_OTP: "/order/resend",
+    RESEND_BOOKING_OTP:"/bookings/resend",
     GET_BOOKING_REQUESTS: "/bookings/chef",
     GET_BOOKING_DETAIL: "/bookings/booking",
     ACCEPT_BOOKING: "/bookings/change-status",
+    CONFIRM_BOOKING_OTP: "/bookings/verify",
   },
 };
 

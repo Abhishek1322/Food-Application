@@ -7,17 +7,20 @@ import {
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useChefSelector } from "../../../../redux/selector/chef";
 import { FadeLoader } from "react-spinners";
 
 const NewBooking = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const chefSelector = useChefSelector();
   const [bookingRequest, setBookingRequest] = useState([]);
   const [bookingStatus, setBookingStatus] = useState("pending");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState("");
+  const [isReadMore, setIsReadMore] = useState(false);
+  const [readMoreId, setReadMoreId] = useState("");
   const [showLoading, setShowLoading] = useState(true);
 
   // get booking request
@@ -49,6 +52,18 @@ const NewBooking = () => {
   // Page change handler
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected + 1);
+  };
+
+  // toggle read more
+  const handleReadMore = (e, id) => {
+    e.stopPropagation();
+    setIsReadMore(!isReadMore);
+    setReadMoreId(id);
+  };
+
+  // open booking detail page
+  const handleOpenDetailPage = (id) => {
+    navigate(`/booking-details?id=${id}`, { state: "/new-booking" });
   };
 
   return (
@@ -88,6 +103,19 @@ const NewBooking = () => {
                 >
                   Accepted
                 </button>
+                <button
+                  onClick={() => setBookingStatus("completed")}
+                  className="nav-link bookingNavHeader"
+                  id="nav-profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-profile"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-profile"
+                  aria-selected="false"
+                >
+                  Completed
+                </button>
               </div>
             </div>
           </nav>
@@ -106,35 +134,52 @@ const NewBooking = () => {
                       {bookingRequest && bookingRequest.length > 0 ? (
                         <>
                           {bookingRequest?.map((item, index) => (
-                            <Link to={`/booking-details?id=${item?._id}`}>
-                              <div key={index} className="homeProfileBox">
-                                <div className="profileInfo">
-                                  <img
-                                    src={
-                                      item?.userId?.userInfo?.profilePhoto
-                                        ? item?.userId?.userInfo?.profilePhoto
-                                        : Images.dummyProfile
-                                    }
-                                    alt="profile"
-                                    className="homeprofile"
-                                  />
-                                  <div className="detailInfo">
-                                    <h3 className="userProfile">
-                                      {item?.userId?.userInfo?.firstName}{" "}
-                                      {item?.userId?.userInfo?.lastName}
-                                    </h3>
-                                    <h4 className="userInfo">
-                                      {moment(item?.createdAt).format(
-                                        "hh:mm A"
-                                      )}
-                                    </h4>
-                                  </div>
+                            <div
+                              key={index}
+                              onClick={() => handleOpenDetailPage(item?._id)}
+                              className="homeProfileBox all-bookings-height cursor-booking"
+                            >
+                              <div className="profileInfo">
+                                <img
+                                  src={
+                                    item?.userId?.userInfo?.profilePhoto
+                                      ? item?.userId?.userInfo?.profilePhoto
+                                      : Images.dummyProfile
+                                  }
+                                  alt="profile"
+                                  className="homeprofile"
+                                />
+                                <div className="detailInfo">
+                                  <h3 className="userProfile">
+                                    {item?.userId?.userInfo?.firstName}{" "}
+                                    {item?.userId?.userInfo?.lastName}
+                                  </h3>
+                                  <h4 className="userInfo">
+                                    {moment(item?.createdAt).format(
+                                      "MMM D, YYYY"
+                                    )}
+                                  </h4>
                                 </div>
-                                <p className="userInfoTxt">
-                                  {item?.description}
-                                </p>
                               </div>
-                            </Link>
+                              <p className="userInfoTxt">
+                                {isReadMore && readMoreId === item?._id
+                                  ? item?.description
+                                  : item?.description?.slice(0, 200)}
+                                &nbsp;
+                                {item?.description?.length > 200 && (
+                                  <span
+                                    onClick={(e) =>
+                                      handleReadMore(e, item?._id)
+                                    }
+                                    className="read-more-desp"
+                                  >
+                                    {isReadMore && readMoreId === item?._id
+                                      ? "Less..."
+                                      : "More..."}
+                                  </span>
+                                )}
+                              </p>
+                            </div>
                           ))}
                         </>
                       ) : (

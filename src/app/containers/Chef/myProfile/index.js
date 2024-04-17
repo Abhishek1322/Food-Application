@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import * as Images from "../../../../utilities/images";
 import { Link } from "react-router-dom";
 import CustomModal from "../../../components/common/shared/CustomModal";
@@ -8,6 +8,7 @@ import RatingReviewsModal from "../../../components/common/shared/ratingReviewsM
 import {
   getChefProfileDetails,
   onErrorStopLoad,
+  toggleAvailabilty,
 } from "../../../../redux/slices/web";
 import { useDispatch } from "react-redux";
 import moment from "moment";
@@ -18,7 +19,6 @@ const MyProfile = () => {
   const [key, setKey] = useState(Math.random());
   const dispatch = useDispatch();
   const authData = useAuthSelector();
-  const scrollRef = useRef();
   const userId = localStorage.getItem("userId");
   const [chefProfileData, setProfileData] = useState([]);
   const [activeWeekDay, setActiveWeekDay] = useState("");
@@ -26,13 +26,12 @@ const MyProfile = () => {
   const [availability, setAvailability] = useState([]);
   const [profileUrl, setProfileUrl] = useState("");
   const [allRating, setAllRating] = useState([]);
+  const [chefAvailability, setChefAvailability] = useState("");
   const [getActiveRating, setGetActiveRating] = useState("All");
-
   const [slotTime, setSlotTimes] = useState({
     startTime: "",
     endTime: "",
   });
-
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -49,7 +48,8 @@ const MyProfile = () => {
     setKey(Math.random());
   };
 
-  const handleUserProfile = (flag) => {
+  // open modal
+  const handleOpenModal = (flag) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -64,7 +64,16 @@ const MyProfile = () => {
   // getting chef profile information
   useEffect(() => {
     chefProfileDetails();
-  }, []);
+    handleSelectAvailabilityByDay();
+  }, [userId]);
+
+  // select availability by day
+  const handleSelectAvailabilityByDay = () => {
+    const weekDay = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+    const todayDate = new Date();
+    let day = weekDay[todayDate.getDay()];
+    handleSlotTime(day);
+  };
 
   // get chef rating information
   useEffect(() => {
@@ -80,10 +89,13 @@ const MyProfile = () => {
       getChefProfileDetails({
         ...params,
         cb(res) {
-          setProfileData(res?.data?.data);
-          setExpertice(res?.data?.data?.chefInfo?.expertise);
-          setAvailability(res?.data?.data?.chefInfo?.availability);
-          setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
+          if (res?.status === 200) {
+            setProfileData(res?.data?.data);
+            setExpertice(res?.data?.data?.chefInfo?.expertise);
+            setAvailability(res?.data?.data?.chefInfo?.availability);
+            setProfileUrl(res?.data?.data?.userInfo?.profilePhoto);
+            setChefAvailability(res?.data?.data?.chefInfo?.isAvailable);
+          }
         },
       })
     );
@@ -151,18 +163,6 @@ const MyProfile = () => {
       startTime: updateSlotTimes?.startTime,
       endTime: updateSlotTimes?.endTime,
     });
-    scrollToBottom();
-  };
-
-  // scroll bottom
-  const scrollToBottom = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({
-        block: "nearest",
-        inline: "start",
-        behavior: "smooth",
-      });
-    }
   };
 
   // stop loader on refresh page
@@ -170,9 +170,27 @@ const MyProfile = () => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // toggle availability
+  const handleToggleAvailabilty = (e) => {
+    const { checked } = e.target;
+    let params = {
+      isAvailable: checked,
+    };
+    dispatch(
+      toggleAvailabilty({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            chefProfileDetails();
+          }
+        },
+      })
+    );
+  };
+
   return (
     <>
-      <section ref={scrollRef} className="profilesectionChef">
+      <section className="profilesectionChef">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-5 col-md-12">
@@ -188,25 +206,40 @@ const MyProfile = () => {
             <div className="col-lg-7 col-md-12">
               {/* right section  */}
               <div className="profileright">
-                <div className="reviewsection">
-                  <div className="stars">
-                    <img
-                      src={Images.star}
-                      alt="starimg"
-                      className="img-fluid"
-                    />
+                <div className="d-flex align-items-center justify-content-between ">
+                  <div className="reviewsection reviewsection-chef">
+                    <div className="stars">
+                      <img
+                        src={Images.star}
+                        alt="starimg"
+                        className="img-fluid"
+                      />
+                    </div>
+                    <div
+                      className="reviews"
+                      onClick={() => {
+                        handleOpenModal("ratingReviewsModal");
+                      }}
+                    >
+                      <p className="cheftext p-0">My Ratings & Reviews</p>
+                      <p className="chatheadtext">
+                        {allRating?.averageRating} (
+                        {allRating?.details?.data?.length} Reviews)
+                      </p>
+                    </div>
                   </div>
-                  <div
-                    className="reviews"
-                    onClick={() => {
-                      handleUserProfile("ratingReviewsModal");
-                    }}
-                  >
-                    <p className="cheftext p-0">My Ratings & Reviews</p>
-                    <p className="chatheadtext">
-                      {allRating?.averageRating} (
-                      {allRating?.details?.data?.length} Reviews)
-                    </p>
+                  <div className="d-flex align-items-center">
+                    <span className="dummyText p-0 me-2">
+                      Availability For Booking
+                    </span>
+                    <label className="switch-outer-chef">
+                      <input
+                        checked={chefAvailability}
+                        onChange={handleToggleAvailabilty}
+                        type="checkbox"
+                      />
+                      <span className="slider-chef round-chef"></span>
+                    </label>
                   </div>
                 </div>
                 {/* chefdata  */}
@@ -244,7 +277,7 @@ const MyProfile = () => {
                     <div>
                       <p className="dummyText p-0">Chef Type</p>
                       <div className="restroinfo">
-                        <p className="nameheading">
+                        <p className="nameheading text-capitalize ">
                           {chefProfileData?.chefInfo?.type}
                         </p>
                         <img
@@ -302,11 +335,11 @@ const MyProfile = () => {
                 {/* chef expertise  */}
                 <div className="expertise">
                   <div className="myexpertise">
-                    <p className="nameheading">My Expertise</p>
+                    <p className="nameheading">Add Expertise</p>
                     <button
                       className="modalclearAll"
                       onClick={() => {
-                        handleUserProfile("addExpertiseModal");
+                        handleOpenModal("addExpertiseModal");
                       }}
                     >
                       + Add
@@ -328,13 +361,13 @@ const MyProfile = () => {
                     )}
                   </div>
                 </div>
-                <div ref={scrollRef} className="availabilitydetails">
+                <div className="availabilitydetails">
                   <div className="myexpertise">
                     <p className="nameheading">My Availability</p>
                     <button
                       className="modalclearAll"
                       onClick={() => {
-                        handleUserProfile("addAvailabilityModal");
+                        handleOpenModal("addAvailabilityModal");
                       }}
                     >
                       + Add
@@ -417,6 +450,7 @@ const MyProfile = () => {
             <MyavailabilityModal
               chefProfileDetails={chefProfileDetails}
               availabilityData={availability}
+              handleSelectAvailabilityByDay={handleSelectAvailabilityByDay}
               close={() => handleOnCloseModal()}
             />
           ) : modalDetail.flag === "ratingReviewsModal" ? (

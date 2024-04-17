@@ -13,12 +13,23 @@ const initialState = {
   currentLocation: {},
   locationInfo: [],
   success: false,
+  paymentIntent: null,
+  previousSelectedAddress: null,
 };
 
 export const userSilce = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getSelectedAddress: (state, action) => {
+      state.previousSelectedAddress = action.payload;
+    },
+    createPaymentIntent: (state) => {
+      state.loading = true;
+    },
+    setCreatePaymentIntent: (state) => {
+      state.loading = false;
+    },
     resetSuccess: (state) => {
       state.success = false;
     },
@@ -132,10 +143,12 @@ export const userSilce = createSlice({
     createOrder: (state) => {
       state.loading = true;
       state.success = false;
+      state.paymentIntent = null;
     },
     setCreateOrder: (state, action) => {
       state.loading = false;
       state.success = true;
+      state.paymentIntent = action.payload;
     },
 
     deleteCartItem: (state) => {
@@ -273,6 +286,9 @@ export const {
   getCartNotificationCount,
   setGetCartNotificationCount,
   resetSuccess,
+  createPaymentIntent,
+  setCreatePaymentIntent,
+  getSelectedAddress
 } = userSilce.actions;
 
 export default userSilce.reducer;

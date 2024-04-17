@@ -3,8 +3,7 @@ import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import OrderPlaceModal from "./OrderPlaceModal";
 
-const PaymentDoneModal = ( { close, orderId, orderNumber,orderType }) => {
-
+const PaymentDoneModal = ({ close, orderId, orderNumber, orderType }) => {
   const [key, setKey] = useState(Math.random());
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -48,7 +47,8 @@ const PaymentDoneModal = ( { close, orderId, orderNumber,orderType }) => {
         />
         <h1 className="accountDeleted mt-3"> Payment Done</h1>
         <p className="accountdeletetxt mt-2 ">
-          Your payment has been successfully done for {orderType === "order" ? "order" : "booking"}  no. #{orderNumber}
+          Your payment has been successfully done for{" "}
+          {orderType === "order" ? "order" : "booking"} no. #{orderNumber}
         </p>
       </div>
       <CustomModal

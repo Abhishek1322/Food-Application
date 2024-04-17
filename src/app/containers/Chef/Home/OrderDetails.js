@@ -25,7 +25,7 @@ const OrderDetails = () => {
   const authData = useAuthSelector();
   const chefData = useChefSelector();
   const { loading } = chefData;
-  const { search } = location;
+  const { search, state } = location;
   const searchParams = new URLSearchParams(search);
   const recentOrderId = searchParams.get("recent-order");
   const [orderDetails, setOrderDetails] = useState([]);
@@ -37,7 +37,7 @@ const OrderDetails = () => {
     title: "",
     flag: "",
   });
-  console.log("orderDetailsorderDetails", orderDetails);
+
   // get order details
   useEffect(() => {
     const parentCollectionChat = query(collection(db, PARENTCOLLECTIONNAME));
@@ -195,7 +195,7 @@ const OrderDetails = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 col-sm-12">
             <div className="insideCommonHeader d-flex">
-              <Link to="/home" className="d-flex align-items-center">
+              <Link to={state || "/home"} className="d-flex align-items-center">
                 <img
                   src={Images.backArrowpassword}
                   className="innerHeaderArrow"
@@ -253,7 +253,7 @@ const OrderDetails = () => {
                           {orderDetails?.userId?.userInfo?.firstName}{" "}
                           {orderDetails?.userId?.userInfo?.lastName}
                         </h2>
-                        <div className="johnChatTime">
+                        <div className="johnChatTime mt-3">
                           <div className="chefInfo">
                             <img
                               src={Images.chefLocationImg}
@@ -263,9 +263,10 @@ const OrderDetails = () => {
                           </div>
                           <div className="johnchatdetail">
                             <p className="chatDates">
-                              {moment(orderDetails?.updatedAt).format(
+                              {/* {moment(orderDetails?.updatedAt).format(
                                 "MMM D, YYYY"
-                              )}
+                              )} */}
+                              Order From
                             </p>
                           </div>
                         </div>
@@ -284,7 +285,7 @@ const OrderDetails = () => {
                     </div>
                   </div>
                   <div className="chefChat">
-                    <div
+                    {/* <div
                       onClick={() => {
                         handleOpenModal("chatAboutOrder");
                       }}
@@ -306,7 +307,7 @@ const OrderDetails = () => {
                       <div className="chatText">
                         <p className="chat">Chat</p>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="deliveryAddress">
                       <p className="deliveryinfo">Delivery Address</p>
                       <p className="orderAddress">
@@ -327,7 +328,7 @@ const OrderDetails = () => {
                             className="foodItemImg"
                           />
                           <div className="categoryinfo">
-                            <h4 className="foodcategory_">{item?.category}</h4>
+                            <h4 className="foodcategory_ text-capitalize">{item?.category}</h4>
                             <h5 className="innerfood">{item?.name}</h5>
                             <p className="innePrice">£{item?.netPrice}.00</p>
                           </div>
@@ -401,6 +402,7 @@ const OrderDetails = () => {
             <VerifyorderDetailsModal
               handleGetOrderDetails={handleGetOrderDetails}
               recentOrderId={recentOrderId}
+              type="order"
               close={() => handleOnCloseModal()}
             />
           ) : (

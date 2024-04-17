@@ -72,14 +72,14 @@ const EditAddressModal = (props) => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setCity(res.data.data.city);
-            setState(res.data.data.state);
-            setZipCode(res.data.data.zipCode);
-            setStreetAddress(res.data.data.streetAddress);
-            setBuilding(res.data.data.plotNumber);
-            setAddressType(res.data.data.type);
-            setLatitude(res.data.data.coordinates.coordinates[0]);
-            setLongitude(res.data.data.coordinates.coordinates[1]);
+            setCity(res?.data?.data?.city);
+            setState(res?.data?.data?.state);
+            setZipCode(res?.data?.data?.zipCode);
+            setStreetAddress(res?.data?.data?.streetAddress);
+            setBuilding(res?.data?.data?.plotNumber);
+            setAddressType(res?.data?.data?.type);
+            setLatitude(res?.data?.data?.coordinates?.coordinates[0]);
+            setLongitude(res?.data?.data?.coordinates?.coordinates[1]);
           }
         },
       })
@@ -97,9 +97,9 @@ const EditAddressModal = (props) => {
       .catch((error) => {});
   };
 
- // handle get location common function
- const getLocationFields = (city) => {
-  geocodeByAddress(city)
+  // handle get location common function
+  const getLocationFields = (city) => {
+    geocodeByAddress(city)
       .then((results) => {
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
@@ -140,11 +140,11 @@ const EditAddressModal = (props) => {
         }
       })
       .catch((error) => {});
- }
+  };
 
   // select city
   const autoCompleteHandleSelect = (city) => {
-    getLocationFields(city)
+    getLocationFields(city);
   };
 
   // show only one toast at one time

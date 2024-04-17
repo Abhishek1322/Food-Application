@@ -12,7 +12,54 @@ import {
   setGetBookingRequests,
   setGetBookingDetail,
   setAcceptBooking,
+  setConfirmBookingOtp,
+  setConfirmBookingResendOtp
 } from "../../slices/chef";
+
+function* confirmBookingResendOtp(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.chefApiPath.RESEND_BOOKING_OTP}/${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setConfirmBookingResendOtp(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoadChef());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
+
+
+function* confirmBookingOtp(action) {
+  const deleteParams = { ...action.payload };
+  delete deleteParams.id;
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = `${ApiPath.chefApiPath.CONFIRM_BOOKING_OTP}/${action.payload.id}`),
+      (action.payload = deleteParams)
+    );
+    if (resp.status) {
+      yield put(setConfirmBookingOtp(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoadChef());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* acceptBooking(action) {
   const deleteParams = { ...action.payload };
@@ -172,7 +219,6 @@ function* getRecentOrder(action) {
   } catch (e) {
     yield put(onErrorStopLoadChef());
     toast.dismiss();
-    console.log("eeeeeeeeeeee",e);
     toast.error(e.response.data.message);
   }
 }
@@ -210,5 +256,7 @@ function* chefSaga() {
   yield all([takeLatest("chef/getBookingRequests", getBookingRequests)]);
   yield all([takeLatest("chef/getBookingDetail", getBookingDetail)]);
   yield all([takeLatest("chef/acceptBooking", acceptBooking)]);
+  yield all([takeLatest("chef/confirmBookingOtp", confirmBookingOtp)]);
+  yield all([takeLatest("chef/confirmBookingResendOtp", confirmBookingResendOtp)]);
 }
 export default chefSaga;

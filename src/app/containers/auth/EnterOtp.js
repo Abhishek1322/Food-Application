@@ -117,9 +117,11 @@ const EnterOtp = (props) => {
               <div className="logRight mt-5">
                 <div className="toggleButtonMain">
                   <div className="buttonBox">
-                    <button type="submit" role="button" className="backBtn">
-                      <i className="las la-angle-left"></i> Back to Login
-                    </button>
+                    <Link to="/login">
+                      <button type="submit" role="button" className="backBtn">
+                        <i className="las la-angle-left"></i> Back to Login
+                      </button>
+                    </Link>
                   </div>
                 </div>
                 <div className="logForm">

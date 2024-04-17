@@ -16,6 +16,7 @@ import { useAuthSelector } from "../../../redux/selector/auth";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { resetSuccess } from "../../../redux/slices/user";
+import { FadeLoader } from "react-spinners";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -28,12 +29,13 @@ const ChefDetails = () => {
   const [chefData, setChefData] = useState([]);
   const [key, setKey] = useState(Math.random());
   const [allChats, setAllChats] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
     flag: "",
   });
-
+  
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -41,6 +43,7 @@ const ChefDetails = () => {
 
   // get single chef detail
   const handleGetChefDetails = () => {
+    setIsLoading(true);
     let params = {
       id: id,
     };
@@ -48,7 +51,10 @@ const ChefDetails = () => {
       getSingleChef({
         ...params,
         cb(res) {
-          setChefData(res.data.data);
+          if (res?.status === 200) {
+            setChefData(res?.data?.data);
+            setIsLoading(false);
+          }
         },
       })
     );
@@ -96,206 +102,226 @@ const ChefDetails = () => {
 
   return (
     <>
-      <div className="chefdetailsection">
-        <div className="sarahchef">
-          {/* chef data section  */}
-          <div className="row align-items-center">
-            <div className="col-lg-5 col-md-6 col-12 contentCenter">
-              <div className="sarahinfo">
-                <div className="sarahimg">
-                  <img
-                    src={
-                      chefData?.userInfo?.profilePhoto
-                        ? chefData?.userInfo?.profilePhoto
-                        : Images.dummyProfile
-                    }
-                    alt="sarahimage"
-                    className="sarahImg_"
-                  />
-                </div>
-                <div className="saraheading">
-                  <h4 className="johnExplorer mb-1">
-                    {chefData?.userInfo?.firstName}{" "}
-                    {chefData?.userInfo?.lastName}
-                  </h4>
-                  <div className="sarahrestro">
-                    <div className="restroinfo">
-                      <img
-                        src={Images.sarahcap}
-                        alt="sarahcapimage"
-                        className="img-fluid cursorPoint"
-                      />
-                      <div className="johnchatdetail">
-                        <p className="chatDates textUpperHome">{chefData?.chefInfo?.type}</p>
-                      </div>
-                    </div>
+      {isLoading ? (
+        <div className="good-loader">
+          <FadeLoader
+            color={"#E65C00"}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <div className="chefdetailsection">
+          <div className="sarahchef">
+            {/* chef data section  */}
+            <div className="row align-items-center">
+              <div className="col-lg-5 col-md-6 col-12 contentCenter">
+                <div className="sarahinfo">
+                  <div className="sarahimg">
                     <img
-                      src={Images.chefType}
-                      alt="cheftypeimage"
-                      className="infoimg"
+                      src={
+                        chefData?.userInfo?.profilePhoto
+                          ? chefData?.userInfo?.profilePhoto
+                          : Images.dummyProfile
+                      }
+                      alt="sarahimage"
+                      className="sarahImg_"
                     />
-                    <div className="sarahinformation">
-                      <p className="chatSearchere_ ">
-                        The chef will prepare exquisite dishes at the restaurant
-                        and deliver them to the customer's location.
-                      </p>
+                  </div>
+                  <div className="saraheading">
+                    <h4 className="johnExplorer mb-1 text-capitalize">
+                      {chefData?.userInfo?.firstName}{" "}
+                      {chefData?.userInfo?.lastName}
+                    </h4>
+                    <div className="sarahrestro">
+                      <div className="restroinfo">
+                        <img
+                          src={Images.sarahcap}
+                          alt="sarahcapimage"
+                          className="img-fluid cursorPoint"
+                        />
+                        <div className="johnchatdetail">
+                          <p className="chatDates textUpperHome">
+                            {chefData?.chefInfo?.type}
+                          </p>
+                        </div>
+                      </div>
+                      <img
+                        src={Images.chefType}
+                        alt="cheftypeimage"
+                        className="infoimg"
+                      />
+                      <div className="sarahinformation">
+                        <p className="chatSearchere_ ">
+                          The chef will prepare exquisite dishes at the
+                          restaurant and deliver them to the customer's
+                          location.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-7 col-md-6 col-12 ">
-              <div className="flexBox justify-content-end contentLast">
-                <button
-                  className="sarahavailablebtn flexBox"
-                  type="button"
-                  onClick={() => {
-                    handleOpenModal("availabilityModal");
-                  }}
-                >
-                  <img
-                    src={Images.TimeSquare}
-                    alt="timesquareimage"
-                    className="availableimg"
-                  />
-                  <span className="availableheading">Availability</span>
-                </button>
-                <button
-                  onClick={() => {
-                    handleOpenModal("chatModal");
-                  }}
-                  className="sarahmessagebtn flexBox"
-                  type="button"
-                >
-                  <img
-                    src={Images.ChefChat}
-                    alt="timesquareimage"
-                    className="availableimg"
-                  />
-                  <span className="availableheading">Chat</span>
-                </button>
+              <div className="col-lg-7 col-md-6 col-12 ">
+                <div className="flexBox justify-content-end contentLast">
+                  {chefData?.chefInfo?.isAvailable && (
+                    <button
+                      className="sarahavailablebtn flexBox"
+                      type="button"
+                      onClick={() => {
+                        handleOpenModal("availabilityModal");
+                      }}
+                    >
+                      <img
+                        src={Images.TimeSquare}
+                        alt="timesquareimage"
+                        className="availableimg"
+                      />
+                      <span className="availableheading">Availability</span>
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => {
+                      handleOpenModal("chatModal");
+                    }}
+                    className="sarahmessagebtn flexBox"
+                    type="button"
+                  >
+                    <img
+                      src={Images.ChefChat}
+                      alt="timesquareimage"
+                      className="availableimg"
+                    />
+                    <span className="availableheading">Chat</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* chef experience section  */}
-        <div className="sarahdata">
-          <div className="row">
-            <div className="col-lg-4 col-md-6 col-sm-12">
-              <h6 className="chefName">Experience</h6>
-              <h6 className="chatSearchere_ mt-2">
-                {chefData?.chefInfo?.experience} + Years Exp.
-              </h6>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-12">
-              <h6 className="chefName">Rating</h6>
-              <div
-                className="chefrating mt-2"
-                onClick={() => {
-                  handleOpenModal("ratingchef");
-                }}
-              >
-                <i className="las la-star startIcon"></i>
-                <p className="ratingheading">
-                  {chefData?.averageRating} ({chefData?.totalReview} Reviews)
+          {/* chef experience section  */}
+          <div className="sarahdata">
+            <div className="row">
+              <div className="col-lg-4 col-md-6 col-sm-12">
+                <h6 className="chefName">Experience</h6>
+                <h6 className="chatSearchere_ mt-2">
+                  {chefData?.chefInfo?.experience} + Years Exp.
+                </h6>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-12">
+                <h6 className="chefName">Rating</h6>
+                <div
+                  className="chefrating mt-2"
+                  onClick={() => {
+                    handleOpenModal("ratingchef");
+                  }}
+                >
+                  <i className="las la-star startIcon"></i>
+                  <p className="ratingheading">
+                    {chefData?.averageRating} ({chefData?.totalReview} Reviews)
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-12">
+                <h6 className="chefName">Address</h6>
+                <p className="chatSearchere_ mt-2">
+                  {chefData?.chefInfo?.address}
                 </p>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-12">
-              <h6 className="chefName">Address</h6>
-              <p className="chatSearchere_ mt-2">
-                {chefData?.chefInfo?.address}
-              </p>
-            </div>
           </div>
-        </div>
-        {/* chef bio section  */}
-        <div className="sarahbioexpert">
-          <div className="row">
-            <div className="col-lg-6 col-md-12">
-              <h3 className="innerDummyHeading ">Bio</h3>
-              <p className="dummyText mt-2">{chefData?.chefInfo?.bio}</p>
-            </div>
+          {/* chef bio section  */}
+          <div className="sarahbioexpert">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
+                <h3 className="innerDummyHeading ">Bio</h3>
+                <p className="dummyText mt-2">{chefData?.chefInfo?.bio}</p>
+              </div>
 
-            <div className="col-lg-6 col-md-12">
-              <h3 className="innerDummyHeading ">Expertise</h3>
-              <div className="chefexpertise mt-2">
-                {chefData?.chefInfo?.expertise &&
-                chefData?.chefInfo?.expertise.length > 0 ? (
-                  <>
-                    {chefData?.chefInfo?.expertise?.map((item, index) => (
-                      <div key={index} className="expertisevalue">
-                        <p className="expertheading">{item}</p>
-                      </div>
-                    ))}
-                  </>
-                ) : (
-                  <p>No any expertise</p>
-                )}
+              <div className="col-lg-6 col-md-12">
+                <h3 className="innerDummyHeading ">Expertise</h3>
+                <div className="chefexpertise mt-2">
+                  {chefData?.chefInfo?.expertise &&
+                  chefData?.chefInfo?.expertise.length > 0 ? (
+                    <>
+                      {chefData?.chefInfo?.expertise?.map((item, index) => (
+                        <div key={index} className="expertisevalue">
+                          <p className="expertheading">{item}</p>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <p>No any expertise</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* chef menu section  */}
-        <div className="sarahsmenu">
-          <h2 className="innerDummyHeading">
-            {" "}
-            {chefData?.userInfo?.firstName}’s Menu
-          </h2>
-          <div className="row">
-            {chefData?.menus && chefData?.menus.length > 0 ? (
-              <>
-                {chefData?.menus?.map((val, i) => {
-                  return (
-                    <div key={i} className="col-lg-2 col-md-4 col-sm-6">
-                      <div
-                        onClick={() => {
-                          handleOpenModal("alreadyExistCart", val?._id);
-                        }}
-                        className="listItems_"
-                      >
-                        <div className="menu_Items">
-                          <div className="innerItems_">
-                            <img
-                              src={Images.ItemsBgMenu}
-                              alt="logo"
-                              className="bgmenuImg_"
-                            />
-                            <img
-                              // onClick={() => {
-                              //   handleOpenModal("CartFood", val?._id);
-                              // }}
-                              src={val?.image ? val?.image : Images.SaladImg}
-                              alt="logo"
-                              className="menuItem_ cursorPoint"
-                            />
+          {/* chef menu section  */}
+          <div className="sarahsmenu">
+            <h2 className="innerDummyHeading text-capitalize">
+              {" "}
+              {chefData?.userInfo?.firstName}’s Menu
+            </h2>
+            <div className="row">
+              {chefData?.menus && chefData?.menus.length > 0 ? (
+                <>
+                  {chefData?.menus?.map((val, i) => {
+                    return (
+                      <div key={i} className="col-lg-2 col-md-4 col-sm-6">
+                        <div
+                          onClick={() => {
+                            handleOpenModal("alreadyExistCart", val?._id);
+                          }}
+                          className="listItems_"
+                        >
+                          <div className="menu_Items">
+                            <div className="innerItems_">
+                              <img
+                                src={Images.ItemsBgMenu}
+                                alt="logo"
+                                className="bgmenuImg_"
+                              />
+                              <img
+                                // onClick={() => {
+                                //   handleOpenModal("CartFood", val?._id);
+                                // }}
+                                src={val?.image ? val?.image : Images.SaladImg}
+                                alt="logo"
+                                className="menuItem_ cursorPoint"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <h6 className="itemIs_">{val?.name}</h6>
-                        <h6 className="category_">{val?.category}</h6>
-                        <div className="sarahmenuprice">
-                          <button className="itemsPrice_ " type="button">
-                            £ {val?.price}
-                          </button>
-                          <div className="sarahbasket">
-                            <img
-                              src={Images.basketImg}
-                              alt="basketimage"
-                              className="img-fluid cursorPoint"
-                            />
+                          <h6 className="itemIs_">{val?.name}</h6>
+                          <h6 className="category_ text-capitalize">
+                            {val?.category}
+                          </h6>
+                          <div className="sarahmenuprice">
+                            <button className="itemsPrice_ " type="button">
+                              £ {val?.price}.00
+                            </button>
+                            <div className="sarahbasket">
+                              <img
+                                src={Images.basketImg}
+                                alt="basketimage"
+                                className="img-fluid cursorPoint"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </>
-            ) : (
-              <p>No added any menu</p>
-            )}
+                    );
+                  })}
+                </>
+              ) : (
+                <p>No added any menu</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
       <CustomModal
         key={key}
         show={modalDetail.show}

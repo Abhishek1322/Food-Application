@@ -290,7 +290,7 @@ const UserChefHome = () => {
                             />
                           </Link>
                         </figure>
-                        <h6 className="smallHeading">
+                        <h6 className="smallHeading text-capitalize">
                           {item.userInfo.firstName} {item.userInfo.lastName}
                         </h6>
                         <button className="expBtn" type="button">

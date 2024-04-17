@@ -53,7 +53,7 @@ const UserOrderDetail = (props) => {
               <div className="usercartDetail">
                 <img src={item?.image} className="userprofile" alt="cartImg" />
                 <div className="insideModal">
-                  <p className="foodtext">{item?.category}</p>
+                  <p className="foodtext text-capitalize">{item?.category}</p>
                   <p className="foodItem">{item?.name}</p>
                   <p className="foodPrice">£{item?.netPrice}.00</p>
                 </div>

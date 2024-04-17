@@ -13,6 +13,7 @@ import { collection, onSnapshot, query } from "firebase/firestore";
 import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
 import UserNotification from "./shared/UserNotification";
 import { getCartNotificationCount } from "../../../redux/slices/user";
+import { getBankDetails } from "../../../redux/slices/auth";
 
 const Chef_Navbar = () => {
   const location = useLocation();
@@ -27,7 +28,6 @@ const Chef_Navbar = () => {
   const [allChats, setAllChats] = useState([]);
   const [chefProfileData, setProfileData] = useState([]);
   const [notificationCart, setNotificationCart] = useState([]);
-
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -116,6 +116,11 @@ const Chef_Navbar = () => {
     handleGetAllNotifications();
   }, [success]);
 
+  // get bank details
+  useEffect(() => {
+    dispatch(getBankDetails());
+  }, []);
+
   return (
     <>
       <div className="main_Setting">
@@ -124,6 +129,7 @@ const Chef_Navbar = () => {
             {pathname === "/home" ||
             pathname === "/menu" ||
             pathname === "/new-booking" ||
+            pathname === "/recent-orders" ||
             pathname === "/setting" ? (
               <div className="row align-items-center">
                 <div className="col-lg-6 col-md-6">
@@ -141,6 +147,8 @@ const Chef_Navbar = () => {
                     <h1 className="chefCommonHeader">My Bookings</h1>
                   ) : pathname === "/setting" ? (
                     <h1 className="chefCommonHeader">Setting</h1>
+                  ) : pathname === "/recent-orders" ? (
+                    <h1 className="chefCommonHeader">Recent Orders</h1>
                   ) : (
                     ""
                   )}
@@ -193,7 +201,7 @@ const Chef_Navbar = () => {
                         }}
                       />
                       <span className="cartItems">
-                        {notificationCart?.orderCount}
+                        {notificationCart?.orderCount || 0}
                       </span>
                     </div>
                   </div>

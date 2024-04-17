@@ -103,17 +103,14 @@ const AddToCartModal = (props) => {
           />
           <h2 className="foodmodalheading mt-2">{foodDetails?.name}</h2>
           <div className="restroinfo">
-            <Link to="#">
-              <img
-                src={Images.sarahcap}
-                alt="sarahcapimage"
-                className="img-fluid"
-              />
-            </Link>
+            <img
+              src={Images.sarahcap}
+              alt="sarahcapimage"
+              className="img-fluid"
+            />
+
             <div className="johnchatdetail">
-              <Link to="#">
-                <h6 className="chatDates">{foodDetails?.category}</h6>
-              </Link>
+              <h6 className="chatDates">{foodDetails?.category}</h6>
             </div>
           </div>
         </div>
