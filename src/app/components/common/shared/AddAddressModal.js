@@ -222,6 +222,7 @@ const AddAddressModal = (props) => {
       console.log("Geolocation is not supported by this browser.");
     }
   };
+  
   // handling error
   function errors(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
