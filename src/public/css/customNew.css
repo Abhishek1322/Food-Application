@@ -10,14 +10,16 @@ p {
 
 /* leftsection css  */
 .profileleft {
-  width: 100%;
+  width: 578px;
+  height: 586px;
 }
+
 
 .chefprofileimg {
   width: 100%;
   height: 100%;
   border-radius: 50px;
-  max-height: 544px;
+  object-fit: cover;
 }
 
 /* right section  */

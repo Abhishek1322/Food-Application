@@ -127,7 +127,6 @@ const Login = () => {
       });
     } catch (error) {
       toast.error("Something went wrong");
-      console.error("Error creating room:", error);
     }
   };
 

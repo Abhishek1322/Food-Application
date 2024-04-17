@@ -673,8 +673,8 @@ input:-webkit-autofill:active {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  object-fit: cover;
 }
-
 .smallHeading {
   color: #2e3333;
   font-size: 14px;
