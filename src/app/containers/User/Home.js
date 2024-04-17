@@ -231,7 +231,7 @@ const HomeUser = () => {
                 </li>
               </ul>
             </div>
-            <div className="recipe-lists select-expertise-outer">
+            <div className="recipe-lists select-expertise-outer hometype_">
             <span className="chefName">Food type :</span>
               <Autocomplete
                 multiple
