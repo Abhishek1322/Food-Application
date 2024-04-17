@@ -165,13 +165,15 @@
   }
 
   .differentButton .primary {
-    padding: 8px 12px 8px 5px;
-  }
+    padding: 8px 13px 8px 8px;
+    display: inline-block;
+}
 
-  .differentButton .inner {
-    padding: 10px 3px;
-    font-size: 16px;
-  }
+.differentButton .inner {
+  padding: 10px 7px;
+  font-size: 16px;
+  display: inline-block;
+}
 
   .videoSection .image2 {
     bottom: 54px;
@@ -257,8 +259,8 @@
   }
 
   .greyHeading {
-    font-size: 11px;
-  }
+    font-size: 14px;
+}
 
   .chef {
     margin-left: 0;
@@ -275,27 +277,27 @@
   }
 
   .foodBox .logFood:first-child {
-    height: 120px;
-    width: 120px;
-  }
+    height: 102px;
+    width: 102px;
+}
 
-  .foodBox .logFood:nth-child(2) {
-    height: 120px;
-    width: 120px;
-    left: 115px;
-  }
+.foodBox .logFood:nth-child(2) {
+  height: 101px;
+  width: 102px;
+  left: 88px;
+}
 
-  .foodBox .logFood:nth-child(3) {
-    height: 120px;
-    width: 120px;
-    left: 226px;
-  }
+.foodBox .logFood:nth-child(3) {
+  height: 102px;
+  width: 102px;
+  left: 181px;
+}
 
-  .foodBox .logFood:nth-child(4) {
-    height: 120px;
-    width: 120px;
-    left: 343px;
-  }
+.foodBox .logFood:nth-child(4) {
+  height: 102px;
+  width: 106px;
+  left: 267px;
+}
 
   .logRight {
     position: relative;
@@ -427,13 +429,13 @@
   }
 
   .differentButton .inner {
-    padding: 16px 11px;
+    padding: 16px 14px;
     font-size: 13px;
-  }
+}
 
   .differentButton .primary {
-    padding: 9px 25px 16px 5px;
-  }
+    padding: 9px 25px 9px 9px;
+}
 
   .banner {
     background-size: 100% 28%;
@@ -727,9 +729,11 @@
   }
 
   .videoSection .image2 {
-    bottom: 49px;
-    left: 2%;
-  }
+    bottom: -100px;
+    right: 0;
+    width: 83px;
+    left: auto;
+}
 
   .banner {
     background-size: 100% 17%;
@@ -1071,9 +1075,9 @@
     font-size: 30px;
   }
 
-  .differentButton .sub {
+  /* .differentButton .sub {
     font-size: 9px;
-  }
+  } */
 
   .burgerSmall {
     display: none;
@@ -1205,7 +1209,7 @@
 }
 
 /* auth pages responsive */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .ChefMain {
     display: none;
   }
@@ -1339,5 +1343,41 @@
 .paymentdonesection {
     text-align: center;
     padding-top: 100px;
+}
+.whyChoose {
+  padding: 57px 0;
+}
+.mainHeadings {
+  margin: 52px 0 52px 0;
+}
+.logosil {
+  max-width: 96px;
+}
+.appImages {
+  width: 123px !important;
+}
+}
+@media (max-width: 480px) {
+
+.whyChoose .orange {
+  line-height: 44px;
+  margin-bottom: 25px;
+}
+.whyChoose .black {
+  font-size: 35px;
+  line-height: 32px;
+}
+.differentButton .primary {
+  padding: 5px 18px 5px 5px;
+}
+.differentButton .inner {
+  padding: 10px 8px;
+  margin-right: 3px!important;
+}
+.differentButton .sub {
+  font-size: 12px;
+}
+.socialImg {
+  margin-right: 19px;
 }
 }
