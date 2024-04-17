@@ -246,7 +246,7 @@ const Myorder = ({ close, updateNotification }) => {
                                             }
                                             className="cancelOrder"
                                           >
-                                            CANCEL
+                                            REJECT
                                             {chefData?.loading &&
                                               orderLoadingId === item?._id &&
                                               isLoading === "cancelled" && (

@@ -2707,4 +2707,14 @@ input:checked + .slider-chef:before {
   font-weight: 600;
   cursor: pointer;
 }
+.item-price-details {
+  display: flex;
+  align-items: center;
+}
+.all-address-checkout {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 7px;
+}
 /* Abhishek Css end */

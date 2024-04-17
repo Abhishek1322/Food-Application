@@ -267,6 +267,40 @@ const BookingDetails = () => {
                     {bookingDetails?.description}
                   </p>
                 </div>
+                <h3 className="orderId_ mt-3">Booking Items</h3>
+                <div className="row align-items-center">
+                  <div className="col-lg-10">
+                    {bookingDetails?.items?.map((item, index) => (
+                      <div key={index} className="orderedFoodItems">
+                        <div className="foodCategory flexBox">
+                          <img
+                            src={item?.image}
+                            alt="foodItemsImg"
+                            className="foodItemImg"
+                          />
+                          <div className="categoryinfo">
+                            <h4 className="foodcategory_ text-capitalize">{item?.category}</h4>
+                            <h5 className="innerfood">{item?.name}</h5>
+                            <p className="innePrice">£{item?.itemTotalPrice}.00</p>
+                          </div>
+                        </div>
+                        <p className="fooodquantity_">{item?.quantity}X</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="col-lg-2">
+                    <div
+                      className={
+                        bookingDetails?.status === "delivered"
+                          ? "paidAmmount paidAmmount-delivered"
+                          : "paidAmmount"
+                      }
+                    >
+                      <p className="totalPaid">Total paid</p>
+                      <p className="foodBill"> £{bookingDetails?.totalPrice}.00</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
