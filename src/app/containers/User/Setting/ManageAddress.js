@@ -122,34 +122,34 @@ const UserManageAddress = () => {
                                 data-bs-toggle="dropdown"
                               />
                               <ul className="dropdown-menu">
-                                <li>
+                                <li  onClick={() => {
+                                      handleUserProfile("editaddress", item?._id);
+                                    }}>
                                   <img
                                     src={Images.EditImg}
                                     alt="editimage"
                                     className="img-fluid"
                                   />{" "}
                                   <span
-                                    onClick={() => {
-                                      handleUserProfile("editaddress", item?._id);
-                                    }}
+                                   
                                     className="editdrop"
                                   >
                                     Edit{" "}
                                   </span>
                                 </li>
-                                <li>
+                                <li onClick={() => {
+                                      handleUserProfile(
+                                        "deleteaddress",
+                                        item?._id
+                                      );
+                                    }}>
                                   <img
                                     src={Images.cartDelete}
                                     alt="editimage"
                                     className="img-fluid"
                                   />{" "}
                                   <span
-                                    onClick={() => {
-                                      handleUserProfile(
-                                        "deleteaddress",
-                                        item?._id
-                                      );
-                                    }}
+                                    
                                     className="editdrop"
                                   >
                                     Delete
