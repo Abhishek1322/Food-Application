@@ -159,7 +159,7 @@ const BookingDetails = () => {
                 onClick={(e) => handleAcceptOrderBookings(e, "reached")}
                 className="cancelOrder_ me-4 w-0"
               >
-                Chef Reached
+                Reached
                 {chefReducer?.loading && isLoading === "reached" && (
                   <span className="spinner-border spinner-border-sm ms-1"></span>
                 )}
