@@ -1,39 +1,10 @@
-import React, {  useState } from "react";
+import React from "react";
 import * as Images from "../../../utilities/images";
 import { Link } from "react-router-dom";
-import CustomModal from "../../components/common/shared/CustomModal";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import LogoutModal from "../../components/common/shared/logoutModal";
 
 const SettingMain = () => {
   const authData = useAuthSelector();
-  const [key, setKey] = useState(Math.random());
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-
-  // open moadl
-  const handleOpenModal = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
-
   return (
     <>
       <div className="settingMain">
@@ -198,43 +169,9 @@ const SettingMain = () => {
                 </Link>
               </div>
             )}
-
-            <div
-              className="settingBox d-flex align-items-center justify-content-center cursorPoint"
-              onClick={() => {
-                handleOpenModal("logOutModal");
-              }}
-            >
-              <img
-                src={Images.logout}
-                alt="logo"
-                className="img-fluid settingIcon "
-              />
-              <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
-            </div>
           </div>
         </div>
       </div>
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "logOutModal" ? "commonWidth customContent" : ""
-        }
-        ids={modalDetail.flag === "logOutModal" ? "logout" : ""}
-        child={
-          modalDetail.flag === "logOutModal" ? (
-            <LogoutModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

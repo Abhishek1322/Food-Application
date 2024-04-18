@@ -94,7 +94,7 @@
     font-family: "Open Sans";
     font-size: 15px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 28px;
     text-align: justify;
 }
 
@@ -184,9 +184,9 @@
 .about .secondary {
     color: #2e3333;
     font-family: "Open Sans";
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 30px;
 }
 
 .sub {
@@ -224,7 +224,7 @@
     font-family: "Open Sans";
     font-size: 16px;
     font-weight: 400;
-    line-height: 25px;
+    line-height: 29px;
     padding: 0 68px 0px 83px;
     text-align: justify;
 }
@@ -402,12 +402,20 @@
 .playImage {
     width: 200px;
 }
+.downloadApp .mobile{
+    position: relative;
+}
+
+.downloadApp .mobile .mobileImage{
+    position: relative;
+    top: -30px;
+}
 
 /**Ends Download App CSS**/
 /**Start Footer Section CSS**/
 .footer_sc {
     background-color: #0C0500;
-    padding-top: 80px;
+    padding-top: 52px;
 }
 
 .footer_sc .primary {
@@ -486,7 +494,7 @@
     color: #fff;
 }
 .socialImg {
-    margin-right: 30px;
+    margin-right: 22px;
 }
 .banner-contact {
     background-size: 100% 32%;
