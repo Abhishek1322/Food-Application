@@ -309,7 +309,7 @@ const HomeUser = () => {
                 </>
               ) : (
                 <div className="noDataFoundImage">
-                  <div>
+                  <div className="noData">
                     <img
                       className="w-100"
                       alt="no data found"

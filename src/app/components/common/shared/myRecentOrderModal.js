@@ -203,7 +203,7 @@ const MyRecentOrderModal = ({
             className={
               orderDetail?.status === "delivered"
                 ? "totalAmmount flexBox justify-content-between"
-                : "totalOrderAmount_ flexBox justify-content-between pb-4"
+                : "totalOrderAmount_ flexBox justify-content-between"
             }
           >
             <p className="chat_Text m-0 pb-0">Total paid</p>

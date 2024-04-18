@@ -95,6 +95,7 @@ p {
 .restroinfo {
   display: flex;
   gap: 10px;
+  position: relative;
 }
 
 .information {
@@ -300,21 +301,31 @@ p {
 
 .restroinfo .johnchatdetail {
   padding: 4px 15px;
+  margin-left: 37px;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
+.restroinfo .cursorPoint {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
 
 .cursorPoint {
   cursor: pointer;
-  padding-top: 30px;
-    padding-right: 92px;
+  position: absolute;
+  left: 48px;
+  bottom: 25px;
 }
 
 .profilesectionChef .cursorPoint {
   cursor: pointer;
-  padding-top: 30px;
-    padding-right: 196px;
+  position: absolute;
+  left: 48px;
+  bottom: 25px;
 }
 
 .sarahbtn {
@@ -1869,7 +1880,10 @@ p {
 
 .pagination {
   justify-content: end;
-  margin-top: 20px;
+  position: fixed;
+  bottom: 54px;
+  right: 0px;
+  transform: translateX(-50%);
 }
 
 .previous a,
@@ -2151,11 +2165,16 @@ p {
 }
 
 .noDataFoundImage {
-  height: 67vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  transform: translate(13%, 74%);
 }
+
+
+.noDataFoundImageCart  {
+  position: absolute;
+  transform: translate(13%, 19%);
+}
+
 
 .cancelProgressBar .ant-progress-inner {
   margin-top: 21px;
@@ -2431,9 +2450,11 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-main-content {
-  height: 570px;
+  height: 727px;
   overflow: auto;
+  padding-bottom: 15px;
   padding-right: 5px;
+  border-bottom: 2px dashed #ddd9d9;
 }
 
 .send-selected-msg {
@@ -2457,7 +2478,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .message-img {
-  height: 165px;
+  height: 93px;
   width: 156px;
 }
 
