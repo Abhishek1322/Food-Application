@@ -10,8 +10,8 @@ p {
 
 /* leftsection css  */
 .profileleft {
-  width: 578px;
-  height: 586px;
+  width: 530px;
+  height: 530px;
 }
 
 
@@ -197,6 +197,8 @@ p {
 
 .editleft {
   position: relative;
+  width: 530px;
+    height: 530px;
 }
 
 .editprofileimg {
