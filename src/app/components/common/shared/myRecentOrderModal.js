@@ -187,7 +187,9 @@ const MyRecentOrderModal = ({
                       className="homeprofile"
                     />
                     <div className="detailInfo">
-                      <p className="userInfo text-capitalize">{item?.category}</p>
+                      <p className="userInfo text-capitalize">
+                        {item?.category}
+                      </p>
                       <p className="userProfile">{item?.name}</p>
                       <p className="orderPrice">£{item?.netPrice}.00</p>
                     </div>
@@ -293,6 +295,7 @@ const MyRecentOrderModal = ({
             />
           ) : modalDetail.flag === "orderDeliver" ? (
             <VerifyorderDetailsModal
+              type="order"
               handleGetOrderDetails={handleGetSingleOrder}
               recentOrderId={singleOrderId}
               close={() => handleOnCloseModal()}

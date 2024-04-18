@@ -92,7 +92,11 @@ const VerifyorderDetailsModal = ({
       dispatch(
         confirmResendOtp({
           ...params,
-          cb(res) {},
+          cb(res) {
+            if(res?.status === 200){
+              setOtp("")
+            }
+          },
         })
       );
     } else {
