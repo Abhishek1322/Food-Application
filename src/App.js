@@ -57,7 +57,7 @@ function App() {
           </BrowserRouter>
         </PersistGate>
       </Provider>
-      <ToastContainer />  
+      <ToastContainer position="top-center" />  
     </>
   );
 }
