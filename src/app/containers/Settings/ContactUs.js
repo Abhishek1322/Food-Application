@@ -197,7 +197,7 @@ const ContactUs = () => {
                   </div>
                   <div className="buttonBox mt-5 d-flex  justify-content-center">
                     <button type="submit" role="button" className="smallBtn">
-                      submit
+                      Submit
                     </button>
                   </div>
                 </div>
