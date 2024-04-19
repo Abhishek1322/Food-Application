@@ -326,7 +326,7 @@ const UserCartModal = ({ close }) => {
                       {latestAddress?.slice(0, 3)?.map((item, index) => (
                         <div key={index} className="checkouthome">
                           <div className="homedropdown mt-2">
-                            <h6 className="notificationText">{item?.type}</h6>
+                            <h6 className="notificationText text-capitalize">{item?.type}</h6>
                             <div className="dropdown dropend">
                               <img
                                 src={Images.chatsDots}

@@ -112,7 +112,7 @@ const UserManageAddress = () => {
                             className="img-fluid"
                           />
                           <div className="managetext">
-                            <h6 className="notificationText">{item?.type}</h6>
+                            <h6 className="notificationText text-capitalize">{item?.type}</h6>
                             <p className="cheftext pt-1">{item?.streetAddress}</p>
                             <div className="dropdown  dropstart managedrop">
                               <img
