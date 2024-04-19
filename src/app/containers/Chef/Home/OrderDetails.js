@@ -319,7 +319,8 @@ const OrderDetails = () => {
                 <h3 className="orderId_ mt-3">Ordered Items</h3>
                 <div className="row align-items-center">
                   <div className="col-lg-10">
-                    {orderDetails?.items?.map((item, index) => (
+                   <div className="orderDetailScroll">
+                   {orderDetails?.items?.map((item, index) => (
                       <div key={index} className="orderedFoodItems">
                         <div className="foodCategory flexBox">
                           <img
@@ -336,6 +337,7 @@ const OrderDetails = () => {
                         <p className="fooodquantity_">{item?.quantity}X</p>
                       </div>
                     ))}
+                   </div>
                   </div>
                   <div className="col-lg-2">
                     <div
