@@ -322,16 +322,10 @@ p {
 
 }
 
-.cursorPoint {
-  cursor: pointer;
-  position: fixed;
-  left: 48px;
-  bottom: 25px;
-}
 
 .profilesectionChef .cursorPoint {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   left: 48px;
   bottom: 25px;
 }
@@ -420,7 +414,7 @@ p {
 }
 
 .sarahbasket {
-  padding: 19px 23px;
+  padding: 2px 7px;
   background-color: #e65c00;
   /* width: 46px;
   height: 35px; */
@@ -2173,7 +2167,7 @@ p {
   z-index: 1;
 }
 
-.noDataFoundImage {
+.notificationsection .noDataFoundImage {
   position: absolute;
   transform: translate(13%, 74%);
 }
@@ -2463,7 +2457,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   overflow: auto;
   padding-bottom: 15px;
   padding-right: 5px;
-  border-bottom: 2px dashed #ddd9d9;
+  border-bottom: 2px dashed #C0C2C280;
 }
 
 .send-selected-msg {
@@ -2483,6 +2477,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   border-radius: 8px;
   margin-top: 5px;
   width: 100%;
+  height: 9vh !important;
   object-fit: cover;
 }
 
@@ -2754,10 +2749,55 @@ input:checked + .slider-chef:before {
   display: flex;
   align-items: center;
 }
-.all-address-checkout {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 7px;
+  .all-address-checkout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 7px;
 }
+
 /* Abhishek Css end */
+
+/* changes */
+
+.profilesection .cursorPoint {
+  cursor: pointer;
+  position: fixed;
+  left: 143px;
+  bottom: 25px;
+}
+
+.mainBox .noData{
+  width: 42%;
+    transform: translate(64%, 12%);
+}
+
+.orderDetailScroll{
+  height: calc(100vh - 365px);
+    overflow-y: scroll;
+}
+
+.listItems_ .bgmenuImg_ {
+  left: 33px;
+  position: absolute;
+  top: -8px;
+  z-index: 2;
+}
+
+/* .profilesection .cursorPoint{
+  cursor: pointer;
+  position: absolute;
+  left: 48px;
+  bottom: 25px;
+} */
+.profilesection .cursorPoint {
+  position: fixed;
+}
+
+.Newbooking_ .noDataFoundImage{
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

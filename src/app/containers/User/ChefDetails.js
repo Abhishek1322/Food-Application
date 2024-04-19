@@ -305,7 +305,7 @@ const ChefDetails = () => {
                               <img
                                 src={Images.basketImg}
                                 alt="basketimage"
-                                className="img-fluid cursorPoint"
+                                className="img-fluid cursorPointCart"
                               />
                             </div>
                           </div>

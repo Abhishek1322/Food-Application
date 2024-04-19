@@ -1420,13 +1420,16 @@ body {
   box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
   flex-direction: column;
   display: flex;
-  /* width: 206px; */
+  width: 206px;
   height: 145px;
   padding: 18px 38px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-left: auto;
+  position: fixed;
+  top: 37%;
+  right: 64px;
 }
 
 .totalPaid {
@@ -1588,12 +1591,20 @@ body {
   cursor: pointer;
 }
 
+.innerItems_ 
 .bgmenuImg_ {
+  position: absolute;
+    z-index: 2;
+    left: 30px;
+    top: -9px;
+}
+
+/* .bgmenuImg_ {
   position: absolute;
     z-index: 2;
     left: -2px;
     top: -57px;
-}
+} */
 
 .menu_Items {
   display: flex;
