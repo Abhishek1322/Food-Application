@@ -1267,7 +1267,11 @@ li.previous.disabled a {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 77vh;
+  height: 82vh;
+}
+
+.modalscroll-order{
+  height: calc(100% - 100px);
 }
 input.searchtext.search-chef-menu {
   width: 300px;

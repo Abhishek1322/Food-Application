@@ -938,6 +938,7 @@ body {
 
 .profileInfo {
   display: flex;
+  justify-content: space-between !important;
 }
 
 .userInfoTxt {
@@ -2056,7 +2057,8 @@ body {
 .totalOrderAmount_ {
   border-radius: 15px;
   background: #e65c00;
-  padding: 15px;
+  padding: 12px;
+  text-transform: uppercase;
   margin-bottom: 30px;
 }
 
