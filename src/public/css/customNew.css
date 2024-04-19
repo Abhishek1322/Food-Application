@@ -313,10 +313,18 @@ p {
   left: 0px;
 }
 
+.sarahbasket .cursorPoint{
+  cursor: pointer;
+  position: absolute;
+  bottom: 13px;
+  width: 24px;
+  left: 205px;
+
+}
 
 .cursorPoint {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   left: 48px;
   bottom: 25px;
 }
@@ -412,9 +420,10 @@ p {
 }
 
 .sarahbasket {
-  padding: 6px 8px;
+  padding: 19px 23px;
   background-color: #e65c00;
-  width: 35px;
+  /* width: 46px;
+  height: 35px; */
   text-align: center;
   border-radius: 12px;
 }
@@ -425,7 +434,7 @@ p {
 }
 
 .sarahsmenu .itemsPrice_ {
-  padding: 0px 25px;
+  padding: 0px 43px;
 }
 
 /* .buttonBoxmodal {
