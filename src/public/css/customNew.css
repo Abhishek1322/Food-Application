@@ -2785,12 +2785,6 @@ input:checked + .slider-chef:before {
   z-index: 2;
 }
 
-/* .profilesection .cursorPoint{
-  cursor: pointer;
-  position: absolute;
-  left: 48px;
-  bottom: 25px;
-} */
 .profilesection .cursorPoint {
   position: fixed;
 }
