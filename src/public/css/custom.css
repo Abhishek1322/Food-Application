@@ -870,14 +870,16 @@ input:-webkit-autofill:active {
 
 .chat-list-counts {
   background-color: #e65c00;
-  width: 15px;
-  height: 15px;
+  width: 19px;
+  height: 19px;
   border-radius: 50px;
   color: #fff;
   font-size: 10px;
   font-weight: 600;
-  padding: 0px 3px 0px 5px;
+  padding: 2px 3px 0px 4px;
 }
+
+
 
 .modalscroll-notificaation {
   height: 641px;

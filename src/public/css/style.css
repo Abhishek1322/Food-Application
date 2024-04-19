@@ -1420,13 +1420,16 @@ body {
   box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
   flex-direction: column;
   display: flex;
-  /* width: 206px; */
+  width: 206px;
   height: 145px;
   padding: 18px 38px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-left: auto;
+  position: fixed;
+  top: 37%;
+  right: 64px;
 }
 
 .totalPaid {
@@ -1524,6 +1527,7 @@ body {
 
 .listItems_:last-child {
   margin-right: 0;
+  position: relative;
 }
 
 .menuItem_ {
@@ -1587,12 +1591,20 @@ body {
   cursor: pointer;
 }
 
+.innerItems_ 
 .bgmenuImg_ {
   position: absolute;
-  z-index: 2;
-  left: 19px;
-  top: -8px;
+    z-index: 2;
+    left: 30px;
+    top: -9px;
 }
+
+/* .bgmenuImg_ {
+  position: absolute;
+    z-index: 2;
+    left: -2px;
+    top: -57px;
+} */
 
 .menu_Items {
   display: flex;
@@ -2782,36 +2794,36 @@ body {
   cursor: pointer;
 }
 .hometype_.recipe-lists.select-expertise-outer {
-  width: 260px;
-  display: flex;
-  align-items: center;
+  width: 260px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 .hometype_.recipe-lists.select-expertise-outer .chefName {
-  margin-right: 6px;
+  margin-right: 6px !important;
 }
 .hometype_.recipe-lists.select-expertise-outer
   .css-1h51icj-MuiAutocomplete-root {
-  max-width: 157px;
-  width: 100%;
+  max-width: 157px !important;
+  width: 100% !important;
 }
 .hometype_.recipe-lists.select-expertise-outer
   .css-1h51icj-MuiAutocomplete-root
   fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-  border: none;
+  border: none !important;
 }
 .hometype_.recipe-lists.select-expertise-outer
   .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline:after {
-  content: "";
-  background: #ffffff;
-  border: none;
-  display: inline-block;
-  padding: 0px 0px 8px 16px;
-  background-image: url(../images/downArrow.svg);
-  background-repeat: no-repeat;
-  color: #abadad;
-  font-size: 8px;
-  margin-left: 10px;
-  position: absolute;
-  right: 10px;
-  top: 8px;
+  content: "" !important;
+  background: #ffffff !important;
+  border: none !important;
+  display: inline-block !important;
+  padding: 0px 0px 8px 16px !important;
+  background-image: url(../images/downArrow.svg)!important;
+  background-repeat: no-repeat!important;
+  color: #abadad !important; 
+  font-size: 8px !important;
+  margin-left: 10px !important;
+  position: absolute !important;
+  right: 10px !important;
+  top: 8px !important;
 }
