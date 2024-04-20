@@ -146,6 +146,8 @@
 
   .whatDifferent .burgerSmall {
     width: 130px;
+    position: absolute;
+    bottom: 70px;
   }
 
   .appButtons .primary {
@@ -232,7 +234,7 @@
   }
 
   .videoSection .image2 {
-    bottom: 63px;
+    bottom: 149px;
     width: 139px;
     left: 47%;
   }
@@ -390,7 +392,9 @@
   }
 
   .foodHalf {
-    top: 16%;
+    position: absolute;
+    top: 14%;
+    right: 0px;
   }
 
   .mainHeadings {
@@ -488,8 +492,10 @@
   }
 
   .leftHalf {
-    width: 50px;
-  }
+    width: 72px;
+    position: absolute;
+    left: 53%;
+}
 
   .footer_logo {
     margin-bottom: 26px;
@@ -685,7 +691,7 @@
 
   .mainBoxOuter {
     padding: 10px 31px;
-    height: 78vh;
+    height: 69vh;
     overflow: scroll;
   }
 
@@ -923,7 +929,7 @@
   }
 
   .foodHalf {
-    top: 15%;
+    top: 13%;
   }
 
   .chooseroleBox .roleHeading {
@@ -1381,3 +1387,17 @@
   margin-right: 19px;
 }
 }
+
+/* userside responsive */
+
+@media (max-width: 986px){
+  .chat-main-content {
+    height: 482px;
+    overflow: auto;
+    padding-bottom: 15px;
+    padding-right: 5px;
+    border-bottom: 2px dashed #C0C2C280;
+}
+}
+
+/* user chef-details resposive */

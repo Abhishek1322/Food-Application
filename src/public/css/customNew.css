@@ -414,7 +414,7 @@ p {
 }
 
 .sarahbasket {
-  padding: 2px 7px;
+  padding: 8px 13px;
   background-color: #e65c00;
   /* width: 46px;
   height: 35px; */
@@ -428,7 +428,7 @@ p {
 }
 
 .sarahsmenu .itemsPrice_ {
-  padding: 0px 43px;
+  padding: 0px 22px;
 }
 
 /* .buttonBoxmodal {
@@ -2748,6 +2748,8 @@ input:checked + .slider-chef:before {
 .item-price-details {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-left: 22px;
 }
   .all-address-checkout {
     display: grid;
@@ -2778,6 +2780,11 @@ input:checked + .slider-chef:before {
     overflow-y: scroll;
 }
 
+.bookingDetailsScrol{
+  height: calc(100vh - 510px);
+  overflow-y: scroll;
+}
+
 .listItems_ .bgmenuImg_ {
   left: 33px;
   position: absolute;
@@ -2794,4 +2801,8 @@ input:checked + .slider-chef:before {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cursorPointCart{
+  width: 22px;
 }

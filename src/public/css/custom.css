@@ -1294,6 +1294,8 @@ input.searchtext.search-only-chef {
 .cursor-booking{
   cursor: pointer;
 }
+
+
 .hometype_.recipe-lists.select-expertise-outer {
   width: 260px !important;
   display: flex !important;
@@ -1328,3 +1330,4 @@ input.searchtext.search-only-chef {
   right: 10px !important;
   top: 8px !important;
 }
+
