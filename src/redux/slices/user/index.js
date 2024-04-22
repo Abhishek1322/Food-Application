@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { restAllData } from "../commanAction";
 
 const initialState = {
   loading: false,
@@ -20,6 +21,7 @@ const initialState = {
 export const userSilce = createSlice({
   name: "user",
   initialState,
+  extraReducers: (builder) => builder.addCase(restAllData, () => initialState),
   reducers: {
     getSelectedAddress: (state, action) => {
       state.previousSelectedAddress = action.payload;

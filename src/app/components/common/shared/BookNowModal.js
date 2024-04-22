@@ -12,7 +12,7 @@ import UserCartModal from "./UserCartModal";
 import { addToCart } from "../../../../redux/slices/user";
 
 // let currentDay = moment(new Date()).format("ddd").toLowerCase();
-const BookNowModal = ({ menuId, chefId, close }) => {
+const BookNowModal = ({ menuId, chefId, close, quantity }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const [key, setKey] = useState(Math.random());
@@ -26,7 +26,7 @@ const BookNowModal = ({ menuId, chefId, close }) => {
     title: "",
     flag: "",
   });
-
+  console.log("selectedTimeSlotesselectedTimeSlotes", selectedTimeSlotes);
   // get slote detail
   useEffect(() => {
     let params = {
@@ -111,20 +111,21 @@ const BookNowModal = ({ menuId, chefId, close }) => {
 
   // hire cheff
   const handleAddCart = () => {
-    if (selectedTimeSlotes.length === 0) {
+    if (!selectedTimeSlotes?.length) {
       showToast("Please select atlest one time slot");
       return;
     } else if (!description) {
       showToast("Please add description");
       return;
     }
+    const removeIdInSlots = selectedTimeSlotes?.map(({ id, ...rest }) => rest);
     let params = {
       menuItemId: menuId,
       type: "booking",
-      quantity: "1",
+      quantity: quantity === "0" ? "1" : Number(quantity) + 1 + "",
       description: description,
       date: moment(date).format("DD-MM-YYYY"),
-      slots: selectedTimeSlotes,
+      slots: removeIdInSlots,
     };
     dispatch(
       addToCart({

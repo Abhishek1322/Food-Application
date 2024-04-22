@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { restAllData } from "../commanAction";
 
 const initialState = {
   loading: false,
@@ -10,6 +11,7 @@ const initialState = {
 export const chefSilce = createSlice({
   name: "chef",
   initialState,
+  extraReducers: (builder) => builder.addCase(restAllData, () => initialState),
   reducers: {
     confirmBookingResendOtp: (state) => {
       state.loading = true;
