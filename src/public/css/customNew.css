@@ -2166,7 +2166,7 @@ p {
 
 .notificationsection .noDataFoundImage {
   position: absolute;
-  transform: translate(13%, 74%);
+  transform: translate(13%, 99%);
 }
 
 .noDataFoundImageCart {
@@ -2821,4 +2821,22 @@ input:checked + .slider-chef:before {
   font-size: 10px;
   padding-bottom: 4px;
   font-weight: 600;
+}
+
+.mainchef_ .noDataFoundImage {
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.Myorders_ .noDataFoundImage{
+  position: absolute;
+  transform: translate(13%, 68%);
+}
+
+.chef-bell-section .noDataFoundImage{
+  position: absolute;
+  transform: translate(46%, 85%);
 }
