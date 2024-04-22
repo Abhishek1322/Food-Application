@@ -4,6 +4,7 @@ import { userLogout, onErrorStopLoad } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getSelectedAddress } from "../../../../redux/slices/user";
+import { restAllData } from "../../../../redux/slices/commanAction";
 
 const LogoutModal = (props) => {
   const { close } = props;
@@ -18,6 +19,7 @@ const LogoutModal = (props) => {
           if (res.status === 200) {
             navigate("/");
             dispatch(getSelectedAddress(null));
+            dispatch(restAllData());
           }
         },
       })
