@@ -2169,7 +2169,7 @@ p {
 
 .notificationsection .noDataFoundImage {
   position: absolute;
-  transform: translate(13%, 74%);
+  transform: translate(13%, 99%);
 }
 
 
@@ -2813,3 +2813,11 @@ input:checked + .slider-chef:before {
   align-items: center;
   justify-content: center;
 }
+
+.mainchef_ .noDataFoundImage {
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
