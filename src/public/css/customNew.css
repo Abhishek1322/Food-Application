@@ -2453,7 +2453,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-main-content {
-  height: 727px;
+  height: 644px;
   overflow: auto;
   padding-bottom: 15px;
   padding-right: 5px;
@@ -2805,4 +2805,11 @@ input:checked + .slider-chef:before {
 
 .cursorPointCart{
   width: 22px;
+}
+
+.userordersection .noDataFoundImage {
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

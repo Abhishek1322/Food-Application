@@ -1400,4 +1400,150 @@
 }
 }
 
-/* user chef-details resposive */
+/* user side resposive */
+
+/* home-page */
+
+@media (max-width: 375px){
+  .mainBoxOuter {
+    padding: 10px 31px;
+    height: 67vh;
+    overflow: scroll;
+}
+
+.infoimg {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+  display: inline;
+  right: 21px;
+  position: relative;
+}
+
+/* chat-modal */
+
+.chat-main-content {
+  height: 620px;
+}
+}
+
+@media (max-width: 576px) {
+  .chat-main-content {
+    height: 620px;
+}
+}
+
+
+@media (max-width: 768px) {
+  .chat-main-content {
+    height: 645px;
+}
+}
+
+
+/* user-profile */
+
+@media (max-width: 1400px) {
+  .profileleft {
+    width: 450px;
+    height: 450px;
+  }
+
+  .profilesection {
+    margin: 158px 99px 0 90px;
+}
+}
+
+@media (max-width: 1200px) {
+  .profileleft {
+    width: 376px;
+    height: 376px;
+  }
+
+  .profilesection {
+    margin: 200px 99px 0 90px;
+}
+}
+ /* edit-user-profile */
+
+@media (max-width:1500px) {
+  .editleft {
+    position: relative;
+    width: 450px;
+    height: 450px;
+  }
+
+
+}
+
+@media (max-width:1400px) {
+  .editleft {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+
+
+}
+
+@media (max-width:1200px) {
+  .editleft {
+    position: relative;
+    width: 370px;
+    height: 370px;
+  }
+  .usereditsection {
+    margin: 187px 90px 0 90px;
+}
+
+}
+
+/* chef-profile */
+
+
+@media (max-width: 1400px) {
+  .profilesectionChef .profileleft {
+    width: 470px;
+    height: 470px;
+  }
+
+  .profilesection {
+    margin: 158px 99px 0 90px;
+}
+}
+
+@media (max-width: 1200px) {
+  .profileleft {
+    width: 376px;
+    height: 376px;
+  }
+
+  .profilesection {
+    margin: 200px 99px 0 90px;
+}
+}
+
+ /* edit-chef-profile */
+
+ @media (max-width:1500px) {
+  .profilesectionChef .editleft {
+    position: relative;
+    width: 460px;
+    height: 460px;
+  }
+
+
+}
+
+@media (max-width:1200px) {
+  .profilesectionChef .editleft {
+    position: relative;
+    width: 380px;
+    height: 380px;
+  }
+  .usereditsection {
+    margin: 187px 90px 0 90px;
+}
+
+}
+

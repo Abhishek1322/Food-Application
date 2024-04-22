@@ -1536,6 +1536,7 @@ body {
   border-radius: 74px;
   z-index: 3;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .innerItems_ {
@@ -2667,8 +2668,9 @@ body {
 /* Chef Profile Img css Start */
 .chefprofileimg_ {
   width: 100%;
-  height: 544px;
+  height: 100%;
   border-radius: 50px;
+  object-fit: cover;
 }
 
 /* Page Not Found Css Start  */
