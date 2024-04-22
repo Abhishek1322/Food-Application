@@ -2810,3 +2810,7 @@ body {
   margin-left: auto;
 }
 
+.infoPages .noDataFoundImage{
+  position: absolute;
+  transform: translate(13%, 73%);
+}
