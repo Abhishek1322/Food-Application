@@ -1427,9 +1427,7 @@ body {
   align-items: center;
   gap: 10px;
   margin-left: auto;
-  position: fixed;
-  top: 37%;
-  right: 64px;
+  margin-top: 22px;
 }
 
 .totalPaid {
@@ -2808,8 +2806,6 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-top: 22px;
   margin-left: auto;
-  position: fixed;
-  top: 53%;
-  right: 64px;
 }

@@ -1445,8 +1445,8 @@
 
 @media (max-width: 1400px) {
   .profileleft {
-    width: 450px;
-    height: 450px;
+    width: 370px;
+    height: 370px;
   }
 
   .profilesection {
@@ -1497,14 +1497,15 @@
 }
 
 }
+/* chef-side responsive */
 
 /* chef-profile */
 
 
 @media (max-width: 1400px) {
   .profilesectionChef .profileleft {
-    width: 470px;
-    height: 470px;
+    width: 370px;
+    height: 370px;
   }
 
   .profilesection {
@@ -1531,8 +1532,6 @@
     width: 460px;
     height: 460px;
   }
-
-
 }
 
 @media (max-width:1200px) {
@@ -1544,6 +1543,115 @@
   .usereditsection {
     margin: 187px 90px 0 90px;
 }
+}
+
+@media (max-width: 1300px) {
+  .orderDetailBox .cancelOrder{
+    padding: 7px 13px;
+  }
+  .orderDetailBox .acceptOrder{
+    padding: 7px 13px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .orderDetailBox .cancelOrder{
+    padding: 4px 9px;
+  }
+  .orderDetailBox .acceptOrder{
+    padding: 4px 9px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .profileDetailNew
+    .orderDetailBox {
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+      width: calc(26% - 17px);
+      margin-right: 6px;
+      margin-bottom: 20px;
+      cursor: pointer;
+  }
+  
+}
+
+@media (max-width: 1400px) {
+
+ .paidAmount{
+  width: 189px !important;
+  height: 137px !important;
+  }
+  
+}
+
+
+@media (max-width: 1250px) {
+
+  .paidAmount{
+   width: 170px !important;
+   height: 137px !important;
+   }
+   
+ }
+
+
+@media (max-width: 1150px) {
+
+  .paidAmount{
+   width: 153px !important;
+   height: 137px !important;
+   }
+
+   .foodBill {
+    font-size: 26px;
 
 }
+
+.totalPaid {
+  font-size: 13px;
+ }
+   
+ }
+
+
+@media (max-width: 1400px) {
+
+ .paidAmmount{
+   width: 189px !important;
+   height: 137px !important;
+   }
+   
+ }
+ 
+ 
+ @media (max-width: 1250px) {
+ .paidAmmount{
+    width: 170px !important;
+    height: 137px !important;
+    }
+    
+  }
+ 
+ 
+ @media (max-width: 1150px) {
+ 
+  .paidAmmount{
+    width: 153px !important;
+    height: 137px !important;
+    }
+
+
+  .foodBill {
+      font-size: 26px;
+  
+  }
+
+  .totalPaid {
+    font-size: 13px;
+   }
+    
+  }
+ 
 

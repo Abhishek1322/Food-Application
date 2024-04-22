@@ -268,7 +268,7 @@ const BookingDetails = () => {
                   </p>
                 </div>
                 <h3 className="orderId_ mt-3">Booking Items</h3>
-                <div className="row align-items-center">
+                <div className="row">
                   <div className="col-lg-10">
                    <div className="bookingDetailsScrol">
                    {bookingDetails?.items?.map((item, index) => (
