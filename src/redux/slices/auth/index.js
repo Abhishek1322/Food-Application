@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { restAllData } from "../commanAction";
 
 const initialState = {
   isLoggedIn: false,
@@ -13,6 +14,7 @@ const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
+  extraReducers: (builder) => builder.addCase(restAllData, () => initialState),
   reducers: {
     updateBankDetails: (state) => {
       state.loading = true;

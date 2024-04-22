@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { restAllData } from "../commanAction";
 
 const initialState = {
   loading: false,
@@ -16,6 +17,7 @@ const initialState = {
 export const webSlice = createSlice({
   name: "web",
   initialState,
+  extraReducers: (builder) => builder.addCase(restAllData, () => initialState),
   reducers: {
     toggleAvailabilty: (state) => {
       state.loading = true;
