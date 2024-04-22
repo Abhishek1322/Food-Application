@@ -369,6 +369,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
             />
           ) : modalDetail.flag === "bookchef" ? (
             <BookNowModal
+            quantity={quantity}
               menuId={menuId}
               chefId={foodDetails?.item?.userId?._id}
               close={() => {

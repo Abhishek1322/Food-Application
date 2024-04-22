@@ -14,7 +14,6 @@ p {
   height: 370px;
 }
 
-
 .chefprofileimg {
   width: 100%;
   height: 100%;
@@ -199,7 +198,7 @@ p {
 .editleft {
   position: relative;
   width: 370px;
-    height: 370px;
+  height: 370px;
 }
 
 .editprofileimg {
@@ -313,15 +312,13 @@ p {
   left: 0px;
 }
 
-.sarahbasket .cursorPoint{
+.sarahbasket .cursorPoint {
   cursor: pointer;
   position: absolute;
   bottom: 13px;
   width: 24px;
   left: 205px;
-
 }
-
 
 .profilesectionChef .cursorPoint {
   cursor: pointer;
@@ -2169,15 +2166,13 @@ p {
 
 .notificationsection .noDataFoundImage {
   position: absolute;
-  transform: translate(13%, 74%);
+  transform: translate(13%, 99%);
 }
 
-
-.noDataFoundImageCart  {
+.noDataFoundImageCart {
   position: absolute;
   transform: translate(13%, 19%);
 }
-
 
 .cancelProgressBar .ant-progress-inner {
   margin-top: 21px;
@@ -2457,7 +2452,7 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   overflow: auto;
   padding-bottom: 15px;
   padding-right: 5px;
-  border-bottom: 2px dashed #C0C2C280;
+  border-bottom: 2px dashed #c0c2c280;
 }
 
 .send-selected-msg {
@@ -2597,7 +2592,6 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   margin-top: 0;
 }
 
-
 .expertise-outer-main {
   height: 65vh;
   overflow-y: auto;
@@ -2636,7 +2630,11 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
   height: 100%;
   width: 100%;
 }
-
+.order-now-pay-total-pay {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
 .order-now-pay-total {
   border-radius: 8px;
   background: #2e3333;
@@ -2751,12 +2749,12 @@ input:checked + .slider-chef:before {
   justify-content: space-between;
   margin-left: 22px;
 }
-  .all-address-checkout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 7px;
+.all-address-checkout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
 /* Abhishek Css end */
@@ -2770,17 +2768,17 @@ input:checked + .slider-chef:before {
   bottom: 25px;
 }
 
-.mainBox .noData{
+.mainBox .noData {
   width: 42%;
-    transform: translate(64%, 12%);
+  transform: translate(64%, 12%);
 }
 
-.orderDetailScroll{
+.orderDetailScroll {
   height: calc(100vh - 365px);
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 
-.bookingDetailsScrol{
+.bookingDetailsScrol {
   height: calc(100vh - 510px);
   overflow-y: scroll;
 }
@@ -2796,14 +2794,14 @@ input:checked + .slider-chef:before {
   position: fixed;
 }
 
-.Newbooking_ .noDataFoundImage{
+.Newbooking_ .noDataFoundImage {
   height: 35vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.cursorPointCart{
+.cursorPointCart {
   width: 22px;
 }
 
@@ -2812,4 +2810,33 @@ input:checked + .slider-chef:before {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.order-now-pay-total-outer{
+  border-radius: 8px;
+  background: #2e3333;
+}
+.service-charges {
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  padding-bottom: 4px;
+  font-weight: 600;
+}
+
+.mainchef_ .noDataFoundImage {
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.Myorders_ .noDataFoundImage{
+  position: absolute;
+  transform: translate(13%, 68%);
+}
+
+.chef-bell-section .noDataFoundImage{
+  position: absolute;
+  transform: translate(46%, 85%);
 }

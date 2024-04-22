@@ -15,7 +15,6 @@ import AddAddressModal from "./AddAddressModal";
 import EditAddressModal from "./EditAddressModal";
 import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
-import PayNowModal from "./PayNowModal";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../../redux/selector/user";
 import CheckOutForm from "./CheckOutForm";
@@ -326,7 +325,9 @@ const UserCartModal = ({ close }) => {
                       {latestAddress?.slice(0, 3)?.map((item, index) => (
                         <div key={index} className="checkouthome">
                           <div className="homedropdown mt-2">
-                            <h6 className="notificationText text-capitalize">{item?.type}</h6>
+                            <h6 className="notificationText text-capitalize">
+                              {item?.type}
+                            </h6>
                             <div className="dropdown dropend">
                               <img
                                 src={Images.chatsDots}
@@ -400,22 +401,27 @@ const UserCartModal = ({ close }) => {
                 >
                   + Add More Items
                 </button>
-                <div className="order-now-pay-total">
-                  <div className="total-price-order">
-                    <h6 className="totaltxt">Total</h6>
-                    <p className="price">£{totalPrice.toFixed(2)}</p>
+                <div className="order-now-pay-total-outer">
+                  <div className="order-now-pay-total-pay">
+                    <div className="total-price-order">
+                      <p className="service-charges">
+                        Service Charges:&nbsp;&nbsp;{serviceCharges.toFixed(2)}
+                      </p>
+                      <h6 className="totaltxt">Total</h6>
+                      <p className="price">£{totalPrice.toFixed(2)}</p>
+                    </div>
+                    <button
+                      onClick={() => handleCreatePaymentIntent("pay")}
+                      className="orderbutton w-auto"
+                      type="button"
+                      disabled={loading}
+                    >
+                      Pay Now
+                      {loading && isLoading === "pay" && (
+                        <span className="spinner-border spinner-border-sm me-2"></span>
+                      )}
+                    </button>
                   </div>
-                  <button
-                    onClick={() => handleCreatePaymentIntent("pay")}
-                    className="orderbutton w-auto"
-                    type="button"
-                    disabled={loading}
-                  >
-                    Pay Now
-                    {loading && isLoading === "pay" && (
-                      <span className="spinner-border spinner-border-sm me-2"></span>
-                    )}
-                  </button>
                 </div>
               </div>
             </div>
