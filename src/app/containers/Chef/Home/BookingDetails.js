@@ -270,7 +270,8 @@ const BookingDetails = () => {
                 <h3 className="orderId_ mt-3">Booking Items</h3>
                 <div className="row align-items-center">
                   <div className="col-lg-10">
-                    {bookingDetails?.items?.map((item, index) => (
+                   <div className="bookingDetailsScrol">
+                   {bookingDetails?.items?.map((item, index) => (
                       <div key={index} className="orderedFoodItems">
                         <div className="foodCategory flexBox">
                           <img
@@ -287,13 +288,14 @@ const BookingDetails = () => {
                         <p className="fooodquantity_">{item?.quantity}X</p>
                       </div>
                     ))}
+                   </div>
                   </div>
                   <div className="col-lg-2">
                     <div
                       className={
                         bookingDetails?.status === "delivered"
-                          ? "paidAmmount paidAmmount-delivered"
-                          : "paidAmmount"
+                          ? "paidAmount paidAmmount-delivered"
+                          : "paidAmount"
                       }
                     >
                       <p className="totalPaid">Total paid</p>
