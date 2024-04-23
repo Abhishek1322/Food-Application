@@ -32,10 +32,31 @@ import {
   setGetLocationInfo,
   setGetCartNotificationCount,
   setCreatePaymentIntent,
+  setGetAllBookings,
 } from "../../slices/user";
 import { GOOLE_MAPS_API_KEY } from "../../../config/config";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* getAllBookings(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = `${ApiPath.userApiPath.GET_ALL_BOOKING}?limit=${action.payload.limit}&page=${action.payload.page}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetAllBookings(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* createPaymentIntent(action) {
   try {
@@ -697,6 +718,7 @@ function* userSaga() {
   yield all([takeLatest("user/getMenuRating", getMenuRating)]);
   yield all([takeLatest("user/getLocationInfo", getLocationInfo)]);
   yield all([takeLatest("user/createPaymentIntent", createPaymentIntent)]);
+  yield all([takeLatest("user/getAllBookings", getAllBookings)]);
   yield all([
     takeLatest("user/getCartNotificationCount", getCartNotificationCount),
   ]);

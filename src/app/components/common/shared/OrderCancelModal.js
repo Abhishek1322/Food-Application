@@ -7,12 +7,11 @@ const OrderCancelModal = ({ close, orderType }) => {
 
   // navigate previous order page
   const handleGoBack = () => {
-    if (orderType === "order") {
+    if (orderType === "order" || orderType === "booking") {
       close();
-      navigate("/user-order-home");
-    } else if (orderType === "booking") {
-      close();
-      navigate("/home-user");
+      navigate("/user-order-home", {
+        state: orderType,
+      });
     } else {
       close();
     }

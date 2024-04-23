@@ -33,7 +33,7 @@ const VerifyorderDetailsModal = ({
       toastId.current = toast.error(msg);
     }
   };
-  
+
   // submit otp
   const handleSubmitOtp = (e, status) => {
     e.preventDefault();
@@ -93,8 +93,8 @@ const VerifyorderDetailsModal = ({
         confirmResendOtp({
           ...params,
           cb(res) {
-            if(res?.status === 200){
-              setOtp("")
+            if (res?.status === 200) {
+              setOtp("");
             }
           },
         })
@@ -103,7 +103,11 @@ const VerifyorderDetailsModal = ({
       dispatch(
         confirmBookingResendOtp({
           ...params,
-          cb(res) {},
+          cb(res) {
+            if (res?.status === 200) {
+              setOtp("");
+            }
+          },
         })
       );
     }

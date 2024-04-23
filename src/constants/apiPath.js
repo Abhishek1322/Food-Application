@@ -61,6 +61,7 @@ const ApiPath = {
     GET_ALL_CART_NOTIFICATION: "/users/home",
     CREATE_BOOKING_ORDER: "/order/checkout",
     CREATE_PAYMENT_INTENT: "/transactions/create-intent",
+    GET_ALL_BOOKING:"/bookings/user"
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",

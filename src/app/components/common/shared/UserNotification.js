@@ -44,7 +44,14 @@ const UserNotification = ({ updateNotification, close }) => {
   };
 
   // read notifications
-  const handleReadNotification = (id, read, type, bookingId, orderId) => {
+  const handleReadNotification = (
+    id,
+    read,
+    type,
+    bookingId,
+    orderId,
+    title
+  ) => {
     // if (read) {
     //   return;
     // }
@@ -61,9 +68,15 @@ const UserNotification = ({ updateNotification, close }) => {
             if (
               (role === "user" && type === "order-ready-for-delivery") ||
               type === "order-delivered" ||
-              type === "order-accepted"
+              type === "order-accepted" ||
+              type === "bookings" ||
+              type === "booking-accepted" ||
+              type === "booking-reached" ||
+              type === "booking-completed"
             ) {
-              navigate(`/user-order-home`);
+              navigate(`/user-order-home`, {
+                state: title === "Order food" ? "order" : "booking",
+              });
               close();
             } else if (
               (role === "chef" && type === "bookings") ||
@@ -123,7 +136,8 @@ const UserNotification = ({ updateNotification, close }) => {
                       item?.is_read,
                       item?.type,
                       item?.bookingId,
-                      item?.orderId
+                      item?.orderId,
+                      item?.title
                     )
                   }
                   key={index}

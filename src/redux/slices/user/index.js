@@ -23,6 +23,12 @@ export const userSilce = createSlice({
   initialState,
   extraReducers: (builder) => builder.addCase(restAllData, () => initialState),
   reducers: {
+    getAllBookings: (state) => {
+      state.loading = true;
+    },
+    setGetAllBookings: (state) => {
+      state.loading = false;
+    },
     getSelectedAddress: (state, action) => {
       state.previousSelectedAddress = action.payload;
     },
@@ -125,7 +131,6 @@ export const userSilce = createSlice({
     setGetSingleOrder: (state, action) => {
       state.loading = false;
     },
-
     getAllOrder: (state) => {
       state.loading = true;
     },
@@ -133,7 +138,6 @@ export const userSilce = createSlice({
       state.loading = false;
       state.allOrders = action.payload;
     },
-
     cancelOrder: (state) => {
       state.loading = true;
       state.success = false;
@@ -290,7 +294,9 @@ export const {
   resetSuccess,
   createPaymentIntent,
   setCreatePaymentIntent,
-  getSelectedAddress
+  getSelectedAddress,
+  getAllBookings,
+  setGetAllBookings
 } = userSilce.actions;
 
 export default userSilce.reducer;

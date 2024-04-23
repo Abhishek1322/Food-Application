@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getSingleOrder, onErrorStopLoad } from "../../../../redux/slices/user";
-import { useUserSelector } from "../../../../redux/selector/user";
-import { FadeLoader } from "react-spinners";
+import React from "react";
 
-const UserOrderDetail = ({ orderDetail }) => {
-  const dispatch = useDispatch();
-  const userSelector = useUserSelector();
-
-  // stop loader on page load
-  useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
-
+const UserBookingDetail = ({ bookingDetail }) => {
   return (
     <>
       <div className="Userordersection">
-        {orderDetail?.items?.map((item, index) => (
+        {bookingDetail?.items?.map((item, index) => (
           <div key={index} className="modalDetail usermodaldetail">
             <div className="usercartDetail">
               <img src={item?.image} className="userprofile" alt="cartImg" />
@@ -36,7 +24,7 @@ const UserOrderDetail = ({ orderDetail }) => {
           <div className="addfoodbtn">
             <button
               className={
-                orderDetail?.status === "delivered"
+                bookingDetail?.status === "completed"
                   ? "foodmodalbtn foodmodalbtnDeliver modalfooddelivery"
                   : "foodmodalbtn modalfooddelivery"
               }
@@ -44,7 +32,7 @@ const UserOrderDetail = ({ orderDetail }) => {
             >
               <p className="orderfooterbtn">Total Paid</p>
               <p className="orderfooterprice">
-                £{Number(orderDetail?.total)?.toFixed(2)}
+                £{Number(bookingDetail?.totalPrice)?.toFixed(2)}
               </p>
             </button>
           </div>
@@ -54,4 +42,4 @@ const UserOrderDetail = ({ orderDetail }) => {
   );
 };
 
-export default UserOrderDetail;
+export default UserBookingDetail;

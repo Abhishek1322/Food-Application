@@ -49,12 +49,11 @@ const OrderPlaceModal = ({ close, orderId, orderType }) => {
   // close existing modal
   useEffect(() => {
     if (countDown === 0) {
-      if (orderType === "order") {
+      if (orderType === "order" || orderType === "booking") {
         close();
-        navigate("/user-order-home");
-      } else if (orderType === "booking") {
-        close();
-        navigate("/home-user");
+        navigate("/user-order-home", {
+          state: orderType,
+        });
       }
     }
   }, [countDown]);
@@ -68,12 +67,11 @@ const OrderPlaceModal = ({ close, orderId, orderType }) => {
 
   // redirect to detail page
   const handleRedirect = () => {
-    if (orderType === "order") {
+    if (orderType === "order" || orderType === "booking") {
       close();
-      navigate("/user-order-home");
-    } else if (orderType === "booking") {
-      close();
-      navigate("/home-user");
+      navigate("/user-order-home", {
+        state: orderType,
+      });
     } else {
       close();
     }
