@@ -73,7 +73,7 @@ const MenuDetails = () => {
 
   return (
     <>
-      <div className="mainBoxOuter">
+      <div className="mainBoxOuter menu-detail">
         <div className="cheffilter flexBox">
           <div className="searchbar me-4">
             <input
@@ -105,7 +105,7 @@ const MenuDetails = () => {
                 {menuList && menuList?.length > 0 ? (
                   <>
                     {menuList?.map((item, index) => (
-                      <div key={index} className="col-lg-2 col-md-4 col-sm-6">
+                      <div key={index} className="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-12">
                         <div
                           onClick={() => {
                             handleOpenModal("orderModal", item?._id);

@@ -101,12 +101,11 @@ p {
   border-radius: 15px;
   background: #fff;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 315px;
+  width: 268px;
   position: absolute;
   display: none;
   padding: 10px;
-  margin: 25px auto;
+  margin: 4px auto;
   left: 76px;
 }
 
@@ -1881,9 +1880,8 @@ p {
 .pagination {
   justify-content: end;
   position: fixed;
-  bottom: 54px;
-  right: 0px;
-  transform: translateX(-50%);
+  bottom: 31px;
+  right: 42px;
 }
 
 .previous a,
@@ -2448,13 +2446,13 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-main-content {
-  height: 729px;
+  height: 100%;
+  max-height: calc(100vh - 240px);
   overflow: auto;
-  padding-bottom: 15px;
-  padding-right: 5px;
+  padding-right: 10px;
+  padding-bottom: 7px;
   border-bottom: 2px dashed #c0c2c280;
 }
-
 .send-selected-msg {
   height: 92px;
   position: relative;
@@ -2482,9 +2480,12 @@ button.foodmodalbtn.modalfooterbtn.disbale-btn {
 }
 
 .chat-main-content-chef {
-  height: 68vh;
+  height: 100%;
+  max-height: calc(100vh - 236px);
   overflow: auto;
   padding-right: 10px;
+  padding-bottom: 7px;
+  border-bottom: 2px dashed #c0c2c280;
 }
 
 .send-selected-msg .cross-icon {
@@ -2768,10 +2769,6 @@ input:checked + .slider-chef:before {
   bottom: 25px;
 }
 
-.mainBox .noData {
-  width: 42%;
-  transform: translate(64%, 12%);
-}
 
 .orderDetailScroll {
   height: calc(100vh - 365px);
@@ -2839,4 +2836,11 @@ input:checked + .slider-chef:before {
 .chef-bell-section .noDataFoundImage{
   position: absolute;
   transform: translate(46%, 85%);
+}
+
+.mainBoxOuter .noDataFoundImage{
+  height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
