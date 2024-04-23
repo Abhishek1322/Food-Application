@@ -1499,10 +1499,16 @@
 }
 /* chef-side responsive */
 
-/* chef-profile */
+
 
 
 @media (max-width: 1400px) {
+    
+ 
+  
+
+  /* chef-profile */
+
   .profilesectionChef .profileleft {
     width: 370px;
     height: 370px;

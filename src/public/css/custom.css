@@ -638,6 +638,22 @@ input:-webkit-autofill:active {
   padding: 10px 31px;
 }
 
+.chefs-lists{
+  padding: 10px 31px;
+  height: 100%;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.menu-detail{
+ 
+    padding: 10px 31px;
+    height: 100%;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+
 .headingSub {
   color: #2e3333;
   font-family: Crimson Text;
