@@ -362,7 +362,7 @@ const EditProfile = () => {
                                   // inline style for demonstration purpose
                                   const style = suggestion.active
                                     ? {
-                                        backgroundColor: "#e65c00 !important",
+                                        backgroundColor: "#e65c00",
                                         cursor: "pointer",
                                         borderRadius: "4px",
                                         padding: "6px",
