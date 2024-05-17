@@ -19,7 +19,6 @@ import * as Images from "../src/utilities/images";
 import { toast } from "react-toastify";
 
 function App() {
-
   // Get FCM token , Generate Token
   async function requestPermission() {
     const permission = await Notification.requestPermission();
@@ -28,7 +27,6 @@ function App() {
         vapidKey: VAPID_KEY,
       });
       localStorage.setItem("fcmToken", token);
-      console.log("Token Gen", token);
       onMessage(messaging, (payload) => {
         const { title, body } = payload.notification;
         new Notification(title, {
@@ -42,7 +40,7 @@ function App() {
       toast.error("You denied for the notification");
     }
   }
-  
+
   // Req user for notification permission
   useEffect(() => {
     requestPermission();
@@ -57,7 +55,7 @@ function App() {
           </BrowserRouter>
         </PersistGate>
       </Provider>
-      <ToastContainer position="top-center" />  
+      <ToastContainer position="top-center" theme="dark" />
     </>
   );
 }

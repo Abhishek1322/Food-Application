@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getExpertise } from "../../../redux/slices/auth";
 
 const HomeUser = () => {
@@ -28,6 +28,7 @@ const HomeUser = () => {
   const [expertice, setExpertice] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filterChefByRating, setFilterChefByRating] = useState("");
+  const [chefType, setChefType] = useState("");
 
   const icon = <RadioButtonUncheckedIcon fontSize="small" />;
   const checkedIcon = (
@@ -37,7 +38,7 @@ const HomeUser = () => {
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, [search, filterChefByRating, currentLocation, expertice]);
+  }, [search, filterChefByRating, currentLocation, expertice, chefType]);
 
   // get all chef lists
   const getChefList = (page = currentPage) => {
@@ -49,6 +50,7 @@ const HomeUser = () => {
       lat: currentLocation?.lat,
       long: currentLocation?.lng,
       foodType: expertice,
+      type: chefType,
     };
 
     dispatch(
@@ -107,7 +109,7 @@ const HomeUser = () => {
           />
         </div>
       ) : (
-        <div className="mainBoxOuter">
+        <div className="mainBoxOuter chefs-lists">
           <h6 className="headingSub">Chefs Near You</h6>
           <div className="cheffilter flexBox">
             <div className="searchbar me-4">
@@ -122,6 +124,67 @@ const HomeUser = () => {
                 className="searchbarImg"
                 alt="searchbar"
               />
+            </div>
+            <div className="dropdown">
+              <span className="chefName">Chef Type:</span>
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span className="filterheading text-capitalize">
+                  {chefType || "Select Type"}
+                </span>
+              </button>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li>
+                  <Link
+                    onClick={() => setChefType("restaurant")}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <img
+                      src={Images.sarahcap}
+                      alt="starimg"
+                      className="img-fluid chef-type-img"
+                    />
+
+                    <span className="filterheading">Restaurant</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={() => setChefType("home")}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <img
+                      src={Images.sarahcap}
+                      alt="starimg"
+                      className="img-fluid chef-type-img"
+                    />
+                    <span className="filterheading">Home</span>
+                  </Link>
+                </li>
+                {chefType && (
+                  <li>
+                    <Link
+                      onClick={() => setChefType("")}
+                      className="dropdown-item text-center d-flex align-items-center gap-2"
+                      to="#"
+                    >
+                      <i className="fa fa-ban none-of-these ms-1"></i>
+
+                      <span className="filterheading ms-2">None of these</span>
+                    </Link>
+                  </li>
+                )}
+              </ul>
             </div>
             <div className="dropdown">
               <span className="chefName">Filter By:</span>
@@ -220,27 +283,29 @@ const HomeUser = () => {
                     <span className="filterheading">Above rating</span>
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    onClick={(e) => handleFilterChefByRating(e, "")}
-                    className="dropdown-item text-center d-flex align-items-center gap-2"
-                    to="#"
-                  >
-                    <i className="fa fa-ban none-of-these"></i>
-                    <span className="filterheading">None of these</span>
-                  </Link>
-                </li>
+                {filterChefByRating && (
+                  <li>
+                    <Link
+                      onClick={(e) => handleFilterChefByRating(e, "")}
+                      className="dropdown-item text-center d-flex align-items-center gap-2"
+                      to="#"
+                    >
+                      <i className="fa fa-ban none-of-these"></i>
+                      <span className="filterheading">None of these</span>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
             <div className="recipe-lists select-expertise-outer hometype_">
-            <span className="chefName">Food Type :</span>
+              <span className="chefName">Food Type :</span>
               <Autocomplete
                 multiple
                 id="checkboxes-tags-demo"
                 options={experticeList}
                 disableCloseOnSelect
                 // value={null}
-                popupIcon={<KeyboardArrowDownIcon/>}
+                popupIcon={<KeyboardArrowDownIcon />}
                 onChange={handleAutocompleteChange}
                 getOptionLabel={(option) => option?.title}
                 renderOption={(props, option, { selected }) => (

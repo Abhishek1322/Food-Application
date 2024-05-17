@@ -226,6 +226,9 @@ function* chefLists(action) {
   if (action.payload.foodType && action.payload?.foodType?.length > 0) {
     targetUtl += `foodType=${action.payload.foodType}`;
   }
+  if (action.payload.type) {
+    targetUtl += `type=${action.payload.type}`;
+  }
   try {
     const resp = yield call(
       ApiClient.get,
