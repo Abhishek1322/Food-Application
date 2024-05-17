@@ -49,6 +49,8 @@ const SetupProfile = () => {
   const [showTimeSlot, setShowTimeSlot] = useState(false);
   const [availability, setAvailability] = useState([]);
   const [documentUrl, setDocumentUrl] = useState("");
+  const [IdPdf, setIdPdf] = useState("");
+  const [idProofUrl, setIdProofUrl] = useState("");
   const [formData, setFormData] = useState({
     experience: "",
     bio: "",
@@ -66,34 +68,6 @@ const SetupProfile = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // remove document
-  const handleRemoveDocument = (name) => {
-    if (pdfFiles.name === name) {
-      setPdfFiles("");
-      setDocumentUrl("");
-    }
-  };
-
-  // getting document URL
-  useEffect(() => {
-    if (pdfFiles) {
-      let params = {
-        file: pdfFiles,
-      };
-      dispatch(
-        chefProfileDocument({
-          ...params,
-          cb(res) {
-            if (res.status === 200) {
-              setDocumentUrl(res.data.data.fileUrl);
-            }
-          },
-        })
-      );
-    }
-  }, [pdfFiles]);
-
-  //onDrop
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     if (
       rejectedFiles.length > 0 &&
@@ -107,11 +81,24 @@ const SetupProfile = () => {
       return;
     }
 
-    if (acceptedFiles[0].size > "5242880") {
-      showToast("Please upload file within 5 Mb");
+    if (acceptedFiles[0].size > 5242880) {
+      showToast("Please upload files within 5 Mb");
       return;
     }
     setPdfFiles(acceptedFiles[0]);
+    let params = {
+      file: acceptedFiles[0],
+    };
+    dispatch(
+      chefProfileDocument({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setDocumentUrl(res.data.data.fileUrl);
+          }
+        },
+      })
+    );
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -125,6 +112,53 @@ const SetupProfile = () => {
     },
     multiple: false,
   });
+
+  //onDrop
+  const onDropId = useCallback((acceptedFiles, rejectedFiles) => {
+    if (
+      rejectedFiles.length > 0 &&
+      rejectedFiles[0]?.file?.type !== "image/jpeg" &&
+      "image/jpg" &&
+      "image/png" &&
+      "image/svg" &&
+      "application.pdf"
+    ) {
+      showToast("Please upload PDF files and Image  only");
+      return;
+    }
+    if (acceptedFiles[0].size > 5242880) {
+      showToast("Please upload files within 5 Mb");
+      return;
+    }
+    setIdPdf(acceptedFiles[0]);
+    let params = {
+      file: acceptedFiles[0],
+    };
+    dispatch(
+      chefProfileDocument({
+        ...params,
+        cb(res) {
+          if (res.status === 200) {
+            setIdProofUrl(res.data.data.fileUrl);
+          }
+        },
+      })
+    );
+  }, []);
+
+  const { getRootProps: getRootPropsId, getInputProps: getInputPropsId } =
+    useDropzone({
+      onDrop: onDropId,
+      accept: {
+        "application/pdf": [".pdf"],
+        "image/jpeg": [],
+        "image/png": [],
+        "image/jpg": [],
+        "image/svg": [],
+      },
+      multiple: false,
+    });
+
   //closeModal
   const handleOnCloseModal = () => {
     setModalDetail({
@@ -218,12 +252,21 @@ const SetupProfile = () => {
         showToast("Please upload your document");
         return;
       }
+      if (!idProofUrl) {
+        showToast("Please upload your Id proof");
+        return;
+      }
       let params = {
         step: "3",
         verificationDocument: {
           mimeType: pdfFiles.type,
           size: pdfFiles.size.toString(),
           url: documentUrl,
+        },
+        verificationIdentityCard: {
+          mimeType: IdPdf.type,
+          size: IdPdf.size.toString(),
+          url: idProofUrl,
         },
       };
 
@@ -739,7 +782,10 @@ const SetupProfile = () => {
                                       {experticeValue
                                         ?.filter((value) => value !== "")
                                         ?.map((value, index) => (
-                                          <li key={index} className="expertiseList">
+                                          <li
+                                            key={index}
+                                            className="expertiseList"
+                                          >
                                             {value}
                                           </li>
                                         ))}
@@ -766,21 +812,19 @@ const SetupProfile = () => {
                                 <div className="availability mt-3 mb-5">
                                   <ul className="weekBox">
                                     {week.map((day, index) => (
-                                      <>
-                                        <li
-                                          key={index}
-                                          onClick={(e) =>
-                                            handleWeekDay(e, day.day)
-                                          }
-                                          className={
-                                            activeWeekDay === day.day
-                                              ? "weekDays active text-capitalize"
-                                              : "weekDays text-capitalize"
-                                          }
-                                        >
-                                          {day.day}
-                                        </li>
-                                      </>
+                                      <li
+                                        key={index}
+                                        onClick={(e) =>
+                                          handleWeekDay(e, day.day)
+                                        }
+                                        className={
+                                          activeWeekDay === day.day
+                                            ? "weekDays active text-capitalize"
+                                            : "weekDays text-capitalize"
+                                        }
+                                      >
+                                        {day.day}
+                                      </li>
                                     ))}
                                   </ul>
                                   <div className="timeSlotBox pb-5">
@@ -934,9 +978,10 @@ const SetupProfile = () => {
                                         </div>
                                         <p
                                           className=" cancelUploadFile me-3"
-                                          onClick={() =>
-                                            handleRemoveDocument(pdfFiles.name)
-                                          }
+                                          onClick={() => {
+                                            setPdfFiles("");
+                                            setDocumentUrl("");
+                                          }}
                                         >
                                           <i className="fas fa-times uploadcancelIcon "></i>
                                         </p>
@@ -971,6 +1016,75 @@ const SetupProfile = () => {
                                     )}
                                   </div>
                                 </div>
+
+                                <p className="subHeadingSmall mb-4">
+                                  Upload your Id Proof
+                                </p>
+                                <div className="form-group col-md-12 mb-3">
+                                  <div className="uploadImgebox">
+                                    {IdPdf ? (
+                                      <div className="innerUploadImgBox">
+                                        <div className="flexBox ms-4">
+                                          <div>
+                                            <img
+                                              src={Images.uploadFileImg}
+                                              className="uploadFileIcon"
+                                              alt="uploadFileIcon"
+                                            />
+                                          </div>
+                                          <div className="fileDetail">
+                                            <p
+                                              className="uploadFileDetail ms-3 mb-0"
+                                              placeholder="File Name. pdf"
+                                            >
+                                              {IdPdf.name}
+                                            </p>
+                                            <span className="timeOrder_ mb-0">
+                                              {formatBytes(IdPdf.size)}
+                                            </span>
+                                          </div>
+                                        </div>
+                                        <p
+                                          className=" cancelUploadFile me-3"
+                                          onClick={() => {
+                                            setIdPdf("");
+                                            setIdProofUrl("");
+                                          }}
+                                        >
+                                          <i className="fas fa-times uploadcancelIcon "></i>
+                                        </p>
+                                      </div>
+                                    ) : (
+                                      <div
+                                        {...getRootPropsId({
+                                          className: "dropzone",
+                                        })}
+                                      >
+                                        <input
+                                          type="file"
+                                          accept="image/png, image/jpeg"
+                                          {...getInputPropsId()}
+                                        />
+                                        <img
+                                          src={Images.Uploadicon}
+                                          alt="Uploadicon"
+                                          className="Uploadicon"
+                                        />
+                                        <p className="uploadbtnn">
+                                          Choose File
+                                        </p>
+
+                                        <p className="HeadingSmall">
+                                          Drag and drop or Upload File Here
+                                        </p>
+                                        <p className="uploadText mt-2">
+                                          5 mb max file size
+                                        </p>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+
                                 <div className="flexBox justify-content-center uploadFileButton ">
                                   <button
                                     onClick={(e) =>
