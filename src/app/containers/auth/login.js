@@ -77,11 +77,9 @@ const Login = () => {
                 !res.data.data.chefInfo.documentVerified &&
                 res.data.data.chefInfo.step !== "3"
               ) {
-                // toast.success("Successfully logged in");
                 navigate("/setup-profile");
               }
             } else if (res.data.data.status === "Active") {
-              // toast.success("Successfully logged in");
               navigate("/home-user");
               handleCreateUserCollection(res?.data?.data);
             }
