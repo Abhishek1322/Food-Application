@@ -120,7 +120,7 @@ const Dashboard = () => {
                 just the culinary aspect.{" "}
               </p>{" "}
               <Link to="/about-us" className="orngButton">
-                <sapn className="sub me-2">Read More</sapn>
+                <span className="sub me-2">Read More</span>
                 <img alt="right-arrow" src={Images.rightUpArrow} />
               </Link>
             </div>
