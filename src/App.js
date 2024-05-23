@@ -27,6 +27,7 @@ function App() {
         vapidKey: VAPID_KEY,
       });
       localStorage.setItem("fcmToken", token);
+      console.log("tokennnnnnn",token);
       onMessage(messaging, (payload) => {
         const { title, body } = payload.notification;
         new Notification(title, {

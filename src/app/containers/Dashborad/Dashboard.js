@@ -1,11 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as Images from "../../../utilities/images";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+  const videoRef = useRef(null);
+  const [isVideoPlayed, setIsVideoPlayed] = useState(false);
+
+  // scroll on top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // play video on icon click
+  const handlePlayVideo = () => {
+    setIsVideoPlayed(true);
+    videoRef.current.play();
+  };
 
   return (
     <>
@@ -228,12 +238,37 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="col-lg-7 col-md-6 pe-0">
-              <div className="video">
-                <img
-                  className="img-fluid"
-                  src={Images.videoimg}
-                  alt="video-img"
-                />
+              <div className="chef-video-outer">
+                <video
+                  onPause={() => {
+                    setIsVideoPlayed(false);
+                  }}
+                  onPlay={() => {
+                    setIsVideoPlayed(true);
+                  }}
+                  ref={videoRef}
+                  className="chef-video"
+                  controls
+                  autoPlay
+                  loop
+                  poster={Images.chefPoster}
+                >
+                  <source
+                    src={
+                      "https://cdn.pixabay.com/video/2019/07/06/24999-347024091_large.mp4"
+                    }
+                  />
+                </video>
+                {!isVideoPlayed && (
+                  <div className="play-button">
+                    <img
+                      onClick={handlePlayVideo}
+                      className="img-fluid"
+                      src={Images.playIcon}
+                      alt="video-img"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

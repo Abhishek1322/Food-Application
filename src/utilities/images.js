@@ -173,6 +173,8 @@ import bankDetailLogo from "../public/images/bankDetailImg.svg";
 import noBank from "../public/images/nobank.svg";
 import myorderside from "../public/images/myorderside.svg";
 import myordersideOranges from "../public/images/myordersideOranges.svg";
+import chefPoster from "../public/images/chef-poster.svg";
+import playIcon from "../public/images/play-icon.svg";
 
 export {
   noBank,
@@ -350,4 +352,6 @@ export {
   helpSupport,
   nocheffound,
   sidebarLight,
+  chefPoster,
+  playIcon
 };
