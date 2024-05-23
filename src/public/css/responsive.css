@@ -17,15 +17,12 @@
     height: 100%;
     max-height: 592px;
   }
-
-
 }
 
 @media (max-width: 1365px) {
   .blackHeading {
     font-size: 48px;
-  
-}
+  }
   .menuPage .profileDetail {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -46,11 +43,20 @@
   }
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1500px) {
-.foodImg1 {
-
-  left: -47px;
+@media (max-width: 1200px) {
+  .sidebarItems {
+    padding: 10px 8px;
+  }
 }
+
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
+  .foodImg1 {
+    left: -47px;
+  }
+
+  .leftHalf {
+    max-width: 150px !important;
+  }
 }
 @media only screen and (min-width: 1080px) and (max-width: 1200px) {
   .videoSection .image2 {
@@ -76,9 +82,9 @@
   }
 }
 @media (max-width: 1275px) {
-.foodImg1 {
-  left: -53px;
-}
+  .foodImg1 {
+    left: -53px;
+  }
 }
 @media (max-width: 1200px) {
   .banner-contact .buttonBox {
@@ -93,6 +99,15 @@
     margin-bottom: 13px;
   }
 
+  .foodImg1 {
+    position: absolute;
+    left: 0px;
+  }
+
+  .leftHalf {
+    max-width: 90px;
+  }
+
   /* .main {
         width: calc(100% - 0px) !important;
     } */
@@ -102,7 +117,7 @@
   }
 
   .pizzaImg {
-    right: -19px;
+    right: 0px;
   }
 
   .about {
@@ -169,18 +184,18 @@
   .differentButton .primary {
     padding: 8px 13px 8px 8px;
     display: inline-block;
-}
+  }
 
-.differentButton .inner {
-  padding: 10px 7px;
-  font-size: 16px;
-  display: inline-block;
-}
+  .differentButton .inner {
+    padding: 10px 7px;
+    font-size: 16px;
+    display: inline-block;
+  }
 
   .videoSection .image2 {
-    bottom: 54px;
-    left: 43%;
-    width: 50px;
+    bottom: 11px;
+    left: 38%;
+    width: 150px;
   }
 
   .black {
@@ -216,6 +231,21 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .leftHalf {
+    display: no;
+  }
+
+  .about .image2 {
+    width: 140px;
+    position: absolute;
+    bottom: 15px;
+  }
+  .burgerImg {
+    width: 180px;
+  }
+}
+
 @media (max-width: 991px) {
   .banner-contact .changepassword {
     height: 113vh;
@@ -234,7 +264,7 @@
   }
 
   .videoSection .image2 {
-    bottom: 149px;
+    bottom: 20px;
     width: 139px;
     left: 47%;
   }
@@ -262,7 +292,7 @@
 
   .greyHeading {
     font-size: 14px;
-}
+  }
 
   .chef {
     margin-left: 0;
@@ -281,25 +311,25 @@
   .foodBox .logFood:first-child {
     height: 102px;
     width: 102px;
-}
+  }
 
-.foodBox .logFood:nth-child(2) {
-  height: 101px;
-  width: 102px;
-  left: 88px;
-}
+  .foodBox .logFood:nth-child(2) {
+    height: 101px;
+    width: 102px;
+    left: 88px;
+  }
 
-.foodBox .logFood:nth-child(3) {
-  height: 102px;
-  width: 102px;
-  left: 181px;
-}
+  .foodBox .logFood:nth-child(3) {
+    height: 102px;
+    width: 102px;
+    left: 181px;
+  }
 
-.foodBox .logFood:nth-child(4) {
-  height: 102px;
-  width: 106px;
-  left: 267px;
-}
+  .foodBox .logFood:nth-child(4) {
+    height: 102px;
+    width: 106px;
+    left: 267px;
+  }
 
   .logRight {
     position: relative;
@@ -435,11 +465,11 @@
   .differentButton .inner {
     padding: 16px 14px;
     font-size: 13px;
-}
+  }
 
   .differentButton .primary {
     padding: 9px 25px 9px 9px;
-}
+  }
 
   .banner {
     background-size: 100% 28%;
@@ -494,8 +524,8 @@
   .leftHalf {
     width: 72px;
     position: absolute;
-    left: 53%;
-}
+    left: 0px;
+  }
 
   .footer_logo {
     margin-bottom: 26px;
@@ -513,7 +543,10 @@
   .banner-contact .contactUs {
     margin-top: 85px;
   }
-
+  .downloadApp .mobile .mobileImage {
+    position: relative;
+    top: -9px;
+  }
   /* .banner-contact{
         background-size: 100% 26% !important;
     } */
@@ -739,7 +772,7 @@
     right: 0;
     width: 83px;
     left: auto;
-}
+  }
 
   .banner {
     background-size: 100% 17%;
@@ -802,6 +835,11 @@
 @media (max-width: 575px) {
   .socialLinks {
     text-align: start;
+  }
+
+  .downloadApp .mobile .mobileImage {
+    position: relative;
+    top: 30px;
   }
 
   .socialImg {
@@ -1214,7 +1252,7 @@
   }
 }
 
-/* auth pages responsive */
+/* / auth pages responsive / */
 @media (max-width: 767px) {
   .ChefMain {
     display: none;
@@ -1240,7 +1278,7 @@
     font-size: 16px;
   }
 
-  /* user side mainBoxOuter responsive CSS */
+  /* / user side mainBoxOuter responsive CSS / */
 
   .cheffilter .searchtext {
     padding: 13px 40px 15px 10px;
@@ -1313,7 +1351,7 @@
     padding: 15px 25px;
   }
 
-  /* Setting side responsive CSS */
+  /* / Setting side responsive CSS / */
   .leftbox .settingBoxtxt.ms-3.mb-0 {
     font-size: 14px;
   }
@@ -1327,121 +1365,117 @@
   }
   .leftbox .settingIcon {
     padding: 7px 9px;
-}
-/* changes password responsive CSS */
-.changePaasword_ .settingMainHeading {
+  }
+  /* / changes password responsive CSS / */
+  .changePaasword_ .settingMainHeading {
     font-size: 25px;
-}
-.changePaasword_  .settingMainText{
+  }
+  .changePaasword_ .settingMainText {
     font-size: 21px;
-}
-.changepassword .settingsheader.d-flex.justify-content-center {
+  }
+  .changepassword .settingsheader.d-flex.justify-content-center {
     margin-top: 30px;
-}
+  }
 
-/* modal CSS */
-.modal-content {
+  /* / modal CSS / */
+  .modal-content {
     width: 95%;
     margin: auto;
-}
+  }
 
-
-.paymentdonesection {
+  .paymentdonesection {
     text-align: center;
     padding-top: 100px;
-}
-.whyChoose {
-  padding: 57px 0;
-}
-.mainHeadings {
-  margin: 52px 0 52px 0;
-}
-.logosil {
-  max-width: 96px;
-}
-.appImages {
-  width: 123px !important;
-}
+  }
+  .whyChoose {
+    padding: 57px 0;
+  }
+  .mainHeadings {
+    margin: 52px 0 52px 0;
+  }
+  .logosil {
+    max-width: 96px;
+  }
+  .appImages {
+    width: 123px !important;
+  }
 }
 @media (max-width: 480px) {
+  .whyChoose .orange {
+    line-height: 44px;
+    margin-bottom: 25px;
+  }
+  .whyChoose .black {
+    font-size: 35px;
+    line-height: 32px;
+  }
+  .differentButton .primary {
+    padding: 5px 18px 5px 5px;
+  }
+  .differentButton .inner {
+    padding: 10px 8px;
+    margin-right: 3px !important;
+  }
+  .differentButton .sub {
+    font-size: 12px;
+  }
+  .socialImg {
+    margin-right: 19px;
+  }
+}
 
-.whyChoose .orange {
-  line-height: 44px;
-  margin-bottom: 25px;
-}
-.whyChoose .black {
-  font-size: 35px;
-  line-height: 32px;
-}
-.differentButton .primary {
-  padding: 5px 18px 5px 5px;
-}
-.differentButton .inner {
-  padding: 10px 8px;
-  margin-right: 3px!important;
-}
-.differentButton .sub {
-  font-size: 12px;
-}
-.socialImg {
-  margin-right: 19px;
-}
-}
+/* / userside responsive / */
 
-/* userside responsive */
-
-@media (max-width: 986px){
+@media (max-width: 986px) {
   .chat-main-content {
     height: 482px;
     overflow: auto;
     padding-bottom: 15px;
     padding-right: 5px;
-    border-bottom: 2px dashed #C0C2C280;
+    border-bottom: 2px dashed #c0c2c280;
+  }
 }
-}
 
-/* user side resposive */
+/* / user side resposive / */
 
-/* home-page */
+/* / home-page / */
 
-@media (max-width: 375px){
+@media (max-width: 375px) {
   .mainBoxOuter {
     padding: 10px 31px;
     height: 67vh;
     overflow: scroll;
-}
+  }
 
-.infoimg {
-  max-width: 100%;
-  height: auto;
-  cursor: pointer;
-  display: inline;
-  right: 21px;
-  position: relative;
-}
+  .infoimg {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    display: inline;
+    right: 21px;
+    position: relative;
+  }
 
-/* chat-modal */
+  /* / chat-modal / */
 
-.chat-main-content {
-  height: 620px;
-}
+  .chat-main-content {
+    height: 620px;
+  }
 }
 
 @media (max-width: 576px) {
   .chat-main-content {
     height: 620px;
+  }
 }
-}
-
 
 @media (max-width: 768px) {
   .chat-main-content {
     height: 645px;
-}
+  }
 }
 
-
-/* user-profile */
+/* / user-profile / */
 
 @media (max-width: 1400px) {
   .profileleft {
@@ -1451,7 +1485,7 @@
 
   .profilesection {
     margin: 158px 99px 0 90px;
-}
+  }
 }
 
 @media (max-width: 1200px) {
@@ -1462,31 +1496,27 @@
 
   .profilesection {
     margin: 200px 99px 0 90px;
+  }
 }
-}
- /* edit-user-profile */
+/* / edit-user-profile / */
 
-@media (max-width:1500px) {
+@media (max-width: 1500px) {
   .editleft {
     position: relative;
     width: 450px;
     height: 450px;
   }
-
-
 }
 
-@media (max-width:1400px) {
+@media (max-width: 1400px) {
   .editleft {
     position: relative;
     width: 400px;
     height: 400px;
   }
-
-
 }
 
-@media (max-width:1200px) {
+@media (max-width: 1200px) {
   .editleft {
     position: relative;
     width: 370px;
@@ -1494,20 +1524,12 @@
   }
   .usereditsection {
     margin: 187px 90px 0 90px;
+  }
 }
-
-}
-/* chef-side responsive */
-
-
-
+/* / chef-side responsive / */
 
 @media (max-width: 1400px) {
-    
- 
-  
-
-  /* chef-profile */
+  /* / chef-profile / */
 
   .profilesectionChef .profileleft {
     width: 370px;
@@ -1516,7 +1538,7 @@
 
   .profilesection {
     margin: 158px 99px 0 90px;
-}
+  }
 }
 
 @media (max-width: 1200px) {
@@ -1527,12 +1549,12 @@
 
   .profilesection {
     margin: 148px 99px 0 90px;
-}
+  }
 }
 
- /* edit-chef-profile */
+/* / edit-chef-profile / */
 
- @media (max-width:1500px) {
+@media (max-width: 1500px) {
   .profilesectionChef .editleft {
     position: relative;
     width: 460px;
@@ -1540,7 +1562,7 @@
   }
 }
 
-@media (max-width:1200px) {
+@media (max-width: 1200px) {
   .profilesectionChef .editleft {
     position: relative;
     width: 380px;
@@ -1548,116 +1570,93 @@
   }
   .usereditsection {
     margin: 187px 90px 0 90px;
-}
+  }
 }
 
 @media (max-width: 1300px) {
-  .orderDetailBox .cancelOrder{
+  .orderDetailBox .cancelOrder {
     padding: 7px 13px;
   }
-  .orderDetailBox .acceptOrder{
+  .orderDetailBox .acceptOrder {
     padding: 7px 13px;
   }
 }
 
 @media (max-width: 1150px) {
-  .orderDetailBox .cancelOrder{
+  .orderDetailBox .cancelOrder {
     padding: 4px 9px;
   }
-  .orderDetailBox .acceptOrder{
+  .orderDetailBox .acceptOrder {
     padding: 4px 9px;
   }
 }
 
 @media (max-width: 1280px) {
-  .profileDetailNew
-    .orderDetailBox {
-      border-radius: 15px;
-      background: #fff;
-      box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-      width: calc(26% - 17px);
-      margin-right: 6px;
-      margin-bottom: 20px;
-      cursor: pointer;
+  .profileDetailNew .orderDetailBox {
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    width: calc(26% - 17px);
+    margin-right: 6px;
+    margin-bottom: 20px;
+    cursor: pointer;
   }
-  
 }
 
 @media (max-width: 1400px) {
-
- .paidAmount{
-  width: 189px !important;
-  height: 137px !important;
+  .paidAmount {
+    width: 189px !important;
+    height: 137px !important;
   }
-  
 }
-
 
 @media (max-width: 1250px) {
-
-  .paidAmount{
-   width: 170px !important;
-   height: 137px !important;
-   }
-   
- }
-
-
-@media (max-width: 1150px) {
-
-  .paidAmount{
-   width: 153px !important;
-   height: 137px !important;
-   }
-
-   .foodBill {
-    font-size: 26px;
-
-}
-
-.totalPaid {
-  font-size: 13px;
- }
-   
- }
-
-
-@media (max-width: 1400px) {
-
- .paidAmmount{
-   width: 189px !important;
-   height: 137px !important;
-   }
-   
- }
- 
- 
- @media (max-width: 1250px) {
- .paidAmmount{
+  .paidAmount {
     width: 170px !important;
     height: 137px !important;
-    }
-    
   }
- 
- 
- @media (max-width: 1150px) {
- 
-  .paidAmmount{
+}
+
+@media (max-width: 1150px) {
+  .paidAmount {
     width: 153px !important;
     height: 137px !important;
-    }
-
+  }
 
   .foodBill {
-      font-size: 26px;
-  
+    font-size: 26px;
   }
 
   .totalPaid {
     font-size: 13px;
-   }
-    
   }
- 
+}
 
+@media (max-width: 1400px) {
+  .paidAmmount {
+    width: 189px !important;
+    height: 137px !important;
+  }
+}
+
+@media (max-width: 1250px) {
+  .paidAmmount {
+    width: 170px !important;
+    height: 137px !important;
+  }
+}
+
+@media (max-width: 1150px) {
+  .paidAmmount {
+    width: 153px !important;
+    height: 137px !important;
+  }
+
+  .foodBill {
+    font-size: 26px;
+  }
+
+  .totalPaid {
+    font-size: 13px;
+  }
+}
