@@ -12,6 +12,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { getExpertise } from "../../../../redux/slices/auth";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 
 const UserChefHome = () => {
   const dispatch = useDispatch();
@@ -300,13 +302,14 @@ const UserChefHome = () => {
               </ul>
             </div>
             <div className="recipe-lists select-expertise-outer hometype_">
-              <span className="chefName">Food Type :</span>
+              <span className="chefName">Cuisine Type :</span>
               <Autocomplete
                 multiple
                 id="checkboxes-tags-demo"
                 options={experticeList}
                 disableCloseOnSelect
                 // value={null}
+                popupIcon={<KeyboardArrowDownIcon />}
                 onChange={handleAutocompleteChange}
                 getOptionLabel={(option) => option?.title}
                 renderOption={(props, option, { selected }) => (
