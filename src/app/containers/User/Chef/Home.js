@@ -14,7 +14,6 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { getExpertise } from "../../../../redux/slices/auth";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-
 const UserChefHome = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,7 +39,10 @@ const UserChefHome = () => {
       getExpertise({
         cb(res) {
           if (res?.status === 200) {
-            setExperticeList(res?.data?.data?.data);
+            const alphOrder = res.data.data.data?.sort((a, b) =>
+              a?.title?.localeCompare(b?.title)
+            );
+            setExperticeList(alphOrder);
           }
         },
       })
@@ -50,7 +52,7 @@ const UserChefHome = () => {
   // get all chef lists
   useEffect(() => {
     getChefList();
-  }, [search, filterChefByRating, expertice,chefType]);
+  }, [search, filterChefByRating, expertice, chefType]);
 
   const getChefList = (page = currentPage) => {
     let params = {

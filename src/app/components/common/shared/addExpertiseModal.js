@@ -67,7 +67,10 @@ const AddExpertiseModal = ({ close, experticeValue, chefProfileDetails }) => {
             const findRestValue = res?.data?.data?.data?.filter((value) =>
               experticeValue.includes(value.title)
             );
-            setExperticeList(res?.data?.data?.data);
+            const alphOrder = res?.data?.data?.data?.sort((a, b) =>
+              a.title.localeCompare(b.title)
+            );
+            setExperticeList(alphOrder);
             setExpertice(findRestValue);
           }
         },

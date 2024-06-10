@@ -204,18 +204,18 @@ const MyProfile = () => {
                 />
               </div>
               <div
-        className="settingBox d-flex align-items-center justify-content-center cursorPoint"
-        onClick={() => {
-          handleOpenModal("logOutModal");
-        }}
-      >
-        <img
-          src={Images.logout}
-          alt="logo"
-          className="img-fluid settingIcon "
-        />
-        <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
-      </div>
+                className="settingBox d-flex align-items-center justify-content-center cursorPoint"
+                onClick={() => {
+                  handleOpenModal("logOutModal");
+                }}
+              >
+                <img
+                  src={Images.logout}
+                  alt="logo"
+                  className="img-fluid settingIcon "
+                />
+                <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
+              </div>
             </div>
             <div className="col-lg-7 col-md-12">
               {/* right section  */}
@@ -431,7 +431,7 @@ const MyProfile = () => {
           </div>
         </div>
       </section>
-      
+
       <CustomModal
         key={key}
         show={modalDetail.show}
