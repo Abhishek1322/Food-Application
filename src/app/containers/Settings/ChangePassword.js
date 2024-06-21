@@ -13,7 +13,7 @@ const ChangePassword = () => {
   const navigate = useNavigate();
   const toastId = useRef(null);
   const authData = useAuthSelector();
-
+  const { loading } = authData;
   const [showPassword, setShowPassword] = useState("false");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -67,7 +67,6 @@ const ChangePassword = () => {
 
   return (
     <>
-    {authData.loading && <Loading />}
       <div className="changePaasword_">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3 ">
@@ -130,8 +129,11 @@ const ChangePassword = () => {
                   <label className="border-label">Confirm Password</label>
                 </div>
                 <div className="buttonBox mt-3 d-flex  justify-content-center">
-                  <button type="submit" className="smallBtn">
+                  <button disabled={loading} type="submit" className="smallBtn">
                     Save changes
+                    {loading && (
+                      <span className="spinner-border spinner-border-sm ms-2"></span>
+                    )}
                   </button>
                 </div>
               </form>

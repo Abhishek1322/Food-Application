@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import * as Images from "../../../utilities/images";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  onErrorStopLoad,
-  addContactUsDetail,
-} from "../../../redux/slices/user";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../redux/selector/user";
-import Loading from "./Loading";
+import {
+  addContactUsDetail,
+  onErrorStopLoad,
+} from "../../../redux/slices/user";
 import { getUserProfileDetails } from "../../../redux/slices/web";
+import * as Images from "../../../utilities/images";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
   const userSelector = useUserSelector();
+  const { loading } = userSelector;
   const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -70,9 +70,7 @@ const ContactUs = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
-            setFormData({
-              message: "",
-            });
+            setFormData({ ...formData, message: "" });
           }
         },
       })
@@ -103,7 +101,6 @@ const ContactUs = () => {
 
   return (
     <>
-      {userSelector.loading && <Loading />}
       <div className="contactUs">
         <div className="container-fluid">
           <div className="commonInnerHeader d-flex align-items-center mt-4 ms-3">
@@ -196,8 +193,15 @@ const ContactUs = () => {
                     </div>
                   </div>
                   <div className="buttonBox mt-5 d-flex  justify-content-center">
-                    <button type="submit" role="button" className="smallBtn">
+                    <button
+                      disabled={loading}
+                      type="submit"
+                      className="smallBtn"
+                    >
                       Submit
+                      {loading && (
+                        <span className="spinner-border spinner-border-sm ms-2"></span>
+                      )}
                     </button>
                   </div>
                 </div>
