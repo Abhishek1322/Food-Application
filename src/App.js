@@ -27,7 +27,6 @@ function App() {
         vapidKey: VAPID_KEY,
       });
       localStorage.setItem("fcmToken", token);
-      console.log("tokennnnnnn",token);
       onMessage(messaging, (payload) => {
         const { title, body } = payload.notification;
         new Notification(title, {
@@ -38,7 +37,7 @@ function App() {
         });
       });
     } else if (permission === "denied") {
-      toast.error("You denied for the notification");
+      // toast.error("You denied for the notification");
     }
   }
 

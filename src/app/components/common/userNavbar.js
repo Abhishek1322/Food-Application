@@ -226,22 +226,24 @@ const User_Navbar = () => {
                           {userData?.userInfo?.firstName} !
                         </span>
                       </h1>
-                      <Link to="choose-location">
-                        <img
-                          src={Images.HeaderLocation}
-                          className="img-fluid"
-                          alt="headerlocation"
-                        />
-                        {currentLocation ? (
-                          <span className="ordertimeaddress ms-1">
-                            {currentLocation}
-                          </span>
-                        ) : (
+
+                      <img
+                        src={Images.HeaderLocation}
+                        className="img-fluid"
+                        alt="headerlocation"
+                      />
+                      {currentLocation ? (
+                        <span className="ordertimeaddress ms-1">
+                          {currentLocation} &nbsp;&nbsp;&nbsp;{" "}
+                          <Link className="change-address-text" to="choose-location">Change Address</Link>
+                        </span>
+                      ) : (
+                        <Link to="choose-location">
                           <span className="ordertimeaddress ms-1">
                             choose your location from map
                           </span>
-                        )}
-                      </Link>
+                        </Link>
+                      )}
                     </>
                   ) : pathname === "/user-chef-home" ? (
                     <h1 className="chefCommonHeader">Chefs</h1>

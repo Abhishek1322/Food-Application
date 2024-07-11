@@ -1,22 +1,26 @@
+import { collection, onSnapshot, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import * as Images from "../../../utilities/images";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import CustomModal from "../../components/common/shared/CustomModal";
+import { FadeLoader } from "react-spinners";
+import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
+import { useAuthSelector } from "../../../redux/selector/auth";
+import { resetSuccess } from "../../../redux/slices/user";
+import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
+import * as Images from "../../../utilities/images";
 import AvailableModal from "../../components/common/shared/availableModal";
 import CartFoodModal from "../../components/common/shared/CartFoodModal";
 import CartFoodModalOrder from "../../components/common/shared/CartFoodModalOrder";
-import AddToCartModal from "../../components/common/shared/AddToCartModal";
-import ChefRating from "../../components/common/shared/ChefRating";
-import { useDispatch } from "react-redux";
-import { getSingleChef, onErrorStopLoad } from "../../../redux/slices/web";
 import ChatnextModal from "../../components/common/shared/chatnextModal";
+import ChefRating from "../../components/common/shared/ChefRating";
+import CustomModal from "../../components/common/shared/CustomModal";
 import ReportchatDropModal from "../../components/common/shared/reportchatDropModal";
 import UserDeleteChat from "../../components/common/shared/UserDeleteChat";
-import { useAuthSelector } from "../../../redux/selector/auth";
-import { PARENTCOLLECTIONNAME, db } from "../../../config/firebase-config";
-import { collection, onSnapshot, query } from "firebase/firestore";
-import { resetSuccess } from "../../../redux/slices/user";
-import { FadeLoader } from "react-spinners";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
+import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+import { PDF_WORKER_URL } from "../../../config/config";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -25,6 +29,7 @@ const ChefDetails = () => {
   const authData = useAuthSelector();
   const searchParams = new URLSearchParams(search);
   const id = searchParams.get("id");
+  const chefDocumentInstance = defaultLayoutPlugin();
   const [menuId, setMenuId] = useState("");
   const [chefData, setChefData] = useState([]);
   const [key, setKey] = useState(Math.random());
@@ -35,7 +40,7 @@ const ChefDetails = () => {
     title: "",
     flag: "",
   });
-  
+
   // close loader after page load
   useEffect(() => {
     dispatch(onErrorStopLoad());
@@ -99,7 +104,7 @@ const ChefDetails = () => {
       dispatch(resetSuccess());
     }
   };
-
+  console.log("chefData", chefData);
   return (
     <>
       {isLoading ? (
@@ -259,7 +264,7 @@ const ChefDetails = () => {
             </div>
           </div>
           {/* chef menu section  */}
-          <div className="sarahsmenu">
+          <div className="sarahbioexpert">
             <h2 className="innerDummyHeading text-capitalize">
               {" "}
               {chefData?.userInfo?.firstName}’s Menu
@@ -316,6 +321,29 @@ const ChefDetails = () => {
                 </>
               ) : (
                 <p>No added any menu</p>
+              )}
+            </div>
+          </div>
+          <div className="chef-document-module">
+            <h2 className="innerDummyHeading text-capitalize">
+              {chefData?.userInfo?.firstName}’s Document
+            </h2>
+            <div className="chef-document-inner">
+              {chefData?.chefInfo?.verificationDocument?.mimeType ===
+              "application/pdf" ? (
+                <Worker workerUrl={PDF_WORKER_URL}>
+                  <Viewer
+                    // renderLoader={() => null}
+                    fileUrl={chefData?.chefInfo?.verificationDocument?.url}
+                    // plugins={[chefDocumentInstance]}
+                  />
+                </Worker>
+              ) : (
+                <img
+                  alt="chef-document"
+                  className="chef-document-container"
+                  src={chefData?.chefInfo?.verificationDocument?.url}
+                />
               )}
             </div>
           </div>

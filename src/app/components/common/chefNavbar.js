@@ -120,7 +120,7 @@ const Chef_Navbar = () => {
   useEffect(() => {
     dispatch(getBankDetails());
   }, []);
-
+  console.log("chefProfileData", chefProfileData);
   return (
     <>
       <div className="main_Setting">
@@ -135,12 +135,22 @@ const Chef_Navbar = () => {
                 <div className="col-lg-6 col-md-6">
                   {/* ----Home Page Header html */}
                   {pathname === "/home" ? (
-                    <h1 className="chefCommonHeader">
-                      Hello,{" "}
-                      <span className="chefHeading">
-                        {chefProfileData?.data?.userInfo?.firstName} !
+                    <>
+                      <h1 className="chefCommonHeader">
+                        Hello,{" "}
+                        <span className="chefHeading">
+                          {chefProfileData?.data?.userInfo?.firstName} !
+                        </span>
+                      </h1>
+                      <img
+                        src={Images.HeaderLocation}
+                        className="img-fluid"
+                        alt="headerlocation"
+                      />
+                      <span className="ordertimeaddress ms-1">
+                        {chefProfileData?.data?.chefInfo?.address}
                       </span>
-                    </h1>
+                    </>
                   ) : pathname === "/menu" ? (
                     <h1 className="chefCommonHeader">Menu</h1>
                   ) : pathname === "/new-booking" ? (
