@@ -51,6 +51,7 @@ const SetupProfile = () => {
   const [documentUrl, setDocumentUrl] = useState("");
   const [IdPdf, setIdPdf] = useState("");
   const [idProofUrl, setIdProofUrl] = useState("");
+  const [chefCountry, setChefCountry] = useState("");
   const [formData, setFormData] = useState({
     experience: "",
     bio: "",
@@ -184,6 +185,9 @@ const SetupProfile = () => {
       } else if (!address) {
         showToast("Please add your address");
         return;
+      } else if (!address || !latitude || !longitude || !chefCountry) {
+        showToast("Please select valid address");
+        return;
       } else if (!formData.bio) {
         showToast("Please add your bio");
         return;
@@ -302,6 +306,9 @@ const SetupProfile = () => {
   // handle change address
   const autoCompleteHandleChange = (address) => {
     setAddress(address);
+    setChefCountry("");
+    setLatitude("");
+    setLongitude("");
     geocodeByAddress(address)
       .then((results) => {
         setLatitude(results[0].geometry.location.lat());
@@ -315,6 +322,10 @@ const SetupProfile = () => {
     setAddress(address);
     geocodeByAddress(address)
       .then((results) => {
+        const validCountry = results[0]?.address_components?.find(
+          (address) => address?.types[0] === "country"
+        );
+        setChefCountry(validCountry?.long_name);
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })

@@ -1345,6 +1345,16 @@ input.searchtext.search-only-chef {
   margin: 0 auto;
 }
 .chef-document-container {
-  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 15px;
+}
+.chef-document-inner .rpv-core__page-layer::after {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px !important;
+  border-radius: 15px;
+}
+.input-not-allowed {
+  cursor: not-allowed;
 }

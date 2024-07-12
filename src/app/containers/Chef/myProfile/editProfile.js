@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import {
   getChefProfileDetails,
@@ -18,6 +18,7 @@ import PhoneInput from "react-phone-input-2";
 import { useAuthSelector } from "../../../../redux/selector/auth";
 
 const EditProfile = () => {
+  const toastId = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authSelector = useAuthSelector();
@@ -36,6 +37,7 @@ const EditProfile = () => {
   const [profileUrl, setProfileUrl] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [dialCode, setDialCode] = useState("");
+  const [chefCountry, setChefCountry] = useState("");
 
   const onDrop = useCallback(
     (acceptedFiles, rejectedFiles) => {
@@ -94,6 +96,9 @@ const EditProfile = () => {
   // handle change address
   const autoCompleteHandleChange = (address) => {
     setAddress(address);
+    setChefCountry("");
+    setLatitude("");
+    setLongitude("");
     geocodeByAddress(address)
       .then((results) => {
         setLatitude(results[0].geometry.location.lat());
@@ -107,6 +112,10 @@ const EditProfile = () => {
     setAddress(address);
     geocodeByAddress(address)
       .then((results) => {
+        const validCountry = results[0]?.address_components?.find(
+          (address) => address?.types[0] === "country"
+        );
+        setChefCountry(validCountry?.long_name);
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
       })
@@ -125,8 +134,37 @@ const EditProfile = () => {
     dispatch(onErrorStopLoad());
   }, [dispatch]);
 
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
   // updateChef profile
   const handleUpdateProfile = () => {
+    if (!firstName?.trim()) {
+      showToast("Please enter your first name");
+      return;
+    } else if (!lastName?.trim()) {
+      showToast("Please enter your last name");
+      return;
+    } else if (!phoneNumber) {
+      showToast("Please enter your phone number");
+      return;
+    } else if (!experience) {
+      showToast("Please enter your experience");
+      return;
+    } else if (!address) {
+      showToast("Please add your address");
+      return;
+    } else if (!address || !latitude || !longitude || !chefCountry) {
+      showToast("Please select valid address");
+      return;
+    } else if (!bio?.trim()) {
+      showToast("Please add your bio");
+      return;
+    }
     let params = {
       step: "1",
       firstName: firstName,
@@ -214,7 +252,7 @@ const EditProfile = () => {
                           type="text"
                           value={firstName}
                           className="border-input"
-                          placeholder="enter your first name"
+                          placeholder="Enter your first name"
                           onChange={(e) => setFirstName(e.target.value)}
                         />
                         <label className="border-label">First Name</label>
@@ -226,7 +264,7 @@ const EditProfile = () => {
                           type="text"
                           value={lastName}
                           className="border-input"
-                          placeholder="enter your last name"
+                          placeholder="Enter your last name"
                           onChange={(e) => setLastName(e.target.value)}
                         />
                         <label className="border-label">Last Name</label>
@@ -265,8 +303,9 @@ const EditProfile = () => {
                         <input
                           type="text"
                           value={email}
-                          className="border-input"
-                          placeholder="enter your email address"
+                          readOnly
+                          className="border-input input-not-allowed"
+                          placeholder="Enter your email address"
                           onChange={(e) => setEmail(e.target.value)}
                         />
                         <label className="border-label">Email</label>
@@ -313,8 +352,17 @@ const EditProfile = () => {
                           type="number"
                           value={experience}
                           className="border-input"
-                          placeholder="enter your experience"
+                          placeholder="Enter your experience"
                           onChange={(e) => setExperience(e.target.value)}
+                          onFocus={(e) =>
+                            e.target.addEventListener(
+                              "wheel",
+                              function (e) {
+                                e.preventDefault();
+                              },
+                              { passive: false }
+                            )
+                          }
                         />
                         <label className="border-label">
                           Experience (in years)
