@@ -174,7 +174,6 @@ const SetupProfile = () => {
   const nextPage = (page) => {
     setPage(page);
   };
-
   //form login
   const handleSubmit = (e, flag) => {
     e.preventDefault();
@@ -200,6 +199,7 @@ const SetupProfile = () => {
         type: activeTab,
         experience: formData.experience,
         address: address,
+        country: chefCountry,
         bio: formData.bio,
         expertise: experticeValue,
         coordinates: { type: "Point", lat: latitude, long: longitude },
@@ -456,6 +456,7 @@ const SetupProfile = () => {
           if (res?.status === 200) {
             setActiveTab(res?.data?.data?.chefInfo?.type);
             setExperticeValue(res?.data?.data?.chefInfo?.expertise);
+            setChefCountry(res?.data?.data?.chefInfo?.country)
             setFormData({
               experience: res?.data?.data?.chefInfo?.experience,
               bio: res?.data?.data?.chefInfo?.bio,

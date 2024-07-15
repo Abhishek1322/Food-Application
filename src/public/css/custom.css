@@ -1358,3 +1358,6 @@ input.searchtext.search-only-chef {
 .input-not-allowed {
   cursor: not-allowed;
 }
+.weekBox .weekDays {
+  cursor: pointer;
+}

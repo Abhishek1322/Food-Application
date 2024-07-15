@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import * as Images from "../../../../utilities/images";
 import { useNavigate } from "react-router-dom";
 import { getUserProfileDetails } from "../../../../redux/slices/web";
@@ -7,10 +7,15 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { chefProfileDocument } from "../../../../redux/slices/auth";
+import { useWebSelector } from "../../../../redux/selector/web";
 
 const UserEditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toastId = useRef(null);
+  const webSelector = useWebSelector();
+  const { loading } = webSelector;
+  const [btnLoading, setBtnLoading] = useState(false);
   const userId = localStorage.getItem("userId");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -39,6 +44,14 @@ const UserEditProfile = () => {
 
   // update User profile
   const handleUpdateProfile = () => {
+    if (!firstName?.trim()) {
+      showToast("Please enter first name");
+      return;
+    } else if (!lastName?.trim()) {
+      showToast("Please enter first name");
+      return;
+    }
+    setBtnLoading(true);
     let params = {
       step: "1",
       firstName: firstName,
@@ -46,10 +59,7 @@ const UserEditProfile = () => {
     };
 
     if (profileUrl) {
-      params = {
-        ...params,
-        profilePhoto: profileUrl,
-      };
+      params.profilePhoto = profileUrl;
     }
 
     dispatch(
@@ -62,6 +72,13 @@ const UserEditProfile = () => {
         },
       })
     );
+  };
+
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
   };
 
   const onDrop = useCallback(
@@ -174,8 +191,12 @@ const UserEditProfile = () => {
                     onClick={handleUpdateProfile}
                     type="button"
                     className="smallBtn"
+                    disabled={loading}
                   >
                     Update
+                    {loading && btnLoading && (
+                      <span className="spinner-border spinner-border-sm ms-2"></span>
+                    )}
                   </button>
                 </div>
               </div>

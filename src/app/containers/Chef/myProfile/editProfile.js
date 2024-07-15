@@ -81,6 +81,7 @@ const EditProfile = () => {
           setEmail(res?.data?.data?.email);
           setPhoneNumber(res?.data?.data?.phoneNo);
           setChefType(res?.data?.data?.chefInfo.type);
+          setChefCountry(res?.data?.data?.chefInfo.country);
           setAddress(res?.data?.data?.chefInfo.address);
           setExperience(res?.data?.data?.chefInfo?.experience);
           setBio(res?.data?.data?.chefInfo?.bio);
@@ -172,6 +173,7 @@ const EditProfile = () => {
       type: chefType,
       experience: experience,
       address: address,
+      country: chefCountry,
       coordinates: { lat: latitude, long: longitude },
       bio: bio,
       phoneNo: phoneNumber,
