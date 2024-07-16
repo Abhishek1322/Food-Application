@@ -257,7 +257,7 @@ const SetupProfile = () => {
         return;
       }
       if (!idProofUrl) {
-        showToast("Please upload your Id proof");
+        showToast("Please upload your ID proof");
         return;
       }
       let params = {
@@ -319,12 +319,22 @@ const SetupProfile = () => {
 
   // select address
   const autoCompleteHandleSelect = (address) => {
-    setAddress(address);
     geocodeByAddress(address)
       .then((results) => {
         const validCountry = results[0]?.address_components?.find(
           (address) => address?.types[0] === "country"
         );
+        if (
+          validCountry?.long_name !== "United Kingdom" &&
+          validCountry?.long_name !== "United States"
+        ) {
+          showToast(
+            "Service available only in the US and UK. Please select a valid address."
+          );
+          setAddress("");
+          return;
+        }
+        setAddress(results[0]?.formatted_address);
         setChefCountry(validCountry?.long_name);
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
@@ -456,7 +466,7 @@ const SetupProfile = () => {
           if (res?.status === 200) {
             setActiveTab(res?.data?.data?.chefInfo?.type);
             setExperticeValue(res?.data?.data?.chefInfo?.expertise);
-            setChefCountry(res?.data?.data?.chefInfo?.country)
+            setChefCountry(res?.data?.data?.chefInfo?.country);
             setFormData({
               experience: res?.data?.data?.chefInfo?.experience,
               bio: res?.data?.data?.chefInfo?.bio,
@@ -961,8 +971,7 @@ const SetupProfile = () => {
                                   Upload Documents
                                 </h6>
                                 <p className="subHeadingSmall mb-4">
-                                  Upload your passport or certificate for the
-                                  verifications.
+                                  Upload your Certificate
                                 </p>
                                 <div className="form-group col-md-12 mb-3">
                                   <div className="uploadImgebox">
@@ -1030,7 +1039,7 @@ const SetupProfile = () => {
                                 </div>
 
                                 <p className="subHeadingSmall mb-4">
-                                  Upload your Id Proof
+                                  Upload ID proof
                                 </p>
                                 <div className="form-group col-md-12 mb-3">
                                   <div className="uploadImgebox">
@@ -1097,7 +1106,7 @@ const SetupProfile = () => {
                                   </div>
                                 </div>
 
-                                <div className="flexBox justify-content-center uploadFileButton ">
+                                <div className="flexBox justify-content-center uploadFileButton mb-5">
                                   <button
                                     onClick={(e) =>
                                       handleBack(e, "pagetwoback")

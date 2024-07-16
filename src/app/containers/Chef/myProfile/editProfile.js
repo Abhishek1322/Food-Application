@@ -1,28 +1,27 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import * as Images from "../../../../utilities/images";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import PhoneInput from "react-phone-input-2";
+import PlacesAutocomplete, {
+  geocodeByAddress
+} from "react-places-autocomplete";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useWebSelector } from "../../../../redux/selector/web";
+import { chefProfileDocument } from "../../../../redux/slices/auth";
 import {
   getChefProfileDetails,
-  updateProfileImage,
   onErrorStopLoad,
+  updateProfileImage,
 } from "../../../../redux/slices/web";
-import { chefProfileDocument } from "../../../../redux/slices/auth";
-import { useDispatch } from "react-redux";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
-import { useNavigate } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
-import { toast } from "react-toastify";
-import PhoneInput from "react-phone-input-2";
-import { useAuthSelector } from "../../../../redux/selector/auth";
+import * as Images from "../../../../utilities/images";
 
 const EditProfile = () => {
   const toastId = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const authSelector = useAuthSelector();
-  const { loading } = authSelector;
+  const webSelector = useWebSelector();
+  const { loading } = webSelector;
   const userId = localStorage.getItem("userId");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -110,12 +109,22 @@ const EditProfile = () => {
 
   // select address
   const autoCompleteHandleSelect = (address) => {
-    setAddress(address);
     geocodeByAddress(address)
       .then((results) => {
         const validCountry = results[0]?.address_components?.find(
           (address) => address?.types[0] === "country"
         );
+        if (
+          validCountry?.long_name !== "United Kingdom" &&
+          validCountry?.long_name !== "United States"
+        ) {
+          showToast(
+            "Service available only in the US and UK. Please select a valid address."
+          );
+          setAddress("");
+          return;
+        }
+        setAddress(results[0]?.formatted_address);
         setChefCountry(validCountry?.long_name);
         setLatitude(results[0].geometry.location.lat());
         setLongitude(results[0].geometry.location.lng());
@@ -455,11 +464,12 @@ const EditProfile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="buttonBox mt-5">
+                  <div className="buttonBox my-5 ">
                     <button
                       onClick={handleUpdateProfile}
                       role="button"
                       className="smallBtn"
+                      disabled={loading}
                     >
                       {" "}
                       Update

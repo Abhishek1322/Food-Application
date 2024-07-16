@@ -120,7 +120,7 @@ const Chef_Navbar = () => {
   useEffect(() => {
     dispatch(getBankDetails());
   }, []);
-  console.log("chefProfileData", chefProfileData);
+  
   return (
     <>
       <div className="main_Setting">
@@ -142,14 +142,16 @@ const Chef_Navbar = () => {
                           {chefProfileData?.data?.userInfo?.firstName} !
                         </span>
                       </h1>
-                      <img
-                        src={Images.HeaderLocation}
-                        className="img-fluid"
-                        alt="headerlocation"
-                      />
-                      <span className="ordertimeaddress ms-1">
-                        {chefProfileData?.data?.chefInfo?.address}
-                      </span>
+                      <div className="d-flex align-items-start gap-1">
+                        <img
+                          src={Images.HeaderLocation}
+                          className="img-fluid"
+                          alt="headerlocation"
+                        />
+                        <span className="ordertimeaddress ms-1">
+                          {chefProfileData?.data?.chefInfo?.address}
+                        </span>
+                      </div>
                     </>
                   ) : pathname === "/menu" ? (
                     <h1 className="chefCommonHeader">Menu</h1>
