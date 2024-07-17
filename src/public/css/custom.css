@@ -1361,3 +1361,12 @@ input.searchtext.search-only-chef {
 .weekBox .weekDays {
   cursor: pointer;
 }
+.upload-menu-outer {
+  height: 150px;
+  width: 100%;
+}
+.upload-menu-outer img {
+  width: 100%;
+  border-radius: 20px;
+  height: auto;
+}

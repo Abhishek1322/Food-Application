@@ -46,7 +46,7 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
       toastId.current = toast.error(msg);
     }
   };
-  
+
   // create new menu
   const handleCreateMenu = (flag) => {
     if (!formData.itemName) {
@@ -227,7 +227,9 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
                 className="cateofyImg_ euroImgText"
                 alt="euroImg"
               />
-              <label className="border-label border-label-menu">Chef Booking Price</label>
+              <label className="border-label border-label-menu">
+                Chef Booking Price
+              </label>
             </div>
           </div>
         </div>
@@ -242,7 +244,9 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
           />
           <p className="inneredittxt">MIN</p>
           <img src={Images.clockImg} className="cateofyImg_" alt="clockimg" />
-          <label className="border-label border-label-menu">Delivery Time</label>
+          <label className="border-label border-label-menu">
+            Delivery Time
+          </label>
         </div>
         <div className="input-container mt-4">
           <textarea
@@ -258,7 +262,9 @@ const AddmenuItemModal = ({ close, menuListAll }) => {
           <p className="chefName mt-4 pb-3">Upload Image </p>
           {imageUrl ? (
             <>
-              <img src={imageUrl} className="editFoodImg" alt="editFood" />
+              <div className="upload-menu-outer">
+                <img src={imageUrl} alt="editFood" />
+              </div>
               <span
                 onClick={() => handleRemoveImage(imageUrl)}
                 className="cancelEditImg"

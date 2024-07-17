@@ -343,7 +343,11 @@ const EditAddressModal = (props) => {
                       value={city}
                       onChange={autoCompleteHandleChange}
                       onSelect={autoCompleteHandleSelect}
-                      searchOptions={{}}
+                      searchOptions={{
+                        componentRestrictions: {
+                          country: ["US", "UK"],
+                        },
+                      }}
                     >
                       {({
                         getInputProps,

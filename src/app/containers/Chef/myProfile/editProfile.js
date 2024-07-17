@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import PhoneInput from "react-phone-input-2";
 import PlacesAutocomplete, {
-  geocodeByAddress
+  geocodeByAddress,
 } from "react-places-autocomplete";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -390,7 +390,11 @@ const EditProfile = () => {
                           value={address}
                           onChange={autoCompleteHandleChange}
                           onSelect={autoCompleteHandleSelect}
-                          searchOptions={{}}
+                          searchOptions={{
+                            componentRestrictions: {
+                              country: ["US", "UK"],
+                            },
+                          }}
                         >
                           {({
                             getInputProps,

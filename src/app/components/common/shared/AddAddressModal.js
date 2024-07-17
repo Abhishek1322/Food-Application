@@ -222,7 +222,7 @@ const AddAddressModal = (props) => {
       console.log("Geolocation is not supported by this browser.");
     }
   };
-  
+
   // handling error
   function errors(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -319,7 +319,11 @@ const AddAddressModal = (props) => {
                       value={city}
                       onChange={autoCompleteHandleChange}
                       onSelect={autoCompleteHandleSelect}
-                      searchOptions={{}}
+                      searchOptions={{
+                        componentRestrictions: {
+                          country: ["US", "UK"],
+                        },
+                      }}
                     >
                       {({
                         getInputProps,

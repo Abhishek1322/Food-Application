@@ -228,7 +228,11 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
                 placeholder="e.g. 22.00"
                 value={formData.price}
               />
-              <img src={Images.euroImg} className="cateofyImg_ euroImgText" alt="euroImg" />
+              <img
+                src={Images.euroImg}
+                className="cateofyImg_ euroImgText"
+                alt="euroImg"
+              />
               <label className="border-label border-label-menu">Price</label>
             </div>
             <div className="input-container mt-5 flexBox">
@@ -245,7 +249,9 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
                 className="cateofyImg_ euroImgText"
                 alt="euroImg"
               />
-              <label className="border-label border-label-menu">Chef Booking Price</label>
+              <label className="border-label border-label-menu">
+                Chef Booking Price
+              </label>
             </div>
           </div>
           <div className="input-container mt-5 pe-3 flexBox">
@@ -259,7 +265,9 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
             />
             <p className="inneredittxt">MIN</p>
             <img src={Images.clockImg} className="cateofyImg_" alt="clockImg" />
-            <label className="border-label border-label-menu">Delivery Time</label>
+            <label className="border-label border-label-menu">
+              Delivery Time
+            </label>
           </div>
         </div>
         <div className="input-container mt-4">
@@ -277,7 +285,9 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
           <p className="chefName mt-4 pb-3">Upload Image </p>
           {imageUrl ? (
             <>
-              <img src={imageUrl} className="editFoodImg" alt="editFoodImg" />
+              <div className="upload-menu-outer">
+                <img src={imageUrl} alt="editFoodImg" />
+              </div>
               <span
                 onClick={() => handleRemoveImage(imageUrl)}
                 className="cancelEditImg"

@@ -65,12 +65,17 @@ const User_Navbar = () => {
   function success(pos) {
     var crd = pos.coords;
     handleGetLocationInfo(crd.latitude, crd.longitude);
-    // dispatch(
-    //   getCurrentLocation({
-    //     lat: crd.latitude,
-    //     lng: crd.longitude,
-    //   })
-    // );
+    if (
+      !allUserData?.currentLocation?.lat &&
+      !allUserData?.currentLocation?.lng
+    ) {
+      dispatch(
+        getCurrentLocation({
+          lat: crd.latitude,
+          lng: crd.longitude,
+        })
+      );
+    }
   }
 
   // call get location function
@@ -235,7 +240,12 @@ const User_Navbar = () => {
                       {currentLocation ? (
                         <span className="ordertimeaddress ms-1">
                           {currentLocation} &nbsp;&nbsp;&nbsp;{" "}
-                          <Link className="change-address-text" to="choose-location">Change Address</Link>
+                          <Link
+                            className="change-address-text"
+                            to="choose-location"
+                          >
+                            Change Address
+                          </Link>
                         </span>
                       ) : (
                         <Link to="choose-location">

@@ -16,6 +16,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getExpertise } from "../../../redux/slices/auth";
 
 const HomeUser = () => {
+  console.log("home-user");
   const dispatch = useDispatch();
   const webSelector = useWebSelector();
   const userSelector = useUserSelector();
@@ -29,7 +30,6 @@ const HomeUser = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [filterChefByRating, setFilterChefByRating] = useState("");
   const [chefType, setChefType] = useState("");
-  console.log("home-user");
   const icon = <RadioButtonUncheckedIcon fontSize="small" />;
   const checkedIcon = (
     <CheckCircleIcon style={{ color: "#E65C00" }} fontSize="small" />
@@ -39,7 +39,7 @@ const HomeUser = () => {
   useEffect(() => {
     getChefList();
   }, [search, filterChefByRating, currentLocation, expertice, chefType]);
-
+ 
   // get all chef lists
   const getChefList = (page = currentPage) => {
     let params = {

@@ -690,7 +690,11 @@ const SetupProfile = () => {
                                         value={address}
                                         onChange={autoCompleteHandleChange}
                                         onSelect={autoCompleteHandleSelect}
-                                        searchOptions={{}}
+                                        searchOptions={{
+                                          componentRestrictions: {
+                                            country: ["US", "UK"],
+                                          },
+                                        }}
                                       >
                                         {({
                                           getInputProps,
