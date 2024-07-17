@@ -16,11 +16,7 @@ import ChefRating from "../../components/common/shared/ChefRating";
 import CustomModal from "../../components/common/shared/CustomModal";
 import ReportchatDropModal from "../../components/common/shared/reportchatDropModal";
 import UserDeleteChat from "../../components/common/shared/UserDeleteChat";
-import { Viewer, Worker } from "@react-pdf-viewer/core";
-import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import { PDF_WORKER_URL } from "../../../config/config";
+import ChefDocModal from "../../components/common/shared/ChefDocModal";
 
 const ChefDetails = () => {
   const dispatch = useDispatch();
@@ -29,7 +25,6 @@ const ChefDetails = () => {
   const authData = useAuthSelector();
   const searchParams = new URLSearchParams(search);
   const id = searchParams.get("id");
-  const chefDocumentInstance = defaultLayoutPlugin();
   const [menuId, setMenuId] = useState("");
   const [chefData, setChefData] = useState([]);
   const [key, setKey] = useState(Math.random());
@@ -104,7 +99,7 @@ const ChefDetails = () => {
       dispatch(resetSuccess());
     }
   };
-  console.log("chefData", chefData);
+
   return (
     <>
       {isLoading ? (
@@ -240,7 +235,17 @@ const ChefDetails = () => {
           <div className="sarahbioexpert">
             <div className="row">
               <div className="col-lg-6 col-md-12">
-                <h3 className="innerDummyHeading ">Bio</h3>
+                <div className="d-flex align-items-center gap-3">
+                  <h3 className="innerDummyHeading">Bio</h3>
+                  <button
+                    onClick={() => {
+                      handleOpenModal("chefDocModal");
+                    }}
+                    className="view-doc-btn"
+                  >
+                    View Document
+                  </button>
+                </div>
                 <p className="dummyText mt-2">{chefData?.chefInfo?.bio}</p>
               </div>
 
@@ -324,29 +329,6 @@ const ChefDetails = () => {
               )}
             </div>
           </div>
-          <div className="chef-document-module">
-            <h2 className="innerDummyHeading text-capitalize">
-              {chefData?.userInfo?.firstName}’s Document
-            </h2>
-            <div className="chef-document-inner">
-              {chefData?.chefInfo?.verificationDocument?.mimeType ===
-              "application/pdf" ? (
-                <Worker workerUrl={PDF_WORKER_URL}>
-                  <Viewer
-                    // renderLoader={() => null}
-                    fileUrl={chefData?.chefInfo?.verificationDocument?.url}
-                    // plugins={[chefDocumentInstance]}
-                  />
-                </Worker>
-              ) : (
-                <img
-                  alt="chef-document"
-                  className="chef-document-container"
-                  src={chefData?.chefInfo?.verificationDocument?.url}
-                />
-              )}
-            </div>
-          </div>
         </div>
       )}
 
@@ -379,6 +361,8 @@ const ChefDetails = () => {
             ? "userchatmodal"
             : modalDetail.flag === "clearchat"
             ? "userchatmodal"
+            : modalDetail.flag === "chefDocModal"
+            ? "bigSizeModal"
             : ""
         }
         child={
@@ -413,6 +397,11 @@ const ChefDetails = () => {
               sender_id={authData?.userInfo?.id}
               allChats={allChats}
               sendRoomId={`${authData?.userInfo?.id}-${id}`}
+              close={() => handleOnCloseModal()}
+            />
+          ) : modalDetail.flag === "chefDocModal" ? (
+            <ChefDocModal
+              chefData={chefData}
               close={() => handleOnCloseModal()}
             />
           ) : (
@@ -561,6 +550,20 @@ const ChefDetails = () => {
                   src={Images.backArrowpassword}
                   alt="logo"
                   className="img-fluid  arrowCommon_"
+                />
+              </div>
+            </>
+          ) : modalDetail.flag === "chefDocModal" ? (
+            <>
+              <div className="d-flex align-items-center justify-content-between w-100 gap-2">
+                <div className="headerProfile">
+                  <h2 className="headerTxt_ mb-0">Chef Document</h2>
+                </div>
+                <img
+                  onClick={handleOnCloseModal}
+                  src={Images.modalCancel}
+                  alt="logo"
+                  className="img-fluid  ModalCancel"
                 />
               </div>
             </>

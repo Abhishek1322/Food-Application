@@ -1337,18 +1337,19 @@ input.searchtext.search-only-chef {
 .change-address-text:hover {
   color: #e65c00;
 }
-.chef-document-module {
-  margin-top: 40px;
-}
-.chef-document-inner {
-  width: 70%;
-  margin: 0 auto;
-}
+
 .chef-document-container {
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  border-radius: 15px;
+  border-radius: 8px;
+  height: 100%;
+}
+#bigSizeModal .modal-content {
+  height: calc(100vh - 56px);
+}
+#bigSizeModal .modal-body {
+  height: calc(100vh - 138px);
+  flex: unset;
+  overflow: auto;
 }
 .chef-document-inner .rpv-core__page-layer::after {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -1369,4 +1370,23 @@ input.searchtext.search-only-chef {
   width: 100%;
   border-radius: 20px;
   height: auto;
+}
+
+.view-doc-btn {
+  border-radius: 12px;
+  background: #e65c00;
+  padding: 10px 7px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+}
+#bigSizeModal {
+  max-width: 950px;
+}
+
+#bigSizeModal .modal-content {
+  max-width: 100%;
+}
+.chef-document-inner {
+  height: calc(100vh - 170px);
 }
