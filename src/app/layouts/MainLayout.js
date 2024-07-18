@@ -29,7 +29,7 @@ const MainLayout = () => {
         </>
       ) : isAuthenticated &&
         authData?.userInfo?.role === "chef" &&
-        authData?.userInfo?.chefInfo?.documentVerified ? (
+        authData?.userInfo?.chefInfo?.documentVerified === "verified" ? (
         <Navigate to="/home" />
       ) : (
         <Navigate to="/home-user" />

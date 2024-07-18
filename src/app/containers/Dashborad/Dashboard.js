@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const videoRef = useRef(null);
   const [isVideoPlayed, setIsVideoPlayed] = useState(false);
-
+  console.log("Home%")
   // scroll on top
   useEffect(() => {
     window.scrollTo(0, 0);

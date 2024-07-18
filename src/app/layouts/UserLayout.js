@@ -15,7 +15,6 @@ const UserLayout = () => {
   const authData = useAuthSelector();
   const isAuthenticated = localStorage.getItem("authToken");
 
-
   return (
     <>
       {isAuthenticated && authData?.userInfo?.role === "user" ? (
@@ -42,7 +41,7 @@ const UserLayout = () => {
           )}
         </>
       ) : isAuthenticated &&
-        authData?.userInfo?.chefInfo?.documentVerified &&
+        authData?.userInfo?.chefInfo?.documentVerified === "verified" &&
         authData?.userInfo?.role === "chef" ? (
         <Navigate to="/home" />
       ) : (

@@ -6,8 +6,9 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { userLogin, onErrorStopLoad } from "../../../redux/slices/auth";
 import { useAuthSelector } from "../../../redux/selector/auth";
-import {  doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { USERPARENTCOLLECTION, db } from "../../../config/firebase-config";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  
+
   // show only one toast at one time
   const showToast = (msg) => {
     if (!toast.isActive(toastId.current)) {
@@ -60,26 +61,33 @@ const Login = () => {
       userLogin({
         ...params,
         cb(res) {
-          if (res.status === 200) {
-            if (res.data.data.role === "chef") {
-              if (res.data.data.chefInfo.documentVerified) {
-                // toast.success("Successfully logged in");
+          if (res?.status === 200) {
+            if (res?.data?.data?.role === "chef") {
+              if (res?.data?.data?.chefInfo?.documentVerified === "verified") {
                 navigate("/home");
                 handleCreateUserCollection(res?.data?.data);
               } else if (
-                !res.data.data.chefInfo.documentVerified &&
-                res.data.data.chefInfo.step === "3"
+                res?.data?.data?.chefInfo?.documentVerified === "pending" &&
+                res?.data?.data?.chefInfo?.step !== "3"
+              ) {
+                navigate("/setup-profile");
+              } else if (
+                res?.data?.data?.chefInfo?.documentVerified === "pending" &&
+                res?.data?.data?.chefInfo?.step === "3"
               ) {
                 showToast("Please wait for admin approval");
                 localStorage.removeItem("authToken");
                 return;
               } else if (
-                !res.data.data.chefInfo.documentVerified &&
-                res.data.data.chefInfo.step !== "3"
+                res?.data?.data?.chefInfo?.documentVerified === "rejected" &&
+                res?.data?.data?.chefInfo?.step !== "3"
               ) {
+                showToast(
+                  "Admin rejected your document. Please upload it again."
+                );
                 navigate("/setup-profile");
               }
-            } else if (res.data.data.status === "Active") {
+            } else if (res?.data?.data?.status === "Active") {
               navigate("/home-user");
               handleCreateUserCollection(res?.data?.data);
             }
@@ -136,12 +144,12 @@ const Login = () => {
             <div className="col-lg-6 col-md-6">
               <div className="logleft">
                 <figure>
-                <Link to="/">
-                  <img
-                    src={Images.Logo}
-                    alt="logo"
-                    className="img-fluid logo"
-                  />
+                  <Link to="/">
+                    <img
+                      src={Images.Logo}
+                      alt="logo"
+                      className="img-fluid logo"
+                    />
                   </Link>
                 </figure>
                 <figure className="ChefMain">
@@ -237,12 +245,16 @@ const Login = () => {
                       </Link>
                     </div>
                     <div className="buttonBox mt-5">
-                      <button disabled={authData.loading} type="submit" className="smallBtn">
+                      <button
+                        disabled={authData.loading}
+                        type="submit"
+                        className="smallBtn"
+                      >
                         {" "}
                         Login
-                        {authData.loading &&
-                        <span className="spinner-border spinner-border-sm ms-2"></span>
-                        }
+                        {authData.loading && (
+                          <span className="spinner-border spinner-border-sm ms-2"></span>
+                        )}
                       </button>
                     </div>
                   </form>

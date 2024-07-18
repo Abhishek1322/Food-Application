@@ -9,7 +9,7 @@ const AuthLayout = () => {
   return (
     <>
       {isAuthenticated &&
-      authData?.userInfo?.chefInfo?.documentVerified &&
+      authData?.userInfo?.chefInfo?.documentVerified === "verified" &&
       authData?.userInfo?.role === "chef" ? (
         <Navigate to="/home" />
       ) : isAuthenticated && authData?.userInfo?.role === "user" ? (
