@@ -475,7 +475,7 @@ const ChefDetails = () => {
                     {chefData?.userInfo?.firstName}{" "}
                     {chefData?.userInfo?.lastName}
                   </h2>
-                  <h6 className="headerInner_">Online</h6>
+                  {/* <h6 className="headerInner_">Online</h6> */}
                 </div>
               </div>
               <div className="Dotsheader_">

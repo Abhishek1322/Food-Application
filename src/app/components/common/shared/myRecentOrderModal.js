@@ -340,7 +340,7 @@ const MyRecentOrderModal = ({
                     {usersData?.userInfo?.firstName}{" "}
                     {usersData?.userInfo?.lastName}
                   </p>
-                  <p className="headerInner_">Online</p>
+                  {/* <p className="headerInner_">Online</p> */}
                 </div>
               </div>
               <div className="Dotsheader_">

@@ -385,7 +385,7 @@ const BookingDetails = () => {
                     {bookingDetails?.userId?.userInfo?.firstName}{" "}
                     {bookingDetails?.userId?.userInfo?.lastName}
                   </p>
-                  <p className="headerInner_">Online</p>
+                  {/* <p className="headerInner_">Online</p> */}
                 </div>
               </div>
               <div className="Dotsheader_">

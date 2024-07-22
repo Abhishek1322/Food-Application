@@ -435,7 +435,7 @@ const OrderDetails = () => {
                     {orderDetails?.userId?.userInfo?.firstName}{" "}
                     {orderDetails?.userId?.userInfo?.lastName}
                   </p>
-                  <p className="headerInner_">Online</p>
+                  {/* <p className="headerInner_">Online</p> */}
                 </div>
               </div>
               <div className="Dotsheader_">
