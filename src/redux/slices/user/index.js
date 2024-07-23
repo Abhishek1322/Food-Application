@@ -227,6 +227,18 @@ export const userSilce = createSlice({
       state.loading = false;
       state.address = action.payload;
     },
+    getAllCards: (state) => {
+      state.loading = true;
+    },
+    setGetAllCards: (state) => {
+      state.loading = false;
+    },
+    createCard: (state) => {
+      state.loading = true;
+    },
+    setCreateCard: (state) => {
+      state.loading = false;
+    },
     onErrorStopLoad: (state) => {
       state.loading = false;
     },
@@ -296,7 +308,11 @@ export const {
   setCreatePaymentIntent,
   getSelectedAddress,
   getAllBookings,
-  setGetAllBookings
+  setGetAllBookings,
+  getAllCards,
+  setGetAllCards,
+  createCard,
+  setCreateCard,
 } = userSilce.actions;
 
 export default userSilce.reducer;

@@ -175,8 +175,16 @@ import myorderside from "../public/images/myorderside.svg";
 import myordersideOranges from "../public/images/myordersideOranges.svg";
 import chefPoster from "../public/images/chef-poster.svg";
 import playIcon from "../public/images/play-icon.svg";
+import whitebin from "../public/images/whitebin.svg";
+import cardSign from "../public/images/cardSign.svg";
+import starswhite from "../public/images/starswhite.png";
+import cardbg from "../public/images/cardbg.png";
 
 export {
+  cardbg,
+  whitebin,
+  cardSign,
+  starswhite,
   noBank,
   myorderside,
   myordersideOranges,
@@ -353,5 +361,5 @@ export {
   nocheffound,
   sidebarLight,
   chefPoster,
-  playIcon
+  playIcon,
 };

@@ -61,7 +61,9 @@ const ApiPath = {
     GET_ALL_CART_NOTIFICATION: "/users/home",
     CREATE_BOOKING_ORDER: "/order/checkout",
     CREATE_PAYMENT_INTENT: "/transactions/create-intent",
-    GET_ALL_BOOKING:"/bookings/user"
+    GET_ALL_BOOKING: "/bookings/user",
+    GET_ALL_CARDS: "/users/get-cards",
+    CREATE_CARD:"/users/create-card"
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
@@ -69,7 +71,7 @@ const ApiPath = {
     GET_CHEF_SINGLE_ORDER: "/order/order",
     CONFIRM_ORDER_OTP: "/order/deliver",
     RESEND_OTP: "/order/resend",
-    RESEND_BOOKING_OTP:"/bookings/resend",
+    RESEND_BOOKING_OTP: "/bookings/resend",
     GET_BOOKING_REQUESTS: "/bookings/chef",
     GET_BOOKING_DETAIL: "/bookings/booking",
     ACCEPT_BOOKING: "/bookings/change-status",

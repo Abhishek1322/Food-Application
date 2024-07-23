@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../../redux/selector/user";
 import CheckOutForm from "./CheckOutForm";
+import CommonCheckoutForm from "./CommonCheckoutForm";
 
 const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
@@ -191,34 +192,34 @@ const UserCartModal = ({ close }) => {
   };
 
   // create payment details
-  const handleCreatePaymentIntent = (flag) => {
-    if (!selectedAddress) {
-      showToast("Please select delivery address");
-      return;
-    }
-    setIsLoading(flag);
-    let params = {
-      cartId: cartId,
-      addressId: selectedAddress,
-    };
-    dispatch(
-      createOrder({
-        ...params,
-        cb(res) {
-          if (res?.status === 200) {
-            setClient(res?.data?.data?.client_secret);
-            setOrderNumber(
-              res?.data?.data?.orderId
-                ? res?.data?.data?.orderId
-                : res?.data?.data?.bookingId
-            );
-            setOrderId(res?.data?.data?._id);
-            handleOpenModal("checkOutForm");
-          }
-        },
-      })
-    );
-  };
+  // const handleCreatePaymentIntent = (flag) => {
+  //   if (!selectedAddress) {
+  //     showToast("Please select delivery address");
+  //     return;
+  //   }
+  //   setIsLoading(flag);
+  //   let params = {
+  //     cartId: cartId,
+  //     addressId: selectedAddress,
+  //   };
+  //   dispatch(
+  //     createOrder({
+  //       ...params,
+  //       cb(res) {
+  //         if (res?.status === 200) {
+  //           setClient(res?.data?.data?.client_secret);
+  //           setOrderNumber(
+  //             res?.data?.data?.orderId
+  //               ? res?.data?.data?.orderId
+  //               : res?.data?.data?.bookingId
+  //           );
+  //           setOrderId(res?.data?.data?._id);
+  //           handleOpenModal("checkOutForm");
+  //         }
+  //       },
+  //     })
+  //   );
+  // };
 
   // get selected addresss
   useEffect(() => {
@@ -411,7 +412,8 @@ const UserCartModal = ({ close }) => {
                       <p className="price">£{totalPrice.toFixed(2)}</p>
                     </div>
                     <button
-                      onClick={() => handleCreatePaymentIntent("pay")}
+                      // onClick={() => handleCreatePaymentIntent("pay")}
+                      onClick={() => handleOpenModal("commonCheckoutForm")}
                       className="orderbutton w-auto"
                       type="button"
                       disabled={loading}
@@ -456,7 +458,8 @@ const UserCartModal = ({ close }) => {
             ? "ordereditaddress"
             : modalDetail.flag === "deleteaddress"
             ? "ordereditaddress"
-            : modalDetail.flag === "checkOutForm"
+            : modalDetail.flag === "checkOutForm" ||
+              modalDetail.flag === "commonCheckoutForm"
             ? "ordereditaddress"
             : ""
         }
@@ -493,6 +496,23 @@ const UserCartModal = ({ close }) => {
               orderNumber={orderNumber}
               orderId={orderId}
               client={client}
+            />
+          ) : modalDetail.flag === "commonCheckoutForm" ? (
+            <CommonCheckoutForm
+              close={() => {
+                close();
+                handleOnCloseModal();
+              }}
+              // cartId={cartId}
+              // selectedAddress={selectedAddress}
+              // orderPrice={totalPrice}
+              // orderType={orderType}
+              // bookingData={bookingData}
+              // bookingAddress={bookingAddress}
+              // orderNumber={orderNumber}
+              // orderId={orderId}
+              // client={client}
+              handleOpenModalCardDetails={handleOpenModal}
             />
           ) : (
             ""
@@ -543,7 +563,8 @@ const UserCartModal = ({ close }) => {
                 </div>
               </div>
             </>
-          ) : modalDetail.flag === "checkOutForm" ? (
+          ) : modalDetail.flag === "checkOutForm" ||
+            modalDetail.flag === "commonCheckoutForm" ? (
             <>
               <div className="editadressheading">
                 <img

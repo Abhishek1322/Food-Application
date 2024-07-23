@@ -33,10 +33,55 @@ import {
   setGetCartNotificationCount,
   setCreatePaymentIntent,
   setGetAllBookings,
+  setGetAllCards,
+  setCreateCard,
 } from "../../slices/user";
 import { GOOLE_MAPS_API_KEY } from "../../../config/config";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* createCard(action) {
+  try {
+    const resp = yield call(
+      ApiClient.post,
+      (action.url = ApiPath.userApiPath.CREATE_CARD),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setCreateCard(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    if (e.response.data.message) {
+      toast.error(e.response.data.message);
+    }
+  }
+}
+
+function* getAllCards(action) {
+  try {
+    const resp = yield call(
+      ApiClient.get,
+      (action.url = ApiPath.userApiPath.GET_ALL_CARDS),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setGetAllCards(resp.data.data));
+      yield call(action.payload.cb, resp);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* getAllBookings(action) {
   try {
@@ -719,6 +764,8 @@ function* userSaga() {
   yield all([takeLatest("user/getLocationInfo", getLocationInfo)]);
   yield all([takeLatest("user/createPaymentIntent", createPaymentIntent)]);
   yield all([takeLatest("user/getAllBookings", getAllBookings)]);
+  yield all([takeLatest("user/getAllCards", getAllCards)]);
+  yield all([takeLatest("user/createCard", createCard)]);
   yield all([
     takeLatest("user/getCartNotificationCount", getCartNotificationCount),
   ]);

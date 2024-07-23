@@ -1390,3 +1390,93 @@ input.searchtext.search-only-chef {
 .chef-document-inner {
   height: calc(100vh - 170px);
 }
+.no-card-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 309px);
+}
+.pay-with-card {
+  border-radius: 8px;
+  background: #e65c00;
+  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+  padding: 18px 45px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+}
+.add-card-new {
+  border-radius: 8px;
+  background: #2e3333;
+  box-shadow: 0px 17px 28px 0px rgba(230, 92, 0, 0.15);
+  padding: 18px 45px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.add-card-buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.add-card-details-outer {
+  padding: 20px;
+}
+
+.card-input-button {
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cardOuter.active {
+  box-shadow: 4px 1px 15px grey;
+}
+.cardOuter {
+  background-image: url("../images/cardbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12px;
+}
+.cardInner {
+  padding: 30px 20px;
+}
+.checkIcon {
+  height: 30px;
+  margin-left: 10px;
+  width: 30px;
+}
+.bigText {
+  color: #2d2832;
+  font-size: 15px;
+  font-weight: 500;
+  width: 80% !important;
+}
+.medText {
+  color: #2d2832 !important;
+  font-size: 22px;
+  font-weight: 600;
+}
+.text_ {
+  color: #8a7c8d;
+  font-size: 18px;
+}
+.subtext {
+  color: #8a7c8d;
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  word-break: break-all;
+}
+.all-cards {
+  padding: 20px;
+}

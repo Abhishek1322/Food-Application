@@ -98,7 +98,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
       addToCart({
         ...params,
         cb(res) {
-          if (res.status === 200) {
+          if (res?.status === 200) {
             handleOpenModal("allCart");
           }
         },
