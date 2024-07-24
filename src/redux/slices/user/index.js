@@ -239,6 +239,12 @@ export const userSilce = createSlice({
     setCreateCard: (state) => {
       state.loading = false;
     },
+    deleteCard: (state) => {
+      state.loading = true;
+    },
+    setDeleteCard: (state) => {
+      state.loading = false;
+    },
     onErrorStopLoad: (state) => {
       state.loading = false;
     },
@@ -313,6 +319,8 @@ export const {
   setGetAllCards,
   createCard,
   setCreateCard,
+  deleteCard,
+  setDeleteCard,
 } = userSilce.actions;
 
 export default userSilce.reducer;

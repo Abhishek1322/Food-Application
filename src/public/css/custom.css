@@ -1438,16 +1438,18 @@ input.searchtext.search-only-chef {
   justify-content: space-between;
 }
 .cardOuter.active {
-  box-shadow: 4px 1px 15px grey;
+  box-shadow: #ffbb8e 0px 0px 0px 5px;
 }
 .cardOuter {
   background-image: url("../images/cardbg.png");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 12px;
+  margin-bottom: 15px;
 }
 .cardInner {
   padding: 30px 20px;
+  cursor: pointer;
 }
 .checkIcon {
   height: 30px;
@@ -1455,22 +1457,22 @@ input.searchtext.search-only-chef {
   width: 30px;
 }
 .bigText {
-  color: #2d2832;
+  color: #fff;
   font-size: 15px;
   font-weight: 500;
   width: 80% !important;
 }
 .medText {
-  color: #2d2832 !important;
+  /* color: #2d2832 !important; */
   font-size: 22px;
   font-weight: 600;
 }
 .text_ {
-  color: #8a7c8d;
+  color: #fff;
   font-size: 18px;
 }
 .subtext {
-  color: #8a7c8d;
+  color: #fff;
   font-family: Open Sans, sans-serif;
   font-size: 12px;
   font-weight: 400;
@@ -1479,4 +1481,6 @@ input.searchtext.search-only-chef {
 }
 .all-cards {
   padding: 20px;
+  height: calc(100vh - 257px);
+  overflow: auto;
 }

@@ -169,13 +169,18 @@ const UserCartModal = ({ close }) => {
 
   // open modal
   const handleOpenModal = (flag, id) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-    setAddressId(id);
+    if (flag === "commonCheckoutForm" && !selectedAddress) {
+      showToast("Please select delivery address");
+      return;
+    } else {
+      setModalDetail({
+        show: true,
+        flag: flag,
+        type: flag,
+      });
+      setKey(Math.random());
+      setAddressId(id);
+    }
   };
 
   // select address

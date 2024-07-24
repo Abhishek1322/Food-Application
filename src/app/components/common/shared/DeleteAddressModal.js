@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useCallback } from "react";
-import * as Images from "../../../../utilities/images";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteAddress, getSelectedAddress, onErrorStopLoad } from "../../../../redux/slices/user";
+import {
+  deleteAddress,
+  getSelectedAddress,
+  onErrorStopLoad,
+} from "../../../../redux/slices/user";
+import * as Images from "../../../../utilities/images";
 
-const DeleteAddressModal = (props) => {
-  const { close, addressId, handleGetUserAddress } = props;
+const DeleteAddressModal = ({ close, addressId, handleGetUserAddress }) => {
   const dispatch = useDispatch();
 
   // delete address

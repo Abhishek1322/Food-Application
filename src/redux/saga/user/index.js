@@ -35,10 +35,32 @@ import {
   setGetAllBookings,
   setGetAllCards,
   setCreateCard,
+  setDeleteCard,
 } from "../../slices/user";
 import { GOOLE_MAPS_API_KEY } from "../../../config/config";
 
 // Worker saga will be fired on USER_FETCH_REQUESTED actions
+
+function* deleteCard(action) {
+  try {
+    const resp = yield call(
+      ApiClient.delete,
+      (action.url = `${ApiPath.userApiPath.DELETE_CARD}/${action.payload.id}`),
+      (action.payload = action.payload)
+    );
+    if (resp.status) {
+      yield put(setDeleteCard(resp.data.data));
+      yield call(action.payload.cb, resp);
+      toast.success(resp.data.message);
+    } else {
+      throw resp;
+    }
+  } catch (e) {
+    yield put(onErrorStopLoad());
+    toast.dismiss();
+    toast.error(e.response.data.message);
+  }
+}
 
 function* createCard(action) {
   try {
@@ -766,6 +788,7 @@ function* userSaga() {
   yield all([takeLatest("user/getAllBookings", getAllBookings)]);
   yield all([takeLatest("user/getAllCards", getAllCards)]);
   yield all([takeLatest("user/createCard", createCard)]);
+  yield all([takeLatest("user/deleteCard", deleteCard)]);
   yield all([
     takeLatest("user/getCartNotificationCount", getCartNotificationCount),
   ]);

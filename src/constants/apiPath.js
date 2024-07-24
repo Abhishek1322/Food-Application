@@ -63,7 +63,8 @@ const ApiPath = {
     CREATE_PAYMENT_INTENT: "/transactions/create-intent",
     GET_ALL_BOOKING: "/bookings/user",
     GET_ALL_CARDS: "/users/get-cards",
-    CREATE_CARD:"/users/create-card"
+    CREATE_CARD:"/users/create-card",
+    DELETE_CARD:"/users/delete-card"
   },
   chefApiPath: {
     GET_RECENT_ORDER: "/order/chef",
