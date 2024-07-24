@@ -1,9 +1,28 @@
-import React from 'react'
+import React from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CommonCheckoutForm from "./CommonCheckoutForm";
 
-const ConfirmCardWrapper = () => {
+//STRIPE_PUBLISHABLE_KEY
+const stripePromise = loadStripe(process.env.REACT_APP_SRTIPE_PUBLISHABLE_KEY);
+const ConfirmCardWrapper = ({
+  totalPrice,
+  cartId,
+  selectedAddress,
+  orderType,
+  handleOpenModalCardDetails,
+}) => {
   return (
-    <div>ConfirmCardWrapper</div>
-  )
-}
+    <Elements stripe={stripePromise}>
+      <CommonCheckoutForm
+        totalPrice={totalPrice}
+        cartId={cartId}
+        selectedAddress={selectedAddress}
+        orderType={orderType}
+        handleOpenModalCardDetails={handleOpenModalCardDetails}
+      />
+    </Elements>
+  );
+};
 
-export default ConfirmCardWrapper
+export default ConfirmCardWrapper;

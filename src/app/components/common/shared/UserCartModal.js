@@ -5,7 +5,6 @@ import {
   onErrorStopLoad,
   deleteCartItem,
   updateCartItem,
-  createOrder,
   getUserAddress,
   getSelectedAddress,
 } from "../../../../redux/slices/user";
@@ -17,8 +16,8 @@ import DeleteAddressModal from "./DeleteAddressModal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../../redux/selector/user";
-import CheckOutForm from "./CheckOutForm";
 import CommonCheckoutForm from "./CommonCheckoutForm";
+import ConfirmCardWrapper from "./ConfirmCardWrapper";
 
 const UserCartModal = ({ close }) => {
   const dispatch = useDispatch();
@@ -39,10 +38,6 @@ const UserCartModal = ({ close }) => {
     address && address.length > 0 ? [...address].reverse() : [];
   const [addressId, setAddressId] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
-  const [orderNumber, setOrderNumber] = useState("");
-  const [orderId, setOrderId] = useState("");
-  const [isLoading, setIsLoading] = useState("");
-  const [client, setClient] = useState("");
   const [serviceCharges, setServiceCharges] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
@@ -169,7 +164,7 @@ const UserCartModal = ({ close }) => {
 
   // open modal
   const handleOpenModal = (flag, id) => {
-    if (flag === "commonCheckoutForm" && !selectedAddress) {
+    if (flag === "confirmCardWrapper" && !selectedAddress) {
       showToast("Please select delivery address");
       return;
     } else {
@@ -195,36 +190,6 @@ const UserCartModal = ({ close }) => {
     close();
     navigate(`/chef-details?id=${chefId}`);
   };
-
-  // create payment details
-  // const handleCreatePaymentIntent = (flag) => {
-  //   if (!selectedAddress) {
-  //     showToast("Please select delivery address");
-  //     return;
-  //   }
-  //   setIsLoading(flag);
-  //   let params = {
-  //     cartId: cartId,
-  //     addressId: selectedAddress,
-  //   };
-  //   dispatch(
-  //     createOrder({
-  //       ...params,
-  //       cb(res) {
-  //         if (res?.status === 200) {
-  //           setClient(res?.data?.data?.client_secret);
-  //           setOrderNumber(
-  //             res?.data?.data?.orderId
-  //               ? res?.data?.data?.orderId
-  //               : res?.data?.data?.bookingId
-  //           );
-  //           setOrderId(res?.data?.data?._id);
-  //           handleOpenModal("checkOutForm");
-  //         }
-  //       },
-  //     })
-  //   );
-  // };
 
   // get selected addresss
   useEffect(() => {
@@ -417,7 +382,7 @@ const UserCartModal = ({ close }) => {
                       <p className="price">£{totalPrice.toFixed(2)}</p>
                     </div>
                     <button
-                      onClick={() => handleOpenModal("commonCheckoutForm")}
+                      onClick={() => handleOpenModal("confirmCardWrapper")}
                       className="orderbutton w-auto"
                       type="button"
                       disabled={loading}
@@ -459,8 +424,7 @@ const UserCartModal = ({ close }) => {
             ? "ordereditaddress"
             : modalDetail.flag === "deleteaddress"
             ? "ordereditaddress"
-            : modalDetail.flag === "checkOutForm" ||
-              modalDetail.flag === "commonCheckoutForm"
+            : modalDetail.flag === "confirmCardWrapper"
             ? "ordereditaddress"
             : ""
         }
@@ -482,24 +446,8 @@ const UserCartModal = ({ close }) => {
               handleGetUserAddress={handleGetUserAddress}
               close={() => handleOnCloseModal()}
             />
-          ) : modalDetail.flag === "checkOutForm" ? (
-            <CheckOutForm
-              close={() => {
-                close();
-                handleOnCloseModal();
-              }}
-              cartId={cartId}
-              selectedAddress={selectedAddress}
-              orderPrice={totalPrice}
-              orderType={orderType}
-              bookingData={bookingData}
-              bookingAddress={bookingAddress}
-              orderNumber={orderNumber}
-              orderId={orderId}
-              client={client}
-            />
-          ) : modalDetail.flag === "commonCheckoutForm" ? (
-            <CommonCheckoutForm
+          ) : modalDetail.flag === "confirmCardWrapper" ? (
+            <ConfirmCardWrapper
               close={() => {
                 close();
                 handleOnCloseModal();
@@ -508,14 +456,6 @@ const UserCartModal = ({ close }) => {
               cartId={cartId}
               selectedAddress={selectedAddress}
               orderType={orderType}
-              // cartId={cartId}
-              // selectedAddress={selectedAddress}
-              // orderPrice={totalPrice}
-              // bookingData={bookingData}
-              // bookingAddress={bookingAddress}
-              // orderNumber={orderNumber}
-              // orderId={orderId}
-              // client={client}
               handleOpenModalCardDetails={handleOpenModal}
             />
           ) : (
@@ -567,8 +507,7 @@ const UserCartModal = ({ close }) => {
                 </div>
               </div>
             </>
-          ) : modalDetail.flag === "checkOutForm" ||
-            modalDetail.flag === "commonCheckoutForm" ? (
+          ) : modalDetail.flag === "confirmCardWrapper" ? (
             <>
               <div className="editadressheading">
                 <img

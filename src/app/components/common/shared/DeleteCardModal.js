@@ -56,7 +56,7 @@ const DeleteCardModal = ({ close, cardId, hadleGetAllCards }) => {
               onClick={handleDeleteCard}
               className="submitOrder_"
             >
-              Yes
+              Yes, Delete
               {isLoading && (
                 <span className="spinner-border spinner-border-sm ms-2"></span>
               )}

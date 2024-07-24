@@ -56,7 +56,7 @@ const AddCardDetails = ({ handleOpenModalCardDetails }) => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            handleOpenModalCardDetails("commonCheckoutForm");
+            handleOpenModalCardDetails("confirmCardWrapper");
           }
         },
       })

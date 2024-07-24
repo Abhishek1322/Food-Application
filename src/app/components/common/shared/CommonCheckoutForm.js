@@ -13,7 +13,7 @@ import DeleteCardModal from "./DeleteCardModal";
 import { toast } from "react-toastify";
 import { useUserSelector } from "../../../../redux/selector/user";
 import PaymentDoneModal from "./PaymentDoneModal";
-// import { useStripe } from "@stripe/react-stripe-js";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const CommonCheckoutForm = ({
   cartId,
@@ -22,7 +22,7 @@ const CommonCheckoutForm = ({
   orderType,
   handleOpenModalCardDetails,
 }) => {
-  // const stripe = useStripe();
+  const stripe = useStripe();
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const userSelector = useUserSelector();
@@ -111,25 +111,31 @@ const CommonCheckoutForm = ({
                 : res?.data?.data?.bookingId
             );
             setOrderId(res?.data?.data?._id);
-            // handleConfirmCardPayment(res?.data?.data?.client_secret);
-            handleOpenModal("paymentDoneModal");
+            handleConfirmCardPayment(res?.data?.data?.client_secret);
           }
         },
       })
     );
   };
 
-  //Confirm Card payment
-  // const handleConfirmCardPayment = async (clientSecret) => {
-  //   try {
-  //     const { paymentIntent, error } = await stripe.confirmCardPayment(
-  //       clientSecret
-  //     );
-  //     console.log("paymentIntent", paymentIntent);
-  //   } catch (error) {
-  //     console.error("Payment error:", error);
-  //   }
-  // };
+  // Confirm Card payment
+  const handleConfirmCardPayment = async (clientSecret) => {
+    try {
+      const { paymentIntent, error } = await stripe.confirmCardPayment(
+        clientSecret
+      );
+      if (
+        paymentIntent?.client_secret &&
+        paymentIntent?.status === "requires_capture"
+      ) {
+        handleOpenModal("paymentDoneModal");
+      } else if (error) {
+        showToast("Something went wrong");
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+    }
+  };
 
   // stop loader on error
   useEffect(() => {
@@ -149,7 +155,6 @@ const CommonCheckoutForm = ({
         </div>
       ) : (
         <div className="all-cards">
-          {console.log("allCardsallCards", allCards)}
           {allCards && allCards?.length > 0 ? (
             <>
               {allCards?.map((item, index) => (

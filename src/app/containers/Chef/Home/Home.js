@@ -117,7 +117,7 @@ const HomeRequsest = () => {
 
   return (
     <>
-      {showLoading ? (
+      {showLoading && !isLoading ? (
         <div className="good-loader">
           <FadeLoader
             color={"#E65C00"}
