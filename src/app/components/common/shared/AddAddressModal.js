@@ -11,17 +11,14 @@ import {
   onErrorStopLoad,
 } from "../../../../redux/slices/user";
 import CustomModal from "./CustomModal";
-import PayNowModal from "./PayNowModal";
 import { useDispatch } from "react-redux";
 import { useUserSelector } from "../../../../redux/selector/user";
 import { toast } from "react-toastify";
 
-const AddAddressModal = (props) => {
-  const { handleGetUserAddress, close } = props;
+const AddAddressModal = ({ handleGetUserAddress, close }) => {
   const dispatch = useDispatch();
   const toastId = useRef(null);
   const userData = useUserSelector();
-  const [key, setKey] = useState(Math.random());
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
@@ -31,30 +28,6 @@ const AddAddressModal = (props) => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const [isLoading, setIsLoading] = useState("");
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-  // open modal
-  const handleUserProfile = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
 
   // handle change city
   const autoCompleteHandleChange = (city) => {
@@ -473,52 +446,6 @@ const AddAddressModal = (props) => {
           </div>
         </div>
       </div>
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "paynow" ? "commonWidth customContent" : ""
-        }
-        ids={modalDetail.flag === "paynow" ? "paynowmodal" : ""}
-        child={
-          modalDetail.flag === "paynow" ? (
-            <PayNowModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "paynow" ? (
-            <>
-              <div className="editadressheading">
-                <img
-                  src={Images.backArrowpassword}
-                  alt="backarrowimage"
-                  className="img-fluid"
-                />
-                <div className="edithead">
-                  <h2 className="modal_Heading">Pay Now</h2>
-                  <p className="chatUser">Debit/Credit cards acceptable</p>
-                </div>
-              </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img
-                  src={Images.modalCancel}
-                  className="ModalCancel"
-                  alt="modalcancelimg"
-                />
-              </p>
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

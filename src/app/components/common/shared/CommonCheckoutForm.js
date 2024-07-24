@@ -1,18 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllCards } from "../../../../redux/slices/user";
+import {
+  createOrder,
+  getAllCards,
+  onErrorStopLoad,
+} from "../../../../redux/slices/user";
 import * as Images from "../../../../utilities/images";
 import CustomModal from "./CustomModal";
 import CheckOutForm from "./CheckOutForm";
 import { FadeLoader } from "react-spinners";
 import DeleteCardModal from "./DeleteCardModal";
+import { toast } from "react-toastify";
+import { useUserSelector } from "../../../../redux/selector/user";
+import PaymentDoneModal from "./PaymentDoneModal";
+// import { useStripe } from "@stripe/react-stripe-js";
 
-const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
+const CommonCheckoutForm = ({
+  cartId,
+  selectedAddress,
+  totalPrice,
+  orderType,
+  handleOpenModalCardDetails,
+}) => {
+  // const stripe = useStripe();
   const dispatch = useDispatch();
+  const toastId = useRef(null);
+  const userSelector = useUserSelector();
+  const { loading } = userSelector;
   const [key, setKey] = useState(Math.random());
   const [allCards, setAllCards] = useState([]);
   const [cardId, setCartId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingFlag, setLoadingFlag] = useState("");
+  const [orderNumber, setOrderNumber] = useState("");
+  const [orderId, setOrderId] = useState("");
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -31,8 +52,7 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
   };
 
   // open modal
-  const handleOpenModal = (event, flag, deleteCardId) => {
-    event.stopPropagation();
+  const handleOpenModal = (flag, deleteCardId) => {
     setModalDetail({
       show: true,
       flag: flag,
@@ -60,6 +80,61 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
       })
     );
   };
+
+  // show only one toast at one time
+  const showToast = (msg) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.error(msg);
+    }
+  };
+
+  // create payment details
+  const handlePayOrder = (flag) => {
+    if (!cardId) {
+      showToast("Please select a card for payment");
+      return;
+    }
+    setLoadingFlag(flag);
+    let params = {
+      cartId: cartId,
+      addressId: selectedAddress,
+      cardId: cardId,
+    };
+    dispatch(
+      createOrder({
+        ...params,
+        cb(res) {
+          if (res?.status === 200) {
+            setOrderNumber(
+              res?.data?.data?.orderId
+                ? res?.data?.data?.orderId
+                : res?.data?.data?.bookingId
+            );
+            setOrderId(res?.data?.data?._id);
+            // handleConfirmCardPayment(res?.data?.data?.client_secret);
+            handleOpenModal("paymentDoneModal");
+          }
+        },
+      })
+    );
+  };
+
+  //Confirm Card payment
+  // const handleConfirmCardPayment = async (clientSecret) => {
+  //   try {
+  //     const { paymentIntent, error } = await stripe.confirmCardPayment(
+  //       clientSecret
+  //     );
+  //     console.log("paymentIntent", paymentIntent);
+  //   } catch (error) {
+  //     console.error("Payment error:", error);
+  //   }
+  // };
+
+  // stop loader on error
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
 
   return (
     <>
@@ -95,9 +170,10 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
                         </div>
                         <div>
                           <img
-                            onClick={(e) =>
-                              handleOpenModal(e, "deleteCard", item?.id)
-                            }
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleOpenModal("deleteCard", item?.id);
+                            }}
                             src={Images.whitebin}
                             alt=""
                           />
@@ -105,8 +181,8 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
                         </div>
                       </div>
                       <p className="bigText mb-0 pb-4">
-                        <img src={Images.starswhite} alt="" />
-                        <span>{item?.card?.last4}</span>
+                        <img src={Images.starswhite} alt="" />{" "}
+                        <span> {item?.card?.last4}</span>
                       </p>
                       <div className="d-flex justify-content-between align-items-center">
                         <p className="text_ mb-0 medText">
@@ -139,12 +215,23 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
       <div className="add-card">
         <div className="add-card-buttons">
           <button
-            onClick={(e) => handleOpenModal(e, "cardDetails")}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleOpenModal("cardDetails");
+            }}
             className="add-card-new"
           >
             Add Card
           </button>
-          <button className="pay-with-card">Pay</button>
+          <button
+            onClick={() => handlePayOrder("pay")}
+            className="pay-with-card"
+          >
+            Pay £{totalPrice.toFixed(2)}
+            {loading && loadingFlag === "pay" && (
+              <span className="spinner-border spinner-border-sm ms-2"></span>
+            )}
+          </button>
         </div>
       </div>
       <CustomModal
@@ -159,7 +246,8 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
         }
         ids={
           modalDetail.flag === "cardDetails" ||
-          modalDetail.flag === "deleteCard"
+          modalDetail.flag === "deleteCard" ||
+          modalDetail.flag === "paymentDoneModal"
             ? "ordereditaddress"
             : ""
         }
@@ -174,6 +262,13 @@ const CommonCheckoutForm = ({ handleOpenModalCardDetails }) => {
               close={() => handleOnCloseModal()}
               hadleGetAllCards={hadleGetAllCards}
               cardId={modalDetail?.cardId}
+            />
+          ) : modalDetail.flag === "paymentDoneModal" ? (
+            <PaymentDoneModal
+              orderId={orderId}
+              orderNumber={orderNumber}
+              orderType={orderType}
+              close={() => handleOnCloseModal()}
             />
           ) : (
             ""

@@ -237,6 +237,7 @@ const Myorder = ({ close, updateNotification }) => {
                                       {item?.status === "pending" && (
                                         <div className="orderItems">
                                           <button
+                                            disabled={chefData?.loading}
                                             onClick={(e) =>
                                               handleAcceptOrder(
                                                 e,
@@ -254,6 +255,7 @@ const Myorder = ({ close, updateNotification }) => {
                                               )}
                                           </button>
                                           <button
+                                            disabled={chefData?.loading}
                                             onClick={(e) =>
                                               handleAcceptOrder(
                                                 e,

@@ -65,6 +65,7 @@ const OrderDetails = () => {
         ...params,
         cb(res) {
           if (res.status === 200) {
+            console.log('res', res)
             setOrderDetails(res?.data?.data);
           }
         },
@@ -319,25 +320,27 @@ const OrderDetails = () => {
                 <h3 className="orderId_ mt-3">Ordered Items</h3>
                 <div className="row">
                   <div className="col-lg-10">
-                   <div className="orderDetailScroll">
-                   {orderDetails?.items?.map((item, index) => (
-                      <div key={index} className="orderedFoodItems">
-                        <div className="foodCategory flexBox">
-                          <img
-                            src={item?.image}
-                            alt="foodItemsImg"
-                            className="foodItemImg"
-                          />
-                          <div className="categoryinfo">
-                            <h4 className="foodcategory_ text-capitalize">{item?.category}</h4>
-                            <h5 className="innerfood">{item?.name}</h5>
-                            <p className="innePrice">£{item?.netPrice}.00</p>
+                    <div className="orderDetailScroll">
+                      {orderDetails?.items?.map((item, index) => (
+                        <div key={index} className="orderedFoodItems">
+                          <div className="foodCategory flexBox">
+                            <img
+                              src={item?.image}
+                              alt="foodItemsImg"
+                              className="foodItemImg"
+                            />
+                            <div className="categoryinfo">
+                              <h4 className="foodcategory_ text-capitalize">
+                                {item?.category}
+                              </h4>
+                              <h5 className="innerfood">{item?.name}</h5>
+                              <p className="innePrice">£{item?.netPrice}.00</p>
+                            </div>
                           </div>
+                          <p className="fooodquantity_">{item?.quantity}X</p>
                         </div>
-                        <p className="fooodquantity_">{item?.quantity}X</p>
-                      </div>
-                    ))}
-                   </div>
+                      ))}
+                    </div>
                   </div>
                   <div className="col-lg-2">
                     <div

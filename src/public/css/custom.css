@@ -1438,14 +1438,16 @@ input.searchtext.search-only-chef {
   justify-content: space-between;
 }
 .cardOuter.active {
-  box-shadow: #ffbb8e 0px 0px 0px 5px;
+  box-shadow: #e36b1c 0px 0px 0px 3px;
 }
+
 .cardOuter {
   background-image: url("../images/cardbg.png");
   background-repeat: no-repeat;
-  background-size: cover;
   border-radius: 12px;
   margin-bottom: 15px;
+  width: 100%;
+  background-size: 100% 100%;
 }
 .cardInner {
   padding: 30px 20px;

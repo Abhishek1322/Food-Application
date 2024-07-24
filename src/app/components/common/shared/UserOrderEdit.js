@@ -5,45 +5,17 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import { addAddress, onErrorStopLoad } from "../../../../redux/slices/user";
-import CustomModal from "./CustomModal";
-import PayNowModal from "./PayNowModal";
 import { useDispatch } from "react-redux";
 
 const UserOrderEdit = () => {
   const dispatch = useDispatch();
-  const [key, setKey] = useState(Math.random());
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
   const [addressType, setAddressType] = useState("home");
   const [building, setBuilding] = useState("");
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-  // open modal
-  const handleUserProfile = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
 
   // handle change city
   const autoCompleteHandleChange = (city) => {
@@ -355,52 +327,6 @@ const UserOrderEdit = () => {
           </div>
         </div>
       </div>
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "paynow" ? "commonWidth customContent" : ""
-        }
-        ids={modalDetail.flag === "paynow" ? "paynowmodal" : ""}
-        child={
-          modalDetail.flag === "paynow" ? (
-            <PayNowModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "paynow" ? (
-            <>
-              <div className="editadressheading">
-                <img
-                  src={Images.backArrowpassword}
-                  alt="backarrowimage"
-                  className="img-fluid arrowCommon_"
-                />
-                <div className="edithead">
-                  <h2 className="modal_Heading">Pay Now</h2>
-                  <p className="chatUser">Debit/Credit cards acceptable</p>
-                </div>
-              </div>
-              <p onClick={handleOnCloseModal} className="modal_cancel">
-                <img
-                  src={Images.modalCancel}
-                  className="ModalCancel"
-                  alt="modalcancelimg"
-                />
-              </p>
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

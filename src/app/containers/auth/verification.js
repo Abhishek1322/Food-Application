@@ -93,7 +93,11 @@ const Verification = () => {
     dispatch(
       resendVerifyOtp({
         ...params,
-        cb(res) {},
+        cb(res) {
+          if (res?.status === 200) {
+            setOtp("");
+          }
+        },
       })
     );
   };

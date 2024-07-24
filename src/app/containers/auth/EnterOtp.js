@@ -58,11 +58,14 @@ const EnterOtp = (props) => {
       type: "forgot",
       email: authData?.userEmail?.email,
     };
-
     dispatch(
       resendResetPasswordOtp({
         ...params,
-        cb(res) {},
+        cb(res) {
+          if (res.status === 200) {
+            setOtp("");
+          }
+        },
       })
     );
   };

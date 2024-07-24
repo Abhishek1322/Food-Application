@@ -417,16 +417,12 @@ const UserCartModal = ({ close }) => {
                       <p className="price">£{totalPrice.toFixed(2)}</p>
                     </div>
                     <button
-                      // onClick={() => handleCreatePaymentIntent("pay")}
                       onClick={() => handleOpenModal("commonCheckoutForm")}
                       className="orderbutton w-auto"
                       type="button"
                       disabled={loading}
                     >
                       Pay Now
-                      {loading && isLoading === "pay" && (
-                        <span className="spinner-border spinner-border-sm me-2"></span>
-                      )}
                     </button>
                   </div>
                 </div>
@@ -508,10 +504,13 @@ const UserCartModal = ({ close }) => {
                 close();
                 handleOnCloseModal();
               }}
+              totalPrice={totalPrice}
+              cartId={cartId}
+              selectedAddress={selectedAddress}
+              orderType={orderType}
               // cartId={cartId}
               // selectedAddress={selectedAddress}
               // orderPrice={totalPrice}
-              // orderType={orderType}
               // bookingData={bookingData}
               // bookingAddress={bookingAddress}
               // orderNumber={orderNumber}

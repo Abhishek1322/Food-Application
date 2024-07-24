@@ -214,6 +214,7 @@ const MyRecentOrderModal = ({
           {orderDetail?.status === "pending" ? (
             <div className="orderItems_ flexBox justify-content-between ">
               <button
+                disabled={chefData?.loading}
                 onClick={() => handleOrderReady("cancelled")}
                 className="cancelOrder_"
               >
@@ -223,6 +224,7 @@ const MyRecentOrderModal = ({
                 )}
               </button>
               <button
+                disabled={chefData?.loading}
                 onClick={() => handleOrderReady("accepted")}
                 className="submitOrder_"
               >
@@ -235,6 +237,7 @@ const MyRecentOrderModal = ({
           ) : orderDetail?.status === "accepted" ? (
             <div className="orderItems_ flexBox justify-content-between ">
               <button
+                disabled={chefData?.loading}
                 onClick={() => handleOrderReady("readyForDelivery")}
                 className="cancelOrder_  w-100"
               >

@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../../utilities/images";
-import CustomModal from "./CustomModal";
-import PayNowModal from "./PayNowModal";
 import {
   singleAddress,
   editUserAddress,
@@ -29,33 +27,7 @@ const EditAddressModal = (props) => {
   const [building, setBuilding] = useState("");
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
-  const [key, setKey] = useState(Math.random());
   const [isLoading, setIsLoading] = useState("");
-  const [modalDetail, setModalDetail] = useState({
-    show: false,
-    title: "",
-    flag: "",
-  });
-
-  //closeModal
-  const handleOnCloseModal = () => {
-    setModalDetail({
-      show: false,
-      title: "",
-      flag: "",
-    });
-    setKey(Math.random());
-  };
-
-  // open modal
-  const handleUserProfile = (flag) => {
-    setModalDetail({
-      show: true,
-      flag: flag,
-      type: flag,
-    });
-    setKey(Math.random());
-  };
 
   // stop loader on page load
   useEffect(() => {
@@ -497,52 +469,6 @@ const EditAddressModal = (props) => {
           </div>
         </div>
       </div>
-      <CustomModal
-        key={key}
-        show={modalDetail.show}
-        backdrop="static"
-        showCloseBtn={false}
-        isRightSideModal={true}
-        mediumWidth={false}
-        className={
-          modalDetail.flag === "paynow" ? "commonWidth customContent" : ""
-        }
-        ids={modalDetail.flag === "paynow" ? "paynowmodal" : ""}
-        child={
-          modalDetail.flag === "paynow" ? (
-            <PayNowModal close={() => handleOnCloseModal()} />
-          ) : (
-            ""
-          )
-        }
-        header={
-          modalDetail.flag === "paynow" ? (
-            <>
-              <div className="editadressheading">
-                <img
-                  src={Images.backArrowpassword}
-                  alt="backarrowimage"
-                  className="img-fluid arrowCommon_"
-                />
-                <div className="edithead">
-                  <h2 className="modal_Heading">Pay Now</h2>
-                  <p className="chatUser">Debit/Credit cards acceptable</p>
-                </div>
-              </div>
-              <p onClick={close} className="modal_cancel">
-                <img
-                  src={Images.modalCancel}
-                  className="ModalCancel"
-                  alt="modalcancelimg"
-                />
-              </p>
-            </>
-          ) : (
-            ""
-          )
-        }
-        onCloseModal={() => handleOnCloseModal()}
-      />
     </>
   );
 };

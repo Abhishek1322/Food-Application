@@ -530,7 +530,7 @@ function* createOrder(action) {
     if (resp.status) {
       yield put(setCreateOrder(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -592,7 +592,7 @@ function* addToCart(action) {
     if (resp.status) {
       yield put(setAddToCart(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }

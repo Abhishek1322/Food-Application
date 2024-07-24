@@ -321,6 +321,7 @@ const EditMenuModal = ({ menuId, close, menuListAll }) => {
           )}
         </div>
         <button
+          disabled={loading}
           onClick={() => handleUpdateMenu("submit")}
           className="foodmodalbtn  modalfooterbtn"
         >

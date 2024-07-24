@@ -26,7 +26,7 @@ const OrderCancelModal = ({ close, orderType }) => {
           className="img-fluid"
         />
         <h1 className="accountDeleted mt-3">
-          {`${orderType === "order"}` ? "Order" : "Booking"} Canceled
+          {orderType === "order" ? "Order" : "Booking"} Cancelled
         </h1>
         <p className="accountdeletetxt mt-2 ">
           Your amount will be refund Within 1 hour.

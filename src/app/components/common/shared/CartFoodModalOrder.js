@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import * as Images from "../../../../utilities/images";
-import { Link, useLocation } from "react-router-dom";
-import CustomModal from "./CustomModal";
-import { singleMenu, onErrorStopLoad } from "../../../../redux/slices/web";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import UserCartModal from "./UserCartModal";
-import { addToCart } from "../../../../redux/slices/user";
-import { useUserSelector } from "../../../../redux/selector/user";
-import MenuRating from "./MenuRating";
-import ChefRating from "./ChefRating";
-import BookNowModal from "./BookNowModal";
+import { useLocation } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
+import { useUserSelector } from "../../../../redux/selector/user";
+import { addToCart } from "../../../../redux/slices/user";
+import { onErrorStopLoad, singleMenu } from "../../../../redux/slices/web";
+import * as Images from "../../../../utilities/images";
+import BookNowModal from "./BookNowModal";
+import ChefRating from "./ChefRating";
+import CustomModal from "./CustomModal";
+import MenuRating from "./MenuRating";
+import UserCartModal from "./UserCartModal";
 
 const CartFoodModalOrder = ({ menuId, close }) => {
   const dispatch = useDispatch();
@@ -141,7 +141,9 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                 />
 
                 <div className="johnchatdetail">
-                  <h6 className="chatDates text-capitalize">{foodDetails?.item?.category}</h6>
+                  <h6 className="chatDates text-capitalize">
+                    {foodDetails?.item?.category}
+                  </h6>
                 </div>
               </div>
             </div>
@@ -293,9 +295,6 @@ const CartFoodModalOrder = ({ menuId, close }) => {
                     type="button"
                   >
                     Hire Chef at £ {foodDetails?.item?.bookingPriceForItem}
-                    {/* {userData?.loading && (
-                  <span className="spinner-border spinner-border-sm me-1"></span>
-                )} */}
                   </button>
                 )}
               </div>
@@ -369,7 +368,7 @@ const CartFoodModalOrder = ({ menuId, close }) => {
             />
           ) : modalDetail.flag === "bookchef" ? (
             <BookNowModal
-            quantity={quantity}
+              quantity={quantity}
               menuId={menuId}
               chefId={foodDetails?.item?.userId?._id}
               close={() => {

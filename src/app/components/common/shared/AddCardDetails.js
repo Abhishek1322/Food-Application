@@ -9,12 +9,15 @@ import {
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { createCard, onErrorStopLoad } from "../../../../redux/slices/user";
+import { useUserSelector } from "../../../../redux/selector/user";
 
 const AddCardDetails = ({ handleOpenModalCardDetails }) => {
   const toastId = useRef(null);
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
+  const userSelector = useUserSelector();
+  const { loading } = userSelector;
   const [isLoading, setIsLoading] = useState(false);
 
   // show only one toast at one time
@@ -99,11 +102,12 @@ const AddCardDetails = ({ handleOpenModalCardDetails }) => {
             </div>
           </div>
 
-          <button disabled={isLoading} className="pay-with-card">
-            Pay{" "}
-            {isLoading && (
-              <span className="spinner-border spinner-border-sm ms-2"></span>
-            )}
+          <button disabled={isLoading || loading} className="pay-with-card">
+            Add{" "}
+            {isLoading ||
+              (loading && (
+                <span className="spinner-border spinner-border-sm ms-2"></span>
+              ))}
           </button>
         </form>
       </div>
