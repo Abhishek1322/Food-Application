@@ -161,25 +161,19 @@ const UserCartModal = ({ close }) => {
       toastId.current = toast.error(msg);
     }
   };
-
   // open modal
   const handleOpenModal = (flag, id) => {
-    if (flag === "confirmCardWrapper" && !selectedAddress) {
-      showToast("Please select delivery address");
-      return;
-    } else {
-      setModalDetail({
-        show: true,
-        flag: flag,
-        type: flag,
-      });
-      setKey(Math.random());
-      setAddressId(id);
-    }
+    setModalDetail({
+      show: true,
+      flag: flag,
+      type: flag,
+    });
+    setKey(Math.random());
+    setAddressId(id);
   };
 
   // select address
-  const handleSelectAddress = (e, id, book) => {
+  const handleSelectAddress = (id, book) => {
     setSelectedAddress(id);
     dispatch(getSelectedAddress(id));
     setBookingAddress(book);
@@ -339,7 +333,7 @@ const UserCartModal = ({ close }) => {
                           <div className="round roundSelect">
                             <input
                               onClick={(e) =>
-                                handleSelectAddress(e, item?._id, item)
+                                handleSelectAddress(item?._id, item)
                               }
                               id=""
                               name=""
@@ -382,7 +376,11 @@ const UserCartModal = ({ close }) => {
                       <p className="price">£{totalPrice.toFixed(2)}</p>
                     </div>
                     <button
-                      onClick={() => handleOpenModal("confirmCardWrapper")}
+                      onClick={() => {
+                        !selectedAddress
+                          ? showToast("Please select delivery address")
+                          : handleOpenModal("confirmCardWrapper");
+                      }}
                       className="orderbutton w-auto"
                       type="button"
                       disabled={loading}
