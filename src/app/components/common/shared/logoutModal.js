@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as Images from "../../../../utilities/images";
 import { userLogout, onErrorStopLoad } from "../../../../redux/slices/auth";
 import { useDispatch } from "react-redux";
@@ -6,20 +6,23 @@ import { useNavigate } from "react-router-dom";
 import { getSelectedAddress } from "../../../../redux/slices/user";
 import { restAllData } from "../../../../redux/slices/commanAction";
 
-const LogoutModal = (props) => {
-  const { close } = props;
+const LogoutModal = ({ close }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   // logout handler
   const handleLogout = (_id) => {
+    setIsLoading(true);
     dispatch(
       userLogout({
         cb(res) {
           if (res.status === 200) {
+            setIsLoading(false);
             navigate("/");
             dispatch(getSelectedAddress(null));
             dispatch(restAllData());
+          } else {
+            setIsLoading(false);
           }
         },
       })
@@ -48,8 +51,11 @@ const LogoutModal = (props) => {
             <button onClick={close} className="cancelOrder_ me-4">
               Cancel
             </button>
-            <button onClick={handleLogout} className="submitOrder_">
+            <button onClick={handleLogout} className="submitOrder_ log-out-btn">
               Yes, Logout
+              {isLoading && (
+                <span className="spinner-border spinner-border-sm ms-2"></span>
+              )}
             </button>
           </div>
         </div>

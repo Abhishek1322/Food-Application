@@ -1486,3 +1486,6 @@ input.searchtext.search-only-chef {
   height: calc(100vh - 257px);
   overflow: auto;
 }
+.log-out-btn {
+  padding: 13px 10px !important;
+}

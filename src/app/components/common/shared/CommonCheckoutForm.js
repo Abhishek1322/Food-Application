@@ -1,19 +1,18 @@
+import { useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { FadeLoader } from "react-spinners";
+import { toast } from "react-toastify";
 import {
   createOrder,
   getAllCards,
   onErrorStopLoad,
 } from "../../../../redux/slices/user";
 import * as Images from "../../../../utilities/images";
-import CustomModal from "./CustomModal";
 import CheckOutForm from "./CheckOutForm";
-import { FadeLoader } from "react-spinners";
+import CustomModal from "./CustomModal";
 import DeleteCardModal from "./DeleteCardModal";
-import { toast } from "react-toastify";
-import { useUserSelector } from "../../../../redux/selector/user";
 import PaymentDoneModal from "./PaymentDoneModal";
-import { useStripe } from "@stripe/react-stripe-js";
 
 const CommonCheckoutForm = ({
   cartId,
@@ -25,8 +24,6 @@ const CommonCheckoutForm = ({
   const stripe = useStripe();
   const dispatch = useDispatch();
   const toastId = useRef(null);
-  const userSelector = useUserSelector();
-  const { loading } = userSelector;
   const [key, setKey] = useState(Math.random());
   const [allCards, setAllCards] = useState([]);
   const [cardId, setCartId] = useState("");
@@ -34,6 +31,7 @@ const CommonCheckoutForm = ({
   const [loadingFlag, setLoadingFlag] = useState("");
   const [orderNumber, setOrderNumber] = useState("");
   const [orderId, setOrderId] = useState("");
+  const [loading, setLoading] = useState(false);
   const [modalDetail, setModalDetail] = useState({
     show: false,
     title: "",
@@ -94,6 +92,7 @@ const CommonCheckoutForm = ({
       showToast("Please select a card for payment");
       return;
     }
+    setLoading(true);
     setLoadingFlag(flag);
     let params = {
       cartId: cartId,
@@ -112,6 +111,8 @@ const CommonCheckoutForm = ({
             );
             setOrderId(res?.data?.data?._id);
             handleConfirmCardPayment(res?.data?.data?.client_secret);
+          } else {
+            setLoading(false);
           }
         },
       })
@@ -124,10 +125,8 @@ const CommonCheckoutForm = ({
       const { paymentIntent, error } = await stripe.confirmCardPayment(
         clientSecret
       );
-      if (
-        paymentIntent?.client_secret &&
-        paymentIntent?.status === "requires_capture"
-      ) {
+      if (paymentIntent?.client_secret) {
+        setLoading(false);
         handleOpenModal("paymentDoneModal");
       } else if (error) {
         showToast("Something went wrong");

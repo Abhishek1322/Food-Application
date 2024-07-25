@@ -46,7 +46,6 @@ function* updateBankDetails(action) {
   }
 }
 
-
 function* getBankDetails(action) {
   try {
     const resp = yield call(
@@ -206,7 +205,7 @@ function* resendVerifyOtp(action) {
     if (resp.status) {
       yield put(setResendVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);
-      toast.success(resp.data.message);
+      // toast.success(resp.data.message);
     } else {
       throw resp;
     }
@@ -316,6 +315,10 @@ function* verifyOtp(action) {
       localStorage.setItem(
         "authToken",
         resp.data && resp.data.data.token ? resp.data.data.token : ""
+      );
+      localStorage.setItem(
+        "userId",
+        resp.data.data.id ? resp.data.data.id : ""
       );
       yield put(setVerifyOtp(resp.data.data));
       yield call(action.payload.cb, resp);

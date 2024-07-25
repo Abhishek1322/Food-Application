@@ -62,7 +62,14 @@ const Login = () => {
         ...params,
         cb(res) {
           if (res?.status === 200) {
-            if (res?.data?.data?.role === "chef") {
+            if (!res?.data?.data?.isVerified) {
+              navigate("/verification", {
+                state: {
+                  userEmail: formData.email,
+                },
+              });
+              localStorage.setItem("verification", true);
+            } else if (res?.data?.data?.role === "chef") {
               if (res?.data?.data?.chefInfo?.documentVerified === "verified") {
                 navigate("/home");
                 handleCreateUserCollection(res?.data?.data);

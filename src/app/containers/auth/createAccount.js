@@ -94,7 +94,6 @@ const CreateAccount = () => {
         cb(res) {
           if (res.status === 200) {
             navigate("/verification");
-          } else {
           }
         },
       })

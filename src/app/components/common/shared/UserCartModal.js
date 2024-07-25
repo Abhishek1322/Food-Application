@@ -284,7 +284,13 @@ const UserCartModal = ({ close }) => {
                   </div>
                 </div>
 
-                <div className="checkouthomeoffice mt-3 all-address-checkout">
+                <div
+                  className={
+                    latestAddress && latestAddress?.length > 0
+                      ? "checkouthomeoffice mt-3 all-address-checkout"
+                      : ""
+                  }
+                >
                   {latestAddress && latestAddress?.length > 0 ? (
                     <>
                       {latestAddress?.slice(0, 3)?.map((item, index) => (

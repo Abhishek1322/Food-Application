@@ -39,7 +39,7 @@ const HomeUser = () => {
   useEffect(() => {
     getChefList();
   }, [search, filterChefByRating, currentLocation, expertice, chefType]);
- 
+
   // get all chef lists
   const getChefList = (page = currentPage) => {
     let params = {

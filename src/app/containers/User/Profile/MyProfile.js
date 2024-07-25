@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import CustomModal from "../../../components/common/shared/CustomModal";
 import LogoutModal from "../../../components/common/shared/logoutModal";
 
-
 const UserMyProfile = () => {
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
@@ -19,14 +18,11 @@ const UserMyProfile = () => {
     flag: "",
   });
 
-
-
   // getting user profile details
   useEffect(() => {
     let params = {
       userid: userId,
     };
-
     dispatch(
       getUserProfileDetails({
         ...params,
@@ -74,18 +70,18 @@ const UserMyProfile = () => {
               />
             </div>
             <div
-        className="settingBox d-flex align-items-center justify-content-center cursorPoint"
-        onClick={() => {
-          handleOpenModal("logOutModal");
-        }}
-      >
-        <img
-          src={Images.logout}
-          alt="logo"
-          className="img-fluid settingIcon "
-        />
-        <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
-      </div>
+              className="settingBox d-flex align-items-center justify-content-center cursorPoint"
+              onClick={() => {
+                handleOpenModal("logOutModal");
+              }}
+            >
+              <img
+                src={Images.logout}
+                alt="logo"
+                className="img-fluid settingIcon "
+              />
+              <h2 className="settingBoxtxt ms-3 mb-0">Logout</h2>
+            </div>
           </div>
           <div className="col-lg-7 col-md-12">
             {/* right section  */}
@@ -93,11 +89,7 @@ const UserMyProfile = () => {
               to="/user-editprofile"
               className="d-flex justify-content-end myprofileLink"
             >
-              <img
-                src={Images.edit}
-                alt="editimage"
-                className="img-fluid"
-              />
+              <img src={Images.edit} alt="editimage" className="img-fluid" />
               <p className="editheading">Edit profile</p>
             </Link>
             <div className="profileright">
@@ -126,7 +118,7 @@ const UserMyProfile = () => {
           </div>
         </div>
       </div>
-      
+
       <CustomModal
         key={key}
         show={modalDetail.show}

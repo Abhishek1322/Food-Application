@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Images from "../../../utilities/images";
 import OtpInput from "react-otp-input";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -18,16 +18,20 @@ const Verification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toastId = useRef(null);
+  const location = useLocation();
+  const { state } = location;
   const authData = useAuthSelector();
   const [isLoading, setIsLoading] = useState("");
   const fcmToken = localStorage.getItem("fcmToken");
   const userEmail = localStorage.getItem("userEmail");
+  const checkVerification = localStorage.getItem("verification");
   const [otp, setOtp] = useState("");
 
   // show only one toast at one time
-  const showToast = (msg) => {
+  const showToast = (msg, flag) => {
     if (!toast.isActive(toastId.current)) {
-      toastId.current = toast.error(msg);
+      toastId.current =
+        flag === "success" ? toast.success(msg) : toast.error(msg);
     }
   };
 
@@ -40,7 +44,7 @@ const Verification = () => {
     }
     setIsLoading(flag);
     let params = {
-      email: userEmail,
+      email: state?.userEmail || userEmail,
       otp: otp,
     };
     dispatch(
@@ -85,26 +89,44 @@ const Verification = () => {
   // function for resend otp
   const handleResendOtp = (e, flag) => {
     e.preventDefault();
+    setIsLoading(flag);
+    handleCommonRequest();
+  };
+
+  // stop loader on page load
+  useEffect(() => {
+    dispatch(onErrorStopLoad());
+  }, [dispatch]);
+
+  // comman ressend
+  const handleCommonRequest = () => {
     let params = {
       type: "verify",
-      email: userEmail,
+      email: state?.userEmail || userEmail,
     };
-    setIsLoading(flag);
     dispatch(
       resendVerifyOtp({
         ...params,
         cb(res) {
           if (res?.status === 200) {
             setOtp("");
+            if (checkVerification) {
+              localStorage.removeItem("verification");
+            } else {
+              showToast("OTP resend successfully", "success");
+            }
           }
         },
       })
     );
   };
 
+  // resend verify request
   useEffect(() => {
-    dispatch(onErrorStopLoad());
-  }, [dispatch]);
+    if (state?.userEmail && checkVerification) {
+      handleCommonRequest();
+    }
+  }, []);
 
   return (
     <>
